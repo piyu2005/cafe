@@ -223,7 +223,7 @@
 			var entry = (profile[kind] || []).filter(function (item) {
 				return item.name === id
 			})[0]
-			if (!entry) return MNA.toast('That entry no longer exists.')
+			if (!entry) return MNA.toast('That entry no longer exists.', 'warning')
 			if (kind === 'work') workForm(entry)
 			else educationForm(entry)
 		})
@@ -238,7 +238,7 @@
 				MNA.toast('Link copied')
 			},
 			function () {
-				MNA.toast('Could not copy the link')
+				MNA.toast('Could not copy the link', 'error')
 			}
 		)
 	}

@@ -84,7 +84,7 @@
 	}
 
 	P.errorToast = function (error) {
-		MNA.toast((error && error.message) || MNA.DEFAULT_ERROR)
+		MNA.toast((error && error.message) || MNA.DEFAULT_ERROR, 'error')
 	}
 
 	// Names on the page, whichever page it is.

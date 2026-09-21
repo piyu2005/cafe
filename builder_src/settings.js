@@ -112,7 +112,7 @@
 				function () {
 					posts = before
 					render()
-					MNA.toast("Couldn't remove that post. Please try again.")
+					MNA.toast("Couldn't remove that post. Please try again.", 'error')
 				}
 			)
 		}

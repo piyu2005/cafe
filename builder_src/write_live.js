@@ -75,11 +75,11 @@
 		var S = W.state
 		var form = S.form
 		if (W.isEmpty()) {
-			MNA.toast('Write something before saving')
+			MNA.toast('Write something before saving', 'warning')
 			return Promise.resolve(false)
 		}
 		if (status === 'Published' && !form.title.trim()) {
-			MNA.toast('Add a title before publishing')
+			MNA.toast('Add a title before publishing', 'warning')
 			return Promise.resolve(false)
 		}
 		var previous = S.status
@@ -132,11 +132,11 @@
 	function openPreview() {
 		var S = W.state
 		if (W.isEmpty()) {
-			MNA.toast('Write something before publishing')
+			MNA.toast('Write something before publishing', 'warning')
 			return
 		}
 		if (!S.form.title.trim()) {
-			MNA.toast('Add a title before publishing')
+			MNA.toast('Add a title before publishing', 'warning')
 			return
 		}
 		var dialog = W.openPreview({

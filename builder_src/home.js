@@ -183,7 +183,7 @@
 				if (request !== latestRequest) return
 				busy = false
 				setLoadingText(false)
-				MNA.toast("Couldn't load posts. Please try again.")
+				MNA.toast("Couldn't load posts. Please try again.", 'error')
 			}
 		)
 	}

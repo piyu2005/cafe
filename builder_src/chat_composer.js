@@ -174,7 +174,7 @@
 							renderPending()
 						},
 						function (error) {
-							MNA.toast(error.message)
+							MNA.toast(error.message, 'error')
 						}
 					)
 				})

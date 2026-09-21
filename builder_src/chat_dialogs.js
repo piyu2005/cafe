@@ -490,7 +490,7 @@
 					reload()
 				},
 				function (error) {
-					MNA.toast(error.message)
+					MNA.toast(error.message, 'error')
 				}
 			)
 		}
@@ -573,7 +573,7 @@
 							C.loadConversations()
 						},
 						function (e) {
-							MNA.toast(e.message)
+							MNA.toast(e.message, 'error')
 						}
 					)
 				}
@@ -611,7 +611,7 @@
 							},
 							function (e) {
 								invite.disabled = false
-								MNA.toast(e.message)
+								MNA.toast(e.message, 'error')
 							}
 						)
 				})
@@ -656,7 +656,7 @@
 					draw()
 				},
 				function (e) {
-					MNA.toast(e.message)
+					MNA.toast(e.message, 'error')
 				}
 			)
 		}
@@ -685,7 +685,7 @@
 									C.open(null, true)
 								},
 								function (e) {
-									MNA.toast(e.message)
+									MNA.toast(e.message, 'error')
 								}
 							)
 						})

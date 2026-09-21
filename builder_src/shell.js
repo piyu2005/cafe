@@ -127,6 +127,8 @@
 		logos.forEach(function (logo) {
 			logo.addEventListener('click', function (e) {
 				e.stopPropagation()
+				// The notifications panel covers the menu, so it closes first.
+				if (MNA.closeNotifications) MNA.closeNotifications()
 				setOpen(!menu.classList.contains('open'))
 			})
 		})

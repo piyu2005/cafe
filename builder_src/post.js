@@ -92,7 +92,7 @@
 			function (err) {
 				setActive(button, was)
 				counter.textContent = String(before)
-				MNA.toast(err.message)
+				MNA.toast(err.message, 'error')
 			}
 		)
 	}
@@ -108,7 +108,7 @@
 			},
 			function (err) {
 				setActive(button, was)
-				MNA.toast(err.message)
+				MNA.toast(err.message, 'error')
 			}
 		)
 	}
@@ -120,7 +120,7 @@
 				MNA.toast('Link copied')
 			},
 			function () {
-				MNA.toast('Could not copy the link')
+				MNA.toast('Could not copy the link', 'error')
 			}
 		)
 	}
@@ -159,7 +159,7 @@
 				})
 			},
 			function (err) {
-				MNA.toast(err.message)
+				MNA.toast(err.message, 'error')
 			}
 		)
 	}
@@ -385,7 +385,7 @@
 					comment.liked_by_me = was
 					comment.like_count = before
 					paint()
-					MNA.toast(err.message)
+					MNA.toast(err.message, 'error')
 				}
 			)
 		})
@@ -471,7 +471,7 @@
 					renderList()
 				},
 				function (err) {
-					MNA.toast(err.message)
+					MNA.toast(err.message, 'error')
 				}
 			)
 		})
@@ -583,7 +583,7 @@
 				})
 				updateCounts()
 				renderList()
-				MNA.toast(err.message || 'Could not post comment')
+				MNA.toast(err.message || 'Could not post comment', 'error')
 				if (restore) restore()
 			}
 		)
