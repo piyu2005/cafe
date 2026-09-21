@@ -189,11 +189,14 @@
 			function () {
 				node.disabled = false
 				if (announce) MNA.toast('All notifications marked as read')
-				self.load(false)
+				// Like the other Frappe apps: once everything is read, the list clears.
+				self.request++
+				self.render([])
+				if (MNA.refreshBadges) MNA.refreshBadges()
 			},
 			function () {
 				node.disabled = false
-				MNA.toast("Couldn't mark them as read. Please try again.")
+				MNA.toast("Couldn't mark them as read. Please try again.", 'error')
 			}
 		)
 	}
@@ -291,7 +294,7 @@
 			function (error) {
 				node.disabled = false
 				node.parentNode.classList.remove('busy')
-				MNA.toast(error.message)
+				MNA.toast(error.message, 'error')
 			}
 		)
 	}
@@ -321,12 +324,12 @@
 			socket.on('notification:new', function (payload) {
 				if (MNA.refreshBadges) MNA.refreshBadges()
 				if (panel.isOpen) panel.load(true)
-				else MNA.toast((payload.actor_name || 'Someone') + ' ' + payload.message)
+				else MNA.toast((payload.actor_name || 'Someone') + ' ' + payload.message, 'info')
 			})
 			socket.on('chat:new_message', function (payload) {
 				if (MNA.refreshBadges) MNA.refreshBadges()
 				var here = location.pathname === '/messages/' + payload.conversation
-				if (!here) MNA.toast(payload.sender_name + ': ' + (payload.content || 'sent an attachment'))
+				if (!here) MNA.toast(payload.sender_name + ': ' + (payload.content || 'sent an attachment'), 'info')
 			})
 		}
 		document.head.appendChild(script)

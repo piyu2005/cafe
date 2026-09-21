@@ -149,10 +149,10 @@
 				if (id !== C.state.active) return
 				C.state.messages = rows || []
 				C.renderMessages()
-				if (!show()) MNA.toast("Couldn't find that message")
+				if (!show()) MNA.toast("Couldn't find that message", 'error')
 			},
 			function () {
-				MNA.toast("Couldn't find that message")
+				MNA.toast("Couldn't find that message", 'error')
 			}
 		)
 	}

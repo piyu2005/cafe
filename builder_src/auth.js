@@ -229,10 +229,10 @@
 		call('cafe.api.get_google_login_url', {}).then(
 			function (url) {
 				if (url) location.assign(url)
-				else MNA.toast('Google sign-in is not configured yet')
+				else MNA.toast('Google sign-in is not configured yet', 'warning')
 			},
 			function (error) {
-				MNA.toast(messageOf(error))
+				MNA.toast(messageOf(error), 'error')
 			}
 		)
 	}
