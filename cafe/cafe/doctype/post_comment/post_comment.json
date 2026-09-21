@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-08-02 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "post",
+  "parent_comment",
+  "comment_by",
+  "comment_by_name",
+  "comment_by_image",
+  "content"
+ ],
+ "fields": [
+  {
+   "fieldname": "post",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Post",
+   "options": "Post",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parent_comment",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Parent Comment",
+   "options": "Post Comment"
+  },
+  {
+   "fieldname": "comment_by",
+   "fieldtype": "Link",
+   "label": "Comment By",
+   "options": "User",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "comment_by.full_name",
+   "fieldname": "comment_by_name",
+   "fieldtype": "Data",
+   "label": "Comment By Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "comment_by.user_image",
+   "fieldname": "comment_by_image",
+   "fieldtype": "Attach Image",
+   "label": "Comment By Image",
+   "read_only": 1
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Small Text",
+   "label": "Content",
+   "reqd": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-02 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cafe",
+ "name": "Post Comment",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "All"
+  },
+  {
+   "delete": 1,
+   "if_owner": 1,
+   "role": "All",
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

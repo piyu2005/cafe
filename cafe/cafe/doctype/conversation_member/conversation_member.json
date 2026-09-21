@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "conversation",
+  "user",
+  "muted",
+  "last_read",
+  "is_admin",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "conversation",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Conversation",
+   "options": "Conversation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "User",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "muted",
+   "fieldtype": "Check",
+   "label": "Muted"
+  },
+  {
+   "fieldname": "last_read",
+   "fieldtype": "Datetime",
+   "label": "Last Read"
+  },
+  {
+   "default": "0",
+   "description": "Group admins can add/remove members, promote or demote other admins, and rename the group. Meaningless outside a group conversation (is_group=0).",
+   "fieldname": "is_admin",
+   "fieldtype": "Check",
+   "label": "Is Admin"
+  },
+  {
+   "default": "Accepted",
+   "description": "A DM from someone the recipient doesn't already follow back starts life as Pending on the recipient's own row only (the sender's row is always Accepted) - it's hidden from their main conversation list until they accept or reply. Group membership is always Accepted; Group Invite already gates joining a group before this row ever exists.",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Status",
+   "options": "Accepted\nPending\nDeclined"
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cafe",
+ "name": "Conversation Member",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

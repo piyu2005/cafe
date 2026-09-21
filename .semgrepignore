@@ -1,0 +1,11 @@
+# Files Semgrep does not scan.
+#
+# The doctype definitions give the "All" role rights on purpose: everyone who
+# signs in to Cafe is a plain website user, and posting, liking, commenting and
+# following are what they do. Writes are limited to the owner ("if_owner") and
+# read access is narrowed in code (see cafe/cafe/doctype/post/post.py). The
+# rule "avoid the All role" is written for apps with internal staff roles.
+cafe/cafe/doctype/**/*.json
+
+# Built browser bundles (minified third-party code, made from vendor_src).
+cafe/public/builder_assets/

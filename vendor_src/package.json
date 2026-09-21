@@ -1,0 +1,27 @@
+{
+  "name": "cafe-vendor",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Builds the few browser bundles the Builder pages load (editors, code colours) and holds the icons and socket client the page generator copies. Not part of the running app.",
+  "scripts": {
+    "build": "yarn build:hljs && yarn build:write-editor && yarn build:chat-editor",
+    "build:hljs": "esbuild hljs-entry.js --bundle --minify --format=iife --outfile=../cafe/public/builder_assets/vendor/highlight.min.js",
+    "build:write-editor": "esbuild write-editor-entry.js --bundle --minify --format=iife --outfile=../cafe/public/builder_assets/vendor/write-editor.min.js",
+    "build:chat-editor": "esbuild chat-editor-entry.js --bundle --minify --format=iife --outfile=../cafe/public/builder_assets/vendor/chat-editor.min.js"
+  },
+  "dependencies": {
+    "@tiptap/core": "3.31.3",
+    "@tiptap/extension-highlight": "3.31.3",
+    "@tiptap/extension-placeholder": "3.31.3",
+    "@tiptap/extension-text-align": "3.31.3",
+    "@tiptap/pm": "3.31.3",
+    "@tiptap/starter-kit": "3.31.3",
+    "dompurify": "3.4.15",
+    "highlight.js": "11.12.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "lucide-static": "0.400.0",
+    "socket.io-client": "4.8.3"
+  }
+}

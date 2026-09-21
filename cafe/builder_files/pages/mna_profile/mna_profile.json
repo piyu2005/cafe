@@ -1,0 +1,3603 @@
+{
+ "app": "cafe",
+ "authenticated_access": 0,
+ "blocks": [
+  {
+   "attributes": {},
+   "baseStyles": {},
+   "blockId": "root",
+   "blockName": null,
+   "children": [
+    {
+     "attributes": {},
+     "baseStyles": {
+      "display": "flex",
+      "width": "100%",
+      "minHeight": "100vh",
+      "backgroundColor": "#ffffff",
+      "color": "#0f0f0f",
+      "fontSize": "14px",
+      "fontWeight": "420",
+      "lineHeight": "1.15",
+      "letterSpacing": "0.02em"
+     },
+     "blockId": "dd45b4ndh",
+     "blockName": "App",
+     "children": [
+      {
+       "attributes": {},
+       "baseStyles": {},
+       "blockId": "sb13na60t",
+       "blockName": "Shell",
+       "children": [],
+       "classes": [],
+       "clientScript": {},
+       "customAttributes": {},
+       "dataKey": null,
+       "draggable": false,
+       "dynamicValues": [],
+       "element": null,
+       "elementBeforeConversion": null,
+       "extendedFromComponent": "81d9a28d496b4326",
+       "innerHTML": null,
+       "isChildOfComponent": null,
+       "isRepeaterBlock": false,
+       "mobileStyles": {},
+       "originalElement": null,
+       "props": {},
+       "rawStyles": {},
+       "referenceBlockId": null,
+       "tabletStyles": {},
+       "visibilityCondition": null
+      },
+      {
+       "attributes": {},
+       "baseStyles": {
+        "display": "flex",
+        "flexGrow": "1",
+        "flexDirection": "column",
+        "minWidth": "0"
+       },
+       "blockId": "2h0zjtkq4",
+       "blockName": "Main",
+       "children": [
+        {
+         "attributes": {},
+         "baseStyles": {
+          "position": "sticky",
+          "top": "0",
+          "zIndex": "10",
+          "display": "flex",
+          "flexShrink": "0",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "height": "48px",
+          "padding": "0 20px",
+          "borderBottom": "1px solid #ededed",
+          "backgroundColor": "#ffffff"
+         },
+         "blockId": "juo34o5ui",
+         "blockName": "Header",
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "4px",
+            "paddingLeft": "2px",
+            "fontSize": "16px",
+            "fontWeight": "500",
+            "letterSpacing": "0.015em",
+            "color": "#7c7c7c"
+           },
+           "blockId": "qnq8wyi38",
+           "blockName": "Breadcrumbs",
+           "children": [
+            {
+             "attributes": {
+              "href": "/"
+             },
+             "baseStyles": {},
+             "blockId": "st2xfp5eh",
+             "blockName": null,
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "a",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Cafe",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#999999",
+              "fontSize": "14px",
+              "fontWeight": "420",
+              "letterSpacing": "0.02em"
+             },
+             "blockId": "b4gkzg0t8",
+             "blockName": "Separator",
+             "children": [],
+             "classes": [
+              "sep"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "/",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#0f0f0f"
+             },
+             "blockId": "0sbvhou4g",
+             "blockName": null,
+             "children": [],
+             "classes": [
+              "current"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Profile",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.is_own",
+              "comesFrom": "dataScript"
+             }
+            },
+            {
+             "attributes": {
+              "href": "/"
+             },
+             "baseStyles": {
+              "color": "#7c7c7c"
+             },
+             "blockId": "hpf3ubk6m",
+             "blockName": "Explore",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "a",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Explore",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.is_other",
+              "comesFrom": "dataScript"
+             }
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#999999",
+              "fontSize": "14px",
+              "fontWeight": "420",
+              "letterSpacing": "0.02em"
+             },
+             "blockId": "t3cjhxvj9",
+             "blockName": "Separator",
+             "children": [],
+             "classes": [
+              "sep"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "/",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.is_other",
+              "comesFrom": "dataScript"
+             }
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#0f0f0f"
+             },
+             "blockId": "kyslck819",
+             "blockName": null,
+             "children": [],
+             "classes": [
+              "current"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [
+              {
+               "comesFrom": "dataScript",
+               "key": "profile.crumb_name",
+               "property": "innerHTML",
+               "type": "key"
+              }
+             ],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Name",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.is_other",
+              "comesFrom": "dataScript"
+             }
+            }
+           ],
+           "classes": [
+            "mna-crumbs"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          },
+          {
+           "attributes": {},
+           "baseStyles": {
+            "display": "flex"
+           },
+           "blockId": "6zg6x7x51",
+           "blockName": "New Post",
+           "children": [],
+           "classes": [],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": "<a class=\"mna-btn mna-btn-solid\" href=\"/write\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg><span >New Post</span></a>",
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": "__raw_html__",
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [
+          "mna-header"
+         ],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": "header",
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": null,
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": null,
+         "tabletStyles": {},
+         "visibilityCondition": null
+        },
+        {
+         "attributes": {},
+         "baseStyles": {
+          "flexGrow": "1"
+         },
+         "blockId": "xhvul8l03",
+         "blockName": "Scroll area",
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {
+            "width": "100%",
+            "maxWidth": "740px",
+            "margin": "0 auto",
+            "padding": "32px 20px"
+           },
+           "blockId": "b2tnmjr2s",
+           "blockName": "Container",
+           "children": [
+            {
+             "attributes": {
+              "id": "mna-profile"
+             },
+             "baseStyles": {},
+             "blockId": "6xwiw03gg",
+             "blockName": "Profile",
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {
+                "display": "flex",
+                "alignItems": "flex-start",
+                "gap": "32px"
+               },
+               "blockId": "pf3pr3uk4",
+               "blockName": "Profile header",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "display": "grid",
+                  "placeItems": "center",
+                  "flexShrink": "0",
+                  "width": "100px",
+                  "height": "100px",
+                  "overflow": "hidden",
+                  "border": "1px solid #ededed",
+                  "borderRadius": "9999px",
+                  "backgroundColor": "#f3f3f3"
+                 },
+                 "blockId": "fjd19z3j7",
+                 "blockName": "Avatar",
+                 "children": [
+                  {
+                   "attributes": {
+                    "src": "",
+                    "alt": ""
+                   },
+                   "baseStyles": {
+                    "gridArea": "1 / 1",
+                    "width": "100%",
+                    "height": "100%",
+                    "objectFit": "cover"
+                   },
+                   "blockId": "8fmqbyu6f",
+                   "blockName": "Avatar image",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "profile.user_image",
+                     "property": "src",
+                     "type": "attribute"
+                    }
+                   ],
+                   "element": "img",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.user_image",
+                    "comesFrom": "dataScript"
+                   }
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "fontSize": "40px",
+                    "fontWeight": "500",
+                    "color": "#7c7c7c",
+                    "letterSpacing": "0",
+                    "lineHeight": "1.5",
+                    "gridArea": "1 / 1",
+                    "textTransform": "uppercase"
+                   },
+                   "blockId": "l8pg6rz3q",
+                   "blockName": "Initial",
+                   "children": [],
+                   "classes": [
+                    "mna-profile-initial"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "profile.initial",
+                     "property": "innerHTML",
+                     "type": "key"
+                    }
+                   ],
+                   "element": "span",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "P",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.no_image",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [
+                  "mna-profile-avatar"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "flexGrow": "1",
+                  "minWidth": "0"
+                 },
+                 "blockId": "77oh9hqdp",
+                 "blockName": "Details",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
+                    "gap": "16px"
+                   },
+                   "blockId": "tncj3wvdw",
+                   "blockName": "Name row",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "overflow": "hidden",
+                      "textOverflow": "ellipsis",
+                      "whiteSpace": "nowrap",
+                      "fontSize": "32px",
+                      "fontWeight": "600",
+                      "color": "#171717",
+                      "letterSpacing": "0.015em",
+                      "lineHeight": "1.6"
+                     },
+                     "blockId": "ljkqfkr0o",
+                     "blockName": "Name",
+                     "children": [],
+                     "classes": [
+                      "mna-profile-name"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "profile.full_name",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "h1",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Priyanshi Hodage",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "gap": "8px",
+                      "flexShrink": "0"
+                     },
+                     "blockId": "4cno3h9pm",
+                     "blockName": "Buttons",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex"
+                       },
+                       "blockId": "hly24ergi",
+                       "blockName": "Edit",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<button class=\"mna-outline-btn\" type=\"button\" aria-label=\"Edit\" data-action=\"edit-header\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0 8px;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;cursor:pointer\"><span >Edit</span></button>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": {
+                        "key": "profile.is_own",
+                        "comesFrom": "dataScript"
+                       }
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex"
+                       },
+                       "blockId": "l8rdgiqni",
+                       "blockName": "Share",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<button class=\"mna-outline-btn\" type=\"button\" aria-label=\"Copy profile link\" data-action=\"share\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"18\" cy=\"5\" r=\"3\" />\n  <circle cx=\"6\" cy=\"12\" r=\"3\" />\n  <circle cx=\"18\" cy=\"19\" r=\"3\" />\n  <line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\" />\n  <line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\" /></svg></button>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [
+                      "mna-profile-buttons"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    }
+                   ],
+                   "classes": [
+                    "mna-name-row"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "marginTop": "4px",
+                    "display": "flex",
+                    "flexWrap": "wrap",
+                    "alignItems": "center",
+                    "gap": "6px",
+                    "fontSize": "13px",
+                    "fontWeight": "420",
+                    "color": "#7c7c7c",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "1.15"
+                   },
+                   "blockId": "xtggzmhai",
+                   "blockName": "Job line",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "gap": "4px"
+                     },
+                     "blockId": "w4kha1zll",
+                     "blockName": "Job",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "width": "16px",
+                        "height": "16px",
+                        "flexShrink": "0"
+                       },
+                       "blockId": "x7j7npprk",
+                       "blockName": "icon/briefcase",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "svg",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\" />\n  <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\" /></svg>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "wa3gqz8q0",
+                       "blockName": null,
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "profile.job_line",
+                         "property": "innerHTML",
+                         "type": "key"
+                        }
+                       ],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "Intern at Frappe",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "span",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.has_job",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {},
+                     "blockId": "mlv7gok4q",
+                     "blockName": "Dot",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "span",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "·",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.has_job",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {},
+                     "blockId": "g45u7w1q7",
+                     "blockName": "Username",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "profile.at_username",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "span",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "@username",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    }
+                   ],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "marginTop": "4px"
+                   },
+                   "blockId": "7q85f2vdq",
+                   "blockName": "Headline",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "16px",
+                      "fontWeight": "420",
+                      "color": "#525252",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.5"
+                     },
+                     "blockId": "zwr9821o1",
+                     "blockName": "Headline text",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "profile.headline",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Debugging my code by day",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.headline",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "16px",
+                      "fontWeight": "420",
+                      "color": "#999999",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.5"
+                     },
+                     "blockId": "8byf8t183",
+                     "blockName": "Headline hint",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Add a short bio.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.show_headline_hint",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.show_headline",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "mna-profile-head"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "div",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {},
+               "baseStyles": {
+                "marginTop": "32px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "32px"
+               },
+               "blockId": "j76x9osw6",
+               "blockName": "Sections",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "border": "1px solid #ededed",
+                  "borderRadius": "10px",
+                  "padding": "20px"
+                 },
+                 "blockId": "ucqhc2xot",
+                 "blockName": "Introduction",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
+                    "paddingBottom": "16px"
+                   },
+                   "blockId": "9k2l5jad3",
+                   "blockName": "Card header",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "gap": "6px",
+                      "fontSize": "14px",
+                      "fontWeight": "500",
+                      "color": "#171717",
+                      "letterSpacing": "0.015em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "fzgmxjudt",
+                     "blockName": "Card title",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"12\" cy=\"7\" r=\"4\" /></svg><span >Introduction</span>",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": "__raw_html__",
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex"
+                     },
+                     "blockId": "5ek9lo4kq",
+                     "blockName": "Edit introduction",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "<button class=\"mna-icon-btn\" type=\"button\" aria-label=\"Edit introduction\" title=\"Edit introduction\" data-action=\"edit-bio\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg></button>",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": "__raw_html__",
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.is_own",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {
+                    "id": "mna-bio"
+                   },
+                   "baseStyles": {
+                    "margin": "0",
+                    "fontSize": "14px",
+                    "fontWeight": "420",
+                    "color": "#525252",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "1.5"
+                   },
+                   "blockId": "s5w1fy95q",
+                   "blockName": "Bio",
+                   "children": [],
+                   "classes": [
+                    "mna-clamp-3"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "profile.bio",
+                     "property": "innerHTML",
+                     "type": "key"
+                    }
+                   ],
+                   "element": "p",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "Hello! I am Priyanshi",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.bio",
+                    "comesFrom": "dataScript"
+                   }
+                  },
+                  {
+                   "attributes": {
+                    "type": "button"
+                   },
+                   "baseStyles": {
+                    "display": "inline-flex",
+                    "alignItems": "center",
+                    "height": "28px",
+                    "padding": "0 8px",
+                    "border": "0",
+                    "borderRadius": "8px",
+                    "backgroundColor": "transparent",
+                    "color": "#7c7c7c",
+                    "fontSize": "14px",
+                    "cursor": "pointer",
+                    "marginTop": "4px",
+                    "width": "100%",
+                    "justifyContent": "flex-end"
+                   },
+                   "blockId": "k67dugld1",
+                   "blockName": "See more",
+                   "children": [],
+                   "classes": [
+                    "mna-text-btn"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {
+                    "data-action": "toggle-bio"
+                   },
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "button",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "...see more",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.bio_long",
+                    "comesFrom": "dataScript"
+                   }
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "margin": "0",
+                    "fontSize": "14px",
+                    "fontWeight": "420",
+                    "color": "#7c7c7c",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "1.5"
+                   },
+                   "blockId": "6cs823etm",
+                   "blockName": "Bio hint",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "p",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "Write about yourself.",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.show_bio_hint",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [
+                  "mna-card"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "bcbc6rhya",
+                 "blockName": "Posts section",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "border": "1px solid #ededed",
+                    "borderRadius": "10px",
+                    "padding": "20px"
+                   },
+                   "blockId": "wa7hr190b",
+                   "blockName": "Posts",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
+                      "paddingBottom": "16px"
+                     },
+                     "blockId": "ej20p8j9g",
+                     "blockName": "Card header",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "center",
+                        "gap": "6px",
+                        "fontSize": "14px",
+                        "fontWeight": "500",
+                        "color": "#171717",
+                        "letterSpacing": "0.015em",
+                        "lineHeight": "1.15"
+                       },
+                       "blockId": "vjliuixee",
+                       "blockName": "Card title",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4\" />\n  <path d=\"M2 6h4\" />\n  <path d=\"M2 10h4\" />\n  <path d=\"M2 14h4\" />\n  <path d=\"M2 18h4\" />\n  <path d=\"M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\" /></svg><span >Posts</span>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                     },
+                     "blockId": "3vg8yoggs",
+                     "blockName": "Posts list",
+                     "children": [
+                      {
+                       "attributes": {
+                        "href": "/posts"
+                       },
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "stretch",
+                        "justifyContent": "space-between",
+                        "gap": "16px",
+                        "padding": "20px 0"
+                       },
+                       "blockId": "epwpjar7l",
+                       "blockName": "Post",
+                       "children": [
+                        {
+                         "attributes": {},
+                         "baseStyles": {
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "justifyContent": "space-between",
+                          "flexGrow": "1",
+                          "minWidth": "0"
+                         },
+                         "blockId": "7wr1yzu4f",
+                         "blockName": "Text",
+                         "children": [
+                          {
+                           "attributes": {},
+                           "baseStyles": {},
+                           "blockId": "4hejeo9fw",
+                           "blockName": "Title and excerpt",
+                           "children": [
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "fontSize": "16px",
+                              "fontWeight": "600",
+                              "color": "#171717",
+                              "letterSpacing": "0.015em",
+                              "lineHeight": "1.15"
+                             },
+                             "blockId": "rwx76ea3n",
+                             "blockName": "Title",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "title",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "div",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "Post title",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": null
+                            },
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "margin": "4px 0 0",
+                              "fontSize": "14px",
+                              "fontWeight": "420",
+                              "color": "#525252",
+                              "letterSpacing": "0.02em",
+                              "lineHeight": "1.5"
+                             },
+                             "blockId": "tjvrcav0w",
+                             "blockName": "Excerpt",
+                             "children": [],
+                             "classes": [
+                              "mna-clamp-2"
+                             ],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "excerpt",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "p",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "A short preview of the post.",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": null
+                            }
+                           ],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": null,
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          },
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "marginTop": "8px",
+                            "fontSize": "12px",
+                            "fontWeight": "420",
+                            "color": "#7c7c7c",
+                            "letterSpacing": "0.02em",
+                            "lineHeight": "1.15"
+                           },
+                           "blockId": "uszgn6dh3",
+                           "blockName": "Meta",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [
+                            {
+                             "comesFrom": "dataScript",
+                             "key": "meta",
+                             "property": "innerHTML",
+                             "type": "key"
+                            }
+                           ],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "Sep 18, 2026 · 1 min read · 0 comments",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          }
+                         ],
+                         "classes": [],
+                         "clientScript": {},
+                         "customAttributes": {},
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [],
+                         "element": "div",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": null
+                        },
+                        {
+                         "attributes": {
+                          "src": "",
+                          "alt": ""
+                         },
+                         "baseStyles": {
+                          "width": "96px",
+                          "height": "80px",
+                          "flexShrink": "0",
+                          "borderRadius": "10px",
+                          "objectFit": "cover"
+                         },
+                         "blockId": "hkrj5v7zy",
+                         "blockName": "Thumbnail",
+                         "children": [],
+                         "classes": [],
+                         "clientScript": {},
+                         "customAttributes": {},
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [
+                          {
+                           "comesFrom": "dataScript",
+                           "key": "thumbnail",
+                           "property": "src",
+                           "type": "attribute"
+                          }
+                         ],
+                         "element": "img",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": {
+                          "key": "thumbnail",
+                          "comesFrom": "dataScript"
+                         }
+                        }
+                       ],
+                       "classes": [
+                        "mna-post"
+                       ],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "href",
+                         "property": "href",
+                         "type": "attribute"
+                        }
+                       ],
+                       "element": "a",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": null,
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [
+                      "mna-posts"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": {
+                      "comesFrom": "dataScript",
+                      "key": "posts",
+                      "property": "innerHTML",
+                      "type": "key"
+                     },
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": true,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "txsbd8k4r",
+                     "blockName": "Nothing yet",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "andcg4jxh",
+                       "blockName": null,
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "You haven&#x27;t published anything yet. ",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {
+                        "href": "/write"
+                       },
+                       "baseStyles": {
+                        "fontWeight": "500",
+                        "color": "#171717"
+                       },
+                       "blockId": "socvr9zl5",
+                       "blockName": "Write link",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "a",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "Write your first blog.",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.posts_empty_own",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "1uck3j9o0",
+                     "blockName": "No posts",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "No posts yet.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.posts_empty_other",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [
+                    "mna-card"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "marginTop": "12px",
+                    "display": "flex",
+                    "justifyContent": "center"
+                   },
+                   "blockId": "0xttua41m",
+                   "blockName": "More",
+                   "children": [
+                    {
+                     "attributes": {
+                      "href": "/profile"
+                     },
+                     "baseStyles": {
+                      "display": "inline-flex",
+                      "alignItems": "center",
+                      "height": "28px",
+                      "padding": "0 8px",
+                      "border": "0",
+                      "borderRadius": "8px",
+                      "backgroundColor": "transparent",
+                      "color": "#171717",
+                      "fontSize": "14px",
+                      "cursor": "pointer"
+                     },
+                     "blockId": "2q7o06yib",
+                     "blockName": "Manage all posts",
+                     "children": [],
+                     "classes": [
+                      "mna-text-btn"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "profile.posts_href",
+                       "property": "href",
+                       "type": "attribute"
+                      }
+                     ],
+                     "element": "a",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Manage all posts",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.posts_more_own",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {
+                      "href": "/profile"
+                     },
+                     "baseStyles": {
+                      "display": "inline-flex",
+                      "alignItems": "center",
+                      "height": "28px",
+                      "padding": "0 8px",
+                      "border": "0",
+                      "borderRadius": "8px",
+                      "backgroundColor": "transparent",
+                      "color": "#171717",
+                      "fontSize": "14px",
+                      "cursor": "pointer"
+                     },
+                     "blockId": "vg2cmc6lr",
+                     "blockName": "View all posts",
+                     "children": [],
+                     "classes": [
+                      "mna-text-btn"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "profile.posts_href",
+                       "property": "href",
+                       "type": "attribute"
+                      }
+                     ],
+                     "element": "a",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "View all posts",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.posts_more_other",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.posts_more",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "1815znsgy",
+                 "blockName": "Work section",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "border": "1px solid #ededed",
+                    "borderRadius": "10px",
+                    "padding": "20px"
+                   },
+                   "blockId": "unrqvepf5",
+                   "blockName": "Work History",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
+                      "paddingBottom": "16px"
+                     },
+                     "blockId": "941p4kmq8",
+                     "blockName": "Card header",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "center",
+                        "gap": "6px",
+                        "fontSize": "14px",
+                        "fontWeight": "500",
+                        "color": "#171717",
+                        "letterSpacing": "0.015em",
+                        "lineHeight": "1.15"
+                       },
+                       "blockId": "jb5gjeisc",
+                       "blockName": "Card title",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\" />\n  <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\" /></svg><span >Work History</span>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex"
+                       },
+                       "blockId": "erfxkbyw5",
+                       "blockName": "Add work experience",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<button class=\"mna-icon-btn\" type=\"button\" aria-label=\"Add work experience\" title=\"Add work experience\" data-action=\"add-work\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": {
+                        "key": "profile.is_own",
+                        "comesFrom": "dataScript"
+                       }
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {
+                      "id": "mna-work-list"
+                     },
+                     "baseStyles": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                     },
+                     "blockId": "wp54p8ebq",
+                     "blockName": "Work list",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "flex-start",
+                        "justifyContent": "space-between",
+                        "gap": "12px",
+                        "padding": "20px 0"
+                       },
+                       "blockId": "q33bf1yzr",
+                       "blockName": "Entry",
+                       "children": [
+                        {
+                         "attributes": {},
+                         "baseStyles": {},
+                         "blockId": "zswo1qj4p",
+                         "blockName": "Text",
+                         "children": [
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "fontSize": "14px",
+                            "fontWeight": "600",
+                            "color": "#171717",
+                            "letterSpacing": "0.015em",
+                            "lineHeight": "1.5"
+                           },
+                           "blockId": "bvbgz08q2",
+                           "blockName": "Primary",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [
+                            {
+                             "comesFrom": "dataScript",
+                             "key": "company",
+                             "property": "innerHTML",
+                             "type": "key"
+                            }
+                           ],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "Company",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          },
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "marginTop": "4px",
+                            "fontSize": "14px",
+                            "fontWeight": "420",
+                            "color": "#171717",
+                            "letterSpacing": "0.02em",
+                            "lineHeight": "1.5"
+                           },
+                           "blockId": "2ajgip4o2",
+                           "blockName": "Line",
+                           "children": [
+                            {
+                             "attributes": {},
+                             "baseStyles": {},
+                             "blockId": "6n75mpewa",
+                             "blockName": "Secondary",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "title",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "Title",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "title",
+                              "comesFrom": "dataScript"
+                             }
+                            },
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "color": "#999999"
+                             },
+                             "blockId": "reiavuqu4",
+                             "blockName": "Dot",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": " · ",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "show_dot",
+                              "comesFrom": "dataScript"
+                             }
+                            },
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "fontSize": "13px",
+                              "fontWeight": "420",
+                              "color": "#7c7c7c",
+                              "letterSpacing": "0.02em",
+                              "lineHeight": "1.15"
+                             },
+                             "blockId": "omqoow6dl",
+                             "blockName": "Dates",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "dates",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "Sep 2025 — Dec 2025",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "dates",
+                              "comesFrom": "dataScript"
+                             }
+                            }
+                           ],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": null,
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          },
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "margin": "4px 0 0",
+                            "fontSize": "13px",
+                            "fontWeight": "420",
+                            "color": "#525252",
+                            "letterSpacing": "0.015em",
+                            "lineHeight": "1.5"
+                           },
+                           "blockId": "6594df7n8",
+                           "blockName": "Description",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [
+                            {
+                             "comesFrom": "dataScript",
+                             "key": "description",
+                             "property": "innerHTML",
+                             "type": "key"
+                            }
+                           ],
+                           "element": "p",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "What I did there.",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": {
+                            "key": "description",
+                            "comesFrom": "dataScript"
+                           }
+                          }
+                         ],
+                         "classes": [],
+                         "clientScript": {},
+                         "customAttributes": {},
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [],
+                         "element": "div",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": null
+                        },
+                        {
+                         "attributes": {
+                          "type": "button",
+                          "aria-label": "Edit work experience",
+                          "title": "Edit work experience"
+                         },
+                         "baseStyles": {
+                          "display": "grid",
+                          "placeItems": "center",
+                          "flexShrink": "0",
+                          "width": "24px",
+                          "height": "24px",
+                          "padding": "0",
+                          "border": "0",
+                          "borderRadius": "6px",
+                          "backgroundColor": "transparent",
+                          "color": "#171717",
+                          "cursor": "pointer"
+                         },
+                         "blockId": "ijwnf4xoi",
+                         "blockName": "Edit work experience",
+                         "children": [
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "width": "14px",
+                            "height": "14px",
+                            "flexShrink": "0"
+                           },
+                           "blockId": "63ymw6x7a",
+                           "blockName": "icon/pencil",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [],
+                           "element": "svg",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg>",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": "__raw_html__",
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          }
+                         ],
+                         "classes": [
+                          "mna-icon-btn"
+                         ],
+                         "clientScript": {},
+                         "customAttributes": {
+                          "data-action": "edit-work",
+                          "data-id": ""
+                         },
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [
+                          {
+                           "comesFrom": "dataScript",
+                           "key": "id",
+                           "property": "data-id",
+                           "type": "attribute"
+                          }
+                         ],
+                         "element": "button",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": {
+                          "key": "is_own",
+                          "comesFrom": "dataScript"
+                         }
+                        }
+                       ],
+                       "classes": [
+                        "mna-entry"
+                       ],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": null,
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [
+                      "mna-entries"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": {
+                      "comesFrom": "dataScript",
+                      "key": "work",
+                      "property": "innerHTML",
+                      "type": "key"
+                     },
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": true,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "hqiyg6fyq",
+                     "blockName": "No work (yours)",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Add your work experience.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.work_empty_own",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "6v5tfe0pj",
+                     "blockName": "No work",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "No work history added yet.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.work_empty_other",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [
+                    "mna-card"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "marginTop": "12px",
+                    "display": "flex",
+                    "justifyContent": "center"
+                   },
+                   "blockId": "ukzqp0fgq",
+                   "blockName": "More",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<button class=\"mna-text-btn\" type=\"button\" data-expand=\"mna-work-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:#171717;font-size:14px;cursor:pointer\">Show all History</button>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.work_more",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "rlpu7rxy0",
+                 "blockName": "Education section",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "border": "1px solid #ededed",
+                    "borderRadius": "10px",
+                    "padding": "20px"
+                   },
+                   "blockId": "fjh32tsj9",
+                   "blockName": "Education",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
+                      "paddingBottom": "16px"
+                     },
+                     "blockId": "6r6x4db4j",
+                     "blockName": "Card header",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "center",
+                        "gap": "6px",
+                        "fontSize": "14px",
+                        "fontWeight": "500",
+                        "color": "#171717",
+                        "letterSpacing": "0.015em",
+                        "lineHeight": "1.15"
+                       },
+                       "blockId": "fslbsn8z9",
+                       "blockName": "Card title",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" />\n  <path d=\"M22 10v6\" />\n  <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" /></svg><span >Education</span>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex"
+                       },
+                       "blockId": "b9k0gac9p",
+                       "blockName": "Add education",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "<button class=\"mna-icon-btn\" type=\"button\" aria-label=\"Add education\" title=\"Add education\" data-action=\"add-education\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": "__raw_html__",
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": {
+                        "key": "profile.is_own",
+                        "comesFrom": "dataScript"
+                       }
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {
+                      "id": "mna-education-list"
+                     },
+                     "baseStyles": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                     },
+                     "blockId": "ur8vi0zil",
+                     "blockName": "Education list",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {
+                        "display": "flex",
+                        "alignItems": "flex-start",
+                        "justifyContent": "space-between",
+                        "gap": "12px",
+                        "padding": "20px 0"
+                       },
+                       "blockId": "vhthnune0",
+                       "blockName": "Entry",
+                       "children": [
+                        {
+                         "attributes": {},
+                         "baseStyles": {},
+                         "blockId": "96u5dnn8m",
+                         "blockName": "Text",
+                         "children": [
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "fontSize": "14px",
+                            "fontWeight": "600",
+                            "color": "#171717",
+                            "letterSpacing": "0.015em",
+                            "lineHeight": "1.5"
+                           },
+                           "blockId": "l4iy1zis5",
+                           "blockName": "Primary",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [
+                            {
+                             "comesFrom": "dataScript",
+                             "key": "school",
+                             "property": "innerHTML",
+                             "type": "key"
+                            }
+                           ],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "Company",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          },
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "marginTop": "4px",
+                            "fontSize": "14px",
+                            "fontWeight": "420",
+                            "color": "#383838",
+                            "letterSpacing": "0.02em",
+                            "lineHeight": "1.5"
+                           },
+                           "blockId": "6cmnxyef5",
+                           "blockName": "Line",
+                           "children": [
+                            {
+                             "attributes": {},
+                             "baseStyles": {},
+                             "blockId": "893h1mp34",
+                             "blockName": "Secondary",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "degree_line",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "Title",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "degree_line",
+                              "comesFrom": "dataScript"
+                             }
+                            },
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "color": "#999999"
+                             },
+                             "blockId": "813d8bg1l",
+                             "blockName": "Dot",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": " · ",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "show_dot",
+                              "comesFrom": "dataScript"
+                             }
+                            },
+                            {
+                             "attributes": {},
+                             "baseStyles": {
+                              "fontSize": "13px",
+                              "fontWeight": "420",
+                              "color": "#7c7c7c",
+                              "letterSpacing": "0.02em",
+                              "lineHeight": "1.15"
+                             },
+                             "blockId": "xhyvktsm9",
+                             "blockName": "Dates",
+                             "children": [],
+                             "classes": [],
+                             "clientScript": {},
+                             "customAttributes": {},
+                             "dataKey": null,
+                             "draggable": false,
+                             "dynamicValues": [
+                              {
+                               "comesFrom": "dataScript",
+                               "key": "dates",
+                               "property": "innerHTML",
+                               "type": "key"
+                              }
+                             ],
+                             "element": "span",
+                             "elementBeforeConversion": null,
+                             "extendedFromComponent": null,
+                             "innerHTML": "Sep 2025 — Dec 2025",
+                             "isChildOfComponent": null,
+                             "isRepeaterBlock": false,
+                             "mobileStyles": {},
+                             "originalElement": null,
+                             "props": {},
+                             "rawStyles": {},
+                             "referenceBlockId": null,
+                             "tabletStyles": {},
+                             "visibilityCondition": {
+                              "key": "dates",
+                              "comesFrom": "dataScript"
+                             }
+                            }
+                           ],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [],
+                           "element": "div",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": null,
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": null,
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          }
+                         ],
+                         "classes": [],
+                         "clientScript": {},
+                         "customAttributes": {},
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [],
+                         "element": "div",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": null
+                        },
+                        {
+                         "attributes": {
+                          "type": "button",
+                          "aria-label": "Edit education",
+                          "title": "Edit education"
+                         },
+                         "baseStyles": {
+                          "display": "grid",
+                          "placeItems": "center",
+                          "flexShrink": "0",
+                          "width": "24px",
+                          "height": "24px",
+                          "padding": "0",
+                          "border": "0",
+                          "borderRadius": "6px",
+                          "backgroundColor": "transparent",
+                          "color": "#171717",
+                          "cursor": "pointer"
+                         },
+                         "blockId": "y6ieub36y",
+                         "blockName": "Edit education",
+                         "children": [
+                          {
+                           "attributes": {},
+                           "baseStyles": {
+                            "width": "14px",
+                            "height": "14px",
+                            "flexShrink": "0"
+                           },
+                           "blockId": "oo4o8qy7l",
+                           "blockName": "icon/pencil",
+                           "children": [],
+                           "classes": [],
+                           "clientScript": {},
+                           "customAttributes": {},
+                           "dataKey": null,
+                           "draggable": false,
+                           "dynamicValues": [],
+                           "element": "svg",
+                           "elementBeforeConversion": null,
+                           "extendedFromComponent": null,
+                           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg>",
+                           "isChildOfComponent": null,
+                           "isRepeaterBlock": false,
+                           "mobileStyles": {},
+                           "originalElement": "__raw_html__",
+                           "props": {},
+                           "rawStyles": {},
+                           "referenceBlockId": null,
+                           "tabletStyles": {},
+                           "visibilityCondition": null
+                          }
+                         ],
+                         "classes": [
+                          "mna-icon-btn"
+                         ],
+                         "clientScript": {},
+                         "customAttributes": {
+                          "data-action": "edit-education",
+                          "data-id": ""
+                         },
+                         "dataKey": null,
+                         "draggable": false,
+                         "dynamicValues": [
+                          {
+                           "comesFrom": "dataScript",
+                           "key": "id",
+                           "property": "data-id",
+                           "type": "attribute"
+                          }
+                         ],
+                         "element": "button",
+                         "elementBeforeConversion": null,
+                         "extendedFromComponent": null,
+                         "innerHTML": null,
+                         "isChildOfComponent": null,
+                         "isRepeaterBlock": false,
+                         "mobileStyles": {},
+                         "originalElement": null,
+                         "props": {},
+                         "rawStyles": {},
+                         "referenceBlockId": null,
+                         "tabletStyles": {},
+                         "visibilityCondition": {
+                          "key": "is_own",
+                          "comesFrom": "dataScript"
+                         }
+                        }
+                       ],
+                       "classes": [
+                        "mna-entry"
+                       ],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "div",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": null,
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [
+                      "mna-entries"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": {
+                      "comesFrom": "dataScript",
+                      "key": "education",
+                      "property": "innerHTML",
+                      "type": "key"
+                     },
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": true,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "hp6j5p763",
+                     "blockName": "No education (yours)",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Add your education.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.education_empty_own",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "9wbswxmtz",
+                     "blockName": "No education",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "No education added yet.",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "profile.education_empty_other",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [
+                    "mna-card"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "marginTop": "12px",
+                    "display": "flex",
+                    "justifyContent": "center"
+                   },
+                   "blockId": "hb4qhor0x",
+                   "blockName": "More",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<button class=\"mna-text-btn\" type=\"button\" data-expand=\"mna-education-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:#171717;font-size:14px;cursor:pointer\">Show all Education</button>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "profile.education_more",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "div",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {
+              "data-username": ""
+             },
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [
+              {
+               "comesFrom": "dataScript",
+               "key": "profile.username",
+               "property": "data-username",
+               "type": "attribute"
+              }
+             ],
+             "element": "div",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.found",
+              "comesFrom": "dataScript"
+             }
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "display": "flex",
+              "flexDirection": "column",
+              "alignItems": "center",
+              "gap": "12px",
+              "padding": "96px 0",
+              "textAlign": "center"
+             },
+             "blockId": "0x3uv107r",
+             "blockName": "Not found",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "div",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:32px;height:32px;color:#c8c8c8\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <line x1=\"17\" x2=\"22\" y1=\"8\" y2=\"13\" />\n  <line x1=\"22\" x2=\"17\" y1=\"8\" y2=\"13\" /></svg><p style=\"margin:0;font-size:14px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.5\">This profile does not exist.</p>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": {
+              "key": "profile.not_found",
+              "comesFrom": "dataScript"
+             }
+            }
+           ],
+           "classes": [
+            "mna-container"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "section",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [
+          "mna-scroll"
+         ],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": "div",
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": null,
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": null,
+         "tabletStyles": {},
+         "visibilityCondition": null
+        }
+       ],
+       "classes": [
+        "mna-main"
+       ],
+       "clientScript": {},
+       "customAttributes": {},
+       "dataKey": null,
+       "draggable": false,
+       "dynamicValues": [],
+       "element": "div",
+       "elementBeforeConversion": null,
+       "extendedFromComponent": null,
+       "innerHTML": null,
+       "isChildOfComponent": null,
+       "isRepeaterBlock": false,
+       "mobileStyles": {},
+       "originalElement": null,
+       "props": {},
+       "rawStyles": {},
+       "referenceBlockId": null,
+       "tabletStyles": {},
+       "visibilityCondition": null
+      }
+     ],
+     "classes": [
+      "mna-app"
+     ],
+     "clientScript": {},
+     "customAttributes": {},
+     "dataKey": null,
+     "draggable": false,
+     "dynamicValues": [],
+     "element": "div",
+     "elementBeforeConversion": null,
+     "extendedFromComponent": null,
+     "innerHTML": null,
+     "isChildOfComponent": null,
+     "isRepeaterBlock": false,
+     "mobileStyles": {},
+     "originalElement": null,
+     "props": {},
+     "rawStyles": {},
+     "referenceBlockId": null,
+     "tabletStyles": {},
+     "visibilityCondition": null
+    }
+   ],
+   "classes": [],
+   "clientScript": {},
+   "customAttributes": {},
+   "dataKey": null,
+   "draggable": false,
+   "dynamicValues": [],
+   "element": "div",
+   "elementBeforeConversion": null,
+   "extendedFromComponent": null,
+   "innerHTML": null,
+   "isChildOfComponent": null,
+   "isRepeaterBlock": false,
+   "mobileStyles": {},
+   "originalElement": "body",
+   "props": {},
+   "rawStyles": {},
+   "referenceBlockId": null,
+   "tabletStyles": {},
+   "visibilityCondition": null
+  }
+ ],
+ "client_scripts": [
+  {
+   "builder_script": "MNA Styles"
+  },
+  {
+   "builder_script": "MNA UI"
+  },
+  {
+   "builder_script": "MNA Shell"
+  },
+  {
+   "builder_script": "MNA Settings"
+  },
+  {
+   "builder_script": "MNA Notifications"
+  },
+  {
+   "builder_script": "MNA Profile"
+  }
+ ],
+ "creation": "2026-09-20 15:51:38.452808",
+ "disable_indexing": 1,
+ "docstatus": 0,
+ "doctype": "Builder Page",
+ "draft_blocks": null,
+ "dynamic_route": 1,
+ "head_html": null,
+ "idx": 0,
+ "is_standard": 1,
+ "is_template": 0,
+ "modified": "2026-09-20 15:51:38.452808",
+ "modified_by": "Administrator",
+ "name": "mna-profile",
+ "owner": "Administrator",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef date_range(start, end):\n    if not (start or end):\n        return \"\"\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    first = months[int(str(start)[5:7]) - 1] + \" \" + str(start)[:4] if start else \"\"\n    last = months[int(str(end)[5:7]) - 1] + \" \" + str(end)[:4] if end else \"Present\"\n    return first + \" \\u2014 \" + last\n\n\nidentifier = frappe.form_dict.username or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/profile/\" + path_segment(identifier))\n\nif not identifier:\n    # Builder's editor canvas has no username in the address: show your own profile there.\n    user_id = frappe.session.user\nelse:\n    user_id = frappe.db.get_value(\"User\", {\"username\": identifier}, \"name\")\n    if not user_id and \"@\" in identifier and frappe.db.exists(\"User\", identifier):\n        user_id = identifier\nif user_id == \"Guest\":\n    user_id = None\n\nif not user_id:\n    data.profile = {\"found\": False, \"not_found\": True, \"is_other\": True, \"crumb_name\": \"Profile\"}\n    data.posts = []\n    data.work = []\n    data.education = []\nelse:\n    person = frappe.call(\"cafe.api.get_profile\", user=user_id)\n    if identifier and person.username != identifier:\n        redirect(\"/profile/\" + path_segment(person.username))\n\n    is_own = person.name == frappe.session.user\n    name = person.full_name or person.username\n    image = safe_url(person.user_image)\n    rows = frappe.call(\"cafe.api.list_profile_posts\", user=user_id, limit=3)\n    posts = []\n    for row in rows:\n        text = plain_text(row.get(\"content\"))\n        minutes = int(len(text.split()) / 200 + 0.5)\n        if minutes < 1:\n            minutes = 1\n        comments = row.get(\"comment_count\") or 0\n        preview = row.get(\"excerpt\") or (text[:140] + \"\\u2026\" if len(text) > 140 else text)\n        thumbnail = row.get(\"cover_image\") or (row.get(\"attachment\") if row.get(\"post_type\") == \"Image\" else \"\")\n        posts.append({\n            \"href\": \"/posts/\" + path_segment(row.name),\n            \"title\": clean(row.get(\"display_title\") or row.get(\"title\") or \"Untitled\"),\n            \"excerpt\": clean(preview),\n            \"meta\": day_month_year(row.creation) + \" \\u00b7 \" + str(minutes) + \" min read \\u00b7 \" + str(comments) + (\" comment\" if comments == 1 else \" comments\"),\n            \"thumbnail\": safe_url(thumbnail),\n        })\n    work = []\n    for job in person.work:\n        dates = date_range(job.start_date, job.end_date)\n        work.append({\n            \"id\": clean(job.name),\n            \"is_own\": is_own,\n            \"company\": clean(job.company),\n            \"title\": clean(job.title),\n            \"dates\": dates,\n            \"show_dot\": bool(job.title and dates),\n            \"description\": clean(job.description),\n        })\n\n    education = []\n    for entry in person.education:\n        dates = date_range(entry.start_year, entry.end_year)\n        degree_line = \", \".join([part for part in [entry.degree, entry.field_of_study] if part])\n        education.append({\n            \"id\": clean(entry.name),\n            \"is_own\": is_own,\n            \"school\": clean(entry.school),\n            \"degree_line\": clean(degree_line),\n            \"dates\": dates,\n            \"show_dot\": bool(degree_line and dates),\n        })\n\n    if not identifier and not posts:\n        posts = [{\"href\": \"/posts\", \"title\": \"Post title\", \"excerpt\": \"A short preview of the post.\", \"meta\": \"Sep 18, 2026 \\u00b7 1 min read \\u00b7 0 comments\", \"thumbnail\": \"\"}]\n    if not identifier and not work:\n        work = [{\"id\": \"\", \"is_own\": is_own, \"company\": \"Company\", \"title\": \"Title\", \"dates\": \"Jan 2020 \\u2014 Present\", \"show_dot\": True, \"description\": \"What I did there.\"}]\n    if not identifier and not education:\n        education = [{\"id\": \"\", \"is_own\": is_own, \"school\": \"School\", \"degree_line\": \"Degree, Field of study\", \"dates\": \"2016 \\u2014 2020\", \"show_dot\": True}]\n    posts_href = \"/profile/\" + path_segment(person.username) + \"/posts\"\n    data.profile = {\n        \"found\": True,\n        \"not_found\": False,\n        \"is_own\": is_own,\n        \"is_other\": not is_own,\n        \"crumb_name\": clean(name),\n        \"full_name\": clean(name),\n        \"username\": clean(person.username),\n        \"at_username\": \"@\" + clean(person.username),\n        \"initial\": clean(name[:1]),\n        \"user_image\": image,\n        \"no_image\": not image,\n        \"has_job\": bool(person.job_title),\n        \"job_line\": clean(person.job_title) + (\" at \" + clean(person.company) if person.company else \"\"),\n        \"headline\": clean(person.headline),\n        \"show_headline\": is_own or bool(person.headline),\n        \"show_headline_hint\": is_own and not person.headline,\n        \"bio\": clean(person.bio),\n        \"bio_long\": len(person.bio or \"\") > 220,\n        \"show_bio_hint\": is_own and not person.bio,\n        \"posts_empty_own\": is_own and not posts,\n        \"posts_empty_other\": (not is_own) and not posts,\n        \"posts_more\": is_own or len(posts) == 3,\n        \"posts_more_own\": is_own,\n        \"posts_more_other\": (not is_own) and len(posts) == 3,\n        \"posts_href\": clean(posts_href),\n        \"work_empty_own\": is_own and not work,\n        \"work_empty_other\": (not is_own) and not work,\n        \"work_more\": len(work) > 3,\n        \"education_empty_own\": is_own and not education,\n        \"education_empty_other\": (not is_own) and not education,\n        \"education_more\": len(education) > 3,\n    }\n    data.posts = posts\n    data.work = work\n    data.education = education\n",
+ "page_name": "mna-profile",
+ "page_title": "Profile",
+ "project_folder": "cafe",
+ "published": 1,
+ "published_at": "2026-09-20 15:51:38.452808",
+ "route": "profile/:username"
+}
