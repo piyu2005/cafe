@@ -1,0 +1,21 @@
+# Python
+*.py[cod]
+__pycache__/
+*.egg-info/
+build/
+dist/
+
+# Node (vendor_src holds the only JavaScript tooling; yarn.lock is committed)
+node_modules/
+vendor_src/package-lock.json
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+.claude/
+.agents/
+skills-lock.json
+
+# Frappe
+*.pyc
