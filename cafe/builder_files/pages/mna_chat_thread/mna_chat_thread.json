@@ -1,0 +1,600 @@
+{
+ "app": "cafe",
+ "authenticated_access": 0,
+ "blocks": [
+  {
+   "attributes": {},
+   "baseStyles": {},
+   "blockId": "root",
+   "blockName": null,
+   "children": [
+    {
+     "attributes": {},
+     "baseStyles": {
+      "display": "flex",
+      "width": "100%",
+      "height": "100vh",
+      "backgroundColor": "#ffffff",
+      "fontSize": "14px",
+      "fontWeight": "420",
+      "color": "#0f0f0f",
+      "letterSpacing": "0.02em",
+      "lineHeight": "1.15"
+     },
+     "blockId": "eoyur2o9l",
+     "blockName": "App",
+     "children": [
+      {
+       "attributes": {},
+       "baseStyles": {},
+       "blockId": "zdlqi2gsu",
+       "blockName": "Shell",
+       "children": [],
+       "classes": [],
+       "clientScript": {},
+       "customAttributes": {},
+       "dataKey": null,
+       "draggable": false,
+       "dynamicValues": [],
+       "element": null,
+       "elementBeforeConversion": null,
+       "extendedFromComponent": "81d9a28d496b4326",
+       "innerHTML": null,
+       "isChildOfComponent": null,
+       "isRepeaterBlock": false,
+       "mobileStyles": {},
+       "originalElement": null,
+       "props": {},
+       "rawStyles": {},
+       "referenceBlockId": null,
+       "tabletStyles": {},
+       "visibilityCondition": null
+      },
+      {
+       "attributes": {},
+       "baseStyles": {
+        "display": "flex",
+        "flexGrow": "1",
+        "flexDirection": "column",
+        "minWidth": "0",
+        "height": "100vh",
+        "overflow": "hidden"
+       },
+       "blockId": "tl6b7lj87",
+       "blockName": "Main",
+       "children": [
+        {
+         "attributes": {},
+         "baseStyles": {
+          "display": "none",
+          "position": "relative",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "gap": "16px",
+          "height": "52px",
+          "flexShrink": "0",
+          "padding": "0 12px",
+          "borderBottom": "1px solid #ededed",
+          "backgroundColor": "#ffffff"
+         },
+         "blockId": "vo0l481c6",
+         "blockName": "Mobile header",
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {
+            "position": "absolute",
+            "left": "0",
+            "right": "0",
+            "margin": "0",
+            "textAlign": "center",
+            "pointerEvents": "none",
+            "fontSize": "17px",
+            "fontWeight": "600",
+            "color": "#0f0f0f",
+            "letterSpacing": "0.015em",
+            "lineHeight": "1.25"
+           },
+           "blockId": "3rn8okrxe",
+           "blockName": "Title",
+           "children": [],
+           "classes": [
+            "mna-mobile-title"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "h1",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": "Messages",
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          },
+          {
+           "attributes": {},
+           "baseStyles": {
+            "position": "relative",
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "4px",
+            "flexShrink": "0",
+            "marginLeft": "auto"
+           },
+           "blockId": "bfzs7b77m",
+           "blockName": "Actions",
+           "children": [],
+           "classes": [],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": "<button class=\"mna-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"mna-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><button class=\"mna-btn mna-btn-outline mna-c-new-group\" type=\"button\" id=\"mna-new-group-m\" aria-label=\"New group\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer;width:28px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg></button>",
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": "__raw_html__",
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [
+          "mna-mobile-header",
+          "mna-chat-mobile-head"
+         ],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": "header",
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": null,
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": null,
+         "tabletStyles": {},
+         "visibilityCondition": null
+        },
+        {
+         "attributes": {},
+         "baseStyles": {
+          "position": "sticky",
+          "top": "0",
+          "zIndex": "10",
+          "display": "flex",
+          "flexShrink": "0",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "height": "48px",
+          "padding": "0 20px",
+          "borderBottom": "1px solid #ededed",
+          "backgroundColor": "#ffffff"
+         },
+         "blockId": "z9s6m2goo",
+         "blockName": "Header",
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "4px",
+            "paddingLeft": "2px",
+            "fontSize": "16px",
+            "fontWeight": "500",
+            "letterSpacing": "0.015em",
+            "color": "#7c7c7c"
+           },
+           "blockId": "m87heu908",
+           "blockName": "Breadcrumbs",
+           "children": [
+            {
+             "attributes": {
+              "href": "/"
+             },
+             "baseStyles": {},
+             "blockId": "g494lw3ta",
+             "blockName": null,
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "a",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Cafe",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#999999",
+              "fontSize": "14px",
+              "fontWeight": "420",
+              "letterSpacing": "0.02em"
+             },
+             "blockId": "8hnfvgli8",
+             "blockName": "Separator",
+             "children": [],
+             "classes": [
+              "sep"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "/",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#0f0f0f"
+             },
+             "blockId": "8h8rbab9l",
+             "blockName": null,
+             "children": [],
+             "classes": [
+              "current"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Messages",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "mna-crumbs"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          },
+          {
+           "attributes": {},
+           "baseStyles": {
+            "display": "flex"
+           },
+           "blockId": "sjh91ob6b",
+           "blockName": "New group",
+           "children": [],
+           "classes": [],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": "<button class=\"mna-btn mna-btn-outline mna-c-new-group\" type=\"button\" id=\"mna-new-group\" aria-label=\"New group\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg><span >New group</span></button>",
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": "__raw_html__",
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [
+          "mna-header"
+         ],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": "header",
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": null,
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": null,
+         "tabletStyles": {},
+         "visibilityCondition": null
+        },
+        {
+         "attributes": {
+          "id": "mna-chat"
+         },
+         "baseStyles": {
+          "display": "flex",
+          "flex": "1",
+          "minHeight": "0",
+          "width": "100%",
+          "backgroundColor": "#ffffff"
+         },
+         "blockId": "8wr5bi1rm",
+         "blockName": "Chat",
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {
+            "display": "flex",
+            "flex": "1",
+            "minHeight": "0",
+            "width": "100%"
+           },
+           "blockId": "w1jep5wua",
+           "blockName": "Preview",
+           "children": [],
+           "classes": [
+            "mna-c-preview"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "div",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": "<div style=\"display:flex;flex:1;min-height:0;width:100%;height:100%\"><div style=\"width:320px;flex-shrink:0;border-right:1px solid #ededed\"><div style=\"padding:12px;border-bottom:1px solid #ededed\"><div style=\"height:28px;border-radius:8px;background-color:#f3f3f3\"></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div></div><div style=\"flex:1;display:grid;place-items:center;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.15\">Select a conversation to start messaging.</div></div>",
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": "__raw_html__",
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [
+          "mna-c-root"
+         ],
+         "clientScript": {},
+         "customAttributes": {
+          "data-conversation": ""
+         },
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [
+          {
+           "comesFrom": "dataScript",
+           "key": "w.id",
+           "property": "data-conversation",
+           "type": "attribute"
+          }
+         ],
+         "element": "div",
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": null,
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": null,
+         "tabletStyles": {},
+         "visibilityCondition": null
+        }
+       ],
+       "classes": [
+        "mna-main",
+        "mna-chat-main"
+       ],
+       "clientScript": {},
+       "customAttributes": {},
+       "dataKey": null,
+       "draggable": false,
+       "dynamicValues": [],
+       "element": "div",
+       "elementBeforeConversion": null,
+       "extendedFromComponent": null,
+       "innerHTML": null,
+       "isChildOfComponent": null,
+       "isRepeaterBlock": false,
+       "mobileStyles": {},
+       "originalElement": null,
+       "props": {},
+       "rawStyles": {},
+       "referenceBlockId": null,
+       "tabletStyles": {},
+       "visibilityCondition": null
+      }
+     ],
+     "classes": [
+      "mna-app"
+     ],
+     "clientScript": {},
+     "customAttributes": {},
+     "dataKey": null,
+     "draggable": false,
+     "dynamicValues": [],
+     "element": "div",
+     "elementBeforeConversion": null,
+     "extendedFromComponent": null,
+     "innerHTML": null,
+     "isChildOfComponent": null,
+     "isRepeaterBlock": false,
+     "mobileStyles": {},
+     "originalElement": null,
+     "props": {},
+     "rawStyles": {},
+     "referenceBlockId": null,
+     "tabletStyles": {},
+     "visibilityCondition": null
+    }
+   ],
+   "classes": [],
+   "clientScript": {},
+   "customAttributes": {},
+   "dataKey": null,
+   "draggable": false,
+   "dynamicValues": [],
+   "element": "div",
+   "elementBeforeConversion": null,
+   "extendedFromComponent": null,
+   "innerHTML": null,
+   "isChildOfComponent": null,
+   "isRepeaterBlock": false,
+   "mobileStyles": {},
+   "originalElement": "body",
+   "props": {},
+   "rawStyles": {},
+   "referenceBlockId": null,
+   "tabletStyles": {},
+   "visibilityCondition": null
+  }
+ ],
+ "client_scripts": [
+  {
+   "builder_script": "MNA Styles"
+  },
+  {
+   "builder_script": "MNA UI"
+  },
+  {
+   "builder_script": "MNA Shell"
+  },
+  {
+   "builder_script": "MNA Settings"
+  },
+  {
+   "builder_script": "MNA Notifications"
+  },
+  {
+   "builder_script": "MNA Chat Styles"
+  },
+  {
+   "builder_script": "MNA Chat Core"
+  },
+  {
+   "builder_script": "MNA Chat List"
+  },
+  {
+   "builder_script": "MNA Chat Messages"
+  },
+  {
+   "builder_script": "MNA Chat Thread"
+  },
+  {
+   "builder_script": "MNA Chat Composer"
+  },
+  {
+   "builder_script": "MNA Chat Emoji"
+  },
+  {
+   "builder_script": "MNA Chat Actions"
+  },
+  {
+   "builder_script": "MNA Chat Search"
+  },
+  {
+   "builder_script": "MNA Chat Dialogs"
+  },
+  {
+   "builder_script": "MNA Chat Mentions"
+  },
+  {
+   "builder_script": "MNA Chat Live"
+  }
+ ],
+ "creation": "2026-09-21 15:40:02.224648",
+ "disable_indexing": 1,
+ "docstatus": 0,
+ "doctype": "Builder Page",
+ "draft_blocks": null,
+ "dynamic_route": 1,
+ "head_html": "<script src=\"/assets/cafe/builder_assets/vendor/chat-editor.min.js?v=f61cd06ed9\" defer></script>",
+ "idx": 0,
+ "is_standard": 1,
+ "is_template": 0,
+ "modified": "2026-09-21 15:40:02.224648",
+ "modified_by": "Administrator",
+ "name": "mna-chat-thread",
+ "owner": "Administrator",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\nitem = frappe.form_dict.conversation_id or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/messages\" + (\"/\" + path_segment(item) if item else \"\"))\n\ndata.w = {\"id\": clean(item)}\n",
+ "page_name": "mna-chat-thread",
+ "page_title": "Conversation",
+ "project_folder": "cafe",
+ "published": 1,
+ "published_at": "2026-09-21 15:40:02.224648",
+ "route": "messages/:conversation_id"
+}

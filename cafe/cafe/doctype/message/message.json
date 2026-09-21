@@ -1,0 +1,147 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "conversation",
+  "sender",
+  "sender_name",
+  "sender_image",
+  "reply_to",
+  "content",
+  "is_edited",
+  "is_deleted",
+  "attachment",
+  "attachments",
+  "shared_post",
+  "poll",
+  "link_url",
+  "link_title",
+  "link_description",
+  "link_image"
+ ],
+ "fields": [
+  {
+   "fieldname": "conversation",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Conversation",
+   "options": "Conversation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Link",
+   "label": "Sender",
+   "options": "User",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "sender_name",
+   "fieldtype": "Data",
+   "label": "Sender Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sender_image",
+   "fieldtype": "Attach Image",
+   "label": "Sender Image",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reply_to",
+   "fieldtype": "Link",
+   "label": "Reply To",
+   "options": "Message"
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Small Text",
+   "label": "Content"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_edited",
+   "fieldtype": "Check",
+   "label": "Is Edited"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_deleted",
+   "fieldtype": "Check",
+   "label": "Is Deleted"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Table",
+   "label": "Attachments",
+   "options": "Message Attachment"
+  },
+  {
+   "fieldname": "shared_post",
+   "fieldtype": "Link",
+   "label": "Shared Post",
+   "options": "Post"
+  },
+  {
+   "fieldname": "poll",
+   "fieldtype": "Link",
+   "label": "Poll",
+   "options": "Poll"
+  },
+  {
+   "fieldname": "link_url",
+   "fieldtype": "Text",
+   "label": "Link URL"
+  },
+  {
+   "fieldname": "link_title",
+   "fieldtype": "Text",
+   "label": "Link Title"
+  },
+  {
+   "fieldname": "link_description",
+   "fieldtype": "Small Text",
+   "label": "Link Description"
+  },
+  {
+   "fieldname": "link_image",
+   "fieldtype": "Text",
+   "label": "Link Image"
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cafe",
+ "name": "Message",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": []
+}

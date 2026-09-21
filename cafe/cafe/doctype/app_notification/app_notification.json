@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-08-06 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "recipient",
+  "actor",
+  "actor_name",
+  "actor_image",
+  "type",
+  "reference_doctype",
+  "reference_name",
+  "message",
+  "is_read"
+ ],
+ "fields": [
+  {
+   "fieldname": "recipient",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Recipient",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "actor",
+   "fieldtype": "Link",
+   "label": "Actor",
+   "options": "User"
+  },
+  {
+   "fieldname": "actor_name",
+   "fieldtype": "Data",
+   "label": "Actor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "actor_image",
+   "fieldtype": "Attach Image",
+   "label": "Actor Image",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Type",
+   "options": "Like\nComment\nMention\nGroup Invite\nPublication Invite",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "options": "DocType",
+   "search_index": 1,
+   "label": "Reference Doctype"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Data",
+   "search_index": 1,
+   "label": "Reference Name"
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Data",
+   "label": "Message"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_read",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Is Read"
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cafe",
+ "name": "App Notification",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

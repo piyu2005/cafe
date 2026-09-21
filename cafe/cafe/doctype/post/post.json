@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-07-31 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "author",
+  "author_name",
+  "author_image",
+  "status",
+  "published_at",
+  "post_type",
+  "title",
+  "category",
+  "publication",
+  "tags",
+  "content",
+  "attachment",
+  "images",
+  "cover_image",
+  "excerpt",
+  "display_title"
+ ],
+ "fields": [
+  {
+   "fieldname": "author",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Author",
+   "options": "User",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "author.full_name",
+   "fieldname": "author_name",
+   "fieldtype": "Data",
+   "label": "Author Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "author.user_image",
+   "fieldname": "author_image",
+   "fieldtype": "Attach Image",
+   "label": "Author Image",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Status",
+   "options": "Draft\nPublished\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "published_at",
+   "fieldtype": "Datetime",
+   "label": "Published At",
+   "read_only": 1
+  },
+  {
+   "default": "Blog",
+   "fieldname": "post_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Post Type",
+   "options": "Blog\nImage\nVideo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Category",
+   "options": "Category"
+  },
+  {
+   "fieldname": "publication",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "label": "Publication",
+   "options": "Publication"
+  },
+  {
+   "description": "Comma separated tags",
+   "fieldname": "tags",
+   "fieldtype": "Data",
+   "label": "Tags"
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Content",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.post_type=='Image'",
+   "description": "Legacy single-file field, kept for older Image posts saved before multi-image support. New Image posts use the Images table instead.",
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "depends_on": "eval:doc.post_type=='Image'",
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Images",
+   "options": "Post Image"
+  },
+  {
+   "description": "Thumbnail shown in feeds and as the video poster. For images this defaults to the first image.",
+   "fieldname": "cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Cover Image"
+  },
+  {
+   "description": "Shown in previews and feeds instead of an auto-generated excerpt. Doesn't change the story itself.",
+   "fieldname": "excerpt",
+   "fieldtype": "Small Text",
+   "label": "Excerpt"
+  },
+  {
+   "description": "Shown in previews and feeds instead of the story's real title. Doesn't change the story itself.",
+   "fieldname": "display_title",
+   "fieldtype": "Data",
+   "label": "Display Title"
+  }
+ ],
+ "links": [],
+ "modified": "2026-07-31 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cafe",
+ "name": "Post",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "All"
+  },
+  {
+   "delete": 1,
+   "if_owner": 1,
+   "role": "All",
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}
