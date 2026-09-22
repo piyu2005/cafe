@@ -8,7 +8,7 @@ starts with a still picture of the chat; the script replaces it."""
 import hashlib
 
 from bell import mobile_bell_block
-from blocks import INK, INK_BLACK, MUTED, attribute, block, instance_of, raw_block, svg, text_style
+from blocks import INK, INK_BLACK, MUTED, attribute, block, icon, instance_of, raw_block, text_style
 from data_scripts import HELPERS
 from layout import crumb_current, crumb_link, crumb_separator, page_header
 from stand_ins import ASSETS, ASSETS_URL, chat_panes
@@ -59,8 +59,8 @@ BUTTON_STYLES = {
 
 def group_button_block(button_id, label, icon_only=False):
 	styles = {**BUTTON_STYLES, "width": "28px", "padding": "0"} if icon_only else BUTTON_STYLES
-	icon = raw_block("Icon", svg("users", 16))
-	children = [icon] if icon_only else [icon, block("span", text=label)]
+	users_icon = icon("users", 16)
+	children = [users_icon] if icon_only else [users_icon, block("span", text=label)]
 	return block(
 		"button",
 		classes=["cafe-btn", "cafe-btn-outline", "cafe-c-new-group"],
