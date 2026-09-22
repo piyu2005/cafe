@@ -21,13 +21,13 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "kv5ejfj88",
+     "blockId": "qa4frbn0z",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "ukukcvhp2",
+       "blockId": "bjsw9vjog",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "hoyyr4win",
+       "blockId": "qaysod4fh",
        "blockName": "Main",
        "children": [
         {
@@ -77,7 +77,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "nm5uby9v6",
+         "blockId": "p3vleeieo",
          "blockName": "Mobile header",
          "children": [
           {
@@ -130,9 +130,211 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "3t1wxlcb5",
+           "blockId": "oep9hxnb9",
            "blockName": "Actions",
-           "children": [],
+           "children": [
+            {
+             "attributes": {
+              "type": "button",
+              "aria-label": "Notifications",
+              "data-bell": ""
+             },
+             "baseStyles": {
+              "position": "relative",
+              "display": "grid",
+              "placeItems": "center",
+              "flexShrink": "0",
+              "width": "28px",
+              "height": "28px",
+              "padding": "0",
+              "border": "0",
+              "borderRadius": "8px",
+              "color": "#171717",
+              "cursor": "pointer"
+             },
+             "blockId": "yvhzmc669",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
+               "blockId": "nm5uby9v6",
+               "blockName": "icon/bell",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "svg",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "data-badge": "notifications"
+               },
+               "baseStyles": {
+                "display": "none",
+                "position": "absolute",
+                "top": "-2px",
+                "right": "-2px",
+                "minWidth": "16px",
+                "height": "16px",
+                "padding": "0 6px",
+                "borderRadius": "9999px",
+                "backgroundColor": "#ce2c2c",
+                "color": "#ffffff",
+                "fontSize": "12px",
+                "fontWeight": "420",
+                "lineHeight": "16px",
+                "letterSpacing": "0.02em",
+                "textAlign": "center"
+               },
+               "blockId": "3t1wxlcb5",
+               "blockName": null,
+               "children": [],
+               "classes": [
+                "cafe-badge"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-bell"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-new-group-m",
+              "aria-label": "New group"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0",
+              "border": "1px solid #e2e2e2",
+              "borderRadius": "8px",
+              "backgroundColor": "#ffffff",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer",
+              "width": "28px"
+             },
+             "blockId": "qnckzexd6",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
+               "blockId": "9j8xglfjk",
+               "blockName": "icon/users",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "svg",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-btn-outline",
+              "cafe-c-new-group"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
            "classes": [],
            "clientScript": {},
            "customAttributes": {},
@@ -142,11 +344,11 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><button class=\"cafe-btn cafe-btn-outline cafe-c-new-group\" type=\"button\" id=\"cafe-new-group-m\" aria-label=\"New group\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer;width:28px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg></button>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -192,7 +394,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "6mn9wo3s3",
+         "blockId": "iqpt6qudk",
          "blockName": "Header",
          "children": [
           {
@@ -207,7 +409,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "oep9hxnb9",
+           "blockId": "ukukcvhp2",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -215,7 +417,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "yvhzmc669",
+             "blockId": "6mn9wo3s3",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -246,7 +448,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "9j8xglfjk",
+             "blockId": "lyivgwknw",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -276,7 +478,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "qnckzexd6",
+             "blockId": "hoyyr4win",
              "blockName": null,
              "children": [],
              "classes": [
@@ -329,9 +531,115 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "lyivgwknw",
+           "blockId": "5swlj9ytk",
            "blockName": "New group",
-           "children": [],
+           "children": [
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-new-group",
+              "aria-label": "New group"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0 8px",
+              "border": "1px solid #e2e2e2",
+              "borderRadius": "8px",
+              "backgroundColor": "#ffffff",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer"
+             },
+             "blockId": "fddg2whzt",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
+               "blockId": "tpygpsf5n",
+               "blockName": "icon/users",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "svg",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "nflxhlzl1",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "New group",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-btn-outline",
+              "cafe-c-new-group"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
            "classes": [],
            "clientScript": {},
            "customAttributes": {},
@@ -341,11 +649,11 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-btn cafe-btn-outline cafe-c-new-group\" type=\"button\" id=\"cafe-new-group\" aria-label=\"New group\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" />\n  <path d=\"M16 3.13a4 4 0 0 1 0 7.75\" /></svg><span >New group</span></button>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -576,7 +884,7 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-09-22 17:57:15.850361",
+ "creation": "2026-09-22 20:56:19.172331",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -586,7 +894,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 17:57:15.850361",
+ "modified": "2026-09-22 20:56:19.172331",
  "modified_by": "Administrator",
  "name": "cafe-chat",
  "owner": "Administrator",
@@ -595,6 +903,6 @@
  "page_title": "Messages",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 17:57:15.850361",
+ "published_at": "2026-09-22 20:56:19.172331",
  "route": "messages"
 }

@@ -7,8 +7,8 @@ starts with a still picture of the chat; the script replaces it."""
 
 import hashlib
 
-from bell import mobile_bell
-from blocks import INK, INK_BLACK, MUTED, attribute, block, html_el, instance_of, raw_block, svg, text_style
+from bell import mobile_bell_block
+from blocks import INK, INK_BLACK, MUTED, attribute, block, icon, instance_of, raw_block, text_style
 from data_scripts import HELPERS
 from layout import crumb_current, crumb_link, crumb_separator, page_header
 from stand_ins import ASSETS, ASSETS_URL, chat_panes
@@ -57,23 +57,27 @@ BUTTON_STYLES = {
 }
 
 
-def group_button(button_id, label, icon_only=False):
+def group_button_block(button_id, label, icon_only=False):
 	styles = {**BUTTON_STYLES, "width": "28px", "padding": "0"} if icon_only else BUTTON_STYLES
-	inner = svg("users", 16) + ("" if icon_only else html_el("span", text=label))
-	return html_el(
+	users_icon = icon("users", 16)
+	children = [users_icon] if icon_only else [users_icon, block("span", text=label)]
+	return block(
 		"button",
-		["cafe-btn", "cafe-btn-outline", "cafe-c-new-group"],
-		{"type": "button", "id": button_id, "aria-label": label},
-		styles,
-		[inner],
+		classes=["cafe-btn", "cafe-btn-outline", "cafe-c-new-group"],
+		attrs={"type": "button", "id": button_id, "aria-label": label},
+		styles=styles,
+		children=children,
 	)
 
 
 def desktop_header():
 	header = page_header([crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Messages")])
 	# The New Post button of the shared header becomes New group.
-	header["children"][1] = raw_block(
-		"New group", group_button("cafe-new-group", "New group"), styles={"display": "flex"}
+	header["children"][1] = block(
+		"div",
+		"New group",
+		styles={"display": "flex"},
+		children=[group_button_block("cafe-new-group", "New group")],
 	)
 	return header
 
@@ -94,9 +98,10 @@ def mobile_header():
 			**text_style(17, "600", INK_BLACK, "0.015em", "1.25"),
 		},
 	)
-	actions = raw_block(
+	actions = block(
+		"div",
 		"Actions",
-		mobile_bell() + group_button("cafe-new-group-m", "New group", icon_only=True),
+		children=[mobile_bell_block(), group_button_block("cafe-new-group-m", "New group", icon_only=True)],
 		styles={
 			"position": "relative",
 			"display": "flex",
