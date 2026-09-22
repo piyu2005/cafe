@@ -140,7 +140,15 @@ def page_layout(
 				"div",
 				"Scroll area",
 				["mna-scroll"],
-				styles={"flexGrow": "1", "minHeight": "0", "overflowY": "auto"},
+				# "contain" (not "none"): normal scrolling still works when there's
+				# real content to scroll, it just stops the bounce/rubber-band
+				# animation showing at the top/bottom edge on a trackpad swipe.
+				styles={
+					"flexGrow": "1",
+					"minHeight": "0",
+					"overflowY": "auto",
+					"overscrollBehavior": "contain",
+				},
 				children=[container],
 			),
 		],

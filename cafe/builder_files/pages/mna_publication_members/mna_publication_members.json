@@ -480,7 +480,8 @@
          "baseStyles": {
           "flexGrow": "1",
           "minHeight": "0",
-          "overflowY": "auto"
+          "overflowY": "auto",
+          "overscrollBehavior": "contain"
          },
          "blockId": "r0oyt5sqa",
          "blockName": "Scroll area",
@@ -705,7 +706,7 @@
    "builder_script": "MNA Pub Members"
   }
  ],
- "creation": "2026-09-22 11:14:56.468998",
+ "creation": "2026-09-22 11:40:31.035065",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -715,7 +716,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 11:14:56.468998",
+ "modified": "2026-09-22 11:40:31.035065",
  "modified_by": "Administrator",
  "name": "mna-publication-members",
  "owner": "Administrator",
@@ -724,6 +725,6 @@
  "page_title": "Publication members",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 11:14:56.468998",
+ "published_at": "2026-09-22 11:40:31.035065",
  "route": "publications/:handle/members"
 }

@@ -29,6 +29,11 @@ html,
 body {
   margin: 0;
   background: var(--mna-surface);
+  /* Without this, macOS Chrome still shows a small trackpad rubber-band
+     bounce on a two-finger swipe even when the page has no real overflow —
+     it's separate from scrollHeight/clientHeight. Frappe Builder's own app
+     sets the same thing on html and body (its index.html is class="overscroll-none"). */
+  overscroll-behavior: none;
 }
 
 .mna-app {
@@ -1175,6 +1180,7 @@ p.mna-clamp-3:empty::before {
 /* ---- Settings: the dialog (desktop) and the Saved list (dialog and page) ---- */
 .mna-set-overlay {
   overflow: auto;
+  overscroll-behavior: contain;
 }
 .mna-set-modal {
   display: flex;
@@ -1194,6 +1200,7 @@ p.mna-clamp-3:empty::before {
   width: 220px;
   padding: 8px;
   overflow: auto;
+  overscroll-behavior: contain;
   background: #f8f8f8;
 }
 .mna-set-group {
@@ -1283,6 +1290,7 @@ p.mna-clamp-3:empty::before {
   min-height: 0;
   padding: 0 70.4px 40px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .mna-set-row {
   display: flex;
@@ -1549,6 +1557,7 @@ button.mna-rail-item {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .mna-np-row {
   position: relative;
