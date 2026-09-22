@@ -21,13 +21,13 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "t6pcz5hl9",
+     "blockId": "m87heu908",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "d1h1jhbns",
+       "blockId": "8h8rbab9l",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "ytu3cqoxi",
+       "blockId": "8hnfvgli8",
        "blockName": "Main",
        "children": [
         {
@@ -77,7 +77,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "1l0vkfkf7",
+         "blockId": "cz1nqqcx1",
          "blockName": "Mobile header",
          "children": [
           {
@@ -95,7 +95,7 @@
             "borderRadius": "8px",
             "color": "#171717"
            },
-           "blockId": "dq7eac9xo",
+           "blockId": "t6pcz5hl9",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -137,7 +137,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "xaiwr41i2",
+           "blockId": "7umwm6u44",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -172,9 +172,276 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "byfimqw22",
+           "blockId": "o9objdqvd",
            "blockName": "Actions",
-           "children": [],
+           "children": [
+            {
+             "attributes": {
+              "type": "button",
+              "aria-label": "Notifications",
+              "data-bell": ""
+             },
+             "baseStyles": {
+              "position": "relative",
+              "display": "grid",
+              "placeItems": "center",
+              "flexShrink": "0",
+              "width": "28px",
+              "height": "28px",
+              "padding": "0",
+              "border": "0",
+              "borderRadius": "8px",
+              "color": "#171717",
+              "cursor": "pointer"
+             },
+             "blockId": "i290mupnx",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "hwo6t9ucp",
+               "blockName": "Icon",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "div",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "data-badge": "notifications"
+               },
+               "baseStyles": {
+                "display": "none",
+                "position": "absolute",
+                "top": "-2px",
+                "right": "-2px",
+                "minWidth": "16px",
+                "height": "16px",
+                "padding": "0 6px",
+                "borderRadius": "9999px",
+                "backgroundColor": "#ce2c2c",
+                "color": "#ffffff",
+                "fontSize": "12px",
+                "fontWeight": "420",
+                "lineHeight": "16px",
+                "letterSpacing": "0.02em",
+                "textAlign": "center"
+               },
+               "blockId": "ifp2h09om",
+               "blockName": null,
+               "children": [],
+               "classes": [
+                "cafe-badge"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-bell"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-w-mmore",
+              "aria-label": "More"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0",
+              "border": "0",
+              "borderRadius": "8px",
+              "backgroundColor": "#f3f3f3",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer",
+              "width": "28px"
+             },
+             "blockId": "x0g401mad",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "pl2bce5f8",
+               "blockName": "Icon",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "div",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-w-more"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-w-mpublish"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0 8px",
+              "border": "0",
+              "borderRadius": "8px",
+              "backgroundColor": "#171717",
+              "color": "#ffffff",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer"
+             },
+             "blockId": "byorgb5em",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "6ark6q8v1",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "Publish",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-btn-solid",
+              "cafe-w-btn"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
            "classes": [],
            "clientScript": {},
            "customAttributes": {},
@@ -184,11 +451,11 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><button class=\"cafe-btn cafe-w-more\" type=\"button\" id=\"cafe-w-mmore\" aria-label=\"More\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0;border:0;border-radius:8px;background-color:#f3f3f3;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer;width:28px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg></button><button class=\"cafe-btn cafe-btn-solid cafe-w-btn\" type=\"button\" id=\"cafe-w-mpublish\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap;cursor:pointer\"><span >Publish</span></button>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -234,7 +501,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "59r7acexn",
+         "blockId": "i3tqdp6me",
          "blockName": "Header",
          "children": [
           {
@@ -249,7 +516,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "do7pvd6ol",
+           "blockId": "dagmip1o0",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -257,7 +524,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "0fpf8o6a6",
+             "blockId": "sfrzakfhs",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -288,7 +555,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "b68r7wfo1",
+             "blockId": "gr2t6vsck",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -320,7 +587,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "cwba0pxuc",
+             "blockId": "2vnbwk3k2",
              "blockName": "Current",
              "children": [],
              "classes": [
@@ -375,9 +642,234 @@
             "alignItems": "center",
             "gap": "8px"
            },
-           "blockId": "mnt8qe6h8",
+           "blockId": "g494lw3ta",
            "blockName": "Actions",
-           "children": [],
+           "children": [
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-w-draft"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0 8px",
+              "border": "1px solid #e2e2e2",
+              "borderRadius": "8px",
+              "backgroundColor": "#ffffff",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer"
+             },
+             "blockId": "w1jep5wua",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "356mynhpd",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "Save Draft",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-btn-outline",
+              "cafe-w-btn"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-w-publish"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0 8px",
+              "border": "0",
+              "borderRadius": "8px",
+              "backgroundColor": "#171717",
+              "color": "#ffffff",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer"
+             },
+             "blockId": "3rn8okrxe",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "8wr5bi1rm",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "span",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "Publish",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-btn-solid",
+              "cafe-w-btn"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
+              "id": "cafe-w-more",
+              "aria-label": "More",
+              "hidden": "hidden"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0",
+              "border": "0",
+              "borderRadius": "8px",
+              "backgroundColor": "#f3f3f3",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer",
+              "width": "28px"
+             },
+             "blockId": "vo0l481c6",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "bfzs7b77m",
+               "blockName": "Icon",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "div",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-w-more"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
            "classes": [],
            "clientScript": {},
            "customAttributes": {},
@@ -387,11 +879,11 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-btn cafe-btn-outline cafe-w-btn\" type=\"button\" id=\"cafe-w-draft\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer\"><span >Save Draft</span></button><button class=\"cafe-btn cafe-btn-solid cafe-w-btn\" type=\"button\" id=\"cafe-w-publish\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap;cursor:pointer\"><span >Publish</span></button><button class=\"cafe-btn cafe-w-more\" type=\"button\" id=\"cafe-w-more\" aria-label=\"More\" hidden=\"hidden\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0;border:0;border-radius:8px;background-color:#f3f3f3;color:#171717;font-size:14px;white-space:nowrap;cursor:pointer;width:28px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg></button>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -433,7 +925,7 @@
           "width": "100%",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "e57mvo4z5",
+         "blockId": "d1h1jhbns",
          "blockName": "Write",
          "children": [
           {
@@ -441,7 +933,7 @@
            "baseStyles": {
             "width": "100%"
            },
-           "blockId": "lucqr68ay",
+           "blockId": "ytu3cqoxi",
            "blockName": "Preview",
            "children": [],
            "classes": [
@@ -599,7 +1091,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-22 18:48:33.932899",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -609,7 +1101,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-22 18:48:33.932899",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
@@ -618,6 +1110,6 @@
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-22 18:48:33.932899",
  "route": "write/:post_id"
 }

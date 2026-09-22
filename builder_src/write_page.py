@@ -7,8 +7,8 @@ starts with a still picture of the page; the script replaces it."""
 
 import hashlib
 
-from bell import mobile_bell
-from blocks import INK, INK_BLACK, attribute, block, html_el, instance_of, raw_block, svg, text_style
+from bell import mobile_bell_block
+from blocks import INK, INK_BLACK, attribute, block, instance_of, raw_block, svg, text_style
 from chat_page import BUTTON_STYLES
 from data_scripts import HELPERS
 from layout import crumb_link, crumb_separator, page_header
@@ -31,22 +31,26 @@ def native_head_html():
 	return "\n".join(tags)
 
 
-def button(button_id, label, kind, extra_class=""):
+def button_block(button_id, label, kind, extra_class=""):
 	styles = {"outline": BUTTON_STYLES, "solid": SOLID_STYLES}[kind]
-	return html_el(
+	classes = ["cafe-btn", f"cafe-btn-{kind}", "cafe-w-btn", *([extra_class] if extra_class else [])]
+	return block(
 		"button",
-		["cafe-btn", f"cafe-btn-{kind}", "cafe-w-btn", *([extra_class] if extra_class else [])],
-		{"type": "button", "id": button_id},
-		styles,
-		[html_el("span", text=label)],
+		classes=classes,
+		attrs={"type": "button", "id": button_id},
+		styles=styles,
+		children=[block("span", text=label)],
 	)
 
 
-def more_button(button_id, hidden=False):
+def more_button_block(button_id, hidden=False):
 	attrs = {"type": "button", "id": button_id, "aria-label": "More"}
 	if hidden:
 		attrs["hidden"] = "hidden"
-	return html_el("button", ["cafe-btn", "cafe-w-more"], attrs, ICON_STYLES, [svg("ellipsis", 16)])
+	icon = raw_block("Icon", svg("ellipsis", 16))
+	return block(
+		"button", classes=["cafe-btn", "cafe-w-more"], attrs=attrs, styles=ICON_STYLES, children=[icon]
+	)
 
 
 def desktop_header():
@@ -63,12 +67,15 @@ def desktop_header():
 		),
 	]
 	header = page_header(crumbs)
-	header["children"][1] = raw_block(
+	header["children"][1] = block(
+		"div",
 		"Actions",
-		button("cafe-w-draft", "Save Draft", "outline")
-		+ button("cafe-w-publish", "Publish", "solid")
-		+ more_button("cafe-w-more", hidden=True),
 		styles={"display": "flex", "alignItems": "center", "gap": "8px"},
+		children=[
+			button_block("cafe-w-draft", "Save Draft", "outline"),
+			button_block("cafe-w-publish", "Publish", "solid"),
+			more_button_block("cafe-w-more", hidden=True),
+		],
 	)
 	return header
 
@@ -106,9 +113,14 @@ def mobile_header():
 			**text_style(17, "600", INK_BLACK, "0.015em", "1.25"),
 		},
 	)
-	actions = raw_block(
+	actions = block(
+		"div",
 		"Actions",
-		mobile_bell() + more_button("cafe-w-mmore") + button("cafe-w-mpublish", "Publish", "solid"),
+		children=[
+			mobile_bell_block(),
+			more_button_block("cafe-w-mmore"),
+			button_block("cafe-w-mpublish", "Publish", "solid"),
+		],
 		styles={
 			"position": "relative",
 			"display": "flex",
