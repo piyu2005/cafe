@@ -27,7 +27,7 @@
 	"root": true,
 	"globals": {
 		"frappe": true,
-		"MNA": true,
+		"CAFE": true,
 		"Vue": true,
 		"SetVueGlobals": true,
 		"__": true,

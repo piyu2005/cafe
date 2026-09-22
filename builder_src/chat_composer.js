@@ -458,7 +458,9 @@
 
 		var tools = C.el('div', 'cafe-c-tools')
 		var left = C.el('div', 'cafe-c-tools-left')
-		;[dom.attach, dom.format, dom.mention, dom.emoji, C.el('span', 'cafe-c-sep'), dom.poll].forEach(function (node) {
+		;[dom.attach, dom.format, dom.mention, dom.emoji, C.el('span', 'cafe-c-sep'), dom.poll].forEach(function (
+			node
+		) {
 			left.appendChild(node)
 		})
 		tools.appendChild(left)

@@ -78,7 +78,9 @@
 		return people.map(function (p) {
 			var button = row(C.avatar(p.user_image, p.full_name, 'md'), p.full_name, null, {})
 			if (p.username)
-				button.querySelector('.cafe-c-row-title').appendChild(C.el('span', 'cafe-c-row-handle', '@' + p.username))
+				button
+					.querySelector('.cafe-c-row-title')
+					.appendChild(C.el('span', 'cafe-c-row-handle', '@' + p.username))
 			button.addEventListener('click', function () {
 				button.disabled = true
 				C.call('start_dm', { other_user: p.name }).then(
