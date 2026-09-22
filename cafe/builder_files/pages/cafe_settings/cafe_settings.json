@@ -301,7 +301,7 @@
                 "borderBottom": "1px solid #ededed"
                },
                "blockId": "dhojzhe3c",
-               "blockName": null,
+               "blockName": "Tabs",
                "children": [
                 {
                  "attributes": {
@@ -1137,7 +1137,7 @@
                 "paddingTop": "16px"
                },
                "blockId": "ho7wlam0r",
-               "blockName": null,
+               "blockName": "Saved panel",
                "children": [
                 {
                  "attributes": {
@@ -1585,7 +1585,7 @@
    "builder_script": "Cafe Notifications"
   }
  ],
- "creation": "2026-09-22 18:28:08.237783",
+ "creation": "2026-09-22 19:25:25.343162",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1595,7 +1595,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 18:28:08.237783",
+ "modified": "2026-09-22 19:25:25.343162",
  "modified_by": "Administrator",
  "name": "cafe-settings",
  "owner": "Administrator",
@@ -1604,6 +1604,6 @@
  "page_title": "Settings",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 18:28:08.237783",
+ "published_at": "2026-09-22 19:25:25.343162",
  "route": "settings"
 }

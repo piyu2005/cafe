@@ -134,6 +134,7 @@ def build_saved_panel():
 	saved_list = block("div", classes=["cafe-saved-list"])
 	return block(
 		"div",
+		"Saved panel",
 		attrs={"id": "cafe-settings-saved", "role": "tabpanel", "hidden": "hidden"},
 		styles={"paddingTop": "16px"},
 		children=[loading, empty, error, saved_list],
@@ -158,6 +159,7 @@ def build_tabs():
 	]
 	return block(
 		"div",
+		"Tabs",
 		classes=["cafe-tablist"],
 		attrs={"role": "tablist"},
 		styles={"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
