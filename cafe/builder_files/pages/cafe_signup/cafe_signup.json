@@ -1342,7 +1342,7 @@
           "lineHeight": "1.15"
          },
          "blockId": "15dqymxci",
-         "blockName": null,
+         "blockName": "Footer",
          "children": [
           {
            "attributes": {},
@@ -1504,7 +1504,7 @@
    "builder_script": "Cafe Auth"
   }
  ],
- "creation": "2026-09-22 17:57:15.850361",
+ "creation": "2026-09-22 19:23:49.538565",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1514,7 +1514,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 17:57:15.850361",
+ "modified": "2026-09-22 19:23:49.538565",
  "modified_by": "Administrator",
  "name": "cafe-signup",
  "owner": "Administrator",
@@ -1523,6 +1523,6 @@
  "page_title": "Signup",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 17:57:15.850361",
+ "published_at": "2026-09-22 19:23:49.538565",
  "route": "signup"
 }

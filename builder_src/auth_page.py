@@ -219,7 +219,10 @@ def footer_block(prefix, link_label, href):
 	link = block("a", classes=["cafe-auth-link"], attrs={"href": href}, styles=LINK_STYLES, text=link_label)
 	prefix_span = block("span", text=prefix + " " if prefix else "")
 	return block(
-		"div", styles={"marginTop": "24px", "textAlign": "center", **SMALL}, children=[prefix_span, link]
+		"div",
+		"Footer",
+		styles={"marginTop": "24px", "textAlign": "center", **SMALL},
+		children=[prefix_span, link],
 	)
 
 
