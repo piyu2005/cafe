@@ -26,7 +26,7 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "3xyd9uy9d",
+     "blockId": "42ffxujel",
      "blockName": "Auth",
      "children": [
       {
@@ -40,7 +40,7 @@
         "backgroundColor": "#ffffff",
         "boxShadow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
        },
-       "blockId": "zk9vsnykr",
+       "blockId": "em3fmr4eu",
        "blockName": "Card",
        "children": [
         {
@@ -55,7 +55,7 @@
           "backgroundColor": "#171717",
           "color": "#ffffff"
          },
-         "blockId": "zfiwxksb2",
+         "blockId": "kaqlqrqm8",
          "blockName": "Logo",
          "children": [],
          "classes": [],
@@ -88,7 +88,7 @@
           "letterSpacing": "0.02em",
           "lineHeight": "1.15"
          },
-         "blockId": "qvrqyfihk",
+         "blockId": "aqo1bpsl7",
          "blockName": "Title",
          "children": [],
          "classes": [],
@@ -121,7 +121,7 @@
           "letterSpacing": "0.15px",
           "lineHeight": "19.5px"
          },
-         "blockId": "kousn7iks",
+         "blockId": "w2ypjdid8",
          "blockName": "Subtitle",
          "children": [],
          "classes": [],
@@ -149,7 +149,7 @@
          "baseStyles": {
           "marginTop": "24px"
          },
-         "blockId": "4kd9hylss",
+         "blockId": "2sfyewlse",
          "blockName": "Form",
          "children": [],
          "classes": [],
@@ -175,7 +175,7 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "26u911lad",
+         "blockId": "5yv5vlh05",
          "blockName": "Footer",
          "children": [],
          "classes": [],
@@ -277,7 +277,7 @@
    "builder_script": "Cafe Auth"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-22 18:28:08.237783",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -287,7 +287,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-22 18:28:08.237783",
  "modified_by": "Administrator",
  "name": "cafe-signup",
  "owner": "Administrator",
@@ -296,6 +296,6 @@
  "page_title": "Signup",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-22 18:28:08.237783",
  "route": "signup"
 }

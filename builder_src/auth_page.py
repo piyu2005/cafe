@@ -123,7 +123,11 @@ def message(name, hidden=True, text=None):
 	if hidden:
 		attrs["hidden"] = "hidden"
 	return html_el(
-		"div", ["cafe-auth-error"], attrs, {"marginTop": "12px", **text_style(13, "420", ERROR_RED)}, text=text
+		"div",
+		["cafe-auth-error"],
+		attrs,
+		{"marginTop": "12px", **text_style(13, "420", ERROR_RED)},
+		text=text,
 	)
 
 
