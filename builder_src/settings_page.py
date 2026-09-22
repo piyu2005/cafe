@@ -6,21 +6,11 @@ tabs, Account and Saved. Someone who opens /settings on a desktop is sent to
 the Home feed with the dialog open, like the old app does.
 
 The Account rows are blocks with the username and email from the data script.
-The Saved list is filled by settings.js when its tab opens."""
+The Saved list is filled by settings.js when its tab opens. Everything here is
+built as individual Builder blocks (buttons, tabs, list placeholders), not one
+embedded HTML blob, so each piece is editable on its own in Builder's canvas."""
 
-from blocks import (
-	GRAY_6,
-	INK,
-	MUTED,
-	OUTLINE,
-	SURFACE_2,
-	attribute,
-	block,
-	html_el,
-	raw_block,
-	show,
-	text_style,
-)
+from blocks import GRAY_6, INK, MUTED, OUTLINE, SURFACE_2, attribute, block, html_el, show, text_style
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
 
@@ -75,24 +65,23 @@ def build_row(name, title, control, description=None, first=False):
 def build_account_panel():
 	username = show(block("span", "Username value", text="@username", styles=VALUE_STYLES), "st.username")
 	email = show(block("span", "Email value", text="you@example.com", styles=VALUE_STYLES), "st.email")
-	log_out = raw_block(
+	log_out_button = block(
+		"button",
 		"Log out button",
-		html_el(
-			"button",
-			["cafe-btn"],
-			{"id": "cafe-settings-logout", "type": "button"},
-			LOG_OUT_STYLES,
-			text="Log out",
-		),
-		styles={"flexShrink": "0"},
+		classes=["cafe-btn"],
+		attrs={"id": "cafe-settings-logout", "type": "button"},
+		styles=LOG_OUT_STYLES,
+		text="Log out",
 	)
-	delete = raw_block(
+	log_out = block("div", "Log out button", styles={"flexShrink": "0"}, children=[log_out_button])
+	delete_button = block(
+		"button",
 		"Delete account button",
-		html_el(
-			"button", None, {"type": "button", "disabled": "disabled"}, DELETE_STYLES, text="Delete account"
-		),
-		styles={"flexShrink": "0"},
+		attrs={"type": "button", "disabled": "disabled"},
+		styles=DELETE_STYLES,
+		text="Delete account",
 	)
+	delete = block("div", "Delete account button", styles={"flexShrink": "0"}, children=[delete_button])
 	return block(
 		"div",
 		"Account panel",
@@ -113,6 +102,10 @@ def build_account_panel():
 
 
 def build_saved_panel():
+	# The 4 skeleton rows are a repeated decorative loading state, not
+	# interactive content - one raw-html block for the group is far cheaper
+	# to render than 5 native ones for something nobody ever edits piece by
+	# piece (see blocks.py's note on raw_block for exactly this shape).
 	skeleton = "".join(
 		html_el(
 			"div",
@@ -122,63 +115,62 @@ def build_saved_panel():
 		)
 		for _ in range(4)
 	)
-	panel = html_el(
+	loading = block(
 		"div",
-		None,
-		{"id": "cafe-settings-saved", "role": "tabpanel", "hidden": "hidden"},
-		{"paddingTop": "16px"},
-		[
-			html_el(
-				"div",
-				["cafe-loading"],
-				{"hidden": "hidden"},
-				{"flexDirection": "column", "gap": "20px"},
-				[skeleton],
-			),
-			html_el(
-				"p",
-				["cafe-saved-empty"],
-				{"hidden": "hidden"},
-				{"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
-				text="No saved posts yet.",
-			),
-			html_el(
-				"p",
-				["cafe-saved-error"],
-				{"hidden": "hidden"},
-				{"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
-				text="Couldn't load your saved posts. Please try again.",
-			),
-			html_el("div", ["cafe-saved-list"], None, None),
-		],
+		"Loading",
+		classes=["cafe-loading"],
+		attrs={"hidden": "hidden"},
+		html=skeleton,
+		styles={"flexDirection": "column", "gap": "20px"},
 	)
-	return raw_block("Saved panel", panel)
+	empty = block(
+		"p",
+		classes=["cafe-saved-empty"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
+		text="No saved posts yet.",
+	)
+	error = block(
+		"p",
+		classes=["cafe-saved-error"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
+		text="Couldn't load your saved posts. Please try again.",
+	)
+	saved_list = block("div", classes=["cafe-saved-list"])
+	return block(
+		"div",
+		"Saved panel",
+		attrs={"id": "cafe-settings-saved", "role": "tabpanel", "hidden": "hidden"},
+		styles={"paddingTop": "16px"},
+		children=[loading, empty, error, saved_list],
+	)
 
 
 def build_tabs():
 	buttons = [
-		html_el(
+		block(
 			"button",
-			["cafe-tab-btn"],
-			{
+			classes=["cafe-tab-btn"],
+			attrs={
 				"type": "button",
 				"role": "tab",
 				"data-tab": key,
 				"aria-selected": "true" if key == "account" else "false",
 			},
-			TAB_STYLES,
+			styles=TAB_STYLES,
 			text=label,
 		)
 		for key, label in (("account", "Account"), ("saved", "Saved"))
 	]
-	tablist = html_el(
+	return block(
 		"div",
-		["cafe-tablist"],
-		{"role": "tablist"},
-		{"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
-		buttons,
+		"Tabs",
+		classes=["cafe-tablist"],
+		attrs={"role": "tablist"},
+		styles={"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
+		children=buttons,
 	)
-	return raw_block("Tabs", tablist)
 
 
 def build_settings(shell_id, shell_block):
