@@ -43,7 +43,7 @@ class TestHomeRenderer(IntegrationTestCase):
 		self.assertFalse(can_render)
 
 	def test_other_paths_are_left_alone(self):
-		for path in ("/messages", "/settings", "/write", "/some/deep/path", "/mna-home-2"):
+		for path in ("/messages", "/settings", "/write", "/some/deep/path", "/cafe-home-2"):
 			can_render, renderer = self._can_render(path)
 			self.assertFalse(can_render, path)
 			self.assertNotEqual(renderer.path, HOME_ROUTE, path)

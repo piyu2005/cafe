@@ -66,7 +66,7 @@
 
 	function reloadAfter(promise, message) {
 		return promise.then(function () {
-			MNA.toast(message)
+			CAFE.toast(message)
 			// The page is rendered by the server, so reloading shows the saved data.
 			setTimeout(function () {
 				location.reload()
@@ -76,14 +76,14 @@
 
 	// The freshest copy of the profile, so an edit dialog never shows stale values.
 	function loadProfile() {
-		return MNA.get('cafe.api.get_profile', { user: username })
+		return CAFE.get('cafe.api.get_profile', { user: username })
 	}
 
 	// ---- Own-profile editing ----
 
 	function editHeader() {
 		loadProfile().then(function (profile) {
-			MNA.form({
+			CAFE.form({
 				title: 'Edit profile',
 				values: profile,
 				fields: [
@@ -98,7 +98,7 @@
 					},
 				],
 				onSubmit: function (values) {
-					return reloadAfter(MNA.api('cafe.api.update_profile', values), 'Profile updated')
+					return reloadAfter(CAFE.api('cafe.api.update_profile', values), 'Profile updated')
 				},
 			})
 		})
@@ -106,23 +106,23 @@
 
 	function editBio() {
 		loadProfile().then(function (profile) {
-			MNA.form({
+			CAFE.form({
 				title: 'Edit introduction',
 				values: profile,
 				fields: [{ name: 'bio', label: 'Introduction', type: 'textarea', rows: 6 }],
 				onSubmit: function (values) {
-					return reloadAfter(MNA.api('cafe.api.update_profile', values), 'Introduction updated')
+					return reloadAfter(CAFE.api('cafe.api.update_profile', values), 'Introduction updated')
 				},
 			})
 		})
 	}
 
 	function deleteEntry(method, id, title, message) {
-		return MNA.confirm({ title: title, message: message, confirmLabel: 'Delete', danger: true }).then(function (
+		return CAFE.confirm({ title: title, message: message, confirmLabel: 'Delete', danger: true }).then(function (
 			ok
 		) {
 			if (!ok) return false
-			return reloadAfter(MNA.api(method, { name: id }), 'Deleted').then(function () {
+			return reloadAfter(CAFE.api(method, { name: id }), 'Deleted').then(function () {
 				return true
 			})
 		})
@@ -135,7 +135,7 @@
 			'end',
 			entry && entry.end_date
 		)
-		MNA.form({
+		CAFE.form({
 			title: editing ? 'Edit work experience' : 'Add work experience',
 			values: values,
 			fields: [
@@ -159,7 +159,7 @@
 					end_date: combineMonthYear(v.end_yr, v.end_month),
 				}
 				if (editing) payload.name = entry.name
-				return reloadAfter(MNA.api(editing ? 'cafe.api.update_work' : 'cafe.api.add_work', payload), 'Saved')
+				return reloadAfter(CAFE.api(editing ? 'cafe.api.update_work' : 'cafe.api.add_work', payload), 'Saved')
 			},
 			onDelete: editing
 				? function () {
@@ -181,7 +181,7 @@
 			'end',
 			entry && entry.end_year
 		)
-		MNA.form({
+		CAFE.form({
 			title: editing ? 'Edit education' : 'Add education',
 			values: values,
 			fields: [
@@ -201,7 +201,7 @@
 				}
 				if (editing) payload.name = entry.name
 				return reloadAfter(
-					MNA.api(editing ? 'cafe.api.update_education' : 'cafe.api.add_education', payload),
+					CAFE.api(editing ? 'cafe.api.update_education' : 'cafe.api.add_education', payload),
 					'Saved'
 				)
 			},
@@ -223,7 +223,7 @@
 			var entry = (profile[kind] || []).filter(function (item) {
 				return item.name === id
 			})[0]
-			if (!entry) return MNA.toast('That entry no longer exists.', 'warning')
+			if (!entry) return CAFE.toast('That entry no longer exists.', 'warning')
 			if (kind === 'work') workForm(entry)
 			else educationForm(entry)
 		})
@@ -235,16 +235,16 @@
 		var url = location.origin + '/profile/' + encodeURIComponent(username)
 		navigator.clipboard.writeText(url).then(
 			function () {
-				MNA.toast('Link copied')
+				CAFE.toast('Link copied')
 			},
 			function () {
-				MNA.toast('Could not copy the link', 'error')
+				CAFE.toast('Could not copy the link', 'error')
 			}
 		)
 	}
 
 	function toggleBio(button) {
-		var bio = document.getElementById('mna-bio')
+		var bio = document.getElementById('cafe-bio')
 		if (!bio) return
 		var expanded = bio.classList.toggle('expanded')
 		button.textContent = expanded ? 'see less' : '...see more'
@@ -279,13 +279,13 @@
 	// image can fail before this script runs, so check for that as well as
 	// listening for the error.
 	function watchAvatar() {
-		var image = root.querySelector('.mna-profile-avatar img')
+		var image = root.querySelector('.cafe-profile-avatar img')
 		if (!image) return
 		function useInitial() {
 			image.remove()
-			var name = root.querySelector('.mna-profile-name').textContent || '?'
-			root.querySelector('.mna-profile-avatar').appendChild(
-				MNA.el('span', 'mna-profile-initial', name.trim().charAt(0))
+			var name = root.querySelector('.cafe-profile-name').textContent || '?'
+			root.querySelector('.cafe-profile-avatar').appendChild(
+				CAFE.el('span', 'cafe-profile-initial', name.trim().charAt(0))
 			)
 		}
 		if (image.complete && image.naturalWidth === 0) useInitial()
@@ -293,7 +293,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		root = document.getElementById('mna-profile')
+		root = document.getElementById('cafe-profile')
 		if (!root) return
 		username = root.getAttribute('data-username')
 

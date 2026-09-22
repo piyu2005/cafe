@@ -2,7 +2,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var DEBOUNCE_MS = 200
 	var box,
 		input,
@@ -11,27 +11,27 @@
 		searchToken = 0
 
 	function row(avatar, name, preview, extra) {
-		var button = C.el('button', 'mna-c-row' + (extra && extra.active ? ' active' : ''))
+		var button = C.el('button', 'cafe-c-row' + (extra && extra.active ? ' active' : ''))
 		button.type = 'button'
 		button.appendChild(avatar)
-		var text = C.el('div', 'mna-c-row-text')
-		var title = C.el('div', 'mna-c-row-title')
-		title.appendChild(C.el('span', 'mna-c-row-name', name))
-		if (extra && extra.muted) title.appendChild(C.icon('bell-off', 'mna-c-muted'))
+		var text = C.el('div', 'cafe-c-row-text')
+		var title = C.el('div', 'cafe-c-row-title')
+		title.appendChild(C.el('span', 'cafe-c-row-name', name))
+		if (extra && extra.muted) title.appendChild(C.icon('bell-off', 'cafe-c-muted'))
 		text.appendChild(title)
-		if (preview !== null) text.appendChild(C.el('p', 'mna-c-row-preview', preview))
+		if (preview !== null) text.appendChild(C.el('p', 'cafe-c-row-preview', preview))
 		button.appendChild(text)
-		if (extra && extra.unread > 0) button.appendChild(C.el('span', 'mna-c-unread', String(extra.unread)))
+		if (extra && extra.unread > 0) button.appendChild(C.el('span', 'cafe-c-unread', String(extra.unread)))
 		return button
 	}
 
 	function message(text) {
-		return C.el('p', 'mna-c-empty', text)
+		return C.el('p', 'cafe-c-empty', text)
 	}
 
 	function skeleton() {
-		var wrap = C.el('div', 'mna-c-skeleton')
-		for (var i = 0; i < 4; i++) wrap.appendChild(C.el('div', 'mna-skeleton'))
+		var wrap = C.el('div', 'cafe-c-skeleton')
+		for (var i = 0; i < 4; i++) wrap.appendChild(C.el('div', 'cafe-skeleton'))
 		return wrap
 	}
 
@@ -56,15 +56,15 @@
 
 	function requestsToggle() {
 		var state = C.state
-		var button = C.el('button', 'mna-c-requests')
+		var button = C.el('button', 'cafe-c-requests')
 		button.type = 'button'
-		var left = C.el('span', 'mna-c-requests-left')
-		left.appendChild(C.icon('inbox', 'mna-c-small'))
+		var left = C.el('span', 'cafe-c-requests-left')
+		left.appendChild(C.icon('inbox', 'cafe-c-small'))
 		left.appendChild(document.createTextNode('Message requests'))
-		var right = C.el('span', 'mna-c-requests-right')
+		var right = C.el('span', 'cafe-c-requests-right')
 		if (state.requests && state.requests.length)
-			right.appendChild(C.el('span', 'mna-c-unread', String(state.requests.length)))
-		right.appendChild(C.icon(state.showRequests ? 'chevron-up' : 'chevron-down', 'mna-c-small mna-c-faint'))
+			right.appendChild(C.el('span', 'cafe-c-unread', String(state.requests.length)))
+		right.appendChild(C.icon(state.showRequests ? 'chevron-up' : 'chevron-down', 'cafe-c-small cafe-c-faint'))
 		button.appendChild(left)
 		button.appendChild(right)
 		button.addEventListener('click', function () {
@@ -78,7 +78,7 @@
 		return people.map(function (p) {
 			var button = row(C.avatar(p.user_image, p.full_name, 'md'), p.full_name, null, {})
 			if (p.username)
-				button.querySelector('.mna-c-row-title').appendChild(C.el('span', 'mna-c-row-handle', '@' + p.username))
+				button.querySelector('.cafe-c-row-title').appendChild(C.el('span', 'cafe-c-row-handle', '@' + p.username))
 			button.addEventListener('click', function () {
 				button.disabled = true
 				C.call('start_dm', { other_user: p.name }).then(
@@ -152,8 +152,8 @@
 
 	C.buildList = function (host) {
 		box = host
-		var searchBox = C.el('div', 'mna-c-search')
-		searchBox.appendChild(C.icon('search', 'mna-c-search-icon'))
+		var searchBox = C.el('div', 'cafe-c-search')
+		searchBox.appendChild(C.icon('search', 'cafe-c-search-icon'))
 		input = C.el('input')
 		input.type = 'text'
 		input.placeholder = 'Search by name'
@@ -170,7 +170,7 @@
 			timer = setTimeout(searchPeople, DEBOUNCE_MS)
 		})
 		searchBox.appendChild(input)
-		scroll = C.el('div', 'mna-c-list-scroll')
+		scroll = C.el('div', 'cafe-c-list-scroll')
 		box.appendChild(searchBox)
 		box.appendChild(scroll)
 		C.on('conversations', render)

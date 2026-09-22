@@ -65,7 +65,7 @@ const ALLOWED_TAGS = [
 	'mark',
 ]
 
-window.MnaEditor = {
+window.CafeEditor = {
 	Editor,
 	StarterKit,
 	Placeholder,

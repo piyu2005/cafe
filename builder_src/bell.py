@@ -22,13 +22,13 @@ BELL_STYLES = {
 def mobile_bell():
 	badge = html_el(
 		"span",
-		["mna-badge"],
+		["cafe-badge"],
 		{"data-badge": "notifications"},
 		{**BADGE_STYLES, "top": "-2px", "right": "-2px"},
 	)
 	return html_el(
 		"button",
-		["mna-bell"],
+		["cafe-bell"],
 		{"type": "button", "aria-label": "Notifications", "data-bell": ""},
 		BELL_STYLES,
 		[svg("bell", 16), badge],

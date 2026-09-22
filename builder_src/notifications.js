@@ -4,7 +4,7 @@
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
+	var CAFE = (window.CAFE = window.CAFE || {})
 	var ICONS = '@@ICONS@@'
 	var TYPES = {
 		Like: { icon: 'heart', color: '#e03434' },
@@ -27,7 +27,7 @@
 	]
 
 	var el = function (tag, className, text) {
-		return MNA.el(tag, className, text)
+		return CAFE.el(tag, className, text)
 	}
 
 	function icon(name, className) {
@@ -56,8 +56,8 @@
 	// ---- The rows ----
 
 	function avatar(n) {
-		var wrap = el('div', 'mna-np-avatar-wrap')
-		var circle = el('span', 'mna-np-avatar')
+		var wrap = el('div', 'cafe-np-avatar-wrap')
+		var circle = el('span', 'cafe-np-avatar')
 		var name = n.actor_name || 'Someone'
 		if (/^(\/|https?:\/\/)/.test(n.actor_image || '')) {
 			var image = el('img')
@@ -68,16 +68,16 @@
 			circle.textContent = name.trim().charAt(0)
 		}
 		var type = TYPES[n.type] || OTHER_TYPE
-		var badge = el('span', 'mna-np-type')
+		var badge = el('span', 'cafe-np-type')
 		badge.style.background = type.color
-		badge.appendChild(icon(type.icon, 'mna-np-type-icon'))
+		badge.appendChild(icon(type.icon, 'cafe-np-type-icon'))
 		wrap.appendChild(circle)
 		wrap.appendChild(badge)
 		return wrap
 	}
 
 	function button(label, kind, onClick) {
-		var node = el('button', 'mna-btn mna-btn-' + kind, label)
+		var node = el('button', 'cafe-btn cafe-btn-' + kind, label)
 		node.type = 'button'
 		node.addEventListener('click', function (event) {
 			event.stopPropagation()
@@ -97,31 +97,31 @@
 
 	Panel.prototype.build = function () {
 		var self = this
-		var node = el('div', 'mna-np')
+		var node = el('div', 'cafe-np')
 		node.setAttribute('role', 'dialog')
 		node.setAttribute('aria-label', 'Notifications')
-		var header = el('div', 'mna-np-header')
-		header.appendChild(el('h2', 'mna-np-title', 'Notifications'))
-		var actions = el('div', 'mna-np-header-actions')
-		var markAll = el('button', 'mna-np-icon-btn mna-np-mark-all')
+		var header = el('div', 'cafe-np-header')
+		header.appendChild(el('h2', 'cafe-np-title', 'Notifications'))
+		var actions = el('div', 'cafe-np-header-actions')
+		var markAll = el('button', 'cafe-np-icon-btn cafe-np-mark-all')
 		markAll.type = 'button'
 		markAll.title = 'Mark all as read'
 		markAll.setAttribute('aria-label', 'Mark all as read')
-		markAll.appendChild(icon('check-check', 'mna-np-icon'))
+		markAll.appendChild(icon('check-check', 'cafe-np-icon'))
 		markAll.addEventListener('click', function () {
 			self.markAll(true)
 		})
-		var close = el('button', 'mna-np-icon-btn mna-np-close')
+		var close = el('button', 'cafe-np-icon-btn cafe-np-close')
 		close.type = 'button'
 		close.setAttribute('aria-label', 'Close')
-		close.appendChild(icon('x', 'mna-np-icon'))
+		close.appendChild(icon('x', 'cafe-np-icon'))
 		close.addEventListener('click', function () {
 			self.close()
 		})
 		actions.appendChild(markAll)
 		actions.appendChild(close)
 		header.appendChild(actions)
-		this.list = el('div', 'mna-np-list')
+		this.list = el('div', 'cafe-np-list')
 		node.appendChild(header)
 		node.appendChild(this.list)
 		document.body.appendChild(node)
@@ -130,10 +130,10 @@
 
 	Panel.prototype.open = function () {
 		if (!this.node) this.build()
-		if (MNA.closeMenu) MNA.closeMenu()
+		if (CAFE.closeMenu) CAFE.closeMenu()
 		this.isOpen = true
 		this.node.classList.add('open')
-		document.body.classList.add('mna-np-open')
+		document.body.classList.add('cafe-np-open')
 		document.querySelectorAll('[data-bell]').forEach(function (bell) {
 			bell.classList.add('active')
 		})
@@ -144,7 +144,7 @@
 		if (!this.isOpen) return
 		this.isOpen = false
 		this.node.classList.remove('open')
-		document.body.classList.remove('mna-np-open')
+		document.body.classList.remove('cafe-np-open')
 		document.querySelectorAll('[data-bell]').forEach(function (bell) {
 			bell.classList.remove('active')
 		})
@@ -162,17 +162,17 @@
 		var request = ++this.request
 		if (!this.list.children.length) this.showSkeleton()
 		var start = markRead
-			? MNA.api('cafe.follow.mark_notification_read', {}).catch(function () {})
+			? CAFE.api('cafe.follow.mark_notification_read', {}).catch(function () {})
 			: Promise.resolve()
 		start
 			.then(function () {
-				return MNA.get('cafe.follow.list_notifications')
+				return CAFE.get('cafe.follow.list_notifications')
 			})
 			.then(
 				function (rows) {
 					if (request !== self.request) return
 					self.render(rows || [])
-					if (MNA.refreshBadges) MNA.refreshBadges()
+					if (CAFE.refreshBadges) CAFE.refreshBadges()
 				},
 				function () {
 					if (request !== self.request) return
@@ -183,41 +183,41 @@
 
 	Panel.prototype.markAll = function (announce) {
 		var self = this
-		var node = this.node.querySelector('.mna-np-mark-all')
+		var node = this.node.querySelector('.cafe-np-mark-all')
 		node.disabled = true
-		MNA.api('cafe.follow.mark_notification_read', {}).then(
+		CAFE.api('cafe.follow.mark_notification_read', {}).then(
 			function () {
 				node.disabled = false
-				if (announce) MNA.toast('All notifications marked as read')
+				if (announce) CAFE.toast('All notifications marked as read')
 				// Like the other Frappe apps: once everything is read, the list clears.
 				self.request++
 				self.render([])
-				if (MNA.refreshBadges) MNA.refreshBadges()
+				if (CAFE.refreshBadges) CAFE.refreshBadges()
 			},
 			function () {
 				node.disabled = false
-				MNA.toast("Couldn't mark them as read. Please try again.", 'error')
+				CAFE.toast("Couldn't mark them as read. Please try again.", 'error')
 			}
 		)
 	}
 
 	Panel.prototype.showSkeleton = function () {
 		this.list.replaceChildren()
-		var box = el('div', 'mna-np-skeleton')
-		for (var i = 0; i < 6; i++) box.appendChild(el('div', 'mna-skeleton'))
+		var box = el('div', 'cafe-np-skeleton')
+		for (var i = 0; i < 6; i++) box.appendChild(el('div', 'cafe-skeleton'))
 		this.list.appendChild(box)
 	}
 
 	Panel.prototype.showMessage = function (text) {
 		this.list.replaceChildren()
-		this.list.appendChild(el('p', 'mna-np-error', text))
+		this.list.appendChild(el('p', 'cafe-np-error', text))
 	}
 
 	Panel.prototype.render = function (rows) {
 		this.list.replaceChildren()
 		if (!rows.length) {
-			var empty = el('div', 'mna-np-empty')
-			empty.appendChild(icon('bell', 'mna-np-empty-icon'))
+			var empty = el('div', 'cafe-np-empty')
+			empty.appendChild(icon('bell', 'cafe-np-empty-icon'))
 			empty.appendChild(el('p', '', "You're all caught up."))
 			this.list.appendChild(empty)
 			return
@@ -230,16 +230,16 @@
 
 	Panel.prototype.row = function (n) {
 		var self = this
-		var row = el('div', 'mna-np-row')
+		var row = el('div', 'cafe-np-row')
 		row.appendChild(avatar(n))
-		var text = el('div', 'mna-np-text')
-		var message = el('p', 'mna-np-msg' + (n.is_read ? ' read' : ''))
-		message.appendChild(el('span', 'mna-np-actor', n.actor_name || 'Someone'))
+		var text = el('div', 'cafe-np-text')
+		var message = el('p', 'cafe-np-msg' + (n.is_read ? ' read' : ''))
+		message.appendChild(el('span', 'cafe-np-actor', n.actor_name || 'Someone'))
 		message.appendChild(document.createTextNode(' ' + (n.message || '')))
 		text.appendChild(message)
-		text.appendChild(el('div', 'mna-np-time', timeAgo(n.creation)))
+		text.appendChild(el('div', 'cafe-np-time', timeAgo(n.creation)))
 		if (RESPOND[n.type] && n.request_status === 'Pending') {
-			var actions = el('div', 'mna-np-actions')
+			var actions = el('div', 'cafe-np-actions')
 			actions.appendChild(
 				button('Accept', 'solid', function (node) {
 					self.respond(n, true, node)
@@ -252,10 +252,10 @@
 			)
 			text.appendChild(actions)
 		} else if (RESPOND[n.type] && n.request_status) {
-			text.appendChild(el('span', 'mna-np-status', n.request_status))
+			text.appendChild(el('span', 'cafe-np-status', n.request_status))
 		}
 		row.appendChild(text)
-		if (!n.is_read) row.appendChild(el('span', 'mna-np-dot'))
+		if (!n.is_read) row.appendChild(el('span', 'cafe-np-dot'))
 		row.addEventListener('click', function () {
 			self.go(n)
 		})
@@ -266,9 +266,9 @@
 	Panel.prototype.go = function (n) {
 		if (!n.is_read) {
 			n.is_read = 1
-			MNA.api('cafe.follow.mark_notification_read', { name: n.name }).then(
+			CAFE.api('cafe.follow.mark_notification_read', { name: n.name }).then(
 				function () {
-					if (MNA.refreshBadges) MNA.refreshBadges()
+					if (CAFE.refreshBadges) CAFE.refreshBadges()
 				},
 				function () {}
 			)
@@ -283,7 +283,7 @@
 		var self = this
 		node.disabled = true
 		node.parentNode.classList.add('busy')
-		MNA.api(RESPOND[n.type], { name: n.reference_name, accept: accept ? 1 : 0 }).then(
+		CAFE.api(RESPOND[n.type], { name: n.reference_name, accept: accept ? 1 : 0 }).then(
 			function (data) {
 				if (accept && data && data.conversation)
 					location.assign('/messages/' + encodeURIComponent(data.conversation))
@@ -294,7 +294,7 @@
 			function (error) {
 				node.disabled = false
 				node.parentNode.classList.remove('busy')
-				MNA.toast(error.message, 'error')
+				CAFE.toast(error.message, 'error')
 			}
 		)
 	}
@@ -303,8 +303,8 @@
 
 	// Other scripts (the chat) share this page's live connection.
 	var socketWaiters = []
-	MNA.onSocket = function (callback) {
-		if (MNA.socket) callback(MNA.socket)
+	CAFE.onSocket = function (callback) {
+		if (CAFE.socket) callback(CAFE.socket)
 		else socketWaiters.push(callback)
 	}
 
@@ -317,19 +317,19 @@
 			var port = location.port ? ':9000' : ''
 			var url = (port ? 'http' : 'https') + '://' + location.hostname + port + '/' + location.hostname
 			var socket = window.io(url, { withCredentials: true })
-			MNA.socket = socket
+			CAFE.socket = socket
 			socketWaiters.splice(0).forEach(function (callback) {
 				callback(socket)
 			})
 			socket.on('notification:new', function (payload) {
-				if (MNA.refreshBadges) MNA.refreshBadges()
+				if (CAFE.refreshBadges) CAFE.refreshBadges()
 				if (panel.isOpen) panel.load(true)
-				else MNA.toast((payload.actor_name || 'Someone') + ' ' + payload.message, 'info')
+				else CAFE.toast((payload.actor_name || 'Someone') + ' ' + payload.message, 'info')
 			})
 			socket.on('chat:new_message', function (payload) {
-				if (MNA.refreshBadges) MNA.refreshBadges()
+				if (CAFE.refreshBadges) CAFE.refreshBadges()
 				var here = location.pathname === '/messages/' + payload.conversation
-				if (!here) MNA.toast(payload.sender_name + ': ' + (payload.content || 'sent an attachment'), 'info')
+				if (!here) CAFE.toast(payload.sender_name + ': ' + (payload.content || 'sent an attachment'), 'info')
 			})
 		}
 		document.head.appendChild(script)
@@ -338,7 +338,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		if (!document.querySelector('[data-bell]')) return
 		var panel = new Panel()
-		MNA.closeNotifications = function () {
+		CAFE.closeNotifications = function () {
 			panel.close()
 		}
 		document.addEventListener('click', function (event) {

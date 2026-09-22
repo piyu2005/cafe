@@ -2,13 +2,13 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var IMAGE_LIMIT = 4
 	var LINK = /(\*\*[^*]+\*\*)|(\*[^*]+\*)|(`[^`]+`)|(https?:\/\/[^\s]+)/g
 
 	// Older messages are plain text with a little markdown. Text goes in as text.
 	function plainBody(text) {
-		var div = C.el('div', 'mna-c-plain')
+		var div = C.el('div', 'cafe-c-plain')
 		var last = 0
 		var match
 		LINK.lastIndex = 0
@@ -19,11 +19,11 @@
 			if (part.indexOf('**') === 0) {
 				node = C.el('strong', '', part.slice(2, -2))
 			} else if (part.charAt(0) === '`') {
-				node = C.el('code', 'mna-c-inline-code', part.slice(1, -1))
+				node = C.el('code', 'cafe-c-inline-code', part.slice(1, -1))
 			} else if (part.charAt(0) === '*') {
 				node = C.el('em', '', part.slice(1, -1))
 			} else {
-				node = C.el('a', 'mna-c-link', part)
+				node = C.el('a', 'cafe-c-link', part)
 				node.href = part
 				node.target = '_blank'
 				node.rel = 'noopener'
@@ -36,8 +36,8 @@
 	}
 
 	function htmlBody(html) {
-		var div = C.el('div', 'mna-c-html')
-		div.innerHTML = window.MnaEditor ? window.MnaEditor.sanitize(html) : ''
+		var div = C.el('div', 'cafe-c-html')
+		div.innerHTML = window.CafeEditor ? window.CafeEditor.sanitize(html) : ''
 		div.querySelectorAll('a').forEach(function (link) {
 			link.target = '_blank'
 			link.rel = 'noopener'
@@ -47,11 +47,11 @@
 
 	function replyPreview(m) {
 		var preview = m.reply_to_preview
-		var button = C.el('button', 'mna-c-reply-preview')
+		var button = C.el('button', 'cafe-c-reply-preview')
 		button.type = 'button'
-		button.appendChild(C.el('div', 'mna-c-reply-name', preview.sender_name))
+		button.appendChild(C.el('div', 'cafe-c-reply-name', preview.sender_name))
 		button.appendChild(
-			C.el('div', 'mna-c-reply-text', preview.is_deleted ? 'This message was deleted' : preview.content)
+			C.el('div', 'cafe-c-reply-text', preview.is_deleted ? 'This message was deleted' : preview.content)
 		)
 		button.addEventListener('click', function () {
 			if (C.jumpTo) C.jumpTo(preview.name)
@@ -71,10 +71,10 @@
 	}
 
 	function attachments(m) {
-		var wrap = C.el('div', 'mna-c-attachments' + (images(m).length > 1 ? ' grid' : ''))
+		var wrap = C.el('div', 'cafe-c-attachments' + (images(m).length > 1 ? ' grid' : ''))
 		var pictures = images(m)
 		pictures.slice(0, IMAGE_LIMIT).forEach(function (a, i) {
-			var button = C.el('button', 'mna-c-picture')
+			var button = C.el('button', 'cafe-c-picture')
 			button.type = 'button'
 			var img = C.el('img')
 			img.src = a.file_url
@@ -82,26 +82,26 @@
 			img.loading = 'lazy'
 			button.appendChild(img)
 			if (i === IMAGE_LIMIT - 1 && pictures.length > IMAGE_LIMIT)
-				button.appendChild(C.el('div', 'mna-c-more', '+' + (pictures.length - IMAGE_LIMIT)))
+				button.appendChild(C.el('div', 'cafe-c-more', '+' + (pictures.length - IMAGE_LIMIT)))
 			button.addEventListener('click', function () {
 				if (C.lightbox) C.lightbox(pictures, i)
 			})
 			wrap.appendChild(button)
 		})
 		files(m).forEach(function (a) {
-			var link = C.el('a', 'mna-c-file')
+			var link = C.el('a', 'cafe-c-file')
 			link.href = C.safeUrl(a.file_url)
 			link.target = '_blank'
 			link.rel = 'noopener'
-			link.appendChild(C.icon('file', 'mna-c-small'))
-			link.appendChild(C.el('span', 'mna-c-file-name', a.file_name))
+			link.appendChild(C.icon('file', 'cafe-c-small'))
+			link.appendChild(C.el('span', 'cafe-c-file-name', a.file_name))
 			wrap.appendChild(link)
 		})
 		return wrap
 	}
 
 	function sharedPost(m) {
-		var card = C.el('a', 'mna-c-post-card')
+		var card = C.el('a', 'cafe-c-post-card')
 		card.href = C.safeUrl(m.link_url)
 		if (m.link_image) {
 			var img = C.el('img')
@@ -110,16 +110,16 @@
 			img.loading = 'lazy'
 			card.appendChild(img)
 		}
-		var text = C.el('div', 'mna-c-card-text')
-		text.appendChild(C.el('div', 'mna-c-card-title', m.link_title))
-		if (m.link_description) text.appendChild(C.el('p', 'mna-c-card-desc', m.link_description))
-		text.appendChild(C.el('span', 'mna-c-card-desc', 'View post'))
+		var text = C.el('div', 'cafe-c-card-text')
+		text.appendChild(C.el('div', 'cafe-c-card-title', m.link_title))
+		if (m.link_description) text.appendChild(C.el('p', 'cafe-c-card-desc', m.link_description))
+		text.appendChild(C.el('span', 'cafe-c-card-desc', 'View post'))
 		card.appendChild(text)
 		return card
 	}
 
 	function linkCard(m) {
-		var card = C.el('a', 'mna-c-link-card')
+		var card = C.el('a', 'cafe-c-link-card')
 		card.href = C.safeUrl(m.link_url)
 		card.target = '_blank'
 		card.rel = 'noopener'
@@ -130,36 +130,36 @@
 			img.loading = 'lazy'
 			card.appendChild(img)
 		}
-		var text = C.el('div', 'mna-c-link-text')
-		text.appendChild(C.el('div', 'mna-c-link-title', m.link_title))
-		if (m.link_description) text.appendChild(C.el('p', 'mna-c-link-desc', m.link_description))
+		var text = C.el('div', 'cafe-c-link-text')
+		text.appendChild(C.el('div', 'cafe-c-link-title', m.link_title))
+		if (m.link_description) text.appendChild(C.el('p', 'cafe-c-link-desc', m.link_description))
 		card.appendChild(text)
 		return card
 	}
 
 	function poll(m) {
 		var data = m.poll_data
-		var card = C.el('div', 'mna-c-poll')
-		card.appendChild(C.el('div', 'mna-c-poll-question', data.question))
-		var options = C.el('div', 'mna-c-poll-options')
+		var card = C.el('div', 'cafe-c-poll')
+		card.appendChild(C.el('div', 'cafe-c-poll-question', data.question))
+		var options = C.el('div', 'cafe-c-poll-options')
 		data.options.forEach(function (option) {
-			var button = C.el('button', 'mna-c-poll-option')
+			var button = C.el('button', 'cafe-c-poll-option')
 			button.type = 'button'
 			button.disabled = !!data.is_closed
 			var percent = data.total_votes ? Math.round((option.vote_count / data.total_votes) * 100) : 0
-			var bar = C.el('div', 'mna-c-poll-bar')
+			var bar = C.el('div', 'cafe-c-poll-bar')
 			bar.style.width = percent + '%'
-			var line = C.el('div', 'mna-c-poll-line')
-			var label = C.el('span', 'mna-c-poll-label')
+			var line = C.el('div', 'cafe-c-poll-line')
+			var label = C.el('span', 'cafe-c-poll-label')
 			label.appendChild(
 				C.icon(
 					option.voted_by_me ? 'circle-check' : 'circle',
-					'mna-c-small' + (option.voted_by_me ? '' : ' mna-c-faint')
+					'cafe-c-small' + (option.voted_by_me ? '' : ' cafe-c-faint')
 				)
 			)
 			label.appendChild(document.createTextNode(option.option_text))
 			line.appendChild(label)
-			line.appendChild(C.el('span', 'mna-c-poll-count', String(option.vote_count)))
+			line.appendChild(C.el('span', 'cafe-c-poll-count', String(option.vote_count)))
 			button.appendChild(bar)
 			button.appendChild(line)
 			button.addEventListener('click', function () {
@@ -171,17 +171,17 @@
 		var foot = data.total_votes + ' ' + (data.total_votes === 1 ? 'vote' : 'votes')
 		if (data.allow_multiple) foot += ' · Multiple choice'
 		if (data.is_closed) foot += ' · Closed'
-		card.appendChild(C.el('div', 'mna-c-poll-foot', foot))
+		card.appendChild(C.el('div', 'cafe-c-poll-foot', foot))
 		return card
 	}
 
 	function hoverButtons(m, own) {
-		var group = C.el('div', 'mna-c-hover ' + (own ? 'own' : 'other'))
+		var group = C.el('div', 'cafe-c-hover ' + (own ? 'own' : 'other'))
 		function make(icon, label, handler) {
-			var button = C.el('button', 'mna-c-hover-btn')
+			var button = C.el('button', 'cafe-c-hover-btn')
 			button.type = 'button'
 			button.setAttribute('aria-label', label)
-			button.appendChild(C.icon(icon, 'mna-c-tiny'))
+			button.appendChild(C.icon(icon, 'cafe-c-tiny'))
 			button.addEventListener('click', function (event) {
 				event.stopPropagation()
 				if (handler) handler(m, button)
@@ -207,9 +207,9 @@
 	}
 
 	function reactions(m) {
-		var wrap = C.el('div', 'mna-c-reactions')
+		var wrap = C.el('div', 'cafe-c-reactions')
 		m.reactions.forEach(function (r) {
-			var button = C.el('button', 'mna-c-reaction' + (r.reacted_by_me ? ' mine' : ''), r.emoji + ' ' + r.count)
+			var button = C.el('button', 'cafe-c-reaction' + (r.reacted_by_me ? ' mine' : ''), r.emoji + ' ' + r.count)
 			button.type = 'button'
 			button.addEventListener('click', function () {
 				if (C.react) C.react(m, r.emoji)
@@ -220,9 +220,9 @@
 	}
 
 	function bubble(m, own) {
-		var node = C.el('div', 'mna-c-bubble')
+		var node = C.el('div', 'cafe-c-bubble')
 		if (m.is_deleted) {
-			node.appendChild(C.el('div', 'mna-c-deleted', 'This message was deleted'))
+			node.appendChild(C.el('div', 'cafe-c-deleted', 'This message was deleted'))
 			return node
 		}
 		if (m.reply_to_preview) node.appendChild(replyPreview(m))
@@ -239,16 +239,16 @@
 	// One message row. `seen` marks the last of your own messages the other person has read.
 	C.renderMessage = function (m, seen) {
 		var own = m.sender === C.me
-		var row = C.el('div', 'mna-c-msg' + (own ? ' own' : ''))
+		var row = C.el('div', 'cafe-c-msg' + (own ? ' own' : ''))
 		row.setAttribute('data-message-id', m.name)
 		if (!own) row.appendChild(C.avatar(m.sender_image, m.sender_name, 'sm'))
-		var column = C.el('div', 'mna-c-msg-col' + (images(m).length > 1 ? ' fit' : ''))
+		var column = C.el('div', 'cafe-c-msg-col' + (images(m).length > 1 ? ' fit' : ''))
 		column.appendChild(bubble(m, own))
 		if (!m.is_deleted && m.reactions && m.reactions.length) column.appendChild(reactions(m))
 		column.appendChild(
-			C.el('div', 'mna-c-time', C.formatTime(m.creation) + (m.is_edited && !m.is_deleted ? ' · edited' : ''))
+			C.el('div', 'cafe-c-time', C.formatTime(m.creation) + (m.is_edited && !m.is_deleted ? ' · edited' : ''))
 		)
-		if (seen) column.appendChild(C.el('div', 'mna-c-seen', 'Seen'))
+		if (seen) column.appendChild(C.el('div', 'cafe-c-seen', 'Seen'))
 		row.appendChild(column)
 		return row
 	}

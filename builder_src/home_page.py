@@ -79,11 +79,11 @@ ROW_INNER = "".join(
 	[
 		html_el(
 			"div",
-			["mna-feed-author"],
+			["cafe-feed-author"],
 			None,
 			AUTHOR_LINE_STYLES,
 			[
-				html_el("span", ["mna-avatar"], None, AVATAR_STYLES, "[[!avatar]]"),
+				html_el("span", ["cafe-avatar"], None, AVATAR_STYLES, "[[!avatar]]"),
 				html_el("span", None, None, NAME_STYLES, text="[[name]]"),
 			],
 		),
@@ -100,7 +100,7 @@ ROW_INNER = "".join(
 					TEXT_STYLES,
 					[
 						html_el("div", None, None, TITLE_STYLES, text="[[title]]"),
-						html_el("p", ["mna-clamp-2"], None, EXCERPT_STYLES, text="[[excerpt]]"),
+						html_el("p", ["cafe-clamp-2"], None, EXCERPT_STYLES, text="[[excerpt]]"),
 						html_el(
 							"div",
 							None,
@@ -112,7 +112,7 @@ ROW_INNER = "".join(
 								html_el("span", text="[[minutes]] min read"),
 								html_el("span", text="·"),
 								html_el(
-									"span", ["mna-feed-comments"], None, None, text="[[comments]] comments"
+									"span", ["cafe-feed-comments"], None, None, text="[[comments]] comments"
 								),
 							],
 						),
@@ -126,11 +126,11 @@ ROW_INNER = "".join(
 AVATAR_IMAGE = html_el("img", None, {"src": "[[image]]", "alt": ""}, AVATAR_IMAGE_STYLES)
 THUMBNAIL = html_el(
 	"img",
-	["mna-feed-thumb"],
+	["cafe-feed-thumb"],
 	{"src": "[[cover]]", "alt": "", "loading": "lazy", "decoding": "async"},
 	THUMBNAIL_STYLES,
 )
-ROW_TEMPLATE = html_el("a", ["mna-feed-row"], {"href": "[[href]]"}, ROW_STYLES, "[[!inner]]").replace(
+ROW_TEMPLATE = html_el("a", ["cafe-feed-row"], {"href": "[[href]]"}, ROW_STYLES, "[[!inner]]").replace(
 	"[[!inner]]", ROW_INNER
 )
 
@@ -138,7 +138,7 @@ ROW_TEMPLATE = html_el("a", ["mna-feed-row"], {"href": "[[href]]"}, ROW_STYLES, 
 def build_feed_row():
 	"""The row Builder repeats for each post. It is empty in the file: the data
 	script gives every row its inner HTML and link."""
-	row = block("a", "Post", ["mna-feed-row"], attrs={"href": "/posts"}, styles=ROW_STYLES)
+	row = block("a", "Post", ["cafe-feed-row"], attrs={"href": "/posts"}, styles=ROW_STYLES)
 	row["dynamicValues"] = [bind("href", "href", "attribute"), bind("html", "innerHTML", "key")]
 	return row
 
@@ -157,7 +157,7 @@ def build_mobile_bar():
 		mobile_bell()
 		+ html_el(
 			"a",
-			["mna-btn", "mna-btn-solid"],
+			["cafe-btn", "cafe-btn-solid"],
 			{"href": "/write", "aria-label": "New post"},
 			{
 				"display": "inline-flex",
@@ -176,7 +176,7 @@ def build_mobile_bar():
 	return block(
 		"header",
 		"Mobile header",
-		["mna-mobile-header", "mna-home-bar"],
+		["cafe-mobile-header", "cafe-home-bar"],
 		styles={
 			"display": "none",
 			"alignItems": "center",
@@ -200,7 +200,7 @@ def build_home(shell_id, shell_block):
 				block(
 					"a",
 					"Write link",
-					["mna-plain-link"],
+					["cafe-plain-link"],
 					text="Write your first blog.",
 					attrs={"href": "/write"},
 					styles={"fontWeight": "500", "color": INK},
@@ -213,7 +213,7 @@ def build_home(shell_id, shell_block):
 	title = block(
 		"h1",
 		"Title",
-		["mna-title"],
+		["cafe-title"],
 		text="Writings from people on Cafe",
 		styles={
 			"margin": "0",
@@ -234,7 +234,7 @@ def build_home(shell_id, shell_block):
 			"input",
 			None,
 			{
-				"id": "mna-feed-search",
+				"id": "cafe-feed-search",
 				"type": "text",
 				"placeholder": "Search",
 				"aria-label": "Search writings",
@@ -254,14 +254,14 @@ def build_home(shell_id, shell_block):
 				"letterSpacing": "0.02em",
 			},
 		),
-		["mna-search"],
+		["cafe-search"],
 		styles={"position": "relative", "display": "block", "marginTop": "16px"},
 	)
 	feed = block(
 		"div",
 		"Posts",
-		["mna-feed"],
-		attrs={"id": "mna-feed", "aria-live": "polite"},
+		["cafe-feed"],
+		attrs={"id": "cafe-feed", "aria-live": "polite"},
 		styles={"display": "flex", "flexDirection": "column", "marginTop": "8px"},
 		children=[build_feed_row()],
 	)
@@ -277,7 +277,7 @@ def build_home(shell_id, shell_block):
 				{"margin": "0", **text_style(16, "420", GRAY_6, "0.02em", "1.5")},
 				text="No writings found.",
 			),
-			["mna-feed-empty"],
+			["cafe-feed-empty"],
 			styles={"padding": "64px 0", "textAlign": "center"},
 		),
 		"hp.empty",
@@ -287,14 +287,14 @@ def build_home(shell_id, shell_block):
 		html_el(
 			"template",
 			None,
-			{"id": "mna-feed-template", "data-avatar-image": AVATAR_IMAGE, "data-thumbnail": THUMBNAIL},
+			{"id": "cafe-feed-template", "data-avatar-image": AVATAR_IMAGE, "data-thumbnail": THUMBNAIL},
 			None,
 			"[[row]]",
 		).replace("[[row]]", ROW_TEMPLATE),
 		styles={"display": "none"},
 	)
 	sentinel = block(
-		"div", "Sentinel", attrs={"id": "mna-feed-end"}, custom={"data-more": ""}, styles={"height": "4px"}
+		"div", "Sentinel", attrs={"id": "cafe-feed-end"}, custom={"data-more": ""}, styles={"height": "4px"}
 	)
 	sentinel = attribute(sentinel, "hp.more", "data-more")
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Explore")]
@@ -305,7 +305,7 @@ def build_home(shell_id, shell_block):
 		[note, title, search_box, feed, empty, sentinel, template],
 		"640px",
 		mobile_header=build_mobile_bar(),
-		container_class="mna-container-home",
+		container_class="cafe-container-home",
 		padding="24px 20px",
 	)
 

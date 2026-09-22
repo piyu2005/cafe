@@ -1,11 +1,11 @@
 // The native chat, part 1: what the other parts share. Everything is on
-// MNA.chat. Load order: chat_core, chat_list, chat_thread, chat_composer,
+// CAFE.chat. Load order: chat_core, chat_list, chat_thread, chat_composer,
 // chat_actions, chat_live. Needs ui.js.
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
-	var C = (MNA.chat = {})
+	var CAFE = (window.CAFE = window.CAFE || {})
+	var C = (CAFE.chat = {})
 
 	C.ICONS = '@@ICONS@@'
 
@@ -46,27 +46,27 @@
 	// ---- The server ----
 	var PATH = 'cafe.chat.'
 	C.call = function (method, args) {
-		return MNA.api(PATH + method, args || {})
+		return CAFE.api(PATH + method, args || {})
 	}
 	C.fetch = function (method, params) {
-		return MNA.get(PATH + method, params || {})
+		return CAFE.get(PATH + method, params || {})
 	}
 
 	// ---- Small helpers ----
 	C.el = function (tag, className, text) {
-		return MNA.el(tag, className, text)
+		return CAFE.el(tag, className, text)
 	}
 
 	C.icon = function (name, className) {
 		var span = document.createElement('span')
-		span.className = 'mna-c-icon ' + (className || '')
+		span.className = 'cafe-c-icon ' + (className || '')
 		span.innerHTML = (C.ICONS && C.ICONS[name]) || ''
 		return span
 	}
 
 	// A round avatar with the person's picture or first letter.
 	C.avatar = function (image, label, size) {
-		var box = C.el('span', 'mna-c-avatar mna-c-avatar-' + (size || 'md'))
+		var box = C.el('span', 'cafe-c-avatar cafe-c-avatar-' + (size || 'md'))
 		if (/^(\/|https?:\/\/)/.test(image || '')) {
 			var img = C.el('img')
 			img.src = image
@@ -170,6 +170,6 @@
 	}
 
 	C.errorToast = function (error) {
-		MNA.toast((error && error.message) || MNA.DEFAULT_ERROR, 'error')
+		CAFE.toast((error && error.message) || CAFE.DEFAULT_ERROR, 'error')
 	}
 })()

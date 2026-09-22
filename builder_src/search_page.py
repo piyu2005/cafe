@@ -7,7 +7,7 @@ from layout import crumb_current, crumb_link, crumb_separator, page_layout
 def build_person_row():
 	"""The template row of the list. Builder repeats it once per person in
 	`data.people`, on the server, so the first paint already has the names. The
-	look duplicates .mna-person in styles.css, which styles the rows that
+	look duplicates .cafe-person in styles.css, which styles the rows that
 	search.js creates while typing."""
 	avatar_image = block(
 		"img",
@@ -27,7 +27,7 @@ def build_person_row():
 	avatar = block(
 		"span",
 		"Avatar",
-		["mna-avatar"],
+		["cafe-avatar"],
 		children=[avatar_image, avatar_initial],
 		styles={
 			"display": "grid",
@@ -48,7 +48,7 @@ def build_person_row():
 	name = block(
 		"span",
 		"Name",
-		["mna-person-name"],
+		["cafe-person-name"],
 		text="Priyanshi Hodage",
 		styles={
 			"overflow": "hidden",
@@ -63,7 +63,7 @@ def build_person_row():
 	row = block(
 		"a",
 		"Person",
-		["mna-person"],
+		["cafe-person"],
 		attrs={"href": "/profile"},
 		children=[avatar, name],
 		styles={
@@ -89,7 +89,7 @@ def build_search(shell_id, shell_block):
 			"input",
 			None,
 			{
-				"id": "mna-search-input",
+				"id": "cafe-search-input",
 				"type": "text",
 				"placeholder": "Search",
 				"aria-label": "Search writers",
@@ -109,14 +109,14 @@ def build_search(shell_id, shell_block):
 				"letterSpacing": "0.02em",
 			},
 		),
-		["mna-search"],
+		["cafe-search"],
 		styles={"position": "relative", "display": "block", "marginTop": "8px"},
 	)
 	people = block(
 		"div",
 		"People",
-		["mna-people"],
-		attrs={"id": "mna-people", "aria-live": "polite"},
+		["cafe-people"],
+		attrs={"id": "cafe-people", "aria-live": "polite"},
 		styles={"display": "flex", "flexDirection": "column", "gap": "4px", "marginTop": "16px"},
 		children=[build_person_row()],
 	)
@@ -125,7 +125,7 @@ def build_search(shell_id, shell_block):
 	title = block(
 		"h1",
 		"Title",
-		["mna-title"],
+		["cafe-title"],
 		text="Writers at Cafe",
 		styles={
 			"margin": "0",

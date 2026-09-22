@@ -2,7 +2,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var MESSAGE_LIMIT = 50
 	var dom = {}
 	var openToken = 0
@@ -24,11 +24,11 @@
 
 	C.menu = function (anchor, items, side) {
 		closeMenu()
-		var menu = C.el('div', 'mna-c-menu')
+		var menu = C.el('div', 'cafe-c-menu')
 		items.forEach(function (item) {
-			var button = C.el('button', 'mna-c-menu-item' + (item.danger ? ' danger' : ''))
+			var button = C.el('button', 'cafe-c-menu-item' + (item.danger ? ' danger' : ''))
 			button.type = 'button'
-			button.appendChild(C.icon(item.icon, 'mna-c-small'))
+			button.appendChild(C.icon(item.icon, 'cafe-c-small'))
 			button.appendChild(C.el('span', '', item.label))
 			button.addEventListener('click', function () {
 				closeMenu()
@@ -50,41 +50,41 @@
 		var c = C.state.conversation
 		dom.header.replaceChildren()
 		if (!c) return
-		var left = C.el('div', 'mna-c-head-left')
-		var back = C.el('button', 'mna-c-back')
+		var left = C.el('div', 'cafe-c-head-left')
+		var back = C.el('button', 'cafe-c-back')
 		back.type = 'button'
 		back.setAttribute('aria-label', 'Back')
-		back.appendChild(C.icon('arrow-left', 'mna-c-medium'))
+		back.appendChild(C.icon('arrow-left', 'cafe-c-medium'))
 		back.addEventListener('click', function () {
 			C.open(null)
 		})
 		left.appendChild(back)
 		left.appendChild(C.avatar(c.display_image, c.display_name, 'md'))
-		var name = C.el('div', 'mna-c-head-name')
+		var name = C.el('div', 'cafe-c-head-name')
 		if (c.other_user) {
-			var link = C.el('a', 'mna-c-head-link', c.display_name)
+			var link = C.el('a', 'cafe-c-head-link', c.display_name)
 			link.href = '/profile/' + encodeURIComponent(c.other_user_username || c.other_user)
 			name.appendChild(link)
 		} else {
-			name.appendChild(C.el('div', 'mna-c-head-title', c.display_name))
+			name.appendChild(C.el('div', 'cafe-c-head-title', c.display_name))
 		}
-		var typing = C.el('div', 'mna-c-typing', 'typing…')
+		var typing = C.el('div', 'cafe-c-typing', 'typing…')
 		typing.hidden = !C.state.typing
 		dom.typing = typing
 		name.appendChild(typing)
 		left.appendChild(name)
-		var right = C.el('div', 'mna-c-head-right')
-		var search = C.el('button', 'mna-c-head-search')
+		var right = C.el('div', 'cafe-c-head-right')
+		var search = C.el('button', 'cafe-c-head-search')
 		search.type = 'button'
 		search.setAttribute('aria-label', 'Search in this conversation')
-		search.appendChild(C.icon('search', 'mna-c-small'))
+		search.appendChild(C.icon('search', 'cafe-c-small'))
 		search.addEventListener('click', function () {
 			if (C.toggleSearch) C.toggleSearch()
 		})
-		var more = C.el('button', 'mna-c-more-btn')
+		var more = C.el('button', 'cafe-c-more-btn')
 		more.type = 'button'
 		more.setAttribute('aria-label', 'More')
-		more.appendChild(C.icon('ellipsis', 'mna-c-small'))
+		more.appendChild(C.icon('ellipsis', 'cafe-c-small'))
 		more.addEventListener('click', function () {
 			C.menu(more, threadOptions(), 'left')
 		})
@@ -121,7 +121,7 @@
 					icon: 'shield-check',
 					onClick: function () {
 						C.call('unblock_user', { user: c.other_user }).then(function () {
-							MNA.toast('User unblocked')
+							CAFE.toast('User unblocked')
 							reloadConversation()
 						}, C.errorToast)
 					},
@@ -131,7 +131,7 @@
 					label: 'Block',
 					icon: 'shield-ban',
 					onClick: function () {
-						MNA.confirm({
+						CAFE.confirm({
 							title: 'Block this user?',
 							message: 'They will no longer be able to message you.',
 							confirmLabel: 'Block',
@@ -139,7 +139,7 @@
 						}).then(function (ok) {
 							if (ok)
 								C.call('block_user', { user: c.other_user }).then(function () {
-									MNA.toast('User blocked')
+									CAFE.toast('User blocked')
 									reloadConversation()
 								}, C.errorToast)
 						})
@@ -171,9 +171,9 @@
 					c.display_name + ' wants to message you. Accept to start chatting, or decline to ignore.'
 				)
 			)
-			var actions = C.el('div', 'mna-c-banner-actions')
+			var actions = C.el('div', 'cafe-c-banner-actions')
 			var reply = function (accept, label, kind) {
-				var button = C.el('button', 'mna-btn mna-btn-' + kind, label)
+				var button = C.el('button', 'cafe-btn cafe-btn-' + kind, label)
 				button.type = 'button'
 				button.addEventListener('click', function () {
 					respond(accept)
@@ -227,8 +227,8 @@
 
 	function skeletonThread() {
 		dom.list.replaceChildren()
-		var wrap = C.el('div', 'mna-c-skeleton')
-		for (var i = 0; i < 6; i++) wrap.appendChild(C.el('div', 'mna-skeleton'))
+		var wrap = C.el('div', 'cafe-c-skeleton')
+		for (var i = 0; i < 6; i++) wrap.appendChild(C.el('div', 'cafe-skeleton'))
 		dom.list.appendChild(wrap)
 	}
 
@@ -285,14 +285,14 @@
 				C.call('mark_read', { conversation: id }).then(
 					function () {
 						C.loadConversations()
-						if (window.MNA.refreshBadges) window.MNA.refreshBadges()
+						if (window.CAFE.refreshBadges) window.CAFE.refreshBadges()
 					},
 					function () {}
 				)
 			},
 			function (error) {
 				if (token !== openToken) return
-				dom.list.replaceChildren(C.el('p', 'mna-c-empty', "Couldn't open this conversation."))
+				dom.list.replaceChildren(C.el('p', 'cafe-c-empty', "Couldn't open this conversation."))
 				if (error && window.console) console.warn(error)
 			}
 		)
@@ -307,17 +307,17 @@
 
 	C.buildThread = function (root, host) {
 		dom.root = root
-		dom.empty = C.el('div', 'mna-c-empty-pane')
+		dom.empty = C.el('div', 'cafe-c-empty-pane')
 		dom.empty.appendChild(C.el('p', '', 'Select a conversation to start messaging.'))
-		dom.pane = C.el('div', 'mna-c-pane')
-		dom.header = C.el('div', 'mna-c-head')
-		dom.searchHost = C.el('div', 'mna-c-search-host')
+		dom.pane = C.el('div', 'cafe-c-pane')
+		dom.header = C.el('div', 'cafe-c-head')
+		dom.searchHost = C.el('div', 'cafe-c-search-host')
 		dom.searchHost.hidden = true
-		dom.banner = C.el('div', 'mna-c-banner')
-		dom.scroll = C.el('div', 'mna-c-messages')
-		dom.list = C.el('div', 'mna-c-message-list')
+		dom.banner = C.el('div', 'cafe-c-banner')
+		dom.scroll = C.el('div', 'cafe-c-messages')
+		dom.list = C.el('div', 'cafe-c-message-list')
 		dom.scroll.appendChild(dom.list)
-		dom.composerHost = C.el('div', 'mna-c-composer-host')
+		dom.composerHost = C.el('div', 'cafe-c-composer-host')
 		;[dom.header, dom.searchHost, dom.banner, dom.scroll, dom.composerHost].forEach(function (node) {
 			dom.pane.appendChild(node)
 		})

@@ -96,7 +96,7 @@ OTP_STYLES = {
 def field(name, label, input_type, placeholder, autocomplete, first=False, autofocus=False):
 	"""A label and a text box, like frappe-ui's FormControl."""
 	attrs = {
-		"id": f"mna-{name}",
+		"id": f"cafe-{name}",
 		"name": name,
 		"type": input_type,
 		"placeholder": placeholder,
@@ -109,21 +109,21 @@ def field(name, label, input_type, placeholder, autocomplete, first=False, autof
 	title = html_el(
 		"label",
 		None,
-		{"for": f"mna-{name}"},
+		{"for": f"cafe-{name}"},
 		{"display": "block", "marginBottom": "6px", **text_style(14, "420", MUTED)},
 		[html_el("span", text=label), star],
 	)
-	box = html_el("input", ["mna-auth-input"], attrs, INPUT_STYLES)
+	box = html_el("input", ["cafe-auth-input"], attrs, INPUT_STYLES)
 	return html_el("div", None, None, {} if first else {"marginTop": "16px"}, [title, box])
 
 
 def message(name, hidden=True, text=None):
 	"""A line that JavaScript fills, hidden while it is empty."""
-	attrs = {"id": f"mna-{name}", "role": "alert"}
+	attrs = {"id": f"cafe-{name}", "role": "alert"}
 	if hidden:
 		attrs["hidden"] = "hidden"
 	return html_el(
-		"div", ["mna-auth-error"], attrs, {"marginTop": "12px", **text_style(13, "420", ERROR_RED)}, text=text
+		"div", ["cafe-auth-error"], attrs, {"marginTop": "12px", **text_style(13, "420", ERROR_RED)}, text=text
 	)
 
 
@@ -160,18 +160,18 @@ def button(label, kind, attrs=None, before=""):
 	"""The full-width button of the form: solid submits, outline does not."""
 	styles = SOLID_STYLES if kind == "solid" else OUTLINE_STYLES
 	attrs = {"type": "submit" if kind == "solid" else "button", **(attrs or {})}
-	return html_el("button", [f"mna-auth-btn-{kind}"], attrs, styles, [before, html_el("span", text=label)])
+	return html_el("button", [f"cafe-auth-btn-{kind}"], attrs, styles, [before, html_el("span", text=label)])
 
 
 def google_button():
-	return button("Continue with Google", "outline", {"id": "mna-google"}, GOOGLE_ICON)
+	return button("Continue with Google", "outline", {"id": "cafe-google"}, GOOGLE_ICON)
 
 
 def code_form(sent_text="We sent a 6 digit verification code to "):
 	boxes = "".join(
 		html_el(
 			"input",
-			["mna-otp"],
+			["cafe-otp"],
 			{
 				"type": "text",
 				"inputmode": "numeric",
@@ -188,26 +188,26 @@ def code_form(sent_text="We sent a 6 digit verification code to "):
 		None,
 		None,
 		{"margin": "0", **text_style(13, "420", MUTED, "0.015em", "19.5px")},
-		[html_el("span", text=sent_text), html_el("span", None, {"id": "mna-sent-to"}, None)],
+		[html_el("span", text=sent_text), html_el("span", None, {"id": "cafe-sent-to"}, None)],
 	)
-	resend = html_el("p", ["mna-resend"], None, {"margin": "12px 0 0", "textAlign": "center", **SMALL})
+	resend = html_el("p", ["cafe-resend"], None, {"margin": "12px 0 0", "textAlign": "center", **SMALL})
 	return html_el(
 		"form",
 		None,
-		{"id": "mna-code-form", "hidden": "hidden", "novalidate": "novalidate"},
+		{"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
 		None,
 		[
 			sent,
 			html_el("div", None, None, {"display": "flex", "gap": "8px", "marginTop": "16px"}, [boxes]),
 			message("code-error"),
-			button("Verify", "solid", {"id": "mna-verify"}),
+			button("Verify", "solid", {"id": "cafe-verify"}),
 			resend,
 		],
 	)
 
 
 def footer(prefix, link_label, href):
-	link = html_el("a", ["mna-auth-link"], {"href": href}, LINK_STYLES, text=link_label)
+	link = html_el("a", ["cafe-auth-link"], {"href": href}, LINK_STYLES, text=link_label)
 	return html_el(
 		"div",
 		None,
@@ -236,7 +236,7 @@ def card(title, subtitle, content, footer_html):
 	return block(
 		"div",
 		"Card",
-		["mna-auth-card"],
+		["cafe-auth-card"],
 		styles=CARD_STYLES,
 		children=[
 			*head,
@@ -250,19 +250,19 @@ def login_card():
 	email_form = html_el(
 		"form",
 		None,
-		{"id": "mna-email-form", "novalidate": "novalidate"},
+		{"id": "cafe-email-form", "novalidate": "novalidate"},
 		None,
 		[
 			field("email", "Email", "email", "name@example.com", "email", first=True, autofocus=True),
 			message("email-error"),
 			html_el(
 				"p",
-				["mna-signup-hint"],
+				["cafe-signup-hint"],
 				{"hidden": "hidden"},
 				{"margin": "8px 0 0", **SMALL},
-				[html_el("a", ["mna-auth-link"], {"href": "/signup"}, LINK_STYLES, text="Create one.")],
+				[html_el("a", ["cafe-auth-link"], {"href": "/signup"}, LINK_STYLES, text="Create one.")],
 			),
-			button("Send verification code", "solid", {"id": "mna-send"}),
+			button("Send verification code", "solid", {"id": "cafe-send"}),
 			google_button(),
 		],
 	)
@@ -278,13 +278,13 @@ def signup_card():
 	details = html_el(
 		"form",
 		None,
-		{"id": "mna-email-form", "novalidate": "novalidate"},
+		{"id": "cafe-email-form", "novalidate": "novalidate"},
 		None,
 		[
 			field("username", "Username", "text", "janedoe", "username", first=True, autofocus=True),
 			field("email", "Email", "email", "name@example.com", "email"),
 			message("email-error"),
-			button("Send verification code", "solid", {"id": "mna-send"}),
+			button("Send verification code", "solid", {"id": "cafe-send"}),
 			google_button(),
 		],
 	)
@@ -300,20 +300,20 @@ def system_card():
 	form = html_el(
 		"form",
 		None,
-		{"id": "mna-system-form", "novalidate": "novalidate"},
+		{"id": "cafe-system-form", "novalidate": "novalidate"},
 		None,
 		[
 			field("usr", "Username", "text", "Administrator", "username", first=True, autofocus=True),
 			field("pwd", "Password", "password", "", "current-password"),
 			message("system-error"),
-			button("Log in", "solid", {"id": "mna-system-login"}),
+			button("Log in", "solid", {"id": "cafe-system-login"}),
 		],
 	)
 	return card("System login", "For Frappe Desk access.", form, footer("", "Back to Cafe login.", "/login"))
 
 
 def build_page(cards):
-	auth = block("div", "Auth", ["mna-auth"], attrs={"id": "mna-auth"}, styles=PAGE_STYLES, children=cards)
+	auth = block("div", "Auth", ["cafe-auth"], attrs={"id": "cafe-auth"}, styles=PAGE_STYLES, children=cards)
 	root = block("div", None, children=[auth])
 	root["blockId"] = "root"
 	root["originalElement"] = "body"

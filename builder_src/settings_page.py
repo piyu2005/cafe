@@ -66,7 +66,7 @@ def build_row(name, title, control, description=None, first=False):
 	return block(
 		"div",
 		name,
-		["mna-set-row-page"],
+		["cafe-set-row-page"],
 		styles=styles,
 		children=[block("div", "Text", styles={"minWidth": "0"}, children=text), control],
 	)
@@ -79,8 +79,8 @@ def build_account_panel():
 		"Log out button",
 		html_el(
 			"button",
-			["mna-btn"],
-			{"id": "mna-settings-logout", "type": "button"},
+			["cafe-btn"],
+			{"id": "cafe-settings-logout", "type": "button"},
 			LOG_OUT_STYLES,
 			text="Log out",
 		),
@@ -96,7 +96,7 @@ def build_account_panel():
 	return block(
 		"div",
 		"Account panel",
-		attrs={"id": "mna-settings-account", "role": "tabpanel"},
+		attrs={"id": "cafe-settings-account", "role": "tabpanel"},
 		styles={"paddingTop": "16px"},
 		children=[
 			build_row("Username", "Username", username, first=True),
@@ -116,7 +116,7 @@ def build_saved_panel():
 	skeleton = "".join(
 		html_el(
 			"div",
-			["mna-skeleton"],
+			["cafe-skeleton"],
 			None,
 			{"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
 		)
@@ -125,31 +125,31 @@ def build_saved_panel():
 	panel = html_el(
 		"div",
 		None,
-		{"id": "mna-settings-saved", "role": "tabpanel", "hidden": "hidden"},
+		{"id": "cafe-settings-saved", "role": "tabpanel", "hidden": "hidden"},
 		{"paddingTop": "16px"},
 		[
 			html_el(
 				"div",
-				["mna-loading"],
+				["cafe-loading"],
 				{"hidden": "hidden"},
 				{"flexDirection": "column", "gap": "20px"},
 				[skeleton],
 			),
 			html_el(
 				"p",
-				["mna-saved-empty"],
+				["cafe-saved-empty"],
 				{"hidden": "hidden"},
 				{"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
 				text="No saved posts yet.",
 			),
 			html_el(
 				"p",
-				["mna-saved-error"],
+				["cafe-saved-error"],
 				{"hidden": "hidden"},
 				{"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
 				text="Couldn't load your saved posts. Please try again.",
 			),
-			html_el("div", ["mna-saved-list"], None, None),
+			html_el("div", ["cafe-saved-list"], None, None),
 		],
 	)
 	return raw_block("Saved panel", panel)
@@ -159,7 +159,7 @@ def build_tabs():
 	buttons = [
 		html_el(
 			"button",
-			["mna-tab-btn"],
+			["cafe-tab-btn"],
 			{
 				"type": "button",
 				"role": "tab",
@@ -173,7 +173,7 @@ def build_tabs():
 	]
 	tablist = html_el(
 		"div",
-		["mna-tablist"],
+		["cafe-tablist"],
 		{"role": "tablist"},
 		{"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
 		buttons,
@@ -185,7 +185,7 @@ def build_settings(shell_id, shell_block):
 	root = block(
 		"div",
 		"Settings",
-		attrs={"id": "mna-settings-page"},
+		attrs={"id": "cafe-settings-page"},
 		custom={"data-admin": ""},
 		children=[build_tabs(), build_account_panel(), build_saved_panel()],
 	)

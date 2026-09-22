@@ -1,8 +1,8 @@
 """The Messages page. chat_*.js draw the list, the open
-conversation and the composer into #mna-chat, and talk to the same
+conversation and the composer into #cafe-chat, and talk to the same
 whitelisted methods (cafe.chat.*) as the old page.
 
-Builder's editor and the folder thumbnail do not run scripts, so #mna-chat
+Builder's editor and the folder thumbnail do not run scripts, so #cafe-chat
 starts with a still picture of the chat; the script replaces it."""
 
 import hashlib
@@ -62,7 +62,7 @@ def group_button(button_id, label, icon_only=False):
 	inner = svg("users", 16) + ("" if icon_only else html_el("span", text=label))
 	return html_el(
 		"button",
-		["mna-btn", "mna-btn-outline", "mna-c-new-group"],
+		["cafe-btn", "cafe-btn-outline", "cafe-c-new-group"],
 		{"type": "button", "id": button_id, "aria-label": label},
 		styles,
 		[inner],
@@ -73,7 +73,7 @@ def desktop_header():
 	header = page_header([crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Messages")])
 	# The New Post button of the shared header becomes New group.
 	header["children"][1] = raw_block(
-		"New group", group_button("mna-new-group", "New group"), styles={"display": "flex"}
+		"New group", group_button("cafe-new-group", "New group"), styles={"display": "flex"}
 	)
 	return header
 
@@ -82,7 +82,7 @@ def mobile_header():
 	title = block(
 		"h1",
 		"Title",
-		["mna-mobile-title"],
+		["cafe-mobile-title"],
 		text="Messages",
 		styles={
 			"position": "absolute",
@@ -96,7 +96,7 @@ def mobile_header():
 	)
 	actions = raw_block(
 		"Actions",
-		mobile_bell() + group_button("mna-new-group-m", "New group", icon_only=True),
+		mobile_bell() + group_button("cafe-new-group-m", "New group", icon_only=True),
 		styles={
 			"position": "relative",
 			"display": "flex",
@@ -109,7 +109,7 @@ def mobile_header():
 	return block(
 		"header",
 		"Mobile header",
-		["mna-mobile-header", "mna-chat-mobile-head"],
+		["cafe-mobile-header", "cafe-chat-mobile-head"],
 		styles={
 			"display": "none",
 			"position": "relative",
@@ -130,8 +130,8 @@ def build_native_chat(shell_id, shell_block):
 	chat = block(
 		"div",
 		"Chat",
-		["mna-c-root"],
-		attrs={"id": "mna-chat"},
+		["cafe-c-root"],
+		attrs={"id": "cafe-chat"},
 		custom={"data-conversation": ""},
 		styles={
 			"display": "flex",
@@ -144,7 +144,7 @@ def build_native_chat(shell_id, shell_block):
 			raw_block(
 				"Preview",
 				chat_panes(),
-				["mna-c-preview"],
+				["cafe-c-preview"],
 				styles={"display": "flex", "flex": "1", "minHeight": "0", "width": "100%"},
 			)
 		],
@@ -153,7 +153,7 @@ def build_native_chat(shell_id, shell_block):
 	main = block(
 		"div",
 		"Main",
-		["mna-main", "mna-chat-main"],
+		["cafe-main", "cafe-chat-main"],
 		styles={
 			"display": "flex",
 			"flexGrow": "1",
@@ -167,7 +167,7 @@ def build_native_chat(shell_id, shell_block):
 	app = block(
 		"div",
 		"App",
-		["mna-app"],
+		["cafe-app"],
 		styles={
 			"display": "flex",
 			"width": "100%",

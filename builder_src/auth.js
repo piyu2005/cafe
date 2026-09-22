@@ -4,7 +4,7 @@
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
+	var CAFE = (window.CAFE = window.CAFE || {})
 	var COOLDOWN_SECONDS = 25
 	var CODE_LENGTH = 6
 
@@ -24,7 +24,7 @@
 					return {}
 				})
 				.then(function (body) {
-					if (!response.ok) throw new Error(serverMessage(body) || MNA.DEFAULT_ERROR)
+					if (!response.ok) throw new Error(serverMessage(body) || CAFE.DEFAULT_ERROR)
 					return body.message
 				})
 		})
@@ -61,8 +61,8 @@
 
 	// The message the server sent, or `fallback` when all we have is the generic one.
 	function messageOf(error, fallback) {
-		return !error || !error.message || error.message === MNA.DEFAULT_ERROR
-			? fallback || MNA.DEFAULT_ERROR
+		return !error || !error.message || error.message === CAFE.DEFAULT_ERROR
+			? fallback || CAFE.DEFAULT_ERROR
 			: error.message
 	}
 
@@ -122,15 +122,15 @@
 	// `config.send(email)` and `config.verify(email, code)` return promises.
 	function CodeFlow(root, config) {
 		this.config = config
-		this.emailForm = root.querySelector('#mna-email-form')
-		this.codeForm = root.querySelector('#mna-code-form')
-		this.emailError = root.querySelector('#mna-email-error')
-		this.codeError = root.querySelector('#mna-code-error')
-		this.sendButton = root.querySelector('#mna-send')
-		this.verifyButton = root.querySelector('#mna-verify')
-		this.resend = root.querySelector('.mna-resend')
-		this.hint = root.querySelector('.mna-signup-hint')
-		this.otp = new Otp([].slice.call(root.querySelectorAll('.mna-otp')), this.verify.bind(this))
+		this.emailForm = root.querySelector('#cafe-email-form')
+		this.codeForm = root.querySelector('#cafe-code-form')
+		this.emailError = root.querySelector('#cafe-email-error')
+		this.codeError = root.querySelector('#cafe-code-error')
+		this.sendButton = root.querySelector('#cafe-send')
+		this.verifyButton = root.querySelector('#cafe-verify')
+		this.resend = root.querySelector('.cafe-resend')
+		this.hint = root.querySelector('.cafe-signup-hint')
+		this.otp = new Otp([].slice.call(root.querySelectorAll('.cafe-otp')), this.verify.bind(this))
 		this.timer = null
 		this.email = ''
 		this.bind(root)
@@ -149,7 +149,7 @@
 		this.resend.addEventListener('click', function (event) {
 			if (event.target.closest('button')) self.sendCode()
 		})
-		root.querySelector('#mna-google').addEventListener('click', function () {
+		root.querySelector('#cafe-google').addEventListener('click', function () {
 			self.google()
 		})
 	}
@@ -177,7 +177,7 @@
 	}
 
 	CodeFlow.prototype.showCodeStep = function () {
-		document.getElementById('mna-sent-to').textContent = this.email
+		document.getElementById('cafe-sent-to').textContent = this.email
 		show(this.emailForm, false)
 		show(this.codeForm, true)
 		this.otp.clear()
@@ -214,7 +214,7 @@
 			clearInterval(self.timer)
 			var button = document.createElement('button')
 			button.type = 'button'
-			button.className = 'mna-auth-link-btn'
+			button.className = 'cafe-auth-link-btn'
 			button.textContent = 'Resend code'
 			self.resend.replaceChildren(button)
 		}
@@ -229,10 +229,10 @@
 		call('cafe.api.get_google_login_url', {}).then(
 			function (url) {
 				if (url) location.assign(url)
-				else MNA.toast('Google sign-in is not configured yet', 'warning')
+				else CAFE.toast('Google sign-in is not configured yet', 'warning')
 			},
 			function (error) {
-				MNA.toast(messageOf(error), 'error')
+				CAFE.toast(messageOf(error), 'error')
 			}
 		)
 	}
@@ -242,7 +242,7 @@
 	function loginConfig(next) {
 		return {
 			read: function (form) {
-				var email = form.querySelector('#mna-email').value.trim()
+				var email = form.querySelector('#cafe-email').value.trim()
 				return email ? { email: email } : null
 			},
 			send: function (values) {
@@ -260,8 +260,8 @@
 	function signupConfig() {
 		return {
 			read: function (form) {
-				var username = form.querySelector('#mna-username').value.trim()
-				var email = form.querySelector('#mna-email').value.trim()
+				var username = form.querySelector('#cafe-username').value.trim()
+				var email = form.querySelector('#cafe-email').value.trim()
 				return username && email ? { username: username, email: email } : null
 			},
 			send: function (values) {
@@ -278,13 +278,13 @@
 
 	// Frappe's own login command: it wants a form body and is not a v2 method.
 	function systemLogin(root, target) {
-		var form = root.querySelector('#mna-system-form')
-		var error = root.querySelector('#mna-system-error')
-		var button = root.querySelector('#mna-system-login')
+		var form = root.querySelector('#cafe-system-form')
+		var error = root.querySelector('#cafe-system-error')
+		var button = root.querySelector('#cafe-system-login')
 		form.addEventListener('submit', function (event) {
 			event.preventDefault()
-			var usr = form.querySelector('#mna-usr').value
-			var pwd = form.querySelector('#mna-pwd').value
+			var usr = form.querySelector('#cafe-usr').value
+			var pwd = form.querySelector('#cafe-pwd').value
 			if (!usr || !pwd || button.disabled) return
 			setError(error, '')
 			busy(button, true)
@@ -311,11 +311,11 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var root = document.getElementById('mna-auth')
+		var root = document.getElementById('cafe-auth')
 		if (!root) return
 		var query = new URLSearchParams(location.search)
-		if (root.querySelector('#mna-system-form')) return systemLogin(root, localPath(query.get('redirect-to')))
-		var signup = !!root.querySelector('#mna-username')
+		if (root.querySelector('#cafe-system-form')) return systemLogin(root, localPath(query.get('redirect-to')))
+		var signup = !!root.querySelector('#cafe-username')
 		var next = localPath(query.get('redirect'))
 		if (next.indexOf('/login') === 0 || next.indexOf('/signup') === 0) next = ''
 		new CodeFlow(root, signup ? signupConfig() : loginConfig(next))

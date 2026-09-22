@@ -48,10 +48,10 @@
 		var row = template.content.firstElementChild.cloneNode(true)
 		// Drafts and archived posts open in the editor: there is nothing public to see yet.
 		row.href = '/write/' + encodeURIComponent(post.name)
-		row.querySelector('.mna-row-title').textContent = post.display_title || post.title || 'Untitled'
-		row.querySelector('.mna-row-excerpt').textContent = preview(post)
-		row.querySelector('.mna-row-meta').textContent = formatDate(post.modified)
-		var image = row.querySelector('.mna-row-thumb')
+		row.querySelector('.cafe-row-title').textContent = post.display_title || post.title || 'Untitled'
+		row.querySelector('.cafe-row-excerpt').textContent = preview(post)
+		row.querySelector('.cafe-row-meta').textContent = formatDate(post.modified)
+		var image = row.querySelector('.cafe-row-thumb')
 		var url = thumbnailOf(post)
 		if (url) {
 			image.src = url
@@ -108,7 +108,7 @@
 	}
 
 	function showTab(tab, updateAddress) {
-		document.querySelectorAll('.mna-tab-btn').forEach(function (button) {
+		document.querySelectorAll('.cafe-tab-btn').forEach(function (button) {
 			button.setAttribute('aria-selected', button.getAttribute('data-tab') === tab ? 'true' : 'false')
 		})
 		published.hidden = tab !== 'published'
@@ -124,18 +124,18 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		root = document.getElementById('mna-posts-page')
+		root = document.getElementById('cafe-posts-page')
 		if (!root || !root.getAttribute('data-own')) return
 
-		published = document.getElementById('mna-panel-published')
-		other = document.getElementById('mna-panel-other')
-		loading = other.querySelector('.mna-loading')
-		emptyText = other.querySelector('.mna-other-empty')
-		list = other.querySelector('.mna-other-list')
-		template = document.getElementById('mna-post-template')
+		published = document.getElementById('cafe-panel-published')
+		other = document.getElementById('cafe-panel-other')
+		loading = other.querySelector('.cafe-loading')
+		emptyText = other.querySelector('.cafe-other-empty')
+		list = other.querySelector('.cafe-other-list')
+		template = document.getElementById('cafe-post-template')
 
 		root.addEventListener('click', function (event) {
-			var button = event.target.closest('.mna-tab-btn')
+			var button = event.target.closest('.cafe-tab-btn')
 			if (button) showTab(button.getAttribute('data-tab'), true)
 		})
 		var initial = root.getAttribute('data-tab')

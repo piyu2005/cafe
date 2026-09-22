@@ -107,14 +107,14 @@
 
 	function showCounts(posts, rows) {
 		if (!posts.length) return
-		MNA.api('cafe.api.get_comment_counts', {
+		CAFE.api('cafe.api.get_comment_counts', {
 			posts: posts.map(function (post) {
 				return post.name
 			}),
 		}).then(
 			function (counts) {
 				posts.forEach(function (post, index) {
-					var node = rows[index].querySelector('.mna-feed-comments')
+					var node = rows[index].querySelector('.cafe-feed-comments')
 					if (node) node.textContent = ((counts || {})[post.name] || 0) + ' comments'
 				})
 			},
@@ -124,7 +124,7 @@
 
 	function setLoadingText(visible) {
 		if (visible && !loadingText) {
-			loadingText = MNA.el('p', '', 'Loading more...')
+			loadingText = CAFE.el('p', '', 'Loading more...')
 			loadingText.style.cssText = 'margin:24px 0 0;text-align:center;font-size:14px;color:#7c7c7c'
 			sentinel.after(loadingText)
 		} else if (!visible && loadingText) {
@@ -135,9 +135,9 @@
 
 	function setEmpty(visible) {
 		if (visible && !emptyText) {
-			emptyText = MNA.el('div', '')
+			emptyText = CAFE.el('div', '')
 			emptyText.style.cssText = 'padding:64px 0;text-align:center'
-			var line = MNA.el('p', '', 'No writings found.')
+			var line = CAFE.el('p', '', 'No writings found.')
 			line.style.cssText = 'margin:0;font-size:16px;line-height:1.5;letter-spacing:0.02em;color:#525252'
 			emptyText.appendChild(line)
 			list.after(emptyText)
@@ -146,7 +146,7 @@
 			emptyText = null
 		}
 		// The server's own "No writings found." block goes when a search starts.
-		var serverEmpty = container.querySelector('.mna-feed-empty')
+		var serverEmpty = container.querySelector('.cafe-feed-empty')
 		if (serverEmpty) serverEmpty.style.display = 'none'
 	}
 
@@ -183,7 +183,7 @@
 				if (request !== latestRequest) return
 				busy = false
 				setLoadingText(false)
-				MNA.toast("Couldn't load posts. Please try again.", 'error')
+				CAFE.toast("Couldn't load posts. Please try again.", 'error')
 			}
 		)
 	}
@@ -196,10 +196,10 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		input = document.getElementById('mna-feed-search')
-		list = document.getElementById('mna-feed')
-		sentinel = document.getElementById('mna-feed-end')
-		template = document.getElementById('mna-feed-template')
+		input = document.getElementById('cafe-feed-search')
+		list = document.getElementById('cafe-feed')
+		sentinel = document.getElementById('cafe-feed-end')
+		template = document.getElementById('cafe-feed-template')
 		if (!input || !list || !sentinel || !template) return
 		container = list.parentNode
 

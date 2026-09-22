@@ -3,8 +3,8 @@
 ;(function () {
 	'use strict'
 
-	var P = window.MNA.pub
-	var MNA = window.MNA
+	var P = window.CAFE.pub
+	var CAFE = window.CAFE
 	var root
 	var handle
 	var title = 'Publication'
@@ -53,7 +53,7 @@
 			icon: P.svg('user-minus'),
 			danger: true,
 			onClick: function () {
-				MNA.confirm({
+				CAFE.confirm({
 					title: 'Remove this member?',
 					message: m.full_name + ' will be removed from ' + title + '.',
 					confirmLabel: 'Remove',
@@ -72,17 +72,17 @@
 		if (isAdmin() && m.user !== P.me) {
 			badge.classList.add('clickable')
 			badge.addEventListener('click', function () {
-				MNA.popupMenu(badge, memberItems(m))
+				CAFE.popupMenu(badge, memberItems(m))
 			})
 		}
 		return badge
 	}
 
 	function personRow(m) {
-		var row = P.el('div', 'mna-p-row')
+		var row = P.el('div', 'cafe-p-row')
 		row.appendChild(P.avatar(m.user_image, m.full_name, 'md'))
-		var text = P.el('div', 'mna-p-row-text')
-		text.appendChild(P.el('span', 'mna-p-row-name', m.full_name))
+		var text = P.el('div', 'cafe-p-row-text')
+		text.appendChild(P.el('span', 'cafe-p-row-name', m.full_name))
 		if (m.user === P.me) text.appendChild(P.badge('You', 'gray'))
 		row.appendChild(text)
 		row.appendChild(roleBadge(m))
@@ -90,12 +90,12 @@
 	}
 
 	function section(label, iconName, rows) {
-		var wrap = P.el('div', 'mna-p-section')
-		var head = P.el('span', 'mna-p-section-title')
-		if (iconName) head.appendChild(P.icon(iconName, 'mna-p-tiny'))
+		var wrap = P.el('div', 'cafe-p-section')
+		var head = P.el('span', 'cafe-p-section-title')
+		if (iconName) head.appendChild(P.icon(iconName, 'cafe-p-tiny'))
 		head.appendChild(document.createTextNode(label))
 		wrap.appendChild(head)
-		var card = P.el('div', 'mna-p-card')
+		var card = P.el('div', 'cafe-p-card')
 		rows.forEach(function (row) {
 			card.appendChild(row)
 		})
@@ -104,11 +104,11 @@
 	}
 
 	function pendingRow(p) {
-		var row = P.el('div', 'mna-p-row')
+		var row = P.el('div', 'cafe-p-row')
 		row.appendChild(P.avatar(p.user_image, p.full_name, 'md'))
-		row.appendChild(P.el('span', 'mna-p-row-name grow', p.full_name))
+		row.appendChild(P.el('span', 'cafe-p-row-name grow', p.full_name))
 		row.appendChild(P.badge(p.role, 'gray'))
-		var cancel = P.el('button', 'mna-btn mna-btn-subtle mna-p-cancel', 'Cancel')
+		var cancel = P.el('button', 'cafe-btn cafe-btn-subtle cafe-p-cancel', 'Cancel')
 		cancel.type = 'button'
 		cancel.addEventListener('click', function () {
 			act('cancel_publication_invite', { name: p.name })
@@ -118,19 +118,19 @@
 	}
 
 	function head() {
-		var wrap = P.el('div', 'mna-p-members-head')
-		var left = P.el('div', 'mna-p-members-left')
-		var back = P.el('a', 'mna-p-back')
+		var wrap = P.el('div', 'cafe-p-members-head')
+		var left = P.el('div', 'cafe-p-members-left')
+		var back = P.el('a', 'cafe-p-back')
 		back.href = '/publications/' + encodeURIComponent(handle)
 		back.setAttribute('aria-label', 'Back')
-		back.appendChild(P.icon('arrow-left', 'mna-p-small'))
+		back.appendChild(P.icon('arrow-left', 'cafe-p-small'))
 		left.appendChild(back)
-		left.appendChild(P.el('h1', 'mna-p-h1', 'Members from ' + title))
+		left.appendChild(P.el('h1', 'cafe-p-h1', 'Members from ' + title))
 		wrap.appendChild(left)
 		if (isAdmin()) {
-			var invite = P.el('a', 'mna-btn mna-btn-subtle mna-p-invite')
+			var invite = P.el('a', 'cafe-btn cafe-btn-subtle cafe-p-invite')
 			invite.href = '/invite?pub=' + encodeURIComponent(handle)
-			invite.appendChild(P.icon('user-plus', 'mna-p-small'))
+			invite.appendChild(P.icon('user-plus', 'cafe-p-small'))
 			invite.appendChild(P.el('span', '', 'Invite'))
 			wrap.appendChild(invite)
 		}
@@ -155,7 +155,7 @@
 				root.replaceChildren(
 					P.el(
 						'p',
-						'mna-p-empty',
+						'cafe-p-empty',
 						/HTTP (403|404|417)/.test(error.message)
 							? "You're not a member of this publication."
 							: "Couldn't load the members. Please try again."
@@ -166,7 +166,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		root = document.getElementById('mna-pub-members')
+		root = document.getElementById('cafe-pub-members')
 		if (!root) return
 		handle = P.handle(root)
 		root.replaceChildren(P.skeleton(6))
@@ -175,7 +175,7 @@
 			function (pub) {
 				title = pub.title
 				P.setTitle(title, false)
-				var back = document.querySelector('.mna-mobile-back')
+				var back = document.querySelector('.cafe-mobile-back')
 				if (back) back.setAttribute('href', '/publications/' + encodeURIComponent(handle))
 				if (data) draw()
 			},

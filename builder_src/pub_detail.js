@@ -3,14 +3,14 @@
 ;(function () {
 	'use strict'
 
-	var P = window.MNA.pub
+	var P = window.CAFE.pub
 	var COPIED = 'Link copied'
 	var root
 	var handle
 	var data
 
 	function button(label, kind, onClick) {
-		var node = P.el('button', 'mna-btn mna-btn-' + kind, label)
+		var node = P.el('button', 'cafe-btn cafe-btn-' + kind, label)
 		node.type = 'button'
 		node.addEventListener('click', function () {
 			onClick(node)
@@ -19,10 +19,10 @@
 	}
 
 	function metaLine() {
-		var line = P.el('div', 'mna-p-meta')
+		var line = P.el('div', 'cafe-p-meta')
 		if (data.website) {
-			var site = P.el('span', 'mna-p-site')
-			site.appendChild(P.icon('globe', 'mna-p-tiny'))
+			var site = P.el('span', 'cafe-p-site')
+			site.appendChild(P.icon('globe', 'cafe-p-tiny'))
 			site.appendChild(document.createTextNode(data.website))
 			line.appendChild(site)
 			line.appendChild(P.el('span', '', '·'))
@@ -44,7 +44,7 @@
 
 	function copyLink() {
 		var done = function () {
-			window.MNA.toast(COPIED)
+			window.CAFE.toast(COPIED)
 		}
 		if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, done)
 		else done()
@@ -55,9 +55,9 @@
 	}
 
 	function membersLink() {
-		var link = P.el('a', 'mna-p-members-link')
+		var link = P.el('a', 'cafe-p-members-link')
 		link.href = '/publications/' + encodeURIComponent(handle) + '/members'
-		var stack = P.el('span', 'mna-p-stack')
+		var stack = P.el('span', 'cafe-p-stack')
 		data.members.forEach(function (m) {
 			stack.appendChild(P.avatar(m.user_image, m.full_name, 'sm'))
 		})
@@ -65,7 +65,7 @@
 		link.appendChild(
 			P.el(
 				'span',
-				'mna-p-counts',
+				'cafe-p-counts',
 				plural(data.editor_count, 'Editor') +
 					' · ' +
 					plural(data.member_count, 'Member') +
@@ -73,16 +73,16 @@
 					plural(data.subscriber_count, 'Subscriber')
 			)
 		)
-		link.appendChild(P.icon('arrow-right', 'mna-p-small mna-p-faint'))
+		link.appendChild(P.icon('arrow-right', 'cafe-p-small cafe-p-faint'))
 		return link
 	}
 
 	function head() {
-		var wrap = P.el('div', 'mna-p-head')
-		var tile = P.el('div', 'mna-p-tile', data.title.charAt(0))
-		var body = P.el('div', 'mna-p-head-body')
-		var titleRow = P.el('div', 'mna-p-title-row')
-		titleRow.appendChild(P.el('h1', 'mna-p-title', data.title))
+		var wrap = P.el('div', 'cafe-p-head')
+		var tile = P.el('div', 'cafe-p-tile', data.title.charAt(0))
+		var body = P.el('div', 'cafe-p-head-body')
+		var titleRow = P.el('div', 'cafe-p-title-row')
+		titleRow.appendChild(P.el('h1', 'cafe-p-title', data.title))
 		titleRow.appendChild(
 			button(
 				data.subscribed_by_me ? 'Subscribed' : 'Subscribe',
@@ -90,15 +90,15 @@
 				toggleSubscribe
 			)
 		)
-		var share = P.el('button', 'mna-p-share')
+		var share = P.el('button', 'cafe-p-share')
 		share.type = 'button'
 		share.setAttribute('aria-label', 'Copy link')
-		share.appendChild(P.icon('share-2', 'mna-p-small'))
+		share.appendChild(P.icon('share-2', 'cafe-p-small'))
 		share.addEventListener('click', copyLink)
 		titleRow.appendChild(share)
 		body.appendChild(titleRow)
 		body.appendChild(metaLine())
-		if (data.description) body.appendChild(P.el('p', 'mna-p-desc', data.description))
+		if (data.description) body.appendChild(P.el('p', 'cafe-p-desc', data.description))
 		body.appendChild(membersLink())
 		wrap.appendChild(tile)
 		wrap.appendChild(body)
@@ -111,20 +111,20 @@
 	}
 
 	function postRow(post) {
-		var row = P.el('a', 'mna-p-post')
+		var row = P.el('a', 'cafe-p-post')
 		row.href = '/posts/' + encodeURIComponent(post.name)
-		var text = P.el('div', 'mna-p-post-text')
+		var text = P.el('div', 'cafe-p-post-text')
 		text.appendChild(
-			P.el('div', 'mna-p-post-title', post.display_title || post.title || P.excerpt(post.content, 60))
+			P.el('div', 'cafe-p-post-title', post.display_title || post.title || P.excerpt(post.content, 60))
 		)
-		text.appendChild(P.el('p', 'mna-p-post-excerpt', P.excerpt(post.content, 160)))
+		text.appendChild(P.el('p', 'cafe-p-post-excerpt', P.excerpt(post.content, 160)))
 		text.appendChild(
-			P.el('div', 'mna-p-post-meta', P.date(post.creation) + ' · ' + P.readTime(post.content) + ' min read')
+			P.el('div', 'cafe-p-post-meta', P.date(post.creation) + ' · ' + P.readTime(post.content) + ' min read')
 		)
 		row.appendChild(text)
 		var cover = coverFor(post)
 		if (/^(\/|https?:\/\/)/.test(cover || '')) {
-			var img = P.el('img', 'mna-p-post-cover')
+			var img = P.el('img', 'cafe-p-post-cover')
 			img.src = cover
 			img.alt = ''
 			img.loading = 'lazy'
@@ -135,8 +135,8 @@
 
 	function draw() {
 		root.replaceChildren(head())
-		var list = P.el('div', 'mna-p-posts')
-		if (!data.posts.length) list.appendChild(P.el('p', 'mna-p-empty', 'No posts yet.'))
+		var list = P.el('div', 'cafe-p-posts')
+		if (!data.posts.length) list.appendChild(P.el('p', 'cafe-p-empty', 'No posts yet.'))
 		data.posts.forEach(function (post) {
 			list.appendChild(postRow(post))
 		})
@@ -155,7 +155,7 @@
 				root.replaceChildren(
 					P.el(
 						'p',
-						'mna-p-empty',
+						'cafe-p-empty',
 						/HTTP (404|417)/.test(error.message)
 							? 'Publication not found.'
 							: "Couldn't load this publication. Please try again."
@@ -166,7 +166,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		root = document.getElementById('mna-pub')
+		root = document.getElementById('cafe-pub')
 		if (!root) return
 		handle = P.handle(root)
 		root.replaceChildren(P.skeleton(6))

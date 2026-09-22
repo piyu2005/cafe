@@ -3,7 +3,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var MAX_SHOWN = 8
 	var users = []
 	var popup = null
@@ -55,11 +55,11 @@
 	function draw() {
 		popup.replaceChildren()
 		matches.forEach(function (item, i) {
-			var row = C.el('button', 'mna-c-mention' + (i === chosen ? ' on' : ''))
+			var row = C.el('button', 'cafe-c-mention' + (i === chosen ? ' on' : ''))
 			row.type = 'button'
-			row.appendChild(C.el('span', 'mna-c-mention-label', '@' + item.label))
+			row.appendChild(C.el('span', 'cafe-c-mention-label', '@' + item.label))
 			if (item.full_name && item.full_name !== item.label)
-				row.appendChild(C.el('span', 'mna-c-mention-name', item.full_name))
+				row.appendChild(C.el('span', 'cafe-c-mention-name', item.full_name))
 			// mousedown, so the editor keeps its selection.
 			row.addEventListener('mousedown', function (event) {
 				event.preventDefault()
@@ -105,7 +105,7 @@
 		range = { from: end - query.length - 1, to: end }
 		chosen = 0
 		if (!popup) {
-			popup = C.el('div', 'mna-c-mentions')
+			popup = C.el('div', 'cafe-c-mentions')
 			document.body.appendChild(popup)
 		}
 		draw()

@@ -101,7 +101,7 @@ MENU_STYLES = {
 
 
 def badge(kind="messages", styles=BADGE_STYLES):
-	return html_el("span", ["mna-badge"], {"data-badge": kind}, styles)
+	return html_el("span", ["cafe-badge"], {"data-badge": kind}, styles)
 
 
 def rail_item(key, label, href, icon_name):
@@ -110,7 +110,7 @@ def rail_item(key, label, href, icon_name):
 		children.append(badge(styles=RAIL_BADGE_STYLES))
 	return html_el(
 		"a",
-		["mna-rail-item"],
+		["cafe-rail-item"],
 		{"href": href, "title": label, "aria-label": label, "data-nav": key},
 		RAIL_ITEM_STYLES,
 		children,
@@ -121,7 +121,7 @@ def bell_item():
 	"""The rail's notification bell. A button: it opens the panel (notifications.js)."""
 	return html_el(
 		"button",
-		["mna-rail-item"],
+		["cafe-rail-item"],
 		{
 			"type": "button",
 			"title": "Notifications",
@@ -138,7 +138,7 @@ def expand_item():
 	"""The rail's bottom button, which opens the sidebar."""
 	return html_el(
 		"button",
-		["mna-rail-item", "mna-expand"],
+		["cafe-rail-item", "cafe-expand"],
 		{"type": "button", "title": "Expand", "aria-label": "Expand", "data-sidebar-toggle": "open"},
 		{**RAIL_ITEM_STYLES, "marginTop": "auto", "padding": "0", "border": "0", "cursor": "pointer"},
 		[svg("panel-right-open", 16, None).replace('style="', 'style="transform:rotate(180deg);', 1)],
@@ -153,7 +153,7 @@ def tab_item(key, label, href, icon_name):
 		children.append(badge())
 	return html_el(
 		"a",
-		["mna-tab"],
+		["cafe-tab"],
 		{"href": href, "aria-label": label, "data-nav": key},
 		None,
 		children,
@@ -163,7 +163,7 @@ def tab_item(key, label, href, icon_name):
 def menu_item(tag, attrs, icon_name, label):
 	return html_el(
 		tag,
-		["mna-menu-item"],
+		["cafe-menu-item"],
 		{**attrs, "role": "menuitem"},
 		MENU_ITEM_STYLES,
 		[svg(icon_name, 16, MUTED), html_el("span", text=label)],
@@ -173,20 +173,20 @@ def menu_item(tag, attrs, icon_name, label):
 def build_shell_html():
 	logo = html_el(
 		"button",
-		["mna-logo"],
+		["cafe-logo"],
 		{"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
 		LOGO_STYLES,
 		[svg("feather", 16)],
 	)
 	rail = html_el(
 		"nav",
-		["mna-rail"],
+		["cafe-rail"],
 		{"aria-label": "Main"},
 		RAIL_STYLES,
 		[
 			html_el(
 				"div",
-				["mna-rail-content"],
+				["cafe-rail-content"],
 				None,
 				RAIL_CONTENT_STYLES,
 				[logo]
@@ -197,19 +197,19 @@ def build_shell_html():
 	)
 	bottom_nav = html_el(
 		"nav",
-		["mna-bottom-nav"],
+		["cafe-bottom-nav"],
 		{"aria-label": "Main"},
 		{"display": "none"},
 		[tab_item(*item) for item in TAB_ITEMS],
 	)
 	menu = html_el(
 		"div",
-		["mna-menu"],
-		{"id": "mna-menu", "role": "menu"},
+		["cafe-menu"],
+		{"id": "cafe-menu", "role": "menu"},
 		MENU_STYLES,
 		[
 			menu_item("a", {"href": "/settings"}, "settings", "Settings"),
-			menu_item("button", {"id": "mna-logout", "type": "button"}, "log-out", "Logout"),
+			menu_item("button", {"id": "cafe-logout", "type": "button"}, "log-out", "Logout"),
 		],
 	)
 	return rail + build_sidebar() + bottom_nav + menu
@@ -221,7 +221,7 @@ def build_shell():
 	return block(
 		"div",
 		"Shell",
-		["mna-shell"],
+		["cafe-shell"],
 		html=build_shell_html(),
 		styles={"display": "contents"},
 	)

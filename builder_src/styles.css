@@ -14,21 +14,21 @@
    Newsreader is registered as a Builder User Font (see generate.py). */
 
 :root {
-  --mna-surface: #ffffff;
-  --mna-surface-2: #f3f3f3;
-  --mna-surface-dark: #171717;
-  --mna-hover: #ededed;
-  --mna-outline: #ededed;
-  --mna-ink: #0f0f0f;
-  --mna-ink-8: #171717;
-  --mna-ink-5: #7c7c7c;
-  --mna-outline-strong: #999999;
+  --cafe-surface: #ffffff;
+  --cafe-surface-2: #f3f3f3;
+  --cafe-surface-dark: #171717;
+  --cafe-hover: #ededed;
+  --cafe-outline: #ededed;
+  --cafe-ink: #0f0f0f;
+  --cafe-ink-8: #171717;
+  --cafe-ink-5: #7c7c7c;
+  --cafe-outline-strong: #999999;
 }
 
 html,
 body {
   margin: 0;
-  background: var(--mna-surface);
+  background: var(--cafe-surface);
   /* Without this, macOS Chrome still shows a small trackpad rubber-band
      bounce on a two-finger swipe even when the page has no real overflow —
      it's separate from scrollHeight/clientHeight. Frappe Builder's own app
@@ -36,37 +36,37 @@ body {
   overscroll-behavior: none;
 }
 
-.mna-app {
+.cafe-app {
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-.mna-app *,
-.mna-app *::before,
-.mna-app *::after {
+.cafe-app *,
+.cafe-app *::before,
+.cafe-app *::after {
   box-sizing: border-box;
 }
 /* :where() keeps these resets at the lowest specificity, so a block's own
    color can still win. */
-:where(.mna-app) a {
+:where(.cafe-app) a {
   color: inherit;
   text-decoration: none;
 }
-:where(.mna-app) button {
+:where(.cafe-app) button {
   font: inherit;
   letter-spacing: inherit;
   color: inherit;
 }
 /* Builder wraps every inline icon in a div. Without this the svg sits on the
    text baseline and the icon is a few pixels off-centre. */
-.mna-app svg {
+.cafe-app svg {
   display: block;
 }
 
 /* ---- Rail ---- */
-.mna-rail-item:hover {
+.cafe-rail-item:hover {
   background: rgba(0, 0, 0, 0.05);
 }
-.mna-rail-item.active {
+.cafe-rail-item.active {
   background: #fff;
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
@@ -76,49 +76,49 @@ body {
 /* The shell's HTML carries inline styles (so the editor canvas shows it), and
    inline styles beat class rules. The states that JavaScript toggles, and the
    ones that change what the inline styles set, therefore use !important. */
-.mna-badge.show {
+.cafe-badge.show {
   display: block !important;
 }
 
 /* ---- The wide sidebar (sidebar.py) instead of the rail ---- */
-html[data-mna-sidebar='open'] .mna-rail {
+html[data-cafe-sidebar='open'] .cafe-rail {
   display: none !important;
 }
-html[data-mna-sidebar='open'] .mna-sidebar {
+html[data-cafe-sidebar='open'] .cafe-sidebar {
   display: block !important;
 }
-html[data-mna-sidebar='open'] .mna-np {
+html[data-cafe-sidebar='open'] .cafe-np {
   left: 224px;
 }
-.mna-side-item:hover,
-.mna-side-logo:hover {
-  background: var(--mna-surface-2) !important;
+.cafe-side-item:hover,
+.cafe-side-logo:hover {
+  background: var(--cafe-surface-2) !important;
 }
-.mna-side-item.active {
+.cafe-side-item.active {
   background: #fff !important;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
     rgba(0, 0, 0, 0.2) 0 0 1px 0,
     rgba(0, 0, 0, 0.14) 0 1px 3px 0;
 }
 /* With the notifications panel open, the bell is the active item. */
-.mna-np-open .mna-side-item.active:not([data-bell]) {
+.cafe-np-open .cafe-side-item.active:not([data-bell]) {
   background: transparent !important;
   color: #525252;
   box-shadow: none;
 }
 
 /* ---- Logo menu ---- */
-.mna-menu.open {
+.cafe-menu.open {
   display: block !important;
 }
-.mna-menu-item:hover {
-  background: var(--mna-surface-2) !important;
+.cafe-menu-item:hover {
+  background: var(--cafe-surface-2) !important;
 }
 
 /* ---- Confirm dialog (Logout). Created by shell.js. ---- */
-.mna-overlay {
+.cafe-overlay {
   position: fixed;
   inset: 0;
   z-index: 60;
@@ -127,24 +127,24 @@ html[data-mna-sidebar='open'] .mna-np {
   padding: 16px;
   background: rgba(0, 0, 0, 0.27);
 }
-/* Dialogs and toasts are added to <body>, outside .mna-app, so they set the
+/* Dialogs and toasts are added to <body>, outside .cafe-app, so they set the
    base text style themselves. */
-.mna-overlay,
-.mna-toast {
+.cafe-overlay,
+.cafe-toast {
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 420;
   line-height: 1.15;
   letter-spacing: 0.02em;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   -webkit-font-smoothing: antialiased;
 }
-.mna-overlay *,
-.mna-overlay *::before,
-.mna-overlay *::after {
+.cafe-overlay *,
+.cafe-overlay *::before,
+.cafe-overlay *::after {
   box-sizing: border-box;
 }
-.mna-dialog {
+.cafe-dialog {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -153,15 +153,15 @@ html[data-mna-sidebar='open'] .mna-np {
   background: #fff;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
-.mna-dialog h2 {
+.cafe-dialog h2 {
   margin: 0;
   padding-right: 40px;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
 }
-.mna-dialog-close {
+.cafe-dialog-close {
   position: absolute;
   top: 20px;
   right: 24px;
@@ -173,42 +173,42 @@ html[data-mna-sidebar='open'] .mna-np {
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
   cursor: pointer;
 }
-.mna-dialog-close:hover {
-  background: var(--mna-surface-2);
+.cafe-dialog-close:hover {
+  background: var(--cafe-surface-2);
 }
-.mna-dialog-close svg {
+.cafe-dialog-close svg {
   width: 16px;
   height: 16px;
 }
-.mna-dialog p {
+.cafe-dialog p {
   margin: 12px 0 0;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   font-size: 14px;
 }
-.mna-dialog:focus {
+.cafe-dialog:focus {
   outline: none;
 }
-.mna-dialog.wide {
+.cafe-dialog.wide {
   max-width: 448px;
 }
-.mna-dialog-actions {
+.cafe-dialog-actions {
   display: flex;
   justify-content: space-between;
   gap: 8px;
   margin-top: 40px;
 }
-.mna-dialog-left,
-.mna-dialog-right {
+.cafe-dialog-left,
+.cafe-dialog-right {
   display: flex;
   gap: 8px;
 }
-.mna-dialog-right {
+.cafe-dialog-right {
   margin-left: auto;
 }
-.mna-btn {
+.cafe-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -221,126 +221,126 @@ html[data-mna-sidebar='open'] .mna-np {
   white-space: nowrap;
   cursor: pointer;
 }
-.mna-btn-solid {
-  background: var(--mna-surface-dark);
+.cafe-btn-solid {
+  background: var(--cafe-surface-dark);
   color: #fff;
 }
-.mna-btn-solid:hover {
+.cafe-btn-solid:hover {
   background: #383838 !important;
 }
-.mna-btn-subtle {
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-8);
+.cafe-btn-subtle {
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-8);
 }
-.mna-btn-subtle:hover {
-  background: var(--mna-hover);
+.cafe-btn-subtle:hover {
+  background: var(--cafe-hover);
 }
-.mna-btn-outline {
+.cafe-btn-outline {
   border: 1px solid #e2e2e2;
   background: #fff;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
 }
-.mna-btn-outline:hover {
+.cafe-btn-outline:hover {
   background: #f8f8f8;
 }
-.mna-btn-danger {
+.cafe-btn-danger {
   background: #e03636;
   color: #fff;
 }
-.mna-btn-danger:hover {
+.cafe-btn-danger:hover {
   background: #c62f2f;
 }
-.mna-btn-danger-ghost {
+.cafe-btn-danger-ghost {
   background: transparent;
   color: #e03636;
 }
-.mna-btn-danger-ghost:hover {
+.cafe-btn-danger-ghost:hover {
   background: #fdeeee;
 }
-.mna-btn:disabled {
+.cafe-btn:disabled {
   opacity: 0.6;
   cursor: default;
 }
 
 /* ---- Form dialogs. Created by ui.js. ---- */
-.mna-form {
+.cafe-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 26px;
 }
-.mna-field {
+.cafe-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   min-width: 0;
 }
-.mna-field.grow {
+.cafe-field.grow {
   flex: 1;
 }
-.mna-field label {
+.cafe-field label {
   font-size: 14px;
   line-height: 1.15;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
 }
-.mna-field input,
-.mna-field select,
-.mna-field textarea {
+.cafe-field input,
+.cafe-field select,
+.cafe-field textarea {
   display: block;
   width: 100%;
   height: 28px;
   padding: 6px 8px;
-  border: 1px solid var(--mna-surface-2);
+  border: 1px solid var(--cafe-surface-2);
   border-radius: 8px;
   outline: none;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-8);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-8);
   font: inherit;
   font-size: 14px;
   line-height: 1.15;
   letter-spacing: 0.02em;
 }
-.mna-field textarea {
+.cafe-field textarea {
   height: auto;
   resize: vertical;
 }
-.mna-field input:hover,
-.mna-field select:hover,
-.mna-field textarea:hover {
-  background: var(--mna-hover);
-  border-color: var(--mna-hover);
+.cafe-field input:hover,
+.cafe-field select:hover,
+.cafe-field textarea:hover {
+  background: var(--cafe-hover);
+  border-color: var(--cafe-hover);
 }
-.mna-field input:focus,
-.mna-field select:focus,
-.mna-field textarea:focus {
+.cafe-field input:focus,
+.cafe-field select:focus,
+.cafe-field textarea:focus {
   background: #fff;
-  border-color: var(--mna-outline-strong);
+  border-color: var(--cafe-outline-strong);
 }
-.mna-field .invalid {
+.cafe-field .invalid {
   border-color: #e03636;
 }
-.mna-field-row {
+.cafe-field-row {
   display: flex;
   align-items: flex-end;
   gap: 8px;
 }
-.mna-field-text {
+.cafe-field-text {
   padding-bottom: 6px;
   font-size: 16px;
   line-height: 24px;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
 }
-.mna-required {
+.cafe-required {
   color: #e03636;
 }
-.mna-form-error {
+.cafe-form-error {
   margin: 12px 0 0;
   color: #e03636;
   font-size: 13px;
 }
 /* Same values as vue-sonner's default toast, which is what Frappe Cloud shows:
    356px wide, padding 16, 1px border, radius 8, 13px text, offset 32px from the corner. */
-.mna-toasts {
+.cafe-toasts {
   position: fixed;
   right: 32px;
   bottom: 32px;
@@ -351,7 +351,7 @@ html[data-mna-sidebar='open'] .mna-np {
   gap: 14px;
   pointer-events: none;
 }
-.mna-toast {
+.cafe-toast {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -369,12 +369,12 @@ html[data-mna-sidebar='open'] .mna-np {
   letter-spacing: normal;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   pointer-events: auto;
-  animation: mna-toast-in 0.4s ease;
+  animation: cafe-toast-in 0.4s ease;
   transition:
     opacity 0.4s,
     transform 0.4s;
 }
-.mna-toast-icon {
+.cafe-toast-icon {
   display: flex;
   flex: none;
   align-items: center;
@@ -382,20 +382,20 @@ html[data-mna-sidebar='open'] .mna-np {
   height: 16px;
   margin: 0 4px 0 -3px;
 }
-.mna-toast-icon svg {
+.cafe-toast-icon svg {
   margin-left: -1px;
 }
-.mna-toast-text {
+.cafe-toast-text {
   min-width: 0;
   font-weight: 500;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
-.mna-toast.leaving {
+.cafe-toast.leaving {
   opacity: 0;
   transform: translateY(100%);
 }
-@keyframes mna-toast-in {
+@keyframes cafe-toast-in {
   from {
     opacity: 0;
     transform: translateY(100%);
@@ -403,42 +403,42 @@ html[data-mna-sidebar='open'] .mna-np {
 }
 /* On a phone it is as wide as the screen minus 16px on each side, and sits above the 57px bottom bar. */
 @media (max-width: 600px) {
-  .mna-toasts {
+  .cafe-toasts {
     right: 16px;
     left: 16px;
     bottom: 73px;
     align-items: stretch;
   }
-  .mna-toast {
+  .cafe-toast {
     width: auto;
   }
 }
 @media (min-width: 601px) and (max-width: 767px) {
-  .mna-toasts {
+  .cafe-toasts {
     right: 16px;
     bottom: 73px;
   }
 }
 
 /* ---- Header ---- */
-.mna-crumbs a:hover {
-  color: var(--mna-ink);
+.cafe-crumbs a:hover {
+  color: var(--cafe-ink);
 }
 
 /* ---- Search page ---- */
-.mna-search input {
+.cafe-search input {
   font-family: inherit;
 }
-.mna-search input::placeholder {
-  color: var(--mna-outline-strong);
+.cafe-search input::placeholder {
+  color: var(--cafe-outline-strong);
 }
-.mna-search input:hover {
-  background: var(--mna-hover) !important;
-  border-color: var(--mna-hover) !important;
+.cafe-search input:hover {
+  background: var(--cafe-hover) !important;
+  border-color: var(--cafe-hover) !important;
 }
-.mna-search input:focus {
+.cafe-search input:focus {
   background: #fff !important;
-  border-color: var(--mna-outline-strong) !important;
+  border-color: var(--cafe-outline-strong) !important;
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
     rgba(0, 0, 0, 0.2) 0 0 1px 0,
@@ -446,7 +446,7 @@ html[data-mna-sidebar='open'] .mna-np {
 }
 
 /* Result rows. Created by search.js. */
-.mna-person {
+.cafe-person {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -454,10 +454,10 @@ html[data-mna-sidebar='open'] .mna-np {
   padding: 6px 8px;
   border-radius: 8px;
 }
-.mna-person:hover {
+.cafe-person:hover {
   background: #fafafa;
 }
-.mna-avatar {
+.cafe-avatar {
   display: grid;
   place-items: center;
   flex: none;
@@ -465,19 +465,19 @@ html[data-mna-sidebar='open'] .mna-np {
   height: 32px;
   overflow: hidden;
   border-radius: 9999px;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-5);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-5);
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-.mna-avatar img {
+.cafe-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.mna-person-name {
+.cafe-person-name {
   overflow: hidden;
   font-size: 16px;
   letter-spacing: 0.02em;
@@ -485,7 +485,7 @@ html[data-mna-sidebar='open'] .mna-np {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.mna-empty {
+.cafe-empty {
   padding: 40px 0;
   text-align: center;
   font-size: 16px;
@@ -494,105 +494,105 @@ html[data-mna-sidebar='open'] .mna-np {
 }
 
 /* ---- Profile page ---- */
-.mna-outline-btn:hover {
+.cafe-outline-btn:hover {
   background: #f8f8f8 !important;
 }
-.mna-icon-btn:hover {
+.cafe-icon-btn:hover {
   background: rgba(0, 0, 0, 0.06) !important;
 }
-.mna-text-btn:hover {
-  background: var(--mna-surface-2) !important;
+.cafe-text-btn:hover {
+  background: var(--cafe-surface-2) !important;
 }
-.mna-text-btn[data-action='toggle-bio']:hover {
+.cafe-text-btn[data-action='toggle-bio']:hover {
   background: transparent !important;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
   text-decoration: underline;
 }
 /* Builder's reset gives an empty paragraph a ::before box, which makes an
    empty clamped paragraph one line tall. */
-p.mna-clamp-2:empty::before,
-p.mna-clamp-3:empty::before {
+p.cafe-clamp-2:empty::before,
+p.cafe-clamp-3:empty::before {
   content: none;
 }
 /* A link inside a Builder text block is styled by Builder (blue, underlined). */
-.__text_block__ a.mna-plain-link {
+.__text_block__ a.cafe-plain-link {
   color: #171717;
   text-decoration: none;
 }
-.mna-clamp-2,
-.mna-clamp-3 {
+.cafe-clamp-2,
+.cafe-clamp-3 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.mna-clamp-2 {
+.cafe-clamp-2 {
   -webkit-line-clamp: 2;
 }
-.mna-clamp-3 {
+.cafe-clamp-3 {
   -webkit-line-clamp: 3;
 }
-.mna-clamp-3.expanded {
+.cafe-clamp-3.expanded {
   display: block;
 }
 /* Rows of a list are separated by a line; the first and last touch the card edge. */
-.mna-posts > * + *,
-.mna-entries > * + * {
-  border-top: 1px solid var(--mna-outline);
+.cafe-posts > * + *,
+.cafe-entries > * + * {
+  border-top: 1px solid var(--cafe-outline);
 }
 /* !important because the rows that posts.js copies from a <template> carry
    their padding inline, and inline styles beat these rules. */
-.mna-posts > :first-child,
-.mna-entries > :first-child {
+.cafe-posts > :first-child,
+.cafe-entries > :first-child {
   padding-top: 0 !important;
 }
-.mna-posts > :last-child,
-.mna-entries > :last-child {
+.cafe-posts > :last-child,
+.cafe-entries > :last-child {
   padding-bottom: 0 !important;
 }
 /* Work and education show three items until "Show all" is clicked. */
-.mna-entries:not(.expanded) > :nth-child(n + 4) {
+.cafe-entries:not(.expanded) > :nth-child(n + 4) {
   display: none;
 }
-.mna-entries:not(.expanded) > :nth-child(3) {
+.cafe-entries:not(.expanded) > :nth-child(3) {
   padding-bottom: 0 !important;
 }
-.mna-profile-initial {
+.cafe-profile-initial {
   font-size: 40px;
   font-weight: 500;
   line-height: 1.5;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   text-transform: uppercase;
 }
 
 /* ---- Profile posts page ---- */
-.mna-back:hover {
-  background: var(--mna-hover) !important;
+.cafe-back:hover {
+  background: var(--cafe-hover) !important;
 }
-.mna-tab-btn[aria-selected='true'] {
-  color: var(--mna-ink) !important;
+.cafe-tab-btn[aria-selected='true'] {
+  color: var(--cafe-ink) !important;
 }
 /* The underline of the open tab sits over the line under the tab list. */
-.mna-tab-btn[aria-selected='true']::after {
+.cafe-tab-btn[aria-selected='true']::after {
   content: '';
   position: absolute;
   right: 0;
   bottom: -1px;
   left: 0;
   height: 2px;
-  background: var(--mna-surface-dark);
+  background: var(--cafe-surface-dark);
 }
-.mna-tab-btn:hover:not([aria-selected='true']) {
-  color: var(--mna-ink-8) !important;
+.cafe-tab-btn:hover:not([aria-selected='true']) {
+  color: var(--cafe-ink-8) !important;
 }
-.mna-loading:not([hidden]) {
+.cafe-loading:not([hidden]) {
   display: flex !important;
 }
-.mna-loading .mna-skeleton {
+.cafe-loading .cafe-skeleton {
   background: linear-gradient(90deg, #f3f3f3, #fafafa, #f3f3f3) !important;
   background-size: 200% 100%;
-  animation: mna-pulse 1.2s ease-in-out infinite;
+  animation: cafe-pulse 1.2s ease-in-out infinite;
 }
-@keyframes mna-pulse {
+@keyframes cafe-pulse {
   from {
     background-position: 200% 0;
   }
@@ -602,74 +602,74 @@ p.mna-clamp-3:empty::before {
 }
 
 /* ---- Post detail page ---- */
-.mna-crumbs {
+.cafe-crumbs {
   min-width: 0;
 }
-.mna-crumbs .current {
+.cafe-crumbs .current {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.mna-author {
+.cafe-author {
   display: block;
   line-height: 20px !important;
 }
-.mna-author.mna-author-head {
+.cafe-author.cafe-author-head {
   line-height: 24px !important;
 }
-.mna-author:hover {
+.cafe-author:hover {
   text-decoration: underline;
 }
 /* Inline styles set display, which would beat the hidden attribute. */
-.mna-more-comments[hidden] {
+.cafe-more-comments[hidden] {
   display: none !important;
 }
-.mna-icon-btn-subtle:hover {
-  background: var(--mna-hover) !important;
+.cafe-icon-btn-subtle:hover {
+  background: var(--cafe-hover) !important;
 }
-.mna-pop.open {
+.cafe-pop.open {
   display: block !important;
 }
-.mna-like[data-on='1'] {
+.cafe-like[data-on='1'] {
   color: #e03636 !important;
 }
-.mna-save[data-on='1'] {
-  border-color: var(--mna-surface-dark) !important;
-  background: var(--mna-surface-dark) !important;
+.cafe-save[data-on='1'] {
+  border-color: var(--cafe-surface-dark) !important;
+  background: var(--cafe-surface-dark) !important;
   color: #fff !important;
 }
-.mna-save:not([data-on='1']):hover {
+.cafe-save:not([data-on='1']):hover {
   background: #f8f8f8 !important;
 }
-.mna-more-comments:hover {
+.cafe-more-comments:hover {
   text-decoration: underline;
 }
-.mna-textarea {
+.cafe-textarea {
   display: block;
   width: 100%;
   padding: 6px 8px;
-  border: 1px solid var(--mna-surface-2);
+  border: 1px solid var(--cafe-surface-2);
   border-radius: 8px;
   outline: none;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-8);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-8);
   font: inherit;
   font-size: 14px;
   line-height: 1.15;
   letter-spacing: 0.02em;
   resize: vertical;
 }
-.mna-textarea::placeholder {
-  color: var(--mna-outline-strong);
+.cafe-textarea::placeholder {
+  color: var(--cafe-outline-strong);
 }
-.mna-textarea:hover {
-  background: var(--mna-hover) !important;
-  border-color: var(--mna-hover) !important;
+.cafe-textarea:hover {
+  background: var(--cafe-hover) !important;
+  border-color: var(--cafe-hover) !important;
 }
-.mna-textarea:focus {
+.cafe-textarea:focus {
   background: #fff !important;
-  border-color: var(--mna-outline-strong) !important;
+  border-color: var(--cafe-outline-strong) !important;
 }
 
 /* The text of a post, the way frappe-ui's read-only editor draws it: no space
@@ -677,158 +677,158 @@ p.mna-clamp-3:empty::before {
    from a 14px base, and images as full-width 16:9 crops. */
 /* ProseMirror (the old editor) draws text with break-spaces and no ligatures, so
    lines break in the same places only if this does the same. */
-.mna-prose {
+.cafe-prose {
   overflow-wrap: break-word;
   white-space: break-spaces;
   word-break: break-word;
   font-variant-ligatures: none;
   font-feature-settings: 'liga' 0;
 }
-.mna-prose > :first-child {
+.cafe-prose > :first-child {
   margin-top: 0;
 }
-.mna-prose > :last-child {
+.cafe-prose > :last-child {
   margin-bottom: 0;
 }
-.mna-prose p {
+.cafe-prose p {
   margin: 0;
 }
 /* An empty paragraph is one 20px line in the old editor (its trailing <br>). */
-.mna-prose p:empty,
-.mna-prose p:has(> br:only-child) {
+.cafe-prose p:empty,
+.cafe-prose p:has(> br:only-child) {
   height: 1.3333em;
   line-height: 1.3333;
 }
-.mna-prose strong,
-.mna-prose b {
+.cafe-prose strong,
+.cafe-prose b {
   font-weight: 600;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
 }
-.mna-prose a {
-  border-bottom: 1px solid var(--mna-outline-strong);
+.cafe-prose a {
+  border-bottom: 1px solid var(--cafe-outline-strong);
   color: inherit;
   text-decoration: none;
 }
-.mna-prose a:hover {
+.cafe-prose a:hover {
   border-bottom-color: #525252;
 }
-.mna-prose h1,
-.mna-prose h2,
-.mna-prose h3,
-.mna-prose h4,
-.mna-prose h5,
-.mna-prose h6 {
+.cafe-prose h1,
+.cafe-prose h2,
+.cafe-prose h3,
+.cafe-prose h4,
+.cafe-prose h5,
+.cafe-prose h6 {
   margin: 24px 0 8px;
   font-weight: 600;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
 }
-.mna-prose h1 {
+.cafe-prose h1 {
   margin-top: 32px;
   font-size: calc(20em / 14);
   line-height: 1.3;
 }
-.mna-prose h2 {
+.cafe-prose h2 {
   margin-top: 32px;
   font-size: calc(18em / 14);
   line-height: 1.35;
 }
-.mna-prose h3 {
+.cafe-prose h3 {
   font-size: calc(16em / 14);
   line-height: 1.4;
 }
-.mna-prose h4 {
+.cafe-prose h4 {
   font-size: 1em;
   line-height: 1.45;
 }
-.mna-prose h5,
-.mna-prose h6 {
+.cafe-prose h5,
+.cafe-prose h6 {
   font-size: calc(13em / 14);
   line-height: 1.45;
 }
-.mna-prose h1 + *,
-.mna-prose h2 + *,
-.mna-prose h3 + *,
-.mna-prose h4 + *,
-.mna-prose h5 + *,
-.mna-prose h6 + * {
+.cafe-prose h1 + *,
+.cafe-prose h2 + *,
+.cafe-prose h3 + *,
+.cafe-prose h4 + *,
+.cafe-prose h5 + *,
+.cafe-prose h6 + * {
   margin-top: 0;
 }
-.mna-prose ul,
-.mna-prose ol {
+.cafe-prose ul,
+.cafe-prose ol {
   margin: 4px 0;
   padding-left: 1.5em;
 }
-.mna-prose ul {
+.cafe-prose ul {
   list-style: disc;
 }
-.mna-prose ol {
+.cafe-prose ol {
   padding-left: 1.7em;
   list-style: decimal;
 }
-.mna-prose li {
+.cafe-prose li {
   margin: 4px 0;
   padding-left: 0.375em;
 }
-.mna-prose ul > li::marker {
+.cafe-prose ul > li::marker {
   color: #c8c8c8;
 }
-.mna-prose ol > li::marker {
-  color: var(--mna-ink-5);
+.cafe-prose ol > li::marker {
+  color: var(--cafe-ink-5);
 }
-.mna-prose li p {
+.cafe-prose li p {
   margin: 4px 0;
 }
-.mna-prose code {
+.cafe-prose code {
   padding: 1px 5px;
   border-radius: 4px;
-  background: var(--mna-surface-2);
+  background: var(--cafe-surface-2);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.857em;
 }
-.mna-prose pre {
+.cafe-prose pre {
   margin: 16px 0;
   padding: 0.75em 1em;
   overflow-x: auto;
   border-radius: 6px;
-  background: var(--mna-surface-2);
+  background: var(--cafe-surface-2);
   font-size: 0.857em;
   line-height: 1.6;
 }
-.mna-prose pre code {
+.cafe-prose pre code {
   padding: 0;
   background: transparent;
   font-size: inherit;
 }
-.mna-prose blockquote {
+.cafe-prose blockquote {
   margin: 16px 0;
   padding-left: 1em;
   border-left: 2px solid #c8c8c8;
   color: #525252;
   font-style: normal;
 }
-.mna-prose blockquote p {
+.cafe-prose blockquote p {
   margin: 0;
 }
-.mna-prose table {
+.cafe-prose table {
   width: 100%;
   margin: 16px 0;
   border-collapse: collapse;
   font-size: 0.857em;
   line-height: 1.5;
 }
-.mna-prose th,
-.mna-prose td {
+.cafe-prose th,
+.cafe-prose td {
   padding: 6px 10px;
-  border: 1px solid var(--mna-hover);
+  border: 1px solid var(--cafe-hover);
   text-align: left;
 }
-.mna-prose hr {
+.cafe-prose hr {
   width: 20%;
   margin: 24px auto;
   border: 0;
-  border-top: 1px solid var(--mna-hover);
+  border-top: 1px solid var(--cafe-hover);
 }
-.mna-prose img {
+.cafe-prose img {
   display: block;
   width: 100%;
   height: auto;
@@ -840,33 +840,33 @@ p.mna-clamp-3:empty::before {
 }
 /* A caption is a 28px row that only exists when the image has alt text. The
    image's own 16px margin below it moves to the row. */
-.mna-prose img:has(+ .mna-caption) {
+.cafe-prose img:has(+ .cafe-caption) {
   margin-bottom: 0;
 }
 /* the old editor adds a "trailing break" line to a paragraph that ends with an
    image or a line break. post.js marks those paragraphs. */
-.mna-prose p.mna-tail::after {
+.cafe-prose p.cafe-tail::after {
   content: '';
   display: block;
   height: 1.7em;
 }
-.mna-caption {
+.cafe-caption {
   height: 28.5px;
   margin: 0 0 16px;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   font-size: 12px;
   line-height: 28.5px;
   text-align: center;
 }
 
 /* Image post: a carousel with arrows, a count and dots (added by post.js). */
-.mna-carousel:not(.ready) .mna-slide:not(:first-child) {
+.cafe-carousel:not(.ready) .cafe-slide:not(:first-child) {
   display: none;
 }
-.mna-carousel.ready .mna-slide:not(.active) {
+.cafe-carousel.ready .cafe-slide:not(.active) {
   display: none;
 }
-.mna-carousel-count {
+.cafe-carousel-count {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -876,7 +876,7 @@ p.mna-clamp-3:empty::before {
   color: #fff;
   font-size: 12px;
 }
-.mna-carousel-btn {
+.cafe-carousel-btn {
   position: absolute;
   top: 50%;
   display: grid;
@@ -893,16 +893,16 @@ p.mna-clamp-3:empty::before {
   cursor: pointer;
   transform: translateY(-50%);
 }
-.mna-carousel-btn:hover {
+.cafe-carousel-btn:hover {
   background: rgba(0, 0, 0, 0.7);
 }
-.mna-carousel-prev {
+.cafe-carousel-prev {
   left: 8px;
 }
-.mna-carousel-next {
+.cafe-carousel-next {
   right: 8px;
 }
-.mna-carousel-dots {
+.cafe-carousel-dots {
   position: absolute;
   bottom: 8px;
   left: 50%;
@@ -910,7 +910,7 @@ p.mna-clamp-3:empty::before {
   gap: 6px;
   transform: translateX(-50%);
 }
-.mna-carousel-dot {
+.cafe-carousel-dot {
   width: 6px;
   height: 6px;
   padding: 0;
@@ -919,12 +919,12 @@ p.mna-clamp-3:empty::before {
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
-.mna-carousel-dot.on {
+.cafe-carousel-dot.on {
   background: #fff;
 }
 
 /* Full-size image viewer (added by post.js). */
-.mna-viewer {
+.cafe-viewer {
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -932,13 +932,13 @@ p.mna-clamp-3:empty::before {
   place-items: center;
   background: rgba(0, 0, 0, 0.9);
 }
-.mna-viewer-img {
+.cafe-viewer-img {
   max-width: 92vw;
   max-height: 88vh;
   border-radius: 6px;
   object-fit: contain;
 }
-.mna-viewer-btn {
+.cafe-viewer-btn {
   position: absolute;
   display: grid;
   place-items: center;
@@ -953,65 +953,65 @@ p.mna-clamp-3:empty::before {
   line-height: 1;
   cursor: pointer;
 }
-.mna-viewer-btn:hover {
+.cafe-viewer-btn:hover {
   background: rgba(255, 255, 255, 0.26);
 }
-.mna-viewer-close {
+.cafe-viewer-close {
   top: 16px;
   right: 16px;
 }
-.mna-viewer-prev {
+.cafe-viewer-prev {
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
 }
-.mna-viewer-next {
+.cafe-viewer-next {
   top: 50%;
   right: 16px;
   transform: translateY(-50%);
 }
 
 /* Comments (added by post.js). */
-.mna-comment-loading .mna-skeleton {
+.cafe-comment-loading .cafe-skeleton {
   background: linear-gradient(90deg, #f3f3f3, #fafafa, #f3f3f3) !important;
   background-size: 200% 100%;
-  animation: mna-pulse 1.2s ease-in-out infinite;
+  animation: cafe-pulse 1.2s ease-in-out infinite;
 }
-.mna-comments-error {
+.cafe-comments-error {
   margin: 0;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   font-size: 14px;
 }
-.mna-comments > .mna-c {
+.cafe-comments > .cafe-c {
   padding: 16px 0;
 }
-.mna-comments > .mna-c + .mna-c {
-  border-top: 1px solid var(--mna-outline);
+.cafe-comments > .cafe-c + .cafe-c {
+  border-top: 1px solid var(--cafe-outline);
 }
-.mna-c-head {
+.cafe-c-head {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.mna-avatar-sm {
+.cafe-avatar-sm {
   width: 40px;
   height: 40px;
   font-size: 18px;
   letter-spacing: 0.01em;
 }
-.mna-c-name {
-  color: var(--mna-ink-8);
+.cafe-c-name {
+  color: var(--cafe-ink-8);
   font-size: 13px;
   font-weight: 600;
   line-height: 19.5px;
   letter-spacing: 0.015em;
 }
-.mna-c-time {
-  color: var(--mna-ink-5);
+.cafe-c-time {
+  color: var(--cafe-ink-5);
   font-size: 12px;
   line-height: 1.15;
 }
-.mna-c-body {
+.cafe-c-body {
   margin: 4px 0 0;
   padding-left: 56px;
   color: #383838;
@@ -1020,7 +1020,7 @@ p.mna-clamp-3:empty::before {
   letter-spacing: 0.015em;
   overflow-wrap: anywhere;
 }
-.mna-c-actions {
+.cafe-c-actions {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -1029,51 +1029,51 @@ p.mna-clamp-3:empty::before {
   font-size: 12px;
   line-height: 1.15;
 }
-.mna-c-like,
-.mna-c-action,
-.mna-c-view,
-.mna-c-hide {
+.cafe-c-like,
+.cafe-c-action,
+.cafe-c-view,
+.cafe-c-hide {
   padding: 0;
   border: 0;
   background: none;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   font: inherit;
   cursor: pointer;
 }
-.mna-c-like {
+.cafe-c-like {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.mna-c-like.on {
+.cafe-c-like.on {
   color: #e03636;
 }
-.mna-ico svg {
+.cafe-ico svg {
   display: block;
   width: 16px;
   height: 16px;
 }
-.mna-c-action:hover,
-.mna-c-view:hover,
-.mna-c-hide:hover {
+.cafe-c-action:hover,
+.cafe-c-view:hover,
+.cafe-c-hide:hover {
   text-decoration: underline;
 }
-.mna-c-replybox {
+.cafe-c-replybox {
   margin: 8px 0 0 56px;
 }
-.mna-c-replybox-actions {
+.cafe-c-replybox-actions {
   display: flex;
   gap: 8px;
   margin-top: 6px;
 }
-.mna-btn-ghost {
+.cafe-btn-ghost {
   background: transparent;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
 }
-.mna-btn-ghost:hover {
-  background: var(--mna-surface-2);
+.cafe-btn-ghost:hover {
+  background: var(--cafe-surface-2);
 }
-.mna-c-view {
+.cafe-c-view {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1082,18 +1082,18 @@ p.mna-clamp-3:empty::before {
   line-height: 1.15;
 }
 /* The old page keeps the space of this short line but does not show it. */
-.mna-c-line {
+.cafe-c-line {
   width: 24px;
   height: 1px;
   background: transparent;
 }
-.mna-c-replies {
+.cafe-c-replies {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 8px 0 0 56px;
 }
-.mna-c-hide {
+.cafe-c-hide {
   align-self: flex-start;
   margin-left: 56px;
   font-size: 12px;
@@ -1102,25 +1102,25 @@ p.mna-clamp-3:empty::before {
 
 /* ---- Mobile: rail becomes a bottom bar ---- */
 @media (max-width: 767px) {
-  .mna-rail,
-  .mna-header,
-  .mna-menu,
-  html[data-mna-sidebar='open'] .mna-sidebar {
+  .cafe-rail,
+  .cafe-header,
+  .cafe-menu,
+  html[data-cafe-sidebar='open'] .cafe-sidebar {
     display: none !important;
   }
-  .mna-mobile-header {
+  .cafe-mobile-header {
     display: flex !important;
   }
-  .mna-app {
+  .cafe-app {
     flex-direction: column !important;
   }
-  .mna-container {
+  .cafe-container {
     padding: 24px 16px !important;
   }
-  .mna-scroll {
+  .cafe-scroll {
     padding-bottom: 57px;
   }
-  .mna-bottom-nav {
+  .cafe-bottom-nav {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -1131,45 +1131,45 @@ p.mna-clamp-3:empty::before {
     border-top: 1px solid #e2e2e2;
     background: #fff;
   }
-  .mna-tab {
+  .cafe-tab {
     position: relative;
     display: flex;
     flex: 1;
     align-items: center;
     justify-content: center;
     padding: 8px 0;
-    color: var(--mna-ink-5);
+    color: var(--cafe-ink-5);
   }
-  .mna-tab.active {
-    color: var(--mna-ink);
+  .cafe-tab.active {
+    color: var(--cafe-ink);
   }
-  .mna-tab .mna-badge {
+  .cafe-tab .cafe-badge {
     top: 8px !important;
     right: calc(50% - 20px) !important;
   }
-  .mna-container-post {
+  .cafe-container-post {
     padding: 24px 16px 24px !important;
   }
-  .mna-carousel {
+  .cafe-carousel {
     height: 50vh !important;
     min-height: 240px;
   }
-  .mna-profile-head {
+  .cafe-profile-head {
     gap: 16px !important;
   }
-  .mna-profile-avatar {
+  .cafe-profile-avatar {
     width: 80px !important;
     height: 80px !important;
   }
-  .mna-profile-avatar .mna-profile-initial {
+  .cafe-profile-avatar .cafe-profile-initial {
     font-size: 32px !important;
     line-height: 1.5 !important;
   }
-  .mna-name-row {
+  .cafe-name-row {
     flex-direction: column !important;
     align-items: flex-start !important;
   }
-  .mna-profile-name {
+  .cafe-profile-name {
     max-width: 100%;
     font-size: 20px !important;
     line-height: 1.15 !important;
@@ -1178,11 +1178,11 @@ p.mna-clamp-3:empty::before {
 }
 
 /* ---- Settings: the dialog (desktop) and the Saved list (dialog and page) ---- */
-.mna-set-overlay {
+.cafe-set-overlay {
   overflow: auto;
   overscroll-behavior: contain;
 }
-.mna-set-modal {
+.cafe-set-modal {
   display: flex;
   flex-shrink: 0;
   width: 100%;
@@ -1195,7 +1195,7 @@ p.mna-clamp-3:empty::before {
   box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, inset 0 0.25px 1.5px 0 rgba(255, 255, 255, 0.16),
     0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 10px 2px rgba(0, 0, 0, 0.04), 0 24px 30px -8px rgba(0, 0, 0, 0.1);
 }
-.mna-set-side {
+.cafe-set-side {
   flex-shrink: 0;
   width: 220px;
   padding: 8px;
@@ -1203,19 +1203,19 @@ p.mna-clamp-3:empty::before {
   overscroll-behavior: contain;
   background: #f8f8f8;
 }
-.mna-set-group {
+.cafe-set-group {
   display: flex;
   align-items: center;
   height: 28px;
   padding: 0 8px;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
 }
-.mna-set-nav {
+.cafe-set-nav {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-.mna-set-nav-item {
+.cafe-set-nav-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1231,52 +1231,52 @@ p.mna-clamp-3:empty::before {
   text-align: left;
   cursor: pointer;
 }
-.mna-set-nav-item:hover:not(.active) {
+.cafe-set-nav-item:hover:not(.active) {
   background: rgba(0, 0, 0, 0.04);
 }
-.mna-set-nav-item.active {
+.cafe-set-nav-item.active {
   background: #fff;
   box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, inset 0 0.25px 1.5px 0 rgba(255, 255, 255, 0.16),
     0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.14);
 }
-.mna-set-nav-item:focus-visible {
+.cafe-set-nav-item:focus-visible {
   outline: 2px solid rgba(201, 201, 201, 0.9);
 }
-.mna-set-nav-label {
+.cafe-set-nav-label {
   flex: 1;
   min-width: 0;
 }
-.mna-set-avatar {
+.cafe-set-avatar {
   display: grid;
   flex-shrink: 0;
   place-items: center;
   width: 16px;
   height: 16px;
   border-radius: 9999px;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-5);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-5);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
-.mna-set-icon {
+.cafe-set-icon {
   display: block;
   flex-shrink: 0;
   width: 16px;
   height: 16px;
   line-height: 0;
 }
-.mna-set-nav-item .mna-set-icon {
+.cafe-set-nav-item .cafe-set-icon {
   color: #525252;
 }
-.mna-set-content {
+.cafe-set-content {
   display: flex;
   flex: 1;
   flex-direction: column;
   min-width: 0;
   min-height: 0;
 }
-.mna-set-title {
+.cafe-set-title {
   margin: 0;
   padding: 40px 70.4px 20px;
   color: #171717;
@@ -1285,42 +1285,42 @@ p.mna-clamp-3:empty::before {
   line-height: 18.4px;
   letter-spacing: 0.02em;
 }
-.mna-set-body {
+.cafe-set-body {
   flex: 1;
   min-height: 0;
   padding: 0 70.4px 40px;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-.mna-set-row {
+.cafe-set-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
   padding: 14px 0;
-  border-top: 1px solid var(--mna-outline);
+  border-top: 1px solid var(--cafe-outline);
 }
-.mna-set-row.first {
+.cafe-set-row.first {
   border-top: 0;
 }
-.mna-set-row-text {
+.cafe-set-row-text {
   min-width: 0;
 }
-.mna-set-row-title {
+.cafe-set-row-title {
   color: #171717;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.015em;
 }
-.mna-set-row-desc {
+.cafe-set-row-desc {
   margin-top: 4px;
   color: #525252;
   line-height: 20px;
 }
-.mna-set-value {
+.cafe-set-value {
   color: #525252;
 }
-.mna-set-button {
+.cafe-set-button {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -1328,36 +1328,36 @@ p.mna-clamp-3:empty::before {
   padding: 0 8px;
   border: 0;
   border-radius: 8px;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink);
   font: inherit;
   letter-spacing: inherit;
   white-space: nowrap;
   cursor: pointer;
 }
-.mna-set-button:hover:not(:disabled),
-#mna-settings-logout:hover {
+.cafe-set-button:hover:not(:disabled),
+#cafe-settings-logout:hover {
   background: #e9e9e9 !important;
 }
-.mna-set-button.danger {
+.cafe-set-button.danger {
   background: #fde7e7;
   color: #f79596;
 }
-.mna-set-button:disabled {
+.cafe-set-button:disabled {
   cursor: not-allowed;
 }
-.mna-saved-row {
+.cafe-saved-row {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 24px 0;
-  border-top: 1px solid var(--mna-outline);
+  border-top: 1px solid var(--cafe-outline);
 }
-.mna-saved-row.first {
+.cafe-saved-row.first {
   padding-top: 0;
   border-top: 0;
 }
-.mna-saved-link {
+.cafe-saved-link {
   display: flex;
   flex: 1;
   align-items: stretch;
@@ -1366,20 +1366,20 @@ p.mna-clamp-3:empty::before {
   color: inherit;
   text-decoration: none;
 }
-.mna-saved-text {
+.cafe-saved-text {
   flex: 1;
   min-width: 0;
 }
-.mna-saved-title {
+.cafe-saved-title {
   overflow: hidden;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.015em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.mna-saved-excerpt {
+.cafe-saved-excerpt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -1390,20 +1390,20 @@ p.mna-clamp-3:empty::before {
   line-height: 19.5px;
   letter-spacing: 0.015em;
 }
-.mna-saved-by {
+.cafe-saved-by {
   margin-top: 4px;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   font-size: 12px;
   letter-spacing: 0.02em;
 }
-.mna-saved-cover {
+.cafe-saved-cover {
   flex-shrink: 0;
   width: 96px;
   height: 80px;
   border-radius: 10px;
   object-fit: cover;
 }
-.mna-saved-remove {
+.cafe-saved-remove {
   display: grid;
   flex-shrink: 0;
   place-items: center;
@@ -1413,47 +1413,47 @@ p.mna-clamp-3:empty::before {
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   cursor: pointer;
 }
-.mna-saved-remove:hover {
+.cafe-saved-remove:hover {
   background: rgba(0, 0, 0, 0.06);
 }
-.mna-saved-empty,
-.mna-saved-error {
+.cafe-saved-empty,
+.cafe-saved-error {
   margin: 0;
   color: #525252;
   line-height: 1.5;
 }
-.mna-saved-panel .mna-loading {
+.cafe-saved-panel .cafe-loading {
   flex-direction: column;
   gap: 20px;
 }
-.mna-saved-panel .mna-skeleton {
+.cafe-saved-panel .cafe-skeleton {
   height: 80px;
   border-radius: 10px;
-  background: var(--mna-surface-2);
+  background: var(--cafe-surface-2);
 }
-.mna-saved-panel [hidden] {
+.cafe-saved-panel [hidden] {
   display: none !important;
 }
 
 /* ---- Notifications: bells and the panel ---- */
-button.mna-rail-item {
+button.cafe-rail-item {
   background: transparent;
 }
-.mna-bell:hover {
+.cafe-bell:hover {
   background: rgba(0, 0, 0, 0.05) !important;
 }
-.mna-bell.active {
-  background: var(--mna-surface-2) !important;
+.cafe-bell.active {
+  background: var(--cafe-surface-2) !important;
 }
 /* With the panel open, the bell is the active item and the page's own is not. */
-.mna-np-open .mna-rail-item.active:not([data-bell]) {
+.cafe-np-open .cafe-rail-item.active:not([data-bell]) {
   background: transparent;
   box-shadow: none;
 }
-.mna-np {
+.cafe-np {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1463,7 +1463,7 @@ button.mna-rail-item {
   flex-direction: column;
   width: 320px;
   max-width: 90vw;
-  border-right: 1px solid var(--mna-outline);
+  border-right: 1px solid var(--cafe-outline);
   background: #fff;
   box-shadow: 8px 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -4px rgba(0, 0, 0, 0.1);
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
@@ -1471,47 +1471,47 @@ button.mna-rail-item {
   font-weight: 420;
   line-height: 1.15;
   letter-spacing: 0.02em;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   -webkit-font-smoothing: antialiased;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s, visibility 0.15s;
 }
-.mna-np,
-.mna-np *,
-.mna-np *::before,
-.mna-np *::after {
+.cafe-np,
+.cafe-np *,
+.cafe-np *::before,
+.cafe-np *::after {
   box-sizing: border-box;
 }
-.mna-np.open {
+.cafe-np.open {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }
-.mna-np-header {
+.cafe-np-header {
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
   min-height: 48px;
   padding: 0 16px;
-  border-bottom: 1px solid var(--mna-outline);
+  border-bottom: 1px solid var(--cafe-outline);
 }
-.mna-np-title {
+.cafe-np-title {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
   line-height: 18.4px;
   letter-spacing: 0.015em;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
 }
-.mna-np-header-actions {
+.cafe-np-header-actions {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.mna-np-icon-btn {
+.cafe-np-icon-btn {
   display: grid;
   place-items: center;
   width: 28px;
@@ -1523,43 +1523,43 @@ button.mna-rail-item {
   color: #171717;
   cursor: pointer;
 }
-.mna-np-close {
-  color: var(--mna-ink-5);
+.cafe-np-close {
+  color: var(--cafe-ink-5);
 }
-.mna-np-icon-btn:hover {
-  background: var(--mna-surface-2);
+.cafe-np-icon-btn:hover {
+  background: var(--cafe-surface-2);
 }
-.mna-np-close:hover {
+.cafe-np-close:hover {
   color: #383838;
 }
-.mna-np-icon-btn:disabled {
+.cafe-np-icon-btn:disabled {
   opacity: 0.6;
   cursor: default;
 }
-.mna-np-icon,
-.mna-np-empty-icon,
-.mna-np-type-icon {
+.cafe-np-icon,
+.cafe-np-empty-icon,
+.cafe-np-type-icon {
   display: block;
   line-height: 0;
 }
 /* The icons' own svg has a fixed size inline; these boxes set the real one. */
-.mna-np-icon svg,
-.mna-np-empty-icon svg,
-.mna-np-type-icon svg {
+.cafe-np-icon svg,
+.cafe-np-empty-icon svg,
+.cafe-np-type-icon svg {
   width: 100% !important;
   height: 100% !important;
 }
-.mna-np-icon {
+.cafe-np-icon {
   width: 16px;
   height: 16px;
 }
-.mna-np-list {
+.cafe-np-list {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-.mna-np-row {
+.cafe-np-row {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -1567,35 +1567,35 @@ button.mna-rail-item {
   padding: 12px;
   cursor: pointer;
 }
-.mna-np-row + .mna-np-row {
-  border-top: 1px solid var(--mna-outline);
+.cafe-np-row + .cafe-np-row {
+  border-top: 1px solid var(--cafe-outline);
 }
-.mna-np-row:hover {
+.cafe-np-row:hover {
   background: #f8f8f8;
 }
-.mna-np-avatar-wrap {
+.cafe-np-avatar-wrap {
   position: relative;
   flex-shrink: 0;
 }
-.mna-np-avatar {
+.cafe-np-avatar {
   display: grid;
   place-items: center;
   width: 24px;
   height: 24px;
   overflow: hidden;
   border-radius: 9999px;
-  background: var(--mna-surface-2);
-  color: var(--mna-ink-5);
+  background: var(--cafe-surface-2);
+  color: var(--cafe-ink-5);
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
 }
-.mna-np-avatar img {
+.cafe-np-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.mna-np-type {
+.cafe-np-type {
   position: absolute;
   right: -4px;
   bottom: -4px;
@@ -1606,56 +1606,56 @@ button.mna-rail-item {
   border-radius: 9999px;
   color: #fff;
 }
-.mna-np-type-icon {
+.cafe-np-type-icon {
   width: 8px;
   height: 8px;
 }
-.mna-np-text {
+.cafe-np-text {
   flex: 1;
   min-width: 0;
 }
-.mna-np-msg {
+.cafe-np-msg {
   margin: 0;
   font-size: 13px;
   line-height: 19.5px;
   letter-spacing: 0.015em;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
 }
-.mna-np-msg.read {
+.cafe-np-msg.read {
   color: #383838;
 }
-.mna-np-actor {
+.cafe-np-actor {
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
 }
-.mna-np-time {
+.cafe-np-time {
   margin-top: 2px;
   font-size: 12px;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
 }
-.mna-np-actions {
+.cafe-np-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
 }
-.mna-np-actions.busy .mna-btn {
+.cafe-np-actions.busy .cafe-btn {
   opacity: 0.6;
   cursor: default;
 }
-.mna-np-status {
+.cafe-np-status {
   display: inline-flex;
   align-items: center;
   height: 20px;
   margin-top: 8px;
   padding: 0 6px;
   border-radius: 9999px;
-  background: var(--mna-surface-2);
+  background: var(--cafe-surface-2);
   color: #525252;
   font-size: 12px;
 }
-.mna-np-dot {
+.cafe-np-dot {
   flex-shrink: 0;
   width: 8px;
   height: 8px;
@@ -1663,7 +1663,7 @@ button.mna-rail-item {
   border-radius: 9999px;
   background: #383838;
 }
-.mna-np-empty {
+.cafe-np-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1671,47 +1671,47 @@ button.mna-rail-item {
   padding: 96px 16px;
   text-align: center;
 }
-.mna-np-empty-icon {
+.cafe-np-empty-icon {
   width: 32px;
   height: 32px;
   color: #cecece;
 }
-.mna-np-empty p,
-.mna-np-error {
+.cafe-np-empty p,
+.cafe-np-error {
   margin: 0;
-  color: var(--mna-ink-5);
+  color: var(--cafe-ink-5);
   line-height: 1.5;
 }
-.mna-np-error {
+.cafe-np-error {
   padding: 16px;
 }
-.mna-np-skeleton {
+.cafe-np-skeleton {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 16px;
 }
-.mna-np-skeleton .mna-skeleton {
+.cafe-np-skeleton .cafe-skeleton {
   height: 16px;
   border-radius: 6px;
   background: linear-gradient(90deg, #f3f3f3, #fafafa, #f3f3f3);
   background-size: 200% 100%;
-  animation: mna-pulse 1.2s ease-in-out infinite;
+  animation: cafe-pulse 1.2s ease-in-out infinite;
 }
 
 /* ---- Code blocks of a post (code.js) ---- */
-.mna-prose .mna-code-block {
+.cafe-prose .cafe-code-block {
   position: relative;
   margin: 16px 0;
 }
-.mna-prose pre.mna-code {
+.cafe-prose pre.cafe-code {
   display: flex;
   align-items: flex-start;
   gap: 20px;
   margin: 0;
   padding: 12px 16px 12px 12px;
   overflow: hidden;
-  border: 1px solid var(--mna-outline-2, #e2e2e2);
+  border: 1px solid var(--cafe-outline-2, #e2e2e2);
   border-radius: 12px;
   background: #f6f8fa;
   color: #24292e;
@@ -1721,7 +1721,7 @@ button.mna-rail-item {
   font-weight: 400;
   line-height: 1.7;
 }
-.mna-code-gutter {
+.cafe-code-gutter {
   display: flex;
   flex: none;
   flex-direction: column;
@@ -1729,10 +1729,10 @@ button.mna-rail-item {
   color: #999;
   user-select: none;
 }
-.mna-code-gutter span {
+.cafe-code-gutter span {
   display: block;
 }
-.mna-prose pre.mna-code .mna-code-body {
+.cafe-prose pre.cafe-code .cafe-code-body {
   flex: 1;
   min-width: 0;
   overflow-x: auto;
@@ -1742,7 +1742,7 @@ button.mna-rail-item {
   line-height: 1.7;
   white-space: pre;
 }
-.mna-code-tools {
+.cafe-code-tools {
   position: absolute;
   top: 0;
   right: 0;
@@ -1753,23 +1753,23 @@ button.mna-rail-item {
   opacity: 0;
   transition: opacity 0.15s;
 }
-.mna-code-block:hover .mna-code-tools,
-.mna-code-tools:focus-within {
+.cafe-code-block:hover .cafe-code-tools,
+.cafe-code-tools:focus-within {
   opacity: 1;
 }
 @media (hover: none) {
-  .mna-code-tools {
+  .cafe-code-tools {
     opacity: 1;
   }
 }
-.mna-code-language {
+.cafe-code-language {
   padding: 0 4px;
   color: #999;
   font-size: 12px;
   letter-spacing: 0.02em;
   user-select: none;
 }
-.mna-code-copy {
+.cafe-code-copy {
   display: grid;
   place-items: center;
   width: 24px;
@@ -1778,160 +1778,160 @@ button.mna-rail-item {
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: var(--mna-ink-8);
+  color: var(--cafe-ink-8);
   cursor: pointer;
 }
-.mna-code-copy:hover {
+.cafe-code-copy:hover {
   background: rgba(0, 0, 0, 0.06);
 }
-.mna-code-icon {
+.cafe-code-icon {
   display: block;
   width: 16px;
   height: 16px;
   line-height: 0;
 }
-.mna-code-icon svg {
+.cafe-code-icon svg {
   width: 100% !important;
   height: 100% !important;
 }
 /* highlight.js, GitHub light: the same colours as the editor's. */
-.mna-code .hljs-doctag,
-.mna-code .hljs-keyword,
-.mna-code .hljs-meta .hljs-keyword,
-.mna-code .hljs-template-tag,
-.mna-code .hljs-template-variable,
-.mna-code .hljs-type,
-.mna-code .hljs-variable.language_ {
+.cafe-code .hljs-doctag,
+.cafe-code .hljs-keyword,
+.cafe-code .hljs-meta .hljs-keyword,
+.cafe-code .hljs-template-tag,
+.cafe-code .hljs-template-variable,
+.cafe-code .hljs-type,
+.cafe-code .hljs-variable.language_ {
   color: #d73a49;
 }
-.mna-code .hljs-title,
-.mna-code .hljs-title.class_,
-.mna-code .hljs-title.class_.inherited__,
-.mna-code .hljs-title.function_ {
+.cafe-code .hljs-title,
+.cafe-code .hljs-title.class_,
+.cafe-code .hljs-title.class_.inherited__,
+.cafe-code .hljs-title.function_ {
   color: #6f42c1;
 }
-.mna-code .hljs-attr,
-.mna-code .hljs-attribute,
-.mna-code .hljs-literal,
-.mna-code .hljs-meta,
-.mna-code .hljs-number,
-.mna-code .hljs-operator,
-.mna-code .hljs-variable,
-.mna-code .hljs-selector-attr,
-.mna-code .hljs-selector-class,
-.mna-code .hljs-selector-id {
+.cafe-code .hljs-attr,
+.cafe-code .hljs-attribute,
+.cafe-code .hljs-literal,
+.cafe-code .hljs-meta,
+.cafe-code .hljs-number,
+.cafe-code .hljs-operator,
+.cafe-code .hljs-variable,
+.cafe-code .hljs-selector-attr,
+.cafe-code .hljs-selector-class,
+.cafe-code .hljs-selector-id {
   color: #005cc5;
 }
-.mna-code .hljs-regexp,
-.mna-code .hljs-string,
-.mna-code .hljs-meta .hljs-string {
+.cafe-code .hljs-regexp,
+.cafe-code .hljs-string,
+.cafe-code .hljs-meta .hljs-string {
   color: #032f62;
 }
-.mna-code .hljs-built_in,
-.mna-code .hljs-symbol {
+.cafe-code .hljs-built_in,
+.cafe-code .hljs-symbol {
   color: #e36209;
 }
-.mna-code .hljs-comment,
-.mna-code .hljs-code,
-.mna-code .hljs-formula {
+.cafe-code .hljs-comment,
+.cafe-code .hljs-code,
+.cafe-code .hljs-formula {
   color: #6a737d;
 }
-.mna-code .hljs-name,
-.mna-code .hljs-quote,
-.mna-code .hljs-selector-tag,
-.mna-code .hljs-selector-pseudo {
+.cafe-code .hljs-name,
+.cafe-code .hljs-quote,
+.cafe-code .hljs-selector-tag,
+.cafe-code .hljs-selector-pseudo {
   color: #22863a;
 }
-.mna-code .hljs-subst {
+.cafe-code .hljs-subst {
   color: #24292e;
 }
-.mna-code .hljs-section {
+.cafe-code .hljs-section {
   color: #005cc5;
   font-weight: bold;
 }
-.mna-code .hljs-bullet {
+.cafe-code .hljs-bullet {
   color: #735c0f;
 }
-.mna-code .hljs-emphasis {
+.cafe-code .hljs-emphasis {
   color: #24292e;
   font-style: italic;
 }
-.mna-code .hljs-strong {
+.cafe-code .hljs-strong {
   color: #24292e;
   font-weight: 700;
 }
-.mna-code .hljs-addition {
+.cafe-code .hljs-addition {
   color: #22863a;
   background-color: #f0fff4;
 }
-.mna-code .hljs-deletion {
+.cafe-code .hljs-deletion {
   color: #b31d28;
   background-color: #ffeef0;
 }
 
 /* ---- Editor and chat page shells ---- */
-.mna-island-main {
+.cafe-island-main {
   min-height: 0;
 }
 /* The editor's phone header takes its height from this, as in the old app's shell. */
-#mna-write-root,
-#mna-chat-root {
+#cafe-write-root,
+#cafe-chat-root {
   --mobile-header-height: 52px;
 }
 /* The header keeps its height; the scroll area takes what is left. */
-#mna-write-root > header,
-#mna-chat-root > header {
+#cafe-write-root > header,
+#cafe-chat-root > header {
   flex-shrink: 0;
 }
-#mna-write-root > :not(header),
-#mna-chat-root > :not(header) {
+#cafe-write-root > :not(header),
+#cafe-chat-root > :not(header) {
   flex: 0 0 auto;
 }
 /* Only the editor's scroll area (the one with h-full) fills the height. The
    other children (the file input, the dialog and toast holders) must not
    take a share of it. */
-#mna-write-root > .h-full {
+#cafe-write-root > .h-full {
   flex: 1 1 0;
   min-height: 0;
 }
 
 /* The stand-in for the editor and chat until their script starts; the phone layout differs. */
 @media (max-width: 767px) {
-  .mna-skeleton-page {
+  .cafe-skeleton-page {
     display: none !important;
   }
 }
 
 /* ---- Login and Signup ---- */
-.mna-auth-input:focus {
+.cafe-auth-input:focus {
   border-color: #999 !important;
   background: #fff !important;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.14);
 }
-.mna-auth-input::placeholder,
-.mna-otp::placeholder {
-  color: var(--mna-ink-5);
+.cafe-auth-input::placeholder,
+.cafe-otp::placeholder {
+  color: var(--cafe-ink-5);
   opacity: 1;
 }
-.mna-otp:focus {
+.cafe-otp:focus {
   border-color: #999 !important;
   box-shadow: 0 0 0 2px #077ddf;
 }
-.mna-auth-btn-solid:hover:not(:disabled) {
+.cafe-auth-btn-solid:hover:not(:disabled) {
   background: #383838 !important;
 }
-.mna-auth-btn-outline:hover:not(:disabled) {
+.cafe-auth-btn-outline:hover:not(:disabled) {
   background: #f8f8f8 !important;
 }
-.mna-auth-btn-solid:disabled,
-.mna-auth-btn-outline:disabled {
+.cafe-auth-btn-solid:disabled,
+.cafe-auth-btn-outline:disabled {
   cursor: default !important;
 }
-.mna-auth-link-btn {
+.cafe-auth-link-btn {
   padding: 0;
   border: 0;
   background: none;
-  color: var(--mna-ink);
+  color: var(--cafe-ink);
   font: inherit;
   font-weight: 500;
   letter-spacing: inherit;
@@ -1940,32 +1940,32 @@ button.mna-rail-item {
 }
 
 /* ---- Home feed ---- */
-.mna-feed > * + * {
-  border-top: 1px solid var(--mna-outline);
+.cafe-feed > * + * {
+  border-top: 1px solid var(--cafe-outline);
 }
 @media (max-width: 767px) {
-  .mna-island-main {
+  .cafe-island-main {
     flex-grow: 0 !important;
     height: calc(100vh - 57px) !important;
   }
-  html[data-mna-sidebar='open'] .mna-np,
-  .mna-np {
+  html[data-cafe-sidebar='open'] .cafe-np,
+  .cafe-np {
     left: 0;
     width: 100%;
     max-width: none;
     border-right: 0;
     box-shadow: none;
   }
-  .mna-container-home {
+  .cafe-container-home {
     padding: 16px !important;
   }
-  .mna-home-bar {
+  .cafe-home-bar {
     display: flex !important;
   }
 }
 
-/* ---- Pop-up menu (MNA.popupMenu) ---- */
-.mna-popup {
+/* ---- Pop-up menu (CAFE.popupMenu) ---- */
+.cafe-popup {
   position: fixed;
   z-index: 70;
   min-width: 160px;
@@ -1979,7 +1979,7 @@ button.mna-rail-item {
   letter-spacing: 0.02em;
   color: #171717;
 }
-.mna-popup-item {
+.cafe-popup-item {
   display: flex;
   width: 100%;
   height: 28px;
@@ -1993,16 +1993,16 @@ button.mna-rail-item {
   text-align: left;
   cursor: pointer;
 }
-.mna-popup-item:hover {
-  background: var(--mna-surface-2);
+.cafe-popup-item:hover {
+  background: var(--cafe-surface-2);
 }
-.mna-popup-item.danger {
+.cafe-popup-item.danger {
   color: #b41d1d;
 }
-.mna-popup-icon {
+.cafe-popup-icon {
   display: inline-flex;
   color: #7c7c7c;
 }
-.mna-popup-item.danger .mna-popup-icon {
+.cafe-popup-item.danger .cafe-popup-icon {
   color: inherit;
 }

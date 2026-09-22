@@ -5,13 +5,13 @@ finds it by that route. "/" is different: Builder's own way to take "/" is its
 home page setting, which needs the page to be marked there. This renderer
 avoids the setting. It is tried before Builder's own (this app comes first in
 the app order), it only answers for "/", and it only answers while the
-"mna-home" page is published. Unpublish that page in Builder and "/" goes back
+"cafe-home" page is published. Unpublish that page in Builder and "/" goes back
 to Frappe's own home page, with nothing else to undo.
 """
 
 import frappe
 
-HOME_ROUTE = "mna-home"
+HOME_ROUTE = "cafe-home"
 
 try:
 	from builder.builder.doctype.builder_page.builder_page import BuilderPageRenderer

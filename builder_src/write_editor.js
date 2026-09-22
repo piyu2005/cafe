@@ -3,7 +3,7 @@
 ;(function () {
 	'use strict'
 
-	var W = window.MNA.write
+	var W = window.CAFE.write
 	var BUBBLE_GAP = 8
 	var editor = null
 	var dom = {}
@@ -64,11 +64,11 @@
 	}
 
 	function tool(icon, label, onClick, extra) {
-		var button = W.el('button', 'mna-w-tool' + (extra && extra.label ? ' with-label' : ''))
+		var button = W.el('button', 'cafe-w-tool' + (extra && extra.label ? ' with-label' : ''))
 		button.type = 'button'
 		button.title = label
 		button.setAttribute('aria-label', label)
-		button.appendChild(W.icon(icon, 'mna-w-small'))
+		button.appendChild(W.icon(icon, 'cafe-w-small'))
 		if (extra && extra.label) button.appendChild(W.el('span', '', extra.label))
 		// Keep the cursor in the story while you press a button.
 		button.addEventListener('mousedown', function (event) {
@@ -81,7 +81,7 @@
 	}
 
 	function separator() {
-		return W.el('span', 'mna-w-sep')
+		return W.el('span', 'cafe-w-sep')
 	}
 
 	// ---- Toolbar ----
@@ -147,7 +147,7 @@
 	// The address you type for a link. Empty removes the link.
 	function linkDialog() {
 		var current = editor.getAttributes('link').href || ''
-		MNA.form({
+		CAFE.form({
 			title: 'Link',
 			submitLabel: 'Apply',
 			values: { url: current },
@@ -168,7 +168,7 @@
 	}
 
 	function buildToolbar() {
-		var bar = W.el('div', 'mna-w-toolbar')
+		var bar = W.el('div', 'cafe-w-toolbar')
 		MARKS.forEach(function (item) {
 			bar.appendChild(toggleTool(item))
 		})
@@ -196,7 +196,7 @@
 
 	// The little bar that floats over selected text.
 	function buildBubble() {
-		var bubble = W.el('div', 'mna-w-bubble')
+		var bubble = W.el('div', 'cafe-w-bubble')
 		bubble.hidden = true
 		MARKS.forEach(function (item) {
 			bubble.appendChild(toggleTool(item))
@@ -287,16 +287,16 @@
 	}
 
 	W.build = function (root) {
-		var M = window.MnaWriteEditor
-		dom.scroll = W.el('div', 'mna-w-scroll')
-		var page = W.el('div', 'mna-w-page')
-		dom.loading = W.el('div', 'mna-w-loading')
-		for (var i = 0; i < 10; i++) dom.loading.appendChild(W.el('div', 'mna-skeleton'))
+		var M = window.CafeWriteEditor
+		dom.scroll = W.el('div', 'cafe-w-scroll')
+		var page = W.el('div', 'cafe-w-page')
+		dom.loading = W.el('div', 'cafe-w-loading')
+		for (var i = 0; i < 10; i++) dom.loading.appendChild(W.el('div', 'cafe-skeleton'))
 		dom.loading.hidden = true
-		dom.form = W.el('div', 'mna-w-form')
-		dom.status = W.el('p', 'mna-w-status')
+		dom.form = W.el('div', 'cafe-w-form')
+		dom.status = W.el('p', 'cafe-w-status')
 		dom.status.hidden = true
-		var host = W.el('div', 'mna-w-editor')
+		var host = W.el('div', 'cafe-w-editor')
 		editor = new M.Editor({
 			element: host,
 			extensions: [
@@ -309,14 +309,14 @@
 				M.Image.configure({ upload: W.uploadStory }),
 				M.ImageGroup,
 			],
-			editorProps: { attributes: { class: 'mna-w-prose', 'aria-label': 'Story' } },
+			editorProps: { attributes: { class: 'cafe-w-prose', 'aria-label': 'Story' } },
 			onTransaction: function () {
 				actives.forEach(function (run) {
 					run()
 				})
 			},
 		})
-		dom.title = W.el('input', 'mna-w-title')
+		dom.title = W.el('input', 'cafe-w-title')
 		dom.title.type = 'text'
 		dom.title.placeholder = 'Give your story a title'
 		dom.title.setAttribute('aria-label', 'Title')
@@ -330,18 +330,18 @@
 				editor.chain().focus('start').run()
 			}
 		})
-		var tags = W.el('div', 'mna-w-tags')
+		var tags = W.el('div', 'cafe-w-tags')
 		tags.appendChild(W.el('label', '', 'Tags'))
 		dom.tags = W.el('input')
 		dom.tags.type = 'text'
 		dom.tags.placeholder = 'Design, UX/UI, Minimalism'
-		dom.tags.id = 'mna-w-tags'
-		tags.firstChild.setAttribute('for', 'mna-w-tags')
+		dom.tags.id = 'cafe-w-tags'
+		tags.firstChild.setAttribute('for', 'cafe-w-tags')
 		dom.tags.addEventListener('input', function () {
 			W.state.form.tags = dom.tags.value
 		})
 		tags.appendChild(dom.tags)
-		dom.error = W.el('p', 'mna-w-error')
+		dom.error = W.el('p', 'cafe-w-error')
 		dom.error.hidden = true
 		;[dom.status, buildToolbar(), dom.title, host, tags, dom.error].forEach(function (node) {
 			dom.form.appendChild(node)

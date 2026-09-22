@@ -269,24 +269,24 @@ def main():
 		shutil.copy(font, FONTS_OUT / font.name)
 
 	scripts = [
-		("MNA Styles", "CSS", "styles.css"),
-		("MNA UI", "JavaScript", "ui.js"),
-		("MNA Shell", "JavaScript", "shell.js"),
-		("MNA Search", "JavaScript", "search.js"),
-		("MNA Profile", "JavaScript", "profile.js"),
-		("MNA Posts", "JavaScript", "posts.js"),
-		("MNA Post", "JavaScript", "post.js"),
-		("MNA Home", "JavaScript", "home.js"),
-		("MNA Settings", "JavaScript", "settings.js"),
-		("MNA Notifications", "JavaScript", "notifications.js"),
-		("MNA Auth", "JavaScript", "auth.js"),
-		("MNA Code", "JavaScript", "code.js"),
-		("MNA Chat Styles", "CSS", "chat.css"),
-		*[(f"MNA Chat {part.title()}", "JavaScript", f"chat_{part}.js") for part in CHAT_PARTS],
-		("MNA Publications Styles", "CSS", "publications.css"),
-		*[(f"MNA Pub {part.title()}", "JavaScript", f"pub_{part}.js") for part in PUB_PARTS],
-		("MNA Write Styles", "CSS", "write.css"),
-		*[(f"MNA Write {part.title()}", "JavaScript", f"write_{part}.js") for part in WRITE_PARTS],
+		("Cafe Styles", "CSS", "styles.css"),
+		("Cafe UI", "JavaScript", "ui.js"),
+		("Cafe Shell", "JavaScript", "shell.js"),
+		("Cafe Search", "JavaScript", "search.js"),
+		("Cafe Profile", "JavaScript", "profile.js"),
+		("Cafe Posts", "JavaScript", "posts.js"),
+		("Cafe Post", "JavaScript", "post.js"),
+		("Cafe Home", "JavaScript", "home.js"),
+		("Cafe Settings", "JavaScript", "settings.js"),
+		("Cafe Notifications", "JavaScript", "notifications.js"),
+		("Cafe Auth", "JavaScript", "auth.js"),
+		("Cafe Code", "JavaScript", "code.js"),
+		("Cafe Chat Styles", "CSS", "chat.css"),
+		*[(f"Cafe Chat {part.title()}", "JavaScript", f"chat_{part}.js") for part in CHAT_PARTS],
+		("Cafe Publications Styles", "CSS", "publications.css"),
+		*[(f"Cafe Pub {part.title()}", "JavaScript", f"pub_{part}.js") for part in PUB_PARTS],
+		("Cafe Write Styles", "CSS", "write.css"),
+		*[(f"Cafe Write {part.title()}", "JavaScript", f"write_{part}.js") for part in WRITE_PARTS],
 	]
 	for index, (name, kind, filename) in enumerate(scripts, start=1):
 		source = (SRC / filename).read_text()
@@ -297,9 +297,9 @@ def main():
 			)
 		write_json("client_scripts", name, client_script(name, kind, source, index))
 
-	shell_id = hashlib.sha1(b"cafe:MNA Shell").hexdigest()[:16]
+	shell_id = hashlib.sha1(b"cafe:Cafe Shell").hexdigest()[:16]
 	shell_block = build_shell()
-	write_json("components", "MNA Shell", component(shell_id, "MNA Shell", shell_block))
+	write_json("components", "Cafe Shell", component(shell_id, "Cafe Shell", shell_block))
 
 	# Registers the heading font with Builder, so its editor canvas and the
 	# published page both load it (a CSS @font-face would reach only the page).
@@ -327,59 +327,59 @@ def main():
 		},
 	)
 
-	shared = ["MNA Styles", "MNA UI", "MNA Shell", "MNA Settings", "MNA Notifications"]
+	shared = ["Cafe Styles", "Cafe UI", "Cafe Shell", "Cafe Settings", "Cafe Notifications"]
 	# The sign-in pages have no shell, so none of the scripts that work with it.
-	alone = ["MNA Styles", "MNA UI"]
+	alone = ["Cafe Styles", "Cafe UI"]
 
 	def pub_scripts(part):
-		return ["MNA Publications Styles", "MNA Pub Core", f"MNA Pub {part.title()}"]
+		return ["Cafe Publications Styles", "Cafe Pub Core", f"Cafe Pub {part.title()}"]
 
-	write_scripts = ["MNA Write Styles"] + [f"MNA Write {part.title()}" for part in WRITE_PARTS]
-	chat_scripts = ["MNA Chat Styles"] + [f"MNA Chat {part.title()}" for part in CHAT_PARTS]
+	write_scripts = ["Cafe Write Styles"] + [f"Cafe Write {part.title()}" for part in WRITE_PARTS]
+	chat_scripts = ["Cafe Chat Styles"] + [f"Cafe Chat {part.title()}" for part in CHAT_PARTS]
 	pages = [
-		("mna-search", "Search", "search", build_search, [*shared, "MNA Search"], SEARCH_DATA_SCRIPT, False),
+		("cafe-search", "Search", "search", build_search, [*shared, "Cafe Search"], SEARCH_DATA_SCRIPT, False),
 		(
-			"mna-profile",
+			"cafe-profile",
 			"Profile",
 			"profile/:username",
 			build_profile,
-			[*shared, "MNA Profile"],
+			[*shared, "Cafe Profile"],
 			PROFILE_DATA_SCRIPT,
 			True,
 		),
 		(
-			"mna-profile-self",
+			"cafe-profile-self",
 			"My profile",
 			"profile",
 			build_profile_redirect,
-			["MNA Styles"],
+			["Cafe Styles"],
 			PROFILE_REDIRECT_SCRIPT,
 			False,
 		),
 		(
-			"mna-profile-posts",
+			"cafe-profile-posts",
 			"Profile posts",
 			"profile/:username/posts",
 			build_posts_page,
-			[*shared, "MNA Posts"],
+			[*shared, "Cafe Posts"],
 			POSTS_DATA_SCRIPT,
 			True,
 		),
 		(
-			"mna-post",
+			"cafe-post",
 			"Post",
 			"posts/:post_id",
 			build_post_page,
-			[*shared, "MNA Post", "MNA Code"],
+			[*shared, "Cafe Post", "Cafe Code"],
 			POST_DATA_SCRIPT,
 			True,
 		),
-		("mna-home", "Home", "mna-home", build_home, [*shared, "MNA Home"], HOME_DATA_SCRIPT, False),
-		("mna-settings", "Settings", "settings", build_settings, shared, SETTINGS_DATA_SCRIPT, False),
-		("mna-login", "Login", "login", build_login, [*alone, "MNA Auth"], LOGIN_DATA_SCRIPT, False),
-		("mna-signup", "Signup", "signup", build_signup, [*alone, "MNA Auth"], SIGNUP_DATA_SCRIPT, False),
+		("cafe-home", "Home", "cafe-home", build_home, [*shared, "Cafe Home"], HOME_DATA_SCRIPT, False),
+		("cafe-settings", "Settings", "settings", build_settings, shared, SETTINGS_DATA_SCRIPT, False),
+		("cafe-login", "Login", "login", build_login, [*alone, "Cafe Auth"], LOGIN_DATA_SCRIPT, False),
+		("cafe-signup", "Signup", "signup", build_signup, [*alone, "Cafe Auth"], SIGNUP_DATA_SCRIPT, False),
 		(
-			"mna-publication",
+			"cafe-publication",
 			"Publication",
 			"publications/:handle",
 			build_publication,
@@ -388,7 +388,7 @@ def main():
 			True,
 		),
 		(
-			"mna-publication-members",
+			"cafe-publication-members",
 			"Publication members",
 			"publications/:handle/members",
 			build_members,
@@ -397,7 +397,7 @@ def main():
 			True,
 		),
 		(
-			"mna-invite",
+			"cafe-invite",
 			"Invite people",
 			"invite",
 			build_invite,
@@ -406,7 +406,7 @@ def main():
 			False,
 		),
 		(
-			"mna-write",
+			"cafe-write",
 			"Write",
 			"write",
 			build_native_write,
@@ -416,7 +416,7 @@ def main():
 			native_write_head(),
 		),
 		(
-			"mna-write-edit",
+			"cafe-write-edit",
 			"Edit post",
 			"write/:post_id",
 			build_native_write,
@@ -426,7 +426,7 @@ def main():
 			native_write_head(),
 		),
 		(
-			"mna-chat",
+			"cafe-chat",
 			"Messages",
 			"messages",
 			build_native_chat,
@@ -436,7 +436,7 @@ def main():
 			native_head_html(),
 		),
 		(
-			"mna-chat-thread",
+			"cafe-chat-thread",
 			"Conversation",
 			"messages/:conversation_id",
 			build_native_chat,

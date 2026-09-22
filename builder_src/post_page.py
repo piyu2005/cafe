@@ -74,7 +74,7 @@ def build_title():
 		block(
 			"h1",
 			"Title",
-			["mna-post-title"],
+			["cafe-post-title"],
 			text="Post title",
 			styles={"margin": "0", **text_style(24, "600", INK_BLACK, "0.005em", "1.4")},
 		),
@@ -133,7 +133,7 @@ def menu_item(tag, attrs, icon_name, label, custom=None):
 	return block(
 		tag,
 		label,
-		["mna-menu-item"],
+		["cafe-menu-item"],
 		attrs={**attrs, "role": "menuitem"},
 		custom=custom,
 		inner_html=svg(icon_name, 16, MUTED) + html_el("span", text=label),
@@ -145,7 +145,7 @@ def build_more_menu():
 	button = block(
 		"button",
 		"More",
-		["mna-icon-btn-subtle"],
+		["cafe-icon-btn-subtle"],
 		attrs={"type": "button", "aria-label": "More", "aria-haspopup": "menu"},
 		custom={"data-action": "toggle-menu"},
 		inner_html=svg("ellipsis", 16),
@@ -170,7 +170,7 @@ def build_more_menu():
 	menu = block(
 		"div",
 		"Menu",
-		["mna-pop"],
+		["cafe-pop"],
 		attrs={"role": "menu"},
 		styles={
 			"display": "none",
@@ -195,7 +195,7 @@ def build_author_row():
 			block(
 				"a",
 				"Author name",
-				["mna-author", "mna-author-head"],
+				["cafe-author", "cafe-author-head"],
 				attrs={"href": "/profile"},
 				text="Author",
 				styles={**text_style(16, "600", INK_BLACK, "0.015em", "24px"), "display": "block"},
@@ -235,7 +235,7 @@ def build_carousel():
 		block(
 			"img",
 			"Picture",
-			["mna-slide"],
+			["cafe-slide"],
 			attrs={"src": "", "alt": ""},
 			styles={"width": "100%", "height": "100%", "objectFit": "contain"},
 		),
@@ -245,7 +245,7 @@ def build_carousel():
 	slides = block(
 		"div",
 		"Pictures",
-		["mna-slides"],
+		["cafe-slides"],
 		styles={"width": "100%", "height": "100%"},
 		children=[slide],
 	)
@@ -255,7 +255,7 @@ def build_carousel():
 		block(
 			"div",
 			"Carousel",
-			["mna-carousel"],
+			["cafe-carousel"],
 			styles={
 				"position": "relative",
 				"marginTop": "24px",
@@ -276,8 +276,8 @@ def build_content():
 		block(
 			"div",
 			"Content",
-			["mna-prose"],
-			attrs={"id": "mna-content"},
+			["cafe-prose"],
+			attrs={"id": "cafe-content"},
 			text="The text of the post.",
 			styles={"marginTop": "24px", **text_style(15, "420", "#383838", "0.02em", "1.7")},
 		),
@@ -290,7 +290,7 @@ def build_tags():
 		block(
 			"span",
 			"Tag",
-			["mna-tag"],
+			["cafe-tag"],
 			text="tag",
 			styles={
 				"display": "inline-flex",
@@ -320,7 +320,7 @@ def action_button(action, icon_name, count_key, count_id, attrs=None):
 	return block(
 		"button",
 		action.title(),
-		[f"mna-{action}"],
+		[f"cafe-{action}"],
 		attrs={"type": "button", "aria-label": action.title(), **(attrs or {})},
 		custom={"data-action": action, "data-on": ""},
 		children=[block("span", "Icon", inner_html=svg(icon_name, 16), styles=ICON_SPAN), count],
@@ -340,14 +340,14 @@ def action_button(action, icon_name, count_key, count_id, attrs=None):
 
 def build_action_bar():
 	like = attribute(
-		action_button("like", "heart", "pp.like_count", "mna-like-count"), "pp.like_flag", "data-on"
+		action_button("like", "heart", "pp.like_count", "cafe-like-count"), "pp.like_flag", "data-on"
 	)
-	comment = action_button("comment", "message-circle", "pp.comment_count", "mna-comment-count")
+	comment = action_button("comment", "message-circle", "pp.comment_count", "cafe-comment-count")
 	share = raw_block(
 		"Share",
 		html_el(
 			"button",
-			["mna-outline-btn"],
+			["cafe-outline-btn"],
 			{"type": "button", "aria-label": "Share", "data-action": "share"},
 			{
 				"display": "grid",
@@ -369,7 +369,7 @@ def build_action_bar():
 		block(
 			"button",
 			"Save",
-			["mna-save"],
+			["cafe-save"],
 			attrs={"type": "button", "aria-label": "Save"},
 			custom={"data-action": "save", "data-on": ""},
 			inner_html=svg("bookmark", 16),
@@ -423,7 +423,7 @@ def build_responses():
 		block(
 			"h2",
 			"Responses",
-			attrs={"id": "mna-responses"},
+			attrs={"id": "cafe-responses"},
 			text="Responses (0)",
 			styles={"margin": "24px 0 0", **text_style(16, "600", INK_BLACK, "0.015em", "1.15")},
 		),
@@ -431,9 +431,9 @@ def build_responses():
 	)
 	field = html_el(
 		"textarea",
-		["mna-textarea"],
+		["cafe-textarea"],
 		{
-			"id": "mna-comment-text",
+			"id": "cafe-comment-text",
 			"rows": "3",
 			"placeholder": "What are your thoughts?",
 			"aria-label": "Write a comment",
@@ -455,8 +455,8 @@ def build_responses():
 	)
 	button = html_el(
 		"button",
-		["mna-btn", "mna-btn-subtle"],
-		{"type": "button", "id": "mna-comment-send", "data-action": "comment-send"},
+		["cafe-btn", "cafe-btn-subtle"],
+		{"type": "button", "id": "cafe-comment-send", "data-action": "comment-send"},
 		{"marginTop": "8px", "backgroundColor": SURFACE_2, "color": INK},
 		text="Comment",
 	)
@@ -466,14 +466,14 @@ def build_responses():
 		"Comments",
 		html_el(
 			"div",
-			["mna-comment-loading"],
+			["cafe-comment-loading"],
 			None,
 			{"display": "flex", "flexDirection": "column", "gap": "16px"},
 			[
 				"".join(
 					html_el(
 						"div",
-						["mna-skeleton"],
+						["cafe-skeleton"],
 						None,
 						{"height": "64px", "borderRadius": "8px", "backgroundColor": SURFACE_2},
 					)
@@ -482,14 +482,14 @@ def build_responses():
 			],
 		),
 		styles={"marginTop": "24px"},
-		classes=["mna-comments"],
+		classes=["cafe-comments"],
 	)
-	comments["attributes"] = {"id": "mna-comments"}
+	comments["attributes"] = {"id": "cafe-comments"}
 	more = raw_block(
 		"More comments",
 		html_el(
 			"button",
-			["mna-more-comments"],
+			["cafe-more-comments"],
 			{"type": "button", "hidden": "hidden", "data-action": "more-comments"},
 			{
 				"display": "block",
@@ -539,7 +539,7 @@ def build_post_page(shell_id, shell_block):
 		block(
 			"div",
 			"Post",
-			attrs={"id": "mna-post"},
+			attrs={"id": "cafe-post"},
 			custom={"data-post": "", "data-user": "", "data-me-name": "", "data-me-image": ""},
 			children=[
 				build_title(),
@@ -568,7 +568,7 @@ def build_post_page(shell_id, shell_block):
 		[post, build_unavailable()],
 		"600px",
 		mobile_header=build_mobile_header("Post", title_key="pp.title", back_href="/"),
-		container_class="mna-container-post",
+		container_class="cafe-container-post",
 		padding="48px 24px 32px",
 	)
 

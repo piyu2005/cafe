@@ -99,7 +99,7 @@ def build_title_row():
 		block(
 			"a",
 			"Back to profile",
-			["mna-back"],
+			["cafe-back"],
 			attrs={"href": "/profile", "aria-label": "Back to profile", "title": "Back to profile"},
 			inner_html=svg("arrow-left", 16),
 			styles={
@@ -120,7 +120,7 @@ def build_title_row():
 		block(
 			"h1",
 			"Title",
-			["mna-posts-title"],
+			["cafe-posts-title"],
 			text="My Posts",
 			styles={"margin": "0", **text_style(20, "500", INK, "0.01em")},
 		),
@@ -138,7 +138,7 @@ def build_tabs():
 	buttons = [
 		html_el(
 			"button",
-			["mna-tab-btn"],
+			["cafe-tab-btn"],
 			{
 				"type": "button",
 				"role": "tab",
@@ -152,7 +152,7 @@ def build_tabs():
 	]
 	tablist = html_el(
 		"div",
-		["mna-tablist"],
+		["cafe-tablist"],
 		{"role": "tablist"},
 		{"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
 		buttons,
@@ -164,7 +164,7 @@ def build_published_panel():
 	posts = block(
 		"div",
 		"Posts list",
-		["mna-posts"],
+		["cafe-posts"],
 		styles={"display": "flex", "flexDirection": "column", "marginTop": "16px"},
 		children=[build_post_row()],
 	)
@@ -180,7 +180,7 @@ def build_published_panel():
 				block(
 					"a",
 					"Write link",
-					["mna-plain-link"],
+					["cafe-plain-link"],
 					text="Write your first blog.",
 					attrs={"href": "/write"},
 					styles={"fontWeight": "500", "color": INK},
@@ -202,7 +202,7 @@ def build_published_panel():
 	return block(
 		"div",
 		"Published panel",
-		attrs={"id": "mna-panel-published"},
+		attrs={"id": "cafe-panel-published"},
 		children=[posts, empty_own, empty_other],
 	)
 
@@ -212,7 +212,7 @@ def build_other_panel():
 	skeleton = "".join(
 		html_el(
 			"div",
-			["mna-skeleton"],
+			["cafe-skeleton"],
 			None,
 			{"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
 		)
@@ -221,25 +221,25 @@ def build_other_panel():
 	panel = html_el(
 		"div",
 		None,
-		{"id": "mna-panel-other", "hidden": "hidden"},
+		{"id": "cafe-panel-other", "hidden": "hidden"},
 		None,
 		[
 			html_el(
 				"div",
-				["mna-loading"],
+				["cafe-loading"],
 				{"hidden": "hidden"},
 				{"marginTop": "16px", "flexDirection": "column", "gap": "20px"},
 				[skeleton],
 			),
 			html_el(
 				"p",
-				["mna-other-empty"],
+				["cafe-other-empty"],
 				{"hidden": "hidden"},
 				{"margin": "24px 0 0", **text_style(14, "420", MUTED)},
 			),
 			html_el(
 				"div",
-				["mna-posts", "mna-other-list"],
+				["cafe-posts", "cafe-other-list"],
 				None,
 				{"display": "flex", "flexDirection": "column", "marginTop": "16px"},
 			),
@@ -279,7 +279,7 @@ def build_posts_page(shell_id, shell_block):
 		block(
 			"div",
 			"Posts page",
-			attrs={"id": "mna-posts-page"},
+			attrs={"id": "cafe-posts-page"},
 			custom={"data-tab": "", "data-own": "", "data-user": ""},
 			children=[build_title_row(), build_tabs(), build_published_panel(), build_other_panel()],
 		),

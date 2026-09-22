@@ -3,7 +3,7 @@
 ;(function () {
 	'use strict'
 
-	var W = window.MNA.write
+	var W = window.CAFE.write
 	var RATIO = 1.91
 	var MAX_WIDTH = 1200
 	var JPEG_QUALITY = 0.92
@@ -20,7 +20,7 @@
 		var form = S.form
 		var html = W.ensureHtml(W.content())
 		var adjust = null // { url, natural, frame, offset }
-		var body = W.el('div', 'mna-w-story')
+		var body = W.el('div', 'cafe-w-story')
 		var dialog
 
 		var fileInput = W.el('input')
@@ -35,7 +35,7 @@
 		document.body.appendChild(fileInput)
 
 		function button(label, onClick) {
-			var b = W.el('button', 'mna-w-cover-btn', label)
+			var b = W.el('button', 'cafe-w-cover-btn', label)
 			b.type = 'button'
 			b.addEventListener('click', onClick)
 			return b
@@ -46,18 +46,18 @@
 			adjust = null
 			body.replaceChildren()
 			var url = W.previewImage()
-			var cover = W.el('div', 'mna-w-cover')
+			var cover = W.el('div', 'cafe-w-cover')
 			if (url) {
 				var img = W.el('img')
 				img.src = url
 				img.alt = ''
 				cover.appendChild(img)
 			} else {
-				var empty = W.el('div', 'mna-w-cover-empty')
-				empty.appendChild(W.icon('image', 'mna-w-large'))
+				var empty = W.el('div', 'cafe-w-cover-empty')
+				empty.appendChild(W.icon('image', 'cafe-w-large'))
 				cover.appendChild(empty)
 			}
-			var over = W.el('div', 'mna-w-cover-over')
+			var over = W.el('div', 'cafe-w-cover-over')
 			over.appendChild(
 				button('Change preview image', function () {
 					fileInput.click()
@@ -79,15 +79,15 @@
 			}
 			cover.appendChild(over)
 			body.appendChild(cover)
-			body.appendChild(W.el('p', 'mna-w-read', W.readTime(html) + ' min read'))
-			var title = W.el('input', 'mna-w-story-title')
+			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
+			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'
 			title.value = form.display_title || form.title
 			title.addEventListener('input', function () {
 				form.display_title = title.value
 			})
-			var excerpt = W.el('textarea', 'mna-w-story-excerpt')
+			var excerpt = W.el('textarea', 'cafe-w-story-excerpt')
 			excerpt.rows = 2
 			excerpt.placeholder = 'Write a short preview of your story…'
 			excerpt.value = form.excerpt || W.autoExcerpt(html)
@@ -99,7 +99,7 @@
 			body.appendChild(
 				W.el(
 					'p',
-					'mna-w-story-note',
+					'cafe-w-story-note',
 					'Note: changes here affect how your story appears in previews and feeds — not the story itself.'
 				)
 			)
@@ -108,7 +108,7 @@
 
 		// ---- Adjusting the crop ----
 		function startAdjust(url) {
-			body.replaceChildren(W.el('p', 'mna-w-adjust-hint', 'Loading…'))
+			body.replaceChildren(W.el('p', 'cafe-w-adjust-hint', 'Loading…'))
 			showActions(true)
 			var img = new Image()
 			img.src = url
@@ -122,12 +122,12 @@
 
 		function drawAdjust() {
 			body.replaceChildren()
-			var frame = W.el('div', 'mna-w-frame')
+			var frame = W.el('div', 'cafe-w-frame')
 			var pic = W.el('img')
 			pic.src = adjust.url
 			pic.draggable = false
 			frame.appendChild(pic)
-			var hint = W.el('p', 'mna-w-adjust-hint', 'Drag to reposition.')
+			var hint = W.el('p', 'cafe-w-adjust-hint', 'Drag to reposition.')
 			body.appendChild(hint)
 			body.appendChild(frame)
 			adjust.frame = frame
@@ -256,14 +256,14 @@
 
 		// The first two buttons belong to the preview, the last two to adjusting.
 		function showActions(adjusting) {
-			var buttons = dialog ? dialog.root.querySelectorAll('.mna-dialog-actions button') : []
+			var buttons = dialog ? dialog.root.querySelectorAll('.cafe-dialog-actions button') : []
 			Array.prototype.forEach.call(buttons, function (b, i) {
 				b.hidden = adjusting ? i < 2 : i >= 2
 			})
 			if (dialog) dialog.setError('')
 		}
 
-		dialog = MNA.dialog({
+		dialog = CAFE.dialog({
 			title: 'Story Preview',
 			body: body,
 			wide: true,
@@ -295,7 +295,7 @@
 				{ label: 'Done', kind: 'solid', onClick: confirmAdjust },
 			],
 		})
-		dialog.root.classList.add('mna-w-story-dialog')
+		dialog.root.classList.add('cafe-w-story-dialog')
 		drawView()
 		return dialog
 	}

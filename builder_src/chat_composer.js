@@ -2,9 +2,9 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var E = function () {
-		return window.MnaEditor
+		return window.CafeEditor
 	}
 	var TYPING_EVERY_MS = 2000
 	var UPLOAD_OPTIONS = { optimize: '1', max_width: '1600', max_height: '1600' }
@@ -31,7 +31,7 @@
 				M.Highlight,
 				M.Mention,
 			],
-			editorProps: { attributes: { class: 'mna-c-prose', 'aria-label': 'Write a message' } },
+			editorProps: { attributes: { class: 'cafe-c-prose', 'aria-label': 'Write a message' } },
 			onUpdate: onType,
 		})
 	}
@@ -58,15 +58,15 @@
 		dom.bar.replaceChildren()
 		dom.bar.hidden = !(S.replyingTo || S.editing)
 		if (dom.bar.hidden) return
-		var text = C.el('div', 'mna-c-bar-text')
+		var text = C.el('div', 'cafe-c-bar-text')
 		text.appendChild(
-			C.el('div', 'mna-c-bar-title', S.editing ? 'Editing message' : 'Replying to ' + S.replyingTo.sender_name)
+			C.el('div', 'cafe-c-bar-title', S.editing ? 'Editing message' : 'Replying to ' + S.replyingTo.sender_name)
 		)
-		if (S.replyingTo) text.appendChild(C.el('div', 'mna-c-bar-preview', C.previewText(S.replyingTo)))
-		var close = C.el('button', 'mna-c-icon-btn')
+		if (S.replyingTo) text.appendChild(C.el('div', 'cafe-c-bar-preview', C.previewText(S.replyingTo)))
+		var close = C.el('button', 'cafe-c-icon-btn')
 		close.type = 'button'
 		close.setAttribute('aria-label', S.editing ? 'Cancel edit' : 'Cancel reply')
-		close.appendChild(C.icon('x', 'mna-c-tiny'))
+		close.appendChild(C.icon('x', 'cafe-c-tiny'))
 		close.addEventListener('click', function () {
 			S.editing ? C.cancelEdit() : C.cancelReply()
 		})
@@ -106,24 +106,24 @@
 		dom.files.replaceChildren()
 		dom.files.hidden = !pending.length
 		pending.forEach(function (a, i) {
-			var card = C.el('div', 'mna-c-pending')
+			var card = C.el('div', 'cafe-c-pending')
 			if (C.isImageFile(a.file_name)) {
-				var img = C.el('img', 'mna-c-pending-thumb')
+				var img = C.el('img', 'cafe-c-pending-thumb')
 				img.src = a.file_url
 				img.alt = ''
 				card.appendChild(img)
 			} else {
-				var round = C.el('div', 'mna-c-pending-thumb file')
-				round.appendChild(C.icon('file', 'mna-c-tiny'))
+				var round = C.el('div', 'cafe-c-pending-thumb file')
+				round.appendChild(C.icon('file', 'cafe-c-tiny'))
 				card.appendChild(round)
 			}
-			var info = C.el('div', 'mna-c-pending-info')
-			info.appendChild(C.el('div', 'mna-c-pending-name', a.file_name))
-			info.appendChild(C.el('div', 'mna-c-pending-size', C.formatBytes(a.file_size)))
-			var remove = C.el('button', 'mna-c-icon-btn')
+			var info = C.el('div', 'cafe-c-pending-info')
+			info.appendChild(C.el('div', 'cafe-c-pending-name', a.file_name))
+			info.appendChild(C.el('div', 'cafe-c-pending-size', C.formatBytes(a.file_size)))
+			var remove = C.el('button', 'cafe-c-icon-btn')
 			remove.type = 'button'
 			remove.setAttribute('aria-label', 'Remove ' + a.file_name)
-			remove.appendChild(C.icon('trash-2', 'mna-c-tiny'))
+			remove.appendChild(C.icon('trash-2', 'cafe-c-tiny'))
 			remove.addEventListener('click', function () {
 				pending.splice(i, 1)
 				renderPending()
@@ -174,7 +174,7 @@
 							renderPending()
 						},
 						function (error) {
-							MNA.toast(error.message, 'error')
+							CAFE.toast(error.message, 'error')
 						}
 					)
 				})
@@ -307,11 +307,11 @@
 
 	// ---- The tool row ----
 	function toolButton(icon, label, onClick) {
-		var button = C.el('button', 'mna-c-tool')
+		var button = C.el('button', 'cafe-c-tool')
 		button.type = 'button'
 		button.title = label
 		button.setAttribute('aria-label', label)
-		button.appendChild(C.icon(icon, 'mna-c-small'))
+		button.appendChild(C.icon(icon, 'cafe-c-small'))
 		// Pressing a tool never takes the cursor out of the message.
 		button.addEventListener('mousedown', function (event) {
 			event.preventDefault()
@@ -329,7 +329,7 @@
 		dom.emoji.disabled = locked
 		dom.poll.disabled = locked || !!S.editing
 		dom.send.disabled = locked
-		dom.send.replaceChildren(C.icon(S.editing ? 'check' : 'send', 'mna-c-small'))
+		dom.send.replaceChildren(C.icon(S.editing ? 'check' : 'send', 'cafe-c-small'))
 		dom.send.setAttribute('aria-label', S.editing ? 'Save edit' : 'Send')
 		editor.setEditable(!locked)
 		dom.box.classList.toggle('locked', locked)
@@ -361,7 +361,7 @@
 	}
 
 	function buildFormatting() {
-		var row = C.el('div', 'mna-c-format')
+		var row = C.el('div', 'cafe-c-format')
 		row.hidden = true
 		var buttons = FORMATS.map(function (item) {
 			var button = toolButton(item[0], item[1], function () {
@@ -414,11 +414,11 @@
 	}
 
 	C.buildComposer = function (host) {
-		dom.bar = C.el('div', 'mna-c-bar')
+		dom.bar = C.el('div', 'cafe-c-bar')
 		dom.bar.hidden = true
-		dom.files = C.el('div', 'mna-c-pendings')
+		dom.files = C.el('div', 'cafe-c-pendings')
 		dom.files.hidden = true
-		var editorHost = C.el('div', 'mna-c-editor')
+		var editorHost = C.el('div', 'cafe-c-editor')
 		editor = makeEditor(editorHost)
 		editorHost.addEventListener('keydown', onKeydown, true)
 		editorHost.addEventListener('paste', onPaste, true)
@@ -452,20 +452,20 @@
 		dom.poll = toolButton('bar-chart-2', 'Poll', function () {
 			if (C.pollDialog) C.pollDialog()
 		})
-		dom.send = C.el('button', 'mna-c-send')
+		dom.send = C.el('button', 'cafe-c-send')
 		dom.send.type = 'button'
 		dom.send.addEventListener('click', send)
 
-		var tools = C.el('div', 'mna-c-tools')
-		var left = C.el('div', 'mna-c-tools-left')
-		;[dom.attach, dom.format, dom.mention, dom.emoji, C.el('span', 'mna-c-sep'), dom.poll].forEach(function (node) {
+		var tools = C.el('div', 'cafe-c-tools')
+		var left = C.el('div', 'cafe-c-tools-left')
+		;[dom.attach, dom.format, dom.mention, dom.emoji, C.el('span', 'cafe-c-sep'), dom.poll].forEach(function (node) {
 			left.appendChild(node)
 		})
 		tools.appendChild(left)
 		tools.appendChild(dom.send)
 
 		dom.formatRow = buildFormatting()
-		dom.box = C.el('div', 'mna-c-box')
+		dom.box = C.el('div', 'cafe-c-box')
 		;[dom.bar, dom.files, dom.formatRow, editorHost, tools, input].forEach(function (node) {
 			dom.box.appendChild(node)
 		})

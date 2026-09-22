@@ -19,7 +19,7 @@
 	}
 
 	function avatar(person) {
-		var box = el('span', 'mna-avatar')
+		var box = el('span', 'cafe-avatar')
 		if (person.user_image) {
 			var img = el('img')
 			img.src = person.user_image
@@ -34,14 +34,14 @@
 	function renderPeople(people) {
 		list.replaceChildren()
 		if (!people.length) {
-			list.appendChild(el('p', 'mna-empty', 'No writers found.'))
+			list.appendChild(el('p', 'cafe-empty', 'No writers found.'))
 			return
 		}
 		people.forEach(function (person) {
-			var row = el('a', 'mna-person')
+			var row = el('a', 'cafe-person')
 			row.href = '/profile/' + encodeURIComponent(person.username || person.name)
 			row.appendChild(avatar(person))
-			row.appendChild(el('span', 'mna-person-name', person.full_name || person.name))
+			row.appendChild(el('span', 'cafe-person-name', person.full_name || person.name))
 			list.appendChild(row)
 		})
 	}
@@ -66,16 +66,16 @@
 			})
 			.catch(function () {
 				if (request !== latestRequest) return
-				list.replaceChildren(el('p', 'mna-empty', "Couldn't load writers. Please try again."))
+				list.replaceChildren(el('p', 'cafe-empty', "Couldn't load writers. Please try again."))
 			})
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		input = document.getElementById('mna-search-input')
-		list = document.getElementById('mna-people')
+		input = document.getElementById('cafe-search-input')
+		list = document.getElementById('cafe-people')
 		if (!input || !list) return
 
-		if (!list.querySelector('.mna-person')) load('')
+		if (!list.querySelector('.cafe-person')) load('')
 		input.focus()
 		input.addEventListener('input', function () {
 			clearTimeout(timer)

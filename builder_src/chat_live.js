@@ -3,7 +3,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var TYPING_SHOWN_MS = 3000
 	var typingTimer = null
 
@@ -27,7 +27,7 @@
 			C.call('mark_read', { conversation: C.state.active }).then(
 				function () {
 					C.loadConversations()
-					if (window.MNA.refreshBadges) window.MNA.refreshBadges()
+					if (window.CAFE.refreshBadges) window.CAFE.refreshBadges()
 				},
 				function () {}
 			)
@@ -74,7 +74,7 @@
 	}
 
 	function connect() {
-		window.MNA.onSocket(function (socket) {
+		window.CAFE.onSocket(function (socket) {
 			Object.keys(HANDLERS).forEach(function (name) {
 				socket.on(name, HANDLERS[name])
 			})
@@ -83,18 +83,18 @@
 
 	// ---- Start ----
 	document.addEventListener('DOMContentLoaded', function () {
-		var root = document.getElementById('mna-chat')
+		var root = document.getElementById('cafe-chat')
 		if (!root) return
 		var id = C.idFromAddress() || root.getAttribute('data-conversation') || null
 		// The still picture the editor shows goes; the real chat takes its place.
-		var list = C.el('div', 'mna-c-list')
-		var thread = C.el('div', 'mna-c-thread')
+		var list = C.el('div', 'cafe-c-list')
+		var thread = C.el('div', 'cafe-c-thread')
 		root.replaceChildren(list, thread)
 		root.classList.add('ready')
 		C.buildList(list)
 		C.buildThread(root, thread)
 		C.buildComposer(C.dom.composerHost)
-		;['mna-new-group', 'mna-new-group-m'].forEach(function (name) {
+		;['cafe-new-group', 'cafe-new-group-m'].forEach(function (name) {
 			var button = document.getElementById(name)
 			if (button) button.addEventListener('click', C.newGroupDialog)
 		})

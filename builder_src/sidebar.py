@@ -50,12 +50,12 @@ ITEMS = [
 def item(key, label, href, icon_name):
 	children = [svg(icon_name, 16), html_el("span", None, None, LABEL_STYLES, text=label)]
 	if key in ("messages", "notifications"):
-		children.append(html_el("span", ["mna-badge"], {"data-badge": key}, COUNT_STYLES))
+		children.append(html_el("span", ["cafe-badge"], {"data-badge": key}, COUNT_STYLES))
 	if href:
-		return html_el("a", ["mna-side-item"], {"href": href, "data-nav": key}, ITEM_STYLES, children)
+		return html_el("a", ["cafe-side-item"], {"href": href, "data-nav": key}, ITEM_STYLES, children)
 	return html_el(
 		"button",
-		["mna-side-item"],
+		["cafe-side-item"],
 		{"type": "button", "data-nav": key, "data-bell": ""},
 		ITEM_STYLES,
 		children,
@@ -65,7 +65,7 @@ def item(key, label, href, icon_name):
 def build_sidebar():
 	logo = html_el(
 		"button",
-		["mna-side-logo"],
+		["cafe-side-logo"],
 		{"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
 		{
 			"display": "flex",
@@ -116,14 +116,14 @@ def build_sidebar():
 	)
 	collapse = html_el(
 		"button",
-		["mna-side-item"],
+		["cafe-side-item"],
 		{"type": "button", "data-sidebar-toggle": "close"},
 		ITEM_STYLES,
 		[svg("panel-right-open", 16), html_el("span", None, None, LABEL_STYLES, text="Collapse")],
 	)
 	content = html_el(
 		"div",
-		["mna-sidebar-content"],
+		["cafe-sidebar-content"],
 		None,
 		{"position": "sticky", "top": "0", "display": "flex", "flexDirection": "column", "height": "100vh"},
 		[
@@ -146,7 +146,7 @@ def build_sidebar():
 	)
 	return html_el(
 		"nav",
-		["mna-sidebar"],
+		["cafe-sidebar"],
 		{"aria-label": "Main"},
 		{
 			"display": "none",

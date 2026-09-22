@@ -6,22 +6,22 @@
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
+	var CAFE = (window.CAFE = window.CAFE || {})
 
 	// The rail is either the narrow icon rail or the wide sidebar. The choice is
 	// kept in this browser, and set on <html> as early as this script runs, so
 	// the page is drawn with the right one.
-	var SIDEBAR_KEY = 'mna-sidebar'
+	var SIDEBAR_KEY = 'cafe-sidebar'
 	try {
 		if (localStorage.getItem(SIDEBAR_KEY) === 'open')
-			document.documentElement.setAttribute('data-mna-sidebar', 'open')
+			document.documentElement.setAttribute('data-cafe-sidebar', 'open')
 	} catch (e) {
 		/* storage may be blocked */
 	}
 
 	function setSidebar(open) {
-		if (open) document.documentElement.setAttribute('data-mna-sidebar', 'open')
-		else document.documentElement.removeAttribute('data-mna-sidebar')
+		if (open) document.documentElement.setAttribute('data-cafe-sidebar', 'open')
+		else document.documentElement.removeAttribute('data-cafe-sidebar')
 		try {
 			if (open) localStorage.setItem(SIDEBAR_KEY, 'open')
 			else localStorage.removeItem(SIDEBAR_KEY)
@@ -96,7 +96,7 @@
 				.catch(function () {})
 		})
 	}
-	MNA.refreshBadges = refreshBadges
+	CAFE.refreshBadges = refreshBadges
 
 	// Counts change while a page sits open, so look again now and then and
 	// when the tab comes back into view. (Live updates are in notifications.js.)
@@ -112,7 +112,7 @@
 
 	function setupLogoMenu() {
 		var logos = document.querySelectorAll('[data-logo]')
-		var menu = document.getElementById('mna-menu')
+		var menu = document.getElementById('cafe-menu')
 		if (!logos.length || !menu) return
 
 		function setOpen(open) {
@@ -121,14 +121,14 @@
 				logo.setAttribute('aria-expanded', open ? 'true' : 'false')
 			})
 		}
-		MNA.closeMenu = function () {
+		CAFE.closeMenu = function () {
 			setOpen(false)
 		}
 		logos.forEach(function (logo) {
 			logo.addEventListener('click', function (e) {
 				e.stopPropagation()
 				// The notifications panel covers the menu, so it closes first.
-				if (MNA.closeNotifications) MNA.closeNotifications()
+				if (CAFE.closeNotifications) CAFE.closeNotifications()
 				setOpen(!menu.classList.contains('open'))
 			})
 		})
@@ -139,7 +139,7 @@
 			if (e.key === 'Escape') setOpen(false)
 		})
 
-		var logoutButton = document.getElementById('mna-logout')
+		var logoutButton = document.getElementById('cafe-logout')
 		if (logoutButton) {
 			logoutButton.addEventListener('click', function () {
 				setOpen(false)
@@ -159,14 +159,14 @@
 	}
 
 	function confirmLogout() {
-		MNA.confirm({ title: 'Log out?', message: 'You can always log back in.', confirmLabel: 'Log out' }).then(
+		CAFE.confirm({ title: 'Log out?', message: 'You can always log back in.', confirmLabel: 'Log out' }).then(
 			function (ok) {
 				if (ok) logout()
 			}
 		)
 	}
 
-	MNA.confirmLogout = confirmLogout
+	CAFE.confirmLogout = confirmLogout
 
 	document.addEventListener('DOMContentLoaded', function () {
 		markActiveNav()

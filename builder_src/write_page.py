@@ -1,8 +1,8 @@
 """The native post editor page: /write and /write/<post>. write_*.js
-draw the story, toolbar, title and tags into #mna-write and save through the
+draw the story, toolbar, title and tags into #cafe-write and save through the
 same /api/v2/document/Post the old page uses.
 
-Builder's editor and the folder thumbnail do not run scripts, so #mna-write
+Builder's editor and the folder thumbnail do not run scripts, so #cafe-write
 starts with a still picture of the page; the script replaces it."""
 
 import hashlib
@@ -35,7 +35,7 @@ def button(button_id, label, kind, extra_class=""):
 	styles = {"outline": BUTTON_STYLES, "solid": SOLID_STYLES}[kind]
 	return html_el(
 		"button",
-		["mna-btn", f"mna-btn-{kind}", "mna-w-btn", *([extra_class] if extra_class else [])],
+		["cafe-btn", f"cafe-btn-{kind}", "cafe-w-btn", *([extra_class] if extra_class else [])],
 		{"type": "button", "id": button_id},
 		styles,
 		[html_el("span", text=label)],
@@ -46,7 +46,7 @@ def more_button(button_id, hidden=False):
 	attrs = {"type": "button", "id": button_id, "aria-label": "More"}
 	if hidden:
 		attrs["hidden"] = "hidden"
-	return html_el("button", ["mna-btn", "mna-w-more"], attrs, ICON_STYLES, [svg("ellipsis", 16)])
+	return html_el("button", ["cafe-btn", "cafe-w-more"], attrs, ICON_STYLES, [svg("ellipsis", 16)])
 
 
 def desktop_header():
@@ -58,16 +58,16 @@ def desktop_header():
 			"Current",
 			["current"],
 			text="Write",
-			attrs={"id": "mna-w-crumb"},
+			attrs={"id": "cafe-w-crumb"},
 			styles={"color": INK_BLACK},
 		),
 	]
 	header = page_header(crumbs)
 	header["children"][1] = raw_block(
 		"Actions",
-		button("mna-w-draft", "Save Draft", "outline")
-		+ button("mna-w-publish", "Publish", "solid")
-		+ more_button("mna-w-more", hidden=True),
+		button("cafe-w-draft", "Save Draft", "outline")
+		+ button("cafe-w-publish", "Publish", "solid")
+		+ more_button("cafe-w-more", hidden=True),
 		styles={"display": "flex", "alignItems": "center", "gap": "8px"},
 	)
 	return header
@@ -77,8 +77,8 @@ def mobile_header():
 	back = block(
 		"a",
 		"Back",
-		["mna-mobile-back"],
-		attrs={"href": "/", "aria-label": "Back", "id": "mna-w-back"},
+		["cafe-mobile-back"],
+		attrs={"href": "/", "aria-label": "Back", "id": "cafe-w-back"},
 		inner_html=svg("chevron-left", 18),
 		styles={
 			"display": "grid",
@@ -93,9 +93,9 @@ def mobile_header():
 	title = block(
 		"h1",
 		"Title",
-		["mna-mobile-title"],
+		["cafe-mobile-title"],
 		text="Write",
-		attrs={"id": "mna-w-mtitle"},
+		attrs={"id": "cafe-w-mtitle"},
 		styles={
 			"position": "absolute",
 			"left": "0",
@@ -108,7 +108,7 @@ def mobile_header():
 	)
 	actions = raw_block(
 		"Actions",
-		mobile_bell() + more_button("mna-w-mmore") + button("mna-w-mpublish", "Publish", "solid"),
+		mobile_bell() + more_button("cafe-w-mmore") + button("cafe-w-mpublish", "Publish", "solid"),
 		styles={
 			"position": "relative",
 			"display": "flex",
@@ -121,7 +121,7 @@ def mobile_header():
 	return block(
 		"header",
 		"Mobile header",
-		["mna-mobile-header", "mna-write-mobile-head"],
+		["cafe-mobile-header", "cafe-write-mobile-head"],
 		styles={
 			"display": "none",
 			"position": "relative",
@@ -142,8 +142,8 @@ def build_native_write(shell_id, shell_block):
 	page = block(
 		"div",
 		"Write",
-		["mna-w-root"],
-		attrs={"id": "mna-write"},
+		["cafe-w-root"],
+		attrs={"id": "cafe-write"},
 		custom={"data-post": ""},
 		styles={
 			"display": "flex",
@@ -153,13 +153,13 @@ def build_native_write(shell_id, shell_block):
 			"width": "100%",
 			"backgroundColor": "#ffffff",
 		},
-		children=[raw_block("Preview", write_body(), ["mna-w-preview"], styles={"width": "100%"})],
+		children=[raw_block("Preview", write_body(), ["cafe-w-preview"], styles={"width": "100%"})],
 	)
 	page = attribute(page, "w.id", "data-post")
 	main = block(
 		"div",
 		"Main",
-		["mna-main", "mna-write-main"],
+		["cafe-main", "cafe-write-main"],
 		styles={
 			"display": "flex",
 			"flexGrow": "1",
@@ -173,7 +173,7 @@ def build_native_write(shell_id, shell_block):
 	app = block(
 		"div",
 		"App",
-		["mna-app"],
+		["cafe-app"],
 		styles={
 			"display": "flex",
 			"width": "100%",

@@ -42,7 +42,7 @@ def outline_button(action, text=None, icon_name=None, name=None, aria=None):
 		children.append(html_el("span", text=text))
 	button = html_el(
 		"button",
-		["mna-outline-btn"],
+		["cafe-outline-btn"],
 		{"type": "button", "aria-label": aria or text, "data-action": action},
 		{
 			"display": "inline-flex",
@@ -95,7 +95,7 @@ def static_icon_button(action, aria, icon_name="pencil"):
 	"""A small icon button with no data binding, as one block."""
 	button = html_el(
 		"button",
-		["mna-icon-btn"],
+		["cafe-icon-btn"],
 		{"type": "button", "aria-label": aria, "title": aria, "data-action": action},
 		ICON_BUTTON_STYLES,
 		[svg(icon_name, 14)],
@@ -108,7 +108,7 @@ def icon_button(action, aria, icon_name="pencil", custom=None):
 	return block(
 		"button",
 		aria,
-		["mna-icon-btn"],
+		["cafe-icon-btn"],
 		attrs={"type": "button", "aria-label": aria, "title": aria},
 		custom={"data-action": action, **(custom or {})},
 		children=[icon(icon_name, 14)],
@@ -121,7 +121,7 @@ def text_button(text, tag="button", attrs=None, custom=None, color=INK, name=Non
 	return block(
 		tag,
 		name or text,
-		["mna-text-btn"],
+		["cafe-text-btn"],
 		attrs={**({"type": "button"} if tag == "button" else {}), **(attrs or {})},
 		custom=custom,
 		text=text,
@@ -151,7 +151,7 @@ def build_avatar():
 			block(
 				"span",
 				"Initial",
-				classes=["mna-profile-initial"],
+				classes=["cafe-profile-initial"],
 				text="P",
 				styles={
 					**text_style(40, "500", MUTED, "0", "1.5"),
@@ -166,7 +166,7 @@ def build_avatar():
 	return block(
 		"div",
 		"Avatar",
-		["mna-profile-avatar"],
+		["cafe-profile-avatar"],
 		children=[picture, initial],
 		styles={
 			"display": "grid",
@@ -187,7 +187,7 @@ def build_name_row():
 		block(
 			"h1",
 			"Name",
-			["mna-profile-name"],
+			["cafe-profile-name"],
 			text="Priyanshi Hodage",
 			styles={
 				"margin": "0",
@@ -202,7 +202,7 @@ def build_name_row():
 	buttons = block(
 		"div",
 		"Buttons",
-		["mna-profile-buttons"],
+		["cafe-profile-buttons"],
 		styles={"display": "flex", "alignItems": "center", "gap": "8px", "flexShrink": "0"},
 		children=[
 			when(outline_button("edit-header", "Edit"), "profile.is_own"),
@@ -212,7 +212,7 @@ def build_name_row():
 	return block(
 		"div",
 		"Name row",
-		["mna-name-row"],
+		["cafe-name-row"],
 		styles={"display": "flex", "alignItems": "center", "justifyContent": "space-between", "gap": "16px"},
 		children=[name, buttons],
 	)
@@ -280,7 +280,7 @@ def build_header():
 	return block(
 		"div",
 		"Profile header",
-		["mna-profile-head"],
+		["cafe-profile-head"],
 		styles={"display": "flex", "alignItems": "flex-start", "gap": "32px"},
 		children=[
 			build_avatar(),
@@ -322,7 +322,7 @@ def card(icon_name, title, body, action=None, name=None):
 	return block(
 		"div",
 		name or title,
-		["mna-card"],
+		["cafe-card"],
 		styles={"border": f"1px solid {OUTLINE}", "borderRadius": "10px", "padding": "20px"},
 		children=[head, *body],
 	)
@@ -353,7 +353,7 @@ def muted_paragraph(text, condition, name, line="1.15"):
 def show_all_row(text, target, condition):
 	"""The centered "Show all ..." button under a card, as one block."""
 	button = html_el(
-		"button", ["mna-text-btn"], {"type": "button", "data-expand": target}, TEXT_BUTTON_STYLES, text=text
+		"button", ["cafe-text-btn"], {"type": "button", "data-expand": target}, TEXT_BUTTON_STYLES, text=text
 	)
 	return when(
 		raw_block(
@@ -385,8 +385,8 @@ def build_intro():
 			block(
 				"p",
 				"Bio",
-				["mna-clamp-3"],
-				attrs={"id": "mna-bio"},
+				["cafe-clamp-3"],
+				attrs={"id": "cafe-bio"},
 				text="Hello! I am Priyanshi",
 				styles={"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
 			),
@@ -412,7 +412,7 @@ def build_intro():
 
 
 def build_posts():
-	posts = repeater("Posts list", ["mna-posts"], "posts", build_post_row())
+	posts = repeater("Posts list", ["cafe-posts"], "posts", build_post_row())
 	empty_own = when(
 		block(
 			"p",
@@ -489,7 +489,7 @@ def build_entry_row(primary, secondary_key, secondary_color, edit_action, edit_l
 	return block(
 		"div",
 		"Entry",
-		["mna-entry"],
+		["cafe-entry"],
 		styles={
 			"display": "flex",
 			"alignItems": "flex-start",
@@ -515,7 +515,7 @@ def build_work():
 		"description",
 	)
 	row = build_entry_row("company", "title", INK, "edit-work", "Edit work experience", extra=description)
-	entries = repeater("Work list", ["mna-entries"], "work", row, attrs={"id": "mna-work-list"})
+	entries = repeater("Work list", ["cafe-entries"], "work", row, attrs={"id": "cafe-work-list"})
 	body = [
 		entries,
 		muted_paragraph("Add your work experience.", "profile.work_empty_own", "No work (yours)"),
@@ -527,7 +527,7 @@ def build_work():
 		"Work section",
 		children=[
 			card("briefcase", "Work History", body, action=add, name="Work History"),
-			show_all_row("Show all History", "mna-work-list", "profile.work_more"),
+			show_all_row("Show all History", "cafe-work-list", "profile.work_more"),
 		],
 	)
 
@@ -535,7 +535,7 @@ def build_work():
 def build_education():
 	row = build_entry_row("school", "degree_line", GRAY_7, "edit-education", "Edit education")
 	entries = repeater(
-		"Education list", ["mna-entries"], "education", row, attrs={"id": "mna-education-list"}
+		"Education list", ["cafe-entries"], "education", row, attrs={"id": "cafe-education-list"}
 	)
 	body = [
 		entries,
@@ -548,7 +548,7 @@ def build_education():
 		"Education section",
 		children=[
 			card("graduation-cap", "Education", body, action=add, name="Education"),
-			show_all_row("Show all Education", "mna-education-list", "profile.education_more"),
+			show_all_row("Show all Education", "cafe-education-list", "profile.education_more"),
 		],
 	)
 
@@ -589,7 +589,7 @@ def build_profile(shell_id, shell_block):
 		block(
 			"div",
 			"Profile",
-			attrs={"id": "mna-profile"},
+			attrs={"id": "cafe-profile"},
 			custom={"data-username": ""},
 			children=[build_header(), sections],
 		),

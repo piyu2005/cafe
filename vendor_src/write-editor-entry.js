@@ -42,11 +42,11 @@ function update(editor, getPos, attrs) {
 // uses, a caption line under it, and drag-to-choose which part shows.
 function imageView({ node: initial, editor, getPos }) {
 	let node = initial
-	const dom = el('span', 'mna-w-image')
-	const box = el('span', 'mna-w-image-box')
+	const dom = el('span', 'cafe-w-image')
+	const box = el('span', 'cafe-w-image-box')
 	const img = el('img')
-	const status = el('span', 'mna-w-image-status')
-	const caption = el('input', 'mna-w-caption')
+	const status = el('span', 'cafe-w-image-status')
+	const caption = el('input', 'cafe-w-caption')
 	caption.type = 'text'
 	caption.placeholder = 'Add caption'
 	caption.setAttribute('aria-label', 'Media caption')
@@ -120,7 +120,7 @@ function imageView({ node: initial, editor, getPos }) {
 	})
 
 	// A button that turns the caption line on.
-	const toggle = el('button', 'mna-w-image-caption-btn', 'Caption')
+	const toggle = el('button', 'cafe-w-image-caption-btn', 'Caption')
 	toggle.type = 'button'
 	toggle.setAttribute('aria-label', 'Toggle caption')
 	toggle.addEventListener('mousedown', (event) => event.preventDefault())
@@ -318,4 +318,4 @@ const ImageGroup = Node.create({
 	},
 })
 
-window.MnaWriteEditor = { Editor, StarterKit, Placeholder, TextAlign, Image, ImageGroup }
+window.CafeWriteEditor = { Editor, StarterKit, Placeholder, TextAlign, Image, ImageGroup }

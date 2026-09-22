@@ -2,7 +2,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var HIGHLIGHT_MS = 1500
 	var MORE_HISTORY = 200
 
@@ -93,7 +93,7 @@
 	}
 
 	function confirmDelete(m) {
-		MNA.confirm({
+		CAFE.confirm({
 			title: 'Delete message?',
 			message: "This can't be undone. This message will be removed for everyone in this conversation.",
 			confirmLabel: 'Delete',
@@ -149,10 +149,10 @@
 				if (id !== C.state.active) return
 				C.state.messages = rows || []
 				C.renderMessages()
-				if (!show()) MNA.toast("Couldn't find that message", 'error')
+				if (!show()) CAFE.toast("Couldn't find that message", 'error')
 			},
 			function () {
-				MNA.toast("Couldn't find that message", 'error')
+				CAFE.toast("Couldn't find that message", 'error')
 			}
 		)
 	}

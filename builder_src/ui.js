@@ -1,11 +1,11 @@
 // Shared helpers for the Builder pages: API calls, toast, confirm dialog and
-// form dialog. They are on `window.MNA`. Load this script before the others.
+// form dialog. They are on `window.CAFE`. Load this script before the others.
 // Everything that needs the page data or the CSRF token runs inside a call,
 // never at load, because Builder sets those up after client scripts run.
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
+	var CAFE = (window.CAFE = window.CAFE || {})
 
 	function el(tag, className, text) {
 		var node = document.createElement(tag)
@@ -13,11 +13,11 @@
 		if (text) node.textContent = text
 		return node
 	}
-	MNA.el = el
+	CAFE.el = el
 
 	// ---- API ----
 
-	MNA.DEFAULT_ERROR = 'Something went wrong. Please try again.'
+	CAFE.DEFAULT_ERROR = 'Something went wrong. Please try again.'
 
 	function errorText(body) {
 		if (!body) return ''
@@ -35,7 +35,7 @@
 
 	// Calls a whitelisted method with a JSON body. Resolves with the method's
 	// return value, or rejects with an Error whose message is safe to show.
-	MNA.api = function (method, args) {
+	CAFE.api = function (method, args) {
 		return fetch(location.origin + '/api/v2/method/' + method, {
 			method: 'POST',
 			credentials: 'same-origin',
@@ -51,15 +51,15 @@
 					return {}
 				})
 				.then(function (body) {
-					if (!response.ok) throw new Error(errorText(body) || MNA.DEFAULT_ERROR)
+					if (!response.ok) throw new Error(errorText(body) || CAFE.DEFAULT_ERROR)
 					return body.data
 				})
 		})
 	}
 
-	// Any /api/v2 call with a verb: MNA.request('PUT', '/api/v2/document/Post/abc', { title: 'x' }).
+	// Any /api/v2 call with a verb: CAFE.request('PUT', '/api/v2/document/Post/abc', { title: 'x' }).
 	// Resolves with `data`; rejects with an Error whose message is safe to show.
-	MNA.request = function (verb, path, body) {
+	CAFE.request = function (verb, path, body) {
 		return fetch(location.origin + path, {
 			method: verb,
 			credentials: 'same-origin',
@@ -75,13 +75,13 @@
 					return {}
 				})
 				.then(function (result) {
-					if (!response.ok) throw new Error(errorText(result) || MNA.DEFAULT_ERROR)
+					if (!response.ok) throw new Error(errorText(result) || CAFE.DEFAULT_ERROR)
 					return result.data
 				})
 		})
 	}
 
-	MNA.get = function (method, params) {
+	CAFE.get = function (method, params) {
 		var query = Object.keys(params || {})
 			.map(function (key) {
 				return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
@@ -123,20 +123,20 @@
 
 	var toastBox = null
 	// kind: 'success' (default), 'error', 'warning' or 'info'.
-	MNA.toast = function (text, kind) {
+	CAFE.toast = function (text, kind) {
 		if (!TOAST_ICONS[kind]) kind = 'success'
 		if (!toastBox || !toastBox.isConnected) {
-			toastBox = el('div', 'mna-toasts')
+			toastBox = el('div', 'cafe-toasts')
 			document.body.appendChild(toastBox)
 		}
 		while (toastBox.children.length >= TOAST_MAX) toastBox.firstChild.remove()
 
-		var toast = el('div', 'mna-toast ' + kind)
+		var toast = el('div', 'cafe-toast ' + kind)
 		toast.setAttribute('role', kind === 'error' ? 'alert' : 'status')
-		var icon = el('span', 'mna-toast-icon')
+		var icon = el('span', 'cafe-toast-icon')
 		icon.innerHTML = TOAST_ICONS[kind]
 		toast.appendChild(icon)
-		toast.appendChild(el('span', 'mna-toast-text', text))
+		toast.appendChild(el('span', 'cafe-toast-text', text))
 		toastBox.appendChild(toast)
 
 		var timer = 0
@@ -161,13 +161,13 @@
 
 	// Opens a dialog. `actions` is a list of { label, kind, onClick, left }, where
 	// kind is 'solid', 'subtle' or 'danger'. Returns { root, close, setError, setBusy }.
-	MNA.dialog = function (options) {
-		var overlay = el('div', 'mna-overlay')
-		var dialog = el('div', 'mna-dialog' + (options.wide ? ' wide' : ''))
+	CAFE.dialog = function (options) {
+		var overlay = el('div', 'cafe-overlay')
+		var dialog = el('div', 'cafe-dialog' + (options.wide ? ' wide' : ''))
 		dialog.setAttribute('role', 'dialog')
 		dialog.setAttribute('aria-modal', 'true')
 		dialog.appendChild(el('h2', '', options.title))
-		var closeButton = el('button', 'mna-dialog-close')
+		var closeButton = el('button', 'cafe-dialog-close')
 		closeButton.type = 'button'
 		closeButton.setAttribute('aria-label', 'Close')
 		closeButton.innerHTML =
@@ -179,16 +179,16 @@
 		if (options.message) dialog.appendChild(el('p', '', options.message))
 		if (options.body) dialog.appendChild(options.body)
 
-		var error = el('p', 'mna-form-error')
+		var error = el('p', 'cafe-form-error')
 		error.hidden = true
 		dialog.appendChild(error)
 
-		var actions = el('div', 'mna-dialog-actions')
+		var actions = el('div', 'cafe-dialog-actions')
 		var buttons = []
-		var left = el('div', 'mna-dialog-left')
-		var right = el('div', 'mna-dialog-right')
+		var left = el('div', 'cafe-dialog-left')
+		var right = el('div', 'cafe-dialog-right')
 		;(options.actions || []).forEach(function (action) {
-			var button = el('button', 'mna-btn mna-btn-' + (action.kind || 'subtle'), action.label)
+			var button = el('button', 'cafe-btn cafe-btn-' + (action.kind || 'subtle'), action.label)
 			button.type = 'button'
 			button.addEventListener('click', function () {
 				action.onClick(api)
@@ -209,7 +209,7 @@
 		}
 		function onKey(e) {
 			// Only the top-most dialog reacts, so Escape on a confirm leaves the form open.
-			var stack = document.querySelectorAll('.mna-overlay')
+			var stack = document.querySelectorAll('.cafe-overlay')
 			if (e.key === 'Escape' && stack[stack.length - 1] === overlay) close()
 		}
 		document.addEventListener('keydown', onKey)
@@ -238,7 +238,7 @@
 	}
 
 	// Resolves true if the person confirms.
-	MNA.confirm = function (options) {
+	CAFE.confirm = function (options) {
 		return new Promise(function (resolve) {
 			var settled = false
 			function finish(value, dialog) {
@@ -246,7 +246,7 @@
 				resolve(value)
 				dialog.close()
 			}
-			MNA.dialog({
+			CAFE.dialog({
 				title: options.title,
 				message: options.message,
 				onClose: function () {
@@ -290,21 +290,21 @@
 
 	// A small menu under `anchor`. items: { label, onClick, danger, icon (svg markup) }. A second
 	// call on the same anchor closes it.
-	MNA.popupMenu = function (anchor, items) {
+	CAFE.popupMenu = function (anchor, items) {
 		var wasOpen = popup && anchor.hasAttribute('data-popup-open')
 		closePopup()
 		document.querySelectorAll('[data-popup-open]').forEach(function (node) {
 			node.removeAttribute('data-popup-open')
 		})
 		if (wasOpen) return
-		var menu = el('div', 'mna-popup')
+		var menu = el('div', 'cafe-popup')
 		anchor.setAttribute('data-popup-anchor', '')
 		anchor.setAttribute('data-popup-open', '')
 		items.forEach(function (item) {
-			var button = el('button', 'mna-popup-item' + (item.danger ? ' danger' : ''))
+			var button = el('button', 'cafe-popup-item' + (item.danger ? ' danger' : ''))
 			button.type = 'button'
 			if (item.icon) {
-				var icon = el('span', 'mna-popup-icon')
+				var icon = el('span', 'cafe-popup-icon')
 				icon.innerHTML = item.icon
 				button.appendChild(icon)
 			}
@@ -327,11 +327,11 @@
 	// ---- Form dialog ----
 
 	function buildField(field, values) {
-		var wrap = el('div', 'mna-field' + (field.grow === false ? '' : ' grow'))
-		var id = 'mna-f-' + field.name
+		var wrap = el('div', 'cafe-field' + (field.grow === false ? '' : ' grow'))
+		var id = 'cafe-f-' + field.name
 		if (field.label) {
 			var label = el('label', '', field.label)
-			if (field.required) label.appendChild(el('span', 'mna-required', ' *'))
+			if (field.required) label.appendChild(el('span', 'cafe-required', ' *'))
 			label.setAttribute('for', id)
 			wrap.appendChild(label)
 		}
@@ -365,9 +365,9 @@
 	//   { row: [field, { text: 'at' }, field] }
 	// onSubmit(values) returns a promise. The dialog stays open, showing the error, if it rejects.
 	// If onDelete is given, a Delete button is shown.
-	MNA.form = function (options) {
+	CAFE.form = function (options) {
 		var values = options.values || {}
-		var body = el('div', 'mna-form')
+		var body = el('div', 'cafe-form')
 		var controls = []
 
 		options.fields.forEach(function (item) {
@@ -377,10 +377,10 @@
 				body.appendChild(built.node)
 				return
 			}
-			var row = el('div', 'mna-field-row')
+			var row = el('div', 'cafe-field-row')
 			item.row.forEach(function (part) {
 				if (part.text) {
-					row.appendChild(el('span', 'mna-field-text', part.text))
+					row.appendChild(el('span', 'cafe-field-text', part.text))
 					return
 				}
 				var built = buildField(part, values)
@@ -452,6 +452,6 @@
 				},
 			})
 		}
-		return MNA.dialog({ title: options.title, body: body, actions: actions, wide: true })
+		return CAFE.dialog({ title: options.title, body: body, actions: actions, wide: true })
 	}
 })()

@@ -37,7 +37,7 @@ def build_post_row():
 	"""The published row, with data bindings. Builder repeats it per post."""
 	title = show(block("div", "Title", text="Post title", styles=TITLE_STYLES), "title")
 	excerpt = show(
-		block("p", "Excerpt", ["mna-clamp-2"], text="A short preview of the post.", styles=EXCERPT_STYLES),
+		block("p", "Excerpt", ["cafe-clamp-2"], text="A short preview of the post.", styles=EXCERPT_STYLES),
 		"excerpt",
 	)
 	meta = show(
@@ -60,7 +60,7 @@ def build_post_row():
 	)
 	return attribute(
 		block(
-			"a", "Post", ["mna-post"], attrs={"href": "/posts"}, children=[text, thumbnail], styles=ROW_STYLES
+			"a", "Post", ["cafe-post"], attrs={"href": "/posts"}, children=[text, thumbnail], styles=ROW_STYLES
 		),
 		"href",
 		"href",
@@ -74,12 +74,12 @@ def draft_row_template():
 	return html_el(
 		"template",
 		None,
-		{"id": "mna-post-template"},
+		{"id": "cafe-post-template"},
 		None,
 		[
 			html_el(
 				"a",
-				["mna-post"],
+				["cafe-post"],
 				{"href": "#"},
 				ROW_STYLES,
 				[
@@ -89,12 +89,12 @@ def draft_row_template():
 						None,
 						{"minWidth": "0", "flexGrow": "1"},
 						[
-							html_el("div", ["mna-row-title"], None, TITLE_STYLES),
-							html_el("p", ["mna-clamp-2", "mna-row-excerpt"], None, EXCERPT_STYLES),
-							html_el("div", ["mna-row-meta"], None, META_STYLES),
+							html_el("div", ["cafe-row-title"], None, TITLE_STYLES),
+							html_el("p", ["cafe-clamp-2", "cafe-row-excerpt"], None, EXCERPT_STYLES),
+							html_el("div", ["cafe-row-meta"], None, META_STYLES),
 						],
 					),
-					html_el("img", ["mna-row-thumb"], {"alt": ""}, THUMBNAIL_STYLES),
+					html_el("img", ["cafe-row-thumb"], {"alt": ""}, THUMBNAIL_STYLES),
 				],
 			)
 		],

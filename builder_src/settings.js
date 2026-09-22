@@ -5,19 +5,19 @@
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
+	var CAFE = (window.CAFE = window.CAFE || {})
 	var ICONS = '@@ICONS@@'
 	var DESKTOP = window.matchMedia('(min-width: 768px)')
 	var TABS = ['account', 'saved']
 	var TITLES = { account: 'Account', saved: 'Saved posts' }
 
 	var el = function (tag, className, text) {
-		return MNA.el(tag, className, text)
+		return CAFE.el(tag, className, text)
 	}
 
 	function icon(name) {
 		var holder = document.createElement('span')
-		holder.className = 'mna-set-icon'
+		holder.className = 'cafe-set-icon'
 		holder.innerHTML = ICONS[name] || ''
 		return holder
 	}
@@ -46,24 +46,24 @@
 	}
 
 	function savedRow(post, first, onOpen, onRemove) {
-		var row = el('div', 'mna-saved-row' + (first ? ' first' : ''))
-		var link = el('a', 'mna-saved-link')
+		var row = el('div', 'cafe-saved-row' + (first ? ' first' : ''))
+		var link = el('a', 'cafe-saved-link')
 		link.href = '/posts/' + encodeURIComponent(post.name)
 		link.addEventListener('click', onOpen)
-		var text = el('div', 'mna-saved-text')
-		text.appendChild(el('div', 'mna-saved-title', post.display_title || post.title || 'Untitled'))
-		text.appendChild(el('p', 'mna-saved-excerpt', excerpt(post.content)))
-		text.appendChild(el('div', 'mna-saved-by', 'By ' + (post.author_name || '')))
+		var text = el('div', 'cafe-saved-text')
+		text.appendChild(el('div', 'cafe-saved-title', post.display_title || post.title || 'Untitled'))
+		text.appendChild(el('p', 'cafe-saved-excerpt', excerpt(post.content)))
+		text.appendChild(el('div', 'cafe-saved-by', 'By ' + (post.author_name || '')))
 		link.appendChild(text)
 		var cover = coverOf(post)
 		if (cover) {
-			var image = el('img', 'mna-saved-cover')
+			var image = el('img', 'cafe-saved-cover')
 			image.src = cover
 			image.alt = ''
 			image.loading = 'lazy'
 			link.appendChild(image)
 		}
-		var remove = el('button', 'mna-saved-remove')
+		var remove = el('button', 'cafe-saved-remove')
 		remove.type = 'button'
 		remove.setAttribute('aria-label', 'Remove from saved posts')
 		remove.appendChild(icon('bookmark-minus'))
@@ -76,13 +76,13 @@
 	}
 
 	// Fills `panel` (the Saved tab's container) with the saved posts. `panel`
-	// holds .mna-loading, .mna-saved-empty, .mna-saved-error and .mna-saved-list.
+	// holds .cafe-loading, .cafe-saved-empty, .cafe-saved-error and .cafe-saved-list.
 	var savedRequest = 0
 	function loadSaved(panel, onOpen) {
-		var loading = panel.querySelector('.mna-loading')
-		var empty = panel.querySelector('.mna-saved-empty')
-		var failed = panel.querySelector('.mna-saved-error')
-		var list = panel.querySelector('.mna-saved-list')
+		var loading = panel.querySelector('.cafe-loading')
+		var empty = panel.querySelector('.cafe-saved-empty')
+		var failed = panel.querySelector('.cafe-saved-error')
+		var list = panel.querySelector('.cafe-saved-list')
 		var posts = []
 		var request = ++savedRequest
 
@@ -101,7 +101,7 @@
 				return item.name !== post.name
 			})
 			render()
-			MNA.api('cafe.api.toggle_save_post', { post: post.name }).then(
+			CAFE.api('cafe.api.toggle_save_post', { post: post.name }).then(
 				function (result) {
 					// `saved` true means it is still saved (a double click, say): put it back.
 					if (!result || result.saved) {
@@ -112,7 +112,7 @@
 				function () {
 					posts = before
 					render()
-					MNA.toast("Couldn't remove that post. Please try again.", 'error')
+					CAFE.toast("Couldn't remove that post. Please try again.", 'error')
 				}
 			)
 		}
@@ -121,7 +121,7 @@
 		empty.hidden = true
 		failed.hidden = true
 		loading.hidden = false
-		MNA.get('cafe.api.list_saved_posts').then(
+		CAFE.get('cafe.api.list_saved_posts').then(
 			function (data) {
 				if (request !== savedRequest) return
 				loading.hidden = true
@@ -139,9 +139,9 @@
 	// ---- The page (phones) ----
 
 	function setupPage(root) {
-		var buttons = root.querySelectorAll('.mna-tab-btn')
-		var account = document.getElementById('mna-settings-account')
-		var saved = document.getElementById('mna-settings-saved')
+		var buttons = root.querySelectorAll('.cafe-tab-btn')
+		var account = document.getElementById('cafe-settings-account')
+		var saved = document.getElementById('cafe-settings-saved')
 
 		function show(tab, updateAddress) {
 			buttons.forEach(function (button) {
@@ -160,11 +160,11 @@
 		}
 
 		root.addEventListener('click', function (event) {
-			var button = event.target.closest('.mna-tab-btn')
+			var button = event.target.closest('.cafe-tab-btn')
 			if (button) show(button.getAttribute('data-tab'), true)
 		})
-		document.getElementById('mna-settings-logout').addEventListener('click', function () {
-			MNA.confirmLogout()
+		document.getElementById('cafe-settings-logout').addEventListener('click', function () {
+			CAFE.confirmLogout()
 		})
 		show(new URLSearchParams(location.search).get('tab') === 'saved' ? 'saved' : 'account', false)
 	}
@@ -174,10 +174,10 @@
 	var dialog = null
 
 	function accountRow(title, description, control, first) {
-		var row = el('div', 'mna-set-row' + (first ? ' first' : ''))
-		var text = el('div', 'mna-set-row-text')
-		text.appendChild(el('div', 'mna-set-row-title', title))
-		if (description) text.appendChild(el('div', 'mna-set-row-desc', description))
+		var row = el('div', 'cafe-set-row' + (first ? ' first' : ''))
+		var text = el('div', 'cafe-set-row-text')
+		text.appendChild(el('div', 'cafe-set-row-title', title))
+		if (description) text.appendChild(el('div', 'cafe-set-row-desc', description))
 		row.appendChild(text)
 		row.appendChild(control)
 		return row
@@ -185,17 +185,17 @@
 
 	function buildAccount(close) {
 		var user = currentUser()
-		var box = el('div', 'mna-set-rows')
-		box.appendChild(accountRow('Username', '', el('span', 'mna-set-value', '@' + user.split('@')[0]), true))
-		box.appendChild(accountRow('Email address', '', el('span', 'mna-set-value', user)))
-		var logOut = el('button', 'mna-set-button', 'Log out')
+		var box = el('div', 'cafe-set-rows')
+		box.appendChild(accountRow('Username', '', el('span', 'cafe-set-value', '@' + user.split('@')[0]), true))
+		box.appendChild(accountRow('Email address', '', el('span', 'cafe-set-value', user)))
+		var logOut = el('button', 'cafe-set-button', 'Log out')
 		logOut.type = 'button'
 		logOut.addEventListener('click', function () {
 			close()
-			MNA.confirmLogout()
+			CAFE.confirmLogout()
 		})
 		box.appendChild(accountRow('Log out', 'Sign out of your account on this device.', logOut))
-		var remove = el('button', 'mna-set-button danger', 'Delete account')
+		var remove = el('button', 'cafe-set-button danger', 'Delete account')
 		remove.type = 'button'
 		remove.disabled = true
 		box.appendChild(
@@ -205,46 +205,46 @@
 	}
 
 	function buildSavedPanel() {
-		var panel = el('div', 'mna-saved-panel')
-		var loading = el('div', 'mna-loading')
+		var panel = el('div', 'cafe-saved-panel')
+		var loading = el('div', 'cafe-loading')
 		loading.hidden = true
-		for (var i = 0; i < 4; i++) loading.appendChild(el('div', 'mna-skeleton'))
-		var empty = el('p', 'mna-saved-empty', 'No saved posts yet.')
-		var failed = el('p', 'mna-saved-error', "Couldn't load your saved posts. Please try again.")
+		for (var i = 0; i < 4; i++) loading.appendChild(el('div', 'cafe-skeleton'))
+		var empty = el('p', 'cafe-saved-empty', 'No saved posts yet.')
+		var failed = el('p', 'cafe-saved-error', "Couldn't load your saved posts. Please try again.")
 		empty.hidden = failed.hidden = true
 		panel.appendChild(loading)
 		panel.appendChild(empty)
 		panel.appendChild(failed)
-		panel.appendChild(el('div', 'mna-saved-list'))
+		panel.appendChild(el('div', 'cafe-saved-list'))
 		return panel
 	}
 
 	function openDialog(tab) {
 		if (dialog) return
-		if (MNA.closeNotifications) MNA.closeNotifications()
+		if (CAFE.closeNotifications) CAFE.closeNotifications()
 		var user = currentUser()
 		var opener = document.activeElement
-		var overlay = el('div', 'mna-overlay mna-set-overlay')
-		var modal = el('div', 'mna-set-modal')
+		var overlay = el('div', 'cafe-overlay cafe-set-overlay')
+		var modal = el('div', 'cafe-set-modal')
 		modal.setAttribute('role', 'dialog')
 		modal.setAttribute('aria-modal', 'true')
 		modal.setAttribute('aria-label', 'Settings')
 		modal.tabIndex = -1
 
-		var side = el('div', 'mna-set-side')
-		side.appendChild(el('div', 'mna-set-group', 'User settings'))
-		var nav = el('div', 'mna-set-nav')
+		var side = el('div', 'cafe-set-side')
+		side.appendChild(el('div', 'cafe-set-group', 'User settings'))
+		var nav = el('div', 'cafe-set-nav')
 		var navButtons = {}
 		TABS.forEach(function (key) {
-			var button = el('button', 'mna-set-nav-item')
+			var button = el('button', 'cafe-set-nav-item')
 			button.type = 'button'
 			if (key === 'account') {
-				var avatar = el('span', 'mna-set-avatar', (user.charAt(0) || '?').toUpperCase())
+				var avatar = el('span', 'cafe-set-avatar', (user.charAt(0) || '?').toUpperCase())
 				button.appendChild(avatar)
 			} else {
 				button.appendChild(icon('bookmark'))
 			}
-			button.appendChild(el('span', 'mna-set-nav-label', key === 'account' ? 'Account' : 'Saved posts'))
+			button.appendChild(el('span', 'cafe-set-nav-label', key === 'account' ? 'Account' : 'Saved posts'))
 			button.addEventListener('click', function () {
 				select(key)
 			})
@@ -253,9 +253,9 @@
 		})
 		side.appendChild(nav)
 
-		var content = el('div', 'mna-set-content')
-		var title = el('h2', 'mna-set-title')
-		var body = el('div', 'mna-set-body')
+		var content = el('div', 'cafe-set-content')
+		var title = el('h2', 'cafe-set-title')
+		var body = el('div', 'cafe-set-body')
 		var accountPanel = buildAccount(close)
 		var savedPanel = buildSavedPanel()
 		body.appendChild(accountPanel)
@@ -316,7 +316,7 @@
 		select(tab)
 		modal.focus()
 	}
-	MNA.openSettings = function (tab) {
+	CAFE.openSettings = function (tab) {
 		openDialog(tab === 'saved' ? 'saved' : 'account')
 	}
 
@@ -324,10 +324,10 @@
 		// The logo menu's Settings is a link (so it works without this script);
 		// on a desktop it opens the dialog instead of leaving the page.
 		document.addEventListener('click', function (event) {
-			var link = event.target.closest('.mna-menu a[href="/settings"]')
+			var link = event.target.closest('.cafe-menu a[href="/settings"]')
 			if (!link || !DESKTOP.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.button) return
 			event.preventDefault()
-			if (MNA.closeMenu) MNA.closeMenu()
+			if (CAFE.closeMenu) CAFE.closeMenu()
 			openDialog('account')
 		})
 		var wanted = new URLSearchParams(location.search).get('settings')
@@ -340,7 +340,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var root = document.getElementById('mna-settings-page')
+		var root = document.getElementById('cafe-settings-page')
 		if (!root) return setupDialogTriggers()
 		// A desktop gets the dialog over the Home feed. The Builder editor's
 		// Preview shows this page inside a frame: leave that one alone.

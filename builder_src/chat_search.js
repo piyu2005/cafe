@@ -3,7 +3,7 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var DEBOUNCE_MS = 300
 	var input = null
 	var results = null
@@ -18,9 +18,9 @@
 		results.replaceChildren()
 		if (rows && rows.length) {
 			rows.forEach(function (r) {
-				var button = C.el('button', 'mna-c-hit')
+				var button = C.el('button', 'cafe-c-hit')
 				button.type = 'button'
-				button.appendChild(C.el('span', 'mna-c-hit-name', r.sender_name + ':'))
+				button.appendChild(C.el('span', 'cafe-c-hit-name', r.sender_name + ':'))
 				button.appendChild(
 					document.createTextNode(' ' + (C.isHtml(r.content) ? C.plainText(r.content) : r.content))
 				)
@@ -31,7 +31,7 @@
 				results.appendChild(button)
 			})
 		} else if (query) {
-			results.appendChild(C.el('p', 'mna-c-hit-none', 'No matches.'))
+			results.appendChild(C.el('p', 'cafe-c-hit-none', 'No matches.'))
 		}
 	}
 
@@ -54,7 +54,7 @@
 
 	function build() {
 		box().replaceChildren()
-		input = C.el('input', 'mna-c-search-input')
+		input = C.el('input', 'cafe-c-search-input')
 		input.type = 'text'
 		input.placeholder = 'Search in this conversation'
 		input.setAttribute('aria-label', 'Search in this conversation')
@@ -62,7 +62,7 @@
 			clearTimeout(timer)
 			timer = setTimeout(run, DEBOUNCE_MS)
 		})
-		results = C.el('div', 'mna-c-hits')
+		results = C.el('div', 'cafe-c-hits')
 		box().appendChild(input)
 		box().appendChild(results)
 	}
@@ -114,10 +114,10 @@
 	}
 
 	function round(icon, label, className, onClick) {
-		var button = C.el('button', 'mna-c-lb-btn ' + className)
+		var button = C.el('button', 'cafe-c-lb-btn ' + className)
 		button.type = 'button'
 		button.setAttribute('aria-label', label)
-		button.appendChild(C.icon(icon, 'mna-c-medium'))
+		button.appendChild(C.icon(icon, 'cafe-c-medium'))
 		button.addEventListener('click', function (event) {
 			event.stopPropagation()
 			onClick()
@@ -129,13 +129,13 @@
 		var current = images[index]
 		overlay.replaceChildren()
 		overlay.appendChild(round('x', 'Close', 'close', close))
-		var download = C.el('a', 'mna-c-lb-btn download')
+		var download = C.el('a', 'cafe-c-lb-btn download')
 		download.href = current.file_url
 		download.download = current.file_name || ''
 		download.target = '_blank'
 		download.rel = 'noopener'
 		download.setAttribute('aria-label', 'Download')
-		download.appendChild(C.icon('download', 'mna-c-medium'))
+		download.appendChild(C.icon('download', 'cafe-c-medium'))
 		download.addEventListener('click', function (event) {
 			event.stopPropagation()
 		})
@@ -151,9 +151,9 @@
 					step(1)
 				})
 			)
-			overlay.appendChild(C.el('div', 'mna-c-lb-count', index + 1 + ' / ' + images.length))
+			overlay.appendChild(C.el('div', 'cafe-c-lb-count', index + 1 + ' / ' + images.length))
 		}
-		var img = C.el('img', 'mna-c-lb-img')
+		var img = C.el('img', 'cafe-c-lb-img')
 		img.src = current.file_url
 		img.alt = ''
 		img.addEventListener('click', function (event) {
@@ -166,7 +166,7 @@
 	C.lightbox = function (pictures, start) {
 		images = pictures
 		index = start
-		overlay = C.el('div', 'mna-c-lb')
+		overlay = C.el('div', 'cafe-c-lb')
 		overlay.addEventListener('click', close)
 		document.body.appendChild(overlay)
 		document.addEventListener('keydown', onKey)

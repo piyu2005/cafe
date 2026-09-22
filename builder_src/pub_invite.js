@@ -3,8 +3,8 @@
 ;(function () {
 	'use strict'
 
-	var P = window.MNA.pub
-	var MNA = window.MNA
+	var P = window.CAFE.pub
+	var CAFE = window.CAFE
 	var DEBOUNCE_MS = 200
 	var handle
 	var title = 'Publication'
@@ -29,7 +29,7 @@
 		button.disabled = true
 		P.call('invite_to_publication', { publication: handle, user: person.name, role: role }).then(
 			function () {
-				MNA.toast('Invitation sent')
+				CAFE.toast('Invitation sent')
 				taken[person.name] = true
 				selected = null
 				input.value = ''
@@ -44,12 +44,12 @@
 	}
 
 	function row(person) {
-		var button = P.el('button', 'mna-p-person')
+		var button = P.el('button', 'cafe-p-person')
 		button.type = 'button'
 		button.appendChild(P.avatar(person.user_image, person.full_name, 'md'))
-		var text = P.el('div', 'mna-p-person-text')
-		text.appendChild(P.el('span', 'mna-p-person-name', person.full_name))
-		if (person.username) text.appendChild(P.el('span', 'mna-p-person-user', '@' + person.username))
+		var text = P.el('div', 'cafe-p-person-text')
+		text.appendChild(P.el('span', 'cafe-p-person-name', person.full_name))
+		if (person.username) text.appendChild(P.el('span', 'cafe-p-person-user', '@' + person.username))
 		button.appendChild(text)
 		button.addEventListener('click', function () {
 			pick(person)
@@ -58,25 +58,25 @@
 	}
 
 	function selectedCard(person) {
-		var card = P.el('div', 'mna-p-selected')
-		var top = P.el('div', 'mna-p-selected-top')
+		var card = P.el('div', 'cafe-p-selected')
+		var top = P.el('div', 'cafe-p-selected-top')
 		top.appendChild(P.avatar(person.user_image, person.full_name, 'md'))
-		var text = P.el('div', 'mna-p-person-text')
-		text.appendChild(P.el('div', 'mna-p-selected-name', person.full_name))
-		if (person.username) text.appendChild(P.el('div', 'mna-p-person-user', '@' + person.username))
+		var text = P.el('div', 'cafe-p-person-text')
+		text.appendChild(P.el('div', 'cafe-p-selected-name', person.full_name))
+		if (person.username) text.appendChild(P.el('div', 'cafe-p-person-user', '@' + person.username))
 		top.appendChild(text)
-		top.appendChild(P.icon('check', 'mna-p-small'))
-		var clear = P.el('button', 'mna-p-x')
+		top.appendChild(P.icon('check', 'cafe-p-small'))
+		var clear = P.el('button', 'cafe-p-x')
 		clear.type = 'button'
 		clear.setAttribute('aria-label', 'Deselect')
-		clear.appendChild(P.icon('x', 'mna-p-tiny'))
+		clear.appendChild(P.icon('x', 'cafe-p-tiny'))
 		clear.addEventListener('click', function () {
 			selected = null
 			draw()
 		})
 		top.appendChild(clear)
 		card.appendChild(top)
-		var field = P.el('div', 'mna-field grow')
+		var field = P.el('div', 'cafe-field grow')
 		field.appendChild(P.el('label', '', 'Select Role'))
 		var select = P.el('select')
 		;['Member', 'Editor'].forEach(function (name) {
@@ -90,7 +90,7 @@
 		})
 		field.appendChild(select)
 		card.appendChild(field)
-		var go = P.el('button', 'mna-btn mna-btn-solid mna-p-send', 'Send invitation')
+		var go = P.el('button', 'cafe-btn cafe-btn-solid cafe-p-send', 'Send invitation')
 		go.type = 'button'
 		go.addEventListener('click', function () {
 			send(person, go)
@@ -109,7 +109,7 @@
 			return !taken[p.name]
 		})
 		if (!shown.length) {
-			results.appendChild(P.el('p', 'mna-p-empty', 'No people found.'))
+			results.appendChild(P.el('p', 'cafe-p-empty', 'No people found.'))
 			return
 		}
 		shown.forEach(function (p) {
@@ -119,7 +119,7 @@
 
 	function loadPeople() {
 		var mine = ++token
-		MNA.get('cafe.chat.search_people_to_message', { query: input.value.trim() }).then(
+		CAFE.get('cafe.chat.search_people_to_message', { query: input.value.trim() }).then(
 			function (rows) {
 				if (mine !== token) return
 				people = rows || []
@@ -152,14 +152,14 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		box = document.getElementById('mna-invite')
+		box = document.getElementById('cafe-invite')
 		if (!box) return
 		handle = new URLSearchParams(location.search).get('pub') || box.getAttribute('data-handle') || ''
-		heading = document.getElementById('mna-p-invite-title')
-		var back = document.querySelector('.mna-mobile-back')
+		heading = document.getElementById('cafe-p-invite-title')
+		var back = document.querySelector('.cafe-mobile-back')
 		if (back) back.setAttribute('href', '/publications/' + encodeURIComponent(handle))
-		var search = P.el('div', 'mna-p-search')
-		search.appendChild(P.icon('search', 'mna-p-search-icon'))
+		var search = P.el('div', 'cafe-p-search')
+		search.appendChild(P.icon('search', 'cafe-p-search-icon'))
 		input = P.el('input')
 		input.type = 'text'
 		input.placeholder = 'Search'
@@ -174,7 +174,7 @@
 			}, DEBOUNCE_MS)
 		})
 		search.appendChild(input)
-		results = P.el('div', 'mna-p-results')
+		results = P.el('div', 'cafe-p-results')
 		box.replaceChildren(search, results)
 		input.focus()
 		draw()
@@ -184,7 +184,7 @@
 			function (pub) {
 				title = pub.title
 				if (heading) heading.textContent = 'Invite people to ' + title
-				var crumb = document.getElementById('mna-p-crumb-pub')
+				var crumb = document.getElementById('cafe-p-crumb-pub')
 				if (crumb) {
 					crumb.textContent = title
 					crumb.setAttribute('href', '/publications/' + encodeURIComponent(handle))

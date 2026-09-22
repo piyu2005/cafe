@@ -40,7 +40,7 @@ def page_header(crumbs):
 	return block(
 		"header",
 		"Header",
-		["mna-header"],
+		["cafe-header"],
 		styles={
 			"position": "sticky",
 			"top": "0",
@@ -58,7 +58,7 @@ def page_header(crumbs):
 			block(
 				"div",
 				"Breadcrumbs",
-				["mna-crumbs"],
+				["cafe-crumbs"],
 				styles={
 					"display": "flex",
 					"alignItems": "center",
@@ -75,7 +75,7 @@ def page_header(crumbs):
 				"New Post",
 				html_el(
 					"a",
-					["mna-btn", "mna-btn-solid"],
+					["cafe-btn", "cafe-btn-solid"],
 					{"href": "/write"},
 					{
 						"display": "inline-flex",
@@ -115,14 +115,14 @@ def page_layout(
 	container = block(
 		"section",
 		"Container",
-		["mna-container", *([container_class] if container_class else [])],
+		["cafe-container", *([container_class] if container_class else [])],
 		styles={"width": "100%", "maxWidth": max_width, "margin": "0 auto", "padding": padding},
 		children=content,
 	)
 	main = block(
 		"div",
 		"Main",
-		["mna-main"],
+		["cafe-main"],
 		styles={
 			"display": "flex",
 			"flexGrow": "1",
@@ -130,7 +130,7 @@ def page_layout(
 			"minWidth": "0",
 			# Lets the flex child below shrink to less than its content height,
 			# which a flex item otherwise refuses to do — required for its own
-			# overflow to actually scroll instead of pushing .mna-app taller.
+			# overflow to actually scroll instead of pushing .cafe-app taller.
 			"minHeight": "0",
 		},
 		children=[
@@ -139,7 +139,7 @@ def page_layout(
 			block(
 				"div",
 				"Scroll area",
-				["mna-scroll"],
+				["cafe-scroll"],
 				# "contain" (not "none"): normal scrolling still works when there's
 				# real content to scroll, it just stops the bounce/rubber-band
 				# animation showing at the top/bottom edge on a trackpad swipe.
@@ -156,7 +156,7 @@ def page_layout(
 	app = block(
 		"div",
 		"App",
-		["mna-app"],
+		["cafe-app"],
 		styles={
 			"display": "flex",
 			# 100%, not 100vw: in the editor canvas vw is the whole browser window,
@@ -192,7 +192,7 @@ def build_mobile_header(title, title_key=None, back_href="/", back_key=None, bac
 	back_link = block(
 		"a",
 		"Back",
-		["mna-mobile-back"],
+		["cafe-mobile-back"],
 		attrs={"href": back_href, "aria-label": "Back"},
 		inner_html=svg("chevron-left", 18),
 		styles={
@@ -210,7 +210,7 @@ def build_mobile_header(title, title_key=None, back_href="/", back_key=None, bac
 	heading = block(
 		"h1",
 		"Title",
-		["mna-mobile-title"],
+		["cafe-mobile-title"],
 		text=title,
 		styles={
 			"margin": "0",
@@ -241,7 +241,7 @@ def build_mobile_header(title, title_key=None, back_href="/", back_key=None, bac
 	return block(
 		"header",
 		"Mobile header",
-		["mna-mobile-header"],
+		["cafe-mobile-header"],
 		styles={
 			"display": "none",
 			"position": "sticky",

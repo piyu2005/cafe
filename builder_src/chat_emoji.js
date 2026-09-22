@@ -3,19 +3,19 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var DATA_SCRIPT = '/assets/cafe/builder_assets/vendor/emoji-data.js'
 	var loading = null
 	var picker = null
 
 	function loadData() {
-		if (window.MnaEmoji) return Promise.resolve(window.MnaEmoji)
+		if (window.CafeEmoji) return Promise.resolve(window.CafeEmoji)
 		if (!loading) {
 			loading = new Promise(function (resolve, reject) {
 				var script = document.createElement('script')
 				script.src = DATA_SCRIPT
 				script.onload = function () {
-					resolve(window.MnaEmoji)
+					resolve(window.CafeEmoji)
 				}
 				script.onerror = function () {
 					loading = null
@@ -48,14 +48,14 @@
 			C.closeEmojiPicker()
 			return
 		}
-		picker = C.el('div', 'mna-c-emoji')
+		picker = C.el('div', 'cafe-c-emoji')
 		anchor.setAttribute('data-emoji-anchor', '')
-		var search = C.el('input', 'mna-c-emoji-search')
+		var search = C.el('input', 'cafe-c-emoji-search')
 		search.type = 'text'
 		search.placeholder = 'Search emoji'
 		search.setAttribute('aria-label', 'Search emoji')
-		var grid = C.el('div', 'mna-c-emoji-grid')
-		var head = C.el('div', 'mna-c-emoji-head')
+		var grid = C.el('div', 'cafe-c-emoji-grid')
+		var head = C.el('div', 'cafe-c-emoji-head')
 		head.appendChild(search)
 		picker.appendChild(head)
 		picker.appendChild(grid)
@@ -73,12 +73,12 @@
 						: data
 					grid.replaceChildren()
 					if (!rows.length) {
-						grid.appendChild(C.el('p', 'mna-c-emoji-none', 'No emoji found.'))
+						grid.appendChild(C.el('p', 'cafe-c-emoji-none', 'No emoji found.'))
 						return
 					}
 					var fragment = document.createDocumentFragment()
 					rows.forEach(function (row) {
-						var button = C.el('button', 'mna-c-emoji-btn', row[1])
+						var button = C.el('button', 'cafe-c-emoji-btn', row[1])
 						button.type = 'button'
 						button.title = row[0]
 						button.setAttribute('data-emoji', row[1])

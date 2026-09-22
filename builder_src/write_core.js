@@ -4,8 +4,8 @@
 ;(function () {
 	'use strict'
 
-	var MNA = (window.MNA = window.MNA || {})
-	var W = (MNA.write = {})
+	var CAFE = (window.CAFE = window.CAFE || {})
+	var W = (CAFE.write = {})
 
 	W.ICONS = '@@ICONS@@'
 	W.base = '/write'
@@ -45,12 +45,12 @@
 	}
 
 	W.el = function (tag, className, text) {
-		return MNA.el(tag, className, text)
+		return CAFE.el(tag, className, text)
 	}
 
 	W.icon = function (name, className) {
 		var span = document.createElement('span')
-		span.className = 'mna-w-icon ' + (className || '')
+		span.className = 'cafe-w-icon ' + (className || '')
 		span.innerHTML = (W.ICONS && W.ICONS[name]) || ''
 		return span
 	}
@@ -110,20 +110,20 @@
 	// ---- The server ----
 
 	W.errorToast = function (error) {
-		MNA.toast((error && error.message) || MNA.DEFAULT_ERROR, 'error')
+		CAFE.toast((error && error.message) || CAFE.DEFAULT_ERROR, 'error')
 	}
 
 	W.load = function (id) {
-		return MNA.request('GET', POSTS + '/' + encodeURIComponent(id))
+		return CAFE.request('GET', POSTS + '/' + encodeURIComponent(id))
 	}
 	W.create = function (payload) {
-		return MNA.request('POST', POSTS, payload)
+		return CAFE.request('POST', POSTS, payload)
 	}
 	W.update = function (id, payload) {
-		return MNA.request('PUT', POSTS + '/' + encodeURIComponent(id), payload)
+		return CAFE.request('PUT', POSTS + '/' + encodeURIComponent(id), payload)
 	}
 	W.remove = function (id) {
-		return MNA.request('DELETE', POSTS + '/' + encodeURIComponent(id))
+		return CAFE.request('DELETE', POSTS + '/' + encodeURIComponent(id))
 	}
 
 	// Uploads a file and resolves with { file_url, file_name }. `options` are
@@ -178,15 +178,15 @@
 			closeMenu()
 			return
 		}
-		var menu = W.el('div', 'mna-w-menu')
+		var menu = W.el('div', 'cafe-w-menu')
 		anchor.setAttribute('data-menu-anchor', '')
 		items.forEach(function (item) {
 			var button = W.el(
 				'button',
-				'mna-w-menu-item' + (item.danger ? ' danger' : '') + (item.active ? ' active' : '')
+				'cafe-w-menu-item' + (item.danger ? ' danger' : '') + (item.active ? ' active' : '')
 			)
 			button.type = 'button'
-			button.appendChild(W.icon(item.icon, 'mna-w-small'))
+			button.appendChild(W.icon(item.icon, 'cafe-w-small'))
 			button.appendChild(W.el('span', '', item.label))
 			// mousedown, so the editor keeps its selection until the command runs.
 			button.addEventListener('mousedown', function (event) {

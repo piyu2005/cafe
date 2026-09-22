@@ -3,8 +3,8 @@
 ;(function () {
 	'use strict'
 
-	var MNA = window.MNA
-	var W = MNA.write
+	var CAFE = window.CAFE
+	var W = CAFE.write
 	var head = {}
 
 	function editing() {
@@ -75,11 +75,11 @@
 		var S = W.state
 		var form = S.form
 		if (W.isEmpty()) {
-			MNA.toast('Write something before saving', 'warning')
+			CAFE.toast('Write something before saving', 'warning')
 			return Promise.resolve(false)
 		}
 		if (status === 'Published' && !form.title.trim()) {
-			MNA.toast('Add a title before publishing', 'warning')
+			CAFE.toast('Add a title before publishing', 'warning')
 			return Promise.resolve(false)
 		}
 		var previous = S.status
@@ -104,13 +104,13 @@
 				S.status = status
 				S.savedAt = new Date()
 				if (status === 'Published') {
-					MNA.toast('Post published')
+					CAFE.toast('Post published')
 					location.assign('/posts/' + encodeURIComponent(result.name))
 					return true
 				}
-				if (fork) MNA.toast("Saved as a new draft — your published post wasn't changed")
-				else if (status === 'Archived') MNA.toast(previous === 'Archived' ? 'Changes saved' : 'Post archived')
-				else MNA.toast('Draft saved')
+				if (fork) CAFE.toast("Saved as a new draft — your published post wasn't changed")
+				else if (status === 'Archived') CAFE.toast(previous === 'Archived' ? 'Changes saved' : 'Post archived')
+				else CAFE.toast('Draft saved')
 				if (result.isNew) {
 					S.postId = result.name
 					if (window.top === window)
@@ -132,11 +132,11 @@
 	function openPreview() {
 		var S = W.state
 		if (W.isEmpty()) {
-			MNA.toast('Write something before publishing', 'warning')
+			CAFE.toast('Write something before publishing', 'warning')
 			return
 		}
 		if (!S.form.title.trim()) {
-			MNA.toast('Add a title before publishing', 'warning')
+			CAFE.toast('Add a title before publishing', 'warning')
 			return
 		}
 		var dialog = W.openPreview({
@@ -150,7 +150,7 @@
 				save('Published').then(function (ok) {
 					if (!ok) {
 						dialog.setBusy(false)
-						dialog.setError(document.querySelector('.mna-w-error').textContent)
+						dialog.setError(document.querySelector('.cafe-w-error').textContent)
 					}
 				})
 			},
@@ -158,7 +158,7 @@
 	}
 
 	function confirmDelete() {
-		MNA.confirm({
+		CAFE.confirm({
 			title: 'Delete this post?',
 			message: 'This cannot be undone.',
 			confirmLabel: 'Delete',
@@ -166,7 +166,7 @@
 		}).then(function (ok) {
 			if (!ok) return
 			W.remove(W.state.postId).then(function () {
-				MNA.toast('Post deleted')
+				CAFE.toast('Post deleted')
 				location.replace('/profile')
 			}, W.errorToast)
 		})
@@ -183,14 +183,14 @@
 		function byId(id) {
 			return document.getElementById(id)
 		}
-		head.draft = byId('mna-w-draft')
-		head.publish = byId('mna-w-publish')
-		head.mpublish = byId('mna-w-mpublish')
-		head.more = byId('mna-w-more')
-		head.mmore = byId('mna-w-mmore')
-		head.crumb = byId('mna-w-crumb')
-		head.mtitle = byId('mna-w-mtitle')
-		head.back = byId('mna-w-back')
+		head.draft = byId('cafe-w-draft')
+		head.publish = byId('cafe-w-publish')
+		head.mpublish = byId('cafe-w-mpublish')
+		head.more = byId('cafe-w-more')
+		head.mmore = byId('cafe-w-mmore')
+		head.crumb = byId('cafe-w-crumb')
+		head.mtitle = byId('cafe-w-mtitle')
+		head.back = byId('cafe-w-back')
 		if (head.draft)
 			head.draft.addEventListener('click', function () {
 				save(secondaryStatus())
@@ -209,7 +209,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var root = document.getElementById('mna-write')
+		var root = document.getElementById('cafe-write')
 		if (!root) return
 		var id = idFromAddress(root)
 		W.state.postId = id

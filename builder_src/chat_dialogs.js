@@ -3,19 +3,19 @@
 ;(function () {
 	'use strict'
 
-	var C = window.MNA.chat
+	var C = window.CAFE.chat
 	var SEARCH_MS = 200
 
 	// A person's chip, with a x to take it off.
 	function chip(label, username, image, onRemove) {
-		var node = C.el('span', 'mna-c-chip')
+		var node = C.el('span', 'cafe-c-chip')
 		node.appendChild(C.avatar(image, label, 'xs'))
 		node.appendChild(document.createTextNode(label))
-		if (username) node.appendChild(C.el('span', 'mna-c-chip-user', '@' + username))
-		var remove = C.el('button', 'mna-c-chip-x')
+		if (username) node.appendChild(C.el('span', 'cafe-c-chip-user', '@' + username))
+		var remove = C.el('button', 'cafe-c-chip-x')
 		remove.type = 'button'
 		remove.setAttribute('aria-label', 'Remove ' + label)
-		remove.appendChild(C.icon('x', 'mna-c-tiny'))
+		remove.appendChild(C.icon('x', 'cafe-c-tiny'))
 		remove.addEventListener('click', onRemove)
 		node.appendChild(remove)
 		return node
@@ -23,20 +23,20 @@
 
 	// A row you can click, for a result list.
 	function pick(label, username, image, onClick) {
-		var row = C.el('button', 'mna-c-pick')
+		var row = C.el('button', 'cafe-c-pick')
 		row.type = 'button'
 		row.appendChild(C.avatar(image, label, 'sm'))
-		var text = C.el('div', 'mna-c-pick-text')
-		text.appendChild(C.el('span', 'mna-c-pick-name', label))
-		if (username) text.appendChild(C.el('span', 'mna-c-pick-user', '@' + username))
+		var text = C.el('div', 'cafe-c-pick-text')
+		text.appendChild(C.el('span', 'cafe-c-pick-name', label))
+		if (username) text.appendChild(C.el('span', 'cafe-c-pick-user', '@' + username))
 		row.appendChild(text)
 		row.addEventListener('click', onClick)
 		return row
 	}
 
 	function searchBox(placeholder, onInput) {
-		var wrap = C.el('div', 'mna-c-search dialog')
-		wrap.appendChild(C.icon('search', 'mna-c-search-icon'))
+		var wrap = C.el('div', 'cafe-c-search dialog')
+		wrap.appendChild(C.icon('search', 'cafe-c-search-icon'))
 		var input = C.el('input')
 		input.type = 'text'
 		input.placeholder = placeholder
@@ -50,9 +50,9 @@
 	// Search people, pick several. `exclude` are user ids to leave out.
 	function peoplePicker(exclude, onChange) {
 		var chosen = []
-		var wrap = C.el('div', 'mna-c-picker')
-		var chips = C.el('div', 'mna-c-chips')
-		var results = C.el('div', 'mna-c-results')
+		var wrap = C.el('div', 'cafe-c-picker')
+		var chips = C.el('div', 'cafe-c-chips')
+		var results = C.el('div', 'cafe-c-results')
 		results.hidden = true
 		var timer = null
 		var token = 0
@@ -83,7 +83,7 @@
 		function search() {
 			var mine = ++token
 			results.hidden = false
-			results.replaceChildren(C.el('p', 'mna-c-results-note', 'Searching…'))
+			results.replaceChildren(C.el('p', 'cafe-c-results-note', 'Searching…'))
 			C.fetch('search_people_to_message', { query: box.input.value.trim() }).then(
 				function (rows) {
 					if (mine !== token) return
@@ -96,7 +96,7 @@
 						return taken.indexOf(p.name) === -1
 					})
 					results.replaceChildren()
-					if (!rows.length) results.appendChild(C.el('p', 'mna-c-results-note', 'No people found.'))
+					if (!rows.length) results.appendChild(C.el('p', 'cafe-c-results-note', 'No people found.'))
 					rows.forEach(function (p) {
 						results.appendChild(
 							pick(p.full_name, p.username, p.user_image, function () {
@@ -110,7 +110,7 @@
 					})
 				},
 				function () {
-					if (mine === token) results.replaceChildren(C.el('p', 'mna-c-results-note', 'No people found.'))
+					if (mine === token) results.replaceChildren(C.el('p', 'cafe-c-results-note', 'No people found.'))
 				}
 			)
 		}
@@ -131,7 +131,7 @@
 	}
 
 	function labelled(text, node) {
-		var wrap = C.el('div', 'mna-field grow')
+		var wrap = C.el('div', 'cafe-field grow')
 		wrap.appendChild(C.el('label', '', text))
 		wrap.appendChild(node)
 		return wrap
@@ -148,9 +148,9 @@
 	C.forwardDialog = function (message) {
 		var chosen = []
 		var sending = false
-		var body = C.el('div', 'mna-c-forward')
-		var chips = C.el('div', 'mna-c-chips')
-		var results = C.el('div', 'mna-c-results tall')
+		var body = C.el('div', 'cafe-c-forward')
+		var chips = C.el('div', 'cafe-c-chips')
+		var results = C.el('div', 'cafe-c-results tall')
 		var people = []
 		var timer = null
 		var box = searchBox('Search by name', function () {
@@ -217,7 +217,7 @@
 			drawChips()
 			results.replaceChildren()
 			var rows = candidates()
-			if (!rows.length) results.appendChild(C.el('p', 'mna-c-results-note', 'No matches found.'))
+			if (!rows.length) results.appendChild(C.el('p', 'cafe-c-results-note', 'No matches found.'))
 			rows.forEach(function (r) {
 				results.appendChild(
 					pick(r.label, r.username, r.image, function () {
@@ -260,7 +260,7 @@
 				}, Promise.resolve())
 				.then(
 					function () {
-						MNA.toast(
+						CAFE.toast(
 							chosen.length > 1 ? 'Message forwarded to ' + chosen.length + ' chats' : 'Message forwarded'
 						)
 						C.loadConversations()
@@ -278,7 +278,7 @@
 		body.appendChild(chips)
 		body.appendChild(box.node)
 		body.appendChild(results)
-		dialog = MNA.dialog({
+		dialog = CAFE.dialog({
 			title: 'Forward message',
 			body: body,
 			wide: true,
@@ -293,7 +293,7 @@
 				{ label: 'Send', kind: 'solid', onClick: send },
 			],
 		})
-		sendButton = dialog.root.querySelector('.mna-btn-solid')
+		sendButton = dialog.root.querySelector('.cafe-btn-solid')
 		draw()
 		load()
 	}
@@ -301,15 +301,15 @@
 	// ---- Poll ----
 	C.pollDialog = function () {
 		var conversation = C.state.active
-		var body = C.el('div', 'mna-form')
+		var body = C.el('div', 'cafe-form')
 		var question = C.el('textarea')
 		question.rows = 2
 		question.placeholder = 'What would you like to ask?'
 		body.appendChild(labelled('Question', question))
-		var optionsBox = C.el('div', 'mna-c-poll-inputs')
+		var optionsBox = C.el('div', 'cafe-c-poll-inputs')
 		var inputs = []
 		function addOption() {
-			var row = C.el('div', 'mna-c-poll-input')
+			var row = C.el('div', 'cafe-c-poll-input')
 			var input = textInput('Option ' + (inputs.length + 1))
 			inputs.push(input)
 			row.appendChild(input)
@@ -321,10 +321,10 @@
 				var old = row.querySelector('button')
 				if (old) old.remove()
 				if (inputs.length > 2) {
-					var x = C.el('button', 'mna-c-icon-btn')
+					var x = C.el('button', 'cafe-c-icon-btn')
 					x.type = 'button'
 					x.setAttribute('aria-label', 'Remove option')
-					x.appendChild(C.icon('x', 'mna-c-tiny'))
+					x.appendChild(C.icon('x', 'cafe-c-tiny'))
 					x.addEventListener('click', function () {
 						inputs.splice(i, 1)
 						row.remove()
@@ -336,19 +336,19 @@
 		}
 		addOption()
 		addOption()
-		var optionsField = C.el('div', 'mna-field grow')
+		var optionsField = C.el('div', 'cafe-field grow')
 		optionsField.appendChild(C.el('label', '', 'Options'))
 		optionsField.appendChild(optionsBox)
-		var add = C.el('button', 'mna-btn mna-btn-subtle mna-c-add-option')
+		var add = C.el('button', 'cafe-btn cafe-btn-subtle cafe-c-add-option')
 		add.type = 'button'
-		add.appendChild(C.icon('plus', 'mna-c-small'))
+		add.appendChild(C.icon('plus', 'cafe-c-small'))
 		add.appendChild(document.createTextNode('Add option'))
 		add.addEventListener('click', addOption)
 		optionsField.appendChild(add)
 		body.appendChild(optionsField)
 
 		function check(text) {
-			var label = C.el('label', 'mna-c-check')
+			var label = C.el('label', 'cafe-c-check')
 			var box = C.el('input')
 			box.type = 'checkbox'
 			label.appendChild(box)
@@ -367,7 +367,7 @@
 		})
 		body.appendChild(closeAt)
 
-		MNA.dialog({
+		CAFE.dialog({
 			title: 'Create Poll',
 			body: body,
 			wide: true,
@@ -421,17 +421,17 @@
 	// ---- New group ----
 	C.newGroupDialog = function () {
 		var name = textInput('e.g. Design Team')
-		var body = C.el('div', 'mna-form')
+		var body = C.el('div', 'cafe-form')
 		body.appendChild(labelled('Group name', name))
 		var picker = peoplePicker([], function () {})
-		var membersField = C.el('div', 'mna-field grow')
+		var membersField = C.el('div', 'cafe-field grow')
 		membersField.appendChild(C.el('label', '', 'Members'))
 		membersField.appendChild(
-			C.el('p', 'mna-c-hint', "They'll get an invite to join — added once they accept, not immediately.")
+			C.el('p', 'cafe-c-hint', "They'll get an invite to join — added once they accept, not immediately.")
 		)
 		membersField.appendChild(picker.node)
 		body.appendChild(membersField)
-		MNA.dialog({
+		CAFE.dialog({
 			title: 'New group',
 			body: body,
 			wide: true,
@@ -479,7 +479,7 @@
 	C.groupInfo = function () {
 		var id = C.state.active
 		var title = C.state.conversation.display_name
-		var body = C.el('div', 'mna-c-group')
+		var body = C.el('div', 'cafe-c-group')
 		var dialog
 		var data = null
 
@@ -490,30 +490,30 @@
 					reload()
 				},
 				function (error) {
-					MNA.toast(error.message, 'error')
+					CAFE.toast(error.message, 'error')
 				}
 			)
 		}
 
 		function section(label) {
-			var wrap = C.el('div', 'mna-field grow')
+			var wrap = C.el('div', 'cafe-field grow')
 			wrap.appendChild(C.el('label', '', label))
 			return wrap
 		}
 
 		function memberRow(m) {
-			var row = C.el('div', 'mna-c-member')
+			var row = C.el('div', 'cafe-c-member')
 			row.appendChild(C.avatar(m.user_image, m.full_name, 'md'))
-			var text = C.el('div', 'mna-c-member-text')
-			text.appendChild(C.el('span', 'mna-c-member-name', m.full_name))
-			if (m.is_admin) text.appendChild(C.el('span', 'mna-c-badge', 'Admin'))
-			if (m.user === C.me) text.appendChild(C.el('span', 'mna-c-badge', 'You'))
+			var text = C.el('div', 'cafe-c-member-text')
+			text.appendChild(C.el('span', 'cafe-c-member-name', m.full_name))
+			if (m.is_admin) text.appendChild(C.el('span', 'cafe-c-badge', 'Admin'))
+			if (m.user === C.me) text.appendChild(C.el('span', 'cafe-c-badge', 'You'))
 			row.appendChild(text)
 			if (data.my_is_admin && m.user !== C.me) {
-				var more = C.el('button', 'mna-c-icon-btn')
+				var more = C.el('button', 'cafe-c-icon-btn')
 				more.type = 'button'
 				more.setAttribute('aria-label', 'Member options')
-				more.appendChild(C.icon('ellipsis', 'mna-c-small'))
+				more.appendChild(C.icon('ellipsis', 'cafe-c-small'))
 				more.addEventListener('click', function () {
 					C.menu(
 						more,
@@ -538,7 +538,7 @@
 								icon: 'user-minus',
 								danger: true,
 								onClick: function () {
-									MNA.confirm({
+									CAFE.confirm({
 										title: 'Remove this member?',
 										message: m.full_name + ' will be removed from the group.',
 										confirmLabel: 'Remove',
@@ -573,7 +573,7 @@
 							C.loadConversations()
 						},
 						function (e) {
-							MNA.toast(e.message, 'error')
+							CAFE.toast(e.message, 'error')
 						}
 					)
 				}
@@ -592,7 +592,7 @@
 					}
 				)
 				add.appendChild(picker.node)
-				var invite = C.el('button', 'mna-btn mna-btn-outline', 'Send invite')
+				var invite = C.el('button', 'cafe-btn cafe-btn-outline', 'Send invite')
 				invite.type = 'button'
 				invite.hidden = true
 				invite.addEventListener('click', function () {
@@ -606,12 +606,12 @@
 						}, Promise.resolve())
 						.then(
 							function () {
-								MNA.toast(people.length > 1 ? 'Invites sent' : 'Invite sent')
+								CAFE.toast(people.length > 1 ? 'Invites sent' : 'Invite sent')
 								reload()
 							},
 							function (e) {
 								invite.disabled = false
-								MNA.toast(e.message, 'error')
+								CAFE.toast(e.message, 'error')
 							}
 						)
 				})
@@ -619,11 +619,11 @@
 				body.appendChild(add)
 			} else {
 				var plain = section('Group name')
-				plain.appendChild(C.el('p', 'mna-c-group-title', title))
+				plain.appendChild(C.el('p', 'cafe-c-group-title', title))
 				body.appendChild(plain)
 			}
 			var list = section('Members — ' + members.length)
-			var rows = C.el('div', 'mna-c-members')
+			var rows = C.el('div', 'cafe-c-members')
 			members.forEach(function (m) {
 				rows.appendChild(memberRow(m))
 			})
@@ -631,12 +631,12 @@
 			body.appendChild(list)
 			if (data.my_is_admin && data.pending_invites && data.pending_invites.length) {
 				var pending = section('Pending invites')
-				var box = C.el('div', 'mna-c-members')
+				var box = C.el('div', 'cafe-c-members')
 				data.pending_invites.forEach(function (p) {
-					var row = C.el('div', 'mna-c-member')
+					var row = C.el('div', 'cafe-c-member')
 					row.appendChild(C.avatar(p.user_image, p.full_name, 'md'))
-					row.appendChild(C.el('span', 'mna-c-member-name grow', p.full_name))
-					var cancel = C.el('button', 'mna-btn mna-btn-subtle', 'Cancel')
+					row.appendChild(C.el('span', 'cafe-c-member-name grow', p.full_name))
+					var cancel = C.el('button', 'cafe-btn cafe-btn-subtle', 'Cancel')
 					cancel.type = 'button'
 					cancel.addEventListener('click', function () {
 						act('cancel_group_invite', { name: p.name })
@@ -656,12 +656,12 @@
 					draw()
 				},
 				function (e) {
-					MNA.toast(e.message, 'error')
+					CAFE.toast(e.message, 'error')
 				}
 			)
 		}
 
-		dialog = MNA.dialog({
+		dialog = CAFE.dialog({
 			title: 'Group info',
 			body: body,
 			wide: true,
@@ -671,7 +671,7 @@
 					kind: 'danger',
 					left: true,
 					onClick: function () {
-						MNA.confirm({
+						CAFE.confirm({
 							title: 'Leave this group?',
 							message: 'You can only rejoin if someone invites you again.',
 							confirmLabel: 'Leave',
@@ -685,7 +685,7 @@
 									C.open(null, true)
 								},
 								function (e) {
-									MNA.toast(e.message, 'error')
+									CAFE.toast(e.message, 'error')
 								}
 							)
 						})

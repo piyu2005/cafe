@@ -1,5 +1,5 @@
 """The publication pages: /publications/<handle>, its members, and /invite.
-pub_*.js draw them into #mna-pub, #mna-pub-members and #mna-invite from the
+pub_*.js draw them into #cafe-pub, #cafe-pub-members and #cafe-invite from the
 same cafe.api methods the old pages used.
 
 Builder's editor and the folder thumbnail do not run scripts, so each root
@@ -102,10 +102,10 @@ def root_block(root_id, name, picture):
 	root = block(
 		"div",
 		name,
-		["mna-p-root"],
+		["cafe-p-root"],
 		attrs={"id": root_id},
 		custom={"data-handle": ""},
-		children=[raw_block("Preview", picture, ["mna-p-preview"])],
+		children=[raw_block("Preview", picture, ["cafe-p-preview"])],
 	)
 	return attribute(root, "w.id", "data-handle")
 
@@ -123,7 +123,7 @@ def new_post_button():
 	}
 	return html_el(
 		"a",
-		["mna-btn", "mna-btn-solid"],
+		["cafe-btn", "cafe-btn-solid"],
 		{"href": "/write", "aria-label": "New Post"},
 		styles,
 		[svg("plus", 16)],
@@ -136,16 +136,16 @@ def build_publication(shell_id, shell_block):
 		crumb_separator(),
 		crumb_link("Explore", "/"),
 		crumb_separator(),
-		crumb_current_with_id("Publication", "mna-p-crumb"),
+		crumb_current_with_id("Publication", "cafe-p-crumb"),
 	]
 	return page_layout(
 		shell_id,
 		shell_block,
 		crumbs,
-		[root_block("mna-pub", "Publication", detail_picture())],
+		[root_block("cafe-pub", "Publication", detail_picture())],
 		"760px",
 		mobile_header=build_mobile_header("Publication", back=False, action=new_post_button()),
-		container_class="mna-container-pub",
+		container_class="cafe-container-pub",
 	)
 
 
@@ -153,7 +153,7 @@ def build_members(shell_id, shell_block):
 	crumbs = [
 		crumb_link("Cafe", "/"),
 		crumb_separator(),
-		crumb_link_with_id("Publication", "/", "mna-p-crumb"),
+		crumb_link_with_id("Publication", "/", "cafe-p-crumb"),
 		crumb_separator(),
 		crumb_current("Members"),
 	]
@@ -161,10 +161,10 @@ def build_members(shell_id, shell_block):
 		shell_id,
 		shell_block,
 		crumbs,
-		[root_block("mna-pub-members", "Members", rows_picture())],
+		[root_block("cafe-pub-members", "Members", rows_picture())],
 		"640px",
 		mobile_header=build_mobile_header("Members", back_href="/"),
-		container_class="mna-container-pub",
+		container_class="cafe-container-pub",
 	)
 
 
@@ -172,15 +172,15 @@ def build_invite(shell_id, shell_block):
 	crumbs = [
 		crumb_link("Cafe", "/"),
 		crumb_separator(),
-		crumb_link_with_id("Publication", "/", "mna-p-crumb-pub"),
+		crumb_link_with_id("Publication", "/", "cafe-p-crumb-pub"),
 		crumb_separator(),
 		crumb_current("Invite"),
 	]
 	title = block(
 		"h1",
 		"Title",
-		["mna-title"],
-		attrs={"id": "mna-p-invite-title"},
+		["cafe-title"],
+		attrs={"id": "cafe-p-invite-title"},
 		text="Invite people",
 		styles={
 			"margin": "0",
@@ -196,10 +196,10 @@ def build_invite(shell_id, shell_block):
 		shell_id,
 		shell_block,
 		crumbs,
-		[title, root_block("mna-invite", "Invite", rows_picture())],
+		[title, root_block("cafe-invite", "Invite", rows_picture())],
 		"640px",
 		mobile_header=build_mobile_header("Invite", back_href="/", bell=False),
-		container_class="mna-container-invite",
+		container_class="cafe-container-invite",
 	)
 
 

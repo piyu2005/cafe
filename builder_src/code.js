@@ -10,7 +10,7 @@
 
 	function icon(name) {
 		var holder = document.createElement('span')
-		holder.className = 'mna-code-icon'
+		holder.className = 'cafe-code-icon'
 		holder.innerHTML = ICONS[name] || ''
 		return holder
 	}
@@ -31,7 +31,7 @@
 
 	function gutter(text) {
 		var column = document.createElement('span')
-		column.className = 'mna-code-gutter'
+		column.className = 'cafe-code-gutter'
 		column.setAttribute('aria-hidden', 'true')
 		var count = text.split('\n').length
 		for (var i = 1; i <= count; i++) {
@@ -45,7 +45,7 @@
 	function copyButton(text) {
 		var button = document.createElement('button')
 		button.type = 'button'
-		button.className = 'mna-code-copy'
+		button.className = 'cafe-code-copy'
 		button.setAttribute('aria-label', 'Copy code')
 		button.title = 'Copy code'
 		button.appendChild(icon('copy'))
@@ -66,24 +66,24 @@
 
 	function rebuild(pre) {
 		var codeEl = pre.querySelector('code')
-		if (!codeEl || pre.parentNode.classList.contains('mna-code-block')) return
+		if (!codeEl || pre.parentNode.classList.contains('cafe-code-block')) return
 		var text = codeEl.textContent.replace(/\n$/, '')
 		var language = languageOf(codeEl)
 
 		var block = document.createElement('div')
-		block.className = 'mna-code-block'
+		block.className = 'cafe-code-block'
 		var shell = document.createElement('pre')
-		shell.className = 'mna-code'
+		shell.className = 'cafe-code'
 		var body = document.createElement('code')
-		body.className = 'mna-code-body'
+		body.className = 'cafe-code-body'
 		body.innerHTML = highlighted(text, language)
 		shell.appendChild(gutter(text))
 		shell.appendChild(body)
 
 		var tools = document.createElement('div')
-		tools.className = 'mna-code-tools'
+		tools.className = 'cafe-code-tools'
 		var label = document.createElement('span')
-		label.className = 'mna-code-language'
+		label.className = 'cafe-code-language'
 		label.textContent = language || 'auto'
 		tools.appendChild(label)
 		tools.appendChild(copyButton(text))
@@ -98,7 +98,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var root = document.getElementById('mna-content')
+		var root = document.getElementById('cafe-content')
 		if (!root || !root.querySelector('pre code')) return
 		var script = document.createElement('script')
 		script.src = HLJS
