@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "ho7wlam0r",
+     "blockId": "nvs00krf1",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "aqrj98hw9",
+       "blockId": "087bne5uc",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "gk169zlkn",
+       "blockId": "6jm1ov50w",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "wg09bcg40",
+         "blockId": "xad7n8gvd",
          "blockName": "Header",
          "children": [
           {
@@ -93,7 +93,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "ji4d3i0rp",
+           "blockId": "lsg3a4bof",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -101,7 +101,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "mif2ywd0f",
+             "blockId": "gk169zlkn",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -132,7 +132,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "w5ry7nxln",
+             "blockId": "aqrj98hw9",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -162,7 +162,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "xq2kzkk8p",
+             "blockId": "ho7wlam0r",
              "blockName": null,
              "children": [],
              "classes": [
@@ -215,7 +215,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "tg78xqybh",
+           "blockId": "r3p4r52af",
            "blockName": "New Post",
            "children": [],
            "classes": [],
@@ -269,7 +269,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "qwjhqieih",
+         "blockId": "ccr8ehctp",
          "blockName": "Scroll area",
          "children": [
           {
@@ -280,7 +280,7 @@
             "margin": "0 auto",
             "padding": "24px 16px"
            },
-           "blockId": "4od3a6oze",
+           "blockId": "zw6dapanr",
            "blockName": "Container",
            "children": [
             {
@@ -288,16 +288,111 @@
               "id": "cafe-settings-page"
              },
              "baseStyles": {},
-             "blockId": "q14sgx6ow",
+             "blockId": "qwjhqieih",
              "blockName": "Settings",
              "children": [
               {
-               "attributes": {},
-               "baseStyles": {},
-               "blockId": "03nod9ny5",
+               "attributes": {
+                "role": "tablist"
+               },
+               "baseStyles": {
+                "display": "flex",
+                "gap": "32px",
+                "borderBottom": "1px solid #ededed"
+               },
+               "blockId": "dhojzhe3c",
                "blockName": "Tabs",
-               "children": [],
-               "classes": [],
+               "children": [
+                {
+                 "attributes": {
+                  "type": "button",
+                  "role": "tab",
+                  "data-tab": "account",
+                  "aria-selected": "true"
+                 },
+                 "baseStyles": {
+                  "position": "relative",
+                  "display": "flex",
+                  "alignItems": "center",
+                  "padding": "8px 0",
+                  "border": "0",
+                  "backgroundColor": "transparent",
+                  "color": "#7c7c7c",
+                  "fontSize": "14px",
+                  "cursor": "pointer"
+                 },
+                 "blockId": "03nod9ny5",
+                 "blockName": null,
+                 "children": [],
+                 "classes": [
+                  "cafe-tab-btn"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "button",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Account",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {
+                  "type": "button",
+                  "role": "tab",
+                  "data-tab": "saved",
+                  "aria-selected": "false"
+                 },
+                 "baseStyles": {
+                  "position": "relative",
+                  "display": "flex",
+                  "alignItems": "center",
+                  "padding": "8px 0",
+                  "border": "0",
+                  "backgroundColor": "transparent",
+                  "color": "#7c7c7c",
+                  "fontSize": "14px",
+                  "cursor": "pointer"
+                 },
+                 "blockId": "iqkg9r59e",
+                 "blockName": null,
+                 "children": [],
+                 "classes": [
+                  "cafe-tab-btn"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "button",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Saved",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tablist"
+               ],
                "clientScript": {},
                "customAttributes": {},
                "dataKey": null,
@@ -306,11 +401,11 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div class=\"cafe-tablist\" role=\"tablist\" style=\"display:flex;gap:32px;border-bottom:1px solid #ededed\"><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"account\" aria-selected=\"true\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:#7c7c7c;font-size:14px;cursor:pointer\">Account</button><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"saved\" aria-selected=\"false\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:#7c7c7c;font-size:14px;cursor:pointer\">Saved</button></div>",
+               "innerHTML": null,
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
-               "originalElement": "__raw_html__",
+               "originalElement": null,
                "props": {},
                "rawStyles": {},
                "referenceBlockId": null,
@@ -325,7 +420,7 @@
                "baseStyles": {
                 "paddingTop": "16px"
                },
-               "blockId": "0v2ot8ap2",
+               "blockId": "w5ry7nxln",
                "blockName": "Account panel",
                "children": [
                 {
@@ -337,7 +432,7 @@
                   "gap": "32px",
                   "padding": "14px 0"
                  },
-                 "blockId": "hppavnjrw",
+                 "blockId": "82yrcxkyd",
                  "blockName": "Username",
                  "children": [
                   {
@@ -345,7 +440,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "meo5tmk6v",
+                   "blockId": "put56cqi3",
                    "blockName": "Text",
                    "children": [
                     {
@@ -358,7 +453,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "0gufftdk8",
+                     "blockId": "oqjpsfvpf",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -411,7 +506,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "iqkg9r59e",
+                   "blockId": "mpfoumxcy",
                    "blockName": "Username value",
                    "children": [],
                    "classes": [],
@@ -474,7 +569,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "put56cqi3",
+                 "blockId": "bekhc1kvs",
                  "blockName": "Email",
                  "children": [
                   {
@@ -482,7 +577,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "oqjpsfvpf",
+                   "blockId": "6znd9qrmp",
                    "blockName": "Text",
                    "children": [
                     {
@@ -495,7 +590,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "9knfvi3eu",
+                     "blockId": "6kgtpp66y",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -548,7 +643,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "dhojzhe3c",
+                   "blockId": "x4u6j7z6g",
                    "blockName": "Email value",
                    "children": [],
                    "classes": [],
@@ -611,7 +706,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "bekhc1kvs",
+                 "blockId": "370p8o5so",
                  "blockName": "Log out",
                  "children": [
                   {
@@ -619,7 +714,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "6znd9qrmp",
+                   "blockId": "wqriuey0y",
                    "blockName": "Text",
                    "children": [
                     {
@@ -632,7 +727,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "82yrcxkyd",
+                     "blockId": "yx8e17rpb",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -666,7 +761,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "20px"
                      },
-                     "blockId": "6kgtpp66y",
+                     "blockId": "kaidn8s95",
                      "blockName": "Description",
                      "children": [],
                      "classes": [],
@@ -715,9 +810,55 @@
                    "baseStyles": {
                     "flexShrink": "0"
                    },
-                   "blockId": "mpfoumxcy",
+                   "blockId": "meo5tmk6v",
                    "blockName": "Log out button",
-                   "children": [],
+                   "children": [
+                    {
+                     "attributes": {
+                      "id": "cafe-settings-logout",
+                      "type": "button"
+                     },
+                     "baseStyles": {
+                      "display": "inline-flex",
+                      "alignItems": "center",
+                      "height": "28px",
+                      "padding": "0 8px",
+                      "border": "0",
+                      "borderRadius": "8px",
+                      "whiteSpace": "nowrap",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "letterSpacing": "0.02em",
+                      "cursor": "pointer",
+                      "backgroundColor": "#f3f3f3",
+                      "color": "#171717"
+                     },
+                     "blockId": "0gufftdk8",
+                     "blockName": "Log out button",
+                     "children": [],
+                     "classes": [
+                      "cafe-btn"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "button",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Log out",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    }
+                   ],
                    "classes": [],
                    "clientScript": {},
                    "customAttributes": {},
@@ -727,11 +868,11 @@
                    "element": "div",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<button class=\"cafe-btn\" id=\"cafe-settings-logout\" type=\"button\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;white-space:nowrap;font-size:14px;font-weight:420;letter-spacing:0.02em;cursor:pointer;background-color:#f3f3f3;color:#171717\">Log out</button>",
+                   "innerHTML": null,
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
-                   "originalElement": "__raw_html__",
+                   "originalElement": null,
                    "props": {},
                    "rawStyles": {},
                    "referenceBlockId": null,
@@ -771,7 +912,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "370p8o5so",
+                 "blockId": "mif2ywd0f",
                  "blockName": "Delete account",
                  "children": [
                   {
@@ -779,7 +920,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "wqriuey0y",
+                   "blockId": "q14sgx6ow",
                    "blockName": "Text",
                    "children": [
                     {
@@ -792,7 +933,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "yx8e17rpb",
+                     "blockId": "0v2ot8ap2",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -826,7 +967,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "20px"
                      },
-                     "blockId": "kaidn8s95",
+                     "blockId": "ftgh5d4gq",
                      "blockName": "Description",
                      "children": [],
                      "classes": [],
@@ -875,9 +1016,53 @@
                    "baseStyles": {
                     "flexShrink": "0"
                    },
-                   "blockId": "x4u6j7z6g",
+                   "blockId": "9knfvi3eu",
                    "blockName": "Delete account button",
-                   "children": [],
+                   "children": [
+                    {
+                     "attributes": {
+                      "type": "button",
+                      "disabled": "disabled"
+                     },
+                     "baseStyles": {
+                      "display": "inline-flex",
+                      "alignItems": "center",
+                      "height": "28px",
+                      "padding": "0 8px",
+                      "border": "0",
+                      "borderRadius": "8px",
+                      "whiteSpace": "nowrap",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "letterSpacing": "0.02em",
+                      "cursor": "not-allowed",
+                      "backgroundColor": "#fde7e7",
+                      "color": "#f79596"
+                     },
+                     "blockId": "hppavnjrw",
+                     "blockName": "Delete account button",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "button",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Delete account",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    }
+                   ],
                    "classes": [],
                    "clientScript": {},
                    "customAttributes": {},
@@ -887,11 +1072,11 @@
                    "element": "div",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<button type=\"button\" disabled=\"disabled\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;white-space:nowrap;font-size:14px;font-weight:420;letter-spacing:0.02em;cursor:not-allowed;background-color:#fde7e7;color:#f79596\">Delete account</button>",
+                   "innerHTML": null,
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
-                   "originalElement": "__raw_html__",
+                   "originalElement": null,
                    "props": {},
                    "rawStyles": {},
                    "referenceBlockId": null,
@@ -943,11 +1128,153 @@
                "visibilityCondition": null
               },
               {
-               "attributes": {},
-               "baseStyles": {},
-               "blockId": "ftgh5d4gq",
+               "attributes": {
+                "id": "cafe-settings-saved",
+                "role": "tabpanel",
+                "hidden": "hidden"
+               },
+               "baseStyles": {
+                "paddingTop": "16px"
+               },
+               "blockId": "wg09bcg40",
                "blockName": "Saved panel",
-               "children": [],
+               "children": [
+                {
+                 "attributes": {
+                  "hidden": "hidden"
+                 },
+                 "baseStyles": {
+                  "flexDirection": "column",
+                  "gap": "20px"
+                 },
+                 "blockId": "xq2kzkk8p",
+                 "blockName": "Loading",
+                 "children": [],
+                 "classes": [
+                  "cafe-loading"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "<div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div>",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": "__raw_html__",
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {
+                  "hidden": "hidden"
+                 },
+                 "baseStyles": {
+                  "margin": "0",
+                  "fontSize": "14px",
+                  "fontWeight": "420",
+                  "color": "#525252",
+                  "letterSpacing": "0.02em",
+                  "lineHeight": "1.5"
+                 },
+                 "blockId": "4od3a6oze",
+                 "blockName": null,
+                 "children": [],
+                 "classes": [
+                  "cafe-saved-empty"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "p",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "No saved posts yet.",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {
+                  "hidden": "hidden"
+                 },
+                 "baseStyles": {
+                  "margin": "0",
+                  "fontSize": "14px",
+                  "fontWeight": "420",
+                  "color": "#7c7c7c",
+                  "letterSpacing": "0.02em",
+                  "lineHeight": "1.5"
+                 },
+                 "blockId": "ji4d3i0rp",
+                 "blockName": null,
+                 "children": [],
+                 "classes": [
+                  "cafe-saved-error"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "p",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Couldn&#x27;t load your saved posts. Please try again.",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "tg78xqybh",
+                 "blockName": null,
+                 "children": [],
+                 "classes": [
+                  "cafe-saved-list"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
                "classes": [],
                "clientScript": {},
                "customAttributes": {},
@@ -957,11 +1284,11 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div id=\"cafe-settings-saved\" role=\"tabpanel\" hidden=\"hidden\" style=\"padding-top:16px\"><div class=\"cafe-loading\" hidden=\"hidden\" style=\"flex-direction:column;gap:20px\"><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div></div><p class=\"cafe-saved-empty\" hidden=\"hidden\" style=\"margin:0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">No saved posts yet.</p><p class=\"cafe-saved-error\" hidden=\"hidden\" style=\"margin:0;font-size:14px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.5\">Couldn&#x27;t load your saved posts. Please try again.</p><div class=\"cafe-saved-list\"></div></div>",
+               "innerHTML": null,
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
-               "originalElement": "__raw_html__",
+               "originalElement": null,
                "props": {},
                "rawStyles": {},
                "referenceBlockId": null,
@@ -1129,7 +1456,7 @@
    "builder_script": "Cafe Notifications"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-22 20:51:37.788155",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1139,7 +1466,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-22 20:51:37.788155",
  "modified_by": "Administrator",
  "name": "cafe-settings",
  "owner": "Administrator",
@@ -1148,6 +1475,6 @@
  "page_title": "Settings",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-22 20:51:37.788155",
  "route": "settings"
 }
