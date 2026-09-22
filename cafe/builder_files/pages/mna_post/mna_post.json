@@ -13,7 +13,8 @@
      "baseStyles": {
       "display": "flex",
       "width": "100%",
-      "minHeight": "100vh",
+      "height": "100vh",
+      "overflow": "hidden",
       "backgroundColor": "#ffffff",
       "color": "#0f0f0f",
       "fontSize": "14px",
@@ -56,7 +57,8 @@
         "display": "flex",
         "flexGrow": "1",
         "flexDirection": "column",
-        "minWidth": "0"
+        "minWidth": "0",
+        "minHeight": "0"
        },
        "blockId": "7r5uvuwfp",
        "blockName": "Main",
@@ -510,7 +512,9 @@
         {
          "attributes": {},
          "baseStyles": {
-          "flexGrow": "1"
+          "flexGrow": "1",
+          "minHeight": "0",
+          "overflowY": "auto"
          },
          "blockId": "a4yxkntzt",
          "blockName": "Scroll area",
@@ -2109,7 +2113,7 @@
    "builder_script": "MNA Code"
   }
  ],
- "creation": "2026-09-20 16:28:00.238496",
+ "creation": "2026-09-22 11:14:56.468998",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2119,7 +2123,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-20 16:28:00.238496",
+ "modified": "2026-09-22 11:14:56.468998",
  "modified_by": "Administrator",
  "name": "mna-post",
  "owner": "Administrator",
@@ -2128,6 +2132,6 @@
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-20 16:28:00.238496",
+ "published_at": "2026-09-22 11:14:56.468998",
  "route": "posts/:post_id"
 }
