@@ -21,13 +21,13 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "4g886srl6",
+     "blockId": "0fpf8o6a6",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "do7pvd6ol",
+       "blockId": "1l0vkfkf7",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "cwba0pxuc",
+       "blockId": "byfimqw22",
        "blockName": "Main",
        "children": [
         {
@@ -77,7 +77,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "lucqr68ay",
+         "blockId": "jtvx5lrcg",
          "blockName": "Mobile header",
          "children": [
           {
@@ -95,7 +95,7 @@
             "borderRadius": "8px",
             "color": "#171717"
            },
-           "blockId": "lo7nmjfjc",
+           "blockId": "gh4hb9ouj",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -137,7 +137,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "6r04bh9dr",
+           "blockId": "wxcpg7r5g",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -172,7 +172,7 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "qbtpc03uv",
+           "blockId": "15dqymxci",
            "blockName": "Actions",
            "children": [],
            "classes": [],
@@ -234,7 +234,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "0fpf8o6a6",
+         "blockId": "dq7eac9xo",
          "blockName": "Header",
          "children": [
           {
@@ -249,7 +249,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "byfimqw22",
+           "blockId": "lucqr68ay",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -257,7 +257,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "e57mvo4z5",
+             "blockId": "lo7nmjfjc",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -288,7 +288,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "dq7eac9xo",
+             "blockId": "6r04bh9dr",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -320,7 +320,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "xaiwr41i2",
+             "blockId": "qbtpc03uv",
              "blockName": "Current",
              "children": [],
              "classes": [
@@ -375,7 +375,7 @@
             "alignItems": "center",
             "gap": "8px"
            },
-           "blockId": "b68r7wfo1",
+           "blockId": "xaiwr41i2",
            "blockName": "Actions",
            "children": [],
            "classes": [],
@@ -433,7 +433,7 @@
           "width": "100%",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "jtvx5lrcg",
+         "blockId": "uhyantwe8",
          "blockName": "Write",
          "children": [
           {
@@ -441,7 +441,7 @@
            "baseStyles": {
             "width": "100%"
            },
-           "blockId": "15dqymxci",
+           "blockId": "pdxxw292n",
            "blockName": "Preview",
            "children": [],
            "classes": [
@@ -599,7 +599,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-22 18:28:08.237783",
+ "creation": "2026-09-22 19:32:23.858073",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -609,7 +609,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 18:28:08.237783",
+ "modified": "2026-09-22 19:32:23.858073",
  "modified_by": "Administrator",
  "name": "cafe-write",
  "owner": "Administrator",
@@ -618,6 +618,6 @@
  "page_title": "Write",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 18:28:08.237783",
+ "published_at": "2026-09-22 19:32:23.858073",
  "route": "write"
 }

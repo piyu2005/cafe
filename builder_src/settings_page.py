@@ -10,7 +10,7 @@ The Saved list is filled by settings.js when its tab opens. Everything here is
 built as individual Builder blocks (buttons, tabs, list placeholders), not one
 embedded HTML blob, so each piece is editable on its own in Builder's canvas."""
 
-from blocks import GRAY_6, INK, MUTED, OUTLINE, SURFACE_2, attribute, block, show, text_style
+from blocks import GRAY_6, INK, MUTED, OUTLINE, SURFACE_2, attribute, block, html_el, show, text_style
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
 
@@ -73,7 +73,7 @@ def build_account_panel():
 		styles=LOG_OUT_STYLES,
 		text="Log out",
 	)
-	log_out = block("div", styles={"flexShrink": "0"}, children=[log_out_button])
+	log_out = block("div", "Log out button", styles={"flexShrink": "0"}, children=[log_out_button])
 	delete_button = block(
 		"button",
 		"Delete account button",
@@ -81,7 +81,7 @@ def build_account_panel():
 		styles=DELETE_STYLES,
 		text="Delete account",
 	)
-	delete = block("div", styles={"flexShrink": "0"}, children=[delete_button])
+	delete = block("div", "Delete account button", styles={"flexShrink": "0"}, children=[delete_button])
 	return block(
 		"div",
 		"Account panel",
@@ -102,20 +102,26 @@ def build_account_panel():
 
 
 def build_saved_panel():
-	skeleton = [
-		block(
+	# The 4 skeleton rows are a repeated decorative loading state, not
+	# interactive content - one raw-html block for the group is far cheaper
+	# to render than 5 native ones for something nobody ever edits piece by
+	# piece (see blocks.py's note on raw_block for exactly this shape).
+	skeleton = "".join(
+		html_el(
 			"div",
-			classes=["cafe-skeleton"],
-			styles={"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
+			["cafe-skeleton"],
+			None,
+			{"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
 		)
 		for _ in range(4)
-	]
+	)
 	loading = block(
 		"div",
+		"Loading",
 		classes=["cafe-loading"],
 		attrs={"hidden": "hidden"},
+		html=skeleton,
 		styles={"flexDirection": "column", "gap": "20px"},
-		children=skeleton,
 	)
 	empty = block(
 		"p",

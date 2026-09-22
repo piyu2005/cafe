@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "7amjrytsk",
+     "blockId": "nvs00krf1",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "lrpzqyrut",
+       "blockId": "087bne5uc",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "2k4sgl3i6",
+       "blockId": "6jm1ov50w",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "nvs00krf1",
+         "blockId": "xad7n8gvd",
          "blockName": "Header",
          "children": [
           {
@@ -93,7 +93,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "6jm1ov50w",
+           "blockId": "lsg3a4bof",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -101,7 +101,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "lsg3a4bof",
+             "blockId": "gk169zlkn",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -132,7 +132,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "r3p4r52af",
+             "blockId": "aqrj98hw9",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -162,7 +162,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "xad7n8gvd",
+             "blockId": "ho7wlam0r",
              "blockName": null,
              "children": [],
              "classes": [
@@ -215,7 +215,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "087bne5uc",
+           "blockId": "r3p4r52af",
            "blockName": "New Post",
            "children": [],
            "classes": [],
@@ -269,7 +269,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "ob0z5kwbt",
+         "blockId": "ccr8ehctp",
          "blockName": "Scroll area",
          "children": [
           {
@@ -280,7 +280,7 @@
             "margin": "0 auto",
             "padding": "24px 16px"
            },
-           "blockId": "ccr8ehctp",
+           "blockId": "zw6dapanr",
            "blockName": "Container",
            "children": [
             {
@@ -288,7 +288,7 @@
               "id": "cafe-settings-page"
              },
              "baseStyles": {},
-             "blockId": "zw6dapanr",
+             "blockId": "qwjhqieih",
              "blockName": "Settings",
              "children": [
               {
@@ -811,7 +811,7 @@
                     "flexShrink": "0"
                    },
                    "blockId": "meo5tmk6v",
-                   "blockName": null,
+                   "blockName": "Log out button",
                    "children": [
                     {
                      "attributes": {
@@ -1017,7 +1017,7 @@
                     "flexShrink": "0"
                    },
                    "blockId": "9knfvi3eu",
-                   "blockName": null,
+                   "blockName": "Delete account button",
                    "children": [
                     {
                      "attributes": {
@@ -1136,7 +1136,7 @@
                "baseStyles": {
                 "paddingTop": "16px"
                },
-               "blockId": "ho7wlam0r",
+               "blockId": "wg09bcg40",
                "blockName": "Saved panel",
                "children": [
                 {
@@ -1147,138 +1147,9 @@
                   "flexDirection": "column",
                   "gap": "20px"
                  },
-                 "blockId": "wg09bcg40",
-                 "blockName": null,
-                 "children": [
-                  {
-                   "attributes": {},
-                   "baseStyles": {
-                    "height": "80px",
-                    "borderRadius": "10px",
-                    "backgroundColor": "#f3f3f3"
-                   },
-                   "blockId": "xq2kzkk8p",
-                   "blockName": null,
-                   "children": [],
-                   "classes": [
-                    "cafe-skeleton"
-                   ],
-                   "clientScript": {},
-                   "customAttributes": {},
-                   "dataKey": null,
-                   "draggable": false,
-                   "dynamicValues": [],
-                   "element": "div",
-                   "elementBeforeConversion": null,
-                   "extendedFromComponent": null,
-                   "innerHTML": null,
-                   "isChildOfComponent": null,
-                   "isRepeaterBlock": false,
-                   "mobileStyles": {},
-                   "originalElement": null,
-                   "props": {},
-                   "rawStyles": {},
-                   "referenceBlockId": null,
-                   "tabletStyles": {},
-                   "visibilityCondition": null
-                  },
-                  {
-                   "attributes": {},
-                   "baseStyles": {
-                    "height": "80px",
-                    "borderRadius": "10px",
-                    "backgroundColor": "#f3f3f3"
-                   },
-                   "blockId": "4od3a6oze",
-                   "blockName": null,
-                   "children": [],
-                   "classes": [
-                    "cafe-skeleton"
-                   ],
-                   "clientScript": {},
-                   "customAttributes": {},
-                   "dataKey": null,
-                   "draggable": false,
-                   "dynamicValues": [],
-                   "element": "div",
-                   "elementBeforeConversion": null,
-                   "extendedFromComponent": null,
-                   "innerHTML": null,
-                   "isChildOfComponent": null,
-                   "isRepeaterBlock": false,
-                   "mobileStyles": {},
-                   "originalElement": null,
-                   "props": {},
-                   "rawStyles": {},
-                   "referenceBlockId": null,
-                   "tabletStyles": {},
-                   "visibilityCondition": null
-                  },
-                  {
-                   "attributes": {},
-                   "baseStyles": {
-                    "height": "80px",
-                    "borderRadius": "10px",
-                    "backgroundColor": "#f3f3f3"
-                   },
-                   "blockId": "ji4d3i0rp",
-                   "blockName": null,
-                   "children": [],
-                   "classes": [
-                    "cafe-skeleton"
-                   ],
-                   "clientScript": {},
-                   "customAttributes": {},
-                   "dataKey": null,
-                   "draggable": false,
-                   "dynamicValues": [],
-                   "element": "div",
-                   "elementBeforeConversion": null,
-                   "extendedFromComponent": null,
-                   "innerHTML": null,
-                   "isChildOfComponent": null,
-                   "isRepeaterBlock": false,
-                   "mobileStyles": {},
-                   "originalElement": null,
-                   "props": {},
-                   "rawStyles": {},
-                   "referenceBlockId": null,
-                   "tabletStyles": {},
-                   "visibilityCondition": null
-                  },
-                  {
-                   "attributes": {},
-                   "baseStyles": {
-                    "height": "80px",
-                    "borderRadius": "10px",
-                    "backgroundColor": "#f3f3f3"
-                   },
-                   "blockId": "tg78xqybh",
-                   "blockName": null,
-                   "children": [],
-                   "classes": [
-                    "cafe-skeleton"
-                   ],
-                   "clientScript": {},
-                   "customAttributes": {},
-                   "dataKey": null,
-                   "draggable": false,
-                   "dynamicValues": [],
-                   "element": "div",
-                   "elementBeforeConversion": null,
-                   "extendedFromComponent": null,
-                   "innerHTML": null,
-                   "isChildOfComponent": null,
-                   "isRepeaterBlock": false,
-                   "mobileStyles": {},
-                   "originalElement": null,
-                   "props": {},
-                   "rawStyles": {},
-                   "referenceBlockId": null,
-                   "tabletStyles": {},
-                   "visibilityCondition": null
-                  }
-                 ],
+                 "blockId": "xq2kzkk8p",
+                 "blockName": "Loading",
+                 "children": [],
                  "classes": [
                   "cafe-loading"
                  ],
@@ -1290,11 +1161,11 @@
                  "element": "div",
                  "elementBeforeConversion": null,
                  "extendedFromComponent": null,
-                 "innerHTML": null,
+                 "innerHTML": "<div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div>",
                  "isChildOfComponent": null,
                  "isRepeaterBlock": false,
                  "mobileStyles": {},
-                 "originalElement": null,
+                 "originalElement": "__raw_html__",
                  "props": {},
                  "rawStyles": {},
                  "referenceBlockId": null,
@@ -1313,7 +1184,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "qwjhqieih",
+                 "blockId": "4od3a6oze",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1350,7 +1221,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "gk169zlkn",
+                 "blockId": "ji4d3i0rp",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1378,7 +1249,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "aqrj98hw9",
+                 "blockId": "tg78xqybh",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1585,7 +1456,7 @@
    "builder_script": "Cafe Notifications"
   }
  ],
- "creation": "2026-09-22 19:25:25.343162",
+ "creation": "2026-09-22 19:32:23.858073",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1595,7 +1466,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 19:25:25.343162",
+ "modified": "2026-09-22 19:32:23.858073",
  "modified_by": "Administrator",
  "name": "cafe-settings",
  "owner": "Administrator",
@@ -1604,6 +1475,6 @@
  "page_title": "Settings",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 19:25:25.343162",
+ "published_at": "2026-09-22 19:32:23.858073",
  "route": "settings"
 }
