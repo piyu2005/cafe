@@ -123,7 +123,16 @@ def page_layout(
 		"div",
 		"Main",
 		["mna-main"],
-		styles={"display": "flex", "flexGrow": "1", "flexDirection": "column", "minWidth": "0"},
+		styles={
+			"display": "flex",
+			"flexGrow": "1",
+			"flexDirection": "column",
+			"minWidth": "0",
+			# Lets the flex child below shrink to less than its content height,
+			# which a flex item otherwise refuses to do — required for its own
+			# overflow to actually scroll instead of pushing .mna-app taller.
+			"minHeight": "0",
+		},
 		children=[
 			*([mobile_header] if mobile_header else []),
 			page_header(crumbs),
@@ -131,7 +140,15 @@ def page_layout(
 				"div",
 				"Scroll area",
 				["mna-scroll"],
-				styles={"flexGrow": "1"},
+				# "contain" (not "none"): normal scrolling still works when there's
+				# real content to scroll, it just stops the bounce/rubber-band
+				# animation showing at the top/bottom edge on a trackpad swipe.
+				styles={
+					"flexGrow": "1",
+					"minHeight": "0",
+					"overflowY": "auto",
+					"overscrollBehavior": "contain",
+				},
 				children=[container],
 			),
 		],
@@ -145,9 +162,13 @@ def page_layout(
 			# 100%, not 100vw: in the editor canvas vw is the whole browser window,
 			# which is wider than the canvas and clips the right edge.
 			"width": "100%",
-			# The page grows with its content and the document scrolls, so the
-			# editor canvas shows the whole page. The rail and header are sticky.
-			"minHeight": "100vh",
+			# Like Desk and every other Frappe app: the shell is pinned to exactly
+			# one screen, and only the scroll area (not the rail, header or the
+			# document itself) scrolls when its content runs long. Before, the
+			# whole document grew past 100vh and scrolled, which also dragged the
+			# sticky rail/header along for a frame — the "cut header" bug.
+			"height": "100vh",
+			"overflow": "hidden",
 			"backgroundColor": "#ffffff",
 			"color": INK_BLACK,
 			"fontSize": "14px",
