@@ -8,7 +8,7 @@ starts with a still picture of the page; the script replaces it."""
 import hashlib
 
 from bell import mobile_bell_block
-from blocks import INK, INK_BLACK, attribute, block, instance_of, raw_block, svg, text_style
+from blocks import INK, INK_BLACK, attribute, block, icon, instance_of, raw_block, svg, text_style
 from chat_page import BUTTON_STYLES
 from data_scripts import HELPERS
 from layout import crumb_link, crumb_separator, page_header
@@ -47,9 +47,12 @@ def more_button_block(button_id, hidden=False):
 	attrs = {"type": "button", "id": button_id, "aria-label": "More"}
 	if hidden:
 		attrs["hidden"] = "hidden"
-	icon = raw_block("Icon", svg("ellipsis", 16))
 	return block(
-		"button", classes=["cafe-btn", "cafe-w-more"], attrs=attrs, styles=ICON_STYLES, children=[icon]
+		"button",
+		classes=["cafe-btn", "cafe-w-more"],
+		attrs=attrs,
+		styles=ICON_STYLES,
+		children=[icon("ellipsis", 16)],
 	)
 
 

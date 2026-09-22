@@ -1,7 +1,7 @@
 """The notification bell of the phone's top bars. It opens the panel that
 notifications.js builds; the badge is filled with the unread count."""
 
-from blocks import INK, block, html_el, raw_block, svg
+from blocks import INK, block, html_el, icon, svg
 from shell_component import BADGE_STYLES
 
 BELL_STYLES = {
@@ -44,11 +44,10 @@ def mobile_bell_block():
 		attrs={"data-badge": "notifications"},
 		styles={**BADGE_STYLES, "top": "-2px", "right": "-2px"},
 	)
-	icon = raw_block("Icon", svg("bell", 16))
 	return block(
 		"button",
 		classes=["cafe-bell"],
 		attrs={"type": "button", "aria-label": "Notifications", "data-bell": ""},
 		styles=BELL_STYLES,
-		children=[icon, badge],
+		children=[icon("bell", 16), badge],
 	)

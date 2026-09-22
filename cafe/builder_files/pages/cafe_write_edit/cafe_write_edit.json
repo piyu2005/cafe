@@ -199,9 +199,13 @@
              "children": [
               {
                "attributes": {},
-               "baseStyles": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
                "blockId": "hwo6t9ucp",
-               "blockName": "Icon",
+               "blockName": "icon/bell",
                "children": [],
                "classes": [],
                "clientScript": {},
@@ -209,10 +213,10 @@
                "dataKey": null,
                "draggable": false,
                "dynamicValues": [],
-               "element": "div",
+               "element": "svg",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg>",
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -319,9 +323,13 @@
              "children": [
               {
                "attributes": {},
-               "baseStyles": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
                "blockId": "pl2bce5f8",
-               "blockName": "Icon",
+               "blockName": "icon/ellipsis",
                "children": [],
                "classes": [],
                "clientScript": {},
@@ -329,10 +337,10 @@
                "dataKey": null,
                "draggable": false,
                "dynamicValues": [],
-               "element": "div",
+               "element": "svg",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -821,9 +829,13 @@
              "children": [
               {
                "attributes": {},
-               "baseStyles": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
                "blockId": "bfzs7b77m",
-               "blockName": "Icon",
+               "blockName": "icon/ellipsis",
                "children": [],
                "classes": [],
                "clientScript": {},
@@ -831,10 +843,10 @@
                "dataKey": null,
                "draggable": false,
                "dynamicValues": [],
-               "element": "div",
+               "element": "svg",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -1091,7 +1103,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-22 18:48:33.932899",
+ "creation": "2026-09-22 19:45:09.861690",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1101,7 +1113,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 18:48:33.932899",
+ "modified": "2026-09-22 19:45:09.861690",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
@@ -1110,6 +1122,6 @@
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 18:48:33.932899",
+ "published_at": "2026-09-22 19:45:09.861690",
  "route": "write/:post_id"
 }
