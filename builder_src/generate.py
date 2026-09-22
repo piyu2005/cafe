@@ -337,7 +337,15 @@ def main():
 	write_scripts = ["Cafe Write Styles"] + [f"Cafe Write {part.title()}" for part in WRITE_PARTS]
 	chat_scripts = ["Cafe Chat Styles"] + [f"Cafe Chat {part.title()}" for part in CHAT_PARTS]
 	pages = [
-		("cafe-search", "Search", "search", build_search, [*shared, "Cafe Search"], SEARCH_DATA_SCRIPT, False),
+		(
+			"cafe-search",
+			"Search",
+			"search",
+			build_search,
+			[*shared, "Cafe Search"],
+			SEARCH_DATA_SCRIPT,
+			False,
+		),
 		(
 			"cafe-profile",
 			"Profile",

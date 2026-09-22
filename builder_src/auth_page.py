@@ -1,9 +1,12 @@
 """The Login and Signup pages: /login and /signup.
 
 Both are a centered card on a grey page, with no app shell. The forms are
-plain HTML, and auth.js runs them: it sends the email code, checks it and
-signs you in. Nothing about the sign-in itself lives here: the whitelisted
-methods that send and check the codes are the whitelisted ones in cafe/api.py.
+built as individual Builder blocks (one block per label/input/button, not one
+embedded HTML blob), so each field is editable in the Builder canvas the same
+way the card/logo/title around it already is. auth.js runs them: it sends the
+email code, checks it and signs you in. Nothing about the sign-in itself lives
+here: the whitelisted methods that send and check the codes are the
+whitelisted ones in cafe/api.py.
 
 /login?redirect-to=... is where Frappe sends someone who opens the Desk while
 signed out. That gets a separate card with a username and password, since
@@ -17,7 +20,6 @@ from blocks import (
 	SURFACE_1,
 	SURFACE_2,
 	block,
-	html_el,
 	raw_block,
 	svg,
 	text_style,
@@ -93,8 +95,9 @@ OTP_STYLES = {
 }
 
 
-def field(name, label, input_type, placeholder, autocomplete, first=False, autofocus=False):
-	"""A label and a text box, like frappe-ui's FormControl."""
+def field_block(name, label_text, input_type, placeholder, autocomplete, first=False, autofocus=False):
+	"""A label and a text box, like frappe-ui's FormControl. Each piece (the
+	label, the star, the input) is its own block, not one HTML string."""
 	attrs = {
 		"id": f"cafe-{name}",
 		"name": name,
@@ -105,25 +108,28 @@ def field(name, label, input_type, placeholder, autocomplete, first=False, autof
 	}
 	if autofocus:
 		attrs["autofocus"] = "autofocus"
-	star = html_el("span", None, None, {"color": "#e03434"}, text=" *")
-	title = html_el(
+	star = block("span", text=" *", styles={"color": "#e03434"})
+	title = block(
 		"label",
-		None,
-		{"for": f"cafe-{name}"},
-		{"display": "block", "marginBottom": "6px", **text_style(14, "420", MUTED)},
-		[html_el("span", text=label), star],
+		attrs={"for": f"cafe-{name}"},
+		styles={"display": "block", "marginBottom": "6px", **text_style(14, "420", MUTED)},
+		children=[block("span", text=label_text), star],
 	)
-	box = html_el("input", ["cafe-auth-input"], attrs, INPUT_STYLES)
-	return html_el("div", None, None, {} if first else {"marginTop": "16px"}, [title, box])
+	box = block("input", classes=["cafe-auth-input"], attrs=attrs, styles=INPUT_STYLES)
+	return block("div", styles={} if first else {"marginTop": "16px"}, children=[title, box])
 
 
-def message(name, hidden=True, text=None):
+def message_block(name, hidden=True, text=None):
 	"""A line that JavaScript fills, hidden while it is empty."""
 	attrs = {"id": f"cafe-{name}", "role": "alert"}
 	if hidden:
 		attrs["hidden"] = "hidden"
-	return html_el(
-		"div", ["cafe-auth-error"], attrs, {"marginTop": "12px", **text_style(13, "420", ERROR_RED)}, text=text
+	return block(
+		"div",
+		classes=["cafe-auth-error"],
+		attrs=attrs,
+		styles={"marginTop": "12px", **text_style(13, "420", ERROR_RED)},
+		text=text,
 	)
 
 
@@ -156,68 +162,71 @@ OUTLINE_STYLES = {
 }
 
 
-def button(label, kind, attrs=None, before=""):
+def button_block(label_text, kind, attrs=None, icon_child=None):
 	"""The full-width button of the form: solid submits, outline does not."""
 	styles = SOLID_STYLES if kind == "solid" else OUTLINE_STYLES
 	attrs = {"type": "submit" if kind == "solid" else "button", **(attrs or {})}
-	return html_el("button", [f"cafe-auth-btn-{kind}"], attrs, styles, [before, html_el("span", text=label)])
+	children = ([icon_child] if icon_child else []) + [block("span", text=label_text)]
+	return block("button", classes=[f"cafe-auth-btn-{kind}"], attrs=attrs, styles=styles, children=children)
 
 
-def google_button():
-	return button("Continue with Google", "outline", {"id": "cafe-google"}, GOOGLE_ICON)
+def google_icon_block():
+	return raw_block("Icon", GOOGLE_ICON)
 
 
-def code_form(sent_text="We sent a 6 digit verification code to "):
-	boxes = "".join(
-		html_el(
+def google_button_block():
+	return button_block("Continue with Google", "outline", {"id": "cafe-google"}, google_icon_block())
+
+
+def code_form_block(sent_text="We sent a 6 digit verification code to "):
+	boxes = [
+		block(
 			"input",
-			["cafe-otp"],
-			{
+			classes=["cafe-otp"],
+			attrs={
 				"type": "text",
 				"inputmode": "numeric",
 				"autocomplete": "one-time-code",
 				"maxlength": "1",
 				"aria-label": f"Digit {i + 1}",
 			},
-			OTP_STYLES,
+			styles=OTP_STYLES,
 		)
 		for i in range(6)
-	)
-	sent = html_el(
+	]
+	sent = block(
 		"p",
-		None,
-		None,
-		{"margin": "0", **text_style(13, "420", MUTED, "0.015em", "19.5px")},
-		[html_el("span", text=sent_text), html_el("span", None, {"id": "cafe-sent-to"}, None)],
+		styles={"margin": "0", **text_style(13, "420", MUTED, "0.015em", "19.5px")},
+		children=[block("span", text=sent_text), block("span", attrs={"id": "cafe-sent-to"})],
 	)
-	resend = html_el("p", ["cafe-resend"], None, {"margin": "12px 0 0", "textAlign": "center", **SMALL})
-	return html_el(
+	resend = block(
+		"p", classes=["cafe-resend"], styles={"margin": "12px 0 0", "textAlign": "center", **SMALL}
+	)
+	return block(
 		"form",
-		None,
-		{"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
-		None,
-		[
+		attrs={"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
+		children=[
 			sent,
-			html_el("div", None, None, {"display": "flex", "gap": "8px", "marginTop": "16px"}, [boxes]),
-			message("code-error"),
-			button("Verify", "solid", {"id": "cafe-verify"}),
+			block("div", styles={"display": "flex", "gap": "8px", "marginTop": "16px"}, children=boxes),
+			message_block("code-error"),
+			button_block("Verify", "solid", {"id": "cafe-verify"}),
 			resend,
 		],
 	)
 
 
-def footer(prefix, link_label, href):
-	link = html_el("a", ["cafe-auth-link"], {"href": href}, LINK_STYLES, text=link_label)
-	return html_el(
+def footer_block(prefix, link_label, href):
+	link = block("a", classes=["cafe-auth-link"], attrs={"href": href}, styles=LINK_STYLES, text=link_label)
+	prefix_span = block("span", text=prefix + " " if prefix else "")
+	return block(
 		"div",
-		None,
-		None,
-		{"marginTop": "24px", "textAlign": "center", **SMALL},
-		[html_el("span", text=prefix + " " if prefix else ""), link],
+		"Footer",
+		styles={"marginTop": "24px", "textAlign": "center", **SMALL},
+		children=[prefix_span, link],
 	)
 
 
-def card(title, subtitle, content, footer_html):
+def card(title, subtitle, content_blocks, footer_node):
 	head = [
 		raw_block("Logo", svg("feather", 16), styles=LOGO_STYLES),
 		block(
@@ -240,76 +249,80 @@ def card(title, subtitle, content, footer_html):
 		styles=CARD_STYLES,
 		children=[
 			*head,
-			raw_block("Form", content, styles={"marginTop": "24px"}),
-			raw_block("Footer", footer_html),
+			block("div", "Form", styles={"marginTop": "24px"}, children=content_blocks),
+			footer_node,
 		],
 	)
 
 
 def login_card():
-	email_form = html_el(
+	email_form = block(
 		"form",
-		None,
-		{"id": "cafe-email-form", "novalidate": "novalidate"},
-		None,
-		[
-			field("email", "Email", "email", "name@example.com", "email", first=True, autofocus=True),
-			message("email-error"),
-			html_el(
+		attrs={"id": "cafe-email-form", "novalidate": "novalidate"},
+		children=[
+			field_block("email", "Email", "email", "name@example.com", "email", first=True, autofocus=True),
+			message_block("email-error"),
+			block(
 				"p",
-				["cafe-signup-hint"],
-				{"hidden": "hidden"},
-				{"margin": "8px 0 0", **SMALL},
-				[html_el("a", ["cafe-auth-link"], {"href": "/signup"}, LINK_STYLES, text="Create one.")],
+				classes=["cafe-signup-hint"],
+				attrs={"hidden": "hidden"},
+				styles={"margin": "8px 0 0", **SMALL},
+				children=[
+					block(
+						"a",
+						classes=["cafe-auth-link"],
+						attrs={"href": "/signup"},
+						styles=LINK_STYLES,
+						text="Create one.",
+					)
+				],
 			),
-			button("Send verification code", "solid", {"id": "cafe-send"}),
-			google_button(),
+			button_block("Send verification code", "solid", {"id": "cafe-send"}),
+			google_button_block(),
 		],
 	)
 	return card(
 		"Log in to Cafe",
 		"Write, share, and connect.",
-		email_form + code_form(),
-		footer("New member?", "Create a new account.", "/signup"),
+		[email_form, code_form_block()],
+		footer_block("New member?", "Create a new account.", "/signup"),
 	)
 
 
 def signup_card():
-	details = html_el(
+	details = block(
 		"form",
-		None,
-		{"id": "cafe-email-form", "novalidate": "novalidate"},
-		None,
-		[
-			field("username", "Username", "text", "janedoe", "username", first=True, autofocus=True),
-			field("email", "Email", "email", "name@example.com", "email"),
-			message("email-error"),
-			button("Send verification code", "solid", {"id": "cafe-send"}),
-			google_button(),
+		attrs={"id": "cafe-email-form", "novalidate": "novalidate"},
+		children=[
+			field_block("username", "Username", "text", "janedoe", "username", first=True, autofocus=True),
+			field_block("email", "Email", "email", "name@example.com", "email"),
+			message_block("email-error"),
+			button_block("Send verification code", "solid", {"id": "cafe-send"}),
+			google_button_block(),
 		],
 	)
 	return card(
 		"Create your account",
 		"Write, share, and connect — without the noise.",
-		details + code_form(),
-		footer("Already have an account?", "Log in.", "/login"),
+		[details, code_form_block()],
+		footer_block("Already have an account?", "Log in.", "/login"),
 	)
 
 
 def system_card():
-	form = html_el(
+	form = block(
 		"form",
-		None,
-		{"id": "cafe-system-form", "novalidate": "novalidate"},
-		None,
-		[
-			field("usr", "Username", "text", "Administrator", "username", first=True, autofocus=True),
-			field("pwd", "Password", "password", "", "current-password"),
-			message("system-error"),
-			button("Log in", "solid", {"id": "cafe-system-login"}),
+		attrs={"id": "cafe-system-form", "novalidate": "novalidate"},
+		children=[
+			field_block("usr", "Username", "text", "Administrator", "username", first=True, autofocus=True),
+			field_block("pwd", "Password", "password", "", "current-password"),
+			message_block("system-error"),
+			button_block("Log in", "solid", {"id": "cafe-system-login"}),
 		],
 	)
-	return card("System login", "For Frappe Desk access.", form, footer("", "Back to Cafe login.", "/login"))
+	return card(
+		"System login", "For Frappe Desk access.", [form], footer_block("", "Back to Cafe login.", "/login")
+	)
 
 
 def build_page(cards):

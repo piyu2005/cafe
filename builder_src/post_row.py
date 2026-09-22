@@ -60,7 +60,12 @@ def build_post_row():
 	)
 	return attribute(
 		block(
-			"a", "Post", ["cafe-post"], attrs={"href": "/posts"}, children=[text, thumbnail], styles=ROW_STYLES
+			"a",
+			"Post",
+			["cafe-post"],
+			attrs={"href": "/posts"},
+			children=[text, thumbnail],
+			styles=ROW_STYLES,
 		),
 		"href",
 		"href",
