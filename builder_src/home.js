@@ -71,7 +71,7 @@
 			href: escapeHtml('/posts/' + encodeURIComponent(post.name)),
 			'!avatar': authorImage
 				? fill(template.getAttribute('data-avatar-image'), { image: escapeHtml(authorImage) })
-				: escapeHtml(label.trim().charAt(0)),
+				: '<span class="initial">' + escapeHtml(label.trim().charAt(0)) + '</span>',
 			name: escapeHtml(label),
 			title: escapeHtml(post.display_title || post.title || shorten(text, 60)),
 			excerpt: escapeHtml(post.excerpt || shorten(text, 160)),

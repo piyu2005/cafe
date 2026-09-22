@@ -21,13 +21,13 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "9ym120zjk",
+     "blockId": "38sp7ma1o",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "gjyup4l8u",
+       "blockId": "faxu6gd1m",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "fdmkkxzpz",
+       "blockId": "pvv828mtr",
        "blockName": "Main",
        "children": [
         {
@@ -77,7 +77,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "bbwgxjra7",
+         "blockId": "zg9fzsl1g",
          "blockName": "Mobile header",
          "children": [
           {
@@ -95,7 +95,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "wq1ogv9ol",
+           "blockId": "y8y6kffte",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -130,7 +130,7 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "l3xlo2d9j",
+           "blockId": "1vrnmqgu7",
            "blockName": "Actions",
            "children": [
             {
@@ -152,7 +152,7 @@
               "color": "#171717",
               "cursor": "pointer"
              },
-             "blockId": "w6a1s6cyf",
+             "blockId": "gjyup4l8u",
              "blockName": null,
              "children": [
               {
@@ -162,7 +162,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "l0gc2efn1",
+               "blockId": "fdmkkxzpz",
                "blockName": "icon/bell",
                "children": [],
                "classes": [],
@@ -206,7 +206,7 @@
                 "letterSpacing": "0.02em",
                 "textAlign": "center"
                },
-               "blockId": "2by0371pm",
+               "blockId": "f5ygmmlb2",
                "blockName": null,
                "children": [],
                "classes": [
@@ -276,7 +276,7 @@
               "cursor": "pointer",
               "width": "28px"
              },
-             "blockId": "j9b9zyln7",
+             "blockId": "tgtfztc1g",
              "blockName": null,
              "children": [
               {
@@ -286,7 +286,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "cdz5u6kb8",
+               "blockId": "9ym120zjk",
                "blockName": "icon/users",
                "children": [],
                "classes": [],
@@ -394,7 +394,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "imhrcmpnt",
+         "blockId": "nnzsl08hk",
          "blockName": "Header",
          "children": [
           {
@@ -409,7 +409,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "pq896bky0",
+           "blockId": "qumcik89t",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -417,7 +417,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "kwue9bi3t",
+             "blockId": "0fyy4r2v5",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -448,7 +448,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "ili1jmx3n",
+             "blockId": "lykh42sg2",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -478,7 +478,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "qtt9wmtdq",
+             "blockId": "m6bnmrl61",
              "blockName": null,
              "children": [],
              "classes": [
@@ -531,7 +531,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "f5ygmmlb2",
+           "blockId": "d7rymvjx5",
            "blockName": "New group",
            "children": [
             {
@@ -555,7 +555,7 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "y8y6kffte",
+             "blockId": "1dpymn95p",
              "blockName": null,
              "children": [
               {
@@ -565,7 +565,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "4wmyg4d3d",
+               "blockId": "ih5dsozmw",
                "blockName": "icon/users",
                "children": [],
                "classes": [],
@@ -591,7 +591,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "pvzufhwrb",
+               "blockId": "v6lue0f8s",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -694,7 +694,7 @@
           "width": "100%",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "4ezrl17v3",
+         "blockId": "pvzufhwrb",
          "blockName": "Chat",
          "children": [
           {
@@ -705,7 +705,7 @@
             "minHeight": "0",
             "width": "100%"
            },
-           "blockId": "kg9vy32ql",
+           "blockId": "4wmyg4d3d",
            "blockName": "Preview",
            "children": [],
            "classes": [
@@ -884,7 +884,7 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-09-22 21:04:35.218075",
+ "creation": "2026-09-22 21:29:43.314201",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -894,7 +894,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 21:04:35.218075",
+ "modified": "2026-09-22 21:29:43.314201",
  "modified_by": "Administrator",
  "name": "cafe-chat-thread",
  "owner": "Administrator",
@@ -903,6 +903,6 @@
  "page_title": "Conversation",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 21:04:35.218075",
+ "published_at": "2026-09-22 21:29:43.314201",
  "route": "messages/:conversation_id"
 }
