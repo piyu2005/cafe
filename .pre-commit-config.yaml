@@ -9,7 +9,15 @@ repos:
     hooks:
       - id: trailing-whitespace
         files: "cafe.*"
-        exclude: ".*json$|.*txt$|.*csv|.*md|.*svg"
+        # Same bundle/vendor exclusion as prettier/eslint below: a compiled
+        # bundle can have meaningful trailing whitespace inside a minified
+        # template-literal string (e.g. a markdown hard-break), which this
+        # hook would otherwise silently corrupt.
+        exclude: |
+            (?x)^(
+                .*\.json$|.*\.txt$|.*\.csv$|.*\.md$|.*\.svg$|
+                cafe/public/builder_assets/.*
+            )$
       - id: check-merge-conflict
       - id: check-ast
       - id: check-json

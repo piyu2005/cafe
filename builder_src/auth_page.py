@@ -199,7 +199,9 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 		styles={"margin": "0", **text_style(13, "420", MUTED, "0.015em", "19.5px")},
 		children=[block("span", text=sent_text), block("span", attrs={"id": "cafe-sent-to"})],
 	)
-	resend = block("p", classes=["cafe-resend"], styles={"margin": "12px 0 0", "textAlign": "center", **SMALL})
+	resend = block(
+		"p", classes=["cafe-resend"], styles={"margin": "12px 0 0", "textAlign": "center", **SMALL}
+	)
 	return block(
 		"form",
 		attrs={"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
@@ -216,7 +218,9 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 def footer_block(prefix, link_label, href):
 	link = block("a", classes=["cafe-auth-link"], attrs={"href": href}, styles=LINK_STYLES, text=link_label)
 	prefix_span = block("span", text=prefix + " " if prefix else "")
-	return block("div", styles={"marginTop": "24px", "textAlign": "center", **SMALL}, children=[prefix_span, link])
+	return block(
+		"div", styles={"marginTop": "24px", "textAlign": "center", **SMALL}, children=[prefix_span, link]
+	)
 
 
 def card(title, subtitle, content_blocks, footer_node):
