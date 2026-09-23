@@ -1,13 +1,20 @@
 """The app shell (rail, mobile bottom bar, logo menu) as a Builder component.
 
-The whole shell is ONE block that holds ready-made HTML. As separate blocks it
-was 32 blocks, and Builder's per-block render cost (about 1-2 ms each, on every
-request, for every page) made it a big part of each page's server time. To
-change the shell, edit this file and run generate.py, or edit the block's HTML
-in Builder's editor.
+Per mentor guidance, the desktop rail (logo, nav items, notification bell,
+expand toggle) is individual native blocks, editable piece by piece in
+Builder's canvas - see build_rail() below. The sidebar, bottom nav and logo
+menu stay ready-made HTML in one block for now (see build_shell_html()):
+Builder recompiles every block's template on every request, at about 1-2 ms
+per block, and the shell renders on every page in the app, so this is the
+single highest-leverage place in the whole site for that cost - as separate
+blocks the shell was 32 blocks before it was deliberately collapsed into one.
+Splitting the rail out again is a real, accepted server-time cost, taken on
+for editability; the rest of the shell stays collapsed until asked for too.
+To change the still-raw-HTML parts, edit this file and run generate.py, or
+edit the block's HTML in Builder's editor.
 """
 
-from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SURFACE_1, block, html_el, svg
+from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SURFACE_1, block, html_el, icon, raw_block, svg
 from shell_component_parts import BADGE_STYLES
 from sidebar import build_sidebar
 
@@ -104,44 +111,53 @@ def badge(kind="messages", styles=BADGE_STYLES):
 	return html_el("span", ["cafe-badge"], {"data-badge": kind}, styles)
 
 
-def rail_item(key, label, href, icon_name):
-	children = [svg(icon_name, 16)]
+def badge_block(kind="messages", styles=None):
+	return block("span", "Badge", ["cafe-badge"], attrs={"data-badge": kind}, styles=styles or BADGE_STYLES)
+
+
+def rail_item_block(key, label, href, icon_name):
+	children = [icon(icon_name, 16)]
 	if key == "messages":
-		children.append(badge(styles=RAIL_BADGE_STYLES))
-	return html_el(
+		children.append(badge_block(styles=RAIL_BADGE_STYLES))
+	return block(
 		"a",
+		label,
 		["cafe-rail-item"],
-		{"href": href, "title": label, "aria-label": label, "data-nav": key},
-		RAIL_ITEM_STYLES,
-		children,
+		attrs={"href": href, "title": label, "aria-label": label, "data-nav": key},
+		children=children,
+		styles=RAIL_ITEM_STYLES,
 	)
 
 
-def bell_item():
+def bell_item_block():
 	"""The rail's notification bell. A button: it opens the panel (notifications.js)."""
-	return html_el(
+	return block(
 		"button",
+		"Notifications",
 		["cafe-rail-item"],
-		{
+		attrs={
 			"type": "button",
 			"title": "Notifications",
 			"aria-label": "Notifications",
 			"data-nav": "notifications",
 			"data-bell": "",
 		},
-		{**RAIL_ITEM_STYLES, "padding": "0", "border": "0", "cursor": "pointer"},
-		[svg("bell", 16), badge("notifications", RAIL_BADGE_STYLES)],
+		children=[icon("bell", 16), badge_block("notifications", RAIL_BADGE_STYLES)],
+		styles={**RAIL_ITEM_STYLES, "padding": "0", "border": "0", "cursor": "pointer"},
 	)
 
 
-def expand_item():
-	"""The rail's bottom button, which opens the sidebar."""
-	return html_el(
+def expand_item_block():
+	"""The rail's bottom button, which opens the sidebar. icon() wraps the svg
+	in a sized div (see its docstring), so the 180deg rotation the old raw svg
+	carried on itself goes on that wrapper instead - same visual result."""
+	return block(
 		"button",
+		"Expand",
 		["cafe-rail-item", "cafe-expand"],
-		{"type": "button", "title": "Expand", "aria-label": "Expand", "data-sidebar-toggle": "open"},
-		{**RAIL_ITEM_STYLES, "marginTop": "auto", "padding": "0", "border": "0", "cursor": "pointer"},
-		[svg("panel-right-open", 16, None).replace('style="', 'style="transform:rotate(180deg);', 1)],
+		attrs={"type": "button", "title": "Expand", "aria-label": "Expand", "data-sidebar-toggle": "open"},
+		children=[icon("panel-right-open", 16, styles={"transform": "rotate(180deg)"})],
+		styles={**RAIL_ITEM_STYLES, "marginTop": "auto", "padding": "0", "border": "0", "cursor": "pointer"},
 	)
 
 
@@ -171,30 +187,8 @@ def menu_item(tag, attrs, icon_name, label):
 
 
 def build_shell_html():
-	logo = html_el(
-		"button",
-		["cafe-logo"],
-		{"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
-		LOGO_STYLES,
-		[svg("feather", 16)],
-	)
-	rail = html_el(
-		"nav",
-		["cafe-rail"],
-		{"aria-label": "Main"},
-		RAIL_STYLES,
-		[
-			html_el(
-				"div",
-				["cafe-rail-content"],
-				None,
-				RAIL_CONTENT_STYLES,
-				[logo]
-				+ [rail_item(*item) for item in NAV_ITEMS[:3]]
-				+ [bell_item(), rail_item(*NAV_ITEMS[3]), expand_item()],
-			)
-		],
-	)
+	"""Everything but the rail (see build_rail()): the sidebar, the mobile
+	bottom bar and the logo menu, still ready-made HTML in one block."""
 	bottom_nav = html_el(
 		"nav",
 		["cafe-bottom-nav"],
@@ -212,16 +206,44 @@ def build_shell_html():
 			menu_item("button", {"id": "cafe-logout", "type": "button"}, "log-out", "Logout"),
 		],
 	)
-	return rail + build_sidebar() + bottom_nav + menu
+	return build_sidebar() + bottom_nav + menu
+
+
+def logo_block():
+	return block(
+		"button",
+		"Logo",
+		["cafe-logo"],
+		attrs={"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
+		children=[icon("feather", 16)],
+		styles=LOGO_STYLES,
+	)
+
+
+def build_rail():
+	"""The desktop rail: individual native blocks (logo, each nav item, the
+	bell, the expand toggle), so each piece is editable on its own in
+	Builder's canvas."""
+	content = block(
+		"div",
+		"Rail content",
+		["cafe-rail-content"],
+		children=[logo_block()]
+		+ [rail_item_block(*item) for item in NAV_ITEMS[:3]]
+		+ [bell_item_block(), rail_item_block(*NAV_ITEMS[3]), expand_item_block()],
+		styles=RAIL_CONTENT_STYLES,
+	)
+	return block(
+		"nav", "Rail", ["cafe-rail"], attrs={"aria-label": "Main"}, children=[content], styles=RAIL_STYLES
+	)
 
 
 def build_shell():
-	# display: contents keeps this wrapper out of the page layout: the rail and
-	# main column stay direct flex children of the app container.
+	# display: contents (on both the outer wrapper and the raw-HTML one) keeps
+	# them out of the page layout: the rail, sidebar, bottom nav and menu all
+	# stay direct flex children of the app container, same as before the rail
+	# became its own block.
+	rest = raw_block("Sidebar, bottom nav, menu", build_shell_html(), styles={"display": "contents"})
 	return block(
-		"div",
-		"Shell",
-		["cafe-shell"],
-		html=build_shell_html(),
-		styles={"display": "contents"},
+		"div", "Shell", ["cafe-shell"], children=[build_rail(), rest], styles={"display": "contents"}
 	)
