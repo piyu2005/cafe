@@ -61,6 +61,16 @@ body {
 .cafe-app svg {
   display: block;
 }
+/* Some element's own rule sets display unconditionally, which would beat the
+   browser's default [hidden] { display: none }. This has been patched one
+   root at a time before (.cafe-app, .cafe-overlay, and separately in
+   write.css/chat.css/publications.css for #cafe-write, #cafe-chat,
+   .cafe-p-root), and each patch only covered the root it was written for.
+   Unscoped so it covers every hidden-toggled element anywhere on the page,
+   without having to track which container it lives under. */
+[hidden] {
+  display: none !important;
+}
 
 /* ---- Rail ---- */
 .cafe-rail-item:hover {
@@ -620,10 +630,6 @@ p.cafe-clamp-3:empty::before {
 }
 .cafe-author:hover {
   text-decoration: underline;
-}
-/* Inline styles set display, which would beat the hidden attribute. */
-.cafe-more-comments[hidden] {
-  display: none !important;
 }
 .cafe-icon-btn-subtle:hover {
   background: var(--cafe-hover) !important;
@@ -1433,9 +1439,6 @@ p.cafe-clamp-3:empty::before {
   height: 80px;
   border-radius: 10px;
   background: var(--cafe-surface-2);
-}
-.cafe-saved-panel [hidden] {
-  display: none !important;
 }
 
 /* ---- Notifications: bells and the panel ---- */
