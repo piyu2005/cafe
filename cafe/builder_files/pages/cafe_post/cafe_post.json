@@ -22,15 +22,519 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "g50ez5qyq",
+     "blockId": "jpuv119iy",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "knnlo4fah",
+       "blockId": "b398ns0kn",
        "blockName": "Shell",
-       "children": [],
+       "children": [
+        {
+         "attributes": {},
+         "baseStyles": {},
+         "blockId": "t6pgtsay6",
+         "blockName": null,
+         "children": [
+          {
+           "attributes": {},
+           "baseStyles": {},
+           "blockId": "c0mmmkd17",
+           "blockName": null,
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "zh4zg9uuj",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "puv4oq9ei",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "q6v4l5jgb",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "3sxvp45zr",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "78hfve5zj",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "2cncfrovd",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "ccsv5n9xs",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "pxgvjnvzt",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "bshg3hx59",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "8ozehw08h",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "29mprjghz",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "b9jvpn1iw",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "nlxakuhsa",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "w8hhd8o5m",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "98lxvjjid",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "sxf9guqgh",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "pa5nma1ic",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "ejkp4a78v",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "noqopccxa",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "0k0ghln83",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "9f6jpn1li",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "c9wfbxs0e",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "8m33w1694",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "tpt5oxf62",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "qa2tlqf4x",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "k2l5hnjbb",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "pwonjd58e",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "ztrhlbohd",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "1vh1wb9j1",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {},
+               "blockId": "r0oyt5sqa",
+               "blockName": null,
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": null,
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": "9c7fed7db3ba9a7b",
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": "u11bu9hhm",
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": null,
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": "9c7fed7db3ba9a7b",
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": "m1rl1g4nk",
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": null,
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": "9c7fed7db3ba9a7b",
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": "apexsuty5",
+           "tabletStyles": {},
+           "visibilityCondition": null
+          }
+         ],
+         "classes": [],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": null,
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": "9c7fed7db3ba9a7b",
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": "9m83rky0i",
+         "tabletStyles": {},
+         "visibilityCondition": null
+        },
+        {
+         "attributes": {},
+         "baseStyles": {},
+         "blockId": "9y5af8e4j",
+         "blockName": null,
+         "children": [],
+         "classes": [],
+         "clientScript": {},
+         "customAttributes": {},
+         "dataKey": null,
+         "draggable": false,
+         "dynamicValues": [],
+         "element": null,
+         "elementBeforeConversion": null,
+         "extendedFromComponent": null,
+         "innerHTML": null,
+         "isChildOfComponent": "9c7fed7db3ba9a7b",
+         "isRepeaterBlock": false,
+         "mobileStyles": {},
+         "originalElement": null,
+         "props": {},
+         "rawStyles": {},
+         "referenceBlockId": "4qlhst9f3",
+         "tabletStyles": {},
+         "visibilityCondition": null
+        }
+       ],
        "classes": [],
        "clientScript": {},
        "customAttributes": {},
@@ -60,7 +564,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "xah8u0mtc",
+       "blockId": "knr3a3js1",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +582,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "j3yfdsb6w",
+         "blockId": "lhyjgo2ei",
          "blockName": "Mobile header",
          "children": [
           {
@@ -95,7 +599,7 @@
             "borderRadius": "8px",
             "color": "#171717"
            },
-           "blockId": "a4yxkntzt",
+           "blockId": "em3fmr4eu",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -136,7 +640,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "7r5uvuwfp",
+           "blockId": "42ffxujel",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -176,7 +680,7 @@
             "justifyContent": "flex-end",
             "width": "32px"
            },
-           "blockId": "7accyzpwg",
+           "blockId": "wdnmvzbgq",
            "blockName": "Notifications",
            "children": [],
            "classes": [],
@@ -237,7 +741,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "ij0f134rd",
+         "blockId": "lohov42jz",
          "blockName": "Header",
          "children": [
           {
@@ -252,7 +756,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "24geb7kce",
+           "blockId": "gob4mx5pc",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -262,7 +766,7 @@
               "alignItems": "center",
               "gap": "4px"
              },
-             "blockId": "mt2drgs10",
+             "blockId": "v837p378p",
              "blockName": "Crumbs",
              "children": [],
              "classes": [],
@@ -293,7 +797,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "25b5tgbdg",
+             "blockId": "w2ypjdid8",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -323,7 +827,7 @@
               "href": "/profile"
              },
              "baseStyles": {},
-             "blockId": "vayfulfa7",
+             "blockId": "kaqlqrqm8",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -370,7 +874,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "dn1wz57t2",
+             "blockId": "2sfyewlse",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -403,7 +907,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "id3q633m3",
+             "blockId": "aqo1bpsl7",
              "blockName": "Title",
              "children": [],
              "classes": [
@@ -475,7 +979,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "gbgjun7xy",
+           "blockId": "jgq9lmsjm",
            "blockName": "New Post",
            "children": [
             {
@@ -485,7 +989,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "ihdused68",
+             "blockId": "djxkf5v5g",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -511,7 +1015,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "bsd3rkftm",
+             "blockId": "asgvosvyn",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -589,7 +1093,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "w27yzj9ho",
+         "blockId": "zxncxgs68",
          "blockName": "Scroll area",
          "children": [
           {
@@ -600,7 +1104,7 @@
             "margin": "0 auto",
             "padding": "48px 24px 32px"
            },
-           "blockId": "ao1dd9992",
+           "blockId": "xuqv8attn",
            "blockName": "Container",
            "children": [
             {
@@ -608,7 +1112,7 @@
               "id": "cafe-post"
              },
              "baseStyles": {},
-             "blockId": "uxdq9yt9i",
+             "blockId": "74duuuwld",
              "blockName": "Post",
              "children": [
               {
@@ -621,7 +1125,7 @@
                 "letterSpacing": "0.005em",
                 "lineHeight": "1.4"
                },
-               "blockId": "w1ef9y2wj",
+               "blockId": "w5ry7nxln",
                "blockName": "Title",
                "children": [],
                "classes": [
@@ -661,7 +1165,7 @@
                 "alignItems": "center",
                 "gap": "12px"
                },
-               "blockId": "qr4orw7gj",
+               "blockId": "r3p4r52af",
                "blockName": "Author row",
                "children": [
                 {
@@ -676,7 +1180,7 @@
                   "borderRadius": "9999px",
                   "backgroundColor": "#f3f3f3"
                  },
-                 "blockId": "e5el9tpp9",
+                 "blockId": "wg09bcg40",
                  "blockName": "Avatar",
                  "children": [
                   {
@@ -690,7 +1194,7 @@
                     "height": "100%",
                     "objectFit": "cover"
                    },
-                   "blockId": "tdp1cnm3w",
+                   "blockId": "ji4d3i0rp",
                    "blockName": "Avatar image",
                    "children": [],
                    "classes": [],
@@ -734,7 +1238,7 @@
                     "gridArea": "1 / 1",
                     "textTransform": "uppercase"
                    },
-                   "blockId": "3swo4vy7h",
+                   "blockId": "tg78xqybh",
                    "blockName": "Initial",
                    "children": [],
                    "classes": [],
@@ -794,7 +1298,7 @@
                   "flexGrow": "1",
                   "minWidth": "0"
                  },
-                 "blockId": "ikqidwemd",
+                 "blockId": "qwjhqieih",
                  "blockName": "Author",
                  "children": [
                   {
@@ -809,7 +1313,7 @@
                     "lineHeight": "24px",
                     "display": "block"
                    },
-                   "blockId": "sovkzakyb",
+                   "blockId": "xq2kzkk8p",
                    "blockName": "Author name",
                    "children": [],
                    "classes": [
@@ -858,7 +1362,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "v8v1aieei",
+                   "blockId": "4od3a6oze",
                    "blockName": "Date and read time",
                    "children": [],
                    "classes": [],
@@ -915,7 +1419,7 @@
                   "position": "relative",
                   "flexShrink": "0"
                  },
-                 "blockId": "x7pjn588r",
+                 "blockId": "lsg3a4bof",
                  "blockName": "More",
                  "children": [
                   {
@@ -936,7 +1440,7 @@
                     "color": "#171717",
                     "cursor": "pointer"
                    },
-                   "blockId": "j7uqhi9qz",
+                   "blockId": "gk169zlkn",
                    "blockName": "More",
                    "children": [],
                    "classes": [
@@ -979,7 +1483,7 @@
                     "backgroundColor": "#ffffff",
                     "boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)"
                    },
-                   "blockId": "m3ow1znmt",
+                   "blockId": "zw6dapanr",
                    "blockName": "Menu",
                    "children": [
                     {
@@ -1002,7 +1506,7 @@
                       "textAlign": "left",
                       "cursor": "pointer"
                      },
-                     "blockId": "pdlmm8ztv",
+                     "blockId": "aqrj98hw9",
                      "blockName": "Edit post",
                      "children": [],
                      "classes": [
@@ -1057,7 +1561,7 @@
                       "textAlign": "left",
                       "cursor": "pointer"
                      },
-                     "blockId": "3e4h2pmf6",
+                     "blockId": "ho7wlam0r",
                      "blockName": "Copy link",
                      "children": [],
                      "classes": [
@@ -1155,7 +1659,7 @@
                 "marginTop": "24px",
                 "borderTop": "1px solid #ededed"
                },
-               "blockId": "fjfcupuzi",
+               "blockId": "xad7n8gvd",
                "blockName": "Divider",
                "children": [],
                "classes": [],
@@ -1189,7 +1693,7 @@
                 "borderRadius": "10px",
                 "backgroundColor": "#000000"
                },
-               "blockId": "wc6d5z66s",
+               "blockId": "087bne5uc",
                "blockName": "Carousel",
                "children": [
                 {
@@ -1198,7 +1702,7 @@
                   "width": "100%",
                   "height": "100%"
                  },
-                 "blockId": "zt38s4w31",
+                 "blockId": "6jm1ov50w",
                  "blockName": "Pictures",
                  "children": [
                   {
@@ -1211,7 +1715,7 @@
                     "height": "100%",
                     "objectFit": "contain"
                    },
-                   "blockId": "86vvsdinq",
+                   "blockId": "ccr8ehctp",
                    "blockName": "Picture",
                    "children": [],
                    "classes": [
@@ -1309,7 +1813,7 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.7"
                },
-               "blockId": "xpvy2se1f",
+               "blockId": "nvs00krf1",
                "blockName": "Content",
                "children": [],
                "classes": [
@@ -1349,7 +1853,7 @@
                 "flexWrap": "wrap",
                 "gap": "8px"
                },
-               "blockId": "y7tgn7txt",
+               "blockId": "2k4sgl3i6",
                "blockName": "Tags",
                "children": [
                 {
@@ -1367,7 +1871,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "x5yn6dpw9",
+                 "blockId": "ob0z5kwbt",
                  "blockName": "Tag",
                  "children": [],
                  "classes": [
@@ -1439,7 +1943,7 @@
                 "borderTop": "1px solid #ededed",
                 "borderBottom": "1px solid #ededed"
                },
-               "blockId": "nedc5ktvf",
+               "blockId": "zk9vsnykr",
                "blockName": "Action bar",
                "children": [
                 {
@@ -1449,7 +1953,7 @@
                   "alignItems": "center",
                   "gap": "24px"
                  },
-                 "blockId": "g3pb9tkvi",
+                 "blockId": "4kd9hylss",
                  "blockName": "Counts",
                  "children": [
                   {
@@ -1468,7 +1972,7 @@
                     "fontSize": "14px",
                     "cursor": "pointer"
                    },
-                   "blockId": "8h7ad1ij6",
+                   "blockId": "uvy2rxksi",
                    "blockName": "Like",
                    "children": [
                     {
@@ -1477,7 +1981,7 @@
                       "display": "flex",
                       "flexShrink": "0"
                      },
-                     "blockId": "dsonkpobe",
+                     "blockId": "7amjrytsk",
                      "blockName": "Icon",
                      "children": [],
                      "classes": [],
@@ -1505,7 +2009,7 @@
                       "id": "cafe-like-count"
                      },
                      "baseStyles": {},
-                     "blockId": "qgq9ix4mt",
+                     "blockId": "lrpzqyrut",
                      "blockName": "Count",
                      "children": [],
                      "classes": [],
@@ -1584,7 +2088,7 @@
                     "fontSize": "14px",
                     "cursor": "pointer"
                    },
-                   "blockId": "9pknrg128",
+                   "blockId": "zfiwxksb2",
                    "blockName": "Comment",
                    "children": [
                     {
@@ -1593,7 +2097,7 @@
                       "display": "flex",
                       "flexShrink": "0"
                      },
-                     "blockId": "skht96lnq",
+                     "blockId": "a1l0p7opl",
                      "blockName": "Icon",
                      "children": [],
                      "classes": [],
@@ -1621,7 +2125,7 @@
                       "id": "cafe-comment-count"
                      },
                      "baseStyles": {},
-                     "blockId": "ah2jzt8ty",
+                     "blockId": "i5vjf5dyg",
                      "blockName": "Count",
                      "children": [],
                      "classes": [],
@@ -1705,7 +2209,7 @@
                   "alignItems": "center",
                   "gap": "4px"
                  },
-                 "blockId": "6b3qzhu5s",
+                 "blockId": "26u911lad",
                  "blockName": "Buttons",
                  "children": [
                   {
@@ -1713,7 +2217,7 @@
                    "baseStyles": {
                     "display": "flex"
                    },
-                   "blockId": "qeaj1o4a2",
+                   "blockId": "qvrqyfihk",
                    "blockName": "Share",
                    "children": [],
                    "classes": [],
@@ -1753,7 +2257,7 @@
                     "color": "#171717",
                     "cursor": "pointer"
                    },
-                   "blockId": "zkugt9rxo",
+                   "blockId": "kousn7iks",
                    "blockName": "Save",
                    "children": [],
                    "classes": [
@@ -1842,7 +2346,7 @@
                 "letterSpacing": "0.015em",
                 "lineHeight": "1.15"
                },
-               "blockId": "r9qa26oel",
+               "blockId": "3xyd9uy9d",
                "blockName": "Responses",
                "children": [],
                "classes": [],
@@ -1877,7 +2381,7 @@
                "baseStyles": {
                 "marginTop": "24px"
                },
-               "blockId": "olz4ilhxj",
+               "blockId": "8qa5lf39f",
                "blockName": "Comment box",
                "children": [],
                "classes": [],
@@ -1907,7 +2411,7 @@
                "baseStyles": {
                 "marginTop": "24px"
                },
-               "blockId": "cok94dqmw",
+               "blockId": "d3eir43d4",
                "blockName": "Comments",
                "children": [],
                "classes": [
@@ -1935,7 +2439,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "cu0zhwmkc",
+               "blockId": "2xrgtdvk9",
                "blockName": "More comments",
                "children": [],
                "classes": [],
@@ -2022,7 +2526,7 @@
               "padding": "96px 0",
               "textAlign": "center"
              },
-             "blockId": "1n5akcdal",
+             "blockId": "5yv5vlh05",
              "blockName": "Unavailable",
              "children": [],
              "classes": [],
@@ -2186,7 +2690,7 @@
    "builder_script": "Cafe Code"
   }
  ],
- "creation": "2026-09-23 08:29:11.336287",
+ "creation": "2026-09-23 08:46:47.695638",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2196,7 +2700,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:29:11.336287",
+ "modified": "2026-09-23 08:46:47.695638",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
@@ -2205,6 +2709,6 @@
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:29:11.336287",
+ "published_at": "2026-09-23 08:46:47.695638",
  "route": "posts/:post_id"
 }
