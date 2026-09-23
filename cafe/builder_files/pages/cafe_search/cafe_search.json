@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "7vyztotxa",
+     "blockId": "s5w1fy95q",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "9m83rky0i",
+       "blockId": "flvfi0c3r",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "apexsuty5",
+       "blockId": "7vyztotxa",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "u11bu9hhm",
+         "blockId": "apexsuty5",
          "blockName": "Header",
          "children": [
           {
@@ -211,27 +211,99 @@
            "visibilityCondition": null
           },
           {
-           "attributes": {},
-           "baseStyles": {
-            "display": "flex"
+           "attributes": {
+            "href": "/write"
            },
-           "blockId": "ztrhlbohd",
+           "baseStyles": {
+            "display": "inline-flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "gap": "8px",
+            "height": "28px",
+            "padding": "0 8px",
+            "borderRadius": "8px",
+            "backgroundColor": "#171717",
+            "color": "#ffffff",
+            "fontSize": "14px",
+            "whiteSpace": "nowrap"
+           },
+           "blockId": "m1rl1g4nk",
            "blockName": "New Post",
-           "children": [],
-           "classes": [],
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {
+              "width": "16px",
+              "height": "16px",
+              "flexShrink": "0"
+             },
+             "blockId": "ztrhlbohd",
+             "blockName": "icon/plus",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "svg",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "u11bu9hhm",
+             "blockName": "Label",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "New Post",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "cafe-btn",
+            "cafe-btn-solid"
+           ],
            "clientScript": {},
            "customAttributes": {},
            "dataKey": null,
            "draggable": false,
            "dynamicValues": [],
-           "element": "div",
+           "element": "a",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg><span >New Post</span></a>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -269,7 +341,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "m1rl1g4nk",
+         "blockId": "9m83rky0i",
          "blockName": "Scroll area",
          "children": [
           {
@@ -741,7 +813,7 @@
    "builder_script": "Cafe Search"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-23 08:29:11.336287",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -751,7 +823,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-23 08:29:11.336287",
  "modified_by": "Administrator",
  "name": "cafe-search",
  "owner": "Administrator",
@@ -760,6 +832,6 @@
  "page_title": "Search",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-23 08:29:11.336287",
  "route": "search"
 }

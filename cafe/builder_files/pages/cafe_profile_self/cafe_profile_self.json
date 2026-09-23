@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "e84shr4g2",
+     "blockId": "fyxrerr9o",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "nltb83rkl",
+       "blockId": "8kf6q6gxd",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "oti1qtcx0",
+       "blockId": "cxz5sg4dn",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "hlo6neyps",
+         "blockId": "9y0k6fbw5",
          "blockName": "Header",
          "children": [
           {
@@ -93,7 +93,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "g00niqo8h",
+           "blockId": "oti1qtcx0",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -101,7 +101,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "184f4oy2f",
+             "blockId": "hlo6neyps",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -148,27 +148,99 @@
            "visibilityCondition": null
           },
           {
-           "attributes": {},
-           "baseStyles": {
-            "display": "flex"
+           "attributes": {
+            "href": "/write"
            },
-           "blockId": "5bowrb5z9",
+           "baseStyles": {
+            "display": "inline-flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "gap": "8px",
+            "height": "28px",
+            "padding": "0 8px",
+            "borderRadius": "8px",
+            "backgroundColor": "#171717",
+            "color": "#ffffff",
+            "fontSize": "14px",
+            "whiteSpace": "nowrap"
+           },
+           "blockId": "1igon44mp",
            "blockName": "New Post",
-           "children": [],
-           "classes": [],
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {
+              "width": "16px",
+              "height": "16px",
+              "flexShrink": "0"
+             },
+             "blockId": "nltb83rkl",
+             "blockName": "icon/plus",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "svg",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "e84shr4g2",
+             "blockName": "Label",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "New Post",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "cafe-btn",
+            "cafe-btn-solid"
+           ],
            "clientScript": {},
            "customAttributes": {},
            "dataKey": null,
            "draggable": false,
            "dynamicValues": [],
-           "element": "div",
+           "element": "a",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg><span >New Post</span></a>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -206,7 +278,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "uqgdqeew7",
+         "blockId": "cptc272kn",
          "blockName": "Scroll area",
          "children": [
           {
@@ -217,7 +289,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "wy1yzpty6",
+           "blockId": "uqgdqeew7",
            "blockName": "Container",
            "children": [
             {
@@ -230,7 +302,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.5"
              },
-             "blockId": "g5awqxh3o",
+             "blockId": "5bowrb5z9",
              "blockName": "Note",
              "children": [],
              "classes": [],
@@ -372,7 +444,7 @@
    "builder_script": "Cafe Styles"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-23 08:29:11.336287",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -382,7 +454,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-23 08:29:11.336287",
  "modified_by": "Administrator",
  "name": "cafe-profile-self",
  "owner": "Administrator",
@@ -391,6 +463,6 @@
  "page_title": "My profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-23 08:29:11.336287",
  "route": "profile"
 }
