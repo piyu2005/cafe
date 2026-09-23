@@ -65,9 +65,9 @@ body {
    browser's default [hidden] { display: none }. This has been patched one
    root at a time before (.cafe-app, .cafe-overlay, and separately in
    write.css/chat.css/publications.css for #cafe-write, #cafe-chat,
-   .cafe-p-root) and keeps missing roots CAFE.popupMenu() and future code
-   append straight to <body>, like .cafe-popup. Unscoped so it covers every
-   hidden-toggled element anywhere on the page, current or future. */
+   .cafe-p-root), and each patch only covered the root it was written for.
+   Unscoped so it covers every hidden-toggled element anywhere on the page,
+   without having to track which container it lives under. */
 [hidden] {
   display: none !important;
 }
