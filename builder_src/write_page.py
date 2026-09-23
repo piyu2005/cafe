@@ -75,9 +75,9 @@ def desktop_header():
 		"Actions",
 		styles={"display": "flex", "alignItems": "center", "gap": "8px"},
 		children=[
+			more_button_block("cafe-w-more", hidden=True),
 			button_block("cafe-w-draft", "Save Draft", "outline"),
 			button_block("cafe-w-publish", "Publish", "solid"),
-			more_button_block("cafe-w-more", hidden=True),
 		],
 	)
 	return header

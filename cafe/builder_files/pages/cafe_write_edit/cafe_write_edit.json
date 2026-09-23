@@ -1160,6 +1160,86 @@
             {
              "attributes": {
               "type": "button",
+              "id": "cafe-w-more",
+              "aria-label": "More",
+              "hidden": "hidden"
+             },
+             "baseStyles": {
+              "display": "inline-flex",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "gap": "8px",
+              "height": "28px",
+              "padding": "0",
+              "border": "0",
+              "borderRadius": "8px",
+              "backgroundColor": "#f3f3f3",
+              "color": "#171717",
+              "fontSize": "14px",
+              "whiteSpace": "nowrap",
+              "cursor": "pointer",
+              "width": "28px"
+             },
+             "blockId": "2bd87pk2e",
+             "blockName": null,
+             "children": [
+              {
+               "attributes": {},
+               "baseStyles": {
+                "width": "16px",
+                "height": "16px",
+                "flexShrink": "0"
+               },
+               "blockId": "3rvz3daih",
+               "blockName": "icon/ellipsis",
+               "children": [],
+               "classes": [],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "svg",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": "__raw_html__",
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-btn",
+              "cafe-w-more"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "button",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {
+              "type": "button",
               "id": "cafe-w-draft"
              },
              "baseStyles": {
@@ -1177,13 +1257,13 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "2bd87pk2e",
+             "blockId": "fxwiekxb2",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "3rvz3daih",
+               "blockId": "eji3elhvo",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -1251,13 +1331,13 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "fxwiekxb2",
+             "blockId": "njcrbg64d",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "eji3elhvo",
+               "blockId": "0ebqwrd9c",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -1285,86 +1365,6 @@
               "cafe-btn",
               "cafe-btn-solid",
               "cafe-w-btn"
-             ],
-             "clientScript": {},
-             "customAttributes": {},
-             "dataKey": null,
-             "draggable": false,
-             "dynamicValues": [],
-             "element": "button",
-             "elementBeforeConversion": null,
-             "extendedFromComponent": null,
-             "innerHTML": null,
-             "isChildOfComponent": null,
-             "isRepeaterBlock": false,
-             "mobileStyles": {},
-             "originalElement": null,
-             "props": {},
-             "rawStyles": {},
-             "referenceBlockId": null,
-             "tabletStyles": {},
-             "visibilityCondition": null
-            },
-            {
-             "attributes": {
-              "type": "button",
-              "id": "cafe-w-more",
-              "aria-label": "More",
-              "hidden": "hidden"
-             },
-             "baseStyles": {
-              "display": "inline-flex",
-              "alignItems": "center",
-              "justifyContent": "center",
-              "gap": "8px",
-              "height": "28px",
-              "padding": "0",
-              "border": "0",
-              "borderRadius": "8px",
-              "backgroundColor": "#f3f3f3",
-              "color": "#171717",
-              "fontSize": "14px",
-              "whiteSpace": "nowrap",
-              "cursor": "pointer",
-              "width": "28px"
-             },
-             "blockId": "njcrbg64d",
-             "blockName": null,
-             "children": [
-              {
-               "attributes": {},
-               "baseStyles": {
-                "width": "16px",
-                "height": "16px",
-                "flexShrink": "0"
-               },
-               "blockId": "0ebqwrd9c",
-               "blockName": "icon/ellipsis",
-               "children": [],
-               "classes": [],
-               "clientScript": {},
-               "customAttributes": {},
-               "dataKey": null,
-               "draggable": false,
-               "dynamicValues": [],
-               "element": "svg",
-               "elementBeforeConversion": null,
-               "extendedFromComponent": null,
-               "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"1\" />\n  <circle cx=\"19\" cy=\"12\" r=\"1\" />\n  <circle cx=\"5\" cy=\"12\" r=\"1\" /></svg>",
-               "isChildOfComponent": null,
-               "isRepeaterBlock": false,
-               "mobileStyles": {},
-               "originalElement": "__raw_html__",
-               "props": {},
-               "rawStyles": {},
-               "referenceBlockId": null,
-               "tabletStyles": {},
-               "visibilityCondition": null
-              }
-             ],
-             "classes": [
-              "cafe-btn",
-              "cafe-w-more"
              ],
              "clientScript": {},
              "customAttributes": {},
@@ -1607,7 +1607,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-23 17:41:12.779842",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1617,7 +1617,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-23 17:41:12.779842",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
@@ -1626,6 +1626,6 @@
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-23 17:41:12.779842",
  "route": "write/:post_id"
 }
