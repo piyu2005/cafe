@@ -2,13 +2,17 @@
 page is published (see cafe/routing.py); unpublish it and "/" goes back
 to the old app.
 
-A row is one block whose inner HTML comes from the data script. That is one
-block per post instead of about ten, and block count is what a page costs the
-server (each block is rendered by a template engine on every visit). The row
-markup lives in ROW_TEMPLATE below and is used three times: the data script
-fills it for the first ten posts, home.js fills the copy in the page's
-<template> for search results and infinite scroll, and the row block takes its
-own styles from it."""
+The first ten rows are Builder's own repeater: one row block, repeated once
+per post in data.posts, with each piece (avatar, name, title, excerpt, date,
+minutes, comments, thumbnail) as its own native child block bound to a field
+of that post - individually editable/stylable in Builder's canvas, per the
+mentor's "individual blocks, not embed" direction. home.js (search results
+and infinite scroll, past the first ten) still renders rows from the page's
+<template>, filled by [[token]] string substitution - that path is plain
+client DOM, not Builder blocks, and is unrelated to how the first page is
+built; ROW_TEMPLATE below exists only for it, and is kept in exact visual
+sync with the native row (same style constants, same classes, same nesting)
+so a row looks identical whichever path drew it."""
 
 from bell import mobile_bell
 from blocks import (
@@ -74,7 +78,8 @@ THUMBNAIL_STYLES = {
 }
 
 # What goes between the row's <a> tags. [[name]] marks a value to escape and put
-# in; [[!name]] marks a piece of HTML that was built already.
+# in; [[!name]] marks a piece of HTML that was built already. Only home.js's
+# <template> path uses this now - see the module docstring.
 ROW_INNER = "".join(
 	[
 		html_el(
@@ -136,10 +141,66 @@ ROW_TEMPLATE = html_el("a", ["cafe-feed-row"], {"href": "[[href]]"}, ROW_STYLES,
 
 
 def build_feed_row():
-	"""The row Builder repeats for each post. It is empty in the file: the data
-	script gives every row its inner HTML and link."""
-	row = block("a", "Post", ["cafe-feed-row"], attrs={"href": "/posts"}, styles=ROW_STYLES)
-	row["dynamicValues"] = [bind("href", "href", "attribute"), bind("html", "innerHTML", "key")]
+	"""The row Builder repeats for each post in data.posts, one native block
+	per piece (avatar, name, title, excerpt, date, minutes read, comments,
+	thumbnail), each bound to that post's own field - individually editable
+	in Builder's canvas, not one embedded HTML blob."""
+	avatar_image = block("img", "Avatar image", attrs={"src": "", "alt": ""}, styles=AVATAR_IMAGE_STYLES)
+	avatar_image["dynamicValues"] = [bind("image", "src", "attribute")]
+	avatar_image["visibilityCondition"] = {"key": "image", "comesFrom": "dataScript"}
+	# Both avatar children share the avatar span; only one renders on the page
+	# (the other's visibility condition hides it). The editor canvas ignores
+	# visibility conditions and shows both, same as the Search page's rows.
+	avatar_initial = block("span", "Avatar initial", classes=["initial"], text="P")
+	avatar_initial["dynamicValues"] = [bind("initial", "innerHTML", "key")]
+	avatar_initial["visibilityCondition"] = {"key": "no_image", "comesFrom": "dataScript"}
+	avatar = block(
+		"span", "Avatar", ["cafe-avatar"], children=[avatar_image, avatar_initial], styles=AVATAR_STYLES
+	)
+	name = block("span", "Name", text="Priyanshi Hodage", styles=NAME_STYLES)
+	name["dynamicValues"] = [bind("name", "innerHTML", "key")]
+	author_line = block(
+		"div", "Author", ["cafe-feed-author"], children=[avatar, name], styles=AUTHOR_LINE_STYLES
+	)
+
+	title = block("div", "Title", text="Post title", styles=TITLE_STYLES)
+	title["dynamicValues"] = [bind("title", "innerHTML", "key")]
+	excerpt = block("p", "Excerpt", classes=["cafe-clamp-2"], text="Excerpt", styles=EXCERPT_STYLES)
+	excerpt["dynamicValues"] = [bind("excerpt", "innerHTML", "key")]
+	date = block("span", "Date", text="Jan 1, 2026")
+	date["dynamicValues"] = [bind("date", "innerHTML", "key")]
+	minutes = block("span", "Minutes", text="1 min read")
+	minutes["dynamicValues"] = [bind("minutes_label", "innerHTML", "key")]
+	comments = block("span", "Comments", ["cafe-feed-comments"], text="0 comments")
+	comments["dynamicValues"] = [bind("comments_label", "innerHTML", "key")]
+	meta = block(
+		"div",
+		"Meta",
+		children=[date, block("span", text="·"), minutes, block("span", text="·"), comments],
+		styles=META_STYLES,
+	)
+	text_col = block("div", "Text", children=[title, excerpt, meta], styles=TEXT_STYLES)
+
+	thumbnail = block(
+		"img",
+		"Thumbnail",
+		["cafe-feed-thumb"],
+		attrs={"alt": "", "loading": "lazy", "decoding": "async"},
+		styles=THUMBNAIL_STYLES,
+	)
+	thumbnail["dynamicValues"] = [bind("cover", "src", "attribute")]
+	thumbnail["visibilityCondition"] = {"key": "cover", "comesFrom": "dataScript"}
+	body = block("div", "Body", children=[text_col, thumbnail], styles=BODY_STYLES)
+
+	row = block(
+		"a",
+		"Post",
+		["cafe-feed-row"],
+		attrs={"href": "/posts"},
+		children=[author_line, body],
+		styles=ROW_STYLES,
+	)
+	row["dynamicValues"] = [bind("href", "href", "attribute")]
 	return row
 
 
@@ -311,19 +372,13 @@ def build_home(shell_id, shell_block):
 
 
 # ---- Data script ----
-# The row markup goes into the script as text, so the server fills it the same
-# way home.js does.
+# One field per row piece, so Builder's repeater can bind each of the row's
+# native child blocks to its own key - no HTML assembly here any more (that
+# only happens client-side now, in home.js, for rows past the first ten).
 
 HOME_MAIN = """\
 if frappe.session.user == "Guest":
     redirect("/login")
-
-
-def token_safe(value):
-    # The row markup is filled one [[token]] at a time; keep a post's own
-    # "[[" from being taken for one.
-    return value.replace("[", "&#91;")
-
 
 rows = frappe.get_all(
     "Post",
@@ -340,10 +395,6 @@ if rows:
     for comment in frappe.get_all("Post Comment", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
         counts[comment.post] = counts.get(comment.post, 0) + 1
 
-ROW = @@ROW@@
-AVATAR_IMAGE = @@AVATAR_IMAGE@@
-THUMBNAIL = @@THUMBNAIL@@
-
 posts = []
 for row in rows:
     text = plain_text(row.get("content"))
@@ -353,22 +404,23 @@ for row in rows:
         minutes = 1
     label = row.get("author_name") or row.get("author") or ""
     author_image = safe_url(row.get("author_image"))
-    if author_image:
-        avatar = AVATAR_IMAGE.replace("[[image]]", token_safe(author_image))
-    else:
-        avatar = token_safe(clean(label.strip()[:1]))
     cover = row.get("cover_image") or (row.get("attachment") if row.get("post_type") != "Video" else "")
     cover = safe_url(cover)
-    body = ROW.replace("[[!avatar]]", avatar)
-    body = body.replace("[[!thumbnail]]", THUMBNAIL.replace("[[cover]]", token_safe(cover)) if cover else "")
-    body = body.replace("[[name]]", token_safe(clean(label)))
-    body = body.replace("[[title]]", token_safe(clean(row.get("display_title") or row.get("title") or (text[:60] + "\\u2026" if len(text) > 60 else text))))
-    body = body.replace("[[excerpt]]", token_safe(clean(row.get("excerpt") or (text[:160] + "\\u2026" if len(text) > 160 else text))))
-    body = body.replace("[[date]]", day_month_year(row.creation))
-    body = body.replace("[[minutes]]", str(minutes))
-    body = body.replace("[[comments]]", str(counts.get(row.name, 0)))
     href = "/posts/" + path_segment(row.name)
-    posts.append({"href": clean(href), "html": body})
+    comments = counts.get(row.name, 0)
+    posts.append({
+        "href": clean(href),
+        "image": author_image,
+        "no_image": not author_image,
+        "initial": clean(label.strip()[:1]),
+        "name": clean(label),
+        "title": clean(row.get("display_title") or row.get("title") or (text[:60] + "\\u2026" if len(text) > 60 else text)),
+        "excerpt": clean(row.get("excerpt") or (text[:160] + "\\u2026" if len(text) > 160 else text)),
+        "date": day_month_year(row.creation),
+        "minutes_label": str(minutes) + " min read",
+        "comments_label": str(comments) + (" comment" if comments == 1 else " comments"),
+        "cover": cover,
+    })
 data.posts = posts
 data.hp = {
     "no_posts": frappe.db.count("Post", {"author": frappe.session.user}) == 0,
@@ -378,18 +430,4 @@ data.hp = {
 """
 
 
-def _literal(text):
-	"""`text` as a Python string literal for the data script."""
-	return repr(text)
-
-
-def _row_body(template):
-	"""The row's inner HTML: the template without its outer <a> tag, since the
-	repeated block is the <a>."""
-	start = template.index(">") + 1
-	return template[start : template.rindex("</a>")]
-
-
-HOME_DATA_SCRIPT = HELPERS + HOME_MAIN.replace("@@PAGE_SIZE@@", str(PAGE_SIZE)).replace(
-	"@@ROW@@", _literal(_row_body(ROW_TEMPLATE))
-).replace("@@AVATAR_IMAGE@@", _literal(AVATAR_IMAGE)).replace("@@THUMBNAIL@@", _literal(THUMBNAIL))
+HOME_DATA_SCRIPT = HELPERS + HOME_MAIN.replace("@@PAGE_SIZE@@", str(PAGE_SIZE))

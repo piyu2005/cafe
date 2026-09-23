@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "0aenfhyhg",
+     "blockId": "bekhc1kvs",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "stqt60eg3",
+       "blockId": "6znd9qrmp",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "1czlbhrzr",
+       "blockId": "6kgtpp66y",
        "blockName": "Main",
        "children": [
         {
@@ -74,7 +74,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "g8o386op0",
+         "blockId": "meo5tmk6v",
          "blockName": "Mobile header",
          "children": [
           {
@@ -84,7 +84,7 @@
             "alignItems": "center",
             "gap": "6px"
            },
-           "blockId": "z8vrir61e",
+           "blockId": "x4u6j7z6g",
            "blockName": "Brand",
            "children": [],
            "classes": [],
@@ -114,7 +114,7 @@
             "alignItems": "center",
             "gap": "4px"
            },
-           "blockId": "ykzmo6o19",
+           "blockId": "0gufftdk8",
            "blockName": "Bell and write",
            "children": [],
            "classes": [],
@@ -176,7 +176,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "pllnx3sn5",
+         "blockId": "put56cqi3",
          "blockName": "Header",
          "children": [
           {
@@ -191,7 +191,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "hh7j075uj",
+           "blockId": "9knfvi3eu",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -199,7 +199,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "s1o1cv1v7",
+             "blockId": "iqkg9r59e",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -230,7 +230,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "iuexbse2y",
+             "blockId": "dhojzhe3c",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -260,7 +260,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "fygr4z2qb",
+             "blockId": "mpfoumxcy",
              "blockName": null,
              "children": [],
              "classes": [
@@ -313,7 +313,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "d25avzn2m",
+           "blockId": "oqjpsfvpf",
            "blockName": "New Post",
            "children": [],
            "classes": [],
@@ -367,7 +367,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "uv7ofoyof",
+         "blockId": "82yrcxkyd",
          "blockName": "Scroll area",
          "children": [
           {
@@ -378,7 +378,7 @@
             "margin": "0 auto",
             "padding": "24px 20px"
            },
-           "blockId": "iw7etowqp",
+           "blockId": "hppavnjrw",
            "blockName": "Container",
            "children": [
             {
@@ -555,7 +555,7 @@
               "flexDirection": "column",
               "marginTop": "8px"
              },
-             "blockId": "xah8u0mtc",
+             "blockId": "stqt60eg3",
              "blockName": "Posts",
              "children": [
               {
@@ -570,9 +570,589 @@
                 "color": "inherit",
                 "textDecoration": "none"
                },
-               "blockId": "w27yzj9ho",
+               "blockId": "1czlbhrzr",
                "blockName": "Post",
-               "children": [],
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "display": "flex",
+                  "alignItems": "center",
+                  "gap": "8px"
+                 },
+                 "blockId": "l7uhhcvcb",
+                 "blockName": "Author",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "display": "grid",
+                    "placeItems": "center",
+                    "flexShrink": "0",
+                    "width": "20px",
+                    "height": "20px",
+                    "overflow": "hidden",
+                    "borderRadius": "9999px",
+                    "backgroundColor": "#f3f3f3",
+                    "fontSize": "13px",
+                    "fontWeight": "500",
+                    "color": "#7c7c7c",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "1.15",
+                    "textTransform": "uppercase"
+                   },
+                   "blockId": "knnlo4fah",
+                   "blockName": "Avatar",
+                   "children": [
+                    {
+                     "attributes": {
+                      "src": "",
+                      "alt": ""
+                     },
+                     "baseStyles": {
+                      "width": "100%",
+                      "height": "100%",
+                      "objectFit": "cover"
+                     },
+                     "blockId": "w27yzj9ho",
+                     "blockName": "Avatar image",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "image",
+                       "property": "src",
+                       "type": "attribute"
+                      }
+                     ],
+                     "element": "img",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "image",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {},
+                     "blockId": "xah8u0mtc",
+                     "blockName": "Avatar initial",
+                     "children": [],
+                     "classes": [
+                      "initial"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "initial",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "span",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "P",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "no_image",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [
+                    "cafe-avatar"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "span",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "fontSize": "13px",
+                    "fontWeight": "420",
+                    "color": "#171717",
+                    "letterSpacing": "0.02em",
+                    "lineHeight": "1.15"
+                   },
+                   "blockId": "g50ez5qyq",
+                   "blockName": "Name",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "name",
+                     "property": "innerHTML",
+                     "type": "key"
+                    }
+                   ],
+                   "element": "span",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "Priyanshi Hodage",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-feed-author"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "display": "flex",
+                  "alignItems": "flex-start",
+                  "gap": "16px"
+                 },
+                 "blockId": "uv7ofoyof",
+                 "blockName": "Body",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "flex": "1 1 0%",
+                    "minWidth": "0"
+                   },
+                   "blockId": "d25avzn2m",
+                   "blockName": "Text",
+                   "children": [
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "fontSize": "16px",
+                      "fontWeight": "600",
+                      "color": "#171717",
+                      "letterSpacing": "0.015em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "s1o1cv1v7",
+                     "blockName": "Title",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "title",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Post title",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "margin": "4px 0 0",
+                      "fontSize": "14px",
+                      "fontWeight": "420",
+                      "color": "#525252",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.5"
+                     },
+                     "blockId": "iuexbse2y",
+                     "blockName": "Excerpt",
+                     "children": [],
+                     "classes": [
+                      "cafe-clamp-2"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "excerpt",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "p",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "Excerpt",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "display": "flex",
+                      "alignItems": "center",
+                      "gap": "12px",
+                      "marginTop": "16px",
+                      "fontSize": "12px",
+                      "fontWeight": "420",
+                      "color": "#7c7c7c",
+                      "letterSpacing": "0.02em",
+                      "lineHeight": "1.15"
+                     },
+                     "blockId": "hh7j075uj",
+                     "blockName": "Meta",
+                     "children": [
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "fygr4z2qb",
+                       "blockName": "Date",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "date",
+                         "property": "innerHTML",
+                         "type": "key"
+                        }
+                       ],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "Jan 1, 2026",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "g8o386op0",
+                       "blockName": null,
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "·",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "z8vrir61e",
+                       "blockName": "Minutes",
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "minutes_label",
+                         "property": "innerHTML",
+                         "type": "key"
+                        }
+                       ],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "1 min read",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "iw7etowqp",
+                       "blockName": null,
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "·",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "ykzmo6o19",
+                       "blockName": "Comments",
+                       "children": [],
+                       "classes": [
+                        "cafe-feed-comments"
+                       ],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "comments_label",
+                         "property": "innerHTML",
+                         "type": "key"
+                        }
+                       ],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "0 comments",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      }
+                     ],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [],
+                     "element": "div",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": null
+                    }
+                   ],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "div",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {
+                    "alt": "",
+                    "loading": "lazy",
+                    "decoding": "async"
+                   },
+                   "baseStyles": {
+                    "width": "128px",
+                    "height": "96px",
+                    "flexShrink": "0",
+                    "marginTop": "4px",
+                    "borderRadius": "10px",
+                    "backgroundColor": "#f3f3f3",
+                    "objectFit": "cover"
+                   },
+                   "blockId": "pllnx3sn5",
+                   "blockName": "Thumbnail",
+                   "children": [],
+                   "classes": [
+                    "cafe-feed-thumb"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "cover",
+                     "property": "src",
+                     "type": "attribute"
+                    }
+                   ],
+                   "element": "img",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": null,
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "cover",
+                    "comesFrom": "dataScript"
+                   }
+                  }
+                 ],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "div",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
                "classes": [
                 "cafe-feed-row"
                ],
@@ -586,12 +1166,6 @@
                  "key": "href",
                  "property": "href",
                  "type": "attribute"
-                },
-                {
-                 "comesFrom": "dataScript",
-                 "key": "html",
-                 "property": "innerHTML",
-                 "type": "key"
                 }
                ],
                "element": "a",
@@ -642,7 +1216,7 @@
               "padding": "64px 0",
               "textAlign": "center"
              },
-             "blockId": "knnlo4fah",
+             "blockId": "0aenfhyhg",
              "blockName": "Nothing found",
              "children": [],
              "classes": [
@@ -677,7 +1251,7 @@
              "baseStyles": {
               "height": "4px"
              },
-             "blockId": "l7uhhcvcb",
+             "blockId": "03nod9ny5",
              "blockName": "Sentinel",
              "children": [],
              "classes": [],
@@ -714,7 +1288,7 @@
              "baseStyles": {
               "display": "none"
              },
-             "blockId": "g50ez5qyq",
+             "blockId": "ojw18kwtr",
              "blockName": "Row template",
              "children": [],
              "classes": [],
@@ -872,7 +1446,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-09-22 14:24:04.728431",
+ "creation": "2026-09-23 08:16:46.621202",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -882,15 +1456,15 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 14:24:04.728431",
+ "modified": "2026-09-23 08:16:46.621202",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
- "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login\")\n\n\ndef token_safe(value):\n    # The row markup is filled one [[token]] at a time; keep a post's own\n    # \"[[\" from being taken for one.\n    return value.replace(\"[\", \"&#91;\")\n\n\nrows = frappe.get_all(\n    \"Post\",\n    filters={\"status\": \"Published\"},\n    fields=[\"name\", \"title\", \"display_title\", \"content\", \"excerpt\", \"post_type\", \"attachment\", \"cover_image\", \"author\", \"author_name\", \"author_image\", \"creation\"],\n    order_by=\"creation desc\",\n    limit_page_length=10 + 1,\n)\nmore = len(rows) > 10\nrows = rows[:10]\n\ncounts = {}\nif rows:\n    for comment in frappe.get_all(\"Post Comment\", filters={\"post\": [\"in\", [row.name for row in rows]]}, fields=[\"post\"]):\n        counts[comment.post] = counts.get(comment.post, 0) + 1\n\nROW = '<div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"cafe-avatar\" style=\"display:grid;place-items:center;flex-shrink:0;width:20px;height:20px;overflow:hidden;border-radius:9999px;background-color:#f3f3f3;font-size:13px;font-weight:500;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15;text-transform:uppercase\">[[!avatar]]</span><span style=\"font-size:13px;font-weight:420;color:#171717;letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:#171717;letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div>'\nAVATAR_IMAGE = '<img src=\"[[image]]\" alt=\"\" style=\"width:100%;height:100%;object-fit:cover\">'\nTHUMBNAIL = '<img class=\"cafe-feed-thumb\" src=\"[[cover]]\" alt=\"\" loading=\"lazy\" decoding=\"async\" style=\"width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:#f3f3f3;object-fit:cover\">'\n\nposts = []\nfor row in rows:\n    text = plain_text(row.get(\"content\"))\n    words = len(text.split())\n    minutes = int(words / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n    label = row.get(\"author_name\") or row.get(\"author\") or \"\"\n    author_image = safe_url(row.get(\"author_image\"))\n    if author_image:\n        avatar = AVATAR_IMAGE.replace(\"[[image]]\", token_safe(author_image))\n    else:\n        avatar = token_safe(clean(label.strip()[:1]))\n    cover = row.get(\"cover_image\") or (row.get(\"attachment\") if row.get(\"post_type\") != \"Video\" else \"\")\n    cover = safe_url(cover)\n    body = ROW.replace(\"[[!avatar]]\", avatar)\n    body = body.replace(\"[[!thumbnail]]\", THUMBNAIL.replace(\"[[cover]]\", token_safe(cover)) if cover else \"\")\n    body = body.replace(\"[[name]]\", token_safe(clean(label)))\n    body = body.replace(\"[[title]]\", token_safe(clean(row.get(\"display_title\") or row.get(\"title\") or (text[:60] + \"\\u2026\" if len(text) > 60 else text))))\n    body = body.replace(\"[[excerpt]]\", token_safe(clean(row.get(\"excerpt\") or (text[:160] + \"\\u2026\" if len(text) > 160 else text))))\n    body = body.replace(\"[[date]]\", day_month_year(row.creation))\n    body = body.replace(\"[[minutes]]\", str(minutes))\n    body = body.replace(\"[[comments]]\", str(counts.get(row.name, 0)))\n    href = \"/posts/\" + path_segment(row.name)\n    posts.append({\"href\": clean(href), \"html\": body})\ndata.posts = posts\ndata.hp = {\n    \"no_posts\": frappe.db.count(\"Post\", {\"author\": frappe.session.user}) == 0,\n    \"empty\": not posts,\n    \"more\": \"1\" if more else \"\",\n}\n",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login\")\n\nrows = frappe.get_all(\n    \"Post\",\n    filters={\"status\": \"Published\"},\n    fields=[\"name\", \"title\", \"display_title\", \"content\", \"excerpt\", \"post_type\", \"attachment\", \"cover_image\", \"author\", \"author_name\", \"author_image\", \"creation\"],\n    order_by=\"creation desc\",\n    limit_page_length=10 + 1,\n)\nmore = len(rows) > 10\nrows = rows[:10]\n\ncounts = {}\nif rows:\n    for comment in frappe.get_all(\"Post Comment\", filters={\"post\": [\"in\", [row.name for row in rows]]}, fields=[\"post\"]):\n        counts[comment.post] = counts.get(comment.post, 0) + 1\n\nposts = []\nfor row in rows:\n    text = plain_text(row.get(\"content\"))\n    words = len(text.split())\n    minutes = int(words / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n    label = row.get(\"author_name\") or row.get(\"author\") or \"\"\n    author_image = safe_url(row.get(\"author_image\"))\n    cover = row.get(\"cover_image\") or (row.get(\"attachment\") if row.get(\"post_type\") != \"Video\" else \"\")\n    cover = safe_url(cover)\n    href = \"/posts/\" + path_segment(row.name)\n    comments = counts.get(row.name, 0)\n    posts.append({\n        \"href\": clean(href),\n        \"image\": author_image,\n        \"no_image\": not author_image,\n        \"initial\": clean(label.strip()[:1]),\n        \"name\": clean(label),\n        \"title\": clean(row.get(\"display_title\") or row.get(\"title\") or (text[:60] + \"\\u2026\" if len(text) > 60 else text)),\n        \"excerpt\": clean(row.get(\"excerpt\") or (text[:160] + \"\\u2026\" if len(text) > 160 else text)),\n        \"date\": day_month_year(row.creation),\n        \"minutes_label\": str(minutes) + \" min read\",\n        \"comments_label\": str(comments) + (\" comment\" if comments == 1 else \" comments\"),\n        \"cover\": cover,\n    })\ndata.posts = posts\ndata.hp = {\n    \"no_posts\": frappe.db.count(\"Post\", {\"author\": frappe.session.user}) == 0,\n    \"empty\": not posts,\n    \"more\": \"1\" if more else \"\",\n}\n",
  "page_name": "cafe-home",
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 14:24:04.728431",
+ "published_at": "2026-09-23 08:16:46.621202",
  "route": "cafe-home"
 }

@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "nvs00krf1",
+     "blockId": "d3eir43d4",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "087bne5uc",
+       "blockId": "8qa5lf39f",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "6jm1ov50w",
+       "blockId": "3xyd9uy9d",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "xad7n8gvd",
+         "blockId": "26u911lad",
          "blockName": "Header",
          "children": [
           {
@@ -93,7 +93,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "lsg3a4bof",
+           "blockId": "kousn7iks",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -101,7 +101,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "gk169zlkn",
+             "blockId": "i5vjf5dyg",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -132,7 +132,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "aqrj98hw9",
+             "blockId": "a1l0p7opl",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -162,7 +162,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "ho7wlam0r",
+             "blockId": "zfiwxksb2",
              "blockName": null,
              "children": [],
              "classes": [
@@ -215,7 +215,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "r3p4r52af",
+           "blockId": "4kd9hylss",
            "blockName": "New Post",
            "children": [],
            "classes": [],
@@ -269,7 +269,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "ccr8ehctp",
+         "blockId": "zk9vsnykr",
          "blockName": "Scroll area",
          "children": [
           {
@@ -280,7 +280,7 @@
             "margin": "0 auto",
             "padding": "24px 16px"
            },
-           "blockId": "zw6dapanr",
+           "blockId": "qvrqyfihk",
            "blockName": "Container",
            "children": [
             {
@@ -288,7 +288,7 @@
               "id": "cafe-settings-page"
              },
              "baseStyles": {},
-             "blockId": "qwjhqieih",
+             "blockId": "uvy2rxksi",
              "blockName": "Settings",
              "children": [
               {
@@ -300,7 +300,7 @@
                 "gap": "32px",
                 "borderBottom": "1px solid #ededed"
                },
-               "blockId": "dhojzhe3c",
+               "blockId": "370p8o5so",
                "blockName": "Tabs",
                "children": [
                 {
@@ -321,7 +321,7 @@
                   "fontSize": "14px",
                   "cursor": "pointer"
                  },
-                 "blockId": "03nod9ny5",
+                 "blockId": "kaidn8s95",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -364,7 +364,7 @@
                   "fontSize": "14px",
                   "cursor": "pointer"
                  },
-                 "blockId": "iqkg9r59e",
+                 "blockId": "wqriuey0y",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -420,7 +420,7 @@
                "baseStyles": {
                 "paddingTop": "16px"
                },
-               "blockId": "w5ry7nxln",
+               "blockId": "087bne5uc",
                "blockName": "Account panel",
                "children": [
                 {
@@ -432,7 +432,7 @@
                   "gap": "32px",
                   "padding": "14px 0"
                  },
-                 "blockId": "82yrcxkyd",
+                 "blockId": "tg78xqybh",
                  "blockName": "Username",
                  "children": [
                   {
@@ -440,7 +440,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "put56cqi3",
+                   "blockId": "ji4d3i0rp",
                    "blockName": "Text",
                    "children": [
                     {
@@ -453,7 +453,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "oqjpsfvpf",
+                     "blockId": "4od3a6oze",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -506,7 +506,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "mpfoumxcy",
+                   "blockId": "0v2ot8ap2",
                    "blockName": "Username value",
                    "children": [],
                    "classes": [],
@@ -569,7 +569,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "bekhc1kvs",
+                 "blockId": "gk169zlkn",
                  "blockName": "Email",
                  "children": [
                   {
@@ -577,7 +577,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "6znd9qrmp",
+                   "blockId": "qwjhqieih",
                    "blockName": "Text",
                    "children": [
                     {
@@ -590,7 +590,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "6kgtpp66y",
+                     "blockId": "wg09bcg40",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -643,7 +643,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "x4u6j7z6g",
+                   "blockId": "ftgh5d4gq",
                    "blockName": "Email value",
                    "children": [],
                    "classes": [],
@@ -706,7 +706,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "370p8o5so",
+                 "blockId": "lsg3a4bof",
                  "blockName": "Log out",
                  "children": [
                   {
@@ -714,7 +714,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "wqriuey0y",
+                   "blockId": "zw6dapanr",
                    "blockName": "Text",
                    "children": [
                     {
@@ -727,7 +727,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "yx8e17rpb",
+                     "blockId": "aqrj98hw9",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -761,7 +761,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "20px"
                      },
-                     "blockId": "kaidn8s95",
+                     "blockId": "ho7wlam0r",
                      "blockName": "Description",
                      "children": [],
                      "classes": [],
@@ -810,7 +810,7 @@
                    "baseStyles": {
                     "flexShrink": "0"
                    },
-                   "blockId": "meo5tmk6v",
+                   "blockId": "mif2ywd0f",
                    "blockName": "Log out button",
                    "children": [
                     {
@@ -833,7 +833,7 @@
                       "backgroundColor": "#f3f3f3",
                       "color": "#171717"
                      },
-                     "blockId": "0gufftdk8",
+                     "blockId": "q14sgx6ow",
                      "blockName": "Log out button",
                      "children": [],
                      "classes": [
@@ -912,7 +912,7 @@
                   "padding": "14px 0",
                   "borderTop": "1px solid #ededed"
                  },
-                 "blockId": "mif2ywd0f",
+                 "blockId": "6jm1ov50w",
                  "blockName": "Delete account",
                  "children": [
                   {
@@ -920,7 +920,7 @@
                    "baseStyles": {
                     "minWidth": "0"
                    },
-                   "blockId": "q14sgx6ow",
+                   "blockId": "ccr8ehctp",
                    "blockName": "Text",
                    "children": [
                     {
@@ -933,7 +933,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "0v2ot8ap2",
+                     "blockId": "r3p4r52af",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -967,7 +967,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "20px"
                      },
-                     "blockId": "ftgh5d4gq",
+                     "blockId": "xad7n8gvd",
                      "blockName": "Description",
                      "children": [],
                      "classes": [],
@@ -1016,7 +1016,7 @@
                    "baseStyles": {
                     "flexShrink": "0"
                    },
-                   "blockId": "9knfvi3eu",
+                   "blockId": "xq2kzkk8p",
                    "blockName": "Delete account button",
                    "children": [
                     {
@@ -1039,7 +1039,7 @@
                       "backgroundColor": "#fde7e7",
                       "color": "#f79596"
                      },
-                     "blockId": "hppavnjrw",
+                     "blockId": "w5ry7nxln",
                      "blockName": "Delete account button",
                      "children": [],
                      "classes": [],
@@ -1136,7 +1136,7 @@
                "baseStyles": {
                 "paddingTop": "16px"
                },
-               "blockId": "wg09bcg40",
+               "blockId": "7amjrytsk",
                "blockName": "Saved panel",
                "children": [
                 {
@@ -1147,7 +1147,7 @@
                   "flexDirection": "column",
                   "gap": "20px"
                  },
-                 "blockId": "xq2kzkk8p",
+                 "blockId": "nvs00krf1",
                  "blockName": "Loading",
                  "children": [],
                  "classes": [
@@ -1184,7 +1184,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "4od3a6oze",
+                 "blockId": "ob0z5kwbt",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1221,7 +1221,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "ji4d3i0rp",
+                 "blockId": "2k4sgl3i6",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1249,7 +1249,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "tg78xqybh",
+                 "blockId": "lrpzqyrut",
                  "blockName": null,
                  "children": [],
                  "classes": [
@@ -1456,7 +1456,7 @@
    "builder_script": "Cafe Notifications"
   }
  ],
- "creation": "2026-09-22 20:51:37.788155",
+ "creation": "2026-09-22 21:29:43.314201",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1466,7 +1466,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 20:51:37.788155",
+ "modified": "2026-09-22 21:29:43.314201",
  "modified_by": "Administrator",
  "name": "cafe-settings",
  "owner": "Administrator",
@@ -1475,6 +1475,6 @@
  "page_title": "Settings",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 20:51:37.788155",
+ "published_at": "2026-09-22 21:29:43.314201",
  "route": "settings"
 }
