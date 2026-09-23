@@ -99,6 +99,7 @@ SCRIPT_ICONS = {
 		"strikethrough",
 		"trash-2",
 		"underline",
+		"x",
 	),
 	"pub_core.js": (
 		"arrow-left",

@@ -5,8 +5,130 @@
 
 	var W = window.CAFE.write
 	var BUBBLE_GAP = 8
+	var TAG_SUGGESTIONS = ['Design', 'UX/UI', 'Minimalism']
 	var editor = null
 	var dom = {}
+
+	function splitTags(value) {
+		return (value || '')
+			.split(',')
+			.map(function (t) {
+				return t.trim()
+			})
+			.filter(Boolean)
+	}
+
+	function hasTag(list, value) {
+		var lower = value.toLowerCase()
+		return list.some(function (t) {
+			return t.toLowerCase() === lower
+		})
+	}
+
+	function tagChip(label, onRemove) {
+		var node = W.el('span', 'cafe-w-tag-chip')
+		node.appendChild(document.createTextNode(label))
+		var remove = W.el('button', 'cafe-w-tag-x')
+		remove.type = 'button'
+		remove.setAttribute('aria-label', 'Remove ' + label)
+		remove.appendChild(W.icon('x', 'cafe-w-small'))
+		remove.addEventListener('click', onRemove)
+		node.appendChild(remove)
+		return node
+	}
+
+	// A pill + dropdown tag picker. Tags stay a comma-separated string in
+	// W.state.form.tags (what the backend stores); TAG_SUGGESTIONS only
+	// drives the dropdown, typing anything else and pressing Enter/, still
+	// adds it as a free tag.
+	function buildTags() {
+		var tagList = []
+		var wrap = W.el('div', 'cafe-w-tags')
+		wrap.appendChild(W.el('label', '', 'Tags'))
+		var box = W.el('div', 'cafe-w-tag-box')
+		dom.tagChips = W.el('div', 'cafe-w-tag-chips')
+		dom.tagInput = W.el('input')
+		dom.tagInput.type = 'text'
+		dom.tagInput.placeholder = 'Design, UX/UI, Minimalism'
+		dom.tagInput.id = 'cafe-w-tags'
+		dom.tagInput.autocomplete = 'off'
+		wrap.firstChild.setAttribute('for', 'cafe-w-tags')
+		dom.tagResults = W.el('div', 'cafe-w-tag-results')
+		dom.tagResults.hidden = true
+
+		function sync() {
+			W.state.form.tags = tagList.join(', ')
+		}
+		function drawChips() {
+			dom.tagChips.replaceChildren()
+			tagList.forEach(function (label, index) {
+				dom.tagChips.appendChild(
+					tagChip(label, function () {
+						tagList.splice(index, 1)
+						drawChips()
+						sync()
+					})
+				)
+			})
+		}
+		function drawResults() {
+			var query = dom.tagInput.value.trim().toLowerCase()
+			var options = TAG_SUGGESTIONS.filter(function (name) {
+				return !hasTag(tagList, name) && (!query || name.toLowerCase().indexOf(query) !== -1)
+			})
+			dom.tagResults.replaceChildren()
+			dom.tagResults.hidden = !options.length
+			options.forEach(function (name) {
+				var option = W.el('button', 'cafe-w-tag-option', name)
+				option.type = 'button'
+				option.addEventListener('mousedown', function (event) {
+					event.preventDefault()
+				})
+				option.addEventListener('click', function () {
+					addTag(name)
+					dom.tagInput.focus()
+				})
+				dom.tagResults.appendChild(option)
+			})
+		}
+		function addTag(label) {
+			label = (label || '').trim()
+			if (label && !hasTag(tagList, label)) {
+				tagList.push(label)
+				sync()
+			}
+			drawChips()
+			dom.tagInput.value = ''
+			drawResults()
+		}
+		dom.tagInput.addEventListener('input', drawResults)
+		dom.tagInput.addEventListener('focus', drawResults)
+		dom.tagInput.addEventListener('blur', function () {
+			dom.tagResults.hidden = true
+		})
+		dom.tagInput.addEventListener('keydown', function (event) {
+			if (event.key === 'Enter' || event.key === ',') {
+				event.preventDefault()
+				addTag(dom.tagInput.value)
+			} else if (event.key === 'Backspace' && !dom.tagInput.value && tagList.length) {
+				tagList.pop()
+				drawChips()
+				sync()
+			} else if (event.key === 'Escape') {
+				dom.tagResults.hidden = true
+			}
+		})
+		dom.setTags = function (value) {
+			tagList = splitTags(value)
+			drawChips()
+		}
+
+		box.appendChild(dom.tagChips)
+		box.appendChild(dom.tagInput)
+		wrap.appendChild(box)
+		wrap.appendChild(dom.tagResults)
+		return wrap
+	}
 
 	var MARKS = [
 		['bold', 'Bold', 'toggleBold', 'bold'],
@@ -266,7 +388,7 @@
 			S.savedAt = doc.modified ? new Date(doc.modified.replace(' ', 'T')) : null
 		}
 		dom.title.value = form.title
-		dom.tags.value = form.tags
+		dom.setTags(form.tags)
 		editor.commands.setContent(doc ? W.ensureHtml(doc.content) : '', false)
 		dom.loading.hidden = true
 		dom.form.hidden = false
@@ -330,17 +452,7 @@
 				editor.chain().focus('start').run()
 			}
 		})
-		var tags = W.el('div', 'cafe-w-tags')
-		tags.appendChild(W.el('label', '', 'Tags'))
-		dom.tags = W.el('input')
-		dom.tags.type = 'text'
-		dom.tags.placeholder = 'Design, UX/UI, Minimalism'
-		dom.tags.id = 'cafe-w-tags'
-		tags.firstChild.setAttribute('for', 'cafe-w-tags')
-		dom.tags.addEventListener('input', function () {
-			W.state.form.tags = dom.tags.value
-		})
-		tags.appendChild(dom.tags)
+		var tags = buildTags()
 		dom.error = W.el('p', 'cafe-w-error')
 		dom.error.hidden = true
 		;[dom.status, buildToolbar(), dom.title, host, tags, dom.error].forEach(function (node) {
