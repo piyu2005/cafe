@@ -407,18 +407,19 @@ for row in rows:
     cover = row.get("cover_image") or (row.get("attachment") if row.get("post_type") != "Video" else "")
     cover = safe_url(cover)
     href = "/posts/" + path_segment(row.name)
+    comments = counts.get(row.name, 0)
     posts.append({
         "href": clean(href),
-        "image": frappe.utils.escape_html(author_image) if author_image else "",
+        "image": author_image,
         "no_image": not author_image,
-        "initial": frappe.utils.escape_html(clean(label.strip()[:1])),
-        "name": frappe.utils.escape_html(clean(label)),
-        "title": frappe.utils.escape_html(clean(row.get("display_title") or row.get("title") or (text[:60] + "\\u2026" if len(text) > 60 else text))),
-        "excerpt": frappe.utils.escape_html(clean(row.get("excerpt") or (text[:160] + "\\u2026" if len(text) > 160 else text))),
+        "initial": clean(label.strip()[:1]),
+        "name": clean(label),
+        "title": clean(row.get("display_title") or row.get("title") or (text[:60] + "\\u2026" if len(text) > 60 else text)),
+        "excerpt": clean(row.get("excerpt") or (text[:160] + "\\u2026" if len(text) > 160 else text)),
         "date": day_month_year(row.creation),
         "minutes_label": str(minutes) + " min read",
-        "comments_label": str(counts.get(row.name, 0)) + " comments",
-        "cover": frappe.utils.escape_html(cover) if cover else "",
+        "comments_label": str(comments) + (" comment" if comments == 1 else " comments"),
+        "cover": cover,
     })
 data.posts = posts
 data.hp = {

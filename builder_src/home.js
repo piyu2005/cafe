@@ -115,7 +115,8 @@
 			function (counts) {
 				posts.forEach(function (post, index) {
 					var node = rows[index].querySelector('.cafe-feed-comments')
-					if (node) node.textContent = ((counts || {})[post.name] || 0) + ' comments'
+					var count = (counts || {})[post.name] || 0
+					if (node) node.textContent = count + (count === 1 ? ' comment' : ' comments')
 				})
 			},
 			function () {}
