@@ -62,15 +62,13 @@ body {
   display: block;
 }
 /* Some element's own rule sets display unconditionally, which would beat the
-   browser's default [hidden] { display: none } - every page-content element
-   lives under .cafe-app, and CAFE.dialog()/CAFE.toast() (ui.js) append
-   .cafe-overlay straight to <body>, outside .cafe-app, so both roots need
-   this. Covers every hidden-toggled element project-wide, in-page or in a
-   dialog, current or future - replaces what used to be repeated one
-   element at a time (.cafe-more-comments[hidden], .cafe-saved-panel
-   [hidden], .cafe-dialog-actions button[hidden]). */
-.cafe-app [hidden],
-.cafe-overlay [hidden] {
+   browser's default [hidden] { display: none }. This has been patched one
+   root at a time before (.cafe-app, .cafe-overlay, and separately in
+   write.css/chat.css/publications.css for #cafe-write, #cafe-chat,
+   .cafe-p-root) and keeps missing roots CAFE.popupMenu() and future code
+   append straight to <body>, like .cafe-popup. Unscoped so it covers every
+   hidden-toggled element anywhere on the page, current or future. */
+[hidden] {
   display: none !important;
 }
 
