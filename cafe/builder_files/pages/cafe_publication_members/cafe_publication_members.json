@@ -22,13 +22,13 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "ymal0ockd",
+     "blockId": "6khanfbs5",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "vf1xl4ov0",
+       "blockId": "0egeqwz01",
        "blockName": "Shell",
        "children": [],
        "classes": [],
@@ -60,7 +60,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "vgudcjpdi",
+       "blockId": "qoobz48lt",
        "blockName": "Main",
        "children": [
         {
@@ -78,7 +78,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "oxs90icbq",
+         "blockId": "qggmoiwkc",
          "blockName": "Mobile header",
          "children": [
           {
@@ -95,7 +95,7 @@
             "borderRadius": "8px",
             "color": "#171717"
            },
-           "blockId": "yelnwigas",
+           "blockId": "rnki7pw2s",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -136,7 +136,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "wzmbhvzs8",
+           "blockId": "n7tuz9pab",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -169,7 +169,7 @@
             "justifyContent": "flex-end",
             "width": "32px"
            },
-           "blockId": "0ni2f6ohf",
+           "blockId": "1aha8ste4",
            "blockName": "Notifications",
            "children": [],
            "classes": [],
@@ -230,7 +230,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "waz2qgtcq",
+         "blockId": "ts8iw8vgc",
          "blockName": "Header",
          "children": [
           {
@@ -245,7 +245,7 @@
             "letterSpacing": "0.015em",
             "color": "#7c7c7c"
            },
-           "blockId": "bmny3ckx5",
+           "blockId": "rhrx1d3xc",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -253,7 +253,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "eoyur2o9l",
+             "blockId": "vgudcjpdi",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -284,7 +284,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "o9sm5atlv",
+             "blockId": "vf1xl4ov0",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -315,7 +315,7 @@
               "id": "cafe-p-crumb"
              },
              "baseStyles": {},
-             "blockId": "3bulez99j",
+             "blockId": "ymal0ockd",
              "blockName": "Crumb",
              "children": [],
              "classes": [],
@@ -346,7 +346,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "e0uogu6l0",
+             "blockId": "z11rrvqls",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -376,7 +376,7 @@
              "baseStyles": {
               "color": "#0f0f0f"
              },
-             "blockId": "cdtai9m5w",
+             "blockId": "3gwir2m33",
              "blockName": null,
              "children": [],
              "classes": [
@@ -425,27 +425,99 @@
            "visibilityCondition": null
           },
           {
-           "attributes": {},
-           "baseStyles": {
-            "display": "flex"
+           "attributes": {
+            "href": "/write"
            },
-           "blockId": "tco8kk65b",
+           "baseStyles": {
+            "display": "inline-flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "gap": "8px",
+            "height": "28px",
+            "padding": "0 8px",
+            "borderRadius": "8px",
+            "backgroundColor": "#171717",
+            "color": "#ffffff",
+            "fontSize": "14px",
+            "whiteSpace": "nowrap"
+           },
+           "blockId": "qb1ywuyhd",
            "blockName": "New Post",
-           "children": [],
-           "classes": [],
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {
+              "width": "16px",
+              "height": "16px",
+              "flexShrink": "0"
+             },
+             "blockId": "snmupe6tt",
+             "blockName": "icon/plus",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "svg",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "wl4842s6u",
+             "blockName": "Label",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "New Post",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "cafe-btn",
+            "cafe-btn-solid"
+           ],
            "clientScript": {},
            "customAttributes": {},
            "dataKey": null,
            "draggable": false,
            "dynamicValues": [],
-           "element": "div",
+           "element": "a",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;padding:0 8px;border-radius:8px;background-color:#171717;color:#ffffff;font-size:14px;white-space:nowrap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg><span >New Post</span></a>",
+           "innerHTML": null,
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
-           "originalElement": "__raw_html__",
+           "originalElement": null,
            "props": {},
            "rawStyles": {},
            "referenceBlockId": null,
@@ -483,7 +555,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "2h3yv8yvs",
+         "blockId": "uvuuh4yry",
          "blockName": "Scroll area",
          "children": [
           {
@@ -494,7 +566,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "642fh10zf",
+           "blockId": "9uyhk851h",
            "blockName": "Container",
            "children": [
             {
@@ -502,13 +574,13 @@
               "id": "cafe-pub-members"
              },
              "baseStyles": {},
-             "blockId": "n4di3073l",
+             "blockId": "gfjbjo3s4",
              "blockName": "Members",
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "kf5huioiq",
+               "blockId": "7swgljfbi",
                "blockName": "Preview",
                "children": [],
                "classes": [
@@ -706,7 +778,7 @@
    "builder_script": "Cafe Pub Members"
   }
  ],
- "creation": "2026-09-22 21:29:43.314201",
+ "creation": "2026-09-23 08:29:11.336287",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -716,7 +788,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-22 21:29:43.314201",
+ "modified": "2026-09-23 08:29:11.336287",
  "modified_by": "Administrator",
  "name": "cafe-publication-members",
  "owner": "Administrator",
@@ -725,6 +797,6 @@
  "page_title": "Publication members",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-22 21:29:43.314201",
+ "published_at": "2026-09-23 08:29:11.336287",
  "route": "publications/:handle/members"
 }
