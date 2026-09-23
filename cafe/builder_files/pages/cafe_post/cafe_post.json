@@ -2229,7 +2229,7 @@
                    "element": "div",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Share\" data-action=\"share\" style=\"display:grid;place-items:center;width:28px;height:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"m22 2-7 20-4-9-9-4Z\" />\n  <path d=\"M22 2 11 13\" /></svg></button>",
+                   "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Share\" title=\"Share\" data-action=\"share\" style=\"display:grid;place-items:center;width:28px;height:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"m22 2-7 20-4-9-9-4Z\" />\n  <path d=\"M22 2 11 13\" /></svg></button>",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -2243,7 +2243,8 @@
                   {
                    "attributes": {
                     "type": "button",
-                    "aria-label": "Save"
+                    "aria-label": "Save",
+                    "title": "Save"
                    },
                    "baseStyles": {
                     "display": "grid",
@@ -2690,7 +2691,7 @@
    "builder_script": "Cafe Code"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-23 18:48:15.761372",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2700,7 +2701,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-23 18:48:15.761372",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
@@ -2709,6 +2710,6 @@
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-23 18:48:15.761372",
  "route": "posts/:post_id"
 }
