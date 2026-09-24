@@ -2036,3 +2036,10 @@ button.cafe-rail-item {
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   transform: translateX(-50%);
 }
+/* When there's no room above the anchor, CAFE.tooltip flips the bubble
+   below it; the arrow moves to the top and points up instead of down. */
+.cafe-tooltip.below .cafe-tooltip-arrow {
+  top: -4px;
+  bottom: auto;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
