@@ -86,6 +86,19 @@ body {
   display: none !important;
 }
 
+/* ---- Messages hidden for the first-cut launch (mentor's call - not ready
+   yet, nothing about the feature itself is removed). Every nav surface
+   (desktop rail, wide sidebar, mobile bottom bar) tags its Messages entry
+   with data-nav="messages", so one rule covers all three. The post page's
+   Share button (post_page.py) sends a post as a DM through the same
+   messaging backend, so it's hidden alongside it - keeping it up with
+   messaging gone wouldn't make sense. To bring either back, delete its
+   rule - nothing else needs to change. */
+[data-nav='messages'],
+[data-action='share'] {
+  display: none !important;
+}
+
 /* ---- Rail ---- */
 .cafe-rail-item:hover {
   background: rgba(0, 0, 0, 0.05);
