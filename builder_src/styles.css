@@ -2054,33 +2054,3 @@ button.cafe-rail-item {
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }
-.cafe-tooltip-arrow {
-  position: absolute;
-  bottom: -4px;
-  width: 8px;
-  height: 4px;
-  background: var(--surface-gray-10);
-  clip-path: polygon(50% 100%, 0 0, 100% 0);
-  transform: translateX(-50%);
-}
-/* When there's no room above the anchor, CAFE.tooltip flips the bubble
-   below it; the arrow moves to the top and points up instead of down. */
-.cafe-tooltip.below .cafe-tooltip-arrow {
-  top: -4px;
-  bottom: auto;
-  clip-path: polygon(50% 0, 0 100%, 100% 100%);
-}
-/* side: 'right' (a narrow icon-only rail - frappe-ui's own convention for
-   one, see Gameplan/Frappe Cloud's sidebar): the bubble sits beside the
-   icon instead of above it, so the arrow moves to the left edge and points
-   left. JS sets its own `top` (the anchor's vertical centre); this flips
-   the centring transform from the X axis to the Y axis to match. */
-.cafe-tooltip.right .cafe-tooltip-arrow {
-  top: 0;
-  bottom: auto;
-  left: -4px;
-  width: 4px;
-  height: 8px;
-  transform: translateY(-50%);
-  clip-path: polygon(100% 50%, 0 0, 0 100%);
-}

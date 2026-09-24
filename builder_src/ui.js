@@ -358,8 +358,6 @@
 		// showing it.
 		if (!anchor.isConnected) return
 		var bubble = el('div', 'cafe-tooltip', text)
-		var arrow = el('div', 'cafe-tooltip-arrow')
-		bubble.appendChild(arrow)
 		document.body.appendChild(bubble)
 		var rect = anchor.getBoundingClientRect()
 		var width = bubble.offsetWidth
@@ -369,25 +367,20 @@
 			// the Cloud dashboard's sidebar, etc): the tooltip sits beside the
 			// icon, vertically centred, not above it - there's no room above/
 			// below a rail item to read a label anyway.
-			bubble.classList.add('right')
 			var top = clamp(rect.top + rect.height / 2 - height / 2, height, 4, window.innerHeight)
-			bubble.style.left = rect.right + 8 + 'px'
+			bubble.style.left = rect.right + 6 + 'px'
 			bubble.style.top = top + 'px'
-			arrow.style.top = Math.max(6, Math.min(rect.top + rect.height / 2 - top, height - 6)) + 'px'
 		} else {
-			var below = rect.top - height - 8 < 0
+			var below = rect.top - height - 6 < 0
 			var left = clampX(rect.left + rect.width / 2 - width / 2, width, 4)
-			bubble.classList.toggle('below', below)
 			bubble.style.left = left + 'px'
-			bubble.style.top = (below ? rect.bottom + 8 : rect.top - height - 8) + 'px'
-			var arrowCenter = rect.left + rect.width / 2 - left
-			arrow.style.left = Math.max(6, Math.min(arrowCenter, width - 6)) + 'px'
+			bubble.style.top = (below ? rect.bottom + 6 : rect.top - height - 6) + 'px'
 		}
 		tooltipEl = bubble
 	}
 
 	// A small dark bubble on hover/focus - frappe-ui's own Tooltip look
-	// (rounded-4, bg-surface-gray-10, text-xs, shadow-xl, an arrow), not the
+	// (rounded-4, bg-surface-gray-10, text-xs, shadow-xl), not the
 	// browser's native `title` tooltip (slow, unstyled, and silent on
 	// keyboard focus in most browsers - hover/focus both trigger this one so
 	// keyboard users get the same hint sighted mouse users do). Sits above
