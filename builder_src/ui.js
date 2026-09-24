@@ -357,7 +357,12 @@
 		// which would pin the bubble at the top-left instead of just not
 		// showing it.
 		if (!anchor.isConnected) return
+		// frappe-ui's own default popover offset (TooltipBubble.vue's
+		// `offset` prop) is 4px between the trigger and the bubble.
+		var OFFSET = 4
 		var bubble = el('div', 'cafe-tooltip', text)
+		var arrow = el('div', 'cafe-tooltip-arrow')
+		bubble.appendChild(arrow)
 		document.body.appendChild(bubble)
 		var rect = anchor.getBoundingClientRect()
 		var width = bubble.offsetWidth
@@ -367,14 +372,26 @@
 			// the Cloud dashboard's sidebar, etc): the tooltip sits beside the
 			// icon, vertically centred, not above it - there's no room above/
 			// below a rail item to read a label anyway.
+			bubble.classList.add('right')
 			var top = clamp(rect.top + rect.height / 2 - height / 2, height, 4, window.innerHeight)
-			bubble.style.left = rect.right + 6 + 'px'
+			bubble.style.left = rect.right + OFFSET + 'px'
 			bubble.style.top = top + 'px'
+			// The arrow's tip sits at 50% of its OWN 8px height, so its edge
+			// (what `top` positions) needs to land 4px above the point we
+			// actually want the tip aimed at.
+			var tipY = Math.max(6, Math.min(rect.top + rect.height / 2 - top, height - 6))
+			arrow.style.top = tipY - 4 + 'px'
 		} else {
-			var below = rect.top - height - 6 < 0
+			var below = rect.top - height - OFFSET < 0
 			var left = clampX(rect.left + rect.width / 2 - width / 2, width, 4)
+			bubble.classList.toggle('below', below)
 			bubble.style.left = left + 'px'
-			bubble.style.top = (below ? rect.bottom + 6 : rect.top - height - 6) + 'px'
+			bubble.style.top = (below ? rect.bottom + OFFSET : rect.top - height - OFFSET) + 'px'
+			// Same tip-vs-edge correction as the 'right' branch above, but
+			// along x: the arrow is 8px wide, so its edge sits 4px left of
+			// the tip.
+			var tipX = Math.max(6, Math.min(rect.left + rect.width / 2 - left, width - 6))
+			arrow.style.left = tipX - 4 + 'px'
 		}
 		tooltipEl = bubble
 	}
