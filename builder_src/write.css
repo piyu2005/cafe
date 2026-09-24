@@ -34,10 +34,6 @@
   width: 100%;
   height: 100%;
 }
-.cafe-w-tiny {
-  width: 12px;
-  height: 12px;
-}
 .cafe-w-small {
   width: 16px;
   height: 16px;
@@ -428,40 +424,27 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 6px;
-  border: 1px solid var(--w-outline-2);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--w-ink-8);
+  padding: 2px 2px 2px 10px;
+  border-radius: 9999px;
+  background: #e2e2e2;
+  color: #171717;
   font-size: 13px;
   white-space: nowrap;
 }
 .cafe-w-tag-x {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: -2px;
-  padding: 2px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
   border: 0;
-  border-radius: 2px;
+  border-radius: 9999px;
   background: none;
-  color: var(--w-ink-5);
-  opacity: 0.7;
+  color: #7c7c7c;
   cursor: pointer;
-  transition:
-    opacity 0.15s ease,
-    color 0.15s ease;
 }
 .cafe-w-tag-x:hover {
-  color: var(--w-ink-8);
-  opacity: 1;
-}
-/* svg() bakes a fixed 16px inline style per icon name (one size per name,
-   generate.py has no per-usage override); .cafe-w-tiny alone can't shrink
-   an inline-styled child, so force it here to match lucide-x's real size-3. */
-.cafe-w-tag-x svg {
-  width: 12px !important;
-  height: 12px !important;
+  background: rgba(0, 0, 0, 0.08);
 }
 .cafe-w-tag-fields input {
   flex: 1 1 auto;

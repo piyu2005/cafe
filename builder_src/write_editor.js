@@ -42,7 +42,7 @@
 		var remove = W.el('button', 'cafe-w-tag-x')
 		remove.type = 'button'
 		remove.setAttribute('aria-label', 'Remove ' + label)
-		remove.appendChild(W.icon('x', 'cafe-w-tiny'))
+		remove.appendChild(W.icon('x', 'cafe-w-small'))
 		remove.addEventListener('click', onRemove)
 		node.appendChild(remove)
 		return node
