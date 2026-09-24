@@ -416,7 +416,7 @@
   align-items: center;
   gap: 6px;
   min-width: 0;
-  min-height: 32px;
+  min-height: 30px;
 }
 .cafe-w-tag-chips {
   display: contents;
