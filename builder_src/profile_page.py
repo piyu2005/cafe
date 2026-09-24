@@ -96,7 +96,7 @@ def static_icon_button(action, aria, icon_name="pencil"):
 	button = html_el(
 		"button",
 		["cafe-icon-btn"],
-		{"type": "button", "aria-label": aria, "title": aria, "data-action": action},
+		{"type": "button", "aria-label": aria, "data-tooltip": aria, "data-action": action},
 		ICON_BUTTON_STYLES,
 		[svg(icon_name, 14)],
 	)
@@ -109,7 +109,7 @@ def icon_button(action, aria, icon_name="pencil", custom=None):
 		"button",
 		aria,
 		["cafe-icon-btn"],
-		attrs={"type": "button", "aria-label": aria, "title": aria},
+		attrs={"type": "button", "aria-label": aria, "data-tooltip": aria},
 		custom={"data-action": action, **(custom or {})},
 		children=[icon(icon_name, 14)],
 		styles=ICON_BUTTON_STYLES,

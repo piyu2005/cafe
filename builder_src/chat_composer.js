@@ -309,8 +309,8 @@
 	function toolButton(icon, label, onClick) {
 		var button = C.el('button', 'cafe-c-tool')
 		button.type = 'button'
-		button.title = label
 		button.setAttribute('aria-label', label)
+		CAFE.tooltip(button, label)
 		button.appendChild(C.icon(icon, 'cafe-c-small'))
 		// Pressing a tool never takes the cursor out of the message.
 		button.addEventListener('mousedown', function (event) {

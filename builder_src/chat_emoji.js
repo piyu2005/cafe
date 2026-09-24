@@ -80,7 +80,7 @@
 					rows.forEach(function (row) {
 						var button = C.el('button', 'cafe-c-emoji-btn', row[1])
 						button.type = 'button'
-						button.title = row[0]
+						CAFE.tooltip(button, row[0])
 						button.setAttribute('data-emoji', row[1])
 						fragment.appendChild(button)
 					})

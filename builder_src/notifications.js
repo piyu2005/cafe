@@ -105,8 +105,8 @@
 		var actions = el('div', 'cafe-np-header-actions')
 		var markAll = el('button', 'cafe-np-icon-btn cafe-np-mark-all')
 		markAll.type = 'button'
-		markAll.title = 'Mark all as read'
 		markAll.setAttribute('aria-label', 'Mark all as read')
+		CAFE.tooltip(markAll, 'Mark all as read')
 		markAll.appendChild(icon('check-check', 'cafe-np-icon'))
 		markAll.addEventListener('click', function () {
 			self.markAll(true)

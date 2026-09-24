@@ -2054,19 +2054,3 @@ button.cafe-rail-item {
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }
-.cafe-tooltip-arrow {
-  position: absolute;
-  bottom: -4px;
-  width: 8px;
-  height: 4px;
-  background: var(--surface-gray-10);
-  clip-path: polygon(50% 100%, 0 0, 100% 0);
-  transform: translateX(-50%);
-}
-/* When there's no room above the anchor, CAFE.tooltip flips the bubble
-   below it; the arrow moves to the top and points up instead of down. */
-.cafe-tooltip.below .cafe-tooltip-arrow {
-  top: -4px;
-  bottom: auto;
-  clip-path: polygon(50% 0, 0 100%, 100% 100%);
-}

@@ -173,5 +173,11 @@
 		setupLogoMenu()
 		setupSidebarToggle()
 		keepBadgesFresh()
+		// Runs on every page that has a shell (everything except login/signup),
+		// so one call here covers every [data-tooltip] element on the page -
+		// the rail/bell/expand this file draws, and whatever page-specific
+		// content (post's Share/Save, profile's edit buttons, etc.) already
+		// rendered into the DOM before this listener fires.
+		CAFE.autoTooltips()
 	})
 })()
