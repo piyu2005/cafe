@@ -43,17 +43,6 @@ ROW_STYLES = {
 	"textDecoration": "none",
 }
 AUTHOR_LINE_STYLES = {"display": "flex", "alignItems": "center", "gap": "8px"}
-AVATAR_STYLES = {
-	"display": "grid",
-	"placeItems": "center",
-	"flexShrink": "0",
-	"width": "20px",
-	"height": "20px",
-	"overflow": "hidden",
-	"borderRadius": "9999px",
-	"backgroundColor": SURFACE_2,
-	**text_style(13, "500", MUTED, "0.02em", "1.15", textTransform="uppercase"),
-}
 AVATAR_IMAGE_STYLES = {"width": "100%", "height": "100%", "objectFit": "cover"}
 NAME_STYLES = text_style(13, "420", INK)
 BODY_STYLES = {"display": "flex", "alignItems": "flex-start", "gap": "16px"}
@@ -88,7 +77,7 @@ ROW_INNER = "".join(
 			None,
 			AUTHOR_LINE_STYLES,
 			[
-				html_el("span", ["cafe-avatar"], None, AVATAR_STYLES, "[[!avatar]]"),
+				html_el("span", ["cafe-avatar"], None, None, "[[!avatar]]"),
 				html_el("span", None, None, NAME_STYLES, text="[[name]]"),
 			],
 		),
@@ -154,9 +143,15 @@ def build_feed_row():
 	avatar_initial = block("span", "Avatar initial", classes=["initial"], text="P")
 	avatar_initial["dynamicValues"] = [bind("initial", "innerHTML", "key")]
 	avatar_initial["visibilityCondition"] = {"key": "no_image", "comesFrom": "dataScript"}
-	avatar = block(
-		"span", "Avatar", ["cafe-avatar"], children=[avatar_image, avatar_initial], styles=AVATAR_STYLES
-	)
+	# No styles= here - the shared .cafe-avatar class (styles.css) is the one
+	# and only source of the circle's size, same as every other avatar in the
+	# app (search results, profile, comments). This page used to carry its own
+	# 20px override here, out of sync with that class's 32px, which meant
+	# these rows and home.js's client-templated rows (ROW_TEMPLATE below,
+	# built from the exact same markup) could show two different avatar sizes
+	# on the same feed depending on which one the page's own CSS cascade
+	# happened to prefer.
+	avatar = block("span", "Avatar", ["cafe-avatar"], children=[avatar_image, avatar_initial])
 	name = block("span", "Name", text="Priyanshi Hodage", styles=NAME_STYLES)
 	name["dynamicValues"] = [bind("name", "innerHTML", "key")]
 	author_line = block(

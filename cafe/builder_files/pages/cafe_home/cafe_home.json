@@ -1161,22 +1161,7 @@
                  "children": [
                   {
                    "attributes": {},
-                   "baseStyles": {
-                    "display": "grid",
-                    "placeItems": "center",
-                    "flexShrink": "0",
-                    "width": "20px",
-                    "height": "20px",
-                    "overflow": "hidden",
-                    "borderRadius": "9999px",
-                    "backgroundColor": "#f3f3f3",
-                    "fontSize": "13px",
-                    "fontWeight": "500",
-                    "color": "#7c7c7c",
-                    "letterSpacing": "0.02em",
-                    "lineHeight": "1.15",
-                    "textTransform": "uppercase"
-                   },
+                   "baseStyles": {},
                    "blockId": "20sw4uran",
                    "blockName": "Avatar",
                    "children": [
@@ -1876,7 +1861,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:#f3f3f3;object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"cafe-avatar\" style=\"display:grid;place-items:center;flex-shrink:0;width:20px;height:20px;overflow:hidden;border-radius:9999px;background-color:#f3f3f3;font-size:13px;font-weight:500;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15;text-transform:uppercase\">[[!avatar]]</span><span style=\"font-size:13px;font-weight:420;color:#171717;letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:#171717;letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div></a></template>",
+             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:#f3f3f3;object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"cafe-avatar\">[[!avatar]]</span><span style=\"font-size:13px;font-weight:420;color:#171717;letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:#171717;letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div></a></template>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -2022,7 +2007,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-24 15:23:10.564479",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2032,7 +2017,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-24 15:23:10.564479",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -2041,6 +2026,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-24 15:23:10.564479",
  "route": "cafe-home"
 }
