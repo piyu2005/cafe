@@ -2070,3 +2070,17 @@ button.cafe-rail-item {
   bottom: auto;
   clip-path: polygon(50% 0, 0 100%, 100% 100%);
 }
+/* side: 'right' (a narrow icon-only rail - frappe-ui's own convention for
+   one, see Gameplan/Frappe Cloud's sidebar): the bubble sits beside the
+   icon instead of above it, so the arrow moves to the left edge and points
+   left. JS sets its own `top` (the anchor's vertical centre); this flips
+   the centring transform from the X axis to the Y axis to match. */
+.cafe-tooltip.right .cafe-tooltip-arrow {
+  top: 0;
+  bottom: auto;
+  left: -4px;
+  width: 4px;
+  height: 8px;
+  transform: translateY(-50%);
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}

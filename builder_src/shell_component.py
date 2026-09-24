@@ -123,7 +123,13 @@ def rail_item_block(key, label, href, icon_name):
 		"a",
 		label,
 		["cafe-rail-item"],
-		attrs={"href": href, "aria-label": label, "data-tooltip": label, "data-nav": key},
+		attrs={
+			"href": href,
+			"aria-label": label,
+			"data-tooltip": label,
+			"data-tooltip-side": "right",
+			"data-nav": key,
+		},
 		children=children,
 		styles=RAIL_ITEM_STYLES,
 	)
@@ -139,6 +145,7 @@ def bell_item_block():
 			"type": "button",
 			"aria-label": "Notifications",
 			"data-tooltip": "Notifications",
+			"data-tooltip-side": "right",
 			"data-nav": "notifications",
 			"data-bell": "",
 		},
@@ -155,7 +162,13 @@ def expand_item_block():
 		"button",
 		"Expand",
 		["cafe-rail-item", "cafe-expand"],
-		attrs={"type": "button", "aria-label": "Expand", "data-tooltip": "Expand", "data-sidebar-toggle": "open"},
+		attrs={
+			"type": "button",
+			"aria-label": "Expand",
+			"data-tooltip": "Expand",
+			"data-tooltip-side": "right",
+			"data-sidebar-toggle": "open",
+		},
 		children=[icon("panel-right-open", 16, styles={"transform": "rotate(180deg)"})],
 		styles={**RAIL_ITEM_STYLES, "marginTop": "auto", "padding": "0", "border": "0", "cursor": "pointer"},
 	)

@@ -15,10 +15,14 @@
 	}
 	CAFE.el = el
 
-	// Keeps a fixed-position floating element (width `w`) at least `margin` px
-	// inside the viewport, sliding `x` in from whichever edge it overflows.
+	// Keeps a fixed-position floating element (size `size` along one axis) at
+	// least `margin` px inside the viewport (`viewportSize` along that same
+	// axis), sliding `pos` in from whichever edge it overflows.
+	function clamp(pos, size, margin, viewportSize) {
+		return Math.max(margin, Math.min(pos, viewportSize - size - margin))
+	}
 	function clampX(x, w, margin) {
-		return Math.max(margin, Math.min(x, window.innerWidth - w - margin))
+		return clamp(x, w, margin, window.innerWidth)
 	}
 
 	// ---- API ----
@@ -343,7 +347,7 @@
 		}
 	}
 
-	function showTooltip(anchor, text) {
+	function showTooltip(anchor, text, side) {
 		// Closes whatever tooltip is already open first, same as popupMenu's
 		// closePopup()-first pattern - so switching anchors (or a stray second
 		// call) never leaves an earlier bubble orphaned in the DOM.
@@ -360,35 +364,51 @@
 		var rect = anchor.getBoundingClientRect()
 		var width = bubble.offsetWidth
 		var height = bubble.offsetHeight
-		var below = rect.top - height - 8 < 0
-		var left = clampX(rect.left + rect.width / 2 - width / 2, width, 4)
-		bubble.classList.toggle('below', below)
-		bubble.style.left = left + 'px'
-		bubble.style.top = (below ? rect.bottom + 8 : rect.top - height - 8) + 'px'
-		var arrowCenter = rect.left + rect.width / 2 - left
-		arrow.style.left = Math.max(6, Math.min(arrowCenter, width - 6)) + 'px'
+		if (side === 'right') {
+			// frappe-ui's own convention for a narrow icon-only rail (Gameplan,
+			// the Cloud dashboard's sidebar, etc): the tooltip sits beside the
+			// icon, vertically centred, not above it - there's no room above/
+			// below a rail item to read a label anyway.
+			bubble.classList.add('right')
+			var top = clamp(rect.top + rect.height / 2 - height / 2, height, 4, window.innerHeight)
+			bubble.style.left = rect.right + 8 + 'px'
+			bubble.style.top = top + 'px'
+			arrow.style.top = Math.max(6, Math.min(rect.top + rect.height / 2 - top, height - 6)) + 'px'
+		} else {
+			var below = rect.top - height - 8 < 0
+			var left = clampX(rect.left + rect.width / 2 - width / 2, width, 4)
+			bubble.classList.toggle('below', below)
+			bubble.style.left = left + 'px'
+			bubble.style.top = (below ? rect.bottom + 8 : rect.top - height - 8) + 'px'
+			var arrowCenter = rect.left + rect.width / 2 - left
+			arrow.style.left = Math.max(6, Math.min(arrowCenter, width - 6)) + 'px'
+		}
 		tooltipEl = bubble
 	}
 
-	// A small dark bubble above `anchor` on hover/focus - frappe-ui's own
-	// Tooltip look (rounded-4, bg-surface-gray-10, text-xs, shadow-xl, an
-	// arrow), not the browser's native `title` tooltip (slow, unstyled, and
-	// silent on keyboard focus in most browsers - hover/focus both trigger
-	// this one so keyboard users get the same hint sighted mouse users do).
-	// Flips below the anchor when there isn't room above it.
-	// `text` is optional - pass it for a plain static label (JS-created
-	// buttons, e.g. the write editor's toolbar), or leave it out and set
-	// `data-tooltip` on the element instead, which is read fresh on every
-	// hover/focus rather than captured once. That second form is what lets
-	// a button's tooltip change later (code.js's copy button flips its
-	// data-tooltip from "Copy code" to "Copied!" on click, same element,
-	// same listeners) and is also what CAFE.autoTooltips() relies on.
-	CAFE.tooltip = function (anchor, text) {
+	// A small dark bubble on hover/focus - frappe-ui's own Tooltip look
+	// (rounded-4, bg-surface-gray-10, text-xs, shadow-xl, an arrow), not the
+	// browser's native `title` tooltip (slow, unstyled, and silent on
+	// keyboard focus in most browsers - hover/focus both trigger this one so
+	// keyboard users get the same hint sighted mouse users do). Sits above
+	// `anchor` by default (flips below if there's no room), or beside it
+	// when `side` is 'right' - frappe-ui's own choice for a narrow icon-only
+	// rail (Gameplan, the Cloud dashboard sidebar), where there's no room
+	// above/below to begin with.
+	// `text`/`side` are each optional - pass them for a JS-created button
+	// (write editor toolbar etc, simplest at the point it's built), or leave
+	// them out and set `data-tooltip`/`data-tooltip-side` on the element
+	// instead, read fresh on every hover/focus rather than captured once.
+	// That second form is what lets a button's tooltip change later
+	// (code.js's copy button flips its data-tooltip from "Copy code" to
+	// "Copied!" on click, same element, same listeners) and is also what
+	// CAFE.autoTooltips() relies on.
+	CAFE.tooltip = function (anchor, text, side) {
 		function schedule() {
 			clearTimeout(tooltipTimer)
 			tooltipTimer = setTimeout(function () {
 				var label = text || anchor.getAttribute('data-tooltip')
-				if (label) showTooltip(anchor, label)
+				if (label) showTooltip(anchor, label, side || anchor.getAttribute('data-tooltip-side'))
 			}, 150)
 		}
 		anchor.addEventListener('mouseenter', schedule)
