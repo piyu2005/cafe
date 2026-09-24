@@ -5,7 +5,18 @@
 
 	var W = window.CAFE.write
 	var BUBBLE_GAP = 8
-	var TAG_SUGGESTIONS = ['Design', 'UX/UI', 'Minimalism']
+	var TAG_SUGGESTIONS = [
+		'Design',
+		'UX/UI',
+		'Minimalism',
+		'Technology',
+		'Productivity',
+		'Writing',
+		'Startups',
+		'Business',
+		'Lifestyle',
+		'Travel',
+	]
 	var editor = null
 	var dom = {}
 
@@ -40,19 +51,26 @@
 	// A pill + dropdown tag picker. Tags stay a comma-separated string in
 	// W.state.form.tags (what the backend stores); TAG_SUGGESTIONS only
 	// drives the dropdown, typing anything else and pressing Enter/, still
-	// adds it as a free tag.
+	// adds it as a free tag. The chevron button on the right opens/closes
+	// the same dropdown explicitly, for people who don't know to click into
+	// an empty-looking input.
 	function buildTags() {
 		var tagList = []
 		var wrap = W.el('div', 'cafe-w-tags')
 		wrap.appendChild(W.el('label', '', 'Tags'))
 		var box = W.el('div', 'cafe-w-tag-box')
+		var fields = W.el('div', 'cafe-w-tag-fields')
 		dom.tagChips = W.el('div', 'cafe-w-tag-chips')
 		dom.tagInput = W.el('input')
 		dom.tagInput.type = 'text'
-		dom.tagInput.placeholder = 'Design, UX/UI, Minimalism'
+		dom.tagInput.placeholder = 'Add a tag'
 		dom.tagInput.id = 'cafe-w-tags'
 		dom.tagInput.autocomplete = 'off'
 		wrap.firstChild.setAttribute('for', 'cafe-w-tags')
+		var toggle = W.el('button', 'cafe-w-tag-toggle')
+		toggle.type = 'button'
+		toggle.setAttribute('aria-label', 'Show tag suggestions')
+		toggle.appendChild(W.icon('chevron-down', 'cafe-w-small'))
 		dom.tagResults = W.el('div', 'cafe-w-tag-results')
 		dom.tagResults.hidden = true
 
@@ -71,13 +89,17 @@
 				)
 			})
 		}
+		function setOpen(open) {
+			dom.tagResults.hidden = !open
+			toggle.classList.toggle('open', open)
+		}
 		function drawResults() {
 			var query = dom.tagInput.value.trim().toLowerCase()
 			var options = TAG_SUGGESTIONS.filter(function (name) {
 				return !hasTag(tagList, name) && (!query || name.toLowerCase().indexOf(query) !== -1)
 			})
 			dom.tagResults.replaceChildren()
-			dom.tagResults.hidden = !options.length
+			setOpen(options.length > 0)
 			options.forEach(function (name) {
 				var option = W.el('button', 'cafe-w-tag-option', name)
 				option.type = 'button'
@@ -104,7 +126,7 @@
 		dom.tagInput.addEventListener('input', drawResults)
 		dom.tagInput.addEventListener('focus', drawResults)
 		dom.tagInput.addEventListener('blur', function () {
-			dom.tagResults.hidden = true
+			setOpen(false)
 		})
 		dom.tagInput.addEventListener('keydown', function (event) {
 			if (event.key === 'Enter' || event.key === ',') {
@@ -115,7 +137,18 @@
 				drawChips()
 				sync()
 			} else if (event.key === 'Escape') {
-				dom.tagResults.hidden = true
+				setOpen(false)
+			}
+		})
+		toggle.addEventListener('mousedown', function (event) {
+			event.preventDefault()
+		})
+		toggle.addEventListener('click', function () {
+			if (dom.tagResults.hidden) {
+				drawResults()
+				dom.tagInput.focus()
+			} else {
+				setOpen(false)
 			}
 		})
 		dom.setTags = function (value) {
@@ -123,8 +156,10 @@
 			drawChips()
 		}
 
-		box.appendChild(dom.tagChips)
-		box.appendChild(dom.tagInput)
+		fields.appendChild(dom.tagChips)
+		fields.appendChild(dom.tagInput)
+		box.appendChild(fields)
+		box.appendChild(toggle)
 		wrap.appendChild(box)
 		wrap.appendChild(dom.tagResults)
 		return wrap
