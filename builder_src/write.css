@@ -400,7 +400,7 @@
   align-items: center;
   gap: 6px;
   width: 100%;
-  min-height: 28px;
+  min-height: 32px;
   padding: 4px 6px;
   border-radius: 8px;
   background: var(--w-surface);
