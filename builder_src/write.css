@@ -556,7 +556,7 @@
 }
 .cafe-w-menu-item:hover,
 .cafe-w-menu-item.active {
-  background: var(--cafe-surface-2, #f3f3f3);
+  background: var(--surface-gray-2, #f3f3f3);
 }
 .cafe-w-menu-item.danger {
   color: #b41d1d;
@@ -587,7 +587,7 @@
   aspect-ratio: 1.91;
   overflow: hidden;
   border-radius: 6px;
-  background: var(--cafe-surface-2, #f3f3f3);
+  background: var(--surface-gray-2, #f3f3f3);
 }
 .cafe-w-cover img {
   width: 100%;

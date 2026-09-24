@@ -1092,7 +1092,7 @@
   cursor: pointer;
 }
 .cafe-c-menu-item:hover {
-  background: var(--cafe-surface-2);
+  background: var(--surface-gray-2);
 }
 .cafe-c-menu-item.danger {
   color: #b41d1d;
@@ -1247,7 +1247,7 @@
   gap: 6px;
   padding: 4px 8px 4px 4px;
   border-radius: 9999px;
-  background: var(--cafe-surface-2);
+  background: var(--surface-gray-2);
   font-size: 14px;
 }
 .cafe-c-chip-user {
@@ -1265,7 +1265,7 @@
 .cafe-c-results {
   max-height: 192px;
   overflow-y: auto;
-  border: 1px solid var(--cafe-outline);
+  border: 1px solid var(--outline-gray-1);
   border-radius: 6px;
 }
 .cafe-c-results.tall {
@@ -1340,11 +1340,11 @@
   font-size: 14px;
 }
 .cafe-c-members {
-  border: 1px solid var(--cafe-outline);
+  border: 1px solid var(--outline-gray-1);
   border-radius: 6px;
 }
 .cafe-c-members > * + * {
-  border-top: 1px solid var(--cafe-outline);
+  border-top: 1px solid var(--outline-gray-1);
 }
 .cafe-c-member {
   display: flex;
@@ -1371,7 +1371,7 @@
 .cafe-c-badge {
   padding: 1px 6px;
   border-radius: 6px;
-  background: var(--cafe-surface-2);
+  background: var(--surface-gray-2);
   color: #525252;
   font-size: 11px;
 }
