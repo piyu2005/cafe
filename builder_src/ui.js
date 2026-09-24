@@ -15,6 +15,12 @@
 	}
 	CAFE.el = el
 
+	// Keeps a fixed-position floating element (width `w`) at least `margin` px
+	// inside the viewport, sliding `x` in from whichever edge it overflows.
+	function clampX(x, w, margin) {
+		return Math.max(margin, Math.min(x, window.innerWidth - w - margin))
+	}
+
 	// ---- API ----
 
 	CAFE.DEFAULT_ERROR = 'Something went wrong. Please try again.'
@@ -319,9 +325,69 @@
 		document.body.appendChild(menu)
 		var rect = anchor.getBoundingClientRect()
 		var width = menu.offsetWidth
-		menu.style.left = Math.max(8, Math.min(rect.right - width, window.innerWidth - width - 8)) + 'px'
+		menu.style.left = clampX(rect.right - width, width, 8) + 'px'
 		menu.style.top = Math.min(rect.bottom + 4, window.innerHeight - menu.offsetHeight - 8) + 'px'
 		popup = menu
+	}
+
+	// ---- Tooltip ----
+
+	var tooltipEl = null
+	var tooltipTimer = null
+
+	function hideTooltip() {
+		clearTimeout(tooltipTimer)
+		if (tooltipEl) {
+			tooltipEl.remove()
+			tooltipEl = null
+		}
+	}
+
+	function showTooltip(anchor, text) {
+		// Closes whatever tooltip is already open first, same as popupMenu's
+		// closePopup()-first pattern - so switching anchors (or a stray second
+		// call) never leaves an earlier bubble orphaned in the DOM.
+		hideTooltip()
+		// The anchor can be gone by the time the hover delay fires (removed
+		// from the DOM in between); a detached element's rect is all zeros,
+		// which would pin the bubble at the top-left instead of just not
+		// showing it.
+		if (!anchor.isConnected) return
+		var bubble = el('div', 'cafe-tooltip', text)
+		var arrow = el('div', 'cafe-tooltip-arrow')
+		bubble.appendChild(arrow)
+		document.body.appendChild(bubble)
+		var rect = anchor.getBoundingClientRect()
+		var width = bubble.offsetWidth
+		var height = bubble.offsetHeight
+		var below = rect.top - height - 8 < 0
+		var left = clampX(rect.left + rect.width / 2 - width / 2, width, 4)
+		bubble.classList.toggle('below', below)
+		bubble.style.left = left + 'px'
+		bubble.style.top = (below ? rect.bottom + 8 : rect.top - height - 8) + 'px'
+		var arrowCenter = rect.left + rect.width / 2 - left
+		arrow.style.left = Math.max(6, Math.min(arrowCenter, width - 6)) + 'px'
+		tooltipEl = bubble
+	}
+
+	// A small dark bubble above `anchor` on hover/focus - frappe-ui's own
+	// Tooltip look (rounded-4, bg-surface-gray-10, text-xs, shadow-xl, an
+	// arrow), not the browser's native `title` tooltip (slow, unstyled, and
+	// silent on keyboard focus in most browsers - hover/focus both trigger
+	// this one so keyboard users get the same hint sighted mouse users do).
+	// Flips below the anchor when there isn't room above it.
+	CAFE.tooltip = function (anchor, text) {
+		function schedule() {
+			clearTimeout(tooltipTimer)
+			tooltipTimer = setTimeout(function () {
+				showTooltip(anchor, text)
+			}, 150)
+		}
+		anchor.addEventListener('mouseenter', schedule)
+		anchor.addEventListener('focus', schedule)
+		anchor.addEventListener('mouseleave', hideTooltip)
+		anchor.addEventListener('blur', hideTooltip)
+		anchor.addEventListener('click', hideTooltip)
 	}
 
 	// ---- Form dialog ----
