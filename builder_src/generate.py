@@ -84,6 +84,7 @@ SCRIPT_ICONS = {
 		"align-right",
 		"archive",
 		"bold",
+		"chevron-down",
 		"heading",
 		"heading-2",
 		"heading-3",
@@ -99,6 +100,7 @@ SCRIPT_ICONS = {
 		"strikethrough",
 		"trash-2",
 		"underline",
+		"x",
 	),
 	"pub_core.js": (
 		"arrow-left",
