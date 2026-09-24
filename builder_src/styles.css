@@ -869,7 +869,6 @@ p.cafe-clamp-3:empty::before {
   aspect-ratio: 16 / 9;
   border-radius: 8px;
   object-fit: cover;
-  cursor: zoom-in;
 }
 /* A caption is a 28px row that only exists when the image has alt text. The
    image's own 16px margin below it moves to the row. */
@@ -954,54 +953,6 @@ p.cafe-clamp-3:empty::before {
 }
 .cafe-carousel-dot.on {
   background: var(--surface-base);
-}
-
-/* Full-size image viewer (added by post.js). */
-.cafe-viewer {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.9);
-}
-.cafe-viewer-img {
-  max-width: 92vw;
-  max-height: 88vh;
-  border-radius: 6px;
-  object-fit: contain;
-}
-.cafe-viewer-btn {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 0 0 3px;
-  border: 0;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--ink-base);
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-}
-.cafe-viewer-btn:hover {
-  background: rgba(255, 255, 255, 0.26);
-}
-.cafe-viewer-close {
-  top: 16px;
-  right: 16px;
-}
-.cafe-viewer-prev {
-  top: 50%;
-  left: 16px;
-  transform: translateY(-50%);
-}
-.cafe-viewer-next {
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%);
 }
 
 /* Comments (added by post.js). */
