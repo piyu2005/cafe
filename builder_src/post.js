@@ -644,6 +644,8 @@
 		me = { name: root.getAttribute('data-me-name'), image: root.getAttribute('data-me-image') }
 		listEl = document.getElementById('cafe-comments')
 		moreButton = root.querySelector('.cafe-more-comments')
+		CAFE.tooltip(root.querySelector('[data-action="share"]'), 'Share')
+		CAFE.tooltip(root.querySelector('.cafe-save'), 'Save')
 
 		root.addEventListener('click', function (event) {
 			var button = event.target.closest('[data-action]')

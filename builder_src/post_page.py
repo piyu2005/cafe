@@ -348,7 +348,7 @@ def build_action_bar():
 		html_el(
 			"button",
 			["cafe-outline-btn"],
-			{"type": "button", "aria-label": "Share", "title": "Share", "data-action": "share"},
+			{"type": "button", "aria-label": "Share", "data-action": "share"},
 			{
 				"display": "grid",
 				"placeItems": "center",
@@ -370,7 +370,7 @@ def build_action_bar():
 			"button",
 			"Save",
 			["cafe-save"],
-			attrs={"type": "button", "aria-label": "Save", "title": "Save"},
+			attrs={"type": "button", "aria-label": "Save"},
 			custom={"data-action": "save", "data-on": ""},
 			inner_html=svg("bookmark", 16),
 			styles={

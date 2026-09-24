@@ -2009,3 +2009,30 @@ button.cafe-rail-item {
 .cafe-popup-item.danger .cafe-popup-icon {
   color: inherit;
 }
+
+/* ---- Tooltip (CAFE.tooltip) ---- */
+.cafe-tooltip {
+  position: fixed;
+  z-index: 80;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #171717;
+  color: #ffffff;
+  font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 420;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+.cafe-tooltip-arrow {
+  position: absolute;
+  bottom: -4px;
+  width: 8px;
+  height: 4px;
+  background: #171717;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  transform: translateX(-50%);
+}

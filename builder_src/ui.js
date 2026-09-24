@@ -324,6 +324,47 @@
 		popup = menu
 	}
 
+	// ---- Tooltip ----
+
+	var tooltipEl = null
+	var tooltipTimer = null
+
+	function hideTooltip() {
+		clearTimeout(tooltipTimer)
+		if (tooltipEl) {
+			tooltipEl.remove()
+			tooltipEl = null
+		}
+	}
+
+	function showTooltip(anchor, text) {
+		var bubble = el('div', 'cafe-tooltip', text)
+		var arrow = el('div', 'cafe-tooltip-arrow')
+		bubble.appendChild(arrow)
+		document.body.appendChild(bubble)
+		var rect = anchor.getBoundingClientRect()
+		var width = bubble.offsetWidth
+		var left = Math.max(4, Math.min(rect.left + rect.width / 2 - width / 2, window.innerWidth - width - 4))
+		bubble.style.left = left + 'px'
+		bubble.style.top = rect.top - bubble.offsetHeight - 8 + 'px'
+		arrow.style.left = rect.left + rect.width / 2 - left + 'px'
+		tooltipEl = bubble
+	}
+
+	// A small dark bubble above `anchor` on hover - frappe-ui's own Tooltip
+	// look (rounded-4, bg-surface-gray-10, text-xs, shadow-xl, an arrow),
+	// not the browser's native `title` tooltip (slow, unstyled).
+	CAFE.tooltip = function (anchor, text) {
+		anchor.addEventListener('mouseenter', function () {
+			clearTimeout(tooltipTimer)
+			tooltipTimer = setTimeout(function () {
+				showTooltip(anchor, text)
+			}, 150)
+		})
+		anchor.addEventListener('mouseleave', hideTooltip)
+		anchor.addEventListener('click', hideTooltip)
+	}
+
 	// ---- Form dialog ----
 
 	function buildField(field, values) {
