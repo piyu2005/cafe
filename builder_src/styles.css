@@ -454,7 +454,7 @@ html[data-cafe-sidebar='open'] .cafe-np {
   font-family: inherit;
 }
 .cafe-search input::placeholder {
-  color: var(--outline-gray-4);
+  color: var(--ink-gray-4);
 }
 .cafe-search input:hover {
   background: var(--surface-gray-3) !important;
@@ -505,7 +505,7 @@ html[data-cafe-sidebar='open'] .cafe-np {
   overflow: hidden;
   font-size: 16px;
   letter-spacing: 0.02em;
-  color: var(--ink-gray-9);
+  color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -681,7 +681,7 @@ p.cafe-clamp-3:empty::before {
   resize: vertical;
 }
 .cafe-textarea::placeholder {
-  color: var(--outline-gray-4);
+  color: var(--ink-gray-4);
 }
 .cafe-textarea:hover {
   background: var(--surface-gray-3) !important;
@@ -839,14 +839,14 @@ p.cafe-clamp-3:empty::before {
 .cafe-prose th,
 .cafe-prose td {
   padding: 6px 10px;
-  border: 1px solid var(--surface-gray-3);
+  border: 1px solid var(--outline-gray-1);
   text-align: left;
 }
 .cafe-prose hr {
   width: 20%;
   margin: 24px auto;
   border: 0;
-  border-top: 1px solid var(--surface-gray-3);
+  border-top: 1px solid var(--outline-gray-1);
 }
 .cafe-prose img {
   display: block;
