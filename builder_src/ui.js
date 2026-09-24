@@ -376,11 +376,19 @@
 	// silent on keyboard focus in most browsers - hover/focus both trigger
 	// this one so keyboard users get the same hint sighted mouse users do).
 	// Flips below the anchor when there isn't room above it.
+	// `text` is optional - pass it for a plain static label (JS-created
+	// buttons, e.g. the write editor's toolbar), or leave it out and set
+	// `data-tooltip` on the element instead, which is read fresh on every
+	// hover/focus rather than captured once. That second form is what lets
+	// a button's tooltip change later (code.js's copy button flips its
+	// data-tooltip from "Copy code" to "Copied!" on click, same element,
+	// same listeners) and is also what CAFE.autoTooltips() relies on.
 	CAFE.tooltip = function (anchor, text) {
 		function schedule() {
 			clearTimeout(tooltipTimer)
 			tooltipTimer = setTimeout(function () {
-				showTooltip(anchor, text)
+				var label = text || anchor.getAttribute('data-tooltip')
+				if (label) showTooltip(anchor, label)
 			}, 150)
 		}
 		anchor.addEventListener('mouseenter', schedule)
@@ -388,6 +396,22 @@
 		anchor.addEventListener('mouseleave', hideTooltip)
 		anchor.addEventListener('blur', hideTooltip)
 		anchor.addEventListener('click', hideTooltip)
+	}
+
+	// Wires CAFE.tooltip() onto every [data-tooltip] element under `root`
+	// (default the whole page) in one call - the standard way an icon-only
+	// block-rendered button gets its tooltip in this app, instead of the
+	// browser's native `title` (slow, unstyled). Blocks can't run JS
+	// themselves, so a block that wants a tooltip carries
+	// `data-tooltip="Label"` (kept alongside its own aria-label, never
+	// instead of it) and each page's script calls this once at init. Safe
+	// to call more than once on the same element - CAFE.tooltip's own
+	// listeners just stack harmlessly if a page ever needs to re-scan after
+	// a dynamic re-render.
+	CAFE.autoTooltips = function (root) {
+		;(root || document).querySelectorAll('[data-tooltip]').forEach(function (el) {
+			CAFE.tooltip(el)
+		})
 	}
 
 	// ---- Form dialog ----

@@ -100,7 +100,7 @@ def build_title_row():
 			"a",
 			"Back to profile",
 			["cafe-back"],
-			attrs={"href": "/profile", "aria-label": "Back to profile", "title": "Back to profile"},
+			attrs={"href": "/profile", "aria-label": "Back to profile", "data-tooltip": "Back to profile"},
 			inner_html=svg("arrow-left", 16),
 			styles={
 				"display": "grid",

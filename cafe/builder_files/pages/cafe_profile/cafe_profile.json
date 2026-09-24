@@ -1735,7 +1735,7 @@
                      "element": "div",
                      "elementBeforeConversion": null,
                      "extendedFromComponent": null,
-                     "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Edit introduction\" title=\"Edit introduction\" data-action=\"edit-bio\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg></button>",
+                     "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Edit introduction\" data-tooltip=\"Edit introduction\" data-action=\"edit-bio\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg></button>",
                      "isChildOfComponent": null,
                      "isRepeaterBlock": false,
                      "mobileStyles": {},
@@ -2704,7 +2704,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add work experience\" title=\"Add work experience\" data-action=\"add-work\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add work experience\" data-tooltip=\"Add work experience\" data-action=\"add-work\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -3018,7 +3018,7 @@
                          "attributes": {
                           "type": "button",
                           "aria-label": "Edit work experience",
-                          "title": "Edit work experience"
+                          "data-tooltip": "Edit work experience"
                          },
                          "baseStyles": {
                           "display": "grid",
@@ -3381,7 +3381,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add education\" title=\"Add education\" data-action=\"add-education\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add education\" data-tooltip=\"Add education\" data-action=\"add-education\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -3652,7 +3652,7 @@
                          "attributes": {
                           "type": "button",
                           "aria-label": "Edit education",
-                          "title": "Edit education"
+                          "data-tooltip": "Edit education"
                          },
                          "baseStyles": {
                           "display": "grid",
@@ -4160,7 +4160,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-24 14:34:38.095747",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -4170,7 +4170,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-24 14:34:38.095747",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -4179,6 +4179,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-24 14:34:38.095747",
  "route": "profile/:username"
 }

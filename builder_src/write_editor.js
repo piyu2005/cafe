@@ -224,8 +224,8 @@
 	function tool(icon, label, onClick, extra) {
 		var button = W.el('button', 'cafe-w-tool' + (extra && extra.label ? ' with-label' : ''))
 		button.type = 'button'
-		button.title = label
 		button.setAttribute('aria-label', label)
+		CAFE.tooltip(button, label)
 		button.appendChild(W.icon(icon, 'cafe-w-small'))
 		if (extra && extra.label) button.appendChild(W.el('span', '', extra.label))
 		// Keep the cursor in the story while you press a button.

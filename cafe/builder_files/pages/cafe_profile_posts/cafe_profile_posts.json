@@ -1092,7 +1092,7 @@
                  "attributes": {
                   "href": "/profile",
                   "aria-label": "Back to profile",
-                  "title": "Back to profile"
+                  "data-tooltip": "Back to profile"
                  },
                  "baseStyles": {
                   "display": "grid",
@@ -1942,7 +1942,7 @@
    "builder_script": "Cafe Posts"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-24 14:34:38.095747",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1952,7 +1952,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-24 14:34:38.095747",
  "modified_by": "Administrator",
  "name": "cafe-profile-posts",
  "owner": "Administrator",
@@ -1961,6 +1961,6 @@
  "page_title": "Profile posts",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-24 14:34:38.095747",
  "route": "profile/:username/posts"
 }

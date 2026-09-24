@@ -47,15 +47,16 @@
 		button.type = 'button'
 		button.className = 'cafe-code-copy'
 		button.setAttribute('aria-label', 'Copy code')
-		button.title = 'Copy code'
+		button.setAttribute('data-tooltip', 'Copy code')
+		CAFE.tooltip(button)
 		button.appendChild(icon('copy'))
 		button.addEventListener('click', function () {
 			var done = function () {
 				button.replaceChildren(icon('check'))
-				button.title = 'Copied!'
+				button.setAttribute('data-tooltip', 'Copied!')
 				setTimeout(function () {
 					button.replaceChildren(icon('copy'))
-					button.title = 'Copy code'
+					button.setAttribute('data-tooltip', 'Copy code')
 				}, COPIED_MS)
 			}
 			if (navigator.clipboard && navigator.clipboard.writeText)
