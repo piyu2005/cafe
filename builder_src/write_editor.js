@@ -161,8 +161,8 @@
 		fields.appendChild(dom.tagInput)
 		box.appendChild(fields)
 		box.appendChild(toggle)
+		box.appendChild(dom.tagResults)
 		wrap.appendChild(box)
-		wrap.appendChild(dom.tagResults)
 		return wrap
 	}
 
