@@ -39,6 +39,21 @@ def path_segment(value):
     return value
 
 
+def first_image(html):
+    html = html or ""
+    start = html.find("<img")
+    if start == -1:
+        return ""
+    src_start = html.find('src="', start)
+    if src_start == -1:
+        return ""
+    src_start += 5
+    src_end = html.find('"', src_start)
+    if src_end == -1:
+        return ""
+    return html[src_start:src_end].replace("&amp;", "&")
+
+
 """
 
 # Turns `rows` (from list_profile_posts) into `posts`, the list the post rows show.
@@ -51,7 +66,11 @@ for row in rows:
         minutes = 1
     comments = row.get("comment_count") or 0
     preview = row.get("excerpt") or (text[:140] + "\\u2026" if len(text) > 140 else text)
-    thumbnail = row.get("cover_image") or (row.get("attachment") if row.get("post_type") == "Image" else "")
+    thumbnail = (
+        row.get("cover_image")
+        or (row.get("attachment") if row.get("post_type") == "Image" else "")
+        or first_image(row.get("content"))
+    )
     posts.append({
         "href": "/posts/" + path_segment(row.name),
         "title": clean(row.get("display_title") or row.get("title") or "Untitled"),

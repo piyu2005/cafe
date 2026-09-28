@@ -39,8 +39,19 @@
 		if (!value) return ''
 		return new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
 	}
+	// The first <img src> in the post's own content, same extraction as
+	// write_core.js's W.firstImage - kept as its own small copy rather than a
+	// cross-script dependency, since this page doesn't otherwise load the
+	// write bundle. Display-only fallback, never written back to the post:
+	// cover_image staying unset is how "Remove cover" (write_preview.js)
+	// persists a deliberate no-cover choice, so this must never get saved
+	// over it.
+	function firstImageIn(html) {
+		var match = (html || '').match(/<img[^>]+src="([^"]+)"/)
+		return match ? match[1].replace(/&amp;/g, '&') : ''
+	}
 	function thumbnailOf(post) {
-		var url = post.cover_image || (post.post_type === 'Image' ? post.attachment : '')
+		var url = post.cover_image || (post.post_type === 'Image' ? post.attachment : '') || firstImageIn(post.content)
 		return /^(\/|https?:\/\/)/.test(url || '') ? url : ''
 	}
 

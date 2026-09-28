@@ -399,7 +399,11 @@ for row in rows:
         minutes = 1
     label = row.get("author_name") or row.get("author") or ""
     author_image = safe_url(row.get("author_image"))
-    cover = row.get("cover_image") or (row.get("attachment") if row.get("post_type") != "Video" else "")
+    cover = (
+        row.get("cover_image")
+        or (row.get("attachment") if row.get("post_type") != "Video" else "")
+        or first_image(row.get("content"))
+    )
     cover = safe_url(cover)
     href = "/posts/" + path_segment(row.name)
     comments = counts.get(row.name, 0)
