@@ -203,70 +203,6 @@
 		})
 	}
 
-	function openViewer(images, start) {
-		var index = start
-		var overlay = el('div', 'cafe-viewer')
-		var picture = el('img', 'cafe-viewer-img')
-		var close = el('button', 'cafe-viewer-btn cafe-viewer-close', '×')
-		close.type = 'button'
-		close.setAttribute('aria-label', 'Close')
-		overlay.appendChild(picture)
-		overlay.appendChild(close)
-		var prev, next
-		function show() {
-			picture.src = images[index].src
-			picture.alt = images[index].alt || ''
-		}
-		function step(delta) {
-			index = (index + delta + images.length) % images.length
-			show()
-		}
-		if (images.length > 1) {
-			prev = el('button', 'cafe-viewer-btn cafe-viewer-prev', '‹')
-			next = el('button', 'cafe-viewer-btn cafe-viewer-next', '›')
-			prev.type = next.type = 'button'
-			prev.setAttribute('aria-label', 'Previous image')
-			next.setAttribute('aria-label', 'Next image')
-			prev.addEventListener('click', function (e) {
-				e.stopPropagation()
-				step(-1)
-			})
-			next.addEventListener('click', function (e) {
-				e.stopPropagation()
-				step(1)
-			})
-			overlay.appendChild(prev)
-			overlay.appendChild(next)
-		}
-		function done() {
-			overlay.remove()
-			document.removeEventListener('keydown', onKey)
-		}
-		function onKey(e) {
-			if (e.key === 'Escape') done()
-			else if (e.key === 'ArrowLeft' && images.length > 1) step(-1)
-			else if (e.key === 'ArrowRight' && images.length > 1) step(1)
-		}
-		overlay.addEventListener('click', function (e) {
-			if (e.target !== picture) done()
-		})
-		close.addEventListener('click', done)
-		document.addEventListener('keydown', onKey)
-		document.body.appendChild(overlay)
-		show()
-	}
-
-	function setupViewer(content) {
-		content.addEventListener('click', function (event) {
-			var img = event.target.closest('img')
-			if (!img) return
-			var all = [].slice.call(content.querySelectorAll('img')).map(function (i) {
-				return { src: i.currentSrc || i.src, alt: i.alt }
-			})
-			openViewer(all, [].slice.call(content.querySelectorAll('img')).indexOf(img))
-		})
-	}
-
 	// ---- Carousel (Image posts) ----
 
 	function setupCarousel() {
@@ -667,7 +603,6 @@
 		if (content) {
 			addCaptions(content)
 			markTrailingBreaks(content)
-			setupViewer(content)
 		}
 		setupCarousel()
 		loadComments()
