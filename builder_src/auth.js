@@ -76,9 +76,34 @@
 	function Otp(boxes, onComplete) {
 		var self = this
 		this.boxes = boxes
+
+		// Fills every box from `digits` (already stripped of non-digit chars),
+		// focuses the first still-empty one (or the last box if it's full), and
+		// fires onComplete once all boxes hold a digit. Shared by both ways a
+		// full code can land here: an explicit clipboard paste, and a mobile
+		// OS's one-time-code autofill, which drops the whole code into
+		// whichever box happens to be focused via a plain `input` event
+		// instead of a real `paste` event.
+		function distribute(digits) {
+			digits = digits.slice(0, boxes.length)
+			boxes.forEach(function (box, i) {
+				box.value = digits.charAt(i)
+			})
+			var next = boxes.findIndex(function (box) {
+				return !box.value
+			})
+			boxes[next === -1 ? boxes.length - 1 : next].focus()
+			if (self.value().length === boxes.length) onComplete(self.value())
+		}
+
 		boxes.forEach(function (box, index) {
 			box.addEventListener('input', function () {
-				box.value = box.value.replace(/\D/g, '').slice(-1)
+				var digits = box.value.replace(/\D/g, '')
+				if (digits.length > 1) {
+					distribute(digits)
+					return
+				}
+				box.value = digits
 				if (box.value && index < boxes.length - 1) boxes[index + 1].focus()
 				if (self.value().length === boxes.length) onComplete(self.value())
 			})
@@ -87,17 +112,7 @@
 			})
 			box.addEventListener('paste', function (event) {
 				event.preventDefault()
-				var pasted = ((event.clipboardData || window.clipboardData).getData('text') || '')
-					.replace(/\D/g, '')
-					.slice(0, boxes.length)
-				boxes.forEach(function (other, i) {
-					other.value = pasted.charAt(i)
-				})
-				var next = boxes.findIndex(function (other) {
-					return !other.value
-				})
-				boxes[next === -1 ? boxes.length - 1 : next].focus()
-				if (self.value().length === boxes.length) onComplete(self.value())
+				distribute(((event.clipboardData || window.clipboardData).getData('text') || '').replace(/\D/g, ''))
 			})
 		})
 	}
