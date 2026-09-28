@@ -8,3 +8,4 @@ cafe.patches.v1_0.backfill_post_cover_thumbnails
 cafe.patches.v1_0.rename_reference_type_to_reference_doctype
 cafe.patches.v1_0.convert_poll_option_to_child_table
 cafe.patches.v1_0.remove_private_accounts_and_follow
+cafe.patches.v1_0.fix_private_post_images
