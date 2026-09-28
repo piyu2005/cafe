@@ -131,7 +131,16 @@
 	W.upload = function (file, options) {
 		var form = new FormData()
 		form.append('file', file, file.name)
-		form.append('is_private', '1')
+		// Public, not private: every image uploaded here (post-body images, the
+		// cover crop) ends up embedded in a published post's own content, which
+		// anyone - including a guest with no session - needs to be able to load.
+		// A private file only serves back to its own uploader (or a session
+		// with explicit permission on whatever it's linked to, which an
+		// in-progress content image often isn't linked to yet anyway), so this
+		// broke inline post images for every viewer but the author. Contrast
+		// chat_composer.js's upload, which stays private on purpose - a chat
+		// attachment is meant to be scoped to the conversation's participants.
+		form.append('is_private', '0')
 		var extra = options || UPLOAD
 		Object.keys(extra).forEach(function (key) {
 			form.append(key, extra[key])
