@@ -163,6 +163,7 @@ from pub_page import (
 from search_page import SEARCH_DATA_SCRIPT, build_search
 from settings_page import SETTINGS_DATA_SCRIPT, build_settings
 from shell_component import build_shell
+from tokens import TOKENS, builder_token
 from write_page import WRITE_NATIVE_DATA_SCRIPT, WRITE_PARTS, build_native_write
 from write_page import native_head_html as native_write_head
 
@@ -328,6 +329,9 @@ def main():
 			"name": "Newsreader Medium",
 		},
 	)
+
+	for name, token_name, value, group in TOKENS:
+		write_json("variables", name, builder_token(name, token_name, value, group, NOW))
 
 	shared = ["Cafe Styles", "Cafe UI", "Cafe Shell", "Cafe Settings", "Cafe Notifications"]
 	# The sign-in pages have no shell, so none of the scripts that work with it.
