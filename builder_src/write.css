@@ -86,14 +86,28 @@
   overflow-y: auto;
 }
 .cafe-w-page {
+  display: flex;
+  flex-direction: column;
+  /* Fills .cafe-w-scroll exactly when the post is short, so there's nothing
+     to scroll to reach the tag bar; real content still grows past this and
+     scrolls normally, since min-height (not height) only sets a floor. */
+  min-height: 100%;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 40px 0;
 }
+.cafe-w-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
 .cafe-w-loading {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-height: 0;
   gap: 12px;
 }
 .cafe-w-loading .cafe-skeleton {
@@ -177,12 +191,15 @@
   opacity: 1;
 }
 .cafe-w-editor {
-  min-height: calc(100vh - 320px);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
   margin-top: 16px;
   color: var(--w-ink-8);
 }
 .cafe-w-prose {
-  min-height: calc(100vh - 320px);
+  flex: 1;
   outline: none;
   color: var(--ink-gray-8);
   font-size: 15px;
