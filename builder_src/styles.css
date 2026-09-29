@@ -1857,7 +1857,7 @@ button.cafe-rail-item {
 /* The editor's phone header takes its height from this, as in the old app's shell. */
 #cafe-write-root,
 #cafe-chat-root {
-  --mobile-header-height: 52px;
+  --mobile-header-height: 60px;
 }
 /* The header keeps its height; the scroll area takes what is left. */
 #cafe-write-root > header,

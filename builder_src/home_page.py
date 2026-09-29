@@ -205,8 +205,10 @@ def build_mobile_bar():
 	away with the page, as on the old Home."""
 	brand = raw_block(
 		"Brand",
+		# 20px/600, frappe-ui's text-xl-semibold - was 17px, a real mismatch
+		# against the old Vue page's <span class="text-xl font-semibold">.
 		svg("feather", 20, INK)
-		+ html_el("span", None, None, text_style(17, "600", INK, "0", "1.5"), text="Cafe"),
+		+ html_el("span", None, None, text_style(20, "600", INK, "0", "1.4"), text="Cafe"),
 		styles={"display": "flex", "alignItems": "center", "gap": "6px"},
 	)
 	write = raw_block(
@@ -238,7 +240,13 @@ def build_mobile_bar():
 			"display": "none",
 			"alignItems": "center",
 			"justifyContent": "space-between",
-			"height": "52px",
+			# 52px is frappe-ui's own PageHeaderMobile default; taller by request,
+			# for more breathing room.
+			"height": "60px",
+			# Without this, the flex column shrinks the header (not the scroll
+			# area) to fit the feed's real content height, since flex-shrink
+			# distributes by basis size and the header's is small by comparison.
+			"flexShrink": "0",
 			"padding": "0 16px",
 			"borderBottom": "1px solid #ededed",
 			"backgroundColor": "#ffffff",

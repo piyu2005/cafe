@@ -2,9 +2,12 @@
 
 The rail's bottom button opens it and its own bottom item closes it. Which is
 showing is kept in the browser (shell.js), and styles.css swaps the two by an
-attribute on <html>, so a page loads with the right one and nothing jumps."""
+attribute on <html>, so a page loads with the right one and nothing jumps.
 
-from blocks import INK, MUTED, OUTLINE, SOLID_BG, SURFACE_1, html_el, svg
+Individual native blocks, same as build_rail() in shell_component.py: each
+item is its own block, editable on its own in Builder's canvas."""
+
+from blocks import INK, OUTLINE, SOLID_BG, SURFACE_1, block, icon
 from shell_component_parts import BADGE_STYLES
 
 GRAY_6 = "var(--ink-gray-6)"
@@ -48,26 +51,68 @@ ITEMS = [
 
 
 def item(key, label, href, icon_name):
-	children = [svg(icon_name, 16), html_el("span", None, None, LABEL_STYLES, text=label)]
+	children = [icon(icon_name, 16), block("span", "Label", text=label, styles=LABEL_STYLES)]
 	if key in ("messages", "notifications"):
-		children.append(html_el("span", ["cafe-badge"], {"data-badge": key}, COUNT_STYLES))
+		children.append(
+			block("span", "Count", ["cafe-badge"], attrs={"data-badge": key}, styles=COUNT_STYLES)
+		)
 	if href:
-		return html_el("a", ["cafe-side-item"], {"href": href, "data-nav": key}, ITEM_STYLES, children)
-	return html_el(
+		return block(
+			"a",
+			label,
+			["cafe-side-item"],
+			attrs={"href": href, "data-nav": key},
+			children=children,
+			styles=ITEM_STYLES,
+		)
+	return block(
 		"button",
+		label,
 		["cafe-side-item"],
-		{"type": "button", "data-nav": key, "data-bell": ""},
-		ITEM_STYLES,
-		children,
+		attrs={"type": "button", "data-nav": key, "data-bell": ""},
+		children=children,
+		styles=ITEM_STYLES,
 	)
 
 
-def build_sidebar():
-	logo = html_el(
+def sidebar_logo_block():
+	return block(
 		"button",
+		"Logo",
 		["cafe-side-logo"],
-		{"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
-		{
+		attrs={"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
+		children=[
+			block(
+				"span",
+				"Mark",
+				children=[icon("feather", 16)],
+				styles={
+					"display": "grid",
+					"placeItems": "center",
+					"flexShrink": "0",
+					"width": "32px",
+					"height": "32px",
+					"borderRadius": "8px",
+					"backgroundColor": SOLID_BG,
+					"color": "#ffffff",
+				},
+			),
+			block(
+				"span",
+				"Name",
+				text="Cafe",
+				styles={
+					"flex": "1",
+					"textAlign": "left",
+					"fontSize": "14px",
+					"fontWeight": "500",
+					"letterSpacing": "0.015em",
+					"lineHeight": "1.15",
+					"color": INK,
+				},
+			),
+		],
+		styles={
 			"display": "flex",
 			"alignItems": "center",
 			"gap": "8px",
@@ -80,80 +125,70 @@ def build_sidebar():
 			"cursor": "pointer",
 			"color": INK,
 		},
-		[
-			html_el(
-				"span",
-				None,
-				None,
-				{
-					"display": "grid",
-					"placeItems": "center",
-					"flexShrink": "0",
-					"width": "32px",
-					"height": "32px",
-					"borderRadius": "8px",
-					"backgroundColor": SOLID_BG,
-					"color": "#ffffff",
-				},
-				[svg("feather", 16)],
-			),
-			html_el(
-				"span",
-				None,
-				None,
-				{
-					"flex": "1",
-					"textAlign": "left",
-					"fontSize": "14px",
-					"fontWeight": "500",
-					"letterSpacing": "0.015em",
-					"lineHeight": "1.15",
-					"color": INK,
-				},
-				text="Cafe",
-			),
-		],
 	)
-	collapse = html_el(
+
+
+def collapse_block():
+	return block(
 		"button",
+		"Collapse",
 		["cafe-side-item"],
-		{"type": "button", "data-sidebar-toggle": "close"},
-		ITEM_STYLES,
-		[svg("panel-right-open", 16), html_el("span", None, None, LABEL_STYLES, text="Collapse")],
+		attrs={"type": "button", "data-sidebar-toggle": "close"},
+		children=[icon("panel-right-open", 16), block("span", "Label", text="Collapse", styles=LABEL_STYLES)],
+		styles=ITEM_STYLES,
 	)
-	content = html_el(
+
+
+def build_sidebar():
+	content = block(
 		"div",
+		"Sidebar content",
 		["cafe-sidebar-content"],
-		None,
-		{"position": "sticky", "top": "0", "display": "flex", "flexDirection": "column", "height": "100vh"},
-		[
-			html_el("div", None, None, {"flexShrink": "0", "padding": "8px"}, [logo]),
-			html_el(
+		styles={
+			"position": "sticky",
+			"top": "0",
+			"display": "flex",
+			"flexDirection": "column",
+			"height": "100vh",
+		},
+		children=[
+			block(
 				"div",
-				None,
-				None,
-				{
+				"Logo row",
+				styles={"flexShrink": "0", "padding": "8px"},
+				children=[sidebar_logo_block()],
+			),
+			block(
+				"div",
+				"Items",
+				styles={
 					"display": "flex",
 					"flexDirection": "column",
 					"gap": "6px",
 					"marginTop": "2px",
 					"padding": "0 8px",
 				},
-				[item(*entry) for entry in ITEMS],
+				children=[item(*entry) for entry in ITEMS],
 			),
-			html_el("div", None, None, {"marginTop": "auto", "padding": "0 8px 8px"}, [collapse]),
+			block(
+				"div",
+				"Collapse row",
+				styles={"marginTop": "auto", "padding": "0 8px 8px"},
+				children=[collapse_block()],
+			),
 		],
 	)
-	return html_el(
+	return block(
 		"nav",
+		"Sidebar",
 		["cafe-sidebar"],
-		{"aria-label": "Main"},
-		{
+		attrs={"aria-label": "Main"},
+		styles={
 			"display": "none",
 			"flexShrink": "0",
 			"width": "224px",
 			"backgroundColor": SURFACE_1,
 			"borderRight": f"1px solid {OUTLINE}",
 		},
-		[content],
+		children=[content],
 	)
