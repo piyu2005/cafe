@@ -15,12 +15,19 @@ def block_id():
 	return "".join(_ids.choices("0123456789abcdefghijklmnopqrstuvwxyz", k=9))
 
 
-INK = "#171717"
-INK_BLACK = "#0f0f0f"
-MUTED = "#7c7c7c"
-OUTLINE = "#ededed"
-SURFACE_1 = "#f8f8f8"
-SURFACE_2 = "#f3f3f3"
+# Real Espresso semantic tokens (see tokens.py), not raw hex: a value only
+# needs to change in one place (styles.css's :root, kept in sync with
+# tokens.py) instead of at every one of these call sites.
+INK = "var(--ink-gray-8)"
+INK_BLACK = "var(--ink-gray-9)"
+MUTED = "var(--ink-gray-5)"
+OUTLINE = "var(--outline-gray-1)"
+SURFACE_1 = "var(--surface-gray-1)"
+SURFACE_2 = "var(--surface-gray-2)"
+# INK's own value doubles as the solid dark button/chip background in a few
+# places, but that's a surface role, not a text role - a different token
+# with the same colour, same as Espresso's own semantic naming intends.
+SOLID_BG = "var(--surface-gray-10)"
 DIALOG_SHADOW = "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)"
 
 
@@ -169,10 +176,10 @@ def bind(key, prop, kind):
 
 # ---- Colours and small helpers shared by the pages ----
 
-GRAY_6 = "#525252"
-GRAY_7 = "#383838"
-GRAY_4 = "#999999"
-BUTTON_BORDER = "#e2e2e2"
+GRAY_6 = "var(--ink-gray-6)"
+GRAY_7 = "var(--ink-gray-7)"
+GRAY_4 = "var(--ink-gray-4)"
+BUTTON_BORDER = "var(--outline-gray-2)"
 NBSP = "\u00a0"
 
 

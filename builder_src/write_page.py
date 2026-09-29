@@ -8,7 +8,19 @@ starts with a still picture of the page; the script replaces it."""
 import hashlib
 
 from bell import mobile_bell_block
-from blocks import INK, INK_BLACK, attribute, block, icon, instance_of, raw_block, svg, text_style
+from blocks import (
+	INK,
+	INK_BLACK,
+	SOLID_BG,
+	SURFACE_2,
+	attribute,
+	block,
+	icon,
+	instance_of,
+	raw_block,
+	svg,
+	text_style,
+)
 from chat_page import BUTTON_STYLES
 from data_scripts import HELPERS
 from layout import crumb_link, crumb_separator, page_header
@@ -17,8 +29,8 @@ from stand_ins import ASSETS, ASSETS_URL, write_body
 WRITE_PARTS = ["core", "editor", "preview", "live"]
 VENDOR = ["write-editor.min.js"]
 
-SOLID_STYLES = {**BUTTON_STYLES, "border": "0", "backgroundColor": INK, "color": "#ffffff"}
-ICON_STYLES = {**BUTTON_STYLES, "width": "28px", "padding": "0", "border": "0", "backgroundColor": "#f3f3f3"}
+SOLID_STYLES = {**BUTTON_STYLES, "border": "0", "backgroundColor": SOLID_BG, "color": "#ffffff"}
+ICON_STYLES = {**BUTTON_STYLES, "width": "28px", "padding": "0", "border": "0", "backgroundColor": SURFACE_2}
 
 
 def native_head_html():

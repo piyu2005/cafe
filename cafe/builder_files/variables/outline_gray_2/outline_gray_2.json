@@ -1,0 +1,16 @@
+{
+ "creation": "2026-09-29 11:43:30.267939",
+ "dark_value": null,
+ "docstatus": 0,
+ "doctype": "Builder Token",
+ "group": "Outline",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-09-29 11:43:30.267939",
+ "modified_by": "Administrator",
+ "name": "outline-gray-2",
+ "owner": "Administrator",
+ "token_name": "Outline Gray 2",
+ "type": "Color",
+ "value": "#e2e2e2"
+}

@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -600,7 +600,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:20px;height:20px;color:#171717\"><path d=\"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z\" />\n  <path d=\"M16 8 2 22\" />\n  <path d=\"M17.5 15H9\" /></svg><span style=\"font-size:17px;font-weight:600;color:#171717;letter-spacing:0;line-height:1.5\">Cafe</span>",
+           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:20px;height:20px;color:var(--ink-gray-8)\"><path d=\"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z\" />\n  <path d=\"M16 8 2 22\" />\n  <path d=\"M17.5 15H9\" /></svg><span style=\"font-size:17px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0;line-height:1.5\">Cafe</span>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -630,7 +630,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" aria-label=\"New post\" style=\"display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background-color:#171717;color:#ffffff\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></a>",
+           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" aria-label=\"New post\" style=\"display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background-color:var(--surface-gray-10);color:#ffffff\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></a>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -677,7 +677,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "dq7eac9xo",
@@ -693,7 +693,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "6r04bh9dr",
            "blockName": "Breadcrumbs",
@@ -762,7 +762,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "gh4hb9ouj",
              "blockName": null,
@@ -824,7 +824,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -1002,7 +1002,7 @@
                },
                "baseStyles": {
                 "fontWeight": "500",
-                "color": "#171717"
+                "color": "var(--ink-gray-8)"
                },
                "blockId": "p3xnuwrsx",
                "blockName": "Write link",
@@ -1062,7 +1062,7 @@
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0.005em",
-              "color": "#171717"
+              "color": "var(--ink-gray-8)"
              },
              "blockId": "sfkagc1q4",
              "blockName": "Title",
@@ -1110,7 +1110,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"position:absolute;top:6px;left:8px;pointer-events:none;display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><circle cx=\"11\" cy=\"11\" r=\"8\" />\n  <path d=\"m21 21-4.3-4.3\" /></svg><input id=\"cafe-feed-search\" type=\"text\" placeholder=\"Search\" aria-label=\"Search writings\" autocomplete=\"off\" style=\"display:block;width:100%;height:28px;padding:6px 8px 6px 32px;border:1px solid #f3f3f3;border-radius:8px;outline:none;background-color:#f3f3f3;color:#171717;font-size:14px;letter-spacing:0.02em\">",
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"position:absolute;top:6px;left:8px;pointer-events:none;display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><circle cx=\"11\" cy=\"11\" r=\"8\" />\n  <path d=\"m21 21-4.3-4.3\" /></svg><input id=\"cafe-feed-search\" type=\"text\" placeholder=\"Search\" aria-label=\"Search writings\" autocomplete=\"off\" style=\"display:block;width:100%;height:28px;padding:6px 8px 6px 32px;border:1px solid var(--surface-gray-2);border-radius:8px;outline:none;background-color:var(--surface-gray-2);color:var(--ink-gray-8);font-size:14px;letter-spacing:0.02em\">",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -1274,7 +1274,7 @@
                    "baseStyles": {
                     "fontSize": "13px",
                     "fontWeight": "420",
-                    "color": "#171717",
+                    "color": "var(--ink-gray-8)",
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
@@ -1355,7 +1355,7 @@
                      "baseStyles": {
                       "fontSize": "16px",
                       "fontWeight": "600",
-                      "color": "#171717",
+                      "color": "var(--ink-gray-8)",
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
@@ -1395,7 +1395,7 @@
                       "margin": "4px 0 0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#525252",
+                      "color": "var(--ink-gray-6)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.5"
                      },
@@ -1440,7 +1440,7 @@
                       "marginTop": "16px",
                       "fontSize": "12px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -1654,7 +1654,7 @@
                     "flexShrink": "0",
                     "marginTop": "4px",
                     "borderRadius": "10px",
-                    "backgroundColor": "#f3f3f3",
+                    "backgroundColor": "var(--surface-gray-2)",
                     "objectFit": "cover"
                    },
                    "blockId": "gdyio7jz1",
@@ -1791,7 +1791,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<p style=\"margin:0;font-size:16px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">No writings found.</p>",
+             "innerHTML": "<p style=\"margin:0;font-size:16px;font-weight:420;color:var(--ink-gray-6);letter-spacing:0.02em;line-height:1.5\">No writings found.</p>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -1861,7 +1861,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:#f3f3f3;object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"cafe-avatar\">[[!avatar]]</span><span style=\"font-size:13px;font-weight:420;color:#171717;letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:#171717;letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div></a></template>",
+             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:var(--surface-gray-2);object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\"><span class=\"cafe-avatar\">[[!avatar]]</span><span style=\"font-size:13px;font-weight:420;color:var(--ink-gray-8);letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:var(--ink-gray-6);letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div></a></template>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -2007,7 +2007,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2017,7 +2017,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -2026,6 +2026,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "cafe-home"
 }

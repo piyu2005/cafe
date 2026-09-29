@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -579,7 +579,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "andcg4jxh",
@@ -595,7 +595,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "4hejeo9fw",
            "blockName": "Breadcrumbs",
@@ -664,7 +664,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "uszgn6dh3",
              "blockName": null,
@@ -726,7 +726,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -916,7 +916,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"position:absolute;top:6px;left:8px;pointer-events:none;display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><circle cx=\"11\" cy=\"11\" r=\"8\" />\n  <path d=\"m21 21-4.3-4.3\" /></svg><input id=\"cafe-search-input\" type=\"text\" placeholder=\"Search\" aria-label=\"Search writers\" autocomplete=\"off\" style=\"display:block;width:100%;height:28px;padding:6px 8px 6px 32px;border:1px solid #f3f3f3;border-radius:8px;outline:none;background-color:#f3f3f3;color:#171717;font-size:14px;letter-spacing:0.02em\">",
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"position:absolute;top:6px;left:8px;pointer-events:none;display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><circle cx=\"11\" cy=\"11\" r=\"8\" />\n  <path d=\"m21 21-4.3-4.3\" /></svg><input id=\"cafe-search-input\" type=\"text\" placeholder=\"Search\" aria-label=\"Search writers\" autocomplete=\"off\" style=\"display:block;width:100%;height:28px;padding:6px 8px 6px 32px;border:1px solid var(--surface-gray-2);border-radius:8px;outline:none;background-color:var(--surface-gray-2);color:var(--ink-gray-8);font-size:14px;letter-spacing:0.02em\">",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -966,8 +966,8 @@
                   "height": "32px",
                   "overflow": "hidden",
                   "borderRadius": "9999px",
-                  "backgroundColor": "#f3f3f3",
-                  "color": "#7c7c7c",
+                  "backgroundColor": "var(--surface-gray-2)",
+                  "color": "var(--ink-gray-5)",
                   "fontSize": "16px",
                   "fontWeight": "500",
                   "letterSpacing": "0.02em",
@@ -1317,7 +1317,7 @@
    "builder_script": "Cafe Search"
   }
  ],
- "creation": "2026-09-23 08:46:47.695638",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1327,7 +1327,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-23 08:46:47.695638",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-search",
  "owner": "Administrator",
@@ -1336,6 +1336,6 @@
  "page_title": "Search",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-23 08:46:47.695638",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "search"
 }

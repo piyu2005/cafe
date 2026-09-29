@@ -17,6 +17,7 @@ from blocks import (
 	INK_BLACK,
 	MUTED,
 	OUTLINE,
+	SOLID_BG,
 	SURFACE_1,
 	SURFACE_2,
 	block,
@@ -63,7 +64,7 @@ LOGO_STYLES = {
 	"height": "36px",
 	"marginBottom": "12px",
 	"borderRadius": "16px",
-	"backgroundColor": INK,
+	"backgroundColor": SOLID_BG,
 	"color": "#ffffff",
 }
 INPUT_STYLES = {
@@ -150,7 +151,7 @@ SOLID_STYLES = {
 	**BUTTON_STYLES,
 	"marginTop": "16px",
 	"border": "0",
-	"backgroundColor": INK,
+	"backgroundColor": SOLID_BG,
 	"color": "#ffffff",
 }
 OUTLINE_STYLES = {

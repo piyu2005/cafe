@@ -3,14 +3,14 @@
    controls, 8px and 12px radii. */
 
 #cafe-chat {
-  --c-outline: #ededed;
-  --c-outline-2: #e2e2e2;
-  --c-surface: #f3f3f3;
-  --c-surface-1: #f8f8f8;
-  --c-ink: #0f0f0f;
-  --c-ink-6: #525252;
-  --c-ink-5: #7c7c7c;
-  --c-ink-4: #999999;
+  --c-outline: var(--outline-gray-1);
+  --c-outline-2: var(--outline-gray-2);
+  --c-surface: var(--surface-gray-2);
+  --c-surface-1: var(--surface-gray-1);
+  --c-ink: var(--ink-gray-9);
+  --c-ink-6: var(--ink-gray-6);
+  --c-ink-5: var(--ink-gray-5);
+  --c-ink-4: var(--ink-gray-4);
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 420;
@@ -120,7 +120,7 @@
   border-radius: 8px;
   outline: none;
   background: var(--c-surface);
-  color: #171717;
+  color: var(--ink-gray-8);
   font: inherit;
   font-size: 14px;
 }
@@ -129,13 +129,13 @@
 }
 .cafe-c-search input:hover,
 .cafe-c-search-input:hover {
-  background: #ededed;
-  border-color: #ededed;
+  background: var(--surface-gray-3);
+  border-color: var(--c-outline);
 }
 .cafe-c-search input:focus,
 .cafe-c-search-input:focus {
-  border-color: #999;
-  background: #fff;
+  border-color: var(--outline-gray-4);
+  background: var(--surface-base);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.14);
 }
 .cafe-c-search input::placeholder,
@@ -187,8 +187,8 @@
   height: 20px;
   padding: 0 4px;
   border-radius: 9999px;
-  background: #171717;
-  color: #fff;
+  background: var(--surface-gray-10);
+  color: var(--ink-base);
   font-size: 11px;
   letter-spacing: 0.01em;
 }
@@ -258,7 +258,7 @@
 .cafe-c-skeleton .cafe-skeleton {
   height: 40px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #f3f3f3, #fafafa, #f3f3f3);
+  background: linear-gradient(90deg, var(--c-surface), #fafafa, var(--c-surface));
   background-size: 200% 100%;
   animation: cafe-pulse 1.2s ease-in-out infinite;
 }
@@ -359,10 +359,10 @@
   border: 0;
   border-radius: 8px;
   background: var(--c-surface);
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-c-more-btn:hover {
-  background: #ededed;
+  background: var(--surface-gray-3);
 }
 .cafe-c-back {
   display: none;
@@ -553,7 +553,7 @@
   white-space: nowrap;
 }
 .cafe-c-reply-name {
-  color: #383838;
+  color: var(--ink-gray-7);
   font-weight: 500;
 }
 .cafe-c-reply-text {
@@ -612,7 +612,7 @@
   padding: 0;
   border: 1px solid var(--c-outline);
   border-radius: 9999px;
-  background: #fff;
+  background: var(--surface-base);
   color: var(--c-ink-6);
 }
 .cafe-c-bubble:hover .cafe-c-hover-btn {
@@ -665,7 +665,7 @@
   place-items: center;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  color: var(--ink-base);
   font-size: 18px;
   font-weight: 500;
   line-height: 1;
@@ -677,8 +677,8 @@
   padding: 6px 8px;
   border: 1px solid var(--c-outline-2);
   border-radius: 8px;
-  background: #fff;
-  color: #171717;
+  background: var(--surface-base);
+  color: var(--ink-gray-8);
   font-size: 12px;
   text-decoration: none;
 }
@@ -706,7 +706,7 @@
   overflow: hidden;
   border: 1px solid var(--c-outline);
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface-base);
   text-decoration: none;
 }
 .cafe-c-post-card img {
@@ -777,7 +777,7 @@
   padding: 12px;
   border: 1px solid var(--c-outline-2);
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface-base);
 }
 .cafe-c-poll-question {
   font-size: 14px;
@@ -820,7 +820,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-c-poll-label .cafe-c-icon {
   width: 14px;
@@ -846,10 +846,10 @@
 .cafe-c-box {
   border: 1px solid var(--c-outline-2);
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface-base);
 }
 .cafe-c-box:focus-within {
-  border-color: #999;
+  border-color: var(--outline-gray-4);
 }
 .cafe-c-bar {
   display: flex;
@@ -864,7 +864,7 @@
   flex: 1;
 }
 .cafe-c-bar-title {
-  color: #383838;
+  color: var(--ink-gray-7);
   font-size: 12px;
   font-weight: 500;
 }
@@ -889,7 +889,7 @@
 }
 .cafe-c-icon-btn:hover {
   background: var(--c-surface);
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-c-pendings {
   display: flex;
@@ -916,7 +916,7 @@
   object-fit: cover;
 }
 .cafe-c-pending-thumb.file {
-  background: #e2e2e2;
+  background: var(--outline-gray-2);
   color: var(--c-ink-5);
 }
 .cafe-c-pending-info {
@@ -949,7 +949,7 @@
 .cafe-c-prose {
   min-height: 21px;
   outline: none;
-  color: #171717;
+  color: var(--ink-gray-8);
   font-size: 14px;
   line-height: 21px;
 }
@@ -1026,11 +1026,11 @@
 }
 .cafe-c-tool:hover:not(:disabled) {
   background: var(--c-surface);
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-c-tool.on {
-  background: #e2e2e2;
-  color: #171717;
+  background: var(--outline-gray-2);
+  color: var(--ink-gray-8);
 }
 .cafe-c-tool:disabled,
 .cafe-c-send:disabled {
@@ -1051,11 +1051,11 @@
   padding: 0;
   border: 0;
   border-radius: 8px;
-  background: #171717;
-  color: #fff;
+  background: var(--surface-gray-10);
+  color: var(--ink-base);
 }
 .cafe-c-send:hover:not(:disabled) {
-  background: #383838;
+  background: var(--surface-gray-9);
 }
 
 /* ---- Menus, emoji, mentions (they sit on the page, not in the pane) ---- */
@@ -1065,13 +1065,13 @@
   position: fixed;
   z-index: 70;
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface-base);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12);
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 420;
   letter-spacing: 0.02em;
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-c-menu {
   min-width: 160px;
@@ -1098,7 +1098,7 @@
   color: #b41d1d;
 }
 .cafe-c-menu .cafe-c-icon {
-  color: #7c7c7c;
+  color: var(--c-ink-5);
 }
 .cafe-c-menu-item.danger .cafe-c-icon {
   color: inherit;
@@ -1110,7 +1110,7 @@
 }
 .cafe-c-emoji-head {
   padding: 8px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--c-outline);
 }
 .cafe-c-emoji-search {
   display: block;
@@ -1119,13 +1119,13 @@
   border: 0;
   border-radius: 4px;
   outline: none;
-  background: #f3f3f3;
-  color: #171717;
+  background: var(--c-surface);
+  color: var(--ink-gray-8);
   font: inherit;
   font-size: 14px;
 }
 .cafe-c-emoji-search:focus {
-  box-shadow: 0 0 0 1px #999;
+  box-shadow: 0 0 0 1px var(--outline-gray-4);
 }
 .cafe-c-emoji-grid {
   display: grid;
@@ -1145,13 +1145,13 @@
   cursor: pointer;
 }
 .cafe-c-emoji-btn:hover {
-  background: #f3f3f3;
+  background: var(--c-surface);
 }
 .cafe-c-emoji-none {
   grid-column: 1 / -1;
   margin: 0;
   padding: 24px 0;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   font-size: 13px;
   text-align: center;
 }
@@ -1175,11 +1175,11 @@
 }
 .cafe-c-mention.on,
 .cafe-c-mention:hover {
-  background: #f3f3f3;
+  background: var(--c-surface);
 }
 .cafe-c-mention-name {
   overflow: hidden;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1210,7 +1210,7 @@
   border: 0;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--ink-base);
   cursor: pointer;
 }
 .cafe-c-lb-btn:hover {
@@ -1251,7 +1251,7 @@
   font-size: 14px;
 }
 .cafe-c-chip-user {
-  color: #7c7c7c;
+  color: var(--c-ink-5);
 }
 .cafe-c-chip-x {
   display: grid;
@@ -1259,7 +1259,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   cursor: pointer;
 }
 .cafe-c-results {
@@ -1274,7 +1274,7 @@
 .cafe-c-results-note {
   margin: 0;
   padding: 12px;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   font-size: 13px;
   text-align: center;
 }
@@ -1291,7 +1291,7 @@
   cursor: pointer;
 }
 .cafe-c-pick:hover {
-  background: #f8f8f8;
+  background: var(--c-surface-1);
 }
 .cafe-c-pick-text {
   min-width: 0;
@@ -1299,12 +1299,12 @@
 }
 .cafe-c-pick-user {
   margin-left: 6px;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   font-size: 12px;
 }
 .cafe-c-hint {
   margin: 0 0 8px;
-  color: #7c7c7c;
+  color: var(--c-ink-5);
   font-size: 13px;
 }
 .cafe-c-poll-inputs {
@@ -1372,7 +1372,7 @@
   padding: 1px 6px;
   border-radius: 6px;
   background: var(--surface-gray-2);
-  color: #525252;
+  color: var(--c-ink-6);
   font-size: 11px;
 }
 

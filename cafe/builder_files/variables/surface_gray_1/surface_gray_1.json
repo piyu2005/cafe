@@ -1,0 +1,16 @@
+{
+ "creation": "2026-09-29 11:43:30.267939",
+ "dark_value": null,
+ "docstatus": 0,
+ "doctype": "Builder Token",
+ "group": "Surface",
+ "idx": 0,
+ "is_standard": 1,
+ "modified": "2026-09-29 11:43:30.267939",
+ "modified_by": "Administrator",
+ "name": "surface-gray-1",
+ "owner": "Administrator",
+ "token_name": "Surface Gray 1",
+ "type": "Color",
+ "value": "#f8f8f8"
+}
