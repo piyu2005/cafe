@@ -157,7 +157,7 @@ def mobile_header():
 			"alignItems": "center",
 			"justifyContent": "space-between",
 			"gap": "16px",
-			"height": "52px",
+			"height": "60px",  # 52px is frappe-ui's own PageHeaderMobile default; taller by request, for more breathing room
 			"flexShrink": "0",
 			"padding": "0 12px",
 			"borderBottom": "1px solid #ededed",

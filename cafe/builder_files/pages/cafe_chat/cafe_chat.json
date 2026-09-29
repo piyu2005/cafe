@@ -1819,7 +1819,7 @@
           "alignItems": "center",
           "justifyContent": "space-between",
           "gap": "16px",
-          "height": "52px",
+          "height": "60px",
           "flexShrink": "0",
           "padding": "0 12px",
           "borderBottom": "1px solid #ededed",
@@ -2632,7 +2632,7 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-09-29 21:22:32.276898",
+ "creation": "2026-09-29 21:23:23.137896",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2642,7 +2642,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-29 21:22:32.276898",
+ "modified": "2026-09-29 21:23:23.137896",
  "modified_by": "Administrator",
  "name": "cafe-chat",
  "owner": "Administrator",
@@ -2651,6 +2651,6 @@
  "page_title": "Messages",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-29 21:22:32.276898",
+ "published_at": "2026-09-29 21:23:23.137896",
  "route": "messages"
 }

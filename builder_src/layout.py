@@ -248,7 +248,11 @@ def build_mobile_header(title, title_key=None, back_href="/", back_key=None, bac
 			"alignItems": "center",
 			"justifyContent": "space-between",
 			"gap": "16px",
-			"height": "52px",
+			"height": "60px",  # 52px is frappe-ui's own PageHeaderMobile default; taller by request, for more breathing room
+			# Without this, the flex column shrinks the header (not the scroll
+			# area) to fit tall page content, since flex-shrink distributes by
+			# basis size and the header's is small next to the content's.
+			"flexShrink": "0",
 			"padding": "0 12px",
 			"borderBottom": f"1px solid {OUTLINE}",
 			"backgroundColor": "#ffffff",

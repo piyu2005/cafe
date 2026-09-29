@@ -1817,7 +1817,8 @@
           "display": "none",
           "alignItems": "center",
           "justifyContent": "space-between",
-          "height": "52px",
+          "height": "60px",
+          "flexShrink": "0",
           "padding": "0 16px",
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
@@ -1844,7 +1845,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:20px;height:20px;color:var(--ink-gray-8)\"><path d=\"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z\" />\n  <path d=\"M16 8 2 22\" />\n  <path d=\"M17.5 15H9\" /></svg><span style=\"font-size:17px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0;line-height:1.5\">Cafe</span>",
+           "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:20px;height:20px;color:var(--ink-gray-8)\"><path d=\"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z\" />\n  <path d=\"M16 8 2 22\" />\n  <path d=\"M17.5 15H9\" /></svg><span style=\"font-size:20px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0;line-height:1.4\">Cafe</span>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -3251,7 +3252,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-09-29 21:22:32.276898",
+ "creation": "2026-09-29 21:23:23.137896",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3261,7 +3262,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-29 21:22:32.276898",
+ "modified": "2026-09-29 21:23:23.137896",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -3270,6 +3271,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-29 21:22:32.276898",
+ "published_at": "2026-09-29 21:23:23.137896",
  "route": "cafe-home"
 }

@@ -1378,10 +1378,12 @@
 
 /* ---- Phone: the list and the conversation are separate screens ---- */
 @media (max-width: 767px) {
-  /* As in the old page, which is 52px shorter than the screen and sits under the bottom bar. */
+  /* The mobile header is 60px (was 52px, frappe-ui's default, made taller for
+     more breathing room) - this keeps the pane's height matching it exactly,
+     so it sits flush under the header with no gap or overlap. */
   .cafe-chat-main {
     flex-grow: 0 !important;
-    height: calc(100vh - 52px) !important;
+    height: calc(100vh - 60px) !important;
   }
   .cafe-c-head-left {
     gap: 4px;
