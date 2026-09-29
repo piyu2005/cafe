@@ -1,32 +1,14 @@
 """The app shell (rail, mobile bottom bar, logo menu) as a Builder component.
 
-Per mentor guidance, the desktop rail (logo, nav items, notification bell,
-expand toggle) is individual native blocks, editable piece by piece in
-Builder's canvas - see build_rail() below. The sidebar, bottom nav and logo
-menu stay ready-made HTML in one block for now (see build_shell_html()):
-Builder recompiles every block's template on every request, at about 1-2 ms
-per block, and the shell renders on every page in the app, so this is the
-single highest-leverage place in the whole site for that cost - as separate
-blocks the shell was 32 blocks before it was deliberately collapsed into one.
-Splitting the rail out again is a real, accepted server-time cost, taken on
-for editability; the rest of the shell stays collapsed until asked for too.
-To change the still-raw-HTML parts, edit this file and run generate.py, or
-edit the block's HTML in Builder's editor.
+Every piece - the desktop rail, the phone sidebar (sidebar.py), the phone
+bottom bar and the logo menu - is individual native blocks, editable piece by
+piece in Builder's canvas. This costs real server render time (Builder
+recompiles every block's template on every request, at about 1-2 ms per
+block, and the shell renders on every page in the app), a cost accepted on
+purpose for editability - see build_shell() for the numbers.
 """
 
-from blocks import (
-	DIALOG_SHADOW,
-	INK,
-	MUTED,
-	OUTLINE,
-	SOLID_BG,
-	SURFACE_1,
-	block,
-	html_el,
-	icon,
-	raw_block,
-	svg,
-)
+from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SOLID_BG, SURFACE_1, block, icon
 from shell_component_parts import BADGE_STYLES
 from sidebar import build_sidebar
 
@@ -119,10 +101,6 @@ MENU_STYLES = {
 }
 
 
-def badge(kind="messages", styles=BADGE_STYLES):
-	return html_el("span", ["cafe-badge"], {"data-badge": kind}, styles)
-
-
 def badge_block(kind="messages", styles=None):
 	return block("span", "Badge", ["cafe-badge"], attrs={"data-badge": kind}, styles=styles or BADGE_STYLES)
 
@@ -186,52 +164,55 @@ def expand_item_block():
 	)
 
 
-def tab_item(key, label, href, icon_name):
+def tab_item_block(key, label, href, icon_name):
 	"""Mobile bottom-bar tab. Its look is in styles.css, under the 768px media
 	query, because Builder has no breakpoint at that width."""
-	children = [svg(icon_name, 24, "inherit")]
+	children = [icon(icon_name, 24, "inherit")]
 	if key == "messages":
-		children.append(badge())
-	return html_el(
+		children.append(badge_block())
+	return block(
 		"a",
+		label,
 		["cafe-tab"],
-		{"href": href, "aria-label": label, "data-nav": key},
-		None,
-		children,
+		attrs={"href": href, "aria-label": label, "data-nav": key},
+		children=children,
 	)
 
 
-def menu_item(tag, attrs, icon_name, label):
-	return html_el(
+def menu_item_block(tag, attrs, icon_name, label):
+	return block(
 		tag,
+		label,
 		["cafe-menu-item"],
-		{**attrs, "role": "menuitem"},
-		MENU_ITEM_STYLES,
-		[svg(icon_name, 16, MUTED), html_el("span", text=label)],
+		attrs={**attrs, "role": "menuitem"},
+		children=[icon(icon_name, 16, MUTED), block("span", "Label", text=label)],
+		styles=MENU_ITEM_STYLES,
 	)
 
 
-def build_shell_html():
-	"""Everything but the rail (see build_rail()): the sidebar, the mobile
-	bottom bar and the logo menu, still ready-made HTML in one block."""
-	bottom_nav = html_el(
+def build_bottom_nav():
+	return block(
 		"nav",
+		"Bottom nav",
 		["cafe-bottom-nav"],
-		{"aria-label": "Main"},
-		{"display": "none"},
-		[tab_item(*item) for item in TAB_ITEMS],
+		attrs={"aria-label": "Main"},
+		children=[tab_item_block(*item) for item in TAB_ITEMS],
+		styles={"display": "none"},
 	)
-	menu = html_el(
+
+
+def build_logo_menu():
+	return block(
 		"div",
+		"Logo menu",
 		["cafe-menu"],
-		{"id": "cafe-menu", "role": "menu"},
-		MENU_STYLES,
-		[
-			menu_item("a", {"href": "/settings"}, "settings", "Settings"),
-			menu_item("button", {"id": "cafe-logout", "type": "button"}, "log-out", "Logout"),
+		attrs={"id": "cafe-menu", "role": "menu"},
+		children=[
+			menu_item_block("a", {"href": "/settings"}, "settings", "Settings"),
+			menu_item_block("button", {"id": "cafe-logout", "type": "button"}, "log-out", "Logout"),
 		],
+		styles=MENU_STYLES,
 	)
-	return build_sidebar() + bottom_nav + menu
 
 
 def logo_block():
@@ -264,11 +245,15 @@ def build_rail():
 
 
 def build_shell():
-	# display: contents (on both the outer wrapper and the raw-HTML one) keeps
-	# them out of the page layout: the rail, sidebar, bottom nav and menu all
-	# stay direct flex children of the app container, same as before the rail
-	# became its own block.
-	rest = raw_block("Sidebar, bottom nav, menu", build_shell_html(), styles={"display": "contents"})
-	return block(
-		"div", "Shell", ["cafe-shell"], children=[build_rail(), rest], styles={"display": "contents"}
-	)
+	# display: contents keeps the Shell wrapper itself out of the page layout:
+	# the rail, sidebar, bottom nav and menu all stay direct flex children of
+	# the app container underneath it.
+	#
+	# All 4 pieces are individual native blocks now (previously the rail was
+	# 20 and everything else was one raw-HTML block): 67 blocks total, every
+	# one mirrored onto all 16 pages via Builder's own component-instance
+	# system. At ~1.2-1.7ms of server render time per block, that's a real,
+	# deliberate cost, accepted for making the whole shell editable piece by
+	# piece in Builder's canvas, not just the rail.
+	children = [build_rail(), build_sidebar(), build_bottom_nav(), build_logo_menu()]
+	return block("div", "Shell", ["cafe-shell"], children=children, styles={"display": "contents"})
