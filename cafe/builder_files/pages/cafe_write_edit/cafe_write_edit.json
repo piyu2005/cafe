@@ -17,7 +17,7 @@
       "backgroundColor": "#ffffff",
       "fontSize": "14px",
       "fontWeight": "420",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
@@ -597,7 +597,7 @@
             "width": "32px",
             "height": "32px",
             "borderRadius": "8px",
-            "color": "#171717"
+            "color": "var(--ink-gray-8)"
            },
            "blockId": "vbq1fdeo1",
            "blockName": "Back",
@@ -637,7 +637,7 @@
             "pointerEvents": "none",
             "fontSize": "17px",
             "fontWeight": "600",
-            "color": "#0f0f0f",
+            "color": "var(--ink-gray-9)",
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
@@ -695,7 +695,7 @@
               "padding": "0",
               "border": "0",
               "borderRadius": "8px",
-              "color": "#171717",
+              "color": "var(--ink-gray-8)",
               "cursor": "pointer"
              },
              "blockId": "0aavjx48t",
@@ -815,8 +815,8 @@
               "padding": "0",
               "border": "0",
               "borderRadius": "8px",
-              "backgroundColor": "#f3f3f3",
-              "color": "#171717",
+              "backgroundColor": "var(--surface-gray-2)",
+              "color": "var(--ink-gray-8)",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
               "cursor": "pointer",
@@ -893,7 +893,7 @@
               "padding": "0 8px",
               "border": "0",
               "borderRadius": "8px",
-              "backgroundColor": "#171717",
+              "backgroundColor": "var(--surface-gray-10)",
               "color": "#ffffff",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
@@ -1010,7 +1010,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "izihf25c8",
@@ -1026,7 +1026,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "ln0d792v2",
            "blockName": "Breadcrumbs",
@@ -1097,7 +1097,7 @@
               "id": "cafe-w-crumb"
              },
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "nxzgmexh4",
              "blockName": "Current",
@@ -1173,8 +1173,8 @@
               "padding": "0",
               "border": "0",
               "borderRadius": "8px",
-              "backgroundColor": "#f3f3f3",
-              "color": "#171717",
+              "backgroundColor": "var(--surface-gray-2)",
+              "color": "var(--ink-gray-8)",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
               "cursor": "pointer",
@@ -1252,7 +1252,7 @@
               "border": "1px solid #e2e2e2",
               "borderRadius": "8px",
               "backgroundColor": "#ffffff",
-              "color": "#171717",
+              "color": "var(--ink-gray-8)",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
               "cursor": "pointer"
@@ -1325,7 +1325,7 @@
               "padding": "0 8px",
               "border": "0",
               "borderRadius": "8px",
-              "backgroundColor": "#171717",
+              "backgroundColor": "var(--surface-gray-10)",
               "color": "#ffffff",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
@@ -1463,7 +1463,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<div style=\"width:100%;max-width:600px;margin:0 auto;padding:40px 0\"><div style=\"display:flex;gap:14px;align-items:center;width:fit-content;padding:11px 16px;border:1px solid #e2e2e2;border-radius:9999px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><line x1=\"19\" x2=\"10\" y1=\"4\" y2=\"4\" />\n  <line x1=\"14\" x2=\"5\" y1=\"20\" y2=\"20\" />\n  <line x1=\"15\" x2=\"9\" y1=\"4\" y2=\"20\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M6 4v6a6 6 0 0 0 12 0V4\" />\n  <line x1=\"4\" x2=\"20\" y1=\"20\" y2=\"20\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M16 4H9a3 3 0 0 0-2.83 4\" />\n  <path d=\"M14 12a4 4 0 0 1 0 8H6\" />\n  <line x1=\"4\" x2=\"20\" y1=\"12\" y2=\"12\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M6 12h12\" />\n  <path d=\"M6 20V4\" />\n  <path d=\"M18 20V4\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z\" />\n  <path d=\"M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><line x1=\"8\" x2=\"21\" y1=\"6\" y2=\"6\" />\n  <line x1=\"8\" x2=\"21\" y1=\"12\" y2=\"12\" />\n  <line x1=\"8\" x2=\"21\" y1=\"18\" y2=\"18\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"6\" y2=\"6\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"12\" y2=\"12\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"18\" y2=\"18\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><line x1=\"10\" x2=\"21\" y1=\"6\" y2=\"6\" />\n  <line x1=\"10\" x2=\"21\" y1=\"12\" y2=\"12\" />\n  <line x1=\"10\" x2=\"21\" y1=\"18\" y2=\"18\" />\n  <path d=\"M4 6h1v4\" />\n  <path d=\"M4 10h2\" />\n  <path d=\"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><line x1=\"21\" x2=\"3\" y1=\"6\" y2=\"6\" />\n  <line x1=\"15\" x2=\"3\" y1=\"12\" y2=\"12\" />\n  <line x1=\"17\" x2=\"3\" y1=\"18\" y2=\"18\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\" />\n  <circle cx=\"9\" cy=\"9\" r=\"2\" />\n  <path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:#7c7c7c\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" />\n  <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" /></svg></div><div style=\"margin-top:16px;font-size:30px;font-weight:600;color:#999999;letter-spacing:0;line-height:1.25\">Give your story a title</div><div style=\"margin-top:16px;font-size:16px;font-weight:420;color:#999999;letter-spacing:0.02em;line-height:1.6\">Tell your story…</div></div>",
+           "innerHTML": "<div style=\"width:100%;max-width:600px;margin:0 auto;padding:40px 0\"><div style=\"display:flex;gap:14px;align-items:center;width:fit-content;padding:11px 16px;border:1px solid #e2e2e2;border-radius:9999px\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><line x1=\"19\" x2=\"10\" y1=\"4\" y2=\"4\" />\n  <line x1=\"14\" x2=\"5\" y1=\"20\" y2=\"20\" />\n  <line x1=\"15\" x2=\"9\" y1=\"4\" y2=\"20\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M6 4v6a6 6 0 0 0 12 0V4\" />\n  <line x1=\"4\" x2=\"20\" y1=\"20\" y2=\"20\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M16 4H9a3 3 0 0 0-2.83 4\" />\n  <path d=\"M14 12a4 4 0 0 1 0 8H6\" />\n  <line x1=\"4\" x2=\"20\" y1=\"12\" y2=\"12\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M6 12h12\" />\n  <path d=\"M6 20V4\" />\n  <path d=\"M18 20V4\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z\" />\n  <path d=\"M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><line x1=\"8\" x2=\"21\" y1=\"6\" y2=\"6\" />\n  <line x1=\"8\" x2=\"21\" y1=\"12\" y2=\"12\" />\n  <line x1=\"8\" x2=\"21\" y1=\"18\" y2=\"18\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"6\" y2=\"6\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"12\" y2=\"12\" />\n  <line x1=\"3\" x2=\"3.01\" y1=\"18\" y2=\"18\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><line x1=\"10\" x2=\"21\" y1=\"6\" y2=\"6\" />\n  <line x1=\"10\" x2=\"21\" y1=\"12\" y2=\"12\" />\n  <line x1=\"10\" x2=\"21\" y1=\"18\" y2=\"18\" />\n  <path d=\"M4 6h1v4\" />\n  <path d=\"M4 10h2\" />\n  <path d=\"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><line x1=\"21\" x2=\"3\" y1=\"6\" y2=\"6\" />\n  <line x1=\"15\" x2=\"3\" y1=\"12\" y2=\"12\" />\n  <line x1=\"17\" x2=\"3\" y1=\"18\" y2=\"18\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\" />\n  <circle cx=\"9\" cy=\"9\" r=\"2\" />\n  <path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\" /></svg><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px;color:var(--ink-gray-5)\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" />\n  <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" /></svg></div><div style=\"margin-top:16px;font-size:30px;font-weight:600;color:var(--ink-gray-4);letter-spacing:0;line-height:1.25\">Give your story a title</div><div style=\"margin-top:16px;font-size:16px;font-weight:420;color:var(--ink-gray-4);letter-spacing:0.02em;line-height:1.6\">Tell your story…</div></div>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -1607,7 +1607,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1617,7 +1617,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
@@ -1626,6 +1626,6 @@
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "write/:post_id"
 }

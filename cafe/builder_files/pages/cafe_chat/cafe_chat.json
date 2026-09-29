@@ -17,7 +17,7 @@
       "backgroundColor": "#ffffff",
       "fontSize": "14px",
       "fontWeight": "420",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
@@ -595,7 +595,7 @@
             "pointerEvents": "none",
             "fontSize": "17px",
             "fontWeight": "600",
-            "color": "#0f0f0f",
+            "color": "var(--ink-gray-9)",
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
@@ -653,7 +653,7 @@
               "padding": "0",
               "border": "0",
               "borderRadius": "8px",
-              "color": "#171717",
+              "color": "var(--ink-gray-8)",
               "cursor": "pointer"
              },
              "blockId": "7izqhb3lg",
@@ -774,7 +774,7 @@
               "border": "1px solid #e2e2e2",
               "borderRadius": "8px",
               "backgroundColor": "#ffffff",
-              "color": "#171717",
+              "color": "var(--ink-gray-8)",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
               "cursor": "pointer",
@@ -895,7 +895,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "wfc92l6ey",
@@ -911,7 +911,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "xal6reqyg",
            "blockName": "Breadcrumbs",
@@ -980,7 +980,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "0asfyf9rm",
              "blockName": null,
@@ -1054,7 +1054,7 @@
               "border": "1px solid #e2e2e2",
               "borderRadius": "8px",
               "backgroundColor": "#ffffff",
-              "color": "#171717",
+              "color": "var(--ink-gray-8)",
               "fontSize": "14px",
               "whiteSpace": "nowrap",
               "cursor": "pointer"
@@ -1223,7 +1223,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<div style=\"display:flex;flex:1;min-height:0;width:100%;height:100%\"><div style=\"width:320px;flex-shrink:0;border-right:1px solid #ededed\"><div style=\"padding:12px;border-bottom:1px solid #ededed\"><div style=\"height:28px;border-radius:8px;background-color:#f3f3f3\"></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:#f3f3f3\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:#f3f3f3\"></div></div></div></div><div style=\"flex:1;display:grid;place-items:center;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.15\">Select a conversation to start messaging.</div></div>",
+           "innerHTML": "<div style=\"display:flex;flex:1;min-height:0;width:100%;height:100%\"><div style=\"width:320px;flex-shrink:0;border-right:1px solid var(--outline-gray-1)\"><div style=\"padding:12px;border-bottom:1px solid var(--outline-gray-1)\"><div style=\"height:28px;border-radius:8px;background-color:var(--surface-gray-2)\"></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:var(--surface-gray-2)\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:var(--surface-gray-2)\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:var(--surface-gray-2)\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:var(--surface-gray-2)\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:var(--surface-gray-2)\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:var(--surface-gray-2)\"></div></div></div><div style=\"display:flex;gap:12px;align-items:center;padding:10px 12px\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"flex:1\"><div style=\"width:50%;height:10px;border-radius:5px;background-color:var(--surface-gray-2)\"></div><div style=\"width:75%;height:8px;margin-top:8px;border-radius:4px;background-color:var(--surface-gray-2)\"></div></div></div></div><div style=\"flex:1;display:grid;place-items:center;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.15\">Select a conversation to start messaging.</div></div>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -1388,7 +1388,7 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1398,7 +1398,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-chat",
  "owner": "Administrator",
@@ -1407,6 +1407,6 @@
  "page_title": "Messages",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "messages"
 }

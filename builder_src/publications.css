@@ -1,7 +1,7 @@
 /* The publication pages (pub_*.js). Sizes were measured from the old pages. */
 
 .cafe-p-root {
-  color: #0f0f0f;
+  color: var(--ink-gray-9);
   font-size: 14px;
   font-weight: 420;
   letter-spacing: 0.02em;
@@ -26,7 +26,7 @@
   height: 16px;
 }
 .cafe-p-faint {
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
 }
 .cafe-p-skeleton {
   display: flex;
@@ -36,14 +36,14 @@
 .cafe-p-skeleton .cafe-skeleton {
   height: 16px;
   border-radius: 6px;
-  background: linear-gradient(90deg, #f3f3f3, #fafafa, #f3f3f3);
+  background: linear-gradient(90deg, var(--surface-gray-2), #fafafa, var(--surface-gray-2));
   background-size: 200% 100%;
   animation: cafe-pulse 1.2s ease-in-out infinite;
 }
 .cafe-p-empty {
   margin: 0;
   padding: 40px 0;
-  color: #525252;
+  color: var(--ink-gray-6);
   text-align: center;
 }
 
@@ -55,8 +55,8 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 9999px;
-  background: #f3f3f3;
-  color: #7c7c7c;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-5);
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -88,8 +88,8 @@
   white-space: nowrap;
 }
 .cafe-p-badge.gray {
-  background: #f3f3f3;
-  color: #525252;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-6);
 }
 .cafe-p-badge.blue {
   background: #e6f1fe;
@@ -97,7 +97,7 @@
 }
 .cafe-p-badge.solid-green {
   background: #278f5e;
-  color: #fff;
+  color: var(--ink-base);
 }
 .cafe-p-badge.clickable {
   cursor: pointer;
@@ -117,8 +117,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  background: #171717;
-  color: #fff;
+  background: var(--surface-gray-10);
+  color: var(--ink-base);
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
@@ -135,7 +135,7 @@
 .cafe-p-title {
   min-width: 0;
   margin: 0;
-  color: #0f0f0f;
+  color: var(--ink-gray-9);
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -150,19 +150,19 @@
   padding: 0;
   border: 0;
   border-radius: 8px;
-  background: #f3f3f3;
-  color: #171717;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-8);
   cursor: pointer;
 }
 .cafe-p-share:hover {
-  background: #ededed;
+  background: var(--surface-gray-3);
 }
 .cafe-p-meta {
   display: flex;
   align-items: center;
   gap: 6px;
   margin-top: 4px;
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   font-size: 13px;
 }
 .cafe-p-site {
@@ -172,7 +172,7 @@
 }
 .cafe-p-desc {
   margin: 8px 0 0;
-  color: #525252;
+  color: var(--ink-gray-6);
   font-size: 13px;
   letter-spacing: 0.015em;
   line-height: 1.5;
@@ -196,14 +196,14 @@
   margin-left: -8px;
 }
 .cafe-p-counts {
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   font-size: 13px;
 }
 .cafe-p-posts {
   margin-top: 24px;
 }
 .cafe-p-posts > * + * {
-  border-top: 1px solid #ededed;
+  border-top: 1px solid var(--outline-gray-1);
 }
 .cafe-p-post {
   display: flex;
@@ -217,7 +217,7 @@
   flex: 1;
 }
 .cafe-p-post-title {
-  color: #0f0f0f;
+  color: var(--ink-gray-9);
   font-weight: 500;
   letter-spacing: 0.015em;
   line-height: 16.1px;
@@ -226,7 +226,7 @@
   display: -webkit-box;
   margin: 4px 0 0;
   overflow: hidden;
-  color: #525252;
+  color: var(--ink-gray-6);
   font-size: 13px;
   letter-spacing: 0.015em;
   line-height: 1.5;
@@ -235,7 +235,7 @@
 }
 .cafe-p-post-meta {
   margin-top: 8px;
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   font-size: 12px;
 }
 .cafe-p-post-cover {
@@ -267,15 +267,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  color: #525252;
+  color: var(--ink-gray-6);
 }
 .cafe-p-back:hover {
-  background: #f3f3f3;
+  background: var(--surface-gray-2);
 }
 .cafe-p-h1 {
   min-width: 0;
   margin: 0;
-  color: #0f0f0f;
+  color: var(--ink-gray-9);
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -294,16 +294,16 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 8px;
-  color: #525252;
+  color: var(--ink-gray-6);
   font-size: 13px;
   font-weight: 500;
 }
 .cafe-p-card {
-  border: 1px solid #ededed;
+  border: 1px solid var(--outline-gray-1);
   border-radius: 6px;
 }
 .cafe-p-card > * + * {
-  border-top: 1px solid #ededed;
+  border-top: 1px solid var(--outline-gray-1);
 }
 .cafe-p-row {
   display: flex;
@@ -320,7 +320,7 @@
 }
 .cafe-p-row-name {
   overflow: hidden;
-  color: #0f0f0f;
+  color: var(--ink-gray-9);
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -345,7 +345,7 @@
   left: 8px;
   width: 16px;
   height: 16px;
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   pointer-events: none;
 }
 .cafe-p-search input {
@@ -353,25 +353,25 @@
   width: 100%;
   height: 28px;
   padding: 6px 8px 6px 32px;
-  border: 1px solid #f3f3f3;
+  border: 1px solid var(--surface-gray-2);
   border-radius: 8px;
   outline: none;
-  background: #f3f3f3;
-  color: #171717;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-8);
   font: inherit;
   font-size: 14px;
 }
 .cafe-p-search input:hover {
-  background: #ededed;
-  border-color: #ededed;
+  background: var(--surface-gray-3);
+  border-color: var(--outline-gray-1);
 }
 .cafe-p-search input:focus {
-  border-color: #999;
-  background: #fff;
+  border-color: var(--outline-gray-4);
+  background: var(--surface-base);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.14);
 }
 .cafe-p-search input::placeholder {
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   opacity: 1;
 }
 .cafe-p-results {
@@ -394,7 +394,7 @@
   cursor: pointer;
 }
 .cafe-p-person:hover {
-  background: #f8f8f8;
+  background: var(--surface-gray-1);
 }
 .cafe-p-person-text {
   min-width: 0;
@@ -404,17 +404,17 @@
   line-height: 24px;
 }
 .cafe-p-person-name {
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-p-person-user {
   margin-left: 6px;
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   font-size: 13px;
   letter-spacing: 0.02em;
 }
 .cafe-p-selected {
   padding: 12px;
-  border: 1px solid #ededed;
+  border: 1px solid var(--outline-gray-1);
   border-radius: 6px;
 }
 .cafe-p-selected-top {
@@ -423,7 +423,7 @@
   gap: 12px;
 }
 .cafe-p-selected-name {
-  color: #171717;
+  color: var(--ink-gray-8);
 }
 .cafe-p-selected .cafe-p-person-user {
   display: block;
@@ -439,12 +439,12 @@
   border: 0;
   border-radius: 4px;
   background: none;
-  color: #7c7c7c;
+  color: var(--ink-gray-5);
   cursor: pointer;
 }
 .cafe-p-x:hover {
-  background: #f3f3f3;
-  color: #383838;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-7);
 }
 .cafe-p-selected .cafe-field {
   margin-top: 12px;

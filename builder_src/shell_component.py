@@ -14,7 +14,19 @@ To change the still-raw-HTML parts, edit this file and run generate.py, or
 edit the block's HTML in Builder's editor.
 """
 
-from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SURFACE_1, block, html_el, icon, raw_block, svg
+from blocks import (
+	DIALOG_SHADOW,
+	INK,
+	MUTED,
+	OUTLINE,
+	SOLID_BG,
+	SURFACE_1,
+	block,
+	html_el,
+	icon,
+	raw_block,
+	svg,
+)
 from shell_component_parts import BADGE_STYLES
 from sidebar import build_sidebar
 
@@ -71,7 +83,7 @@ LOGO_STYLES = {
 	"padding": "0",
 	"border": "0",
 	"borderRadius": "8px",
-	"backgroundColor": INK,
+	"backgroundColor": SOLID_BG,
 	"color": "#ffffff",
 	"cursor": "pointer",
 }

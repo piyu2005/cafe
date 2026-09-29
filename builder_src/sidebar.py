@@ -4,10 +4,10 @@ The rail's bottom button opens it and its own bottom item closes it. Which is
 showing is kept in the browser (shell.js), and styles.css swaps the two by an
 attribute on <html>, so a page loads with the right one and nothing jumps."""
 
-from blocks import INK, MUTED, OUTLINE, SURFACE_1, html_el, svg
+from blocks import INK, MUTED, OUTLINE, SOLID_BG, SURFACE_1, html_el, svg
 from shell_component_parts import BADGE_STYLES
 
-GRAY_6 = "#525252"
+GRAY_6 = "var(--ink-gray-6)"
 LABEL_STYLES = {
 	"fontSize": "13px",
 	"fontWeight": "420",
@@ -92,7 +92,7 @@ def build_sidebar():
 					"width": "32px",
 					"height": "32px",
 					"borderRadius": "8px",
-					"backgroundColor": INK,
+					"backgroundColor": SOLID_BG,
 					"color": "#ffffff",
 				},
 				[svg("feather", 16)],

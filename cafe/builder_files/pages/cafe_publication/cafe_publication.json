@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -579,7 +579,7 @@
           "gap": "16px",
           "height": "52px",
           "padding": "0 12px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "ma5liiu5k",
@@ -601,7 +601,7 @@
             "pointerEvents": "none",
             "fontSize": "17px",
             "fontWeight": "600",
-            "color": "#0f0f0f",
+            "color": "var(--ink-gray-9)",
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
@@ -653,7 +653,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" aria-label=\"New Post\" style=\"display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background-color:#171717;color:#ffffff\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></a>",
+           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button><a class=\"cafe-btn cafe-btn-solid\" href=\"/write\" aria-label=\"New Post\" style=\"display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background-color:var(--surface-gray-10);color:#ffffff\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></a>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -699,7 +699,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "vmhcp3yhn",
@@ -715,7 +715,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "8zefhuheq",
            "blockName": "Breadcrumbs",
@@ -847,7 +847,7 @@
               "id": "cafe-p-crumb"
              },
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "5gv7oh4ya",
              "blockName": "Current",
@@ -909,7 +909,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -1067,7 +1067,7 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div style=\"display:flex;gap:16px;align-items:center\"><div style=\"width:64px;height:64px;border-radius:16px;background-color:#171717;flex-shrink:0\"></div><div style=\"flex:1;display:flex;flex-direction:column;gap:10px\"><div style=\"width:40%;height:20px;border-radius:6px;background-color:#f3f3f3\"></div><div style=\"width:25%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div><div style=\"width:70%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div></div><div style=\"margin-top:24px\"><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:#f3f3f3\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:#f3f3f3\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:#f3f3f3\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div></div>",
+               "innerHTML": "<div style=\"display:flex;gap:16px;align-items:center\"><div style=\"width:64px;height:64px;border-radius:16px;background-color:var(--surface-gray-10);flex-shrink:0\"></div><div style=\"flex:1;display:flex;flex-direction:column;gap:10px\"><div style=\"width:40%;height:20px;border-radius:6px;background-color:var(--surface-gray-2)\"></div><div style=\"width:25%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div><div style=\"width:70%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div></div><div style=\"margin-top:24px\"><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:var(--surface-gray-2)\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:var(--surface-gray-2)\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div><div style=\"padding:20px 0;border-top:1px solid #ededed\"><div style=\"width:60%;height:14px;border-radius:6px;background-color:var(--surface-gray-2)\"></div><div style=\"height:8px\"></div><div style=\"width:90%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div></div>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -1251,7 +1251,7 @@
    "builder_script": "Cafe Pub Detail"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1261,7 +1261,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-publication",
  "owner": "Administrator",
@@ -1270,6 +1270,6 @@
  "page_title": "Publication",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "publications/:handle"
 }

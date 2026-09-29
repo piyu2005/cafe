@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -579,7 +579,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "o89mzynqf",
@@ -595,7 +595,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "ybjn3i6hh",
            "blockName": "Breadcrumbs",
@@ -664,7 +664,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "eik73ajt5",
              "blockName": null,
@@ -699,7 +699,7 @@
               "href": "/"
              },
              "baseStyles": {
-              "color": "#7c7c7c"
+              "color": "var(--ink-gray-5)"
              },
              "blockId": "9k5x8ra5i",
              "blockName": "Explore",
@@ -766,7 +766,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "oiqcvkg98",
              "blockName": null,
@@ -838,7 +838,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -998,9 +998,9 @@
                   "width": "100px",
                   "height": "100px",
                   "overflow": "hidden",
-                  "border": "1px solid #ededed",
+                  "border": "1px solid var(--outline-gray-1)",
                   "borderRadius": "9999px",
-                  "backgroundColor": "#f3f3f3"
+                  "backgroundColor": "var(--surface-gray-2)"
                  },
                  "blockId": "uqgdqeew7",
                  "blockName": "Avatar",
@@ -1054,7 +1054,7 @@
                    "baseStyles": {
                     "fontSize": "40px",
                     "fontWeight": "500",
-                    "color": "#7c7c7c",
+                    "color": "var(--ink-gray-5)",
                     "letterSpacing": "0",
                     "lineHeight": "1.5",
                     "gridArea": "1 / 1",
@@ -1147,7 +1147,7 @@
                       "whiteSpace": "nowrap",
                       "fontSize": "32px",
                       "fontWeight": "600",
-                      "color": "#171717",
+                      "color": "var(--ink-gray-8)",
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.6"
                      },
@@ -1211,7 +1211,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Edit\" data-action=\"edit-header\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0 8px;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;cursor:pointer\"><span >Edit</span></button>",
+                       "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Edit\" data-action=\"edit-header\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0 8px;border:1px solid var(--outline-gray-2);border-radius:8px;background-color:#ffffff;color:var(--ink-gray-8);font-size:14px;cursor:pointer\"><span >Edit</span></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -1242,7 +1242,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Copy profile link\" data-action=\"share\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0;border:1px solid #e2e2e2;border-radius:8px;background-color:#ffffff;color:#171717;font-size:14px;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"18\" cy=\"5\" r=\"3\" />\n  <circle cx=\"6\" cy=\"12\" r=\"3\" />\n  <circle cx=\"18\" cy=\"19\" r=\"3\" />\n  <line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\" />\n  <line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\" /></svg></button>",
+                       "innerHTML": "<button class=\"cafe-outline-btn\" type=\"button\" aria-label=\"Copy profile link\" data-action=\"share\" style=\"display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;min-width:28px;padding:0;border:1px solid var(--outline-gray-2);border-radius:8px;background-color:#ffffff;color:var(--ink-gray-8);font-size:14px;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><circle cx=\"18\" cy=\"5\" r=\"3\" />\n  <circle cx=\"6\" cy=\"12\" r=\"3\" />\n  <circle cx=\"18\" cy=\"19\" r=\"3\" />\n  <line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\" />\n  <line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\" /></svg></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -1309,7 +1309,7 @@
                     "gap": "6px",
                     "fontSize": "13px",
                     "fontWeight": "420",
-                    "color": "#7c7c7c",
+                    "color": "var(--ink-gray-5)",
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
@@ -1510,7 +1510,7 @@
                       "margin": "0",
                       "fontSize": "16px",
                       "fontWeight": "420",
-                      "color": "#525252",
+                      "color": "var(--ink-gray-6)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.5"
                      },
@@ -1553,7 +1553,7 @@
                       "margin": "0",
                       "fontSize": "16px",
                       "fontWeight": "420",
-                      "color": "#999999",
+                      "color": "var(--ink-gray-4)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.5"
                      },
@@ -1665,7 +1665,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {
-                  "border": "1px solid #ededed",
+                  "border": "1px solid var(--outline-gray-1)",
                   "borderRadius": "10px",
                   "padding": "20px"
                  },
@@ -1691,7 +1691,7 @@
                       "gap": "6px",
                       "fontSize": "14px",
                       "fontWeight": "500",
-                      "color": "#171717",
+                      "color": "var(--ink-gray-8)",
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
@@ -1735,7 +1735,7 @@
                      "element": "div",
                      "elementBeforeConversion": null,
                      "extendedFromComponent": null,
-                     "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Edit introduction\" data-tooltip=\"Edit introduction\" data-action=\"edit-bio\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg></button>",
+                     "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Edit introduction\" data-tooltip=\"Edit introduction\" data-action=\"edit-bio\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\" />\n  <path d=\"m15 5 4 4\" /></svg></button>",
                      "isChildOfComponent": null,
                      "isRepeaterBlock": false,
                      "mobileStyles": {},
@@ -1778,7 +1778,7 @@
                     "margin": "0",
                     "fontSize": "14px",
                     "fontWeight": "420",
-                    "color": "#525252",
+                    "color": "var(--ink-gray-6)",
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.5"
                    },
@@ -1829,7 +1829,7 @@
                     "border": "0",
                     "borderRadius": "8px",
                     "backgroundColor": "transparent",
-                    "color": "#7c7c7c",
+                    "color": "var(--ink-gray-5)",
                     "fontSize": "14px",
                     "cursor": "pointer",
                     "marginTop": "4px",
@@ -1872,7 +1872,7 @@
                     "margin": "0",
                     "fontSize": "14px",
                     "fontWeight": "420",
-                    "color": "#7c7c7c",
+                    "color": "var(--ink-gray-5)",
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.5"
                    },
@@ -1934,7 +1934,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "border": "1px solid #ededed",
+                    "border": "1px solid var(--outline-gray-1)",
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
@@ -1960,7 +1960,7 @@
                         "gap": "6px",
                         "fontSize": "14px",
                         "fontWeight": "500",
-                        "color": "#171717",
+                        "color": "var(--ink-gray-8)",
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
@@ -2054,7 +2054,7 @@
                              "baseStyles": {
                               "fontSize": "16px",
                               "fontWeight": "600",
-                              "color": "#171717",
+                              "color": "var(--ink-gray-8)",
                               "letterSpacing": "0.015em",
                               "lineHeight": "1.15"
                              },
@@ -2094,7 +2094,7 @@
                               "margin": "4px 0 0",
                               "fontSize": "14px",
                               "fontWeight": "420",
-                              "color": "#525252",
+                              "color": "var(--ink-gray-6)",
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.5"
                              },
@@ -2157,7 +2157,7 @@
                             "marginTop": "8px",
                             "fontSize": "12px",
                             "fontWeight": "420",
-                            "color": "#7c7c7c",
+                            "color": "var(--ink-gray-5)",
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.15"
                            },
@@ -2321,7 +2321,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -2360,7 +2360,7 @@
                        },
                        "baseStyles": {
                         "fontWeight": "500",
-                        "color": "#171717"
+                        "color": "var(--ink-gray-8)"
                        },
                        "blockId": "9wbswxmtz",
                        "blockName": "Write link",
@@ -2415,7 +2415,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -2490,7 +2490,7 @@
                       "border": "0",
                       "borderRadius": "8px",
                       "backgroundColor": "transparent",
-                      "color": "#171717",
+                      "color": "var(--ink-gray-8)",
                       "fontSize": "14px",
                       "cursor": "pointer"
                      },
@@ -2541,7 +2541,7 @@
                       "border": "0",
                       "borderRadius": "8px",
                       "backgroundColor": "transparent",
-                      "color": "#171717",
+                      "color": "var(--ink-gray-8)",
                       "fontSize": "14px",
                       "cursor": "pointer"
                      },
@@ -2634,7 +2634,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "border": "1px solid #ededed",
+                    "border": "1px solid var(--outline-gray-1)",
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
@@ -2660,7 +2660,7 @@
                         "gap": "6px",
                         "fontSize": "14px",
                         "fontWeight": "500",
-                        "color": "#171717",
+                        "color": "var(--ink-gray-8)",
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
@@ -2704,7 +2704,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add work experience\" data-tooltip=\"Add work experience\" data-action=\"add-work\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add work experience\" data-tooltip=\"Add work experience\" data-action=\"add-work\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -2773,7 +2773,7 @@
                            "baseStyles": {
                             "fontSize": "14px",
                             "fontWeight": "600",
-                            "color": "#171717",
+                            "color": "var(--ink-gray-8)",
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
@@ -2813,7 +2813,7 @@
                             "marginTop": "4px",
                             "fontSize": "14px",
                             "fontWeight": "420",
-                            "color": "#171717",
+                            "color": "var(--ink-gray-8)",
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.5"
                            },
@@ -2859,7 +2859,7 @@
                             {
                              "attributes": {},
                              "baseStyles": {
-                              "color": "#999999"
+                              "color": "var(--ink-gray-4)"
                              },
                              "blockId": "l8rdgiqni",
                              "blockName": "Dot",
@@ -2892,7 +2892,7 @@
                              "baseStyles": {
                               "fontSize": "13px",
                               "fontWeight": "420",
-                              "color": "#7c7c7c",
+                              "color": "var(--ink-gray-5)",
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.15"
                              },
@@ -2956,7 +2956,7 @@
                             "margin": "4px 0 0",
                             "fontSize": "13px",
                             "fontWeight": "420",
-                            "color": "#525252",
+                            "color": "var(--ink-gray-6)",
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
@@ -3030,7 +3030,7 @@
                           "border": "0",
                           "borderRadius": "6px",
                           "backgroundColor": "transparent",
-                          "color": "#171717",
+                          "color": "var(--ink-gray-8)",
                           "cursor": "pointer"
                          },
                          "blockId": "wa3gqz8q0",
@@ -3159,7 +3159,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -3195,7 +3195,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -3267,7 +3267,7 @@
                    "element": "div",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<button class=\"cafe-text-btn\" type=\"button\" data-expand=\"cafe-work-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:#171717;font-size:14px;cursor:pointer\">Show all History</button>",
+                   "innerHTML": "<button class=\"cafe-text-btn\" type=\"button\" data-expand=\"cafe-work-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:var(--ink-gray-8);font-size:14px;cursor:pointer\">Show all History</button>",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -3311,7 +3311,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "border": "1px solid #ededed",
+                    "border": "1px solid var(--outline-gray-1)",
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
@@ -3337,7 +3337,7 @@
                         "gap": "6px",
                         "fontSize": "14px",
                         "fontWeight": "500",
-                        "color": "#171717",
+                        "color": "var(--ink-gray-8)",
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
@@ -3381,7 +3381,7 @@
                        "element": "div",
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
-                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add education\" data-tooltip=\"Add education\" data-action=\"add-education\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
+                       "innerHTML": "<button class=\"cafe-icon-btn\" type=\"button\" aria-label=\"Add education\" data-tooltip=\"Add education\" data-action=\"add-education\" style=\"display:grid;place-items:center;flex-shrink:0;width:24px;height:24px;padding:0;border:0;border-radius:6px;background-color:transparent;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:14px;height:14px\"><path d=\"M5 12h14\" />\n  <path d=\"M12 5v14\" /></svg></button>",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -3450,7 +3450,7 @@
                            "baseStyles": {
                             "fontSize": "14px",
                             "fontWeight": "600",
-                            "color": "#171717",
+                            "color": "var(--ink-gray-8)",
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
@@ -3490,7 +3490,7 @@
                             "marginTop": "4px",
                             "fontSize": "14px",
                             "fontWeight": "420",
-                            "color": "#383838",
+                            "color": "var(--ink-gray-7)",
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.5"
                            },
@@ -3536,7 +3536,7 @@
                             {
                              "attributes": {},
                              "baseStyles": {
-                              "color": "#999999"
+                              "color": "var(--ink-gray-4)"
                              },
                              "blockId": "hpf3ubk6m",
                              "blockName": "Dot",
@@ -3569,7 +3569,7 @@
                              "baseStyles": {
                               "fontSize": "13px",
                               "fontWeight": "420",
-                              "color": "#7c7c7c",
+                              "color": "var(--ink-gray-5)",
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.15"
                              },
@@ -3664,7 +3664,7 @@
                           "border": "0",
                           "borderRadius": "6px",
                           "backgroundColor": "transparent",
-                          "color": "#171717",
+                          "color": "var(--ink-gray-8)",
                           "cursor": "pointer"
                          },
                          "blockId": "b2tnmjr2s",
@@ -3793,7 +3793,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -3829,7 +3829,7 @@
                       "margin": "0",
                       "fontSize": "14px",
                       "fontWeight": "420",
-                      "color": "#7c7c7c",
+                      "color": "var(--ink-gray-5)",
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
@@ -3901,7 +3901,7 @@
                    "element": "div",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<button class=\"cafe-text-btn\" type=\"button\" data-expand=\"cafe-education-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:#171717;font-size:14px;cursor:pointer\">Show all Education</button>",
+                   "innerHTML": "<button class=\"cafe-text-btn\" type=\"button\" data-expand=\"cafe-education-list\" style=\"display:inline-flex;align-items:center;height:28px;padding:0 8px;border:0;border-radius:8px;background-color:transparent;color:var(--ink-gray-8);font-size:14px;cursor:pointer\">Show all Education</button>",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -4012,7 +4012,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:32px;height:32px;color:#c8c8c8\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <line x1=\"17\" x2=\"22\" y1=\"8\" y2=\"13\" />\n  <line x1=\"22\" x2=\"17\" y1=\"8\" y2=\"13\" /></svg><p style=\"margin:0;font-size:14px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.5\">This profile does not exist.</p>",
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:32px;height:32px;color:#c8c8c8\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <line x1=\"17\" x2=\"22\" y1=\"8\" y2=\"13\" />\n  <line x1=\"22\" x2=\"17\" y1=\"8\" y2=\"13\" /></svg><p style=\"margin:0;font-size:14px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.5\">This profile does not exist.</p>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -4160,7 +4160,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -4170,7 +4170,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -4179,6 +4179,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "profile/:username"
 }

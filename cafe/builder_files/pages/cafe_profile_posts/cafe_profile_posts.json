@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -579,7 +579,7 @@
           "gap": "16px",
           "height": "52px",
           "padding": "0 12px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "hh7j075uj",
@@ -597,7 +597,7 @@
             "width": "32px",
             "height": "32px",
             "borderRadius": "8px",
-            "color": "#171717"
+            "color": "var(--ink-gray-8)"
            },
            "blockId": "ykzmo6o19",
            "blockName": "Back",
@@ -643,7 +643,7 @@
             "textAlign": "center",
             "fontSize": "17px",
             "fontWeight": "600",
-            "color": "#0f0f0f",
+            "color": "var(--ink-gray-9)",
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
@@ -692,7 +692,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button>",
+           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -738,7 +738,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "0aenfhyhg",
@@ -754,7 +754,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "pllnx3sn5",
            "blockName": "Breadcrumbs",
@@ -778,7 +778,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<a href=\"/\">Cafe</a><span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><a href=\"/profile\">Profile</a><span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><span class=\"current\" style=\"color:#0f0f0f\">Posts</span>",
+             "innerHTML": "<a href=\"/\">Cafe</a><span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><a href=\"/profile\">Profile</a><span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><span class=\"current\" style=\"color:var(--ink-gray-9)\">Posts</span>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -888,7 +888,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><span class=\"current\" style=\"color:#0f0f0f\">Posts</span>",
+             "innerHTML": "<span class=\"sep\" style=\"color:#999999;font-size:14px;font-weight:420;letter-spacing:0.02em\">/</span><span class=\"current\" style=\"color:var(--ink-gray-9)\">Posts</span>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -937,7 +937,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -1101,8 +1101,8 @@
                   "width": "28px",
                   "height": "28px",
                   "borderRadius": "8px",
-                  "backgroundColor": "#f3f3f3",
-                  "color": "#171717"
+                  "backgroundColor": "var(--surface-gray-2)",
+                  "color": "var(--ink-gray-8)"
                  },
                  "blockId": "vayfulfa7",
                  "blockName": "Back to profile",
@@ -1142,7 +1142,7 @@
                   "margin": "0",
                   "fontSize": "20px",
                   "fontWeight": "500",
-                  "color": "#171717",
+                  "color": "var(--ink-gray-8)",
                   "letterSpacing": "0.01em",
                   "lineHeight": "1.15"
                  },
@@ -1216,7 +1216,7 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div class=\"cafe-tablist\" role=\"tablist\" style=\"display:flex;gap:32px;border-bottom:1px solid #ededed\"><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"published\" aria-selected=\"true\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:#7c7c7c;font-size:14px;cursor:pointer\">Published</button><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"drafts\" aria-selected=\"false\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:#7c7c7c;font-size:14px;cursor:pointer\">Drafts</button><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"archived\" aria-selected=\"false\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:#7c7c7c;font-size:14px;cursor:pointer\">Archived</button></div>",
+               "innerHTML": "<div class=\"cafe-tablist\" role=\"tablist\" style=\"display:flex;gap:32px;border-bottom:1px solid var(--outline-gray-1)\"><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"published\" aria-selected=\"true\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:var(--ink-gray-5);font-size:14px;cursor:pointer\">Published</button><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"drafts\" aria-selected=\"false\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:var(--ink-gray-5);font-size:14px;cursor:pointer\">Drafts</button><button class=\"cafe-tab-btn\" type=\"button\" role=\"tab\" data-tab=\"archived\" aria-selected=\"false\" style=\"position:relative;display:flex;align-items:center;padding:8px 0;border:0;background-color:transparent;color:var(--ink-gray-5);font-size:14px;cursor:pointer\">Archived</button></div>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -1285,7 +1285,7 @@
                          "baseStyles": {
                           "fontSize": "16px",
                           "fontWeight": "600",
-                          "color": "#171717",
+                          "color": "var(--ink-gray-8)",
                           "letterSpacing": "0.015em",
                           "lineHeight": "1.15"
                          },
@@ -1325,7 +1325,7 @@
                           "margin": "4px 0 0",
                           "fontSize": "14px",
                           "fontWeight": "420",
-                          "color": "#525252",
+                          "color": "var(--ink-gray-6)",
                           "letterSpacing": "0.02em",
                           "lineHeight": "1.5"
                          },
@@ -1388,7 +1388,7 @@
                         "marginTop": "8px",
                         "fontSize": "12px",
                         "fontWeight": "420",
-                        "color": "#7c7c7c",
+                        "color": "var(--ink-gray-5)",
                         "letterSpacing": "0.02em",
                         "lineHeight": "1.15"
                        },
@@ -1552,7 +1552,7 @@
                   "margin": "24px 0 0",
                   "fontSize": "14px",
                   "fontWeight": "420",
-                  "color": "#7c7c7c",
+                  "color": "var(--ink-gray-5)",
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.15"
                  },
@@ -1591,7 +1591,7 @@
                    },
                    "baseStyles": {
                     "fontWeight": "500",
-                    "color": "#171717"
+                    "color": "var(--ink-gray-8)"
                    },
                    "blockId": "gbgjun7xy",
                    "blockName": "Write link",
@@ -1648,7 +1648,7 @@
                   "margin": "24px 0 0",
                   "fontSize": "14px",
                   "fontWeight": "420",
-                  "color": "#7c7c7c",
+                  "color": "var(--ink-gray-5)",
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.15"
                  },
@@ -1714,7 +1714,7 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div id=\"cafe-panel-other\" hidden=\"hidden\"><div class=\"cafe-loading\" hidden=\"hidden\" style=\"margin-top:16px;flex-direction:column;gap:20px\"><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:#f3f3f3\"></div></div><p class=\"cafe-other-empty\" hidden=\"hidden\" style=\"margin:24px 0 0;font-size:14px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"></p><div class=\"cafe-posts cafe-other-list\" style=\"display:flex;flex-direction:column;margin-top:16px\"></div><template id=\"cafe-post-template\"><a class=\"cafe-post\" href=\"#\" style=\"display:flex;align-items:stretch;justify-content:space-between;gap:16px;padding:20px 0\"><div style=\"min-width:0;flex-grow:1\"><div class=\"cafe-row-title\" style=\"font-size:16px;font-weight:600;color:#171717;letter-spacing:0.015em;line-height:1.15\"></div><p class=\"cafe-clamp-2 cafe-row-excerpt\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:#525252;letter-spacing:0.02em;line-height:1.5\"></p><div class=\"cafe-row-meta\" style=\"margin-top:8px;font-size:12px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.15\"></div></div><img class=\"cafe-row-thumb\" alt=\"\" style=\"width:96px;height:80px;flex-shrink:0;border-radius:10px;object-fit:cover\"></a></template></div>",
+               "innerHTML": "<div id=\"cafe-panel-other\" hidden=\"hidden\"><div class=\"cafe-loading\" hidden=\"hidden\" style=\"margin-top:16px;flex-direction:column;gap:20px\"><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:var(--surface-gray-2)\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:var(--surface-gray-2)\"></div><div class=\"cafe-skeleton\" style=\"height:80px;border-radius:10px;background-color:var(--surface-gray-2)\"></div></div><p class=\"cafe-other-empty\" hidden=\"hidden\" style=\"margin:24px 0 0;font-size:14px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.15\"></p><div class=\"cafe-posts cafe-other-list\" style=\"display:flex;flex-direction:column;margin-top:16px\"></div><template id=\"cafe-post-template\"><a class=\"cafe-post\" href=\"#\" style=\"display:flex;align-items:stretch;justify-content:space-between;gap:16px;padding:20px 0\"><div style=\"min-width:0;flex-grow:1\"><div class=\"cafe-row-title\" style=\"font-size:16px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0.015em;line-height:1.15\"></div><p class=\"cafe-clamp-2 cafe-row-excerpt\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:var(--ink-gray-6);letter-spacing:0.02em;line-height:1.5\"></p><div class=\"cafe-row-meta\" style=\"margin-top:8px;font-size:12px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.15\"></div></div><img class=\"cafe-row-thumb\" alt=\"\" style=\"width:96px;height:80px;flex-shrink:0;border-radius:10px;object-fit:cover\"></a></template></div>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -1794,7 +1794,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:32px;height:32px;color:#c8c8c8\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <line x1=\"17\" x2=\"22\" y1=\"8\" y2=\"13\" />\n  <line x1=\"22\" x2=\"17\" y1=\"8\" y2=\"13\" /></svg><p style=\"margin:0;font-size:14px;font-weight:420;color:#7c7c7c;letter-spacing:0.02em;line-height:1.5\">This profile does not exist.</p>",
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:32px;height:32px;color:#c8c8c8\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" />\n  <circle cx=\"9\" cy=\"7\" r=\"4\" />\n  <line x1=\"17\" x2=\"22\" y1=\"8\" y2=\"13\" />\n  <line x1=\"22\" x2=\"17\" y1=\"8\" y2=\"13\" /></svg><p style=\"margin:0;font-size:14px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.5\">This profile does not exist.</p>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -1942,7 +1942,7 @@
    "builder_script": "Cafe Posts"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1952,7 +1952,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-profile-posts",
  "owner": "Administrator",
@@ -1961,6 +1961,6 @@
  "page_title": "Profile posts",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "profile/:username/posts"
 }

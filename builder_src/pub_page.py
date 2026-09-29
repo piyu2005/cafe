@@ -5,7 +5,7 @@ same cafe.api methods the old pages used.
 Builder's editor and the folder thumbnail do not run scripts, so each root
 starts with a still picture; the script replaces it."""
 
-from blocks import INK, INK_BLACK, SURFACE_2, attribute, block, html_el, raw_block, svg
+from blocks import INK, INK_BLACK, SOLID_BG, SURFACE_2, attribute, block, html_el, raw_block, svg
 from data_scripts import HELPERS
 from layout import build_mobile_header, crumb_current, crumb_link, crumb_separator, page_layout
 
@@ -30,7 +30,7 @@ def detail_picture():
 			"width": "64px",
 			"height": "64px",
 			"borderRadius": "16px",
-			"backgroundColor": INK,
+			"backgroundColor": SOLID_BG,
 			"flexShrink": "0",
 		},
 	)
@@ -118,7 +118,7 @@ def new_post_button():
 		"width": "28px",
 		"height": "28px",
 		"borderRadius": "8px",
-		"backgroundColor": INK,
+		"backgroundColor": SOLID_BG,
 		"color": "#ffffff",
 	}
 	return html_el(

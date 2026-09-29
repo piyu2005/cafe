@@ -26,7 +26,7 @@ from data_scripts import HELPERS, indent
 from layout import build_mobile_header, crumb_link, crumb_separator, page_layout
 from shell_component import MENU_ITEM_STYLES
 
-BUTTON_BORDER = "#e2e2e2"
+BUTTON_BORDER = "var(--outline-gray-2)"
 ICON_SPAN = {"display": "flex", "flexShrink": "0"}
 
 

@@ -16,7 +16,7 @@
       "height": "100vh",
       "overflow": "hidden",
       "backgroundColor": "#ffffff",
-      "color": "#0f0f0f",
+      "color": "var(--ink-gray-9)",
       "fontSize": "14px",
       "fontWeight": "420",
       "lineHeight": "1.15",
@@ -579,7 +579,7 @@
           "gap": "16px",
           "height": "52px",
           "padding": "0 12px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "x0jstjxmh",
@@ -597,7 +597,7 @@
             "width": "32px",
             "height": "32px",
             "borderRadius": "8px",
-            "color": "#171717"
+            "color": "var(--ink-gray-8)"
            },
            "blockId": "9c8f24jv5",
            "blockName": "Back",
@@ -636,7 +636,7 @@
             "textAlign": "center",
             "fontSize": "17px",
             "fontWeight": "600",
-            "color": "#0f0f0f",
+            "color": "var(--ink-gray-9)",
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
@@ -685,7 +685,7 @@
            "element": "div",
            "elementBeforeConversion": null,
            "extendedFromComponent": null,
-           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:#171717;cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button>",
+           "innerHTML": "<button class=\"cafe-bell\" type=\"button\" aria-label=\"Notifications\" data-bell=\"\" style=\"position:relative;display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;padding:0;border:0;border-radius:8px;color:var(--ink-gray-8);cursor:pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\" />\n  <path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" /></svg><span class=\"cafe-badge\" data-badge=\"notifications\" style=\"display:none;position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 6px;border-radius:9999px;background-color:#ce2c2c;color:#ffffff;font-size:12px;font-weight:420;line-height:16px;letter-spacing:0.02em;text-align:center\"></span></button>",
            "isChildOfComponent": null,
            "isRepeaterBlock": false,
            "mobileStyles": {},
@@ -731,7 +731,7 @@
           "justifyContent": "space-between",
           "height": "48px",
           "padding": "0 20px",
-          "borderBottom": "1px solid #ededed",
+          "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
          "blockId": "cn4r0iutb",
@@ -747,7 +747,7 @@
             "fontSize": "16px",
             "fontWeight": "500",
             "letterSpacing": "0.015em",
-            "color": "#7c7c7c"
+            "color": "var(--ink-gray-5)"
            },
            "blockId": "yqpdxf2jn",
            "blockName": "Breadcrumbs",
@@ -878,7 +878,7 @@
             {
              "attributes": {},
              "baseStyles": {
-              "color": "#0f0f0f"
+              "color": "var(--ink-gray-9)"
              },
              "blockId": "9u9koxjjo",
              "blockName": null,
@@ -940,7 +940,7 @@
             "height": "28px",
             "padding": "0 8px",
             "borderRadius": "8px",
-            "backgroundColor": "#171717",
+            "backgroundColor": "var(--surface-gray-10)",
             "color": "#ffffff",
             "fontSize": "14px",
             "whiteSpace": "nowrap"
@@ -1098,7 +1098,7 @@
                "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
-               "innerHTML": "<div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:#f3f3f3\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:#f3f3f3\"></div></div>",
+               "innerHTML": "<div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ededed\"><span style=\"width:24px;height:24px;border-radius:9999px;background-color:var(--surface-gray-2)\"></span><div style=\"width:40%;height:12px;border-radius:6px;background-color:var(--surface-gray-2)\"></div></div>",
                "isChildOfComponent": null,
                "isRepeaterBlock": false,
                "mobileStyles": {},
@@ -1282,7 +1282,7 @@
    "builder_script": "Cafe Pub Members"
   }
  ],
- "creation": "2026-09-28 16:48:43.770609",
+ "creation": "2026-09-29 12:39:42.266379",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -1292,7 +1292,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-28 16:48:43.770609",
+ "modified": "2026-09-29 12:39:42.266379",
  "modified_by": "Administrator",
  "name": "cafe-publication-members",
  "owner": "Administrator",
@@ -1301,6 +1301,6 @@
  "page_title": "Publication members",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-28 16:48:43.770609",
+ "published_at": "2026-09-29 12:39:42.266379",
  "route": "publications/:handle/members"
 }

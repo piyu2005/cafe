@@ -4,7 +4,19 @@ with these and the scripts replace them. Also the paths of the built assets."""
 
 from pathlib import Path
 
-from blocks import GRAY_4, INK, INK_BLACK, MUTED, OUTLINE, SURFACE_2, html_el, svg, text_style
+from blocks import (
+	BUTTON_BORDER,
+	GRAY_4,
+	INK,
+	INK_BLACK,
+	MUTED,
+	OUTLINE,
+	SOLID_BG,
+	SURFACE_2,
+	html_el,
+	svg,
+	text_style,
+)
 
 ASSETS = Path(__file__).resolve().parent.parent / "cafe" / "public" / "builder_assets"
 ASSETS_URL = "/assets/cafe/builder_assets/"
@@ -22,9 +34,9 @@ def pill(label, solid=False):
 		"letterSpacing": "0.02em",
 	}
 	styles.update(
-		{"backgroundColor": INK, "color": "#ffffff"}
+		{"backgroundColor": SOLID_BG, "color": "#ffffff"}
 		if solid
-		else {"border": "1px solid #e2e2e2", "color": INK}
+		else {"border": f"1px solid {BUTTON_BORDER}", "color": INK}
 	)
 	return html_el("span", None, None, styles, text=label)
 
