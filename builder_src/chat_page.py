@@ -27,7 +27,9 @@ CHAT_PARTS = [
 	"mentions",
 	"live",
 ]
-VENDOR = ["chat-editor.min.js"]
+# Unbundled: this file's own imports pull TipTap and DOMPurify from a CDN, so
+# it loads as a native ES module, not a classic script.
+VENDOR = ["chat-editor.js"]
 
 
 def native_head_html():
@@ -36,7 +38,7 @@ def native_head_html():
 	for file in VENDOR:
 		path = ASSETS / "vendor" / file
 		version = hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else "0"
-		tags.append(f'<script src="{ASSETS_URL}vendor/{file}?v={version}" defer></script>')
+		tags.append(f'<script type="module" src="{ASSETS_URL}vendor/{file}?v={version}"></script>')
 	return "\n".join(tags)
 
 

@@ -27,7 +27,9 @@ from layout import crumb_link, crumb_separator, page_header
 from stand_ins import ASSETS, ASSETS_URL, write_body
 
 WRITE_PARTS = ["core", "editor", "preview", "live"]
-VENDOR = ["write-editor.min.js"]
+# Unbundled: this file's own imports pull TipTap from a CDN, so it loads as a
+# native ES module, not a classic script.
+VENDOR = ["write-editor.js"]
 
 SOLID_STYLES = {**BUTTON_STYLES, "border": "0", "backgroundColor": SOLID_BG, "color": "#ffffff"}
 ICON_STYLES = {**BUTTON_STYLES, "width": "28px", "padding": "0", "border": "0", "backgroundColor": SURFACE_2}
@@ -39,7 +41,7 @@ def native_head_html():
 	for file in VENDOR:
 		path = ASSETS / "vendor" / file
 		version = hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else "0"
-		tags.append(f'<script src="{ASSETS_URL}vendor/{file}?v={version}" defer></script>')
+		tags.append(f'<script type="module" src="{ASSETS_URL}vendor/{file}?v={version}"></script>')
 	return "\n".join(tags)
 
 

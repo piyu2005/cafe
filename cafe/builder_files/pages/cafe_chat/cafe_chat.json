@@ -1388,17 +1388,17 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-09-29 12:39:42.266379",
+ "creation": "2026-09-29 13:05:20.122684",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": "<script src=\"/assets/cafe/builder_assets/vendor/chat-editor.min.js?v=33eacb4897\" defer></script>",
+ "head_html": "<script type=\"module\" src=\"/assets/cafe/builder_assets/vendor/chat-editor.js?v=84f6ac8282\"></script>",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-29 12:39:42.266379",
+ "modified": "2026-09-29 13:05:20.122684",
  "modified_by": "Administrator",
  "name": "cafe-chat",
  "owner": "Administrator",
@@ -1407,6 +1407,6 @@
  "page_title": "Messages",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-29 12:39:42.266379",
+ "published_at": "2026-09-29 13:05:20.122684",
  "route": "messages"
 }

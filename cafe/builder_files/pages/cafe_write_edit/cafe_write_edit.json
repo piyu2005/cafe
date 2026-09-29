@@ -1607,17 +1607,17 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-29 12:39:42.266379",
+ "creation": "2026-09-29 13:05:20.122684",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 1,
- "head_html": "<script src=\"/assets/cafe/builder_assets/vendor/write-editor.min.js?v=bf5516a558\" defer></script>",
+ "head_html": "<script type=\"module\" src=\"/assets/cafe/builder_assets/vendor/write-editor.js?v=073a1d58e3\"></script>",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-29 12:39:42.266379",
+ "modified": "2026-09-29 13:05:20.122684",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
@@ -1626,6 +1626,6 @@
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-29 12:39:42.266379",
+ "published_at": "2026-09-29 13:05:20.122684",
  "route": "write/:post_id"
 }
