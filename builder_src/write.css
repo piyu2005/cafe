@@ -418,7 +418,11 @@
   gap: 6px;
   width: 100%;
   min-height: 28px;
-  padding: 4px 6px;
+  /* Extra right padding clears the toggle, which floats (see below) instead
+     of sitting in the flex row — otherwise it ate into the row's width and
+     forced the input onto its own near-empty second line well before the
+     chips actually ran out of room. */
+  padding: 4px 28px 4px 6px;
   border-radius: 8px;
   background: var(--w-surface);
   transition: box-shadow 0.15s ease;
@@ -449,6 +453,7 @@
   white-space: nowrap;
 }
 .cafe-w-tag-x {
+  position: relative;
   display: grid;
   place-items: center;
   width: 18px;
@@ -459,13 +464,28 @@
   background: none;
   color: var(--w-ink-5);
   cursor: pointer;
+  touch-action: manipulation;
+}
+/* The visible icon is 18px, well under the ~24px a mouse/finger reliably
+   hits on the first try — this pads the real clickable area out without
+   changing how the button looks or affecting layout. */
+.cafe-w-tag-x::before {
+  position: absolute;
+  inset: -6px;
+  content: '';
 }
 .cafe-w-tag-x:hover {
   background: rgba(0, 0, 0, 0.08);
 }
 .cafe-w-tag-fields input {
-  flex: 1 1 auto;
-  min-width: 96px;
+  /* A plain flex-basis: auto falls back to the browser's own default text
+     input width (~170px+) for the *wrap* decision, even though min-width
+     clamps the final rendered size — so it got bumped to its own line
+     whenever the chips didn't leave 170px free, well before the row was
+     actually out of room. An explicit small basis fixes the wrap decision
+     itself; flex-grow still lets it fill the line when there's space. */
+  flex: 1 1 40px;
+  min-width: 40px;
   padding: 2px;
   border: 0;
   outline: none;
@@ -479,8 +499,11 @@
   opacity: 1;
 }
 .cafe-w-tag-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
   display: grid;
-  flex-shrink: 0;
   place-items: center;
   width: 20px;
   height: 20px;
