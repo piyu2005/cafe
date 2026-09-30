@@ -3102,7 +3102,7 @@
                },
                "baseStyles": {
                 "marginTop": "32px",
-                "minHeight": "420px",
+                "minHeight": "300px",
                 "fontSize": "15px",
                 "fontWeight": "420",
                 "color": "#383838",
@@ -3987,7 +3987,7 @@
    "builder_script": "Cafe Code"
   }
  ],
- "creation": "2026-09-30 20:13:15.127266",
+ "creation": "2026-09-30 20:52:10.581240",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3997,7 +3997,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 20:13:15.127266",
+ "modified": "2026-09-30 20:52:10.581240",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
@@ -4006,6 +4006,6 @@
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 20:13:15.127266",
+ "published_at": "2026-09-30 20:52:10.581240",
  "route": "posts/:post_id"
 }

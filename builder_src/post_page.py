@@ -294,9 +294,7 @@ def build_content():
 			text="The text of the post.",
 			styles={
 				"marginTop": "32px",
-				# Matches the image carousel's own height (build_carousel), so a
-				# short text-only post still gets as much room as an image post.
-				"minHeight": "420px",
+				"minHeight": "300px",
 				**text_style(15, "420", "#383838", "0.02em", "1.7"),
 			},
 		),
