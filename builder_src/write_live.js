@@ -51,7 +51,7 @@
 					save('Archived')
 				},
 			})
-		items.push({ label: 'Delete permanently', icon: 'trash-2', danger: true, onClick: confirmDelete })
+		items.push({ label: 'Delete', icon: 'trash-2', danger: true, onClick: confirmDelete })
 		return items
 	}
 
