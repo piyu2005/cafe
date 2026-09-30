@@ -129,6 +129,17 @@ SCRIPT_ICONS = {
 }
 VENDOR_OUT = APP / "public" / "builder_assets" / "vendor"
 SOCKET_CLIENT = REPO / "vendor_src" / "node_modules" / "socket.io-client" / "dist" / "socket.io.min.js"
+# notifications.js (loaded on every page) only injects socket.io's own <script>
+# once its DOMContentLoaded handler runs - after every other page script has
+# already loaded and executed, which measured over a throttled mobile
+# connection as a ~1s+ delay landing at the very end of the page load, for a
+# resource the
+# browser had no way to discover any earlier. This starts the fetch the moment
+# the page begins loading instead, in parallel with everything else, so by the
+# time the JS actually creates the <script> tag the browser already has it.
+SOCKET_PRELOAD_HEAD = (
+	'<link rel="preload" href="/assets/cafe/builder_assets/vendor/socket.io.min.js" as="script">'
+)
 FONT_DIR = SRC / "assets" / "Newsreader"
 FONT_FILES = {FONT_DIR / "Newsreader-Regular.woff2", FONT_DIR / "Newsreader-Medium.woff2"}
 
@@ -462,7 +473,7 @@ def main():
 	]
 	for name, title, route, builder, script_names, data_script, dynamic, *extra in pages:
 		blocks = builder(shell_id, shell_block)
-		head = extra[0] if extra else None
+		head = SOCKET_PRELOAD_HEAD + (extra[0] if extra else "")
 		write_json("pages", name, page(name, title, route, blocks, script_names, data_script, dynamic, head))
 	print(f"Wrote Builder files to {OUT}")
 

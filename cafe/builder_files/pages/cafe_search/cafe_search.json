@@ -2561,17 +2561,17 @@
    "builder_script": "Cafe Search"
   }
  ],
- "creation": "2026-09-29 19:37:59.805024",
+ "creation": "2026-09-30 22:31:45.055058",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": null,
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\">",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-29 19:37:59.805024",
+ "modified": "2026-09-30 22:31:45.055058",
  "modified_by": "Administrator",
  "name": "cafe-search",
  "owner": "Administrator",
@@ -2580,6 +2580,6 @@
  "page_title": "Search",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-29 19:37:59.805024",
+ "published_at": "2026-09-30 22:31:45.055058",
  "route": "search"
 }

@@ -3191,17 +3191,17 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-09-30 21:16:30.176480",
+ "creation": "2026-09-30 22:31:45.055058",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": null,
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\">",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 21:16:30.176480",
+ "modified": "2026-09-30 22:31:45.055058",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -3210,6 +3210,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 21:16:30.176480",
+ "published_at": "2026-09-30 22:31:45.055058",
  "route": "cafe-home"
 }

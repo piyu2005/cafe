@@ -2851,17 +2851,17 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-30 21:16:30.176480",
+ "creation": "2026-09-30 22:31:45.055058",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": "<script type=\"module\" src=\"/assets/cafe/builder_assets/vendor/write-editor.js?v=cd9bc75d23\"></script>",
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\"><link rel=\"modulepreload\" href=\"https://esm.sh/@tiptap/core@3.31.3\" crossorigin=\"anonymous\">\n<link rel=\"modulepreload\" href=\"https://esm.sh/@tiptap/starter-kit@3.31.3\" crossorigin=\"anonymous\">\n<link rel=\"modulepreload\" href=\"https://esm.sh/@tiptap/extension-placeholder@3.31.3\" crossorigin=\"anonymous\">\n<link rel=\"modulepreload\" href=\"https://esm.sh/@tiptap/extension-text-align@3.31.3\" crossorigin=\"anonymous\">\n<link rel=\"modulepreload\" href=\"https://esm.sh/@tiptap/pm@3.31.3/state\" crossorigin=\"anonymous\">\n<script type=\"module\" src=\"/assets/cafe/builder_assets/vendor/write-editor.js?v=cd9bc75d23\"></script>",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 21:16:30.176480",
+ "modified": "2026-09-30 22:31:45.055058",
  "modified_by": "Administrator",
  "name": "cafe-write",
  "owner": "Administrator",
@@ -2870,6 +2870,6 @@
  "page_title": "Write",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 21:16:30.176480",
+ "published_at": "2026-09-30 22:31:45.055058",
  "route": "write"
 }
