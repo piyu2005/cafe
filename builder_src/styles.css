@@ -969,6 +969,13 @@ p.cafe-clamp-3:empty::before {
 .cafe-comments > .cafe-c {
   padding: 16px 0;
 }
+.cafe-c {
+  border-radius: 8px;
+  transition: background-color 1.2s ease;
+}
+.cafe-c-highlight {
+  background-color: var(--surface-gray-2);
+}
 .cafe-comments > .cafe-c + .cafe-c {
   border-top: 1px solid var(--outline-gray-1);
 }

@@ -47,7 +47,17 @@
 	}
 
 	function routeOf(n) {
-		if (n.reference_doctype === 'Post') return '/posts/' + encodeURIComponent(n.reference_name)
+		// n.post is the post to land on either way - for a Post reference
+		// that's n.reference_name itself; for a Post Comment (which has no
+		// page of its own, e.g. a like or reply on a comment) the server
+		// resolves it to the post that comment is on. The hash scrolls to
+		// and highlights the exact comment once the post page loads.
+		if (n.post)
+			return (
+				'/posts/' +
+				encodeURIComponent(n.post) +
+				(n.reference_doctype === 'Post Comment' ? '#comment-' + encodeURIComponent(n.reference_name) : '')
+			)
 		if (n.reference_doctype === 'Conversation') return '/messages/' + encodeURIComponent(n.reference_name)
 		if (n.actor) return '/profile/' + encodeURIComponent(n.actor_username || n.actor)
 		return ''

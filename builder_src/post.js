@@ -556,12 +556,38 @@
 		})
 	}
 
+	// Arriving from a notification about a specific comment (a like or a
+	// reply) links here as /posts/<id>#comment-<name> - once loaded, expand
+	// whatever thread it's in, page it into view if it's beyond the initial
+	// visibleCount, then scroll to and briefly highlight the exact comment.
+	function focusCommentFromHash() {
+		var match = location.hash.match(/^#comment-(.+)$/)
+		if (!match) return
+		var target = findComment(decodeURIComponent(match[1]))
+		if (!target) return
+		var topName = target.parent_comment || target.name
+		if (target.parent_comment) expanded[topName] = true
+		var index = topLevel().findIndex(function (c) {
+			return c.name === topName
+		})
+		if (index >= visibleCount) visibleCount = index + 1
+		renderList()
+		var node = listEl.querySelector('[data-name="' + target.name + '"]')
+		if (!node) return
+		node.scrollIntoView({ behavior: 'smooth', block: 'center' })
+		node.classList.add('cafe-c-highlight')
+		setTimeout(function () {
+			node.classList.remove('cafe-c-highlight')
+		}, 2000)
+	}
+
 	function loadComments() {
 		CAFE.get('cafe.api.list_comments', { post: postId }).then(
 			function (rows) {
 				comments = rows || []
 				updateCounts()
 				renderList()
+				focusCommentFromHash()
 			},
 			function () {
 				listEl.replaceChildren(el('p', 'cafe-comments-error', "Couldn't load the comments. Please try again."))
