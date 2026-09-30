@@ -23,7 +23,7 @@ from blocks import (
 	when,
 )
 from data_scripts import HELPERS, indent
-from layout import build_mobile_header, crumb_link, crumb_separator, page_layout
+from layout import build_mobile_header, crumb_separator, page_layout
 from shell_component import MENU_ITEM_STYLES
 
 BUTTON_BORDER = "var(--outline-gray-2)"
@@ -38,33 +38,14 @@ def crumb_html(*parts):
 	)
 
 
-def sep():
-	return html_el(
-		"span",
-		["sep"],
-		None,
-		{"color": "#999999", "fontSize": "14px", "fontWeight": "420", "letterSpacing": "0.02em"},
-		text="/",
-	)
-
-
 def build_crumbs():
-	"""Cafe / Explore / <author> / <title>. The author and the closing separator
-	are left out when the post is not available."""
-	start = crumb_html(
-		html_el("a", None, {"href": "/"}, None, text="Cafe"),
-		sep(),
-		html_el("a", None, {"href": "/"}, None, text="Explore"),
-	)
-	author = when(
-		attribute(show(crumb_link("Author", "/profile"), "pp.author_name"), "pp.author_href", "href"),
-		"pp.found",
-	)
+	"""Cafe / <title>."""
+	start = crumb_html(html_el("a", None, {"href": "/"}, None, text="Cafe"))
 	title = show(
 		block("span", "Title", ["current"], text="Post", styles={"color": INK_BLACK}),
 		"pp.crumb_title",
 	)
-	return [start, crumb_separator(), author, when(crumb_separator(), "pp.found"), title]
+	return [start, crumb_separator(), title]
 
 
 # ---- Header of the post ----
