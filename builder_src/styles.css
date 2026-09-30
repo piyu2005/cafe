@@ -54,6 +54,23 @@ body {
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+/* Every page sets height: 100vh on .cafe-app directly (a block style, so it
+   can't be a calc/fallback pair there) to pin the shell to one screen and
+   let only .cafe-scroll's content scroll. On a mobile browser 100vh is the
+   viewport with its address bar collapsed, taller than what's actually on
+   screen with the bar shown - so overflow: hidden here clipped real content
+   with no way to reach it by scrolling. 100dvh tracks the real, current
+   visible height instead, and overrides the block style's 100vh here since
+   this rule comes later in the same stylesheet. */
+@supports (height: 100dvh) {
+  .cafe-app {
+    height: 100dvh;
+  }
+  /* Same fix for the phone sidebar drawer's own sticky, full-height column. */
+  .cafe-sidebar-content {
+    height: 100dvh;
+  }
+}
 .cafe-app *,
 .cafe-app *::before,
 .cafe-app *::after {
@@ -1935,6 +1952,17 @@ button.cafe-rail-item {
   .cafe-island-main {
     flex-grow: 0 !important;
     height: calc(100vh - 57px) !important;
+  }
+  /* 100vh on a mobile browser is the viewport with its address bar
+     collapsed - the *tallest* it ever gets, not what's actually visible.
+     With the bar shown (the common case), this container was taller than
+     the real screen, so its own overflow:hidden clipped the bottom of the
+     page with no way to scroll to it. 100dvh tracks the real, current
+     visible height instead. */
+  @supports (height: 100dvh) {
+    .cafe-island-main {
+      height: calc(100dvh - 57px) !important;
+    }
   }
   html[data-cafe-sidebar='open'] .cafe-np,
   .cafe-np {

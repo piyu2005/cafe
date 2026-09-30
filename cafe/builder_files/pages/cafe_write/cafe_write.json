@@ -21,37 +21,37 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "3qmgjkvan",
+     "blockId": "3ttkxh9k7",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "oa4d9vpx6",
+       "blockId": "bu13r0mne",
        "blockName": "Shell",
        "children": [
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "e8s0jval4",
+         "blockId": "sucbfcsl4",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "c07xtzjr8",
+           "blockId": "pgtnkxzfr",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "d2wbrs6a1",
+             "blockId": "hq7v0yzj3",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "41rm2j75s",
+               "blockId": "6dzr31oso",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -98,13 +98,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "nsx8ixl7b",
+             "blockId": "x0ox930lg",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ihhqxpn5p",
+               "blockId": "4pizyoq6p",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -151,13 +151,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "hfp9tbi44",
+             "blockId": "d2wbrs6a1",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "qox0ndh9q",
+               "blockId": "41rm2j75s",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -204,13 +204,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "kpzo0rvo3",
+             "blockId": "qox0ndh9q",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "j8ucbwxl8",
+               "blockId": "ihhqxpn5p",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -236,7 +236,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "78gs0mfho",
+               "blockId": "nsx8ixl7b",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -283,13 +283,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "kug82c7rh",
+             "blockId": "78gs0mfho",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "y6jlge3r2",
+               "blockId": "hfp9tbi44",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -315,7 +315,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "w2c6d0nno",
+               "blockId": "j8ucbwxl8",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -362,13 +362,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "sucbfcsl4",
+             "blockId": "y6jlge3r2",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "pgtnkxzfr",
+               "blockId": "kpzo0rvo3",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -415,13 +415,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "xgd4111w0",
+             "blockId": "kug82c7rh",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "kfuoif7wr",
+               "blockId": "w2c6d0nno",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -510,37 +510,37 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "c4dj7yvi5",
+         "blockId": "5yxnn0cqd",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "0wkhm3bn6",
+           "blockId": "xxtq6apgf",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "7j69x49kt",
+             "blockId": "uhwb4eduz",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ifxgl97bc",
+               "blockId": "e8s0jval4",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "9z16gh018",
+                 "blockId": "xgd4111w0",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "uhwb4eduz",
+                   "blockId": "kfuoif7wr",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -587,7 +587,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "2y0libelx",
+                 "blockId": "c07xtzjr8",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -655,19 +655,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "d2a4c7e3l",
+             "blockId": "9c53xrq4n",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "zb4k1zkud",
+               "blockId": "ifxgl97bc",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "5p8cgxyrg",
+                 "blockId": "9z16gh018",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -693,7 +693,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "77oglsfg2",
+                 "blockId": "2y0libelx",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -740,13 +740,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "1wvyhxnwo",
+               "blockId": "77oglsfg2",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "93ixax80f",
+                 "blockId": "7j69x49kt",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -772,7 +772,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "y0knd6e7e",
+                 "blockId": "5p8cgxyrg",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -819,13 +819,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "5vvdfbtrz",
+               "blockId": "1wvyhxnwo",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b6b354z1z",
+                 "blockId": "zb4k1zkud",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -851,7 +851,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "qlrgj2xxe",
+                 "blockId": "93ixax80f",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -877,7 +877,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "uxkti502z",
+                 "blockId": "y0knd6e7e",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -924,13 +924,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "9c53xrq4n",
+               "blockId": "5vvdfbtrz",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "7qu1sl0c3",
+                 "blockId": "b6b354z1z",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -956,7 +956,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "td61amamv",
+                 "blockId": "qlrgj2xxe",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -982,7 +982,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "q94imutym",
+                 "blockId": "uxkti502z",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1029,13 +1029,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "cmku5hj8u",
+               "blockId": "q94imutym",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "31mldxogu",
+                 "blockId": "7qu1sl0c3",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1061,7 +1061,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "8368ueef9",
+                 "blockId": "td61amamv",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1129,19 +1129,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "08iv79ti7",
+             "blockId": "d2a4c7e3l",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "fqxwxeia2",
+               "blockId": "cmku5hj8u",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "xxtq6apgf",
+                 "blockId": "31mldxogu",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1167,7 +1167,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "5yxnn0cqd",
+                 "blockId": "8368ueef9",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1277,19 +1277,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "mb9658k76",
+         "blockId": "99i9ohsq4",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "yqjbd8qz5",
+           "blockId": "08iv79ti7",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "akmqq27jk",
+             "blockId": "fqxwxeia2",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1336,13 +1336,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "10nybba4o",
+           "blockId": "c4dj7yvi5",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "hgsu8mngm",
+             "blockId": "0wkhm3bn6",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1389,13 +1389,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "2d3dw1ch7",
+           "blockId": "hgsu8mngm",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "fkw7dyxbk",
+             "blockId": "akmqq27jk",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1421,7 +1421,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "vndklavn1",
+             "blockId": "yqjbd8qz5",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1468,13 +1468,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "3mrb8uf2l",
+           "blockId": "fkw7dyxbk",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "99i9ohsq4",
+             "blockId": "10nybba4o",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1521,13 +1521,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "l26fwlra8",
+           "blockId": "2d3dw1ch7",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "jhkpsln30",
+             "blockId": "vndklavn1",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1595,19 +1595,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "r1xn1m3tp",
+         "blockId": "9wwyfhyq3",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "9wwyfhyq3",
+           "blockId": "l26fwlra8",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "m45j89dy3",
+             "blockId": "3mrb8uf2l",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1633,7 +1633,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "fjd8ism7j",
+             "blockId": "jhkpsln30",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1680,13 +1680,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "l90dv0u9l",
+           "blockId": "fjd8ism7j",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "bu13r0mne",
+             "blockId": "mb9658k76",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1712,7 +1712,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "3ttkxh9k7",
+             "blockId": "m45j89dy3",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1808,7 +1808,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "x0ox930lg",
+       "blockId": "mg1ys64xd",
        "blockName": "Main",
        "children": [
         {
@@ -1825,7 +1825,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "6vj0ct6ur",
+         "blockId": "q5fvxcl3p",
          "blockName": "Mobile header",
          "children": [
           {
@@ -1843,7 +1843,7 @@
             "borderRadius": "8px",
             "color": "var(--ink-gray-8)"
            },
-           "blockId": "b9509r2k2",
+           "blockId": "tnc64yqgi",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -1885,7 +1885,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "tj0lmmusk",
+           "blockId": "slja4zh41",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -1920,7 +1920,7 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "gx26bj4yr",
+           "blockId": "tkt4gx3x0",
            "blockName": "Actions",
            "children": [
             {
@@ -1942,7 +1942,7 @@
               "color": "var(--ink-gray-8)",
               "cursor": "pointer"
              },
-             "blockId": "64y7ecpcb",
+             "blockId": "b9509r2k2",
              "blockName": null,
              "children": [
               {
@@ -1952,7 +1952,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "ez8v464us",
+               "blockId": "84sz91m38",
                "blockName": "icon/bell",
                "children": [],
                "classes": [],
@@ -1996,7 +1996,7 @@
                 "letterSpacing": "0.02em",
                 "textAlign": "center"
                },
-               "blockId": "edonqxd0l",
+               "blockId": "drpwh32j5",
                "blockName": null,
                "children": [],
                "classes": [
@@ -2066,7 +2066,7 @@
               "cursor": "pointer",
               "width": "28px"
              },
-             "blockId": "q5fvxcl3p",
+             "blockId": "edonqxd0l",
              "blockName": null,
              "children": [
               {
@@ -2076,7 +2076,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "tkt4gx3x0",
+               "blockId": "tj0lmmusk",
                "blockName": "icon/ellipsis",
                "children": [],
                "classes": [],
@@ -2143,13 +2143,13 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "s0k9i5s6c",
+             "blockId": "64y7ecpcb",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "0o0vg5tmj",
+               "blockId": "ez8v464us",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -2257,7 +2257,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "xqy32tk4r",
+         "blockId": "lq5o5m8s1",
          "blockName": "Header",
          "children": [
           {
@@ -2272,7 +2272,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "lq5o5m8s1",
+           "blockId": "6vj0ct6ur",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2280,7 +2280,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "3fv62u6uk",
+             "blockId": "0o0vg5tmj",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2311,7 +2311,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "ce0a02m7j",
+             "blockId": "s0k9i5s6c",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2343,7 +2343,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "7gya9186z",
+             "blockId": "gx26bj4yr",
              "blockName": "Current",
              "children": [],
              "classes": [
@@ -2398,7 +2398,7 @@
             "alignItems": "center",
             "gap": "8px"
            },
-           "blockId": "4pizyoq6p",
+           "blockId": "ypwum1oen",
            "blockName": "Actions",
            "children": [
             {
@@ -2424,7 +2424,7 @@
               "cursor": "pointer",
               "width": "28px"
              },
-             "blockId": "fobwteii9",
+             "blockId": "3tyz0ze2c",
              "blockName": null,
              "children": [
               {
@@ -2434,7 +2434,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "6yzwm4w0p",
+               "blockId": "4qcs9xshb",
                "blockName": "icon/ellipsis",
                "children": [],
                "classes": [],
@@ -2501,13 +2501,13 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "mg1ys64xd",
+             "blockId": "xqy32tk4r",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ypwum1oen",
+               "blockId": "i4jjh5i3c",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -2575,13 +2575,13 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "hq7v0yzj3",
+             "blockId": "fobwteii9",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "6dzr31oso",
+               "blockId": "6yzwm4w0p",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -2685,7 +2685,7 @@
           "width": "100%",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "84sz91m38",
+         "blockId": "wf8okw6ek",
          "blockName": "Write",
          "children": [
           {
@@ -2693,7 +2693,7 @@
            "baseStyles": {
             "width": "100%"
            },
-           "blockId": "drpwh32j5",
+           "blockId": "816x3pirk",
            "blockName": "Preview",
            "children": [],
            "classes": [
@@ -2851,7 +2851,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-09-30 19:03:00.174047",
+ "creation": "2026-09-30 21:16:30.176480",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2861,7 +2861,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 19:03:00.174047",
+ "modified": "2026-09-30 21:16:30.176480",
  "modified_by": "Administrator",
  "name": "cafe-write",
  "owner": "Administrator",
@@ -2870,6 +2870,6 @@
  "page_title": "Write",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 19:03:00.174047",
+ "published_at": "2026-09-30 21:16:30.176480",
  "route": "write"
 }

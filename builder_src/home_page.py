@@ -31,7 +31,7 @@ from blocks import (
 	when,
 )
 from data_scripts import HELPERS
-from layout import crumb_current, crumb_link, crumb_separator, page_layout
+from layout import crumb_current, page_layout
 
 PAGE_SIZE = 10
 
@@ -362,7 +362,7 @@ def build_home(shell_id, shell_block):
 		"div", "Sentinel", attrs={"id": "cafe-feed-end"}, custom={"data-more": ""}, styles={"height": "4px"}
 	)
 	sentinel = attribute(sentinel, "hp.more", "data-more")
-	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Explore")]
+	crumbs = [crumb_current("Cafe")]
 	return page_layout(
 		shell_id,
 		shell_block,
