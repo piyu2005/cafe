@@ -627,6 +627,11 @@
 }
 .cafe-w-cover {
   position: relative;
+  /* The dialog title has margin: 0 and this is the body's first child, so
+     without this the image sits flush against the title with no gap at
+     all — every other dialog avoids this because its body starts with a
+     <p>, which already gets 12px from .cafe-dialog p. */
+  margin-top: 16px;
   width: 100%;
   aspect-ratio: 1.91;
   overflow: hidden;
