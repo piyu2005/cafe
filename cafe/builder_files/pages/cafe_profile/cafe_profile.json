@@ -3282,8 +3282,7 @@
                           "flexDirection": "column",
                           "justifyContent": "space-between",
                           "flexGrow": "1",
-                          "minWidth": "0",
-                          "minHeight": "80px"
+                          "minWidth": "0"
                          },
                          "blockId": "3v4w9i309",
                          "blockName": "Text",
@@ -5405,7 +5404,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-09-30 19:55:42.195132",
+ "creation": "2026-09-29 19:37:59.805024",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -5415,7 +5414,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 19:55:42.195132",
+ "modified": "2026-09-29 19:37:59.805024",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -5424,6 +5423,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 19:55:42.195132",
+ "published_at": "2026-09-29 19:37:59.805024",
  "route": "profile/:username"
 }

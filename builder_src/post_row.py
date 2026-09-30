@@ -20,10 +20,6 @@ TEXT_STYLES = {
 	"justifyContent": "space-between",
 	"flexGrow": "1",
 	"minWidth": "0",
-	# Matches THUMBNAIL_STYLES' own height, so a post with no thumbnail
-	# still gets a row as tall as one that has one, instead of shrinking to
-	# fit just the title/meta text.
-	"minHeight": "80px",
 }
 TITLE_STYLES = text_style(16, "600", INK, "0.015em")
 EXCERPT_STYLES = {"margin": "4px 0 0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")}
@@ -96,7 +92,7 @@ def draft_row_template():
 						"div",
 						None,
 						None,
-						{"minWidth": "0", "flexGrow": "1", "minHeight": "80px"},
+						{"minWidth": "0", "flexGrow": "1"},
 						[
 							html_el("div", ["cafe-row-title"], None, TITLE_STYLES),
 							html_el("p", ["cafe-clamp-2", "cafe-row-excerpt"], None, EXCERPT_STYLES),

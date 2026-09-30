@@ -47,13 +47,7 @@ AUTHOR_LINE_STYLES = {"display": "flex", "alignItems": "center", "gap": "8px"}
 AVATAR_IMAGE_STYLES = {"width": "100%", "height": "100%", "objectFit": "cover"}
 NAME_STYLES = text_style(13, "420", INK)
 BODY_STYLES = {"display": "flex", "alignItems": "flex-start", "gap": "16px"}
-TEXT_STYLES = {
-	"flex": "1 1 0%",
-	"minWidth": "0",
-	# Matches THUMBNAIL_STYLES' own height, so a post with no cover image
-	# still gets a row as tall as one that has one.
-	"minHeight": "96px",
-}
+TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0"}
 TITLE_STYLES = text_style(16, "600", INK, "0.015em")
 EXCERPT_STYLES = {"margin": "4px 0 0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")}
 META_STYLES = {
