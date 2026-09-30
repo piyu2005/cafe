@@ -125,6 +125,27 @@
 		)
 	}
 
+	function confirmDeletePost() {
+		closeMenu()
+		CAFE.confirm({
+			title: 'Delete this post?',
+			message: 'This cannot be undone.',
+			confirmLabel: 'Delete',
+			danger: true,
+		}).then(function (ok) {
+			if (!ok) return
+			CAFE.request('DELETE', '/api/v2/document/Post/' + encodeURIComponent(postId)).then(
+				function () {
+					CAFE.toast('Post deleted')
+					location.replace('/profile')
+				},
+				function (err) {
+					CAFE.toast(err.message, 'error')
+				}
+			)
+		})
+	}
+
 	function openShare() {
 		CAFE.get('cafe.api.list_people', { query: '' }).then(
 			function (people) {
@@ -563,6 +584,7 @@
 		save: toggleSave,
 		share: openShare,
 		'copy-link': copyLink,
+		'delete-post': confirmDeletePost,
 		'toggle-menu': toggleMenu,
 		comment: focusCommentBox,
 		'comment-send': submitComment,

@@ -28,6 +28,7 @@ from shell_component import MENU_ITEM_STYLES
 
 BUTTON_BORDER = "var(--outline-gray-2)"
 ICON_SPAN = {"display": "flex", "flexShrink": "0"}
+ERROR_RED = "#b41d1d"
 
 
 def crumb_html(*parts):
@@ -129,15 +130,16 @@ def build_avatar():
 	)
 
 
-def menu_item(tag, attrs, icon_name, label, custom=None):
+def menu_item(tag, attrs, icon_name, label, custom=None, color=None):
 	return block(
 		tag,
 		label,
 		["cafe-menu-item"],
 		attrs={**attrs, "role": "menuitem"},
 		custom=custom,
-		inner_html=svg(icon_name, 16, MUTED) + html_el("span", text=label),
-		styles=MENU_ITEM_STYLES,
+		inner_html=svg(icon_name, 16, color or MUTED)
+		+ html_el("span", text=label, styles={"color": color} if color else None),
+		styles={**MENU_ITEM_STYLES, "color": color} if color else MENU_ITEM_STYLES,
 	)
 
 
@@ -167,6 +169,17 @@ def build_more_menu():
 		"pp.is_author",
 	)
 	copy = menu_item("button", {"type": "button"}, "link", "Copy link", custom={"data-action": "copy-link"})
+	delete = when(
+		menu_item(
+			"button",
+			{"type": "button"},
+			"trash-2",
+			"Delete",
+			custom={"data-action": "delete-post"},
+			color=ERROR_RED,
+		),
+		"pp.is_author",
+	)
 	menu = block(
 		"div",
 		"Menu",
@@ -184,7 +197,7 @@ def build_more_menu():
 			"backgroundColor": "#ffffff",
 			"boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)",
 		},
-		children=[edit, copy],
+		children=[edit, copy, delete],
 	)
 	return block("div", "More", styles={"position": "relative", "flexShrink": "0"}, children=[button, menu])
 
