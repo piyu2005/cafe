@@ -1385,6 +1385,14 @@
     flex-grow: 0 !important;
     height: calc(100vh - 60px) !important;
   }
+  /* 100vh is the mobile viewport with its address bar collapsed, taller
+     than what's actually visible with the bar shown - this tracks the
+     real, current visible height instead. */
+  @supports (height: 100dvh) {
+    .cafe-chat-main {
+      height: calc(100dvh - 60px) !important;
+    }
+  }
   .cafe-c-head-left {
     gap: 4px;
   }

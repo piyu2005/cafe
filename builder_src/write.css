@@ -746,6 +746,14 @@
     flex-grow: 0 !important;
     height: calc(100vh - 57px) !important;
   }
+  /* 100vh is the mobile viewport with its address bar collapsed, taller
+     than what's actually visible with the bar shown - this tracks the
+     real, current visible height instead. */
+  @supports (height: 100dvh) {
+    .cafe-write-main {
+      height: calc(100dvh - 57px) !important;
+    }
+  }
   .cafe-w-page {
     padding: 24px 16px;
   }
