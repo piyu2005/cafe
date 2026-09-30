@@ -875,17 +875,28 @@ def add_comment(post: str, content: str, parent_comment: str | None = None):
 	if parent_comment:
 		reply_to = frappe.db.get_value("Post Comment", parent_comment, "comment_by")
 		if reply_to != frappe.session.user:
+			# References the new reply itself, not the comment it's replying
+			# to - clicking the notification should land on and highlight
+			# the reply that was just posted, not send you back to your own
+			# original comment.
 			_notify(
 				reply_to,
 				frappe.session.user,
 				"Comment",
 				"replied to your comment",
 				"Post Comment",
-				parent_comment,
+				comment.name,
 			)
 	else:
 		post_author = frappe.db.get_value("Post", post, "author")
-		_notify(post_author, frappe.session.user, "Comment", "commented on your post", "Post", post)
+		_notify(
+			post_author,
+			frappe.session.user,
+			"Comment",
+			"commented on your post",
+			"Post Comment",
+			comment.name,
+		)
 
 	return comment.as_dict()
 

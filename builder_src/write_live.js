@@ -51,7 +51,7 @@
 					save('Archived')
 				},
 			})
-		items.push({ label: 'Delete permanently', icon: 'trash-2', danger: true, onClick: confirmDelete })
+		items.push({ label: 'Delete', icon: 'trash-2', danger: true, onClick: confirmDelete })
 		return items
 	}
 
@@ -108,7 +108,7 @@
 					location.assign('/posts/' + encodeURIComponent(result.name))
 					return true
 				}
-				if (fork) CAFE.toast("Saved as a new draft — your published post wasn't changed")
+				if (fork) CAFE.toast("Saved as a new draft, your published post wasn't changed")
 				else if (status === 'Archived') CAFE.toast(previous === 'Archived' ? 'Changes saved' : 'Post archived')
 				else CAFE.toast('Draft saved')
 				if (result.isNew) {

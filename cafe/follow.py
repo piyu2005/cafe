@@ -1,6 +1,17 @@
 import frappe
 
 
+def _resolve_post_link(reference_doctype, reference_name):
+	"""The post a notification's reference ultimately belongs to, for linking
+	to it - a Post Comment has no page of its own, so a like or reply
+	notification about one links to the post it's on instead."""
+	if reference_doctype == "Post":
+		return reference_name
+	if reference_doctype == "Post Comment":
+		return frappe.db.get_value("Post Comment", reference_name, "post")
+	return None
+
+
 def _notify(recipient, actor, notif_type, message, reference_doctype=None, reference_name=None):
 	if not recipient or recipient == actor:
 		return
@@ -24,7 +35,9 @@ def _notify(recipient, actor, notif_type, message, reference_doctype=None, refer
 	)
 	doc.flags.ignore_permissions = True
 	doc.insert()
-	frappe.publish_realtime("notification:new", doc.as_dict(), user=recipient, after_commit=True)
+	payload = doc.as_dict()
+	payload["post"] = _resolve_post_link(reference_doctype, reference_name)
+	frappe.publish_realtime("notification:new", payload, user=recipient, after_commit=True)
 
 
 @frappe.whitelist()
@@ -57,8 +70,22 @@ def list_notifications():
 		if actors
 		else {}
 	)
+	comment_names = [r.reference_name for r in rows if r.reference_doctype == "Post Comment"]
+	posts_by_comment = (
+		dict(
+			frappe.db.get_all(
+				"Post Comment", filters={"name": ["in", comment_names]}, fields=["name", "post"], as_list=True
+			)
+		)
+		if comment_names
+		else {}
+	)
 	for r in rows:
 		r.actor_username = usernames.get(r.actor)
+		if r.reference_doctype == "Post":
+			r.post = r.reference_name
+		elif r.reference_doctype == "Post Comment":
+			r.post = posts_by_comment.get(r.reference_name)
 		if r.type == "Group Invite" and r.reference_doctype == "Group Invite":
 			r.request_status = frappe.db.get_value("Group Invite", r.reference_name, "status")
 		elif r.type == "Publication Invite" and r.reference_doctype == "Publication Invite":

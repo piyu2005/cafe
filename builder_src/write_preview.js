@@ -100,7 +100,7 @@
 				W.el(
 					'p',
 					'cafe-w-story-note',
-					'Note: changes here affect how your story appears in previews and feeds — not the story itself.'
+					'Note: changes here affect how your story appears in previews and feeds, not the story itself.'
 				)
 			)
 			showActions(false)

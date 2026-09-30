@@ -427,7 +427,7 @@
 		var membersField = C.el('div', 'cafe-field grow')
 		membersField.appendChild(C.el('label', '', 'Members'))
 		membersField.appendChild(
-			C.el('p', 'cafe-c-hint', "They'll get an invite to join — added once they accept, not immediately.")
+			C.el('p', 'cafe-c-hint', "They'll get an invite to join, added once they accept, not immediately.")
 		)
 		membersField.appendChild(picker.node)
 		body.appendChild(membersField)
@@ -622,7 +622,7 @@
 				plain.appendChild(C.el('p', 'cafe-c-group-title', title))
 				body.appendChild(plain)
 			}
-			var list = section('Members — ' + members.length)
+			var list = section('Members (' + members.length + ')')
 			var rows = C.el('div', 'cafe-c-members')
 			members.forEach(function (m) {
 				rows.appendChild(memberRow(m))

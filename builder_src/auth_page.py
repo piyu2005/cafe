@@ -304,7 +304,7 @@ def signup_card():
 	)
 	return card(
 		"Create your account",
-		"Write, share, and connect — without the noise.",
+		"Write, share, and connect without the noise.",
 		[details, code_form_block()],
 		footer_block("Already have an account?", "Log in.", "/login"),
 	)
