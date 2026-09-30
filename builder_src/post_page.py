@@ -292,7 +292,13 @@ def build_content():
 			["cafe-prose"],
 			attrs={"id": "cafe-content"},
 			text="The text of the post.",
-			styles={"marginTop": "24px", **text_style(15, "420", "#383838", "0.02em", "1.7")},
+			styles={
+				"marginTop": "32px",
+				# Matches the image carousel's own height (build_carousel), so a
+				# short text-only post still gets as much room as an image post.
+				"minHeight": "420px",
+				**text_style(15, "420", "#383838", "0.02em", "1.7"),
+			},
 		),
 		"pp.content_html",
 	)
