@@ -27,6 +27,23 @@ function el(tag, className, text) {
 	return node
 }
 
+// Lucide icon paths (ellipsis, x, image), matching the ones blocks.py's svg()
+// draws elsewhere in the app - this file is a plain copied vendor asset, not
+// run through generate.py, so they're inlined here instead of shared.
+const ICON_PATHS = {
+	ellipsis: '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+	x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+	image: '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+	captions: '<rect width="18" height="14" x="3" y="5" rx="2" ry="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/>',
+}
+function icon(name) {
+	const span = el('span')
+	span.innerHTML =
+		`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" ` +
+		`stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name]}</svg>`
+	return span.firstChild
+}
+
 function clamp(value, min, max) {
 	return Math.min(max, Math.max(min, value))
 }
@@ -128,22 +145,91 @@ function imageView({ node: initial, editor, getPos }) {
 		window.addEventListener('mouseup', up)
 	})
 
-	// A button that turns the caption line on.
-	const toggle = el('button', 'cafe-w-image-caption-btn', 'Caption')
-	toggle.type = 'button'
-	toggle.setAttribute('aria-label', 'Toggle caption')
-	toggle.addEventListener('mousedown', (event) => event.preventDefault())
-	toggle.addEventListener('click', () => {
-		dom.classList.add('caption-on')
-		render()
-		caption.focus()
+	// A hidden file input for "Replace image" - reuses the same upload option
+	// and loading/error attrs the drag-and-drop/paste flow already has.
+	const fileInput = el('input')
+	fileInput.type = 'file'
+	fileInput.accept = 'image/*'
+	fileInput.hidden = true
+	fileInput.addEventListener('change', () => {
+		const file = fileInput.files && fileInput.files[0]
+		fileInput.value = ''
+		const upload = editor.extensionManager.extensions.find((e) => e.name === 'image').options.upload
+		if (!file || !upload) return
+		update(editor, getPos, { loading: true, error: null })
+		upload(file).then(
+			(done) => update(editor, getPos, { src: done.file_url, loading: false }),
+			(error) =>
+				update(editor, getPos, { loading: false, error: (error && error.message) || 'Failed to upload image' })
+		)
 	})
-	box.appendChild(toggle)
+	dom.appendChild(fileInput)
+
+	// The "..." menu: caption, replace, remove.
+	function onOutsideClick(event) {
+		if (!dom.contains(event.target)) closeMenu()
+	}
+	function closeMenu() {
+		dom.classList.remove('menu-open')
+		document.removeEventListener('mousedown', onOutsideClick, true)
+	}
+	function openMenu() {
+		dom.classList.add('menu-open')
+		document.addEventListener('mousedown', onOutsideClick, true)
+	}
+	function menuItem(name, label, onClick, danger) {
+		const item = el('button', 'cafe-w-image-menu-item' + (danger ? ' danger' : ''))
+		item.type = 'button'
+		item.appendChild(icon(name))
+		item.appendChild(el('span', null, label))
+		item.addEventListener('mousedown', (event) => event.preventDefault())
+		item.addEventListener('click', () => {
+			closeMenu()
+			onClick()
+		})
+		return item
+	}
+
+	const menuBtn = el('button', 'cafe-w-image-menu-btn')
+	menuBtn.type = 'button'
+	menuBtn.setAttribute('aria-label', 'Image options')
+	menuBtn.appendChild(icon('ellipsis'))
+	menuBtn.addEventListener('mousedown', (event) => event.preventDefault())
+	menuBtn.addEventListener('click', () => {
+		if (dom.classList.contains('menu-open')) closeMenu()
+		else openMenu()
+	})
+
+	const menu = el('div', 'cafe-w-image-menu')
+	menu.appendChild(
+		menuItem('captions', 'Caption', () => {
+			dom.classList.add('caption-on')
+			render()
+			caption.focus()
+		})
+	)
+	menu.appendChild(menuItem('image', 'Replace image', () => fileInput.click()))
+	menu.appendChild(
+		menuItem(
+			'x',
+			'Remove image',
+			() => {
+				const pos = getPos()
+				if (typeof pos !== 'number') return
+				editor.view.dispatch(editor.state.tr.delete(pos, pos + node.nodeSize))
+			},
+			true
+		)
+	)
+	box.appendChild(menuBtn)
+	box.appendChild(menu)
 
 	return {
 		dom,
 		stopEvent: (event) =>
-			event.target === caption || event.target === toggle || (event.type === 'mousedown' && event.target === img),
+			event.target === caption ||
+			!!event.target.closest('.cafe-w-image-menu-btn, .cafe-w-image-menu') ||
+			(event.type === 'mousedown' && event.target === img),
 		ignoreMutation: () => true,
 		update(next) {
 			if (next.type !== node.type) return false
@@ -156,6 +242,7 @@ function imageView({ node: initial, editor, getPos }) {
 		},
 		deselectNode() {
 			dom.classList.remove('selected')
+			closeMenu()
 		},
 	}
 }
