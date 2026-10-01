@@ -132,7 +132,24 @@ def text_button(text, tag="button", attrs=None, custom=None, color=INK, name=Non
 # ---- Header: avatar, name, buttons, job line, headline ----
 
 
-def build_avatar():
+AVATAR_STYLES = {
+	"display": "grid",
+	"placeItems": "center",
+	"flexShrink": "0",
+	"width": "100px",
+	"height": "100px",
+	"overflow": "hidden",
+	"border": f"1px solid {OUTLINE}",
+	"borderRadius": "9999px",
+	"backgroundColor": SURFACE_2,
+}
+
+
+def build_avatar_content():
+	"""The picture-or-initial, built fresh on every call: a block (and its
+	blockId) can only appear once in the page tree, and build_avatar() below
+	needs this twice - once for the clickable version of your own avatar,
+	once for the plain version everyone else gets."""
 	picture = when(
 		attribute(
 			block(
@@ -163,23 +180,42 @@ def build_avatar():
 		),
 		"profile.no_image",
 	)
-	return block(
-		"div",
-		"Avatar",
-		["cafe-profile-avatar"],
-		children=[picture, initial],
-		styles={
-			"display": "grid",
-			"placeItems": "center",
-			"flexShrink": "0",
-			"width": "100px",
-			"height": "100px",
-			"overflow": "hidden",
-			"border": f"1px solid {OUTLINE}",
-			"borderRadius": "9999px",
-			"backgroundColor": SURFACE_2,
-		},
+	return [picture, initial]
+
+
+def build_avatar():
+	"""Your own avatar is a button that opens the file picker (or a Change/Remove
+	menu if one is already set) - profile.js wires data-action="edit-avatar".
+	Anyone else's avatar stays a plain, non-interactive div."""
+	own = when(
+		attribute(
+			block(
+				"button",
+				"Avatar",
+				["cafe-profile-avatar", "cafe-avatar-edit-btn"],
+				attrs={"type": "button", "aria-label": "Change profile photo"},
+				custom={"data-action": "edit-avatar"},
+				children=[
+					*build_avatar_content(),
+					block(
+						"span",
+						"Edit hint",
+						classes=["cafe-avatar-edit-hint"],
+						children=[icon("camera", 22, "#ffffff")],
+					),
+				],
+				styles={**AVATAR_STYLES, "border": "0", "padding": "0", "font": "inherit", "cursor": "pointer"},
+			),
+			"profile.user_image",
+			"data-has-image",
+		),
+		"profile.is_own",
 	)
+	other = when(
+		block("div", "Avatar", ["cafe-profile-avatar"], children=build_avatar_content(), styles=AVATAR_STYLES),
+		"profile.is_other",
+	)
+	return [own, other]
 
 
 def build_name_row():
@@ -283,7 +319,7 @@ def build_header():
 		["cafe-profile-head"],
 		styles={"display": "flex", "alignItems": "flex-start", "gap": "32px"},
 		children=[
-			build_avatar(),
+			*build_avatar(),
 			block(
 				"div",
 				"Details",

@@ -119,6 +119,356 @@
 		})
 	}
 
+	// ---- Avatar: pick, crop, upload ----
+	//
+	// The crop dialog (drag to pan, wheel/slider to zoom, a corner button to
+	// rotate, all inside a circular mask) is ported from Frappe Gameplan's
+	// AvatarCropper.vue and ProfileImageEditor.vue (frappe/gameplan on
+	// GitHub) - same math for fitting, constraining the pan, and exporting
+	// the crop to a canvas. There's no Vue or cropper library here, so it's
+	// redone by hand with a plain <input type="range"> and a canvas.
+	var AVATAR_OUTPUT_SIZE = 512
+	var AVATAR_MIN_ZOOM = 100
+	var AVATAR_MAX_ZOOM = 300
+	var AVATAR_ICON_PATHS = {
+		'rotate-cw': '<path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/>',
+		minus: '<path d="M5 12h14"/>',
+		plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+		'image-up':
+			'<path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21"/>' +
+			'<path d="m14 19.5 3-3 3 3"/><path d="M17 22v-5.5"/><circle cx="9" cy="9" r="2"/>',
+		'trash-2':
+			'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>' +
+			'<line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',
+	}
+	function avatarIcon(name) {
+		var span = CAFE.el('span', 'cafe-avatar-icon')
+		span.innerHTML =
+			'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+			'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+			(AVATAR_ICON_PATHS[name] || '') +
+			'</svg>'
+		return span
+	}
+	function clamp(value, min, max) {
+		return Math.min(max, Math.max(min, value))
+	}
+	function loadImageSize(url) {
+		return new Promise(function (resolve, reject) {
+			var img = new Image()
+			img.onload = function () {
+				resolve({ width: img.naturalWidth, height: img.naturalHeight })
+			}
+			img.onerror = reject
+			img.src = url
+		})
+	}
+
+	function validateAvatarFile(file) {
+		var ext = (file.name.split('.').pop() || '').toLowerCase()
+		if (['png', 'jpg', 'jpeg'].indexOf(ext) === -1) return 'Only PNG and JPG images are allowed'
+		return null
+	}
+
+	function pickAvatarFile() {
+		var input = document.createElement('input')
+		input.type = 'file'
+		input.accept = 'image/png,image/jpeg'
+		input.addEventListener('change', function () {
+			var file = input.files && input.files[0]
+			if (!file) return
+			var error = validateAvatarFile(file)
+			if (error) return CAFE.toast(error, 'error')
+			openAvatarCropper(file)
+		})
+		input.click()
+	}
+
+	function removeAvatar() {
+		return CAFE.confirm({
+			title: 'Remove profile photo?',
+			message: 'You can add a new one any time.',
+			confirmLabel: 'Remove',
+			danger: true,
+		}).then(function (ok) {
+			if (!ok) return
+			return reloadAfter(CAFE.api('cafe.api.update_profile', { user_image: '' }), 'Photo removed')
+		})
+	}
+
+	// A small menu anchored under the avatar: Change / Remove, for when one
+	// already exists. Closes on an outside click, Escape, or picking an item.
+	function openAvatarMenu(anchor) {
+		var existing = document.querySelector('.cafe-avatar-menu')
+		if (existing) {
+			existing.remove()
+			return
+		}
+		var menu = CAFE.el('div', 'cafe-avatar-menu')
+		menu.setAttribute('role', 'menu')
+		;[
+			{ label: 'Change photo', icon: 'image-up', onClick: pickAvatarFile },
+			{ label: 'Remove photo', icon: 'trash-2', onClick: removeAvatar },
+		].forEach(function (item) {
+			var button = CAFE.el('button', 'cafe-avatar-menu-item')
+			button.type = 'button'
+			button.setAttribute('role', 'menuitem')
+			button.appendChild(avatarIcon(item.icon))
+			button.appendChild(CAFE.el('span', '', item.label))
+			button.addEventListener('click', function () {
+				close()
+				item.onClick()
+			})
+			menu.appendChild(button)
+		})
+		// Fixed, not absolute: the avatar button itself clips overflow (it's
+		// the round image's own mask), so a child positioned relative to it
+		// would be cut off. Appending to <body> and placing it by the
+		// anchor's own rect sidesteps that entirely.
+		var rect = anchor.getBoundingClientRect()
+		menu.style.position = 'fixed'
+		menu.style.top = rect.bottom + 4 + 'px'
+		menu.style.left = rect.left + 'px'
+		document.body.appendChild(menu)
+		function onOutside(event) {
+			if (!menu.contains(event.target) && event.target !== anchor) close()
+		}
+		function onKey(event) {
+			if (event.key === 'Escape') close()
+		}
+		function close() {
+			menu.remove()
+			document.removeEventListener('mousedown', onOutside)
+			document.removeEventListener('keydown', onKey)
+		}
+		setTimeout(function () {
+			document.addEventListener('mousedown', onOutside)
+			document.addEventListener('keydown', onKey)
+		}, 0)
+	}
+
+	function openAvatarButton(button) {
+		if (button.getAttribute('data-has-image')) openAvatarMenu(button)
+		else pickAvatarFile()
+	}
+
+	function openAvatarCropper(file) {
+		var imageUrl = URL.createObjectURL(file)
+		var offset = { x: 0, y: 0 }
+		var rotation = 0
+		var zoomValue = AVATAR_MIN_ZOOM
+		var imageSize = null
+		var dragState = null
+
+		var frame = CAFE.el('div', 'cafe-avatar-crop-frame')
+		var wrap = CAFE.el('div', 'cafe-avatar-crop-wrap')
+		var img = document.createElement('img')
+		img.alt = ''
+		img.draggable = false
+		img.className = 'cafe-avatar-crop-img'
+		wrap.appendChild(img)
+		var mask = CAFE.el('div', 'cafe-avatar-crop-mask')
+		var rotateButton = CAFE.el('button', 'cafe-avatar-icon-btn cafe-avatar-rotate')
+		rotateButton.type = 'button'
+		rotateButton.setAttribute('aria-label', 'Rotate')
+		rotateButton.appendChild(avatarIcon('rotate-cw'))
+		frame.appendChild(wrap)
+		frame.appendChild(mask)
+		frame.appendChild(rotateButton)
+
+		var zoomOutButton = CAFE.el('button', 'cafe-avatar-icon-btn')
+		zoomOutButton.type = 'button'
+		zoomOutButton.setAttribute('aria-label', 'Zoom out')
+		zoomOutButton.appendChild(avatarIcon('minus'))
+		var slider = document.createElement('input')
+		slider.type = 'range'
+		slider.className = 'cafe-avatar-slider'
+		slider.min = String(AVATAR_MIN_ZOOM)
+		slider.max = String(AVATAR_MAX_ZOOM)
+		slider.step = '1'
+		slider.value = String(AVATAR_MIN_ZOOM)
+		slider.setAttribute('aria-label', 'Zoom')
+		slider.style.background = 'linear-gradient(to right, var(--surface-gray-10) 0%, var(--surface-gray-3) 0%)'
+		var zoomInButton = CAFE.el('button', 'cafe-avatar-icon-btn')
+		zoomInButton.type = 'button'
+		zoomInButton.setAttribute('aria-label', 'Zoom in')
+		zoomInButton.appendChild(avatarIcon('plus'))
+		var zoomRow = CAFE.el('div', 'cafe-avatar-zoom-row')
+		zoomRow.appendChild(zoomOutButton)
+		zoomRow.appendChild(slider)
+		zoomRow.appendChild(zoomInButton)
+
+		var body = CAFE.el('div', 'cafe-avatar-editor')
+		body.appendChild(frame)
+		body.appendChild(zoomRow)
+
+		function rotatedSize() {
+			return rotation % 180 === 0 ? imageSize : { width: imageSize.height, height: imageSize.width }
+		}
+		function baseScale() {
+			var frameSize = frame.getBoundingClientRect().width
+			if (!imageSize || !frameSize) return 1
+			var rotated = rotatedSize()
+			return Math.max(frameSize / rotated.width, frameSize / rotated.height)
+		}
+		function renderedSize() {
+			var scale = baseScale() * (zoomValue / 100)
+			var rotated = rotatedSize()
+			return { width: rotated.width * scale, height: rotated.height * scale }
+		}
+		function constrainPoint(point) {
+			var frameSize = frame.getBoundingClientRect().width
+			if (!imageSize || !frameSize) return point
+			var rendered = renderedSize()
+			var maxX = Math.max(0, (rendered.width - frameSize) / 2)
+			var maxY = Math.max(0, (rendered.height - frameSize) / 2)
+			return { x: clamp(point.x, -maxX, maxX), y: clamp(point.y, -maxY, maxY) }
+		}
+		function render() {
+			if (!imageSize) return
+			var scale = baseScale()
+			img.style.width = imageSize.width * scale + 'px'
+			img.style.height = imageSize.height * scale + 'px'
+			img.style.transform = 'rotate(' + rotation + 'deg) scale(' + zoomValue / 100 + ')'
+			wrap.style.transform = 'translate(-50%, -50%) translate(' + offset.x + 'px, ' + offset.y + 'px)'
+			slider.value = String(zoomValue)
+			var pct = ((zoomValue - AVATAR_MIN_ZOOM) / (AVATAR_MAX_ZOOM - AVATAR_MIN_ZOOM)) * 100
+			slider.style.background =
+				'linear-gradient(to right, var(--surface-gray-10) ' + pct + '%, var(--surface-gray-3) ' + pct + '%)'
+		}
+		function constrainOffset() {
+			offset = constrainPoint(offset)
+			render()
+		}
+		function resetCrop() {
+			offset = { x: 0, y: 0 }
+			rotation = 0
+			zoomValue = AVATAR_MIN_ZOOM
+			render()
+		}
+		function nudgeZoom(delta) {
+			zoomValue = clamp(zoomValue + delta, AVATAR_MIN_ZOOM, AVATAR_MAX_ZOOM)
+			constrainOffset()
+		}
+
+		frame.addEventListener('wheel', function (event) {
+			event.preventDefault()
+			nudgeZoom(event.deltaY > 0 ? -8 : 8)
+		})
+		frame.addEventListener('pointerdown', function (event) {
+			frame.setPointerCapture(event.pointerId)
+			dragState = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, startOffset: offset }
+			frame.classList.add('dragging')
+		})
+		frame.addEventListener('pointermove', function (event) {
+			if (!dragState) return
+			offset = constrainPoint({
+				x: dragState.startOffset.x + event.clientX - dragState.startX,
+				y: dragState.startOffset.y + event.clientY - dragState.startY,
+			})
+			render()
+		})
+		function stopDrag(event) {
+			if (dragState && dragState.pointerId === event.pointerId) {
+				dragState = null
+				frame.classList.remove('dragging')
+			}
+		}
+		frame.addEventListener('pointerup', stopDrag)
+		frame.addEventListener('pointercancel', stopDrag)
+		// Without stopping propagation, a pointerdown on this button also
+		// reaches the frame's own listener above and starts a drag.
+		rotateButton.addEventListener('pointerdown', function (event) {
+			event.stopPropagation()
+		})
+		rotateButton.addEventListener('click', function (event) {
+			event.stopPropagation()
+			rotation = (rotation + 90) % 360
+			constrainOffset()
+		})
+		zoomOutButton.addEventListener('click', function () {
+			nudgeZoom(-10)
+		})
+		zoomInButton.addEventListener('click', function () {
+			nudgeZoom(10)
+		})
+		slider.addEventListener('input', function () {
+			zoomValue = Number(slider.value)
+			constrainOffset()
+		})
+
+		function getCroppedBlob() {
+			var frameSize = frame.getBoundingClientRect().width
+			if (!imageSize || !frameSize) return Promise.resolve(null)
+			var canvas = document.createElement('canvas')
+			canvas.width = AVATAR_OUTPUT_SIZE
+			canvas.height = AVATAR_OUTPUT_SIZE
+			var context = canvas.getContext('2d')
+			var outputRatio = AVATAR_OUTPUT_SIZE / frameSize
+			var scale = baseScale() * (zoomValue / 100) * outputRatio
+			context.translate(
+				AVATAR_OUTPUT_SIZE / 2 + offset.x * outputRatio,
+				AVATAR_OUTPUT_SIZE / 2 + offset.y * outputRatio
+			)
+			context.rotate((rotation * Math.PI) / 180)
+			context.scale(scale, scale)
+			context.drawImage(img, -imageSize.width / 2, -imageSize.height / 2)
+			return new Promise(function (resolve) {
+				canvas.toBlob(resolve, 'image/jpeg', 0.92)
+			})
+		}
+
+		img.src = imageUrl
+		loadImageSize(imageUrl).then(function (size) {
+			imageSize = size
+			constrainOffset()
+		})
+
+		CAFE.dialog({
+			title: 'Edit avatar',
+			body: body,
+			actions: [
+				{ label: 'Reset', kind: 'subtle', left: true, onClick: resetCrop },
+				{
+					label: 'Cancel',
+					kind: 'subtle',
+					onClick: function (api) {
+						api.close()
+					},
+				},
+				{
+					label: 'Save',
+					kind: 'solid',
+					onClick: function (api) {
+						api.setBusy(true)
+						getCroppedBlob()
+							.then(function (blob) {
+								if (!blob) throw new Error('Could not crop image')
+								return CAFE.uploadFile(new File([blob], 'avatar.jpg', { type: 'image/jpeg' }))
+							})
+							.then(function (uploaded) {
+								return CAFE.api('cafe.api.update_profile', { user_image: uploaded.file_url })
+							})
+							.then(function () {
+								api.close()
+								CAFE.toast('Profile photo updated')
+								setTimeout(function () {
+									location.reload()
+								}, 350)
+							})
+							.catch(function (error) {
+								api.setBusy(false)
+								api.setError((error && error.message) || 'Could not save profile photo')
+							})
+					},
+				},
+			],
+			onClose: function () {
+				URL.revokeObjectURL(imageUrl)
+			},
+		})
+	}
+
 	function deleteEntry(method, id, title, message) {
 		return CAFE.confirm({ title: title, message: message, confirmLabel: 'Delete', danger: true }).then(function (
 			ok
@@ -265,6 +615,7 @@
 	var ACTIONS = {
 		'edit-header': editHeader,
 		'edit-bio': editBio,
+		'edit-avatar': openAvatarButton,
 		'add-work': function () {
 			workForm(null)
 		},
