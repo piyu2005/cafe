@@ -35,7 +35,7 @@ GOOGLE_ICON = (
 	'<path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.4l6.5 5.5C41.5 35.7 44 30.4 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>'
 )
 ERROR_RED = "#b41d1d"
-LINK_STYLES = {"fontWeight": "500", "color": INK_BLACK, "textDecoration": "underline"}
+LINK_STYLES = {"fontWeight": "500", "color": INK_BLACK, "textDecoration": "none"}
 SMALL = text_style(13, "420", MUTED, "0.02em", "1.15")
 
 PAGE_STYLES = {
