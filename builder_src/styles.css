@@ -207,6 +207,12 @@ html[data-cafe-sidebar='open'] .cafe-np {
   background: var(--surface-base);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
+/* The crop frame fills the dialog edge to edge, which makes the default
+   bottom padding read as tight underneath the action row - a bit more room
+   here only, not on every dialog. */
+.cafe-dialog:has(.cafe-avatar-editor) {
+  padding-bottom: 36px;
+}
 .cafe-dialog h2 {
   margin: 0;
   padding-right: 40px;
@@ -794,7 +800,7 @@ p.cafe-clamp-3:empty::before {
   appearance: none;
   width: 16px;
   height: 16px;
-  margin-top: 0;
+  margin-top: -6px;
   border: 0;
   border-radius: 9999px;
   background: var(--surface-base);
