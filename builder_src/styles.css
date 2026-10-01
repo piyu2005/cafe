@@ -1933,6 +1933,26 @@ button.cafe-rail-item {
   letter-spacing: inherit;
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  /* The 6 OTP boxes at their default 48px + 8px gaps need 328px - more than
+     the card's own content width leaves on a real phone (the page's 16px
+     side padding plus the card's own 36px padding eat well over 100px
+     before the row even starts), so the last box or two rendered past the
+     card's right edge. Less card padding and smaller boxes/gap on mobile
+     keep the whole row inside the card on every common phone width; the
+     wrap is just a fallback for anything narrower still. */
+  .cafe-auth-card {
+    padding: 20px !important;
+  }
+  .cafe-otp-row {
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+  .cafe-otp {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
 
 /* ---- Home feed ---- */
 .cafe-feed > * + * {

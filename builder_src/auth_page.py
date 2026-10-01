@@ -188,7 +188,12 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 				"type": "text",
 				"inputmode": "numeric",
 				"autocomplete": "one-time-code",
-				"maxlength": "1",
+				# No maxlength: on some mobile paste paths (long-press > Paste, not
+				# always a real "paste" event) the browser writes the clipboard
+				# text straight into the input's value and clamps it to maxlength
+				# itself, before auth.js's own paste/input handling ever runs -
+				# leaving just the first digit. auth.js already does its own
+				# single-digit enforcement in the normal typing case.
 				"aria-label": f"Digit {i + 1}",
 			},
 			styles=OTP_STYLES,
@@ -208,7 +213,12 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 		attrs={"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
 		children=[
 			sent,
-			block("div", styles={"display": "flex", "gap": "8px", "marginTop": "16px"}, children=boxes),
+			block(
+				"div",
+				classes=["cafe-otp-row"],
+				styles={"display": "flex", "gap": "8px", "marginTop": "16px"},
+				children=boxes,
+			),
 			message_block("code-error"),
 			button_block("Verify", "solid", {"id": "cafe-verify"}),
 			resend,
