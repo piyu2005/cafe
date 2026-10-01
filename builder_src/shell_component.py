@@ -8,7 +8,7 @@ block, and the shell renders on every page in the app), a cost accepted on
 purpose for editability - see build_shell() for the numbers.
 """
 
-from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SOLID_BG, SURFACE_1, block, icon
+from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SURFACE_1, block, cafe_logo, icon
 from shell_component_parts import BADGE_STYLES
 from sidebar import build_sidebar
 
@@ -64,9 +64,6 @@ LOGO_STYLES = {
 	"margin": "0 -2px",
 	"padding": "0",
 	"border": "0",
-	"borderRadius": "8px",
-	"backgroundColor": SOLID_BG,
-	"color": "#ffffff",
 	"cursor": "pointer",
 }
 # The rail itself stretches the full height of the page (background and border).
@@ -221,7 +218,7 @@ def logo_block():
 		"Logo",
 		["cafe-logo"],
 		attrs={"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
-		children=[icon("feather", 16)],
+		children=[cafe_logo(32)],
 		styles=LOGO_STYLES,
 	)
 

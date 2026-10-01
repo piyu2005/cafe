@@ -152,6 +152,52 @@ def svg(name, size, color=None):
 	)
 
 
+# The Cafe brand mark: Frappe's black-rounded-square app-icon badge with the
+# glyph in white, same as every other Frappe product's logo. Supplied directly
+# from the Figma source (not a lucide icon, so it isn't read from LUCIDE like
+# icon()/svg() above) - background and glyph are one fixed-colour unit, not a
+# tintable icon, so it always renders the same regardless of surrounding text
+# colour.
+_CAFE_LOGO_INNER = (
+	'<rect x="1" width="36" height="36" rx="7.2" fill="#171717"/>'
+	'<path d="M27.1788 16.2768L20.7223 9.82031C21.312 10.4101 20.98 11.783 19.9906 13.393C19.3847 14.379 18.5323 15.4538 '
+	"17.494 16.4921C16.4557 17.5303 15.3809 18.3828 14.395 18.9887C12.7849 19.9781 11.412 20.31 10.8223 19.7203L17.2788 "
+	"26.1768C17.8686 26.7666 19.2415 26.4346 20.8515 25.4452C21.8374 24.8393 22.9122 23.9869 23.9505 22.9486C24.9888 "
+	"21.9103 25.8412 20.8355 26.4471 19.8496C27.4365 18.2395 27.7685 16.8666 27.1788 16.2768Z\" fill=\"white\"/>"
+	'<path fill-rule="evenodd" clip-rule="evenodd" d="M11.459 19.0822C11.4913 19.0977 11.6391 19.1529 12.0364 '
+	"19.0674C12.5178 18.9639 13.1656 18.6882 13.9234 18.2225C14.8414 17.6584 15.8617 16.8518 16.8573 15.8563C17.8528 "
+	"14.8607 18.6594 13.8404 19.2235 12.9224C19.6892 12.1646 19.9649 11.5168 20.0684 11.0355C20.1538 10.6381 20.0987 "
+	"10.4904 20.0832 10.4581C20.0554 10.4448 19.9645 10.4146 19.7501 10.4355C19.4387 10.4659 18.9981 10.5966 18.4466 "
+	"10.8635C17.3518 11.3932 16.0018 12.3704 14.6866 13.6856C13.3714 15.0008 12.3942 16.3508 11.8644 17.4457C11.5976 "
+	"17.9971 11.4668 18.4377 11.4365 18.7491C11.4156 18.9636 11.4458 19.0545 11.459 19.0822ZM21.6552 12.027C21.4535 "
+	"12.6137 21.1429 13.2369 20.7571 13.8649C20.1094 14.9187 19.2111 16.0481 18.1301 17.1291C17.049 18.2101 15.9197 "
+	"19.1085 14.8659 19.7561C14.2379 20.142 13.6147 20.4526 13.028 20.6543L17.9091 25.5354C17.9202 25.5415 18.055 "
+	"25.6182 18.493 25.524C18.9743 25.4204 19.6221 25.1448 20.3799 24.6791C21.298 24.1149 22.3182 23.3084 23.3138 "
+	"22.3128C24.3094 21.3172 25.1159 20.297 25.68 19.379C26.1457 18.6212 26.4214 17.9733 26.5249 17.492C26.6191 "
+	"17.054 26.5425 16.9192 26.5363 16.9081L21.6552 12.027ZM21.3583 9.18455L27.8148 15.6411C28.4392 16.2655 28.4386 "
+	"17.1548 28.2847 17.8705C28.1223 18.6256 27.7373 19.4692 27.2136 20.3214C26.5659 21.3752 25.6676 22.5046 24.5866 "
+	"23.5856C23.5056 24.6666 22.3762 25.565 21.3224 26.2126C20.4702 26.7363 19.6265 27.1213 18.8714 27.2837C18.1558 "
+	"27.4376 17.2665 27.4383 16.642 26.8139L10.1855 20.3573C9.6808 19.8526 9.58712 19.168 9.64498 18.5744C9.70363 "
+	"17.9729 9.92679 17.3175 10.2441 16.6617C10.8828 15.3419 11.9952 13.8314 13.4138 12.4128C14.8324 10.9942 16.3428 "
+	"9.88179 17.6626 9.24317C18.3185 8.92581 18.9739 8.70265 19.5754 8.64401C20.169 8.58615 20.8536 8.67983 21.3583 "
+	'9.18455Z" fill="white"/>'
+)
+
+
+def cafe_logo_svg(size):
+	"""The Cafe brand mark as a raw svg string, for raw_block/html_el usage."""
+	return (
+		f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 38 38" fill="none" '
+		f'aria-hidden="true" style="display:block;flex-shrink:0">{_CAFE_LOGO_INNER}</svg>'
+	)
+
+
+def cafe_logo(size):
+	"""The Cafe brand mark as a Builder block, for use as a normal child (same
+	calling convention as icon())."""
+	return block("svg", "icon/cafe-logo", html=cafe_logo_svg(size), styles={"width": f"{size}px", "height": f"{size}px", "flexShrink": "0"})
+
+
 def instance_of(component_id, component_block, name):
 	"""A page's reference to a component. Builder rebuilds the children of a
 	component from the instance's children, matched by `referenceBlockId`, so

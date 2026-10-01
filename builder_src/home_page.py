@@ -24,6 +24,7 @@ from blocks import (
 	attribute,
 	bind,
 	block,
+	cafe_logo_svg,
 	html_el,
 	raw_block,
 	svg,
@@ -207,7 +208,9 @@ def build_mobile_bar():
 		"Brand",
 		# 20px/600, frappe-ui's text-xl-semibold - was 17px, a real mismatch
 		# against the old Vue page's <span class="text-xl font-semibold">.
-		svg("feather", 20, INK)
+		# The mark is a fixed-colour badge (not tinted like an icon), same as
+		# everywhere else it appears.
+		cafe_logo_svg(28)
 		+ html_el("span", None, None, text_style(20, "600", INK, "0", "1.4"), text="Cafe"),
 		styles={"display": "flex", "alignItems": "center", "gap": "6px"},
 	)
