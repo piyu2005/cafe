@@ -15,6 +15,35 @@
 	}
 	CAFE.el = el
 
+	// ---- Form drafts (survive a page refresh while a CAFE.form() dialog is open) ----
+	// sessionStorage, not localStorage: a draft should outlive a refresh in this
+	// tab, not follow the person to a new tab or linger forever once they're
+	// done with it.
+	function draftKey(key) {
+		return 'cafe-draft:' + key
+	}
+	CAFE.hasDraft = function (key) {
+		try {
+			return !!sessionStorage.getItem(draftKey(key))
+		} catch (e) {
+			return false
+		}
+	}
+	CAFE.loadDraft = function (key) {
+		try {
+			return JSON.parse(sessionStorage.getItem(draftKey(key)) || 'null')
+		} catch (e) {
+			return null
+		}
+	}
+	CAFE.clearDraft = function (key) {
+		try {
+			sessionStorage.removeItem(draftKey(key))
+		} catch (e) {
+			// Private browsing etc. - nothing to clean up either way.
+		}
+	}
+
 	// Keeps a fixed-position floating element (size `size` along one axis) at
 	// least `margin` px inside the viewport (`viewportSize` along that same
 	// axis), sliding `pos` in from whichever edge it overflows.
@@ -485,8 +514,19 @@
 	//   { row: [field, { text: 'at' }, field] }
 	// onSubmit(values) returns a promise. The dialog stays open, showing the error, if it rejects.
 	// If onDelete is given, a Delete button is shown.
+	// `persistKey`, if given, autosaves every keystroke as a draft (so a page
+	// refresh while this is open doesn't lose it) under that key, plus
+	// `draftMeta` (e.g. which existing record this is editing) alongside it -
+	// the caller reads that back via CAFE.loadDraft(key).meta to know what to
+	// reopen on load. The draft clears on a successful submit/delete or
+	// Cancel; closing via Escape/X/outside-click leaves it in place.
 	CAFE.form = function (options) {
+		var persistKey = options.persistKey
 		var values = options.values || {}
+		if (persistKey) {
+			var draft = CAFE.loadDraft(persistKey)
+			if (draft && draft.values) values = Object.assign({}, values, draft.values)
+		}
 		var body = el('div', 'cafe-form')
 		var controls = []
 
@@ -518,11 +558,27 @@
 			return result
 		}
 
+		if (persistKey) {
+			var saveDraft = function () {
+				try {
+					sessionStorage.setItem(
+						draftKey(persistKey),
+						JSON.stringify({ meta: options.draftMeta, values: collect() })
+					)
+				} catch (e) {
+					// Storage full or disabled - the dialog still works, it just won't survive a refresh.
+				}
+			}
+			body.addEventListener('input', saveDraft)
+			body.addEventListener('change', saveDraft)
+		}
+
 		var actions = [
 			{
 				label: 'Cancel',
 				kind: 'outline',
 				onClick: function (dialog) {
+					if (persistKey) CAFE.clearDraft(persistKey)
 					dialog.close()
 				},
 			},
@@ -545,6 +601,7 @@
 					dialog.setBusy(true)
 					options.onSubmit(result).then(
 						function () {
+							if (persistKey) CAFE.clearDraft(persistKey)
 							dialog.close()
 						},
 						function (err) {
@@ -563,7 +620,10 @@
 				onClick: function (dialog) {
 					options.onDelete().then(
 						function (deleted) {
-							if (deleted) dialog.close()
+							if (deleted) {
+								if (persistKey) CAFE.clearDraft(persistKey)
+								dialog.close()
+							}
 						},
 						function (err) {
 							dialog.setError(err.message)
