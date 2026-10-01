@@ -151,6 +151,8 @@
 					if (!ok) {
 						dialog.setBusy(false)
 						dialog.setError(document.querySelector('.cafe-w-error').textContent)
+					} else {
+						CAFE.clearDraft('story-preview')
 					}
 				})
 			},
@@ -208,6 +210,15 @@
 			})
 	}
 
+	// Reopens whichever dialog had an unsaved draft, so a page refresh while
+	// one was open doesn't lose it. Needs the real post content loaded first
+	// (W.fill already ran), since Story Preview reads from it for the default
+	// excerpt/cover.
+	function restoreDialogDrafts() {
+		if (CAFE.hasDraft('editor-link')) W.linkDialog()
+		if (CAFE.hasDraft('story-preview')) openPreview()
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		var root = document.getElementById('cafe-write')
 		if (!root) return
@@ -218,6 +229,7 @@
 		refreshHeader()
 		if (!id) {
 			W.fill(null)
+			restoreDialogDrafts()
 			return
 		}
 		W.showLoading()
@@ -226,6 +238,7 @@
 				W.state.loaded = true
 				W.fill(doc)
 				refreshHeader()
+				restoreDialogDrafts()
 			},
 			function (error) {
 				W.fill(null)

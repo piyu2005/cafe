@@ -35,7 +35,7 @@ GOOGLE_ICON = (
 	'<path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.4l6.5 5.5C41.5 35.7 44 30.4 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>'
 )
 ERROR_RED = "#b41d1d"
-LINK_STYLES = {"fontWeight": "500", "color": INK_BLACK, "textDecoration": "underline"}
+LINK_STYLES = {"fontWeight": "500", "color": INK_BLACK, "textDecoration": "none"}
 SMALL = text_style(13, "420", MUTED, "0.02em", "1.15")
 
 PAGE_STYLES = {
@@ -188,7 +188,12 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 				"type": "text",
 				"inputmode": "numeric",
 				"autocomplete": "one-time-code",
-				"maxlength": "1",
+				# No maxlength: on some mobile paste paths (long-press > Paste, not
+				# always a real "paste" event) the browser writes the clipboard
+				# text straight into the input's value and clamps it to maxlength
+				# itself, before auth.js's own paste/input handling ever runs -
+				# leaving just the first digit. auth.js already does its own
+				# single-digit enforcement in the normal typing case.
 				"aria-label": f"Digit {i + 1}",
 			},
 			styles=OTP_STYLES,
@@ -208,7 +213,12 @@ def code_form_block(sent_text="We sent a 6 digit verification code to "):
 		attrs={"id": "cafe-code-form", "hidden": "hidden", "novalidate": "novalidate"},
 		children=[
 			sent,
-			block("div", styles={"display": "flex", "gap": "8px", "marginTop": "16px"}, children=boxes),
+			block(
+				"div",
+				classes=["cafe-otp-row"],
+				styles={"display": "flex", "gap": "8px", "marginTop": "16px"},
+				children=boxes,
+			),
 			message_block("code-error"),
 			button_block("Verify", "solid", {"id": "cafe-verify"}),
 			resend,

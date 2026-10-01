@@ -151,6 +151,7 @@
 			function (people) {
 				CAFE.form({
 					title: 'Share this post',
+					persistKey: 'share-post',
 					submitLabel: 'Send',
 					values: {},
 					fields: [
@@ -654,5 +655,6 @@
 		}
 		setupCarousel()
 		loadComments()
+		if (CAFE.hasDraft('share-post')) openShare()
 	})
 })()

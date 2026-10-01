@@ -85,6 +85,7 @@
 		loadProfile().then(function (profile) {
 			CAFE.form({
 				title: 'Edit profile',
+				persistKey: 'edit-profile',
 				values: profile,
 				fields: [
 					{ name: 'full_name', label: 'Full name', required: true },
@@ -108,6 +109,7 @@
 		loadProfile().then(function (profile) {
 			CAFE.form({
 				title: 'Edit introduction',
+				persistKey: 'edit-bio',
 				values: profile,
 				fields: [{ name: 'bio', label: 'Introduction', type: 'textarea', rows: 6 }],
 				onSubmit: function (values) {
@@ -137,6 +139,8 @@
 		)
 		CAFE.form({
 			title: editing ? 'Edit work experience' : 'Add work experience',
+			persistKey: 'work-form',
+			draftMeta: { entryId: editing ? entry.name : null },
 			values: values,
 			fields: [
 				{
@@ -183,6 +187,8 @@
 		)
 		CAFE.form({
 			title: editing ? 'Edit education' : 'Add education',
+			persistKey: 'education-form',
+			draftMeta: { entryId: editing ? entry.name : null },
 			values: values,
 			fields: [
 				{ name: 'school', label: 'School', required: true },
@@ -292,6 +298,26 @@
 		else image.addEventListener('error', useInitial)
 	}
 
+	// Reopens whichever of the four profile dialogs had an unsaved draft, so a
+	// page refresh while one was open doesn't lose it. For the two entry forms
+	// the draft only records which entry.name was being edited (or null for a
+	// new one) - editEntry/the form functions below re-fetch the real entry
+	// and CAFE.form itself restores the in-progress field values on top of it.
+	function restoreDrafts() {
+		if (CAFE.hasDraft('edit-profile')) editHeader()
+		if (CAFE.hasDraft('edit-bio')) editBio()
+		var work = CAFE.loadDraft('work-form')
+		if (work) {
+			if (work.meta && work.meta.entryId) editEntry('work', work.meta.entryId)
+			else workForm(null)
+		}
+		var education = CAFE.loadDraft('education-form')
+		if (education) {
+			if (education.meta && education.meta.entryId) editEntry('education', education.meta.entryId)
+			else educationForm(null)
+		}
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		root = document.getElementById('cafe-profile')
 		if (!root) return
@@ -305,5 +331,6 @@
 				ACTIONS[button.getAttribute('data-action')](button)
 		})
 		watchAvatar()
+		restoreDrafts()
 	})
 })()

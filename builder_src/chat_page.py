@@ -30,11 +30,20 @@ CHAT_PARTS = [
 # Unbundled: this file's own imports pull TipTap and DOMPurify from a CDN, so
 # it loads as a native ES module, not a classic script.
 VENDOR = ["chat-editor.js"]
+# Must match vendor_src/chat-editor-entry.js's own imports exactly - see
+# write_page.py's TIPTAP_MODULES for why these are preloaded.
+TIPTAP_MODULES = [
+	"https://esm.sh/@tiptap/core@3.31.3",
+	"https://esm.sh/@tiptap/starter-kit@3.31.3",
+	"https://esm.sh/@tiptap/extension-placeholder@3.31.3",
+	"https://esm.sh/@tiptap/extension-highlight@3.31.3",
+	"https://esm.sh/dompurify@3.4.15",
+]
 
 
 def native_head_html():
 	"""The editor bundle the composer needs, with a version so a new build is fetched."""
-	tags = []
+	tags = [f'<link rel="modulepreload" href="{url}" crossorigin="anonymous">' for url in TIPTAP_MODULES]
 	for file in VENDOR:
 		path = ASSETS / "vendor" / file
 		version = hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else "0"

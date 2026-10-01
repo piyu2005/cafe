@@ -388,7 +388,7 @@
                "baseStyles": {
                 "fontWeight": "500",
                 "color": "var(--ink-gray-9)",
-                "textDecoration": "underline"
+                "textDecoration": "none"
                },
                "blockId": "lu8qpyj7z",
                "blockName": null,
@@ -746,7 +746,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 1"
                },
                "baseStyles": {
@@ -793,7 +792,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 2"
                },
                "baseStyles": {
@@ -840,7 +838,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 3"
                },
                "baseStyles": {
@@ -887,7 +884,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 4"
                },
                "baseStyles": {
@@ -934,7 +930,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 5"
                },
                "baseStyles": {
@@ -981,7 +976,6 @@
                 "type": "text",
                 "inputmode": "numeric",
                 "autocomplete": "one-time-code",
-                "maxlength": "1",
                 "aria-label": "Digit 6"
                },
                "baseStyles": {
@@ -1024,7 +1018,9 @@
                "visibilityCondition": null
               }
              ],
-             "classes": [],
+             "classes": [
+              "cafe-otp-row"
+             ],
              "clientScript": {},
              "customAttributes": {},
              "dataKey": null,
@@ -1282,7 +1278,7 @@
            "baseStyles": {
             "fontWeight": "500",
             "color": "var(--ink-gray-9)",
-            "textDecoration": "underline"
+            "textDecoration": "none"
            },
            "blockId": "tia8it9nr",
            "blockName": null,
@@ -2023,7 +2019,7 @@
            "baseStyles": {
             "fontWeight": "500",
             "color": "var(--ink-gray-9)",
-            "textDecoration": "underline"
+            "textDecoration": "none"
            },
            "blockId": "gm4qnkmeq",
            "blockName": null,
@@ -2153,17 +2149,17 @@
    "builder_script": "Cafe Auth"
   }
  ],
- "creation": "2026-09-30 21:16:30.176480",
+ "creation": "2026-10-01 12:41:03.263000",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": null,
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\">",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 21:16:30.176480",
+ "modified": "2026-10-01 12:41:03.263000",
  "modified_by": "Administrator",
  "name": "cafe-login",
  "owner": "Administrator",
@@ -2172,6 +2168,6 @@
  "page_title": "Login",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 21:16:30.176480",
+ "published_at": "2026-10-01 12:41:03.263000",
  "route": "login"
 }

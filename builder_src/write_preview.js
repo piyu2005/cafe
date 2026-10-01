@@ -14,6 +14,8 @@
 		return S.form.cover_image || W.firstImage(W.content())
 	}
 
+	var DRAFT_KEY = 'story-preview'
+
 	// Opens the dialog. onPublish() is called on Publish; the returned api has setBusy(bool).
 	W.openPreview = function (options) {
 		var S = W.state
@@ -22,6 +24,27 @@
 		var adjust = null // { url, natural, frame, offset }
 		var body = W.el('div', 'cafe-w-story')
 		var dialog
+
+		// A crop in progress can't survive a refresh - it holds a local file
+		// handle (the blob: URL from the file picker) that stops working the
+		// moment the page reloads, so there's nothing to restore it from. The
+		// title/excerpt/cover this dialog's main view edits are plain values
+		// though, so those do survive one.
+		var draft = CAFE.loadDraft(DRAFT_KEY)
+		if (draft && draft.values) {
+			if ('display_title' in draft.values) form.display_title = draft.values.display_title
+			if ('excerpt' in draft.values) form.excerpt = draft.values.excerpt
+			if ('cover_image' in draft.values) form.cover_image = draft.values.cover_image
+			if ('coverRemoved' in draft.values) S.coverRemoved = draft.values.coverRemoved
+		}
+		function saveDraft() {
+			CAFE.saveDraft(DRAFT_KEY, null, {
+				display_title: form.display_title,
+				excerpt: form.excerpt,
+				cover_image: form.cover_image,
+				coverRemoved: S.coverRemoved,
+			})
+		}
 
 		var fileInput = W.el('input')
 		fileInput.type = 'file'
@@ -74,6 +97,7 @@
 						S.coverRemoved = true
 						form.cover_image = ''
 						drawView()
+						saveDraft()
 					})
 				)
 			}
@@ -86,6 +110,7 @@
 			title.value = form.display_title || form.title
 			title.addEventListener('input', function () {
 				form.display_title = title.value
+				saveDraft()
 			})
 			var excerpt = W.el('textarea', 'cafe-w-story-excerpt')
 			excerpt.rows = 2
@@ -93,6 +118,7 @@
 			excerpt.value = form.excerpt || W.autoExcerpt(html)
 			excerpt.addEventListener('input', function () {
 				form.excerpt = excerpt.value
+				saveDraft()
 			})
 			body.appendChild(title)
 			body.appendChild(excerpt)
@@ -242,6 +268,7 @@
 							form.cover_image = result.file_url
 							dialog.setBusy(false)
 							drawView()
+							saveDraft()
 						},
 						function (error) {
 							dialog.setBusy(false)
@@ -275,6 +302,7 @@
 					label: 'Cancel',
 					kind: 'outline',
 					onClick: function (d) {
+						CAFE.clearDraft(DRAFT_KEY)
 						d.close()
 					},
 				},

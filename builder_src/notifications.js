@@ -332,9 +332,23 @@
 				callback(socket)
 			})
 			socket.on('notification:new', function (payload) {
-				if (CAFE.refreshBadges) CAFE.refreshBadges()
-				if (panel.isOpen) panel.load(true)
-				else CAFE.toast((payload.actor_name || 'Someone') + ' ' + payload.message, 'info')
+				if (panel.isOpen) {
+					if (CAFE.refreshBadges) CAFE.refreshBadges()
+					panel.load(true)
+				} else {
+					CAFE.toast((payload.actor_name || 'Someone') + ' ' + payload.message, 'info')
+					// Seeing the toast counts as seeing the notification - mark it
+					// read right away rather than leaving an unread dot in the panel
+					// for something already shown on screen. Refresh the badge only
+					// after that confirms, so the unread count doesn't flicker up
+					// and immediately back down.
+					CAFE.api('cafe.follow.mark_notification_read', { name: payload.name }).then(
+						function () {
+							if (CAFE.refreshBadges) CAFE.refreshBadges()
+						},
+						function () {}
+					)
+				}
 			})
 			socket.on('chat:new_message', function (payload) {
 				if (CAFE.refreshBadges) CAFE.refreshBadges()

@@ -560,7 +560,6 @@ html[data-cafe-sidebar='open'] .cafe-np {
 .cafe-text-btn[data-action='toggle-bio']:hover {
   background: transparent !important;
   color: var(--ink-gray-8);
-  text-decoration: underline;
 }
 /* Builder's reset gives an empty paragraph a ::before box, which makes an
    empty clamped paragraph one line tall. */
@@ -571,6 +570,9 @@ p.cafe-clamp-3:empty::before {
 /* A link inside a Builder text block is styled by Builder (blue, underlined). */
 .__text_block__ a.cafe-plain-link {
   color: var(--ink-gray-8);
+  text-decoration: none;
+}
+.__text_block__ a.cafe-auth-link {
   text-decoration: none;
 }
 .cafe-clamp-2,
@@ -672,9 +674,6 @@ p.cafe-clamp-3:empty::before {
 .cafe-author.cafe-author-head {
   line-height: 24px !important;
 }
-.cafe-author:hover {
-  text-decoration: underline;
-}
 .cafe-icon-btn-subtle:hover {
   background: var(--surface-gray-3) !important;
 }
@@ -691,9 +690,6 @@ p.cafe-clamp-3:empty::before {
 }
 .cafe-save:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
-}
-.cafe-more-comments:hover {
-  text-decoration: underline;
 }
 .cafe-textarea {
   display: block;
@@ -1060,11 +1056,6 @@ p.cafe-clamp-3:empty::before {
   display: block;
   width: 16px;
   height: 16px;
-}
-.cafe-c-action:hover,
-.cafe-c-view:hover,
-.cafe-c-hide:hover {
-  text-decoration: underline;
 }
 .cafe-c-replybox {
   margin: 8px 0 0 56px;
@@ -1940,8 +1931,27 @@ button.cafe-rail-item {
   font: inherit;
   font-weight: 500;
   letter-spacing: inherit;
-  text-decoration: underline;
   cursor: pointer;
+}
+@media (max-width: 767px) {
+  /* The 6 OTP boxes at their default 48px + 8px gaps need 328px - more than
+     the card's own content width leaves on a real phone (the page's 16px
+     side padding plus the card's own 36px padding eat well over 100px
+     before the row even starts), so the last box or two rendered past the
+     card's right edge. Less card padding and smaller boxes/gap on mobile
+     keep the whole row inside the card on every common phone width; the
+     wrap is just a fallback for anything narrower still. */
+  .cafe-auth-card {
+    padding: 20px !important;
+  }
+  .cafe-otp-row {
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+  .cafe-otp {
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
 
 /* ---- Home feed ---- */
