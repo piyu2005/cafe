@@ -15,10 +15,12 @@
 	}
 	CAFE.el = el
 
-	// ---- Form drafts (survive a page refresh while a CAFE.form() dialog is open) ----
+	// ---- Dialog drafts (survive a page refresh while a dialog is open) ----
 	// sessionStorage, not localStorage: a draft should outlive a refresh in this
 	// tab, not follow the person to a new tab or linger forever once they're
-	// done with it.
+	// done with it. CAFE.form() below uses these for its own fields
+	// automatically; a dialog with a custom body (not built from CAFE.form())
+	// can call saveDraft/loadDraft/clearDraft directly instead.
 	function draftKey(key) {
 		return 'cafe-draft:' + key
 	}
@@ -34,6 +36,13 @@
 			return JSON.parse(sessionStorage.getItem(draftKey(key)) || 'null')
 		} catch (e) {
 			return null
+		}
+	}
+	CAFE.saveDraft = function (key, meta, values) {
+		try {
+			sessionStorage.setItem(draftKey(key), JSON.stringify({ meta: meta, values: values }))
+		} catch (e) {
+			// Storage full or disabled - the dialog still works, it just won't survive a refresh.
 		}
 	}
 	CAFE.clearDraft = function (key) {

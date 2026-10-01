@@ -302,11 +302,16 @@
 		input.click()
 	}
 
-	// The address you type for a link. Empty removes the link.
+	// The address you type for a link. Empty removes the link. Exposed on W so
+	// write_live.js can reopen it on load if a draft survived a refresh - it
+	// applies to whatever the selection is when Apply is clicked, same as a
+	// normal open, so there's no stale selection to restore.
+	W.linkDialog = linkDialog
 	function linkDialog() {
 		var current = editor.getAttributes('link').href || ''
 		CAFE.form({
 			title: 'Link',
+			persistKey: 'editor-link',
 			submitLabel: 'Apply',
 			values: { url: current },
 			fields: [{ name: 'url', label: 'Address', required: false }],
