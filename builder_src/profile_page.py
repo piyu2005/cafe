@@ -204,7 +204,13 @@ def build_avatar():
 						children=[icon("camera", 22, "#ffffff")],
 					),
 				],
-				styles={**AVATAR_STYLES, "border": "0", "padding": "0", "font": "inherit", "cursor": "pointer"},
+				styles={
+					**AVATAR_STYLES,
+					"border": "0",
+					"padding": "0",
+					"font": "inherit",
+					"cursor": "pointer",
+				},
 			),
 			"profile.user_image",
 			"data-has-image",
@@ -212,7 +218,9 @@ def build_avatar():
 		"profile.is_own",
 	)
 	other = when(
-		block("div", "Avatar", ["cafe-profile-avatar"], children=build_avatar_content(), styles=AVATAR_STYLES),
+		block(
+			"div", "Avatar", ["cafe-profile-avatar"], children=build_avatar_content(), styles=AVATAR_STYLES
+		),
 		"profile.is_other",
 	)
 	return [own, other]

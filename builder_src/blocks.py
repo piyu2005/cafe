@@ -163,7 +163,7 @@ _CAFE_LOGO_INNER = (
 	'<path d="M27.1788 16.2768L20.7223 9.82031C21.312 10.4101 20.98 11.783 19.9906 13.393C19.3847 14.379 18.5323 15.4538 '
 	"17.494 16.4921C16.4557 17.5303 15.3809 18.3828 14.395 18.9887C12.7849 19.9781 11.412 20.31 10.8223 19.7203L17.2788 "
 	"26.1768C17.8686 26.7666 19.2415 26.4346 20.8515 25.4452C21.8374 24.8393 22.9122 23.9869 23.9505 22.9486C24.9888 "
-	"21.9103 25.8412 20.8355 26.4471 19.8496C27.4365 18.2395 27.7685 16.8666 27.1788 16.2768Z\" fill=\"white\"/>"
+	'21.9103 25.8412 20.8355 26.4471 19.8496C27.4365 18.2395 27.7685 16.8666 27.1788 16.2768Z" fill="white"/>'
 	'<path fill-rule="evenodd" clip-rule="evenodd" d="M11.459 19.0822C11.4913 19.0977 11.6391 19.1529 12.0364 '
 	"19.0674C12.5178 18.9639 13.1656 18.6882 13.9234 18.2225C14.8414 17.6584 15.8617 16.8518 16.8573 15.8563C17.8528 "
 	"14.8607 18.6594 13.8404 19.2235 12.9224C19.6892 12.1646 19.9649 11.5168 20.0684 11.0355C20.1538 10.6381 20.0987 "
@@ -195,7 +195,12 @@ def cafe_logo_svg(size):
 def cafe_logo(size):
 	"""The Cafe brand mark as a Builder block, for use as a normal child (same
 	calling convention as icon())."""
-	return block("svg", "icon/cafe-logo", html=cafe_logo_svg(size), styles={"width": f"{size}px", "height": f"{size}px", "flexShrink": "0"})
+	return block(
+		"svg",
+		"icon/cafe-logo",
+		html=cafe_logo_svg(size),
+		styles={"width": f"{size}px", "height": f"{size}px", "flexShrink": "0"},
+	)
 
 
 def instance_of(component_id, component_block, name):

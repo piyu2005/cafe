@@ -357,7 +357,12 @@
 		})
 		frame.addEventListener('pointerdown', function (event) {
 			frame.setPointerCapture(event.pointerId)
-			dragState = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, startOffset: offset }
+			dragState = {
+				pointerId: event.pointerId,
+				startX: event.clientX,
+				startY: event.clientY,
+				startOffset: offset,
+			}
 			frame.classList.add('dragging')
 		})
 		frame.addEventListener('pointermove', function (event) {

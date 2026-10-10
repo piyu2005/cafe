@@ -210,8 +210,7 @@ def build_mobile_bar():
 		# against the old Vue page's <span class="text-xl font-semibold">.
 		# The mark is a fixed-colour badge (not tinted like an icon), same as
 		# everywhere else it appears.
-		cafe_logo_svg(28)
-		+ html_el("span", None, None, text_style(20, "600", INK, "0", "1.4"), text="Cafe"),
+		cafe_logo_svg(28) + html_el("span", None, None, text_style(20, "600", INK, "0", "1.4"), text="Cafe"),
 		styles={"display": "flex", "alignItems": "center", "gap": "6px"},
 	)
 	write = raw_block(
