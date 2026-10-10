@@ -30,6 +30,7 @@
   --surface-gray-1: #f8f8f8;
   --surface-gray-2: #f3f3f3;
   --surface-gray-3: #ededed;
+  --surface-gray-4: #e2e2e2;
   --surface-gray-9: #383838;
   --surface-gray-10: #171717;
   --outline-gray-1: #ededed;
@@ -206,6 +207,12 @@ html[data-cafe-sidebar='open'] .cafe-np {
   border-radius: 16px;
   background: var(--surface-base);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+/* The crop frame fills the dialog edge to edge, which makes the default
+   bottom padding read as tight underneath the action row - a bit more room
+   here only, not on every dialog. */
+.cafe-dialog:has(.cafe-avatar-editor) {
+  padding-bottom: 36px;
 }
 .cafe-dialog h2 {
   margin: 0;
@@ -618,6 +625,215 @@ p.cafe-clamp-3:empty::before {
   line-height: 1.5;
   color: var(--ink-gray-5);
   text-transform: uppercase;
+}
+
+/* ---- Avatar: edit button, Change/Remove menu, crop dialog ---- */
+.cafe-avatar-edit-btn {
+  position: relative;
+}
+.cafe-avatar-edit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.cafe-avatar-edit-btn:hover::before,
+.cafe-avatar-edit-btn:focus-visible::before {
+  opacity: 1;
+}
+.cafe-avatar-edit-btn:focus-visible {
+  outline: 2px solid rgba(201, 201, 201, 0.9);
+  outline-offset: 2px;
+}
+.cafe-avatar-edit-hint {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+.cafe-avatar-edit-btn:hover .cafe-avatar-edit-hint,
+.cafe-avatar-edit-btn:focus-visible .cafe-avatar-edit-hint {
+  opacity: 1;
+}
+.cafe-avatar-menu {
+  position: fixed;
+  z-index: 20;
+  min-width: 170px;
+  padding: 4px;
+  border: 1px solid var(--outline-gray-1);
+  border-radius: 10px;
+  background: var(--surface-base);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.cafe-avatar-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-gray-8);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.cafe-avatar-menu-item:hover {
+  background: var(--surface-gray-2);
+}
+.cafe-avatar-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+.cafe-avatar-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* The crop dialog's own body: a square frame (drag to pan, wheel or the
+   slider to zoom, the corner button to rotate) above a zoom row, matching
+   Frappe Gameplan's AvatarCropper/ProfileImageEditor. */
+.cafe-avatar-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* The title has no margin of its own (.cafe-dialog h2's is 0) and this was
+     the first thing after it, so the only gap below the title was its own
+     line-height - visibly less than the 22px the dialog already pads above
+     it. This balances the two. */
+  margin-top: 16px;
+}
+.cafe-avatar-crop-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--surface-gray-2);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+}
+.cafe-avatar-crop-frame.dragging {
+  cursor: grabbing;
+}
+.cafe-avatar-crop-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  will-change: transform;
+}
+.cafe-avatar-crop-img {
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.cafe-avatar-crop-mask {
+  position: absolute;
+  inset: 7%;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+.cafe-avatar-rotate {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--surface-base) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+.cafe-avatar-zoom-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cafe-avatar-icon-btn {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-gray-8);
+  cursor: pointer;
+}
+.cafe-avatar-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.cafe-avatar-icon-btn .cafe-avatar-icon {
+  width: 16px;
+  height: 16px;
+}
+.cafe-avatar-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  min-width: 0;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--surface-gray-3);
+  cursor: pointer;
+}
+.cafe-avatar-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: transparent;
+}
+.cafe-avatar-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: transparent;
+}
+.cafe-avatar-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--surface-base);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.3),
+    0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.cafe-avatar-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--surface-base);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.3),
+    0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.cafe-avatar-slider:focus-visible {
+  outline: none;
+}
+.cafe-avatar-slider:focus-visible::-webkit-slider-thumb,
+.cafe-avatar-slider:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 4px rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* ---- Profile posts page ---- */

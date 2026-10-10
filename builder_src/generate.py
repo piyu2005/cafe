@@ -79,9 +79,6 @@ SCRIPT_ICONS = {
 		"x",
 	),
 	"write_core.js": (
-		"align-center",
-		"align-left",
-		"align-right",
 		"archive",
 		"bold",
 		"chevron-down",
@@ -95,6 +92,7 @@ SCRIPT_ICONS = {
 		"list",
 		"list-ordered",
 		"pilcrow",
+		"plus",
 		"quote",
 		"save",
 		"strikethrough",

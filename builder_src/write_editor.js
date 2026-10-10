@@ -172,11 +172,9 @@
 		['underline', 'Underline', 'toggleUnderline', 'underline'],
 		['strikethrough', 'Strikethrough', 'toggleStrike', 'strike'],
 	]
-	var BLOCKS = [
-		['quote', 'Blockquote', 'toggleBlockquote', 'blockquote'],
-		['list', 'Bullet list', 'toggleBulletList', 'bulletList'],
-		['list-ordered', 'Numbered list', 'toggleOrderedList', 'orderedList'],
-	]
+	var QUOTE = ['quote', 'Blockquote', 'toggleBlockquote', 'blockquote']
+	var BULLET_LIST = ['list', 'Bullet list', 'toggleBulletList', 'bulletList']
+	var ORDERED_LIST = ['list-ordered', 'Numbered list', 'toggleOrderedList', 'orderedList']
 	var HEADINGS = [
 		[
 			'heading-2',
@@ -211,12 +209,6 @@
 			['paragraph'],
 		],
 	]
-	var ALIGNS = [
-		['align-left', 'Align left', 'left'],
-		['align-center', 'Align center', 'center'],
-		['align-right', 'Align right', 'right'],
-	]
-
 	W.editor = function () {
 		return editor
 	}
@@ -279,18 +271,6 @@
 		})
 	}
 
-	function alignItems() {
-		return ALIGNS.map(function (a) {
-			return {
-				label: a[1],
-				icon: a[0],
-				onClick: function () {
-					editor.chain().focus().setTextAlign(a[2]).run()
-				},
-			}
-		})
-	}
-
 	function pickImages() {
 		var input = W.el('input')
 		input.type = 'file'
@@ -330,49 +310,28 @@
 		})
 	}
 
-	function buildToolbar() {
-		var bar = W.el('div', 'cafe-w-toolbar')
-		MARKS.forEach(function (item) {
-			bar.appendChild(toggleTool(item))
-		})
-		bar.appendChild(separator())
-		bar.appendChild(
-			menuTool('heading', 'Heading', headingItems(), function () {
-				return editor.isActive('heading')
-			})
-		)
-		BLOCKS.forEach(function (item) {
-			bar.appendChild(toggleTool(item))
-		})
-		bar.appendChild(separator())
-		bar.appendChild(
-			menuTool('align-left', 'Align', alignItems(), function () {
-				return ['center', 'right'].some(function (a) {
-					return editor.isActive({ textAlign: a })
-				})
-			})
-		)
-		bar.appendChild(tool('image', 'Insert image', pickImages))
-		bar.appendChild(tool('link', 'Link', linkDialog))
-		return bar
-	}
-
-	// The little bar that floats over selected text.
+	// The selection toolbar: appears over a text selection, Medium-style -
+	// marks, then every block-type action that reads naturally off a
+	// selection (Heading, Quote, the two lists). No alignment (Cafe doesn't
+	// offer it anywhere now) and no Image (that's not something you do to a
+	// selection - it lives in the "+" menu below instead).
 	function buildBubble() {
 		var bubble = W.el('div', 'cafe-w-bubble')
 		bubble.hidden = true
 		MARKS.forEach(function (item) {
 			bubble.appendChild(toggleTool(item))
 		})
-		bubble.appendChild(tool('link', 'Link', linkDialog))
 		bubble.appendChild(separator())
-		ALIGNS.forEach(function (a) {
-			bubble.appendChild(
-				tool(a[0], a[1], function () {
-					editor.chain().focus().setTextAlign(a[2]).run()
-				})
-			)
-		})
+		bubble.appendChild(
+			menuTool('heading', 'Heading', headingItems(), function () {
+				return editor.isActive('heading')
+			})
+		)
+		bubble.appendChild(toggleTool(QUOTE))
+		bubble.appendChild(toggleTool(BULLET_LIST))
+		bubble.appendChild(toggleTool(ORDERED_LIST))
+		bubble.appendChild(separator())
+		bubble.appendChild(tool('link', 'Link', linkDialog))
 		document.body.appendChild(bubble)
 		function place() {
 			var selection = editor.state.selection
@@ -389,9 +348,62 @@
 			bubble.style.top = Math.max(8, start.top - bubble.offsetHeight - BUBBLE_GAP) + 'px'
 		}
 		editor.on('selectionUpdate', place)
+		// Closing the Link dialog refocuses the editor without the selection
+		// itself changing (applying a link doesn't move it) - selectionUpdate
+		// only fires on an actual change, so without this the bubble stayed
+		// hidden from the dialog's own blur until you made a new selection.
+		editor.on('focus', place)
 		editor.on('blur', function () {
 			setTimeout(function () {
 				if (!bubble.contains(document.activeElement)) bubble.hidden = true
+			}, 100)
+		})
+		editor.on('update', place)
+	}
+
+	// Medium's "+": a button that floats to the left of an empty paragraph
+	// (never a heading/list/quote line - same restriction Medium applies).
+	// Lists moved into the selection toolbar above, so Image is the only
+	// thing left here - genuinely a thing you do to an empty line, not a
+	// selection.
+	function buildPlusMenu() {
+		var button = tool('plus', 'Add', function (anchor) {
+			W.menu(anchor, [{ label: 'Image', icon: 'image', onClick: pickImages }])
+		})
+		button.classList.add('cafe-w-plus')
+		button.hidden = true
+		document.body.appendChild(button)
+		function place() {
+			var selection = editor.state.selection
+			var atEmptyParagraph =
+				selection.empty &&
+				editor.isFocused &&
+				selection.$from.depth === 1 &&
+				selection.$from.parent.type.name === 'paragraph' &&
+				selection.$from.parent.content.size === 0
+			if (!atEmptyParagraph) {
+				button.hidden = true
+				return
+			}
+			var coords = editor.view.coordsAtPos(selection.from)
+			var proseLeft = editor.view.dom.getBoundingClientRect().left
+			button.hidden = false
+			button.style.left = proseLeft - button.offsetWidth - 8 + 'px'
+			button.style.top = (coords.top + coords.bottom) / 2 - button.offsetHeight / 2 + 'px'
+		}
+		editor.on('selectionUpdate', place)
+		// A click that lands the cursor exactly where it already was (e.g. the
+		// very first click into a brand-new, still-empty post) changes nothing,
+		// so selectionUpdate never fires - focus does, and covers that case.
+		editor.on('focus', place)
+		editor.on('blur', function () {
+			// Clicking the button itself, or an item in the menu it opens, never
+			// fires this (both use mousedown preventDefault, same as the
+			// bubble's own buttons) - this only catches focus leaving some other
+			// way, e.g. Tab, where it has to check for real.
+			setTimeout(function () {
+				var active = document.activeElement
+				if (active !== button && !(active && active.closest('.cafe-w-menu'))) button.hidden = true
 			}, 100)
 		})
 		editor.on('update', place)
@@ -496,7 +508,7 @@
 		var tags = buildTags()
 		dom.error = W.el('p', 'cafe-w-error')
 		dom.error.hidden = true
-		;[dom.status, buildToolbar(), dom.title, host, tags, dom.error].forEach(function (node) {
+		;[dom.status, dom.title, host, tags, dom.error].forEach(function (node) {
 			dom.form.appendChild(node)
 		})
 		page.appendChild(dom.loading)
@@ -504,6 +516,7 @@
 		dom.scroll.appendChild(page)
 		root.replaceChildren(dom.scroll)
 		buildBubble()
+		buildPlusMenu()
 		setInterval(W.setStatusLine, 30000)
 	}
 })()

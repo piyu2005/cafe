@@ -147,6 +147,32 @@
 			})
 	}
 
+	// Uploads a file to Frappe's generic file endpoint. Resolves with
+	// { file_url, file_name }. Public (is_private: 0), like write_core.js's
+	// own W.upload - the only caller today is the profile avatar, which is
+	// shown to anyone viewing the profile, not just its owner.
+	CAFE.uploadFile = function (file) {
+		var form = new FormData()
+		form.append('file', file, file.name)
+		form.append('is_private', '0')
+		return fetch(location.origin + '/api/method/upload_file', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: { 'X-Frappe-CSRF-Token': (window.frappe && window.frappe.csrf_token) || '' },
+			body: form,
+		}).then(function (response) {
+			return response
+				.json()
+				.catch(function () {
+					return {}
+				})
+				.then(function (body) {
+					if (!response.ok || !body.message) throw new Error('Error uploading ' + file.name)
+					return { file_url: body.message.file_url, file_name: body.message.file_name }
+				})
+		})
+	}
+
 	// ---- Toast ----
 
 	// Same as the toasts in Frappe Cloud (vue-sonner): bottom right, an icon and one line of text,

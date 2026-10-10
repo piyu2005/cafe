@@ -124,24 +124,6 @@
   line-height: 14.95px;
   text-align: center;
 }
-.cafe-w-toolbar {
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  align-items: center;
-  gap: 4px;
-  margin-top: 16px;
-  padding: 4px 8px;
-  overflow-x: auto;
-  border: 1px solid var(--w-outline-2);
-  border-radius: 9999px;
-  background: var(--surface-base);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  scrollbar-width: none;
-}
-.cafe-w-toolbar::-webkit-scrollbar {
-  display: none;
-}
 .cafe-w-tool {
   display: inline-flex;
   flex-shrink: 0;
@@ -168,7 +150,6 @@
 .cafe-w-sep {
   width: 1px;
   height: 20px;
-  margin: 0 4px;
   flex-shrink: 0;
 }
 .cafe-w-title {
@@ -313,10 +294,20 @@
   background: #ffe97a;
 }
 
-/* An image in the story: the same 16:9 crop the published post has. */
+/* An image in the story: the same 16:9 crop the published post has.
+   inline-block, not block: the node is schema-inline (so it can sit inside
+   a paragraph's text at all), and `block` forced a line break before it even
+   when nothing but ProseMirror's own invisible cursor-positioning markup
+   preceded it - on an otherwise-empty line, that break rendered as a blank
+   line above the image. inline-block still lays out full-width (explicit
+   width here) without forcing that break; vertical-align keeps it from
+   sitting on a text baseline, which would otherwise leave a few stray
+   pixels of gap beneath it the way an inline image normally would. */
 .cafe-w-image {
-  display: block;
+  display: inline-block;
+  width: 100%;
   margin: 16px 0;
+  vertical-align: top;
 }
 .cafe-w-image-box {
   position: relative;
@@ -565,7 +556,7 @@
 }
 .cafe-w-tag-results {
   position: absolute;
-  top: calc(100% + 4px);
+  bottom: calc(100% + 4px);
   left: 0;
   right: 0;
   z-index: 5;
@@ -650,10 +641,34 @@
 .cafe-w-bubble {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   padding: 4px;
 }
 .cafe-w-bubble[hidden] {
+  display: none;
+}
+/* Medium's "+": floats to the left of an empty paragraph line. Size comes
+   from .cafe-w-tool (28px, same as every other editor button); round, not
+   that button's 8px radius, to read as Medium's own circular "+" rather
+   than a toolbar tool. Colours are frappe-ui's subtle/gray Button variant
+   exactly: bg-surface-gray-2 at rest, hover bg-surface-gray-3, active
+   bg-surface-gray-4 - a tinted background, not transparent like the other
+   tool buttons, since this one floats over plain page background and needs
+   its own visible edge. */
+.cafe-w-plus {
+  position: fixed;
+  z-index: 60;
+  border-radius: 9999px;
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-8);
+}
+.cafe-w-plus:hover {
+  background: var(--surface-gray-3);
+}
+.cafe-w-plus:active {
+  background: var(--surface-gray-4);
+}
+.cafe-w-plus[hidden] {
   display: none;
 }
 

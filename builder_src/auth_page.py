@@ -21,8 +21,8 @@ from blocks import (
 	SURFACE_1,
 	SURFACE_2,
 	block,
+	cafe_logo_svg,
 	raw_block,
-	svg,
 	text_style,
 	when,
 )
@@ -58,14 +58,9 @@ CARD_STYLES = {
 	"boxShadow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 }
 LOGO_STYLES = {
-	"display": "grid",
-	"placeItems": "center",
 	"width": "36px",
 	"height": "36px",
 	"marginBottom": "12px",
-	"borderRadius": "16px",
-	"backgroundColor": SOLID_BG,
-	"color": "#ffffff",
 }
 INPUT_STYLES = {
 	"display": "block",
@@ -239,7 +234,7 @@ def footer_block(prefix, link_label, href):
 
 def card(title, subtitle, content_blocks, footer_node):
 	head = [
-		raw_block("Logo", svg("feather", 16), styles=LOGO_STYLES),
+		raw_block("Logo", cafe_logo_svg(36), styles=LOGO_STYLES),
 		block(
 			"h1",
 			"Title",

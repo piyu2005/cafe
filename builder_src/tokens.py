@@ -26,6 +26,7 @@ TOKENS = [
 	("surface-gray-1", "Surface Gray 1", "#f8f8f8", "Surface"),
 	("surface-gray-2", "Surface Gray 2", "#f3f3f3", "Surface"),
 	("surface-gray-3", "Surface Gray 3", "#ededed", "Surface"),
+	("surface-gray-4", "Surface Gray 4", "#e2e2e2", "Surface"),
 	("surface-gray-9", "Surface Gray 9", "#383838", "Surface"),
 	("surface-gray-10", "Surface Gray 10", "#171717", "Surface"),
 	("outline-gray-1", "Outline Gray 1", "#ededed", "Outline"),
