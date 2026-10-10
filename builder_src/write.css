@@ -294,10 +294,20 @@
   background: #ffe97a;
 }
 
-/* An image in the story: the same 16:9 crop the published post has. */
+/* An image in the story: the same 16:9 crop the published post has.
+   inline-block, not block: the node is schema-inline (so it can sit inside
+   a paragraph's text at all), and `block` forced a line break before it even
+   when nothing but ProseMirror's own invisible cursor-positioning markup
+   preceded it - on an otherwise-empty line, that break rendered as a blank
+   line above the image. inline-block still lays out full-width (explicit
+   width here) without forcing that break; vertical-align keeps it from
+   sitting on a text baseline, which would otherwise leave a few stray
+   pixels of gap beneath it the way an inline image normally would. */
 .cafe-w-image {
-  display: block;
+  display: inline-block;
+  width: 100%;
   margin: 16px 0;
+  vertical-align: top;
 }
 .cafe-w-image-box {
   position: relative;
