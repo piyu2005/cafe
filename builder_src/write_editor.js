@@ -348,6 +348,11 @@
 			bubble.style.top = Math.max(8, start.top - bubble.offsetHeight - BUBBLE_GAP) + 'px'
 		}
 		editor.on('selectionUpdate', place)
+		// Closing the Link dialog refocuses the editor without the selection
+		// itself changing (applying a link doesn't move it) - selectionUpdate
+		// only fires on an actual change, so without this the bubble stayed
+		// hidden from the dialog's own blur until you made a new selection.
+		editor.on('focus', place)
 		editor.on('blur', function () {
 			setTimeout(function () {
 				if (!bubble.contains(document.activeElement)) bubble.hidden = true
