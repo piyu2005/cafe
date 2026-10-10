@@ -16,7 +16,7 @@ import { Editor, Node, mergeAttributes } from 'https://esm.sh/@tiptap/core@3.31.
 import StarterKit from 'https://esm.sh/@tiptap/starter-kit@3.31.3'
 import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder@3.31.3'
 import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@3.31.3'
-import { Plugin } from 'https://esm.sh/@tiptap/pm@3.31.3/state'
+import { Plugin, Selection } from 'https://esm.sh/@tiptap/pm@3.31.3/state'
 
 const IMAGE_DRAG_PX = 3
 
@@ -256,6 +256,7 @@ function uploadImages(view, files, upload, at) {
 	function next() {
 		const file = queue.shift()
 		if (!file) return
+		const isLast = queue.length === 0
 		const uploadId = `upload-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
 		const type = view.state.schema.nodes.image
 		const placeholder = type.create({ loading: true, uploadId })
@@ -264,6 +265,10 @@ function uploadImages(view, files, upload, at) {
 		upload(file).then(
 			(done) => {
 				finish(view, uploadId, { src: done.file_url, loading: false })
+				// Only after the last image of a batch - a multi-file drop/paste
+				// stays contiguous, one paragraph break at the end, not one
+				// between every image.
+				if (isLast) placeCursorAfterImage(view, uploadId)
 				position = null
 				setTimeout(next, UPLOAD_GAP_MS)
 			},
@@ -274,6 +279,26 @@ function uploadImages(view, files, upload, at) {
 		)
 	}
 	next()
+}
+
+// Gives the image its own line: splits its paragraph right after it (an
+// empty new paragraph if the image was already the last thing there, or
+// one holding whatever text followed it otherwise - split handles both the
+// same way) and leaves the cursor at the start of what comes after, same as
+// Medium/Notion do after inserting a block.
+function placeCursorAfterImage(view, uploadId) {
+	let end = null
+	view.state.doc.descendants((n, pos) => {
+		if (end != null || n.type.name !== 'image' || n.attrs.uploadId !== uploadId) return
+		end = pos + n.nodeSize
+	})
+	if (end == null) return
+	let tr = view.state.tr
+	if (tr.doc.resolve(end).parent.type.name !== 'paragraph') return
+	tr = tr.split(end)
+	tr = tr.setSelection(Selection.near(tr.doc.resolve(tr.mapping.map(end)), 1))
+	view.dispatch(tr)
+	view.focus()
 }
 
 function finish(view, uploadId, attrs) {
