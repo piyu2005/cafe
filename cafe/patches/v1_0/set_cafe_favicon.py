@@ -10,6 +10,7 @@ def execute():
 	template. Idempotent: leaves either alone if it's already set, so a site
 	that picked its own favicon isn't silently overridden on the next migrate."""
 	ico_path = frappe.get_app_path("cafe", "public", "cafe-favicon.ico")
+	# nosemgrep: frappe-security-file-traversal (hardcoded path to an asset shipped in this app, no user input involved)
 	with open(ico_path, "rb") as f:
 		content = f.read()
 
