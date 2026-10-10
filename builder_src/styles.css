@@ -709,6 +709,11 @@ p.cafe-clamp-3:empty::before {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* The title has no margin of its own (.cafe-dialog h2's is 0) and this was
+     the first thing after it, so the only gap below the title was its own
+     line-height - visibly less than the 22px the dialog already pads above
+     it. This balances the two. */
+  margin-top: 16px;
 }
 .cafe-avatar-crop-frame {
   position: relative;
