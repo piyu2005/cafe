@@ -173,6 +173,8 @@
 		['strikethrough', 'Strikethrough', 'toggleStrike', 'strike'],
 	]
 	var QUOTE = ['quote', 'Blockquote', 'toggleBlockquote', 'blockquote']
+	var BULLET_LIST = ['list', 'Bullet list', 'toggleBulletList', 'bulletList']
+	var ORDERED_LIST = ['list-ordered', 'Numbered list', 'toggleOrderedList', 'orderedList']
 	var HEADINGS = [
 		[
 			'heading-2',
@@ -309,10 +311,10 @@
 	}
 
 	// The selection toolbar: appears over a text selection, Medium-style -
-	// marks, then the two block-type actions that read naturally off a
-	// selection (Heading, Quote). No alignment (Cafe doesn't offer it
-	// anywhere now) and no Image/lists (those aren't things you do to a
-	// selection - they live in the "+" menu below instead).
+	// marks, then every block-type action that reads naturally off a
+	// selection (Heading, Quote, the two lists). No alignment (Cafe doesn't
+	// offer it anywhere now) and no Image (that's not something you do to a
+	// selection - it lives in the "+" menu below instead).
 	function buildBubble() {
 		var bubble = W.el('div', 'cafe-w-bubble')
 		bubble.hidden = true
@@ -326,6 +328,8 @@
 			})
 		)
 		bubble.appendChild(toggleTool(QUOTE))
+		bubble.appendChild(toggleTool(BULLET_LIST))
+		bubble.appendChild(toggleTool(ORDERED_LIST))
 		bubble.appendChild(separator())
 		bubble.appendChild(tool('link', 'Link', linkDialog))
 		document.body.appendChild(bubble)
@@ -353,27 +357,13 @@
 	}
 
 	// Medium's "+": a button that floats to the left of an empty paragraph
-	// (never a heading/list/quote line - same restriction Medium applies),
-	// for the block-level actions that don't make sense on a selection.
+	// (never a heading/list/quote line - same restriction Medium applies).
+	// Lists moved into the selection toolbar above, so Image is the only
+	// thing left here - genuinely a thing you do to an empty line, not a
+	// selection.
 	function buildPlusMenu() {
 		var button = tool('plus', 'Add', function (anchor) {
-			W.menu(anchor, [
-				{ label: 'Image', icon: 'image', onClick: pickImages },
-				{
-					label: 'Bullet list',
-					icon: 'list',
-					onClick: function () {
-						editor.chain().focus().toggleBulletList().run()
-					},
-				},
-				{
-					label: 'Numbered list',
-					icon: 'list-ordered',
-					onClick: function () {
-						editor.chain().focus().toggleOrderedList().run()
-					},
-				},
-			])
+			W.menu(anchor, [{ label: 'Image', icon: 'image', onClick: pickImages }])
 		})
 		button.classList.add('cafe-w-plus')
 		button.hidden = true

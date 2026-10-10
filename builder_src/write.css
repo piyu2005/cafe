@@ -150,7 +150,6 @@
 .cafe-w-sep {
   width: 1px;
   height: 20px;
-  margin: 0 4px;
   flex-shrink: 0;
 }
 .cafe-w-title {
@@ -632,29 +631,30 @@
 .cafe-w-bubble {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   padding: 4px;
 }
 .cafe-w-bubble[hidden] {
   display: none;
 }
-/* Medium's "+": floats to the left of an empty paragraph line, outside the
-   prose column, so it needs its own visible edge (the toolbar it replaces
-   had a surface to sit on; this one floats over plain page background). */
+/* Medium's "+": floats to the left of an empty paragraph line. Sizing and
+   shape come from .cafe-w-tool (same 28px/8px-radius every other editor
+   button uses); this only adds frappe-ui's actual "subtle" Button
+   treatment - a tinted background at rest, not transparent like the other
+   tool buttons, since this one floats over plain page background and needs
+   its own visible edge. Colours are frappe-ui's subtle/gray variant exactly:
+   bg-surface-gray-2, hover bg-surface-gray-3, active bg-surface-gray-4. */
 .cafe-w-plus {
   position: fixed;
   z-index: 60;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--w-outline-2);
-  border-radius: 9999px;
-  background: var(--surface-base);
-  color: var(--w-ink-5);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-8);
 }
 .cafe-w-plus:hover {
-  background: var(--w-surface);
-  color: var(--w-ink);
+  background: var(--surface-gray-3);
+}
+.cafe-w-plus:active {
+  background: var(--surface-gray-4);
 }
 .cafe-w-plus[hidden] {
   display: none;
