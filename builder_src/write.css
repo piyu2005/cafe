@@ -637,16 +637,18 @@
 .cafe-w-bubble[hidden] {
   display: none;
 }
-/* Medium's "+": floats to the left of an empty paragraph line. Sizing and
-   shape come from .cafe-w-tool (same 28px/8px-radius every other editor
-   button uses); this only adds frappe-ui's actual "subtle" Button
-   treatment - a tinted background at rest, not transparent like the other
+/* Medium's "+": floats to the left of an empty paragraph line. Size comes
+   from .cafe-w-tool (28px, same as every other editor button); round, not
+   that button's 8px radius, to read as Medium's own circular "+" rather
+   than a toolbar tool. Colours are frappe-ui's subtle/gray Button variant
+   exactly: bg-surface-gray-2 at rest, hover bg-surface-gray-3, active
+   bg-surface-gray-4 - a tinted background, not transparent like the other
    tool buttons, since this one floats over plain page background and needs
-   its own visible edge. Colours are frappe-ui's subtle/gray variant exactly:
-   bg-surface-gray-2, hover bg-surface-gray-3, active bg-surface-gray-4. */
+   its own visible edge. */
 .cafe-w-plus {
   position: fixed;
   z-index: 60;
+  border-radius: 9999px;
   background: var(--surface-gray-2);
   color: var(--ink-gray-8);
 }
