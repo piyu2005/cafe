@@ -216,55 +216,6 @@ def get_google_login_url(redirect_to: str = "/"):
 	return get_oauth2_authorize_url("google", redirect_to)
 
 
-def _subscriber_count(reference_doctype, reference_name):
-	return frappe.db.count(
-		"Subscription", {"reference_doctype": reference_doctype, "reference_name": reference_name}
-	)
-
-
-def _subscribed_by_me(reference_doctype, reference_name):
-	if frappe.session.user == "Guest":
-		return False
-	return bool(
-		frappe.db.exists(
-			"Subscription",
-			{
-				"reference_doctype": reference_doctype,
-				"reference_name": reference_name,
-				"subscriber": frappe.session.user,
-			},
-		)
-	)
-
-
-@frappe.whitelist()
-def toggle_subscribe(reference_doctype: str, reference_name: str):
-	user = frappe.session.user
-	if user == "Guest":
-		frappe.throw(_("Not permitted"), frappe.PermissionError)
-
-	existing = frappe.db.exists(
-		"Subscription",
-		{"reference_doctype": reference_doctype, "reference_name": reference_name, "subscriber": user},
-	)
-	if existing:
-		frappe.delete_doc("Subscription", existing, ignore_permissions=True)
-		subscribed = False
-	else:
-		sub = frappe.get_doc(
-			{
-				"doctype": "Subscription",
-				"reference_doctype": reference_doctype,
-				"reference_name": reference_name,
-			}
-		)
-		sub.flags.ignore_permissions = True
-		sub.insert()
-		subscribed = True
-
-	return {"subscribed": subscribed, "count": _subscriber_count(reference_doctype, reference_name)}
-
-
 def _resolve_user(identifier=None):
 	"""Turn a profile id from a URL into a User name. The id is a username,
 	or an email from an older link. No id means the caller. Only an id with
@@ -463,8 +414,6 @@ def list_publications(query: str | None = None):
 		order_by="title asc",
 		limit_page_length=50,
 	)
-	for row in rows:
-		row.subscriber_count = _subscriber_count("Publication", row.handle)
 	return rows
 
 
@@ -515,8 +464,6 @@ def get_publication(handle: str):
 			m.full_name = u.full_name if u else None
 			m.user_image = u.user_image if u else None
 	pub.members = top_members
-	pub.subscriber_count = _subscriber_count("Publication", handle)
-	pub.subscribed_by_me = _subscribed_by_me("Publication", handle)
 
 	pub.posts = frappe.db.get_all(
 		"Post",

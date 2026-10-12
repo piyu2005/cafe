@@ -563,11 +563,6 @@ html[data-cafe-sidebar='open'] .cafe-np {
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-.cafe-pub-subscribers {
-  flex: none;
-  font-size: 13px;
-  color: var(--ink-gray-5);
-}
 .cafe-empty {
   padding: 40px 0;
   text-align: center;

@@ -102,9 +102,7 @@ def build_person_row():
 def build_publication_row():
 	"""Same row shape as a writer's, with a brand mark instead of an avatar - a
 	rounded square, not a circle, same distinction the app's own logo and
-	profile avatars already draw between an org and a person - and a
-	subscriber count standing in for the context a person's own name already
-	carries on its own."""
+	profile avatars already draw between an org and a person."""
 	tile = block(
 		"span",
 		"Tile",
@@ -147,20 +145,13 @@ def build_publication_row():
 		styles={"display": "flex", "alignItems": "center", "gap": "12px", "minWidth": "0"},
 		children=[tile, title],
 	)
-	subscribers = block(
-		"span",
-		"Subscribers",
-		text="12 subscribers",
-		styles={"flexShrink": "0", "fontSize": "13px", "color": MUTED},
-	)
-	subscribers["dynamicValues"] = [bind("subscriber_label", "innerHTML", "key")]
 	row = block(
 		"a",
 		"Publication",
 		["cafe-person"],
 		attrs={"href": "/publications/frappe-thoughts"},
-		children=[left, subscribers],
-		styles={**ROW_STYLES, "justifyContent": "space-between"},
+		children=[left],
+		styles=ROW_STYLES,
 	)
 	row["dynamicValues"] = [bind("href", "href", "attribute")]
 	return row
@@ -321,7 +312,5 @@ for pub in publications:
     pub["href"] = frappe.utils.escape_html("/publications/" + segment)
     pub["title"] = frappe.utils.escape_html(title)
     pub["initial"] = frappe.utils.escape_html(title.strip()[:1] or "?")
-    count = pub.get("subscriber_count") or 0
-    pub["subscriber_label"] = frappe.utils.escape_html(f"{count} subscriber" + ("" if count == 1 else "s"))
 data.publications = publications
 """

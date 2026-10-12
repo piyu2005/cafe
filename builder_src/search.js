@@ -38,13 +38,8 @@
 			renderRow: function (pub) {
 				var row = el('a', 'cafe-person')
 				row.href = '/publications/' + encodeURIComponent(pub.handle)
-				row.style.justifyContent = 'space-between'
-				var left = el('span')
-				left.style.cssText = 'display:flex;align-items:center;gap:12px;min-width:0'
-				left.appendChild(el('span', 'cafe-pub-tile', (pub.title || pub.handle || '?').trim().charAt(0)))
-				left.appendChild(el('span', 'cafe-person-name', pub.title || pub.handle))
-				row.appendChild(left)
-				row.appendChild(el('span', 'cafe-pub-subscribers', plural(pub.subscriber_count || 0, 'subscriber')))
+				row.appendChild(el('span', 'cafe-pub-tile', (pub.title || pub.handle || '?').trim().charAt(0)))
+				row.appendChild(el('span', 'cafe-person-name', pub.title || pub.handle))
 				return row
 			},
 		},
@@ -73,10 +68,6 @@
 			box.textContent = (label || '?').trim().charAt(0)
 		}
 		return box
-	}
-
-	function plural(count, word) {
-		return count + ' ' + word + (count === 1 ? '' : 's')
 	}
 
 	function currentList() {
