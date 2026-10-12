@@ -189,6 +189,156 @@ class TestPublicationMemberPermissions(IntegrationTestCase):
 		self.assertEqual(len(result["editors"]), 1)
 
 
+class TestPublicationPostPermissions(IntegrationTestCase):
+	"""Member: write + edit own drafts only, can't publish. Editor/Admin:
+	also edit anyone's post in the publication and publish/unpublish. See
+	post.py's before_save (publish/unpublish gate) and has_permission (write
+	gate - the doctype's own if_owner rule was dropped in favour of this)."""
+
+	# One set of users/publication for the whole class, not per test method:
+	# this class alone has 17 tests, and IntegrationTestCase's rollback is
+	# class-scoped anyway (see TestPublicationMemberPermissions' setUp above),
+	# so nothing isolates per-test fixtures from each other regardless - only
+	# the cost of recreating 5 Users seventeen times, which is enough to trip
+	# Frappe's own throttle_user_creation safeguard (60 Users/minute).
+	@classmethod
+	def setUpClass(cls):
+		super().setUpClass()
+		unique = frappe.generate_hash(length=8)
+		cls.admin = _make_user(f"pp_admin_{unique}@example.com", "PPAdmin")
+		cls.editor = _make_user(f"pp_editor_{unique}@example.com", "PPEditor")
+		cls.member = _make_user(f"pp_member_{unique}@example.com", "PPMember")
+		cls.other_member = _make_user(f"pp_other_{unique}@example.com", "PPOther")
+		cls.outsider = _make_user(f"pp_outsider_{unique}@example.com", "PPOutsider")
+		with set_user(cls.admin):
+			from cafe.api import create_publication
+
+			cls.handle = create_publication(title="PP Test Pub", handle=f"pptestpub{unique}")["handle"]
+		for user, role in ((cls.editor, "Editor"), (cls.member, "Member"), (cls.other_member, "Member")):
+			frappe.get_doc(
+				{"doctype": "Publication Member", "publication": cls.handle, "user": user, "role": role}
+			).insert(ignore_permissions=True)
+
+	def _make_post(self, author, status="Draft", publication=None):
+		with set_user(author):
+			doc = frappe.get_doc(
+				{
+					"doctype": "Post",
+					"content": "<p>hello</p>",
+					"status": status,
+					"post_type": "Blog",
+					"publication": publication,
+				}
+			)
+			doc.insert(ignore_permissions=True)
+			return doc.name
+
+	def test_member_can_write_under_the_publication(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		self.assertEqual(frappe.db.get_value("Post", name, "publication"), self.handle)
+
+	def test_outsider_cannot_write_under_the_publication(self):
+		with set_user(self.outsider):
+			with self.assertRaises(frappe.PermissionError):
+				frappe.get_doc(
+					{
+						"doctype": "Post",
+						"content": "<p>hi</p>",
+						"status": "Draft",
+						"post_type": "Blog",
+						"publication": self.handle,
+					}
+				).insert(ignore_permissions=True)
+
+	def test_member_cannot_publish_directly(self):
+		with set_user(self.member):
+			with self.assertRaises(frappe.PermissionError):
+				frappe.get_doc(
+					{
+						"doctype": "Post",
+						"content": "<p>hi</p>",
+						"status": "Published",
+						"post_type": "Blog",
+						"publication": self.handle,
+					}
+				).insert(ignore_permissions=True)
+
+	def test_member_can_edit_own_draft(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		with set_user(self.member):
+			doc = frappe.get_doc("Post", name)
+			doc.content = "<p>updated</p>"
+			doc.save()
+		self.assertEqual(frappe.db.get_value("Post", name, "content"), "<p>updated</p>")
+
+	def test_member_cannot_edit_someone_elses_draft(self):
+		name = self._make_post(self.other_member, "Draft", self.handle)
+		with set_user(self.member):
+			doc = frappe.get_doc("Post", name)
+			self.assertFalse(doc.has_permission("write"))
+
+	def test_member_cannot_publish_own_draft(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		with set_user(self.member):
+			doc = frappe.get_doc("Post", name)
+			doc.status = "Published"
+			with self.assertRaises(frappe.PermissionError):
+				doc.save()
+
+	def test_editor_can_edit_someone_elses_draft(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		with set_user(self.editor):
+			doc = frappe.get_doc("Post", name)
+			self.assertTrue(doc.has_permission("write"))
+			doc.content = "<p>edited by editor</p>"
+			doc.save()
+		self.assertEqual(frappe.db.get_value("Post", name, "content"), "<p>edited by editor</p>")
+
+	def test_editor_can_publish_someone_elses_draft(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		with set_user(self.editor):
+			doc = frappe.get_doc("Post", name)
+			doc.status = "Published"
+			doc.save()
+		self.assertEqual(frappe.db.get_value("Post", name, "status"), "Published")
+
+	def test_member_cannot_unpublish(self):
+		name = self._make_post(self.admin, "Published", self.handle)
+		with set_user(self.member):
+			doc = frappe.get_doc("Post", name)
+			doc.status = "Draft"
+			with self.assertRaises(frappe.PermissionError):
+				doc.save()
+
+	def test_editor_can_unpublish(self):
+		name = self._make_post(self.admin, "Published", self.handle)
+		with set_user(self.editor):
+			doc = frappe.get_doc("Post", name)
+			doc.status = "Draft"
+			doc.save()
+		self.assertEqual(frappe.db.get_value("Post", name, "status"), "Draft")
+
+	def test_editor_can_read_members_draft(self):
+		name = self._make_post(self.member, "Draft", self.handle)
+		with set_user(self.editor):
+			self.assertTrue(frappe.has_permission("Post", "read", frappe.get_doc("Post", name)))
+
+	def test_plain_member_cannot_read_someone_elses_draft(self):
+		name = self._make_post(self.other_member, "Draft", self.handle)
+		with set_user(self.member):
+			self.assertFalse(frappe.has_permission("Post", "read", frappe.get_doc("Post", name)))
+
+	def test_personal_post_is_still_fully_self_serve(self):
+		# No publication involved - publishing your own post directly is
+		# unaffected by any of the publication-specific rules above.
+		with set_user(self.outsider):
+			doc = frappe.get_doc(
+				{"doctype": "Post", "content": "<p>hi</p>", "status": "Published", "post_type": "Blog"}
+			)
+			doc.insert(ignore_permissions=True)
+		self.assertEqual(frappe.db.get_value("Post", doc.name, "status"), "Published")
+
+
 class TestNotificationOwnership(IntegrationTestCase):
 	def setUp(self):
 		self.owner = _make_user("perm_notif_owner@example.com", "NotifOwner")

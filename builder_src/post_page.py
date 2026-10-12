@@ -200,7 +200,7 @@ def build_more_menu():
 	)
 	edit = when(
 		attribute(menu_item("a", {"href": "/write"}, "pencil", "Edit post"), "pp.edit_href", "href"),
-		"pp.is_author",
+		"pp.can_manage",
 	)
 	copy = menu_item("button", {"type": "button"}, "link", "Copy link", custom={"data-action": "copy-link"})
 	delete = when(
@@ -212,7 +212,7 @@ def build_more_menu():
 			custom={"data-action": "delete-post"},
 			color=ERROR_RED,
 		),
-		"pp.is_author",
+		"pp.can_manage",
 	)
 	menu = block(
 		"div",
@@ -661,9 +661,9 @@ else:
         minutes = 1
 
     # A post under a publication shows the publication's own identity here too
-    # (same rounded-square tile as the Home feed), not its author's - the
-    # "is_author" edit/delete check below stays on the real post.author either
-    # way, since this only changes what's displayed, not who may act on it.
+    # (same rounded-square tile as the Home feed), not its author's - purely
+    # cosmetic, separate from who may actually manage the post (can_manage
+    # below), which always checks the real post.author and publication role.
     pub = None
     if post.get("publication"):
         pub = frappe.db.get_value("Publication", post.publication, ["title", "logo"], as_dict=True)
@@ -675,6 +675,19 @@ else:
         identity_name = post.author_name or post.author
         identity_image = safe_url(post.author_image)
         identity_href = "/profile/" + path_segment(post.author_username or post.author)
+
+    # Edit/Delete: the author always has them for their own post; otherwise
+    # only an Editor or Admin of the post's publication does - a plain Member
+    # can write and edit their own drafts but isn't a gatekeeper for anyone
+    # else's.
+    pub_role = (
+        frappe.db.get_value(
+            "Publication Member", {"publication": post.publication, "user": frappe.session.user}, "role"
+        )
+        if post.publication
+        else None
+    )
+    can_manage = post.author == frappe.session.user or pub_role in ("Editor", "Admin")
 
     images = []
     for item in post.images or []:
@@ -704,7 +717,7 @@ else:
         "pub_img_on": bool(pub) and bool(identity_image),
         "pub_initial_on": bool(pub) and not identity_image,
         "meta": day_month_year(post.creation) + " \\u00b7 " + str(minutes) + " min read",
-        "is_author": post.author == frappe.session.user,
+        "can_manage": can_manage,
         "edit_href": clean("/write/" + path_segment(post.name)),
         "content_html": content_html,
         "is_image_post": post.post_type == "Image" and len(images) > 0,
