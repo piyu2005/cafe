@@ -8,8 +8,8 @@
 	var CAFE = (window.CAFE = window.CAFE || {})
 	var ICONS = '@@ICONS@@'
 	var DESKTOP = window.matchMedia('(min-width: 768px)')
-	var TABS = ['account', 'saved']
-	var TITLES = { account: 'Account', saved: 'Saved posts' }
+	var TABS = ['account', 'saved', 'publications']
+	var TITLES = { account: 'Account', saved: 'Saved posts', publications: 'Publications' }
 
 	var el = function (tag, className, text) {
 		return CAFE.el(tag, className, text)
@@ -136,12 +136,66 @@
 		)
 	}
 
+	// ---- Publications (which the account is a member of, not subscribed to) ----
+
+	function roleBadge(role) {
+		var kind = role === 'Admin' ? 'solid-green' : role === 'Editor' ? 'blue' : 'gray'
+		return el('span', 'cafe-set-role-badge ' + kind, role)
+	}
+
+	function publicationRow(pub, first) {
+		var row = el('div', 'cafe-set-row' + (first ? ' first' : ''))
+		var text = el('div', 'cafe-set-row-text')
+		var link = el('a', 'cafe-set-row-title', pub.title || pub.publication)
+		link.href = '/publications/' + encodeURIComponent(pub.publication)
+		text.appendChild(link)
+		row.appendChild(text)
+		row.appendChild(roleBadge(pub.role))
+		return row
+	}
+
+	// Fills `panel` the same way loadSaved fills the Saved one: .cafe-loading,
+	// .cafe-pub-mem-empty, .cafe-pub-mem-error and .cafe-pub-mem-list - its
+	// own class names, not the Saved panel's, since both can be on screen
+	// (as hidden panels) at once and querying by a shared name would find
+	// whichever panel happens to come first in the DOM.
+	var pubRequest = 0
+	function loadPublications(panel) {
+		var loading = panel.querySelector('.cafe-loading')
+		var empty = panel.querySelector('.cafe-pub-mem-empty')
+		var failed = panel.querySelector('.cafe-pub-mem-error')
+		var list = panel.querySelector('.cafe-pub-mem-list')
+		var request = ++pubRequest
+
+		list.replaceChildren()
+		empty.hidden = true
+		failed.hidden = true
+		loading.hidden = false
+		CAFE.get('cafe.api.list_my_publications').then(
+			function (data) {
+				if (request !== pubRequest) return
+				loading.hidden = true
+				var rows = data || []
+				empty.hidden = rows.length > 0
+				rows.forEach(function (pub, index) {
+					list.appendChild(publicationRow(pub, index === 0))
+				})
+			},
+			function () {
+				if (request !== pubRequest) return
+				loading.hidden = true
+				failed.hidden = false
+			}
+		)
+	}
+
 	// ---- The page (phones) ----
 
 	function setupPage(root) {
 		var buttons = root.querySelectorAll('.cafe-tab-btn')
 		var account = document.getElementById('cafe-settings-account')
 		var saved = document.getElementById('cafe-settings-saved')
+		var publications = document.getElementById('cafe-settings-publications')
 
 		function show(tab, updateAddress) {
 			buttons.forEach(function (button) {
@@ -149,7 +203,9 @@
 			})
 			account.hidden = tab !== 'account'
 			saved.hidden = tab !== 'saved'
+			publications.hidden = tab !== 'publications'
 			if (tab === 'saved') loadSaved(saved, function () {})
+			if (tab === 'publications') loadPublications(publications)
 			if (updateAddress) {
 				// The tab is in the address, so Back from a saved post returns to it.
 				var url = new URL(location.href)
@@ -166,7 +222,8 @@
 		document.getElementById('cafe-settings-logout').addEventListener('click', function () {
 			CAFE.confirmLogout()
 		})
-		show(new URLSearchParams(location.search).get('tab') === 'saved' ? 'saved' : 'account', false)
+		var wantedTab = new URLSearchParams(location.search).get('tab')
+		show(TABS.indexOf(wantedTab) >= 0 ? wantedTab : 'account', false)
 	}
 
 	// ---- The dialog (desktops) ----
@@ -219,6 +276,21 @@
 		return panel
 	}
 
+	function buildPublicationsPanel() {
+		var panel = el('div', 'cafe-saved-panel')
+		var loading = el('div', 'cafe-loading')
+		loading.hidden = true
+		for (var i = 0; i < 4; i++) loading.appendChild(el('div', 'cafe-skeleton'))
+		var empty = el('p', 'cafe-pub-mem-empty', "You're not part of any publications yet.")
+		var failed = el('p', 'cafe-pub-mem-error', "Couldn't load your publications. Please try again.")
+		empty.hidden = failed.hidden = true
+		panel.appendChild(loading)
+		panel.appendChild(empty)
+		panel.appendChild(failed)
+		panel.appendChild(el('div', 'cafe-pub-mem-list'))
+		return panel
+	}
+
 	function openDialog(tab) {
 		if (dialog) return
 		if (CAFE.closeNotifications) CAFE.closeNotifications()
@@ -242,9 +314,9 @@
 				var avatar = el('span', 'cafe-set-avatar', (user.charAt(0) || '?').toUpperCase())
 				button.appendChild(avatar)
 			} else {
-				button.appendChild(icon('bookmark'))
+				button.appendChild(icon(key === 'publications' ? 'newspaper' : 'bookmark'))
 			}
-			button.appendChild(el('span', 'cafe-set-nav-label', key === 'account' ? 'Account' : 'Saved posts'))
+			button.appendChild(el('span', 'cafe-set-nav-label', TITLES[key]))
 			button.addEventListener('click', function () {
 				select(key)
 			})
@@ -258,8 +330,10 @@
 		var body = el('div', 'cafe-set-body')
 		var accountPanel = buildAccount(close)
 		var savedPanel = buildSavedPanel()
+		var publicationsPanel = buildPublicationsPanel()
 		body.appendChild(accountPanel)
 		body.appendChild(savedPanel)
+		body.appendChild(publicationsPanel)
 		content.appendChild(title)
 		content.appendChild(body)
 		modal.appendChild(side)
@@ -276,9 +350,11 @@
 			title.textContent = TITLES[key]
 			accountPanel.hidden = key !== 'account'
 			savedPanel.hidden = key !== 'saved'
+			publicationsPanel.hidden = key !== 'publications'
 			body.scrollTop = 0
 			dialog.tab = key
 			if (key === 'saved') loadSaved(savedPanel, close)
+			if (key === 'publications') loadPublications(publicationsPanel)
 		}
 
 		function close() {
@@ -346,8 +422,8 @@
 		// Preview shows this page inside a frame: leave that one alone.
 		// The Administrator stays: Builder draws the folder thumbnail as that user.
 		if (DESKTOP.matches && window.top === window && !root.getAttribute('data-admin')) {
-			var tab = new URLSearchParams(location.search).get('tab') === 'saved' ? 'saved' : 'account'
-			location.replace('/?settings=' + tab)
+			var wantedTab = new URLSearchParams(location.search).get('tab')
+			location.replace('/?settings=' + (TABS.indexOf(wantedTab) >= 0 ? wantedTab : 'account'))
 			return
 		}
 		setupPage(root)

@@ -147,6 +147,51 @@ def build_saved_panel():
 	)
 
 
+def build_publications_panel():
+	# Same loading/empty/error shape as the Saved panel above, with its own
+	# class names: settings.js keeps each panel's list/empty/error lookups
+	# scoped to the panel it's filling, not shared across the two.
+	skeleton = "".join(
+		html_el(
+			"div",
+			["cafe-skeleton"],
+			None,
+			{"height": "48px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
+		)
+		for _ in range(4)
+	)
+	loading = block(
+		"div",
+		"Loading",
+		classes=["cafe-loading"],
+		attrs={"hidden": "hidden"},
+		html=skeleton,
+		styles={"flexDirection": "column", "gap": "12px"},
+	)
+	empty = block(
+		"p",
+		classes=["cafe-pub-mem-empty"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
+		text="You're not part of any publications yet.",
+	)
+	error = block(
+		"p",
+		classes=["cafe-pub-mem-error"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
+		text="Couldn't load your publications. Please try again.",
+	)
+	pub_list = block("div", classes=["cafe-pub-mem-list"])
+	return block(
+		"div",
+		"Publications panel",
+		attrs={"id": "cafe-settings-publications", "role": "tabpanel", "hidden": "hidden"},
+		styles={"paddingTop": "16px"},
+		children=[loading, empty, error, pub_list],
+	)
+
+
 def build_tabs():
 	buttons = [
 		block(
@@ -161,7 +206,7 @@ def build_tabs():
 			styles=TAB_STYLES,
 			text=label,
 		)
-		for key, label in (("account", "Account"), ("saved", "Saved"))
+		for key, label in (("account", "Account"), ("saved", "Saved"), ("publications", "Publications"))
 	]
 	return block(
 		"div",
@@ -179,7 +224,7 @@ def build_settings(shell_id, shell_block):
 		"Settings",
 		attrs={"id": "cafe-settings-page"},
 		custom={"data-admin": ""},
-		children=[build_tabs(), build_account_panel(), build_saved_panel()],
+		children=[build_tabs(), build_account_panel(), build_saved_panel(), build_publications_panel()],
 	)
 	root = attribute(root, "st.admin", "data-admin")
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Settings")]

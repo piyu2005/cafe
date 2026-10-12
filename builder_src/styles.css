@@ -1561,6 +1561,34 @@ p.cafe-clamp-3:empty::before {
 .cafe-set-value {
   color: var(--ink-gray-6);
 }
+/* A membership row's role pill - same look as .cafe-p-badge on the
+   publication's own Members page (publications.css), duplicated under its
+   own name rather than shared across files: settings.js runs on every page,
+   publications.css only loads on publication pages. */
+.cafe-set-role-badge {
+  display: inline-flex;
+  height: 16px;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 13.8px;
+  white-space: nowrap;
+}
+.cafe-set-role-badge.gray {
+  background: var(--surface-gray-2);
+  color: var(--ink-gray-6);
+}
+.cafe-set-role-badge.blue {
+  background: #e6f1fe;
+  color: #0b62c4;
+}
+.cafe-set-role-badge.solid-green {
+  background: #278f5e;
+  color: var(--ink-base);
+}
 .cafe-set-button {
   display: inline-flex;
   flex-shrink: 0;
