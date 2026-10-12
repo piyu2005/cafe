@@ -555,6 +555,7 @@ html[data-cafe-sidebar='open'] .cafe-np {
   flex: none;
   width: 32px;
   height: 32px;
+  overflow: hidden;
   border-radius: 8px;
   background: var(--surface-gray-10);
   color: #fff;
@@ -562,6 +563,11 @@ html[data-cafe-sidebar='open'] .cafe-np {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+.cafe-pub-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .cafe-empty {
   padding: 40px 0;

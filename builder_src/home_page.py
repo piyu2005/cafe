@@ -79,7 +79,7 @@ ROW_INNER = "".join(
 			None,
 			AUTHOR_LINE_STYLES,
 			[
-				html_el("span", ["cafe-avatar"], None, None, "[[!avatar]]"),
+				"[[!avatar]]",
 				html_el("span", None, None, NAME_STYLES, text="[[name]]"),
 			],
 		),
@@ -153,11 +153,31 @@ def build_feed_row():
 	# built from the exact same markup) could show two different avatar sizes
 	# on the same feed depending on which one the page's own CSS cascade
 	# happened to prefer.
+	avatar_image["visibilityCondition"] = {"key": "avatar_img_on", "comesFrom": "dataScript"}
+	avatar_initial["visibilityCondition"] = {"key": "avatar_initial_on", "comesFrom": "dataScript"}
 	avatar = block("span", "Avatar", ["cafe-avatar"], children=[avatar_image, avatar_initial])
+	avatar["visibilityCondition"] = {"key": "is_person", "comesFrom": "dataScript"}
+
+	# A post under a publication shows the publication's own identity here
+	# instead of its author's - same rounded-square tile as the Explore and
+	# Settings publication rows (cafe-pub-tile), not the circular avatar, so a
+	# publication post reads as "from an org" at a glance, same distinction
+	# the app draws everywhere else between a publication and a person.
+	pub_image = block(
+		"img", "Publication tile image", attrs={"src": "", "alt": ""}, styles=AVATAR_IMAGE_STYLES
+	)
+	pub_image["dynamicValues"] = [bind("image", "src", "attribute")]
+	pub_image["visibilityCondition"] = {"key": "pub_img_on", "comesFrom": "dataScript"}
+	pub_initial = block("span", "Publication tile initial", classes=["initial"], text="F")
+	pub_initial["dynamicValues"] = [bind("initial", "innerHTML", "key")]
+	pub_initial["visibilityCondition"] = {"key": "pub_initial_on", "comesFrom": "dataScript"}
+	pub_tile = block("span", "Publication tile", ["cafe-pub-tile"], children=[pub_image, pub_initial])
+	pub_tile["visibilityCondition"] = {"key": "is_pub", "comesFrom": "dataScript"}
+
 	name = block("span", "Name", text="Priyanshi Hodage", styles=NAME_STYLES)
 	name["dynamicValues"] = [bind("name", "innerHTML", "key")]
 	author_line = block(
-		"div", "Author", ["cafe-feed-author"], children=[avatar, name], styles=AUTHOR_LINE_STYLES
+		"div", "Author", ["cafe-feed-author"], children=[avatar, pub_tile, name], styles=AUTHOR_LINE_STYLES
 	)
 
 	title = block("div", "Title", text="Post title", styles=TITLE_STYLES)
@@ -389,7 +409,7 @@ if frappe.session.user == "Guest":
 rows = frappe.get_all(
     "Post",
     filters={"status": "Published"},
-    fields=["name", "title", "display_title", "content", "excerpt", "post_type", "attachment", "cover_image", "author", "author_name", "author_image", "creation"],
+    fields=["name", "title", "display_title", "content", "excerpt", "post_type", "attachment", "cover_image", "author", "author_name", "author_image", "publication", "creation"],
     order_by="creation desc",
     limit_page_length=@@PAGE_SIZE@@ + 1,
 )
@@ -401,6 +421,17 @@ if rows:
     for comment in frappe.get_all("Post Comment", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
         counts[comment.post] = counts.get(comment.post, 0) + 1
 
+# A post under a publication shows the publication's own identity in the feed,
+# not its author's - same reasoning as the mentor's "2 separate profiles"
+# comment on the publication page: a reader scanning the feed should see
+# which publication a post came from, the way Medium's own feed cards do.
+pub_ids = list({row.publication for row in rows if row.get("publication")})
+pubs = (
+    {p.name: p for p in frappe.get_all("Publication", filters={"name": ["in", pub_ids]}, fields=["name", "title", "logo"])}
+    if pub_ids
+    else {}
+)
+
 posts = []
 for row in rows:
     text = plain_text(row.get("content"))
@@ -408,8 +439,13 @@ for row in rows:
     minutes = int(words / 200 + 0.5)
     if minutes < 1:
         minutes = 1
-    label = row.get("author_name") or row.get("author") or ""
-    author_image = safe_url(row.get("author_image"))
+    pub = pubs.get(row.get("publication"))
+    if pub:
+        label = pub.get("title") or row.get("publication")
+        identity_image = safe_url(pub.get("logo"))
+    else:
+        label = row.get("author_name") or row.get("author") or ""
+        identity_image = safe_url(row.get("author_image"))
     cover = (
         row.get("cover_image")
         or (row.get("attachment") if row.get("post_type") != "Video" else "")
@@ -420,8 +456,13 @@ for row in rows:
     comments = counts.get(row.name, 0)
     posts.append({
         "href": clean(href),
-        "image": author_image,
-        "no_image": not author_image,
+        "image": identity_image,
+        "is_pub": bool(pub),
+        "is_person": not pub,
+        "avatar_img_on": not pub and bool(identity_image),
+        "avatar_initial_on": not pub and not identity_image,
+        "pub_img_on": bool(pub) and bool(identity_image),
+        "pub_initial_on": bool(pub) and not identity_image,
         "initial": clean(label.strip()[:1]),
         "name": clean(label),
         "title": clean(row.get("display_title") or row.get("title") or (text[:60] + "\\u2026" if len(text) > 60 else text)),

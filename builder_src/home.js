@@ -20,6 +20,7 @@
 		'author',
 		'author_name',
 		'author_image',
+		'publication',
 		'creation',
 	]
 
@@ -73,20 +74,34 @@
 		})
 	}
 
-	function renderRow(post) {
+	// The whole avatar/tile element - a publication's post gets its own
+	// rounded-square cafe-pub-tile (logo or initial) instead of the author's
+	// circular cafe-avatar, same distinction build_feed_row() draws for the
+	// server-rendered first page. `pubs` is this batch's handle->{title,logo}
+	// map (see fetchPublications below); a post whose publication isn't in it
+	// (fetch failed, or raced past the batch somehow) just falls back to the
+	// author, rather than showing a broken tile.
+	function buildIdentity(post, pubs) {
+		var pub = post.publication ? pubs[post.publication] : null
+		var label = pub ? pub.title || post.publication : post.author_name || post.author || ''
+		var image = safeUrl(pub ? pub.logo : post.author_image)
+		var inner = image
+			? fill(template.getAttribute('data-avatar-image'), { image: escapeHtml(image) })
+			: '<span class="initial">' + escapeHtml(label.trim().charAt(0)) + '</span>'
+		return { label: label, html: '<span class="' + (pub ? 'cafe-pub-tile' : 'cafe-avatar') + '">' + inner + '</span>' }
+	}
+
+	function renderRow(post, pubs) {
 		var text = plainText(post.content)
 		var minutes = Math.max(1, Math.round(text.split(/\s+/).filter(Boolean).length / 200))
-		var label = post.author_name || post.author || ''
-		var authorImage = safeUrl(post.author_image)
+		var identity = buildIdentity(post, pubs || {})
 		var cover = safeUrl(
 			post.cover_image || (post.post_type !== 'Video' ? post.attachment : '') || firstImageIn(post.content)
 		)
 		var values = {
 			href: escapeHtml('/posts/' + encodeURIComponent(post.name)),
-			'!avatar': authorImage
-				? fill(template.getAttribute('data-avatar-image'), { image: escapeHtml(authorImage) })
-				: '<span class="initial">' + escapeHtml(label.trim().charAt(0)) + '</span>',
-			name: escapeHtml(label),
+			'!avatar': identity.html,
+			name: escapeHtml(identity.label),
 			title: escapeHtml(post.display_title || post.title || shorten(text, 60)),
 			excerpt: escapeHtml(post.excerpt || shorten(text, 160)),
 			date: escapeHtml(formatDate(post.creation)),
@@ -117,6 +132,23 @@
 			.then(function (body) {
 				return body.data || []
 			})
+	}
+
+	// Title/logo for whichever publications this batch of posts needs - fetched
+	// before the rows are built (not patched in after, like showCounts below),
+	// since swapping a circular avatar for a square publication tile after the
+	// fact would visibly flash; a comment count ticking in unnoticed doesn't.
+	function fetchPublications(posts) {
+		var handles = []
+		posts.forEach(function (post) {
+			if (post.publication && handles.indexOf(post.publication) === -1) handles.push(post.publication)
+		})
+		if (!handles.length) return Promise.resolve({})
+		return CAFE.api('cafe.api.get_publications', { handles: handles }).then(function (pubs) {
+			return pubs || {}
+		}, function () {
+			return {}
+		})
 	}
 
 	function showCounts(posts, rows) {
@@ -183,16 +215,19 @@
 					list.replaceChildren()
 					loaded = 0
 				}
-				var made = rows.map(function (post) {
-					var row = renderRow(post)
-					list.appendChild(row)
-					return row
+				fetchPublications(rows).then(function (pubs) {
+					if (request !== latestRequest) return
+					var made = rows.map(function (post) {
+						var row = renderRow(post, pubs)
+						list.appendChild(row)
+						return row
+					})
+					loaded += rows.length
+					setEmpty(fresh && !rows.length)
+					showCounts(rows, made)
+					// A short first page can leave the sentinel on screen: keep going.
+					watchEnd()
 				})
-				loaded += rows.length
-				setEmpty(fresh && !rows.length)
-				showCounts(rows, made)
-				// A short first page can leave the sentinel on screen: keep going.
-				watchEnd()
 			},
 			function () {
 				if (request !== latestRequest) return

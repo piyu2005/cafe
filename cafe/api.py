@@ -318,6 +318,24 @@ def get_comment_counts(posts: str | list):
 	return counts
 
 
+# Title/logo for a list of publication handles, keyed by handle - what the
+# Home feed's client-rendered rows (home.js) need to show a publication's own
+# identity on its posts, same as the server-rendered first page already does
+# in one query by joining locally (no membership check: any published post's
+# publication is public information, same as its author already is).
+@frappe.whitelist()
+def get_publications(handles: str | list):
+	if isinstance(handles, str):
+		handles = frappe.parse_json(handles)
+	handles = [h for h in handles if h]
+	if not handles:
+		return {}
+	rows = frappe.db.get_all(
+		"Publication", filters={"name": ["in", handles]}, fields=["name", "title", "logo"]
+	)
+	return {row.name: row for row in rows}
+
+
 @frappe.whitelist()
 def delete_account():
 	# Paused: this only disabled the User rather than actually deleting it,
