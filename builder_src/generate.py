@@ -30,7 +30,7 @@ APP = REPO / "cafe"
 OUT = APP / "builder_files"
 FONTS_OUT = APP / "public" / "builder_assets" / "fonts"
 SCRIPT_ICONS = {
-	"settings.js": ("bookmark", "bookmark-minus", "newspaper"),
+	"settings.js": ("bookmark", "bookmark-minus", "newspaper", "plus"),
 	"code.js": ("copy", "check"),
 	"chat_core.js": (
 		"arrow-left",

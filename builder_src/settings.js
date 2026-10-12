@@ -138,20 +138,57 @@
 
 	// ---- Publications (which the account is a member of, not subscribed to) ----
 
-	function roleBadge(role) {
-		var kind = role === 'Admin' ? 'solid-green' : role === 'Editor' ? 'blue' : 'gray'
-		return el('span', 'cafe-set-role-badge ' + kind, role)
+	function leavePublication(pub, panel) {
+		CAFE.confirm({
+			title: 'Leave this publication?',
+			message: "You'll need a new invitation to rejoin " + (pub.title || pub.publication) + '.',
+			confirmLabel: 'Leave',
+			danger: true,
+		}).then(function (ok) {
+			if (!ok) return
+			CAFE.api('cafe.api.leave_publication', { handle: pub.publication }).then(function () {
+				loadPublications(panel)
+			}, errorToast)
+		})
 	}
 
-	function publicationRow(pub, first) {
+	function publicationRow(pub, first, panel) {
 		var row = el('div', 'cafe-set-row' + (first ? ' first' : ''))
 		var text = el('div', 'cafe-set-row-text')
 		var link = el('a', 'cafe-set-row-title', pub.title || pub.publication)
 		link.href = '/publications/' + encodeURIComponent(pub.publication)
 		text.appendChild(link)
+		text.appendChild(el('div', 'cafe-set-row-role', pub.role))
 		row.appendChild(text)
-		row.appendChild(roleBadge(pub.role))
+		var leave = el('button', 'cafe-set-button leave', 'Leave')
+		leave.type = 'button'
+		leave.addEventListener('click', function () {
+			leavePublication(pub, panel)
+		})
+		row.appendChild(leave)
 		return row
+	}
+
+	function errorToast(error) {
+		CAFE.toast(error.message || CAFE.DEFAULT_ERROR, 'error')
+	}
+
+	function openCreatePublication(panel) {
+		CAFE.form({
+			title: 'Create a new publication',
+			persistKey: 'create-publication',
+			submitLabel: 'Create',
+			values: {},
+			fields: [
+				{ name: 'title', label: 'Name', required: true },
+				{ name: 'handle', label: 'Handle', required: true },
+			],
+			onSubmit: function (values) {
+				return CAFE.api('cafe.api.create_publication', values).then(function () {
+					loadPublications(panel)
+				})
+			},
+		})
 	}
 
 	// Fills `panel` the same way loadSaved fills the Saved one: .cafe-loading,
@@ -178,7 +215,7 @@
 				var rows = data || []
 				empty.hidden = rows.length > 0
 				rows.forEach(function (pub, index) {
-					list.appendChild(publicationRow(pub, index === 0))
+					list.appendChild(publicationRow(pub, index === 0, panel))
 				})
 			},
 			function () {
@@ -221,6 +258,9 @@
 		})
 		document.getElementById('cafe-settings-logout').addEventListener('click', function () {
 			CAFE.confirmLogout()
+		})
+		document.getElementById('cafe-settings-pub-create').addEventListener('click', function () {
+			openCreatePublication(publications)
 		})
 		var wantedTab = new URLSearchParams(location.search).get('tab')
 		show(TABS.indexOf(wantedTab) >= 0 ? wantedTab : 'account', false)
@@ -288,6 +328,14 @@
 		panel.appendChild(empty)
 		panel.appendChild(failed)
 		panel.appendChild(el('div', 'cafe-pub-mem-list'))
+		var create = el('button', 'cafe-set-button cafe-set-pub-create')
+		create.type = 'button'
+		create.appendChild(icon('plus'))
+		create.appendChild(el('span', '', 'Create a new publication'))
+		create.addEventListener('click', function () {
+			openCreatePublication(panel)
+		})
+		panel.appendChild(create)
 		return panel
 	}
 

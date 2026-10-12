@@ -1556,38 +1556,20 @@ p.cafe-clamp-3:empty::before {
 .cafe-set-value {
   color: var(--ink-gray-6);
 }
-/* A membership row's role pill - same look as .cafe-p-badge on the
-   publication's own Members page (publications.css), duplicated under its
-   own name rather than shared across files: settings.js runs on every page,
-   publications.css only loads on publication pages. */
-.cafe-set-role-badge {
-  display: inline-flex;
-  height: 16px;
-  flex-shrink: 0;
-  align-items: center;
-  padding: 0 6px;
-  border-radius: 6px;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  line-height: 13.8px;
-  white-space: nowrap;
-}
-.cafe-set-role-badge.gray {
-  background: var(--surface-gray-2);
+/* A membership row's role, under its publication title - plain text, not a
+   badge: Settings only needs to say which role you hold, not draw attention
+   to it the way the publication's own Members page does. */
+.cafe-set-row-role {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-gray-6);
-}
-.cafe-set-role-badge.blue {
-  background: #e6f1fe;
-  color: #0b62c4;
-}
-.cafe-set-role-badge.solid-green {
-  background: #278f5e;
-  color: var(--ink-base);
 }
 .cafe-set-button {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
+  gap: 6px;
   height: 28px;
   padding: 0 8px;
   border: 0;
@@ -1607,8 +1589,15 @@ p.cafe-clamp-3:empty::before {
   background: #fde7e7;
   color: #f79596;
 }
+.cafe-set-button.leave {
+  color: #e03636;
+}
 .cafe-set-button:disabled {
   cursor: not-allowed;
+}
+.cafe-set-pub-create {
+  margin-top: 12px;
+  color: var(--ink-gray-7);
 }
 .cafe-saved-row {
   display: flex;

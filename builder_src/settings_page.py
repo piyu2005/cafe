@@ -10,7 +10,20 @@ The Saved list is filled by settings.js when its tab opens. Everything here is
 built as individual Builder blocks (buttons, tabs, list placeholders), not one
 embedded HTML blob, so each piece is editable on its own in Builder's canvas."""
 
-from blocks import GRAY_6, INK, MUTED, OUTLINE, SURFACE_2, attribute, block, html_el, show, text_style
+from blocks import (
+	GRAY_6,
+	GRAY_7,
+	INK,
+	MUTED,
+	OUTLINE,
+	SURFACE_2,
+	attribute,
+	block,
+	html_el,
+	icon,
+	show,
+	text_style,
+)
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
 
@@ -39,6 +52,7 @@ BUTTON_STYLES = {
 }
 LOG_OUT_STYLES = {**BUTTON_STYLES, "backgroundColor": SURFACE_2, "color": INK}
 DELETE_STYLES = {**BUTTON_STYLES, "backgroundColor": "#fde7e7", "color": "#f79596", "cursor": "not-allowed"}
+CREATE_PUB_STYLES = {**BUTTON_STYLES, "gap": "6px", "backgroundColor": SURFACE_2, "color": GRAY_7}
 
 
 def build_row(name, title, control, description=None, first=False):
@@ -183,12 +197,19 @@ def build_publications_panel():
 		text="Couldn't load your publications. Please try again.",
 	)
 	pub_list = block("div", classes=["cafe-pub-mem-list"])
+	create_button = block(
+		"button",
+		"Create publication button",
+		attrs={"id": "cafe-settings-pub-create", "type": "button"},
+		styles={**CREATE_PUB_STYLES, "marginTop": "12px"},
+		children=[icon("plus", 16), block("span", "Label", text="Create a new publication")],
+	)
 	return block(
 		"div",
 		"Publications panel",
 		attrs={"id": "cafe-settings-publications", "role": "tabpanel", "hidden": "hidden"},
 		styles={"paddingTop": "16px"},
-		children=[loading, empty, error, pub_list],
+		children=[loading, empty, error, pub_list, create_button],
 	)
 
 
