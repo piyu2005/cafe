@@ -1325,6 +1325,10 @@ p.cafe-clamp-3:empty::before {
   }
   .cafe-mobile-header {
     display: flex !important;
+    /* Every page's own mobile header sets its own 60px inline (see layout.py
+       and friends) - overrides the lot to one shared mobile height, !important
+       for the same reason display above needs it: beating an inline style. */
+    height: 46px !important;
   }
   .cafe-app {
     flex-direction: column !important;
