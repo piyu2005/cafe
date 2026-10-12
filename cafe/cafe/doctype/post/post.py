@@ -1,6 +1,7 @@
 import io
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 # Feeds only ever show cover_image at a small fixed box (see Home.vue/
@@ -21,6 +22,14 @@ class Post(Document):
 		self.author_image = user_image
 
 	def before_save(self):
+		# Not on every save - only when `publication` itself is being set or
+		# changed, so losing membership later doesn't block editing a post
+		# that's already assigned there.
+		if self.publication and self.has_value_changed("publication"):
+			if not frappe.db.exists(
+				"Publication Member", {"publication": self.publication, "user": self.author}
+			):
+				frappe.throw(_("You're not a member of this publication"), frappe.PermissionError)
 		if self.status == "Published" and not self.published_at:
 			self.published_at = frappe.utils.now_datetime()
 		if self.post_type == "Image" and self.images and not self.cover_image:

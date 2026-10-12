@@ -227,6 +227,7 @@
 		W.build(root)
 		wire()
 		refreshHeader()
+		W.loadMyPublications()
 		if (!id) {
 			W.fill(null)
 			restoreDialogDrafts()

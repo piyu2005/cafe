@@ -22,6 +22,11 @@
 		savedAt: null,
 		saving: null, // the status being saved
 		coverRemoved: false,
+		// The publications this account can post under - Story Preview's
+		// "Publish to" picker. Fetched once at startup (see write_live.js),
+		// well before Publish is ever clicked, so opening that dialog never
+		// waits on it.
+		myPublications: [],
 		form: {
 			title: '',
 			post_type: 'Blog',
@@ -31,6 +36,7 @@
 			excerpt: '',
 			display_title: '',
 			tags: '',
+			publication: '',
 		},
 	}
 
@@ -124,6 +130,16 @@
 	}
 	W.remove = function (id) {
 		return CAFE.request('DELETE', POSTS + '/' + encodeURIComponent(id))
+	}
+	W.loadMyPublications = function () {
+		return CAFE.get('cafe.api.list_my_publications').then(
+			function (rows) {
+				W.state.myPublications = rows || []
+			},
+			function () {
+				/* Story Preview just falls back to "Your profile" only. */
+			}
+		)
 	}
 
 	// Uploads a file and resolves with { file_url, file_name }. `options` are

@@ -742,6 +742,15 @@
   color: var(--w-ink-5);
   font-size: 13px;
 }
+.cafe-w-story .cafe-field {
+  margin: 12px 0 0;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--w-outline);
+}
+.cafe-w-story .cafe-field label {
+  color: var(--ink-gray-6);
+  font-size: 13px;
+}
 .cafe-w-story-title,
 .cafe-w-story-excerpt {
   display: block;

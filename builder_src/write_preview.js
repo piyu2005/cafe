@@ -36,6 +36,7 @@
 			if ('excerpt' in draft.values) form.excerpt = draft.values.excerpt
 			if ('cover_image' in draft.values) form.cover_image = draft.values.cover_image
 			if ('coverRemoved' in draft.values) S.coverRemoved = draft.values.coverRemoved
+			if ('publication' in draft.values) form.publication = draft.values.publication
 		}
 		function saveDraft() {
 			CAFE.saveDraft(DRAFT_KEY, null, {
@@ -43,7 +44,43 @@
 				excerpt: form.excerpt,
 				cover_image: form.cover_image,
 				coverRemoved: S.coverRemoved,
+				publication: form.publication,
 			})
+		}
+
+		// "Your profile" plus whatever this account can post under - current
+		// value first if it's no longer one of them (membership can change
+		// after a post is already assigned to a publication; dropping it
+		// silently here would reassign the post out from under the author).
+		// Uses the same .cafe-field markup as CAFE.form's own selects (styles.css),
+		// loaded on every page, rather than drawing a one-off look just for this.
+		function buildPublicationPicker() {
+			var row = W.el('div', 'cafe-field')
+			row.appendChild(W.el('label', '', 'Publish to'))
+			var select = W.el('select')
+			var personal = W.el('option', '', 'Your profile')
+			personal.value = ''
+			select.appendChild(personal)
+			var known = S.myPublications.some(function (pub) {
+				return pub.publication === form.publication
+			})
+			if (form.publication && !known) {
+				var current = W.el('option', '', form.publication)
+				current.value = form.publication
+				select.appendChild(current)
+			}
+			S.myPublications.forEach(function (pub) {
+				var option = W.el('option', '', pub.title || pub.publication)
+				option.value = pub.publication
+				select.appendChild(option)
+			})
+			select.value = form.publication || ''
+			select.addEventListener('change', function () {
+				form.publication = select.value
+				saveDraft()
+			})
+			row.appendChild(select)
+			return row
 		}
 
 		var fileInput = W.el('input')
@@ -104,6 +141,9 @@
 			cover.appendChild(over)
 			body.appendChild(cover)
 			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
+			// Only worth asking when there's an actual choice to make - most
+			// accounts belong to no publication at all.
+			if (S.myPublications.length || form.publication) body.appendChild(buildPublicationPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'

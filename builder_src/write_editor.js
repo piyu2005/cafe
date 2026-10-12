@@ -437,6 +437,7 @@
 			form.excerpt = doc.excerpt || ''
 			form.display_title = doc.display_title || ''
 			form.tags = doc.tags || ''
+			form.publication = doc.publication || ''
 			S.status = doc.status || 'Draft'
 			S.savedAt = doc.modified ? new Date(doc.modified.replace(' ', 'T')) : null
 		}
