@@ -8,6 +8,10 @@
 
 	var PAGE_SIZE = 10
 	var DEBOUNCE_MS = 250
+	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py) - while
+	// it's false, every row falls through to its author here too, matching
+	// what home_page.py's own server-rendered first page already does.
+	var PUBLICATIONS_ENABLED = false
 	var FIELDS = [
 		'name',
 		'title',
@@ -82,7 +86,7 @@
 	// (fetch failed, or raced past the batch somehow) just falls back to the
 	// author, rather than showing a broken tile.
 	function buildIdentity(post, pubs) {
-		var pub = post.publication ? pubs[post.publication] : null
+		var pub = PUBLICATIONS_ENABLED && post.publication ? pubs[post.publication] : null
 		var label = pub ? pub.title || post.publication : post.author_name || post.author || ''
 		var image = safeUrl(pub ? pub.logo : post.author_image)
 		var inner = image
@@ -139,6 +143,7 @@
 	// since swapping a circular avatar for a square publication tile after the
 	// fact would visibly flash; a comment count ticking in unnoticed doesn't.
 	function fetchPublications(posts) {
+		if (!PUBLICATIONS_ENABLED) return Promise.resolve({})
 		var handles = []
 		posts.forEach(function (post) {
 			if (post.publication && handles.indexOf(post.publication) === -1) handles.push(post.publication)

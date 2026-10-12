@@ -19,6 +19,7 @@ from blocks import (
 	GRAY_6,
 	INK,
 	MUTED,
+	PUBLICATIONS_ENABLED,
 	SOLID_BG,
 	SURFACE_2,
 	attribute,
@@ -425,7 +426,9 @@ if rows:
 # not its author's - same reasoning as the mentor's "2 separate profiles"
 # comment on the publication page: a reader scanning the feed should see
 # which publication a post came from, the way Medium's own feed cards do.
-pub_ids = list({row.publication for row in rows if row.get("publication")})
+# Publications is hidden for now (@@PUBLICATIONS_ENABLED@@) - while it is,
+# every row falls through to its author, same as before it existed.
+pub_ids = list({row.publication for row in rows if row.get("publication")}) if @@PUBLICATIONS_ENABLED@@ else []
 pubs = (
     {p.name: p for p in frappe.get_all("Publication", filters={"name": ["in", pub_ids]}, fields=["name", "title", "logo"])}
     if pub_ids
@@ -481,4 +484,6 @@ data.hp = {
 """
 
 
-HOME_DATA_SCRIPT = HELPERS + HOME_MAIN.replace("@@PAGE_SIZE@@", str(PAGE_SIZE))
+HOME_DATA_SCRIPT = HELPERS + HOME_MAIN.replace("@@PAGE_SIZE@@", str(PAGE_SIZE)).replace(
+	"@@PUBLICATIONS_ENABLED@@", str(PUBLICATIONS_ENABLED)
+)

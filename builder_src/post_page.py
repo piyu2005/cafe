@@ -11,6 +11,7 @@ from blocks import (
 	INK_BLACK,
 	MUTED,
 	OUTLINE,
+	PUBLICATIONS_ENABLED,
 	SOLID_BG,
 	SURFACE_2,
 	attribute,
@@ -664,8 +665,11 @@ else:
     # (same rounded-square tile as the Home feed), not its author's - purely
     # cosmetic, separate from who may actually manage the post (can_manage
     # below), which always checks the real post.author and publication role.
+    # Publications is hidden for now (@@PUBLICATIONS_ENABLED@@) - while it is,
+    # this always falls through to the author, same as before it existed,
+    # regardless of what a pre-existing post's own publication field holds.
     pub = None
-    if post.get("publication"):
+    if @@PUBLICATIONS_ENABLED@@ and post.get("publication"):
         pub = frappe.db.get_value("Publication", post.publication, ["title", "logo"], as_dict=True)
     if pub:
         identity_name = pub.get("title") or post.publication
@@ -684,7 +688,7 @@ else:
         frappe.db.get_value(
             "Publication Member", {"publication": post.publication, "user": frappe.session.user}, "role"
         )
-        if post.publication
+        if @@PUBLICATIONS_ENABLED@@ and post.publication
         else None
     )
     can_manage = post.author == frappe.session.user or pub_role in ("Editor", "Admin")
@@ -732,4 +736,4 @@ else:
     data.tags = tags
 """
 
-POST_DATA_SCRIPT = HELPERS + POST_MAIN
+POST_DATA_SCRIPT = HELPERS + POST_MAIN.replace("@@PUBLICATIONS_ENABLED@@", str(PUBLICATIONS_ENABLED))

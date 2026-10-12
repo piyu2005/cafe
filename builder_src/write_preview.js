@@ -7,6 +7,8 @@
 	var RATIO = 1.91
 	var MAX_WIDTH = 1200
 	var JPEG_QUALITY = 0.92
+	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py).
+	var PUBLICATIONS_ENABLED = false
 
 	W.previewImage = function () {
 		var S = W.state
@@ -142,8 +144,10 @@
 			body.appendChild(cover)
 			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
 			// Only worth asking when there's an actual choice to make - most
-			// accounts belong to no publication at all.
-			if (S.myPublications.length || form.publication) body.appendChild(buildPublicationPicker())
+			// accounts belong to no publication at all. Hidden entirely while
+			// Publications itself is hidden (PUBLICATIONS_ENABLED above).
+			if (PUBLICATIONS_ENABLED && (S.myPublications.length || form.publication))
+				body.appendChild(buildPublicationPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'

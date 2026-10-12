@@ -16,6 +16,7 @@ from blocks import (
 	INK,
 	MUTED,
 	OUTLINE,
+	PUBLICATIONS_ENABLED,
 	SURFACE_2,
 	attribute,
 	block,
@@ -26,6 +27,10 @@ from blocks import (
 )
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
+
+SETTINGS_TABS = [("account", "Account"), ("saved", "Saved")]
+if PUBLICATIONS_ENABLED:
+	SETTINGS_TABS.append(("publications", "Publications"))
 
 ROW_STYLES = {
 	"display": "flex",
@@ -227,7 +232,7 @@ def build_tabs():
 			styles=TAB_STYLES,
 			text=label,
 		)
-		for key, label in (("account", "Account"), ("saved", "Saved"), ("publications", "Publications"))
+		for key, label in SETTINGS_TABS
 	]
 	return block(
 		"div",
@@ -240,12 +245,15 @@ def build_tabs():
 
 
 def build_settings(shell_id, shell_block):
+	children = [build_tabs(), build_account_panel(), build_saved_panel()]
+	if PUBLICATIONS_ENABLED:
+		children.append(build_publications_panel())
 	root = block(
 		"div",
 		"Settings",
 		attrs={"id": "cafe-settings-page"},
 		custom={"data-admin": ""},
-		children=[build_tabs(), build_account_panel(), build_saved_panel(), build_publications_panel()],
+		children=children,
 	)
 	root = attribute(root, "st.admin", "data-admin")
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Settings")]

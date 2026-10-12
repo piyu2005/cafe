@@ -149,7 +149,7 @@ def slug(name):
 
 
 from auth_page import LOGIN_DATA_SCRIPT, SIGNUP_DATA_SCRIPT, build_login, build_signup
-from blocks import svg
+from blocks import PUBLICATIONS_ENABLED, svg
 from chat_page import CHAT_DATA_SCRIPT, CHAT_PARTS, build_native_chat, native_head_html
 from home_page import HOME_DATA_SCRIPT, build_home
 from post_page import POST_DATA_SCRIPT, build_post_page
@@ -469,10 +469,20 @@ def main():
 			native_head_html(),
 		),
 	]
+	# These three pages exist only for Publications - while that's hidden
+	# (see blocks.PUBLICATIONS_ENABLED), Builder's own "published" flag keeps
+	# their routes from resolving at all, the same mechanism routing.py's own
+	# docstring already documents for "/".
+	unpublished = (
+		set() if PUBLICATIONS_ENABLED else {"cafe-publication", "cafe-publication-members", "cafe-invite"}
+	)
 	for name, title, route, builder, script_names, data_script, dynamic, *extra in pages:
 		blocks = builder(shell_id, shell_block)
 		head = SOCKET_PRELOAD_HEAD + (extra[0] if extra else "")
-		write_json("pages", name, page(name, title, route, blocks, script_names, data_script, dynamic, head))
+		doc = page(name, title, route, blocks, script_names, data_script, dynamic, head)
+		if name in unpublished:
+			doc["published"] = 0
+		write_json("pages", name, doc)
 	print(f"Wrote Builder files to {OUT}")
 
 

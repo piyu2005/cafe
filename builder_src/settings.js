@@ -8,7 +8,11 @@
 	var CAFE = (window.CAFE = window.CAFE || {})
 	var ICONS = '@@ICONS@@'
 	var DESKTOP = window.matchMedia('(min-width: 768px)')
-	var TABS = ['account', 'saved', 'publications']
+	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py) - the
+	// mobile page already skips its Publications blocks there; this is the
+	// matching switch for the desktop dialog, which is built entirely here.
+	var PUBLICATIONS_ENABLED = false
+	var TABS = PUBLICATIONS_ENABLED ? ['account', 'saved', 'publications'] : ['account', 'saved']
 	var TITLES = { account: 'Account', saved: 'Saved posts', publications: 'Publications' }
 
 	var el = function (tag, className, text) {
@@ -232,6 +236,8 @@
 		var buttons = root.querySelectorAll('.cafe-tab-btn')
 		var account = document.getElementById('cafe-settings-account')
 		var saved = document.getElementById('cafe-settings-saved')
+		// Only in the DOM at all when PUBLICATIONS_ENABLED was true at generate
+		// time (settings_page.py) - null here otherwise.
 		var publications = document.getElementById('cafe-settings-publications')
 
 		function show(tab, updateAddress) {
@@ -240,9 +246,9 @@
 			})
 			account.hidden = tab !== 'account'
 			saved.hidden = tab !== 'saved'
-			publications.hidden = tab !== 'publications'
+			if (publications) publications.hidden = tab !== 'publications'
 			if (tab === 'saved') loadSaved(saved, function () {})
-			if (tab === 'publications') loadPublications(publications)
+			if (tab === 'publications' && publications) loadPublications(publications)
 			if (updateAddress) {
 				// The tab is in the address, so Back from a saved post returns to it.
 				var url = new URL(location.href)
@@ -259,9 +265,12 @@
 		document.getElementById('cafe-settings-logout').addEventListener('click', function () {
 			CAFE.confirmLogout()
 		})
-		document.getElementById('cafe-settings-pub-create').addEventListener('click', function () {
-			openCreatePublication(publications)
-		})
+		var createButton = document.getElementById('cafe-settings-pub-create')
+		if (createButton) {
+			createButton.addEventListener('click', function () {
+				openCreatePublication(publications)
+			})
+		}
 		var wantedTab = new URLSearchParams(location.search).get('tab')
 		show(TABS.indexOf(wantedTab) >= 0 ? wantedTab : 'account', false)
 	}
@@ -378,10 +387,10 @@
 		var body = el('div', 'cafe-set-body')
 		var accountPanel = buildAccount(close)
 		var savedPanel = buildSavedPanel()
-		var publicationsPanel = buildPublicationsPanel()
+		var publicationsPanel = PUBLICATIONS_ENABLED ? buildPublicationsPanel() : null
 		body.appendChild(accountPanel)
 		body.appendChild(savedPanel)
-		body.appendChild(publicationsPanel)
+		if (publicationsPanel) body.appendChild(publicationsPanel)
 		content.appendChild(title)
 		content.appendChild(body)
 		modal.appendChild(side)
@@ -398,11 +407,11 @@
 			title.textContent = TITLES[key]
 			accountPanel.hidden = key !== 'account'
 			savedPanel.hidden = key !== 'saved'
-			publicationsPanel.hidden = key !== 'publications'
+			if (publicationsPanel) publicationsPanel.hidden = key !== 'publications'
 			body.scrollTop = 0
 			dialog.tab = key
 			if (key === 'saved') loadSaved(savedPanel, close)
-			if (key === 'publications') loadPublications(publicationsPanel)
+			if (key === 'publications' && publicationsPanel) loadPublications(publicationsPanel)
 		}
 
 		function close() {

@@ -1,6 +1,18 @@
 """The Search page: people and publications, each filtered as you type."""
 
-from blocks import INK, MUTED, OUTLINE, SOLID_BG, SURFACE_2, bind, block, html_el, raw_block, svg
+from blocks import (
+	INK,
+	MUTED,
+	OUTLINE,
+	PUBLICATIONS_ENABLED,
+	SOLID_BG,
+	SURFACE_2,
+	bind,
+	block,
+	html_el,
+	raw_block,
+	svg,
+)
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
 
@@ -266,19 +278,13 @@ def build_search(shell_id, shell_block):
 		styles=TITLE_STYLES,
 	)
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Explore")]
-	return page_layout(
-		shell_id,
-		shell_block,
-		crumbs,
-		[
-			title,
-			build_search_box("cafe-search-input", "Search writers"),
-			build_tabs(),
-			build_writers_panel(),
-			build_publications_panel(),
-		],
-		"640px",
-	)
+	children = [title, build_search_box("cafe-search-input", "Search writers")]
+	if PUBLICATIONS_ENABLED:
+		children.append(build_tabs())
+	children.append(build_writers_panel())
+	if PUBLICATIONS_ENABLED:
+		children.append(build_publications_panel())
+	return page_layout(shell_id, shell_block, crumbs, children, "640px")
 
 
 # Runs on the server for every visit. Builder puts what it returns into the
@@ -302,7 +308,9 @@ for person in people:
     person["user_image"] = frappe.utils.escape_html(image) if image.startswith(("/", "https://", "http://")) else ""
     person["no_image"] = not person["user_image"]
 data.people = people
-
+"""
+if PUBLICATIONS_ENABLED:
+	SEARCH_DATA_SCRIPT += """
 publications = frappe.call("cafe.api.list_publications")
 for pub in publications:
     segment = pub.get("handle") or ""
