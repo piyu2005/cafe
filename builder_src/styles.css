@@ -546,6 +546,28 @@ html[data-cafe-sidebar='open'] .cafe-np {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* A publication's mark: rounded square, not the circle a person's avatar
+   gets - same distinction the app's own logo already draws between a
+   brand and a person. */
+.cafe-pub-tile {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface-gray-10);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.cafe-pub-subscribers {
+  flex: none;
+  font-size: 13px;
+  color: var(--ink-gray-5);
+}
 .cafe-empty {
   padding: 40px 0;
   text-align: center;

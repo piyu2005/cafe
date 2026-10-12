@@ -451,6 +451,24 @@ def list_my_publications():
 
 
 @frappe.whitelist()
+def list_publications(query: str | None = None):
+	filters = {}
+	if query:
+		filters["title"] = ["like", f"%{query}%"]
+
+	rows = frappe.db.get_all(
+		"Publication",
+		filters=filters,
+		fields=["handle", "title"],
+		order_by="title asc",
+		limit_page_length=50,
+	)
+	for row in rows:
+		row.subscriber_count = _subscriber_count("Publication", row.handle)
+	return rows
+
+
+@frappe.whitelist()
 def leave_publication(handle: str):
 	frappe.db.delete("Publication Member", {"publication": handle, "user": frappe.session.user})
 	frappe.db.commit()  # nosemgrep: frappe-manual-commit (saved at once; the page reloads the membership right after)

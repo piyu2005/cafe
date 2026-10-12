@@ -1,7 +1,27 @@
-"""The Search page: people list, filtered as you type."""
+"""The Search page: people and publications, each filtered as you type."""
 
-from blocks import INK, MUTED, SURFACE_2, bind, block, html_el, raw_block, svg
+from blocks import INK, MUTED, OUTLINE, SOLID_BG, SURFACE_2, bind, block, html_el, raw_block, svg
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
+from posts_page import TAB_STYLES
+
+TABS = [("writers", "Writers"), ("publications", "Publications")]
+TITLE_STYLES = {
+	"margin": "0",
+	"fontFamily": "Newsreader",
+	"fontSize": "32px",
+	"fontWeight": "400",
+	"lineHeight": "1.6",
+	"letterSpacing": "0.015em",
+	"color": "#000000",
+}
+ROW_STYLES = {
+	"display": "flex",
+	"alignItems": "center",
+	"gap": "12px",
+	"height": "44px",
+	"padding": "6px 8px",
+	"borderRadius": "8px",
+}
 
 
 def build_person_row():
@@ -79,8 +99,75 @@ def build_person_row():
 	return row
 
 
-def build_search(shell_id, shell_block):
-	search_box = raw_block(
+def build_publication_row():
+	"""Same row shape as a writer's, with a brand mark instead of an avatar - a
+	rounded square, not a circle, same distinction the app's own logo and
+	profile avatars already draw between an org and a person - and a
+	subscriber count standing in for the context a person's own name already
+	carries on its own."""
+	tile = block(
+		"span",
+		"Tile",
+		["cafe-pub-tile"],
+		text="F",
+		styles={
+			"display": "grid",
+			"placeItems": "center",
+			"flexShrink": "0",
+			"width": "32px",
+			"height": "32px",
+			"borderRadius": "8px",
+			"backgroundColor": SOLID_BG,
+			"color": "#ffffff",
+			"fontSize": "14px",
+			"fontWeight": "600",
+			"letterSpacing": "0.02em",
+			"textTransform": "uppercase",
+		},
+	)
+	tile["dynamicValues"] = [bind("initial", "innerHTML", "key")]
+	title = block(
+		"span",
+		"Title",
+		["cafe-person-name"],
+		text="Frappe Thoughts",
+		styles={
+			"overflow": "hidden",
+			"fontSize": "16px",
+			"letterSpacing": "0.02em",
+			"color": "#000000",
+			"textOverflow": "ellipsis",
+			"whiteSpace": "nowrap",
+		},
+	)
+	title["dynamicValues"] = [bind("title", "innerHTML", "key")]
+	left = block(
+		"span",
+		"Left",
+		styles={"display": "flex", "alignItems": "center", "gap": "12px", "minWidth": "0"},
+		children=[tile, title],
+	)
+	subscribers = block(
+		"span",
+		"Subscribers",
+		text="12 subscribers",
+		styles={"flexShrink": "0", "fontSize": "13px", "color": MUTED},
+	)
+	subscribers["dynamicValues"] = [bind("subscriber_label", "innerHTML", "key")]
+	row = block(
+		"a",
+		"Publication",
+		["cafe-person"],
+		attrs={"href": "/publications/frappe-thoughts"},
+		children=[left, subscribers],
+		styles={**ROW_STYLES, "justifyContent": "space-between"},
+	)
+	row["dynamicValues"] = [bind("href", "href", "attribute")]
+	return row
+
+
+def build_search_box(input_id, aria_label):
+	return raw_block(
 		"Search box",
 		svg("search", 16, MUTED).replace(
 			'style="', 'style="position:absolute;top:6px;left:8px;pointer-events:none;', 1
@@ -89,10 +176,10 @@ def build_search(shell_id, shell_block):
 			"input",
 			None,
 			{
-				"id": "cafe-search-input",
+				"id": input_id,
 				"type": "text",
 				"placeholder": "Search",
-				"aria-label": "Search writers",
+				"aria-label": aria_label,
 				"autocomplete": "off",
 			},
 			{
@@ -112,6 +199,35 @@ def build_search(shell_id, shell_block):
 		["cafe-search"],
 		styles={"position": "relative", "display": "block", "marginTop": "8px"},
 	)
+
+
+def build_tabs():
+	buttons = [
+		html_el(
+			"button",
+			["cafe-tab-btn"],
+			{
+				"type": "button",
+				"role": "tab",
+				"data-tab": key,
+				"aria-selected": "true" if key == "writers" else "false",
+			},
+			TAB_STYLES,
+			text=label,
+		)
+		for key, label in TABS
+	]
+	tablist = html_el(
+		"div",
+		["cafe-tablist"],
+		{"role": "tablist"},
+		{"display": "flex", "gap": "32px", "borderBottom": f"1px solid {OUTLINE}"},
+		buttons,
+	)
+	return raw_block("Tabs", tablist, styles={"marginTop": "16px"})
+
+
+def build_writers_panel():
 	people = block(
 		"div",
 		"People",
@@ -122,23 +238,56 @@ def build_search(shell_id, shell_block):
 	)
 	people["isRepeaterBlock"] = True
 	people["dataKey"] = bind("people", "innerHTML", "key")
+	return block(
+		"div",
+		"Writers panel",
+		attrs={"id": "cafe-panel-writers", "role": "tabpanel"},
+		children=[people],
+	)
+
+
+def build_publications_panel():
+	publications = block(
+		"div",
+		"Publications",
+		["cafe-people"],
+		attrs={"id": "cafe-publications", "aria-live": "polite"},
+		styles={"display": "flex", "flexDirection": "column", "gap": "4px", "marginTop": "16px"},
+		children=[build_publication_row()],
+	)
+	publications["isRepeaterBlock"] = True
+	publications["dataKey"] = bind("publications", "innerHTML", "key")
+	return block(
+		"div",
+		"Publications panel",
+		attrs={"id": "cafe-panel-publications", "role": "tabpanel", "hidden": "hidden"},
+		children=[publications],
+	)
+
+
+def build_search(shell_id, shell_block):
 	title = block(
 		"h1",
 		"Title",
 		["cafe-title"],
+		attrs={"id": "cafe-search-title"},
 		text="Writers at Cafe",
-		styles={
-			"margin": "0",
-			"fontFamily": "Newsreader",
-			"fontSize": "32px",
-			"fontWeight": "400",
-			"lineHeight": "1.6",
-			"letterSpacing": "0.015em",
-			"color": "#000000",
-		},
+		styles=TITLE_STYLES,
 	)
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Explore")]
-	return page_layout(shell_id, shell_block, crumbs, [title, search_box, people], "640px")
+	return page_layout(
+		shell_id,
+		shell_block,
+		crumbs,
+		[
+			title,
+			build_search_box("cafe-search-input", "Search writers"),
+			build_tabs(),
+			build_writers_panel(),
+			build_publications_panel(),
+		],
+		"640px",
+	)
 
 
 # Runs on the server for every visit. Builder puts what it returns into the
@@ -162,4 +311,17 @@ for person in people:
     person["user_image"] = frappe.utils.escape_html(image) if image.startswith(("/", "https://", "http://")) else ""
     person["no_image"] = not person["user_image"]
 data.people = people
+
+publications = frappe.call("cafe.api.list_publications")
+for pub in publications:
+    segment = pub.get("handle") or ""
+    for char, code in (("%", "%25"), ("/", "%2F"), ("?", "%3F"), ("#", "%23"), ("\\\\", "%5C"), (" ", "%20")):
+        segment = segment.replace(char, code)
+    title = pub.get("title") or pub.get("handle") or ""
+    pub["href"] = frappe.utils.escape_html("/publications/" + segment)
+    pub["title"] = frappe.utils.escape_html(title)
+    pub["initial"] = frappe.utils.escape_html(title.strip()[:1] or "?")
+    count = pub.get("subscriber_count") or 0
+    pub["subscriber_label"] = frappe.utils.escape_html(f"{count} subscriber" + ("" if count == 1 else "s"))
+data.publications = publications
 """
