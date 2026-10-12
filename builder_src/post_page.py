@@ -11,6 +11,7 @@ from blocks import (
 	INK_BLACK,
 	MUTED,
 	OUTLINE,
+	SOLID_BG,
 	SURFACE_2,
 	attribute,
 	bind,
@@ -76,7 +77,7 @@ def build_avatar():
 			"pp.author_image",
 			"src",
 		),
-		"pp.author_image",
+		"pp.avatar_img_on",
 	)
 	initial = when(
 		show(
@@ -92,9 +93,9 @@ def build_avatar():
 			),
 			"pp.author_initial",
 		),
-		"pp.author_no_image",
+		"pp.avatar_initial_on",
 	)
-	return block(
+	avatar = block(
 		"div",
 		"Avatar",
 		children=[picture, initial],
@@ -109,6 +110,58 @@ def build_avatar():
 			"backgroundColor": SURFACE_2,
 		},
 	)
+	return when(avatar, "pp.is_person")
+
+
+def build_pub_tile():
+	"""A post under a publication shows its identity here instead - same
+	rounded-square mark as the Home feed's cafe-pub-tile, sized to match this
+	page's own 46px avatar rather than depending on that shared 32px class."""
+	picture = when(
+		attribute(
+			block(
+				"img",
+				"Publication tile image",
+				attrs={"src": "", "alt": ""},
+				styles={"gridArea": "1 / 1", "width": "100%", "height": "100%", "objectFit": "cover"},
+			),
+			"pp.author_image",
+			"src",
+		),
+		"pp.pub_img_on",
+	)
+	initial = when(
+		show(
+			block(
+				"span",
+				"Publication tile initial",
+				text="F",
+				styles={
+					**text_style(20, "600", "#ffffff", "0.005em", "1.15"),
+					"gridArea": "1 / 1",
+					"textTransform": "uppercase",
+				},
+			),
+			"pp.author_initial",
+		),
+		"pp.pub_initial_on",
+	)
+	tile = block(
+		"div",
+		"Publication tile",
+		children=[picture, initial],
+		styles={
+			"display": "grid",
+			"placeItems": "center",
+			"flexShrink": "0",
+			"width": "46px",
+			"height": "46px",
+			"overflow": "hidden",
+			"borderRadius": "12px",
+			"backgroundColor": SOLID_BG,
+		},
+	)
+	return when(tile, "pp.is_pub")
 
 
 def menu_item(tag, attrs, icon_name, label, custom=None, color=None):
@@ -214,6 +267,7 @@ def build_author_row():
 		styles={"marginTop": "24px", "display": "flex", "alignItems": "center", "gap": "12px"},
 		children=[
 			build_avatar(),
+			build_pub_tile(),
 			block("div", "Author", styles={"flexGrow": "1", "minWidth": "0"}, children=[name, meta]),
 			build_more_menu(),
 		],
@@ -606,7 +660,22 @@ else:
     if minutes < 1:
         minutes = 1
 
-    author_name = post.author_name or post.author
+    # A post under a publication shows the publication's own identity here too
+    # (same rounded-square tile as the Home feed), not its author's - the
+    # "is_author" edit/delete check below stays on the real post.author either
+    # way, since this only changes what's displayed, not who may act on it.
+    pub = None
+    if post.get("publication"):
+        pub = frappe.db.get_value("Publication", post.publication, ["title", "logo"], as_dict=True)
+    if pub:
+        identity_name = pub.get("title") or post.publication
+        identity_image = safe_url(pub.get("logo"))
+        identity_href = "/publications/" + path_segment(post.publication)
+    else:
+        identity_name = post.author_name or post.author
+        identity_image = safe_url(post.author_image)
+        identity_href = "/profile/" + path_segment(post.author_username or post.author)
+
     images = []
     for item in post.images or []:
         url = safe_url(item.get("image"))
@@ -614,7 +683,6 @@ else:
             images.append({"src": url})
     tags = [{"name": clean(tag)} for tag in post.tags or []]
     me = frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image"], as_dict=True) or {}
-    author_image = safe_url(post.author_image)
 
     data.pp = {
         "found": True,
@@ -625,11 +693,16 @@ else:
         "me_image": safe_url(me.get("user_image")),
         "title": clean(post.title or "Untitled"),
         "crumb_title": clean(post.title or "Post"),
-        "author_name": clean(author_name),
-        "author_initial": clean(author_name[:1]),
-        "author_image": author_image,
-        "author_no_image": not author_image,
-        "author_href": clean("/profile/" + path_segment(post.author_username or post.author)),
+        "author_name": clean(identity_name),
+        "author_initial": clean(identity_name.strip()[:1]),
+        "author_image": identity_image,
+        "author_href": clean(identity_href),
+        "is_pub": bool(pub),
+        "is_person": not pub,
+        "avatar_img_on": not pub and bool(identity_image),
+        "avatar_initial_on": not pub and not identity_image,
+        "pub_img_on": bool(pub) and bool(identity_image),
+        "pub_initial_on": bool(pub) and not identity_image,
         "meta": day_month_year(post.creation) + " \\u00b7 " + str(minutes) + " min read",
         "is_author": post.author == frappe.session.user,
         "edit_href": clean("/write/" + path_segment(post.name)),
