@@ -51,6 +51,31 @@ body {
   overscroll-behavior: none;
 }
 
+/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
+   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
+   thumb) - a plain browser scrollbar is only thin on macOS by its own
+   default; on Windows, and in every browser's default chrome generally,
+   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
+   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+   scrollbar-width/-color is the equivalent standard property Firefox uses
+   instead, so both engines end up with the same thin look. */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: var(--surface-gray-1);
+}
+*::-webkit-scrollbar-corner {
+  background: var(--surface-gray-1);
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: var(--surface-gray-3);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-gray-3) var(--surface-gray-1);
+}
+
 .cafe-app {
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
