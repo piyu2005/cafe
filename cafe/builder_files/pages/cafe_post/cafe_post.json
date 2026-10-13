@@ -4035,9 +4035,12 @@
   },
   {
    "builder_script": "Cafe Code"
+  },
+  {
+   "builder_script": "Cafe Embeds"
   }
  ],
- "creation": "2026-10-12 16:21:10.082900",
+ "creation": "2026-10-13 15:46:28.630067",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -4047,7 +4050,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-12 16:21:10.082900",
+ "modified": "2026-10-13 15:46:28.630067",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
@@ -4056,6 +4059,6 @@
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-12 16:21:10.082900",
+ "published_at": "2026-10-13 15:46:28.630067",
  "route": "posts/:post_id"
 }

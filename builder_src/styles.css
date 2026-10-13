@@ -1142,6 +1142,50 @@ p.cafe-clamp-3:empty::before {
   line-height: 28.5px;
   text-align: center;
 }
+.cafe-prose ul[data-type='taskList'] {
+  margin: 4px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.cafe-prose ul[data-type='taskList'] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-left: 0;
+}
+.cafe-prose ul[data-type='taskList'] li > label {
+  flex-shrink: 0;
+  margin-top: 0.25em;
+}
+.cafe-prose ul[data-type='taskList'] li > div {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+.cafe-prose ul[data-type='taskList'] li[data-checked='true'] > div {
+  color: var(--ink-gray-5);
+  text-decoration: line-through;
+}
+/* The "video-embed" placeholder (write_editor.js) only ever carries a
+   provider+id - embeds.js builds the real <iframe> into it client-side, same
+   principle as code.js enhancing a plain <pre><code>. Until that runs, this
+   keeps the box from collapsing to zero height. */
+[data-type='video-embed'] {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 16px 0;
+  padding-top: 56.25%;
+  border-radius: 8px;
+  background: var(--surface-gray-2);
+  overflow: hidden;
+}
+[data-type='video-embed'] iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 /* Image post: a carousel with arrows, a count and dots (added by post.js). */
 .cafe-carousel:not(.ready) .cafe-slide:not(:first-child) {

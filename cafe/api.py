@@ -337,6 +337,23 @@ def get_publications(handles: str | list):
 
 
 @frappe.whitelist()
+def search_posts(query: str | None = None):
+	"""For the write editor's "[[" link-to-a-post search - Published only, same
+	as any other reader would see: a draft's title isn't something to leak
+	through a search box just because someone else is typing "[[" somewhere."""
+	filters = {"status": "Published"}
+	if query:
+		filters["title"] = ["like", f"%{query}%"]
+	return frappe.db.get_all(
+		"Post",
+		filters=filters,
+		fields=["name", "title", "display_title"],
+		order_by="creation desc",
+		limit_page_length=20,
+	)
+
+
+@frappe.whitelist()
 def delete_account():
 	# Paused: this only disabled the User rather than actually deleting it,
 	# which left people locked out with no way back in on their own (a
