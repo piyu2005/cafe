@@ -136,8 +136,8 @@ AVATAR_STYLES = {
 	"display": "grid",
 	"placeItems": "center",
 	"flexShrink": "0",
-	"width": "90px",
-	"height": "90px",
+	"width": "80px",
+	"height": "80px",
 	"overflow": "hidden",
 	"border": f"1px solid {OUTLINE}",
 	"borderRadius": "9999px",
@@ -171,7 +171,7 @@ def build_avatar_content():
 				classes=["cafe-profile-initial"],
 				text="P",
 				styles={
-					**text_style(36, "500", MUTED, "0", "1.5"),
+					**text_style(32, "500", MUTED, "0", "1.5"),
 					"gridArea": "1 / 1",
 					"textTransform": "uppercase",
 				},
@@ -201,7 +201,7 @@ def build_avatar():
 						"span",
 						"Edit hint",
 						classes=["cafe-avatar-edit-hint"],
-						children=[icon("camera", 20, "#ffffff")],
+						children=[icon("camera", 18, "#ffffff")],
 					),
 				],
 				styles={
@@ -238,7 +238,7 @@ def build_name_row():
 				"overflow": "hidden",
 				"textOverflow": "ellipsis",
 				"whiteSpace": "nowrap",
-				**text_style(28, "600", INK, "0.015em", "1.5"),
+				**text_style(26, "600", INK, "0.015em", "1.5"),
 			},
 		),
 		"profile.full_name",
@@ -295,7 +295,7 @@ def build_job_line():
 def build_headline():
 	def paragraph(name, text, color, key, condition):
 		p = block(
-			"p", name, text=text, styles={"margin": "0", **text_style(15, "420", color, "0.02em", "1.4")}
+			"p", name, text=text, styles={"margin": "0", **text_style(13, "420", color, "0.02em", "1.4")}
 		)
 		return when(show(p, key) if key else p, condition)
 

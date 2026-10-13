@@ -643,7 +643,7 @@ p.cafe-clamp-3:empty::before {
   padding-bottom: 0 !important;
 }
 .cafe-profile-initial {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--ink-gray-5);
