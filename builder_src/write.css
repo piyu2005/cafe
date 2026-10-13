@@ -887,6 +887,19 @@
   color: var(--ink-gray-6);
   font-size: 13px;
 }
+/* Tags used its own 32px top margin on the main editor page, where it was
+   the first thing below the story; here it's one divider among several, so
+   it takes the same 12px/8px/border-top rhythm as the publication picker
+   and title/excerpt fields right above it. */
+.cafe-w-story .cafe-w-tags {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--w-outline);
+}
+.cafe-w-story .cafe-w-tags label {
+  color: var(--ink-gray-6);
+  font-size: 13px;
+}
 .cafe-w-story-title,
 .cafe-w-story-excerpt {
   display: block;
