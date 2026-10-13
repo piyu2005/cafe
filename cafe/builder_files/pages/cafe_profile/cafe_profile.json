@@ -2242,8 +2242,8 @@
                   "display": "grid",
                   "placeItems": "center",
                   "flexShrink": "0",
-                  "width": "100px",
-                  "height": "100px",
+                  "width": "90px",
+                  "height": "90px",
                   "overflow": "hidden",
                   "border": "0",
                   "borderRadius": "9999px",
@@ -2302,7 +2302,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "fontSize": "40px",
+                    "fontSize": "36px",
                     "fontWeight": "500",
                     "color": "var(--ink-gray-5)",
                     "letterSpacing": "0",
@@ -2354,8 +2354,8 @@
                     {
                      "attributes": {},
                      "baseStyles": {
-                      "width": "22px",
-                      "height": "22px",
+                      "width": "20px",
+                      "height": "20px",
                       "flexShrink": "0",
                       "color": "#ffffff"
                      },
@@ -2447,8 +2447,8 @@
                   "display": "grid",
                   "placeItems": "center",
                   "flexShrink": "0",
-                  "width": "100px",
-                  "height": "100px",
+                  "width": "90px",
+                  "height": "90px",
                   "overflow": "hidden",
                   "border": "1px solid var(--outline-gray-1)",
                   "borderRadius": "9999px",
@@ -2504,7 +2504,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "fontSize": "40px",
+                    "fontSize": "36px",
                     "fontWeight": "500",
                     "color": "var(--ink-gray-5)",
                     "letterSpacing": "0",
@@ -2600,11 +2600,11 @@
                       "overflow": "hidden",
                       "textOverflow": "ellipsis",
                       "whiteSpace": "nowrap",
-                      "fontSize": "32px",
+                      "fontSize": "28px",
                       "fontWeight": "600",
                       "color": "var(--ink-gray-8)",
                       "letterSpacing": "0.015em",
-                      "lineHeight": "1.6"
+                      "lineHeight": "1.5"
                      },
                      "blockId": "ij0f134rd",
                      "blockName": "Name",
@@ -2963,11 +2963,11 @@
                      "attributes": {},
                      "baseStyles": {
                       "margin": "0",
-                      "fontSize": "16px",
+                      "fontSize": "15px",
                       "fontWeight": "420",
                       "color": "var(--ink-gray-6)",
                       "letterSpacing": "0.02em",
-                      "lineHeight": "1.5"
+                      "lineHeight": "1.4"
                      },
                      "blockId": "g8o386op0",
                      "blockName": "Headline text",
@@ -3006,11 +3006,11 @@
                      "attributes": {},
                      "baseStyles": {
                       "margin": "0",
-                      "fontSize": "16px",
+                      "fontSize": "15px",
                       "fontWeight": "420",
                       "color": "var(--ink-gray-4)",
                       "letterSpacing": "0.02em",
-                      "lineHeight": "1.5"
+                      "lineHeight": "1.4"
                      },
                      "blockId": "iw7etowqp",
                      "blockName": "Headline hint",
@@ -5615,7 +5615,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-10-12 16:21:10.082900",
+ "creation": "2026-10-13 15:07:43.095936",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -5625,7 +5625,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-12 16:21:10.082900",
+ "modified": "2026-10-13 15:07:43.095936",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -5634,6 +5634,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-12 16:21:10.082900",
+ "published_at": "2026-10-13 15:07:43.095936",
  "route": "profile/:username"
 }
