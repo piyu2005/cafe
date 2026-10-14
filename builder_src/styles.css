@@ -51,14 +51,25 @@ body {
   overscroll-behavior: none;
 }
 
-/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
-   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
-   thumb) - a plain browser scrollbar is only thin on macOS by its own
-   default; on Windows, and in every browser's default chrome generally,
-   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
-   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+/* frappe-ui's scrollbar as it actually appears in a real, running frappe
+   app - Frappe Builder itself (this bench's own apps/builder, at /builder),
+   not a docs-site demo or a different component. Read straight off its
+   live, deployed CSS (not guessed): a FILLED 0.5rem (8px) track in
+   surface-gray-1 (#f8f8f8), a surface-gray-3 (#ededed) thumb, fully rounded,
+   no hover-darken. Two earlier passes here chased different, more specific
+   parts of frappe-ui's ecosystem instead - the <ScrollArea> Vue component
+   (a JS-driven overlay built on Reka UI, which hides the native scrollbar
+   entirely and isn't replicable 1:1 outside Vue) and a `.scrollbar` utility
+   class used only for secondary/inline areas like code blocks on
+   ui.frappe.io's own docs site (thinner, transparent track, no fill) -
+   both real, but neither is what a real frappe app's OWN primary scrollbar
+   looks like. This is.
+   A plain browser scrollbar is only thin on macOS by its own default; on
+   Windows, and in every browser's default chrome generally, it's a much
+   wider bar unless this is set explicitly. ::-webkit-scrollbar covers
+   Chrome/Edge (both Chromium, on every OS, Windows included);
    scrollbar-width/-color is the equivalent standard property Firefox uses
-   instead, so both engines end up with the same thin look. */
+   instead, so both engines end up with the same look. */
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -69,7 +80,7 @@ body {
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: var(--surface-gray-3);
+  background-color: var(--surface-gray-3);
 }
 * {
   scrollbar-width: thin;
