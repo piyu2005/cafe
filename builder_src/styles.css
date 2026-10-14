@@ -51,25 +51,30 @@ body {
   overscroll-behavior: none;
 }
 
-/* frappe-ui's actual ScrollArea component (ui.frappe.io/docs/components/
-   scrollarea), read straight off its real rendered DOM/CSS rather than
-   guessed: a 10px lane (w-2.5) with NO visible track - fully transparent,
-   not a filled bg - holding a 6px thumb (10px lane minus 2px of padding on
-   each side), rounded-6, solid #c7c7c7 (this app's own --ink-gray-3, a
-   1-unit rounding difference from their oklch(0.83 0 0) - the same color).
+/* frappe-ui's own real native-CSS scrollbar, not the separate <ScrollArea>
+   Vue component (a different, JS-driven overlay mechanism, built on Reka UI
+   - it renders its own thumb/track divs and hides the native scrollbar
+   entirely: see [data-reka-scroll-area-viewport]::-webkit-scrollbar in its
+   own site's CSS). This is the OTHER one: a plain `.scrollbar` utility
+   class frappe-ui's own site (ui.frappe.io) applies with plain
+   ::-webkit-scrollbar/scrollbar-color, read straight off that site's actual
+   compiled stylesheet, not guessed - including its two CSS variables'
+   resolved values: --scrollbar-thumb: oklch(.946 0 0) (#ededed, this app's
+   own --surface-gray-3) and --scrollbar-thumb-hover: oklch(.913 0 0)
+   (#e2e2e2, --surface-gray-4). --scrollbar-size there is 4px.
+   (Their own page-level document scrollbar is a separate matter - its
+   computed scrollbar-color/-width resolve to plain "auto", meaning it isn't
+   styled by them at all; a solid grey bar there is the visitor's own OS/
+   browser default, not a frappe-ui style to copy.)
    A plain browser scrollbar is only thin on macOS by its own default; on
    Windows, and in every browser's default chrome generally, it's a much
    wider bar unless this is set explicitly. ::-webkit-scrollbar covers
    Chrome/Edge (both Chromium, on every OS, Windows included);
    scrollbar-width/-color is the equivalent standard property Firefox uses
-   instead, so both engines end up with the same look. The 2px transparent
-   border + padding-box clip is how a *native* scrollbar fakes ScrollArea's
-   padding-inset thumb - the real component achieves it by literally
-   padding its (CSS, not native) track element, which a native scrollbar
-   has no equivalent property for. */
+   instead, so both engines end up with the same look. */
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 4px;
+  height: 4px;
   background: transparent;
 }
 *::-webkit-scrollbar-corner {
@@ -77,13 +82,15 @@ body {
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background-color: var(--ink-gray-3);
+  background-color: var(--surface-gray-3);
   background-clip: padding-box;
-  border: 2px solid transparent;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--surface-gray-4);
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--ink-gray-3) transparent;
+  scrollbar-color: var(--surface-gray-3) transparent;
 }
 
 .cafe-app {
