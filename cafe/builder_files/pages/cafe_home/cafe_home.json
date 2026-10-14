@@ -22,37 +22,37 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "tdckx3oui",
+     "blockId": "izihf25c8",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "zupjxzame",
+       "blockId": "e532ip9af",
        "blockName": "Shell",
        "children": [
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "4bjm2lob5",
+         "blockId": "u0m7cuw57",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "zkdxvgw10",
+           "blockId": "b7qsglr4z",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "3upl3cxd6",
+             "blockId": "w6l8df872",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "okfu7kuek",
+               "blockId": "1rqs4uohg",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -99,13 +99,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "0aw2z7rjh",
+             "blockId": "fdwnep8qo",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "qusla8wvy",
+               "blockId": "qkqq0ii9w",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -152,13 +152,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "0yuogougr",
+             "blockId": "zkdxvgw10",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "uzfecijza",
+               "blockId": "3qbzd11k8",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -205,13 +205,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "4c90l7etp",
+             "blockId": "euv6w0pmq",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "g986jtcdq",
+               "blockId": "4bjm2lob5",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -237,7 +237,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "2gy322bym",
+               "blockId": "ozjaywy7e",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -284,13 +284,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "1rqs4uohg",
+             "blockId": "xe0w5xm0r",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "zmd9cxoan",
+               "blockId": "wferwls4e",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -316,7 +316,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "iw8x8jj0s",
+               "blockId": "vvnmg7oqa",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -363,13 +363,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "qkqq0ii9w",
+             "blockId": "e0tz2qtb8",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "w6l8df872",
+               "blockId": "n8wj1xrf2",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -416,13 +416,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "3qbzd11k8",
+             "blockId": "gqt7j7ywh",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "fdwnep8qo",
+               "blockId": "cp9htuwo3",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -511,37 +511,37 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "l68in7xt2",
+         "blockId": "0h5xz9ywm",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "f2hu9y924",
+           "blockId": "pz27ppnzi",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "xe0w5xm0r",
+             "blockId": "rcbbgzb9b",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "vvnmg7oqa",
+               "blockId": "29jk1oluq",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "euv6w0pmq",
+                 "blockId": "auccirn4y",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "ozjaywy7e",
+                   "blockId": "08y5woro3",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -588,7 +588,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "wferwls4e",
+                 "blockId": "8g9qq8yzy",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -656,19 +656,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "7njgeakiv",
+             "blockId": "mzfqhtwpx",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "cp9htuwo3",
+               "blockId": "adkipcefp",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "n8wj1xrf2",
+                 "blockId": "b52j32ztw",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -694,7 +694,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "e0tz2qtb8",
+                 "blockId": "klv4ktv1f",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -741,13 +741,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "u0m7cuw57",
+               "blockId": "4n320uv3u",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "gqt7j7ywh",
+                 "blockId": "516zqtvuz",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -773,7 +773,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b7qsglr4z",
+                 "blockId": "vzesiqk3y",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -820,13 +820,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "29jk1oluq",
+               "blockId": "kvf3vylf3",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "08y5woro3",
+                 "blockId": "7njgeakiv",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -852,7 +852,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "auccirn4y",
+                 "blockId": "poy4rvaj0",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -878,7 +878,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "8g9qq8yzy",
+                 "blockId": "igqkkz8p8",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -925,13 +925,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "adkipcefp",
+               "blockId": "qwjdrdqj9",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "rcbbgzb9b",
+                 "blockId": "g1h9b72pp",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -957,7 +957,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b52j32ztw",
+                 "blockId": "f2hu9y924",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -983,7 +983,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "klv4ktv1f",
+                 "blockId": "l68in7xt2",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1030,13 +1030,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "4n320uv3u",
+               "blockId": "huku3l42m",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "516zqtvuz",
+                 "blockId": "6fjnb8v3t",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1062,7 +1062,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "vzesiqk3y",
+                 "blockId": "ezlryx7rb",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1130,19 +1130,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "g1h9b72pp",
+             "blockId": "ofxela89r",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "kvf3vylf3",
+               "blockId": "rawnb6tqw",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "poy4rvaj0",
+                 "blockId": "rxk5pucra",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1168,7 +1168,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "igqkkz8p8",
+                 "blockId": "3adaexc6f",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1278,19 +1278,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "2ot957m5r",
+         "blockId": "swit2rxzn",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "6fjnb8v3t",
+           "blockId": "llcg7xvpd",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "qwjdrdqj9",
+             "blockId": "2ot957m5r",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1337,13 +1337,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "huku3l42m",
+           "blockId": "8v3d460t4",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "ezlryx7rb",
+             "blockId": "vbq1fdeo1",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1390,13 +1390,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "3adaexc6f",
+           "blockId": "0aavjx48t",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "mzfqhtwpx",
+             "blockId": "ft9fgw3yi",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1422,7 +1422,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "rxk5pucra",
+             "blockId": "azkvpkmmq",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1469,13 +1469,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "ofxela89r",
+           "blockId": "zupjxzame",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "rawnb6tqw",
+             "blockId": "42o8bwtvm",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1522,13 +1522,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "0h5xz9ywm",
+           "blockId": "32bws3gk8",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "pz27ppnzi",
+             "blockId": "tdckx3oui",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1596,19 +1596,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "42o8bwtvm",
+         "blockId": "57agyg64v",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "8v3d460t4",
+           "blockId": "6tlkvrdi9",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "llcg7xvpd",
+             "blockId": "lurqhwz4w",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1634,7 +1634,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "vbq1fdeo1",
+             "blockId": "mffx8ncfz",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1681,13 +1681,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "0aavjx48t",
+           "blockId": "nmc9o2poo",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "ft9fgw3yi",
+             "blockId": "nxzgmexh4",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1713,7 +1713,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "azkvpkmmq",
+             "blockId": "ln0d792v2",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1808,7 +1808,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "n5easxqxu",
+       "blockId": "iw8x8jj0s",
        "blockName": "Main",
        "children": [
         {
@@ -1823,7 +1823,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "dqjwbq9i3",
+         "blockId": "qusla8wvy",
          "blockName": "Mobile header",
          "children": [
           {
@@ -1833,7 +1833,7 @@
             "alignItems": "center",
             "gap": "6px"
            },
-           "blockId": "cklj9eyjd",
+           "blockId": "okfu7kuek",
            "blockName": "Brand",
            "children": [],
            "classes": [],
@@ -1863,7 +1863,7 @@
             "alignItems": "center",
             "gap": "4px"
            },
-           "blockId": "h0fcxul7y",
+           "blockId": "3upl3cxd6",
            "blockName": "Bell and write",
            "children": [],
            "classes": [],
@@ -1925,7 +1925,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "k5ln7wqmy",
+         "blockId": "4c90l7etp",
          "blockName": "Header",
          "children": [
           {
@@ -1940,7 +1940,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "edwe254m8",
+           "blockId": "uzfecijza",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -1948,7 +1948,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "ezxrcn117",
+             "blockId": "n5easxqxu",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2013,7 +2013,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "1lo64ad9o",
+           "blockId": "2gy322bym",
            "blockName": "New Post",
            "children": [
             {
@@ -2023,7 +2023,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "6jqtcxk43",
+             "blockId": "0yuogougr",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2049,7 +2049,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "lh23tn7z5",
+             "blockId": "g986jtcdq",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2127,7 +2127,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "1elzibtmz",
+         "blockId": "zmd9cxoan",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2138,7 +2138,7 @@
             "margin": "0 auto",
             "padding": "24px 20px"
            },
-           "blockId": "v4zsbbe5v",
+           "blockId": "0aw2z7rjh",
            "blockName": "Container",
            "children": [
             {
@@ -2313,13 +2313,14 @@
               "gap": "8px",
               "marginTop": "16px"
              },
-             "blockId": "i3jrkzsl9",
+             "blockId": "mhyg626ek",
              "blockName": "Tag chips",
              "children": [
               {
                "attributes": {
                 "type": "button",
-                "aria-label": "Productivity"
+                "aria-label": "Productivity",
+                "aria-pressed": "false"
                },
                "baseStyles": {
                 "display": "inline-flex",
@@ -2337,13 +2338,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "qoxzzblbq",
+               "blockId": "lbrak4kkr",
                "blockName": "Productivity",
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "51cnblxa7",
+                 "blockId": "qoxzzblbq",
                  "blockName": "Label",
                  "children": [],
                  "classes": [],
@@ -2368,29 +2369,58 @@
                 },
                 {
                  "attributes": {},
-                 "baseStyles": {
-                  "width": "12px",
-                  "height": "12px",
-                  "flexShrink": "0",
-                  "color": "var(--ink-gray-7)"
-                 },
+                 "baseStyles": {},
                  "blockId": "ap6w3e65r",
-                 "blockName": "icon/x",
-                 "children": [],
-                 "classes": [],
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "51cnblxa7",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
                  "clientScript": {},
                  "customAttributes": {},
                  "dataKey": null,
                  "draggable": false,
                  "dynamicValues": [],
-                 "element": "svg",
+                 "element": "span",
                  "elementBeforeConversion": null,
                  "extendedFromComponent": null,
-                 "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                 "innerHTML": null,
                  "isChildOfComponent": null,
                  "isRepeaterBlock": false,
                  "mobileStyles": {},
-                 "originalElement": "__raw_html__",
+                 "originalElement": null,
                  "props": {},
                  "rawStyles": {},
                  "referenceBlockId": null,
@@ -2423,7 +2453,8 @@
               {
                "attributes": {
                 "type": "button",
-                "aria-label": "Photography"
+                "aria-label": "Photography",
+                "aria-pressed": "false"
                },
                "baseStyles": {
                 "display": "inline-flex",
@@ -2441,13 +2472,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "7wgdorule",
+               "blockId": "08d6rlo7d",
                "blockName": "Photography",
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "lbrak4kkr",
+                 "blockId": "xmjs9ty2i",
                  "blockName": "Label",
                  "children": [],
                  "classes": [],
@@ -2469,6 +2500,66 @@
                  "referenceBlockId": null,
                  "tabletStyles": {},
                  "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "s9lyzysy2",
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "7wgdorule",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
                 }
                ],
                "classes": [
@@ -2496,7 +2587,8 @@
               {
                "attributes": {
                 "type": "button",
-                "aria-label": "Technology"
+                "aria-label": "Technology",
+                "aria-pressed": "false"
                },
                "baseStyles": {
                 "display": "inline-flex",
@@ -2514,13 +2606,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "xmjs9ty2i",
+               "blockId": "ncczicuwz",
                "blockName": "Technology",
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "s9lyzysy2",
+                 "blockId": "nz9u8wchy",
                  "blockName": "Label",
                  "children": [],
                  "classes": [],
@@ -2542,6 +2634,66 @@
                  "referenceBlockId": null,
                  "tabletStyles": {},
                  "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "06dgeus69",
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "gwyit5ur5",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
                 }
                ],
                "classes": [
@@ -2569,7 +2721,8 @@
               {
                "attributes": {
                 "type": "button",
-                "aria-label": "Mindfulness"
+                "aria-label": "Mindfulness",
+                "aria-pressed": "false"
                },
                "baseStyles": {
                 "display": "inline-flex",
@@ -2587,13 +2740,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "gwyit5ur5",
+               "blockId": "sw70uw2x3",
                "blockName": "Mindfulness",
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "08d6rlo7d",
+                 "blockId": "n9mu25eir",
                  "blockName": "Label",
                  "children": [],
                  "classes": [],
@@ -2615,61 +2768,48 @@
                  "referenceBlockId": null,
                  "tabletStyles": {},
                  "visibilityCondition": null
-                }
-               ],
-               "classes": [
-                "cafe-tag-chip"
-               ],
-               "clientScript": {},
-               "customAttributes": {},
-               "dataKey": null,
-               "draggable": false,
-               "dynamicValues": [],
-               "element": "button",
-               "elementBeforeConversion": null,
-               "extendedFromComponent": null,
-               "innerHTML": null,
-               "isChildOfComponent": null,
-               "isRepeaterBlock": false,
-               "mobileStyles": {},
-               "originalElement": null,
-               "props": {},
-               "rawStyles": {},
-               "referenceBlockId": null,
-               "tabletStyles": {},
-               "visibilityCondition": null
-              },
-              {
-               "attributes": {
-                "type": "button",
-                "aria-label": "Writing"
-               },
-               "baseStyles": {
-                "display": "inline-flex",
-                "alignItems": "center",
-                "gap": "4px",
-                "flexShrink": "0",
-                "border": "0",
-                "padding": "6px 8px",
-                "borderRadius": "8px",
-                "backgroundColor": "var(--surface-gray-2)",
-                "cursor": "pointer",
-                "fontSize": "14px",
-                "fontWeight": "420",
-                "color": "var(--ink-gray-7)",
-                "letterSpacing": "0.02em",
-                "lineHeight": "1.15"
-               },
-               "blockId": "nz9u8wchy",
-               "blockName": "Writing",
-               "children": [
+                },
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "06dgeus69",
-                 "blockName": "Label",
-                 "children": [],
-                 "classes": [],
+                 "blockId": "i3jrkzsl9",
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "bj5r7f1fh",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
                  "clientScript": {},
                  "customAttributes": {},
                  "dataKey": null,
@@ -2678,7 +2818,7 @@
                  "element": "span",
                  "elementBeforeConversion": null,
                  "extendedFromComponent": null,
-                 "innerHTML": "Writing",
+                 "innerHTML": null,
                  "isChildOfComponent": null,
                  "isRepeaterBlock": false,
                  "mobileStyles": {},
@@ -2715,7 +2855,8 @@
               {
                "attributes": {
                 "type": "button",
-                "aria-label": "Design"
+                "aria-label": "Writing",
+                "aria-pressed": "false"
                },
                "baseStyles": {
                 "display": "inline-flex",
@@ -2733,13 +2874,147 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "bj5r7f1fh",
+               "blockId": "eb0z87o51",
+               "blockName": "Writing",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "eovb3up39",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Writing",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "x2b3rmglp",
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "0f82j9q3z",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Design",
+                "aria-pressed": "false"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "q6vv4que3",
                "blockName": "Design",
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "ncczicuwz",
+                 "blockId": "4aj6ergym",
                  "blockName": "Label",
                  "children": [],
                  "classes": [],
@@ -2752,6 +3027,66 @@
                  "elementBeforeConversion": null,
                  "extendedFromComponent": null,
                  "innerHTML": "Design",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "o7houf72v",
+                 "blockName": "Close",
+                 "children": [
+                  {
+                   "attributes": {},
+                   "baseStyles": {
+                    "width": "12px",
+                    "height": "12px",
+                    "flexShrink": "0",
+                    "color": "var(--ink-gray-7)"
+                   },
+                   "blockId": "y9b0a3is4",
+                   "blockName": "icon/x",
+                   "children": [],
+                   "classes": [],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [],
+                   "element": "svg",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": "__raw_html__",
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  }
+                 ],
+                 "classes": [
+                  "cafe-tag-chip-close"
+                 ],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": null,
                  "isChildOfComponent": null,
                  "isRepeaterBlock": false,
                  "mobileStyles": {},
@@ -2818,7 +3153,7 @@
               "flexDirection": "column",
               "marginTop": "8px"
              },
-             "blockId": "7xzkdjucc",
+             "blockId": "lh23tn7z5",
              "blockName": "Posts",
              "children": [
               {
@@ -2833,7 +3168,7 @@
                 "color": "inherit",
                 "textDecoration": "none"
                },
-               "blockId": "chol4jirh",
+               "blockId": "6jqtcxk43",
                "blockName": "Post",
                "children": [
                 {
@@ -2843,13 +3178,13 @@
                   "alignItems": "center",
                   "gap": "8px"
                  },
-                 "blockId": "o7houf72v",
+                 "blockId": "dgqx62amw",
                  "blockName": "Author",
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "0f82j9q3z",
+                   "blockId": "m1dymd8mg",
                    "blockName": "Avatar",
                    "children": [
                     {
@@ -2862,7 +3197,7 @@
                       "height": "100%",
                       "objectFit": "cover"
                      },
-                     "blockId": "n9mu25eir",
+                     "blockId": "uksj8qvjt",
                      "blockName": "Avatar image",
                      "children": [],
                      "classes": [],
@@ -2898,7 +3233,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "sw70uw2x3",
+                     "blockId": "je3tx24h3",
                      "blockName": "Avatar initial",
                      "children": [],
                      "classes": [
@@ -2962,7 +3297,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "eb0z87o51",
+                   "blockId": "0yo84cter",
                    "blockName": "Publication tile",
                    "children": [
                     {
@@ -2975,7 +3310,7 @@
                       "height": "100%",
                       "objectFit": "cover"
                      },
-                     "blockId": "x2b3rmglp",
+                     "blockId": "d9rdejmnu",
                      "blockName": "Publication tile image",
                      "children": [],
                      "classes": [],
@@ -3011,7 +3346,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "eovb3up39",
+                     "blockId": "u60z0sprn",
                      "blockName": "Publication tile initial",
                      "children": [],
                      "classes": [
@@ -3081,7 +3416,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "y9b0a3is4",
+                   "blockId": "dmxf5jbsq",
                    "blockName": "Name",
                    "children": [],
                    "classes": [],
@@ -3141,7 +3476,7 @@
                   "alignItems": "flex-start",
                   "gap": "16px"
                  },
-                 "blockId": "dgqx62amw",
+                 "blockId": "edwe254m8",
                  "blockName": "Body",
                  "children": [
                   {
@@ -3150,7 +3485,7 @@
                     "flex": "1 1 0%",
                     "minWidth": "0"
                    },
-                   "blockId": "0yo84cter",
+                   "blockId": "dqjwbq9i3",
                    "blockName": "Text",
                    "children": [
                     {
@@ -3162,7 +3497,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "4aj6ergym",
+                     "blockId": "chol4jirh",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -3202,7 +3537,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.5"
                      },
-                     "blockId": "q6vv4que3",
+                     "blockId": "7xzkdjucc",
                      "blockName": "Excerpt",
                      "children": [],
                      "classes": [
@@ -3247,13 +3582,13 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "u60z0sprn",
+                     "blockId": "h0fcxul7y",
                      "blockName": "Meta",
                      "children": [
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "mhyg626ek",
+                       "blockId": "o0qblrcmn",
                        "blockName": "Date",
                        "children": [],
                        "classes": [],
@@ -3286,7 +3621,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "m1dymd8mg",
+                       "blockId": "ezxrcn117",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -3312,7 +3647,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "uksj8qvjt",
+                       "blockId": "kgn3f97hc",
                        "blockName": "Minutes",
                        "children": [],
                        "classes": [],
@@ -3345,7 +3680,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "d9rdejmnu",
+                       "blockId": "cklj9eyjd",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -3371,7 +3706,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "je3tx24h3",
+                       "blockId": "r8dze70oy",
                        "blockName": "Comments",
                        "children": [],
                        "classes": [
@@ -3460,7 +3795,7 @@
                     "backgroundColor": "var(--surface-gray-2)",
                     "objectFit": "cover"
                    },
-                   "blockId": "dmxf5jbsq",
+                   "blockId": "v4zsbbe5v",
                    "blockName": "Thumbnail",
                    "children": [],
                    "classes": [
@@ -3580,7 +3915,7 @@
               "padding": "64px 0",
               "textAlign": "center"
              },
-             "blockId": "o0qblrcmn",
+             "blockId": "1lo64ad9o",
              "blockName": "Nothing found",
              "children": [],
              "classes": [
@@ -3615,7 +3950,7 @@
              "baseStyles": {
               "height": "4px"
              },
-             "blockId": "r8dze70oy",
+             "blockId": "1elzibtmz",
              "blockName": "Sentinel",
              "children": [],
              "classes": [],
@@ -3652,7 +3987,7 @@
              "baseStyles": {
               "display": "none"
              },
-             "blockId": "kgn3f97hc",
+             "blockId": "k5ln7wqmy",
              "blockName": "Row template",
              "children": [],
              "classes": [],
@@ -3810,7 +4145,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-10-14 16:32:26.713382",
+ "creation": "2026-10-14 16:36:45.736845",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3820,7 +4155,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-14 16:32:26.713382",
+ "modified": "2026-10-14 16:36:45.736845",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -3829,6 +4164,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-14 16:32:26.713382",
+ "published_at": "2026-10-14 16:36:45.736845",
  "route": "cafe-home"
 }

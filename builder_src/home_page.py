@@ -244,28 +244,31 @@ def build_feed_row():
 	return row
 
 
-def tag_chip(label, closable=False):
-	children = [block("span", "Label", text=label)]
-	if closable:
-		children.append(icon("x", 12, INK_7))
+def tag_chip(label):
+	# The close icon sits in every chip, not just a selected one - home.js
+	# toggles the "active" class on click (one at a time, clicking the
+	# active chip again clears it), and styles.css shows this only on
+	# whichever chip currently has that class. Nothing here is
+	# pre-selected; the reference design just happened to show its one
+	# example mid-selection.
+	close = block("span", "Close", ["cafe-tag-chip-close"], children=[icon("x", 12, INK_7)])
 	return block(
 		"button",
 		label,
 		["cafe-tag-chip"],
-		attrs={"type": "button", "aria-label": label},
-		children=children,
+		attrs={"type": "button", "aria-label": label, "aria-pressed": "false"},
+		children=[block("span", "Label", text=label), close],
 		styles=TAG_CHIP_STYLES,
 	)
 
 
 def build_tag_chips():
-	chips = [tag_chip(TAG_LABELS[0], closable=True)] + [tag_chip(label) for label in TAG_LABELS[1:]]
 	return block(
 		"div",
 		"Tag chips",
 		["cafe-tag-chips"],
 		styles={"display": "flex", "flexWrap": "wrap", "gap": "8px", "marginTop": "16px"},
-		children=chips,
+		children=[tag_chip(label) for label in TAG_LABELS],
 	)
 
 

@@ -533,6 +533,15 @@ html[data-cafe-sidebar='open'] .cafe-np {
 .cafe-tag-chip:hover {
   background: var(--surface-gray-3) !important;
 }
+/* The close icon exists in every chip (home_page.py) so home.js only ever
+   toggles a class, never builds DOM - hidden here until home.js marks a
+   chip active (one at a time; clicking the active chip again clears it). */
+.cafe-tag-chip-close {
+  display: none;
+}
+.cafe-tag-chip.active .cafe-tag-chip-close {
+  display: inline-flex;
+}
 
 /* Result rows. Created by search.js. */
 .cafe-person {
