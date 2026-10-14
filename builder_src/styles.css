@@ -51,6 +51,31 @@ body {
   overscroll-behavior: none;
 }
 
+/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
+   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
+   thumb) - a plain browser scrollbar is only thin on macOS by its own
+   default; on Windows, and in every browser's default chrome generally,
+   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
+   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+   scrollbar-width/-color is the equivalent standard property Firefox uses
+   instead, so both engines end up with the same thin look. */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: var(--surface-gray-1);
+}
+*::-webkit-scrollbar-corner {
+  background: var(--surface-gray-1);
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: var(--surface-gray-3);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-gray-3) var(--surface-gray-1);
+}
+
 .cafe-app {
   font-family: 'InterVar', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -546,6 +571,29 @@ html[data-cafe-sidebar='open'] .cafe-np {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* A publication's mark: rounded square, not the circle a person's avatar
+   gets - same distinction the app's own logo already draws between a
+   brand and a person. */
+.cafe-pub-tile {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--surface-gray-10);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.cafe-pub-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .cafe-empty {
   padding: 40px 0;
   text-align: center;
@@ -620,7 +668,7 @@ p.cafe-clamp-3:empty::before {
   padding-bottom: 0 !important;
 }
 .cafe-profile-initial {
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--ink-gray-5);
@@ -1119,6 +1167,50 @@ p.cafe-clamp-3:empty::before {
   line-height: 28.5px;
   text-align: center;
 }
+.cafe-prose ul[data-type='taskList'] {
+  margin: 4px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.cafe-prose ul[data-type='taskList'] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-left: 0;
+}
+.cafe-prose ul[data-type='taskList'] li > label {
+  flex-shrink: 0;
+  margin-top: 0.25em;
+}
+.cafe-prose ul[data-type='taskList'] li > div {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+.cafe-prose ul[data-type='taskList'] li[data-checked='true'] > div {
+  color: var(--ink-gray-5);
+  text-decoration: line-through;
+}
+/* The "video-embed" placeholder (write_editor.js) only ever carries a
+   provider+id - embeds.js builds the real <iframe> into it client-side, same
+   principle as code.js enhancing a plain <pre><code>. Until that runs, this
+   keeps the box from collapsing to zero height. */
+[data-type='video-embed'] {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 16px 0;
+  padding-top: 56.25%;
+  border-radius: 8px;
+  background: var(--surface-gray-2);
+  overflow: hidden;
+}
+[data-type='video-embed'] iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 /* Image post: a carousel with arrows, a count and dots (added by post.js). */
 .cafe-carousel:not(.ready) .cafe-slide:not(:first-child) {
@@ -1325,6 +1417,10 @@ p.cafe-clamp-3:empty::before {
   }
   .cafe-mobile-header {
     display: flex !important;
+    /* Every page's own mobile header sets its own 60px inline (see layout.py
+       and friends) - overrides the lot to one shared mobile height, !important
+       for the same reason display above needs it: beating an inline style. */
+    height: 46px !important;
   }
   .cafe-app {
     flex-direction: column !important;
@@ -1535,10 +1631,20 @@ p.cafe-clamp-3:empty::before {
 .cafe-set-value {
   color: var(--ink-gray-6);
 }
+/* A membership row's role, under its publication title - plain text, not a
+   badge: Settings only needs to say which role you hold, not draw attention
+   to it the way the publication's own Members page does. */
+.cafe-set-row-role {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-gray-6);
+}
 .cafe-set-button {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
+  gap: 6px;
   height: 28px;
   padding: 0 8px;
   border: 0;
@@ -1558,8 +1664,15 @@ p.cafe-clamp-3:empty::before {
   background: #fde7e7;
   color: #f79596;
 }
+.cafe-set-button.leave {
+  color: #e03636;
+}
 .cafe-set-button:disabled {
   cursor: not-allowed;
+}
+.cafe-set-pub-create {
+  margin-top: 12px;
+  color: var(--ink-gray-7);
 }
 .cafe-saved-row {
   display: flex;

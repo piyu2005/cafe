@@ -1,5 +1,5 @@
 // Publications, part 2: /publications/<handle>, the publication's page: who
-// runs it, subscribe, and its posts.
+// runs it, and its posts.
 ;(function () {
 	'use strict'
 
@@ -8,15 +8,6 @@
 	var root
 	var handle
 	var data
-
-	function button(label, kind, onClick) {
-		var node = P.el('button', 'cafe-btn cafe-btn-' + kind, label)
-		node.type = 'button'
-		node.addEventListener('click', function () {
-			onClick(node)
-		})
-		return node
-	}
 
 	function metaLine() {
 		var line = P.el('div', 'cafe-p-meta')
@@ -29,17 +20,6 @@
 		}
 		line.appendChild(P.el('span', '', '@' + data.handle))
 		return line
-	}
-
-	function toggleSubscribe(node) {
-		node.disabled = true
-		P.call('toggle_subscribe', { reference_doctype: 'Publication', reference_name: handle }).then(
-			load,
-			function (error) {
-				node.disabled = false
-				P.errorToast(error)
-			}
-		)
 	}
 
 	function copyLink() {
@@ -66,11 +46,7 @@
 			P.el(
 				'span',
 				'cafe-p-counts',
-				plural(data.editor_count, 'Editor') +
-					' · ' +
-					plural(data.member_count, 'Member') +
-					' · ' +
-					plural(data.subscriber_count, 'Subscriber')
+				plural(data.editor_count, 'Editor') + ' · ' + plural(data.member_count, 'Member')
 			)
 		)
 		link.appendChild(P.icon('arrow-right', 'cafe-p-small cafe-p-faint'))
@@ -83,13 +59,6 @@
 		var body = P.el('div', 'cafe-p-head-body')
 		var titleRow = P.el('div', 'cafe-p-title-row')
 		titleRow.appendChild(P.el('h1', 'cafe-p-title', data.title))
-		titleRow.appendChild(
-			button(
-				data.subscribed_by_me ? 'Subscribed' : 'Subscribe',
-				data.subscribed_by_me ? 'outline' : 'solid',
-				toggleSubscribe
-			)
-		)
 		var share = P.el('button', 'cafe-p-share')
 		share.type = 'button'
 		share.setAttribute('aria-label', 'Copy link')

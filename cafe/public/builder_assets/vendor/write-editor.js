@@ -12,10 +12,12 @@
 // resolves the whole dependency graph together, so there's exactly one copy.
 // This file is copied as-is to public/builder_assets/vendor/write-editor.js
 // by `yarn build:write-editor` and served with `type="module"`, unbundled.
-import { Editor, Node, mergeAttributes } from 'https://esm.sh/@tiptap/core@3.31.3'
+import { Editor, Extension, Node, mergeAttributes } from 'https://esm.sh/@tiptap/core@3.31.3'
 import StarterKit from 'https://esm.sh/@tiptap/starter-kit@3.31.3'
 import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder@3.31.3'
 import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@3.31.3'
+import TaskList from 'https://esm.sh/@tiptap/extension-task-list@3.31.3'
+import TaskItem from 'https://esm.sh/@tiptap/extension-task-item@3.31.3'
 import { Plugin, Selection } from 'https://esm.sh/@tiptap/pm@3.31.3/state'
 
 const IMAGE_DRAG_PX = 3
@@ -439,4 +441,220 @@ const ImageGroup = Node.create({
 	},
 })
 
-window.CafeWriteEditor = { Editor, StarterKit, Placeholder, TextAlign, Image, ImageGroup }
+// Cmd/Ctrl+Shift+V - inserts the clipboard's plain text instead of whatever
+// rich formatting it carries (pasting from Word/Google Docs otherwise brings
+// its fonts/colours along, which `cleanStyles`-style tools elsewhere strip
+// after the fact; here nothing rich reaches the doc in the first place).
+// Same plain-text-to-paragraphs shape as write_core.js's own W.ensureHtml -
+// kept as its own copy rather than a cross-file dependency, since this file
+// ships as a standalone vendor asset (see the module docstring above).
+function plainTextToHtml(text) {
+	return text
+		.split(/\r?\n{2,}/)
+		.map(
+			(part) =>
+				'<p>' +
+				part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, '<br>') +
+				'</p>'
+		)
+		.join('')
+}
+
+const PastePlainText = Extension.create({
+	name: 'pastePlainText',
+	addProseMirrorPlugins() {
+		const editor = this.editor
+		return [
+			new Plugin({
+				props: {
+					handlePaste(view, event) {
+						if (!event.shiftKey) return false
+						const text = event.clipboardData && event.clipboardData.getData('text/plain')
+						if (!text) return false
+						event.preventDefault()
+						editor.chain().focus().insertContent(plainTextToHtml(text)).run()
+						return true
+					},
+				},
+			}),
+		]
+	},
+})
+
+// Typing "[[" hands off to the app's own search popup (write_editor.js) rather
+// than typing the query inline in the document - simpler and more robust than
+// tracking a live incremental range, and avoids this vendor file (kept free
+// of app-specific API calls) needing to know how to search posts itself.
+const PostLinkTrigger = Extension.create({
+	name: 'postLinkTrigger',
+	addOptions() {
+		return { onTrigger: null }
+	},
+	addProseMirrorPlugins() {
+		const options = this.options
+		return [
+			new Plugin({
+				props: {
+					handleTextInput(view, from, to, text) {
+						const { state } = view
+						const before = state.doc.textBetween(Math.max(0, from - 1), from, '', '')
+						if (before + text !== '[[' || !options.onTrigger) return false
+						// The first "[" is already in the doc; returning true here stops
+						// the second from being added too, so neither ends up typed.
+						view.dispatch(state.tr.delete(from - 1, from))
+						options.onTrigger(view, from - 1)
+						return true
+					},
+				},
+			}),
+		]
+	},
+	addCommands() {
+		return {
+			insertPostLink:
+				(pos, title, href) =>
+				({ chain }) =>
+					chain()
+						.focus()
+						.insertContentAt(pos, {
+							type: 'text',
+							marks: [{ type: 'link', attrs: { href } }],
+							text: title,
+						})
+						.run(),
+		}
+	},
+})
+
+// Only a known-safe provider's own embed domain ever becomes an <iframe> src -
+// never the pasted URL itself. What's actually stored/published is a plain
+// placeholder div (see VideoEmbed.renderHTML below): frappe.sanitize_html
+// doesn't allow a raw <iframe> through at all, so the published page rebuilds
+// the real embed client-side (embeds.js) from this same provider+id, the
+// same principle this node view already follows for its own live preview.
+function parseEmbedUrl(raw) {
+	let url
+	try {
+		url = new URL(String(raw || '').trim())
+	} catch (e) {
+		return null
+	}
+	const host = url.hostname.replace(/^www\./, '').replace(/^m\./, '')
+	if (host === 'youtube.com') {
+		const id =
+			url.pathname === '/watch'
+				? url.searchParams.get('v')
+				: (url.pathname.match(/^\/(?:embed|shorts)\/([\w-]+)/) || [])[1]
+		return id ? { provider: 'youtube', videoId: id } : null
+	}
+	if (host === 'youtu.be') {
+		const id = url.pathname.slice(1)
+		return id ? { provider: 'youtube', videoId: id } : null
+	}
+	if (host === 'vimeo.com' || host === 'player.vimeo.com') {
+		const id = (url.pathname.match(/(\d+)/) || [])[1]
+		return id ? { provider: 'vimeo', videoId: id } : null
+	}
+	return null
+}
+function embedSrc(provider, videoId) {
+	if (provider === 'youtube') return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}`
+	if (provider === 'vimeo') return `https://player.vimeo.com/video/${encodeURIComponent(videoId)}`
+	return null
+}
+
+const VideoEmbed = Node.create({
+	name: 'videoEmbed',
+	group: 'block',
+	atom: true,
+	selectable: true,
+	draggable: true,
+	addAttributes() {
+		return {
+			provider: { default: null },
+			videoId: { default: null, parseHTML: (e) => e.getAttribute('data-video-id') },
+		}
+	},
+	parseHTML() {
+		return [
+			{
+				tag: 'div[data-type="video-embed"]',
+				getAttrs: (e) => ({
+					provider: e.getAttribute('data-provider'),
+					videoId: e.getAttribute('data-video-id'),
+				}),
+			},
+		]
+	},
+	renderHTML({ HTMLAttributes }) {
+		return [
+			'div',
+			mergeAttributes(
+				{
+					'data-type': 'video-embed',
+					'data-provider': HTMLAttributes.provider,
+					'data-video-id': HTMLAttributes.videoId,
+				},
+				{}
+			),
+		]
+	},
+	addNodeView() {
+		return ({ node, editor, getPos }) => {
+			const dom = el('div', 'cafe-w-embed')
+			const src = embedSrc(node.attrs.provider, node.attrs.videoId)
+			if (src) {
+				const frame = el('iframe')
+				frame.src = src
+				frame.setAttribute(
+					'allow',
+					'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture'
+				)
+				frame.setAttribute('allowfullscreen', '')
+				frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups')
+				dom.appendChild(frame)
+			} else {
+				dom.appendChild(el('span', 'cafe-w-embed-error', "Couldn't load this embed."))
+			}
+			const remove = el('button', 'cafe-w-embed-remove')
+			remove.type = 'button'
+			remove.setAttribute('aria-label', 'Remove embed')
+			remove.appendChild(icon('x'))
+			remove.addEventListener('mousedown', (event) => event.preventDefault())
+			remove.addEventListener('click', () => {
+				const pos = getPos()
+				if (typeof pos !== 'number') return
+				editor.view.dispatch(editor.state.tr.delete(pos, pos + node.nodeSize))
+			})
+			dom.appendChild(remove)
+			return {
+				dom,
+				selectNode: () => dom.classList.add('selected'),
+				deselectNode: () => dom.classList.remove('selected'),
+			}
+		}
+	},
+	addCommands() {
+		return {
+			insertVideoEmbed:
+				(attrs) =>
+				({ commands }) =>
+					commands.insertContent({ type: this.name, attrs }),
+		}
+	},
+})
+
+window.CafeWriteEditor = {
+	Editor,
+	StarterKit,
+	Placeholder,
+	TextAlign,
+	TaskList,
+	TaskItem,
+	Image,
+	ImageGroup,
+	PastePlainText,
+	PostLinkTrigger,
+	VideoEmbed,
+	parseEmbedUrl,
+}

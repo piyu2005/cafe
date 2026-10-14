@@ -297,8 +297,9 @@
 			function (data) {
 				if (accept && data && data.conversation)
 					location.assign('/messages/' + encodeURIComponent(data.conversation))
-				else if (accept && data && data.publication)
-					location.assign('/publications/' + encodeURIComponent(data.publication))
+				// Publications is hidden for now (keep in sync with
+				// blocks.PUBLICATIONS_ENABLED) - its page is unpublished, so
+				// don't send someone who still had a pending invite into a 404.
 				else self.load(false)
 			},
 			function (error) {

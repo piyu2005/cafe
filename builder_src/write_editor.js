@@ -1,180 +1,26 @@
 // The native post editor, part 2: the page you write on: status line,
-// toolbar, title, story and tags.
+// toolbar, title and story. Tags live in the Story Preview dialog now
+// (write_preview.js), alongside the rest of the pre-publish metadata.
 ;(function () {
 	'use strict'
 
 	var W = window.CAFE.write
 	var BUBBLE_GAP = 8
-	var TAG_SUGGESTIONS = [
-		'Design',
-		'UX/UI',
-		'Minimalism',
-		'Technology',
-		'Productivity',
-		'Writing',
-		'Startups',
-		'Business',
-		'Lifestyle',
-		'Travel',
-	]
 	var editor = null
 	var dom = {}
-
-	function splitTags(value) {
-		return (value || '')
-			.split(',')
-			.map(function (t) {
-				return t.trim()
-			})
-			.filter(Boolean)
-	}
-
-	function hasTag(list, value) {
-		var lower = value.toLowerCase()
-		return list.some(function (t) {
-			return t.toLowerCase() === lower
-		})
-	}
-
-	function tagChip(label, onRemove) {
-		var node = W.el('span', 'cafe-w-tag-chip')
-		node.appendChild(document.createTextNode(label))
-		var remove = W.el('button', 'cafe-w-tag-x')
-		remove.type = 'button'
-		remove.setAttribute('aria-label', 'Remove ' + label)
-		remove.appendChild(W.icon('x', 'cafe-w-small'))
-		remove.addEventListener('click', onRemove)
-		node.appendChild(remove)
-		return node
-	}
-
-	// A pill + dropdown tag picker. Tags stay a comma-separated string in
-	// W.state.form.tags (what the backend stores); TAG_SUGGESTIONS only
-	// drives the dropdown, typing anything else and pressing Enter/, still
-	// adds it as a free tag. The chevron button on the right opens/closes
-	// the same dropdown explicitly, for people who don't know to click into
-	// an empty-looking input.
-	function buildTags() {
-		var tagList = []
-		var wrap = W.el('div', 'cafe-w-tags')
-		wrap.appendChild(W.el('label', '', 'Tags'))
-		var box = W.el('div', 'cafe-w-tag-box')
-		var fields = W.el('div', 'cafe-w-tag-fields')
-		dom.tagChips = W.el('div', 'cafe-w-tag-chips')
-		dom.tagInput = W.el('input')
-		dom.tagInput.type = 'text'
-		dom.tagInput.placeholder = 'Add a tag'
-		dom.tagInput.id = 'cafe-w-tags'
-		dom.tagInput.autocomplete = 'off'
-		wrap.firstChild.setAttribute('for', 'cafe-w-tags')
-		var toggle = W.el('button', 'cafe-w-tag-toggle')
-		toggle.type = 'button'
-		toggle.setAttribute('aria-label', 'Show tag suggestions')
-		toggle.appendChild(W.icon('chevron-down', 'cafe-w-small'))
-		dom.tagResults = W.el('div', 'cafe-w-tag-results')
-		dom.tagResults.hidden = true
-
-		function sync() {
-			W.state.form.tags = tagList.join(', ')
-		}
-		function drawChips() {
-			dom.tagChips.replaceChildren()
-			dom.tagInput.placeholder = tagList.length ? '' : 'Add a tag'
-			tagList.forEach(function (label, index) {
-				dom.tagChips.appendChild(
-					tagChip(label, function () {
-						tagList.splice(index, 1)
-						drawChips()
-						sync()
-					})
-				)
-			})
-		}
-		function setOpen(open) {
-			dom.tagResults.hidden = !open
-			toggle.classList.toggle('open', open)
-		}
-		function drawResults() {
-			var query = dom.tagInput.value.trim().toLowerCase()
-			var options = TAG_SUGGESTIONS.filter(function (name) {
-				return !hasTag(tagList, name) && (!query || name.toLowerCase().indexOf(query) !== -1)
-			})
-			dom.tagResults.replaceChildren()
-			setOpen(options.length > 0)
-			options.forEach(function (name) {
-				var option = W.el('button', 'cafe-w-tag-option', name)
-				option.type = 'button'
-				option.addEventListener('mousedown', function (event) {
-					event.preventDefault()
-				})
-				option.addEventListener('click', function () {
-					addTag(name)
-					dom.tagInput.focus()
-				})
-				dom.tagResults.appendChild(option)
-			})
-		}
-		function addTag(label) {
-			label = (label || '').trim()
-			if (label && !hasTag(tagList, label)) {
-				tagList.push(label)
-				sync()
-			}
-			drawChips()
-			dom.tagInput.value = ''
-			drawResults()
-		}
-		dom.tagInput.addEventListener('input', drawResults)
-		dom.tagInput.addEventListener('focus', drawResults)
-		dom.tagInput.addEventListener('blur', function () {
-			setOpen(false)
-		})
-		dom.tagInput.addEventListener('keydown', function (event) {
-			if (event.key === 'Enter' || event.key === ',') {
-				event.preventDefault()
-				addTag(dom.tagInput.value)
-			} else if (event.key === 'Backspace' && !dom.tagInput.value && tagList.length) {
-				tagList.pop()
-				drawChips()
-				sync()
-			} else if (event.key === 'Escape') {
-				setOpen(false)
-			}
-		})
-		toggle.addEventListener('mousedown', function (event) {
-			event.preventDefault()
-		})
-		toggle.addEventListener('click', function () {
-			if (dom.tagResults.hidden) {
-				drawResults()
-				dom.tagInput.focus()
-			} else {
-				setOpen(false)
-			}
-		})
-		dom.setTags = function (value) {
-			tagList = splitTags(value)
-			drawChips()
-		}
-
-		fields.appendChild(dom.tagChips)
-		fields.appendChild(dom.tagInput)
-		box.appendChild(fields)
-		box.appendChild(toggle)
-		box.appendChild(dom.tagResults)
-		wrap.appendChild(box)
-		return wrap
-	}
 
 	var MARKS = [
 		['bold', 'Bold', 'toggleBold', 'bold'],
 		['italic', 'Italic', 'toggleItalic', 'italic'],
 		['underline', 'Underline', 'toggleUnderline', 'underline'],
 		['strikethrough', 'Strikethrough', 'toggleStrike', 'strike'],
+		['code', 'Code', 'toggleCode', 'code'],
 	]
 	var QUOTE = ['quote', 'Blockquote', 'toggleBlockquote', 'blockquote']
+	var CODE_BLOCK = ['square-code', 'Code block', 'toggleCodeBlock', 'codeBlock']
 	var BULLET_LIST = ['list', 'Bullet list', 'toggleBulletList', 'bulletList']
 	var ORDERED_LIST = ['list-ordered', 'Numbered list', 'toggleOrderedList', 'orderedList']
+	var TASK_LIST = ['list-todo', 'Task list', 'toggleTaskList', 'taskList']
 	var HEADINGS = [
 		[
 			'heading-2',
@@ -310,11 +156,32 @@
 		})
 	}
 
+	// Pasting a YouTube/Vimeo link inserts a video embed - validated with the
+	// exact same parseEmbedUrl the vendor node itself uses to build the real
+	// iframe, so what this dialog accepts and what actually renders can never
+	// disagree.
+	function embedDialog() {
+		CAFE.form({
+			title: 'Embed a video',
+			persistKey: 'editor-embed',
+			submitLabel: 'Embed',
+			values: { url: '' },
+			fields: [{ name: 'url', label: 'YouTube or Vimeo link', required: true }],
+			onSubmit: function (values) {
+				var parsed = window.CafeWriteEditor.parseEmbedUrl(values.url)
+				if (!parsed) return Promise.reject(new Error("That doesn't look like a YouTube or Vimeo link."))
+				editor.chain().focus().insertVideoEmbed(parsed).run()
+				return Promise.resolve()
+			},
+		})
+	}
+
 	// The selection toolbar: appears over a text selection, Medium-style -
 	// marks, then every block-type action that reads naturally off a
-	// selection (Heading, Quote, the two lists). No alignment (Cafe doesn't
-	// offer it anywhere now) and no Image (that's not something you do to a
-	// selection - it lives in the "+" menu below instead).
+	// selection (Heading, Quote, Code block, the two lists, Task list). No
+	// alignment (Cafe doesn't offer it anywhere now) and no Image/Embed
+	// (those aren't things you do to a selection - they live in the "+" menu
+	// below instead).
 	function buildBubble() {
 		var bubble = W.el('div', 'cafe-w-bubble')
 		bubble.hidden = true
@@ -328,8 +195,10 @@
 			})
 		)
 		bubble.appendChild(toggleTool(QUOTE))
+		bubble.appendChild(toggleTool(CODE_BLOCK))
 		bubble.appendChild(toggleTool(BULLET_LIST))
 		bubble.appendChild(toggleTool(ORDERED_LIST))
+		bubble.appendChild(toggleTool(TASK_LIST))
 		bubble.appendChild(separator())
 		bubble.appendChild(tool('link', 'Link', linkDialog))
 		document.body.appendChild(bubble)
@@ -368,7 +237,10 @@
 	// selection.
 	function buildPlusMenu() {
 		var button = tool('plus', 'Add', function (anchor) {
-			W.menu(anchor, [{ label: 'Image', icon: 'image', onClick: pickImages }])
+			W.menu(anchor, [
+				{ label: 'Image', icon: 'image', onClick: pickImages },
+				{ label: 'Embed video', icon: 'video', onClick: embedDialog },
+			])
 		})
 		button.classList.add('cafe-w-plus')
 		button.hidden = true
@@ -409,6 +281,103 @@
 		editor.on('update', place)
 	}
 
+	// Typing "[[" opens this instead of typing the query inline in the
+	// document (vendor's PostLinkTrigger swallows both brackets and calls
+	// W.openPostLinkSearch, assigned below - see write-editor-entry.js's own
+	// comment for why). Built once, reused for every "[[".
+	function buildPostLinkSearch() {
+		var box = W.el('div', 'cafe-w-link-search')
+		box.hidden = true
+		var input = W.el('input')
+		input.type = 'text'
+		input.placeholder = 'Search posts…'
+		input.setAttribute('aria-label', 'Search posts to link')
+		var results = W.el('div', 'cafe-w-link-results')
+		box.appendChild(input)
+		box.appendChild(results)
+		document.body.appendChild(box)
+
+		var at = null
+		var timer = null
+		var request = 0
+
+		function close() {
+			box.hidden = true
+			at = null
+			clearTimeout(timer)
+		}
+
+		function render(posts) {
+			results.replaceChildren()
+			if (!posts.length) {
+				results.appendChild(W.el('p', 'cafe-w-link-empty', 'No posts found.'))
+				return
+			}
+			posts.forEach(function (post) {
+				var item = W.el('button', 'cafe-w-link-option', post.display_title || post.title || 'Untitled')
+				item.type = 'button'
+				item.addEventListener('mousedown', function (event) {
+					event.preventDefault()
+				})
+				item.addEventListener('click', function () {
+					var pos = at
+					close()
+					editor
+						.chain()
+						.focus()
+						.insertPostLink(
+							pos,
+							post.display_title || post.title || 'Untitled',
+							'/posts/' + encodeURIComponent(post.name)
+						)
+						.run()
+				})
+				results.appendChild(item)
+			})
+		}
+
+		function search(query) {
+			var id = ++request
+			CAFE.get('cafe.api.search_posts', { query: query }).then(
+				function (posts) {
+					if (id === request) render(posts || [])
+				},
+				function () {
+					if (id === request) render([])
+				}
+			)
+		}
+
+		input.addEventListener('input', function () {
+			clearTimeout(timer)
+			timer = setTimeout(function () {
+				search(input.value.trim())
+			}, 200)
+		})
+		input.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape') {
+				event.preventDefault()
+				close()
+				editor.view.focus()
+			}
+		})
+		document.addEventListener('mousedown', function (event) {
+			if (!box.hidden && !box.contains(event.target)) close()
+		})
+
+		W.openPostLinkSearch = function (view, from) {
+			at = from
+			var coords = view.coordsAtPos(from)
+			box.hidden = false
+			var width = box.offsetWidth
+			box.style.left = Math.max(8, Math.min(coords.left, window.innerWidth - width - 8)) + 'px'
+			box.style.top = coords.bottom + 4 + 'px'
+			input.value = ''
+			render([])
+			input.focus()
+		}
+	}
+
 	// ---- The page ----
 
 	W.setStatusLine = function () {
@@ -437,11 +406,16 @@
 			form.excerpt = doc.excerpt || ''
 			form.display_title = doc.display_title || ''
 			form.tags = doc.tags || ''
+			form.publication = doc.publication || ''
 			S.status = doc.status || 'Draft'
 			S.savedAt = doc.modified ? new Date(doc.modified.replace(' ', 'T')) : null
 		}
 		dom.title.value = form.title
-		dom.setTags(form.tags)
+		// Tags themselves (the dropdown/chip widget) only exist inside the
+		// Story Preview dialog now, rebuilt fresh from form.tags whenever it
+		// opens - same as the publication picker already does for
+		// form.publication - so there's no live widget to push a value into
+		// here, just the form.tags assignment above.
 		editor.commands.setContent(doc ? W.ensureHtml(doc.content) : '', false)
 		dom.loading.hidden = true
 		dom.form.hidden = false
@@ -463,6 +437,10 @@
 
 	W.build = function (root) {
 		var M = window.CafeWriteEditor
+		// Assigns W.openPostLinkSearch, read by PostLinkTrigger.configure below -
+		// built before the editor so that reference is already there by the
+		// time the extensions array is evaluated.
+		buildPostLinkSearch()
 		dom.scroll = W.el('div', 'cafe-w-scroll')
 		var page = W.el('div', 'cafe-w-page')
 		dom.loading = W.el('div', 'cafe-w-loading')
@@ -481,8 +459,13 @@
 				}),
 				M.Placeholder.configure({ placeholder: 'Tell your story…' }),
 				M.TextAlign.configure({ types: ['heading', 'paragraph'] }),
+				M.TaskList,
+				M.TaskItem.configure({ nested: true }),
 				M.Image.configure({ upload: W.uploadStory }),
 				M.ImageGroup,
+				M.PastePlainText,
+				M.PostLinkTrigger.configure({ onTrigger: W.openPostLinkSearch }),
+				M.VideoEmbed,
 			],
 			editorProps: { attributes: { class: 'cafe-w-prose', 'aria-label': 'Story' } },
 			onTransaction: function () {
@@ -505,10 +488,9 @@
 				editor.chain().focus('start').run()
 			}
 		})
-		var tags = buildTags()
 		dom.error = W.el('p', 'cafe-w-error')
 		dom.error.hidden = true
-		;[dom.status, dom.title, host, tags, dom.error].forEach(function (node) {
+		;[dom.status, dom.title, host, dom.error].forEach(function (node) {
 			dom.form.appendChild(node)
 		})
 		page.appendChild(dom.loading)

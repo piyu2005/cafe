@@ -7,6 +7,48 @@
 	var RATIO = 1.91
 	var MAX_WIDTH = 1200
 	var JPEG_QUALITY = 0.92
+	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py).
+	var PUBLICATIONS_ENABLED = false
+	var TAG_SUGGESTIONS = [
+		'Design',
+		'UX/UI',
+		'Minimalism',
+		'Technology',
+		'Productivity',
+		'Writing',
+		'Startups',
+		'Business',
+		'Lifestyle',
+		'Travel',
+	]
+
+	function splitTags(value) {
+		return (value || '')
+			.split(',')
+			.map(function (t) {
+				return t.trim()
+			})
+			.filter(Boolean)
+	}
+
+	function hasTag(list, value) {
+		var lower = value.toLowerCase()
+		return list.some(function (t) {
+			return t.toLowerCase() === lower
+		})
+	}
+
+	function tagChip(label, onRemove) {
+		var node = W.el('span', 'cafe-w-tag-chip')
+		node.appendChild(document.createTextNode(label))
+		var remove = W.el('button', 'cafe-w-tag-x')
+		remove.type = 'button'
+		remove.setAttribute('aria-label', 'Remove ' + label)
+		remove.appendChild(W.icon('x', 'cafe-w-small'))
+		remove.addEventListener('click', onRemove)
+		node.appendChild(remove)
+		return node
+	}
 
 	W.previewImage = function () {
 		var S = W.state
@@ -36,6 +78,8 @@
 			if ('excerpt' in draft.values) form.excerpt = draft.values.excerpt
 			if ('cover_image' in draft.values) form.cover_image = draft.values.cover_image
 			if ('coverRemoved' in draft.values) S.coverRemoved = draft.values.coverRemoved
+			if ('publication' in draft.values) form.publication = draft.values.publication
+			if ('tags' in draft.values) form.tags = draft.values.tags
 		}
 		function saveDraft() {
 			CAFE.saveDraft(DRAFT_KEY, null, {
@@ -43,7 +87,159 @@
 				excerpt: form.excerpt,
 				cover_image: form.cover_image,
 				coverRemoved: S.coverRemoved,
+				publication: form.publication,
+				tags: form.tags,
 			})
+		}
+
+		// Same pill + dropdown tag picker that used to live on the main editor
+		// page - moved here so every piece of a story's metadata (publication,
+		// title, excerpt, tags) is reviewed in one place right before it goes
+		// out. Tags stay a comma-separated string in form.tags (what the
+		// backend stores); TAG_SUGGESTIONS only drives the dropdown, typing
+		// anything else and pressing Enter/, still adds it as a free tag.
+		function buildTagsField() {
+			var tagList = splitTags(form.tags)
+			var wrap = W.el('div', 'cafe-w-tags')
+			wrap.appendChild(W.el('label', '', 'Tags'))
+			var box = W.el('div', 'cafe-w-tag-box')
+			var fields = W.el('div', 'cafe-w-tag-fields')
+			var tagChips = W.el('div', 'cafe-w-tag-chips')
+			var tagInput = W.el('input')
+			tagInput.type = 'text'
+			tagInput.id = 'cafe-w-tags'
+			tagInput.autocomplete = 'off'
+			wrap.firstChild.setAttribute('for', 'cafe-w-tags')
+			var toggle = W.el('button', 'cafe-w-tag-toggle')
+			toggle.type = 'button'
+			toggle.setAttribute('aria-label', 'Show tag suggestions')
+			toggle.appendChild(W.icon('chevron-down', 'cafe-w-small'))
+			var tagResults = W.el('div', 'cafe-w-tag-results')
+			tagResults.hidden = true
+
+			function sync() {
+				form.tags = tagList.join(', ')
+				saveDraft()
+			}
+			function drawChips() {
+				tagChips.replaceChildren()
+				tagInput.placeholder = tagList.length ? '' : 'Add a tag'
+				tagList.forEach(function (label, index) {
+					tagChips.appendChild(
+						tagChip(label, function () {
+							tagList.splice(index, 1)
+							drawChips()
+							sync()
+						})
+					)
+				})
+			}
+			function setOpen(open) {
+				tagResults.hidden = !open
+				toggle.classList.toggle('open', open)
+			}
+			function drawResults() {
+				var query = tagInput.value.trim().toLowerCase()
+				var options = TAG_SUGGESTIONS.filter(function (name) {
+					return !hasTag(tagList, name) && (!query || name.toLowerCase().indexOf(query) !== -1)
+				})
+				tagResults.replaceChildren()
+				setOpen(options.length > 0)
+				options.forEach(function (name) {
+					var option = W.el('button', 'cafe-w-tag-option', name)
+					option.type = 'button'
+					option.addEventListener('mousedown', function (event) {
+						event.preventDefault()
+					})
+					option.addEventListener('click', function () {
+						addTag(name)
+						tagInput.focus()
+					})
+					tagResults.appendChild(option)
+				})
+			}
+			function addTag(label) {
+				label = (label || '').trim()
+				if (label && !hasTag(tagList, label)) {
+					tagList.push(label)
+					sync()
+				}
+				drawChips()
+				tagInput.value = ''
+				drawResults()
+			}
+			tagInput.addEventListener('input', drawResults)
+			tagInput.addEventListener('focus', drawResults)
+			tagInput.addEventListener('blur', function () {
+				setOpen(false)
+			})
+			tagInput.addEventListener('keydown', function (event) {
+				if (event.key === 'Enter' || event.key === ',') {
+					event.preventDefault()
+					addTag(tagInput.value)
+				} else if (event.key === 'Backspace' && !tagInput.value && tagList.length) {
+					tagList.pop()
+					drawChips()
+					sync()
+				} else if (event.key === 'Escape') {
+					setOpen(false)
+				}
+			})
+			toggle.addEventListener('mousedown', function (event) {
+				event.preventDefault()
+			})
+			toggle.addEventListener('click', function () {
+				if (tagResults.hidden) {
+					drawResults()
+					tagInput.focus()
+				} else {
+					setOpen(false)
+				}
+			})
+
+			fields.appendChild(tagChips)
+			fields.appendChild(tagInput)
+			box.appendChild(fields)
+			box.appendChild(toggle)
+			box.appendChild(tagResults)
+			wrap.appendChild(box)
+			drawChips()
+			return wrap
+		}
+
+		// "Your profile" plus whatever this account can post under - current
+		// value first if it's no longer one of them (membership can change
+		// after a post is already assigned to a publication; dropping it
+		// silently here would reassign the post out from under the author).
+		// Uses the same .cafe-field markup as CAFE.form's own selects (styles.css),
+		// loaded on every page, rather than drawing a one-off look just for this.
+		function buildPublicationPicker() {
+			var row = W.el('div', 'cafe-field')
+			row.appendChild(W.el('label', '', 'Publish to'))
+			var select = W.el('select')
+			var personal = W.el('option', '', 'Your profile')
+			personal.value = ''
+			select.appendChild(personal)
+			var known = S.myPublications.some(function (pub) {
+				return pub.publication === form.publication
+			})
+			if (form.publication && !known) {
+				var current = W.el('option', '', form.publication)
+				current.value = form.publication
+				select.appendChild(current)
+			}
+			S.myPublications.forEach(function (pub) {
+				var option = W.el('option', '', pub.title || pub.publication)
+				option.value = pub.publication
+				select.appendChild(option)
+			})
+			select.value = form.publication || ''
+			select.addEventListener('change', function () {
+				form.publication = select.value
+				saveDraft()
+			})
+			row.appendChild(select)
+			return row
 		}
 
 		var fileInput = W.el('input')
@@ -104,6 +300,11 @@
 			cover.appendChild(over)
 			body.appendChild(cover)
 			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
+			// Only worth asking when there's an actual choice to make - most
+			// accounts belong to no publication at all. Hidden entirely while
+			// Publications itself is hidden (PUBLICATIONS_ENABLED above).
+			if (PUBLICATIONS_ENABLED && (S.myPublications.length || form.publication))
+				body.appendChild(buildPublicationPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'
@@ -122,6 +323,7 @@
 			})
 			body.appendChild(title)
 			body.appendChild(excerpt)
+			body.appendChild(buildTagsField())
 			body.appendChild(
 				W.el(
 					'p',

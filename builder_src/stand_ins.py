@@ -14,7 +14,6 @@ from blocks import (
 	SOLID_BG,
 	SURFACE_2,
 	html_el,
-	svg,
 	text_style,
 )
 
@@ -78,42 +77,11 @@ def header_bar(title, buttons):
 
 
 def write_body():
-	icons = "".join(
-		svg(name, 16, MUTED)
-		for name in (
-			"bold",
-			"italic",
-			"underline",
-			"strikethrough",
-			"heading",
-			"quote",
-			"list",
-			"list-ordered",
-			"align-left",
-			"image",
-			"link",
-		)
-	)
-	toolbar = html_el(
-		"div",
-		None,
-		None,
-		{
-			"display": "flex",
-			"gap": "14px",
-			"alignItems": "center",
-			"width": "fit-content",
-			"padding": "11px 16px",
-			"border": "1px solid #e2e2e2",
-			"borderRadius": "9999px",
-		},
-		[icons],
-	)
 	title = html_el(
 		"div",
 		None,
 		None,
-		{"marginTop": "16px", **text_style(30, "600", GRAY_4, "0", "1.25")},
+		{**text_style(30, "600", GRAY_4, "0", "1.25")},
 		text="Give your story a title",
 	)
 	story = html_el(
@@ -128,7 +96,7 @@ def write_body():
 		None,
 		None,
 		{"width": "100%", "maxWidth": "600px", "margin": "0 auto", "padding": "40px 0"},
-		[toolbar, title, story],
+		[title, story],
 	)
 
 

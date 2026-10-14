@@ -170,7 +170,6 @@
   },
   {
    "delete": 1,
-   "if_owner": 1,
    "role": "All",
    "write": 1
   }

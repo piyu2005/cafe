@@ -10,9 +10,27 @@ The Saved list is filled by settings.js when its tab opens. Everything here is
 built as individual Builder blocks (buttons, tabs, list placeholders), not one
 embedded HTML blob, so each piece is editable on its own in Builder's canvas."""
 
-from blocks import GRAY_6, INK, MUTED, OUTLINE, SURFACE_2, attribute, block, html_el, show, text_style
+from blocks import (
+	GRAY_6,
+	GRAY_7,
+	INK,
+	MUTED,
+	OUTLINE,
+	PUBLICATIONS_ENABLED,
+	SURFACE_2,
+	attribute,
+	block,
+	html_el,
+	icon,
+	show,
+	text_style,
+)
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
+
+SETTINGS_TABS = [("account", "Account"), ("saved", "Saved")]
+if PUBLICATIONS_ENABLED:
+	SETTINGS_TABS.append(("publications", "Publications"))
 
 ROW_STYLES = {
 	"display": "flex",
@@ -39,6 +57,7 @@ BUTTON_STYLES = {
 }
 LOG_OUT_STYLES = {**BUTTON_STYLES, "backgroundColor": SURFACE_2, "color": INK}
 DELETE_STYLES = {**BUTTON_STYLES, "backgroundColor": "#fde7e7", "color": "#f79596", "cursor": "not-allowed"}
+CREATE_PUB_STYLES = {**BUTTON_STYLES, "gap": "6px", "backgroundColor": SURFACE_2, "color": GRAY_7}
 
 
 def build_row(name, title, control, description=None, first=False):
@@ -147,6 +166,58 @@ def build_saved_panel():
 	)
 
 
+def build_publications_panel():
+	# Same loading/empty/error shape as the Saved panel above, with its own
+	# class names: settings.js keeps each panel's list/empty/error lookups
+	# scoped to the panel it's filling, not shared across the two.
+	skeleton = "".join(
+		html_el(
+			"div",
+			["cafe-skeleton"],
+			None,
+			{"height": "48px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
+		)
+		for _ in range(4)
+	)
+	loading = block(
+		"div",
+		"Loading",
+		classes=["cafe-loading"],
+		attrs={"hidden": "hidden"},
+		html=skeleton,
+		styles={"flexDirection": "column", "gap": "12px"},
+	)
+	empty = block(
+		"p",
+		classes=["cafe-pub-mem-empty"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
+		text="You're not part of any publications yet.",
+	)
+	error = block(
+		"p",
+		classes=["cafe-pub-mem-error"],
+		attrs={"hidden": "hidden"},
+		styles={"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
+		text="Couldn't load your publications. Please try again.",
+	)
+	pub_list = block("div", classes=["cafe-pub-mem-list"])
+	create_button = block(
+		"button",
+		"Create publication button",
+		attrs={"id": "cafe-settings-pub-create", "type": "button"},
+		styles={**CREATE_PUB_STYLES, "marginTop": "12px"},
+		children=[icon("plus", 16), block("span", "Label", text="Create a new publication")],
+	)
+	return block(
+		"div",
+		"Publications panel",
+		attrs={"id": "cafe-settings-publications", "role": "tabpanel", "hidden": "hidden"},
+		styles={"paddingTop": "16px"},
+		children=[loading, empty, error, pub_list, create_button],
+	)
+
+
 def build_tabs():
 	buttons = [
 		block(
@@ -161,7 +232,7 @@ def build_tabs():
 			styles=TAB_STYLES,
 			text=label,
 		)
-		for key, label in (("account", "Account"), ("saved", "Saved"))
+		for key, label in SETTINGS_TABS
 	]
 	return block(
 		"div",
@@ -174,12 +245,15 @@ def build_tabs():
 
 
 def build_settings(shell_id, shell_block):
+	children = [build_tabs(), build_account_panel(), build_saved_panel()]
+	if PUBLICATIONS_ENABLED:
+		children.append(build_publications_panel())
 	root = block(
 		"div",
 		"Settings",
 		attrs={"id": "cafe-settings-page"},
 		custom={"data-admin": ""},
-		children=[build_tabs(), build_account_panel(), build_saved_panel()],
+		children=children,
 	)
 	root = attribute(root, "st.admin", "data-admin")
 	crumbs = [crumb_link("Cafe", "/"), crumb_separator(), crumb_current("Settings")]

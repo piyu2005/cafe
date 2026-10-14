@@ -22,37 +22,37 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "ybjn3i6hh",
+     "blockId": "gpz6e5og2",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "jwrvby4ul",
+       "blockId": "ybjn3i6hh",
        "blockName": "Shell",
        "children": [
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "pf3pr3uk4",
+         "blockId": "6xwiw03gg",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "77oh9hqdp",
+           "blockId": "pf3pr3uk4",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "fjd19z3j7",
+             "blockId": "ljkqfkr0o",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "l8pg6rz3q",
+               "blockId": "fjd19z3j7",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -99,13 +99,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "hly24ergi",
+             "blockId": "l8rdgiqni",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ljkqfkr0o",
+               "blockId": "hly24ergi",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -152,13 +152,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "4cno3h9pm",
+             "blockId": "tncj3wvdw",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "l8rdgiqni",
+               "blockId": "4cno3h9pm",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -205,13 +205,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "wa3gqz8q0",
+             "blockId": "w4kha1zll",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "tncj3wvdw",
+               "blockId": "x7j7npprk",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -237,7 +237,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "x7j7npprk",
+               "blockId": "wa3gqz8q0",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -284,13 +284,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "g45u7w1q7",
+             "blockId": "xtggzmhai",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "w4kha1zll",
+               "blockId": "mlv7gok4q",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -316,7 +316,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "mlv7gok4q",
+               "blockId": "g45u7w1q7",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -363,13 +363,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "zwr9821o1",
+             "blockId": "8byf8t183",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "xtggzmhai",
+               "blockId": "zwr9821o1",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -416,13 +416,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "7q85f2vdq",
+             "blockId": "77oh9hqdp",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "8byf8t183",
+               "blockId": "7q85f2vdq",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -511,37 +511,37 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "9y0k6fbw5",
+         "blockId": "cptc272kn",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "1igon44mp",
+           "blockId": "9y0k6fbw5",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "hpf3ubk6m",
+             "blockId": "t3cjhxvj9",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "0sbvhou4g",
+               "blockId": "hpf3ubk6m",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "st2xfp5eh",
+                 "blockId": "b4gkzg0t8",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "6xwiw03gg",
+                   "blockId": "st2xfp5eh",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -588,7 +588,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b4gkzg0t8",
+                 "blockId": "0sbvhou4g",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -656,19 +656,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "hlo6neyps",
+             "blockId": "uqgdqeew7",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "0x3uv107r",
+               "blockId": "b2tnmjr2s",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "t3cjhxvj9",
+                 "blockId": "kyslck819",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -694,7 +694,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "kyslck819",
+                 "blockId": "0x3uv107r",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -741,13 +741,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "6zg6x7x51",
+               "blockId": "juo34o5ui",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b2tnmjr2s",
+                 "blockId": "qnq8wyi38",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -773,7 +773,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "qnq8wyi38",
+                 "blockId": "6zg6x7x51",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -820,13 +820,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "sb13na60t",
+               "blockId": "dd45b4ndh",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "juo34o5ui",
+                 "blockId": "xhvul8l03",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -852,7 +852,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "xhvul8l03",
+                 "blockId": "2h0zjtkq4",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -878,7 +878,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "2h0zjtkq4",
+                 "blockId": "sb13na60t",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -925,13 +925,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "184f4oy2f",
+               "blockId": "wy1yzpty6",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "dd45b4ndh",
+                 "blockId": "teyoh62zq",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -957,7 +957,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "teyoh62zq",
+                 "blockId": "g5awqxh3o",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -983,7 +983,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "g5awqxh3o",
+                 "blockId": "184f4oy2f",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1030,13 +1030,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "5bowrb5z9",
+               "blockId": "hlo6neyps",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "wy1yzpty6",
+                 "blockId": "g00niqo8h",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1062,7 +1062,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "g00niqo8h",
+                 "blockId": "5bowrb5z9",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1130,19 +1130,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "e84shr4g2",
+             "blockId": "1igon44mp",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "nltb83rkl",
+               "blockId": "e84shr4g2",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "uqgdqeew7",
+                 "blockId": "oti1qtcx0",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1168,7 +1168,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "oti1qtcx0",
+                 "blockId": "nltb83rkl",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1278,19 +1278,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "pjf6ecj8j",
+         "blockId": "s4wd17fbn",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "cxz5sg4dn",
+           "blockId": "8kf6q6gxd",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "cptc272kn",
+             "blockId": "cxz5sg4dn",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1337,13 +1337,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "fyxrerr9o",
+           "blockId": "koaoyqti0",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "8kf6q6gxd",
+             "blockId": "fyxrerr9o",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1390,13 +1390,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "559j6xth8",
+           "blockId": "1en6biviz",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "koaoyqti0",
+             "blockId": "sjrsg5lra",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1422,7 +1422,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "sjrsg5lra",
+             "blockId": "559j6xth8",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1469,13 +1469,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "4x9nmd41j",
+           "blockId": "q4v6nelon",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "1en6biviz",
+             "blockId": "4x9nmd41j",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1522,13 +1522,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "1ej4m8fmg",
+           "blockId": "pjf6ecj8j",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "q4v6nelon",
+             "blockId": "1ej4m8fmg",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1596,19 +1596,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "vfdb5s2fu",
+         "blockId": "jwrvby4ul",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "eik73ajt5",
+           "blockId": "9k5x8ra5i",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "s4wd17fbn",
+             "blockId": "lcm0fog4w",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1634,7 +1634,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "lcm0fog4w",
+             "blockId": "eik73ajt5",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1681,13 +1681,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "oiqcvkg98",
+           "blockId": "vfdb5s2fu",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "9k5x8ra5i",
+             "blockId": "mnrmnsdch",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1713,7 +1713,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "mnrmnsdch",
+             "blockId": "oiqcvkg98",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1808,7 +1808,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "8fmqbyu6f",
+       "blockId": "l8pg6rz3q",
        "blockName": "Main",
        "children": [
         {
@@ -1826,7 +1826,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "rlpu7rxy0",
+         "blockId": "j76x9osw6",
          "blockName": "Header",
          "children": [
           {
@@ -1841,7 +1841,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "fslbsn8z9",
+           "blockId": "6r6x4db4j",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -1849,7 +1849,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "ur8vi0zil",
+             "blockId": "813d8bg1l",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1880,7 +1880,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "hp6j5p763",
+             "blockId": "xhyvktsm9",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -1910,7 +1910,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "9wbswxmtz",
+             "blockId": "6cmnxyef5",
              "blockName": null,
              "children": [],
              "classes": [
@@ -1975,7 +1975,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "hb4qhor0x",
+           "blockId": "rlpu7rxy0",
            "blockName": "New Post",
            "children": [
             {
@@ -1985,7 +1985,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "6r6x4db4j",
+             "blockId": "fjh32tsj9",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2011,7 +2011,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "fjh32tsj9",
+             "blockId": "hb4qhor0x",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2089,7 +2089,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "j76x9osw6",
+         "blockId": "8fmqbyu6f",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2100,11 +2100,13 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "b9k0gac9p",
+           "blockId": "fslbsn8z9",
            "blockName": "Container",
            "children": [
             {
-             "attributes": {},
+             "attributes": {
+              "id": "cafe-search-title"
+             },
              "baseStyles": {
               "margin": "0",
               "fontFamily": "Newsreader",
@@ -2114,7 +2116,7 @@
               "letterSpacing": "0.015em",
               "color": "#000000"
              },
-             "blockId": "vhthnune0",
+             "blockId": "893h1mp34",
              "blockName": "Title",
              "children": [],
              "classes": [
@@ -2146,7 +2148,7 @@
               "display": "block",
               "marginTop": "8px"
              },
-             "blockId": "893h1mp34",
+             "blockId": "oo4o8qy7l",
              "blockName": "Search box",
              "children": [],
              "classes": [
@@ -2173,81 +2175,156 @@
             },
             {
              "attributes": {
-              "id": "cafe-people",
-              "aria-live": "polite"
+              "id": "cafe-panel-writers",
+              "role": "tabpanel"
              },
-             "baseStyles": {
-              "display": "flex",
-              "flexDirection": "column",
-              "gap": "4px",
-              "marginTop": "16px"
-             },
-             "blockId": "96u5dnn8m",
-             "blockName": "People",
+             "baseStyles": {},
+             "blockId": "b9k0gac9p",
+             "blockName": "Writers panel",
              "children": [
               {
                "attributes": {
-                "href": "/profile"
+                "id": "cafe-people",
+                "aria-live": "polite"
                },
                "baseStyles": {
                 "display": "flex",
-                "alignItems": "center",
-                "gap": "12px",
-                "height": "44px",
-                "padding": "6px 8px",
-                "borderRadius": "8px"
+                "flexDirection": "column",
+                "gap": "4px",
+                "marginTop": "16px"
                },
-               "blockId": "y6ieub36y",
-               "blockName": "Person",
+               "blockId": "9wbswxmtz",
+               "blockName": "People",
                "children": [
                 {
-                 "attributes": {},
-                 "baseStyles": {
-                  "display": "grid",
-                  "placeItems": "center",
-                  "flexShrink": "0",
-                  "width": "32px",
-                  "height": "32px",
-                  "overflow": "hidden",
-                  "borderRadius": "9999px",
-                  "backgroundColor": "var(--surface-gray-2)",
-                  "color": "var(--ink-gray-5)",
-                  "fontSize": "16px",
-                  "fontWeight": "500",
-                  "letterSpacing": "0.02em",
-                  "textTransform": "uppercase"
+                 "attributes": {
+                  "href": "/profile"
                  },
-                 "blockId": "6cmnxyef5",
-                 "blockName": "Avatar",
+                 "baseStyles": {
+                  "display": "flex",
+                  "alignItems": "center",
+                  "gap": "12px",
+                  "height": "44px",
+                  "padding": "6px 8px",
+                  "borderRadius": "8px"
+                 },
+                 "blockId": "hp6j5p763",
+                 "blockName": "Person",
                  "children": [
                   {
-                   "attributes": {
-                    "src": "",
-                    "alt": ""
-                   },
+                   "attributes": {},
                    "baseStyles": {
-                    "gridArea": "1 / 1",
-                    "width": "100%",
-                    "height": "100%",
-                    "objectFit": "cover"
+                    "display": "grid",
+                    "placeItems": "center",
+                    "flexShrink": "0",
+                    "width": "32px",
+                    "height": "32px",
+                    "overflow": "hidden",
+                    "borderRadius": "9999px",
+                    "backgroundColor": "var(--surface-gray-2)",
+                    "color": "var(--ink-gray-5)",
+                    "fontSize": "16px",
+                    "fontWeight": "500",
+                    "letterSpacing": "0.02em",
+                    "textTransform": "uppercase"
                    },
-                   "blockId": "813d8bg1l",
-                   "blockName": "Avatar image",
-                   "children": [],
-                   "classes": [],
+                   "blockId": "vhthnune0",
+                   "blockName": "Avatar",
+                   "children": [
+                    {
+                     "attributes": {
+                      "src": "",
+                      "alt": ""
+                     },
+                     "baseStyles": {
+                      "gridArea": "1 / 1",
+                      "width": "100%",
+                      "height": "100%",
+                      "objectFit": "cover"
+                     },
+                     "blockId": "y6ieub36y",
+                     "blockName": "Avatar image",
+                     "children": [],
+                     "classes": [],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "user_image",
+                       "property": "src",
+                       "type": "attribute"
+                      }
+                     ],
+                     "element": "img",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": null,
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "user_image",
+                      "comesFrom": "dataScript"
+                     }
+                    },
+                    {
+                     "attributes": {},
+                     "baseStyles": {
+                      "gridArea": "1 / 1"
+                     },
+                     "blockId": "96u5dnn8m",
+                     "blockName": "Avatar initial",
+                     "children": [],
+                     "classes": [
+                      "initial"
+                     ],
+                     "clientScript": {},
+                     "customAttributes": {},
+                     "dataKey": null,
+                     "draggable": false,
+                     "dynamicValues": [
+                      {
+                       "comesFrom": "dataScript",
+                       "key": "initial",
+                       "property": "innerHTML",
+                       "type": "key"
+                      }
+                     ],
+                     "element": "span",
+                     "elementBeforeConversion": null,
+                     "extendedFromComponent": null,
+                     "innerHTML": "P",
+                     "isChildOfComponent": null,
+                     "isRepeaterBlock": false,
+                     "mobileStyles": {},
+                     "originalElement": null,
+                     "props": {},
+                     "rawStyles": {},
+                     "referenceBlockId": null,
+                     "tabletStyles": {},
+                     "visibilityCondition": {
+                      "key": "no_image",
+                      "comesFrom": "dataScript"
+                     }
+                    }
+                   ],
+                   "classes": [
+                    "cafe-avatar"
+                   ],
                    "clientScript": {},
                    "customAttributes": {},
                    "dataKey": null,
                    "draggable": false,
-                   "dynamicValues": [
-                    {
-                     "comesFrom": "dataScript",
-                     "key": "user_image",
-                     "property": "src",
-                     "type": "attribute"
-                    }
-                   ],
-                   "element": "img",
+                   "dynamicValues": [],
+                   "element": "span",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
                    "innerHTML": null,
@@ -2259,21 +2336,23 @@
                    "rawStyles": {},
                    "referenceBlockId": null,
                    "tabletStyles": {},
-                   "visibilityCondition": {
-                    "key": "user_image",
-                    "comesFrom": "dataScript"
-                   }
+                   "visibilityCondition": null
                   },
                   {
                    "attributes": {},
                    "baseStyles": {
-                    "gridArea": "1 / 1"
+                    "overflow": "hidden",
+                    "fontSize": "16px",
+                    "letterSpacing": "0.02em",
+                    "color": "#000000",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap"
                    },
-                   "blockId": "xhyvktsm9",
-                   "blockName": "Avatar initial",
+                   "blockId": "ur8vi0zil",
+                   "blockName": "Name",
                    "children": [],
                    "classes": [
-                    "initial"
+                    "cafe-person-name"
                    ],
                    "clientScript": {},
                    "customAttributes": {},
@@ -2282,7 +2361,7 @@
                    "dynamicValues": [
                     {
                      "comesFrom": "dataScript",
-                     "key": "initial",
+                     "key": "full_name",
                      "property": "innerHTML",
                      "type": "key"
                     }
@@ -2290,7 +2369,7 @@
                    "element": "span",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "P",
+                   "innerHTML": "Priyanshi Hodage",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -2299,21 +2378,25 @@
                    "rawStyles": {},
                    "referenceBlockId": null,
                    "tabletStyles": {},
-                   "visibilityCondition": {
-                    "key": "no_image",
-                    "comesFrom": "dataScript"
-                   }
+                   "visibilityCondition": null
                   }
                  ],
                  "classes": [
-                  "cafe-avatar"
+                  "cafe-person"
                  ],
                  "clientScript": {},
                  "customAttributes": {},
                  "dataKey": null,
                  "draggable": false,
-                 "dynamicValues": [],
-                 "element": "span",
+                 "dynamicValues": [
+                  {
+                   "comesFrom": "dataScript",
+                   "key": "href",
+                   "property": "href",
+                   "type": "attribute"
+                  }
+                 ],
+                 "element": "a",
                  "elementBeforeConversion": null,
                  "extendedFromComponent": null,
                  "innerHTML": null,
@@ -2326,71 +2409,27 @@
                  "referenceBlockId": null,
                  "tabletStyles": {},
                  "visibilityCondition": null
-                },
-                {
-                 "attributes": {},
-                 "baseStyles": {
-                  "overflow": "hidden",
-                  "fontSize": "16px",
-                  "letterSpacing": "0.02em",
-                  "color": "#000000",
-                  "textOverflow": "ellipsis",
-                  "whiteSpace": "nowrap"
-                 },
-                 "blockId": "oo4o8qy7l",
-                 "blockName": "Name",
-                 "children": [],
-                 "classes": [
-                  "cafe-person-name"
-                 ],
-                 "clientScript": {},
-                 "customAttributes": {},
-                 "dataKey": null,
-                 "draggable": false,
-                 "dynamicValues": [
-                  {
-                   "comesFrom": "dataScript",
-                   "key": "full_name",
-                   "property": "innerHTML",
-                   "type": "key"
-                  }
-                 ],
-                 "element": "span",
-                 "elementBeforeConversion": null,
-                 "extendedFromComponent": null,
-                 "innerHTML": "Priyanshi Hodage",
-                 "isChildOfComponent": null,
-                 "isRepeaterBlock": false,
-                 "mobileStyles": {},
-                 "originalElement": null,
-                 "props": {},
-                 "rawStyles": {},
-                 "referenceBlockId": null,
-                 "tabletStyles": {},
-                 "visibilityCondition": null
                 }
                ],
                "classes": [
-                "cafe-person"
+                "cafe-people"
                ],
                "clientScript": {},
                "customAttributes": {},
-               "dataKey": null,
+               "dataKey": {
+                "comesFrom": "dataScript",
+                "key": "people",
+                "property": "innerHTML",
+                "type": "key"
+               },
                "draggable": false,
-               "dynamicValues": [
-                {
-                 "comesFrom": "dataScript",
-                 "key": "href",
-                 "property": "href",
-                 "type": "attribute"
-                }
-               ],
-               "element": "a",
+               "dynamicValues": [],
+               "element": "div",
                "elementBeforeConversion": null,
                "extendedFromComponent": null,
                "innerHTML": null,
                "isChildOfComponent": null,
-               "isRepeaterBlock": false,
+               "isRepeaterBlock": true,
                "mobileStyles": {},
                "originalElement": null,
                "props": {},
@@ -2400,17 +2439,10 @@
                "visibilityCondition": null
               }
              ],
-             "classes": [
-              "cafe-people"
-             ],
+             "classes": [],
              "clientScript": {},
              "customAttributes": {},
-             "dataKey": {
-              "comesFrom": "dataScript",
-              "key": "people",
-              "property": "innerHTML",
-              "type": "key"
-             },
+             "dataKey": null,
              "draggable": false,
              "dynamicValues": [],
              "element": "div",
@@ -2418,7 +2450,7 @@
              "extendedFromComponent": null,
              "innerHTML": null,
              "isChildOfComponent": null,
-             "isRepeaterBlock": true,
+             "isRepeaterBlock": false,
              "mobileStyles": {},
              "originalElement": null,
              "props": {},
@@ -2561,7 +2593,7 @@
    "builder_script": "Cafe Search"
   }
  ],
- "creation": "2026-09-30 22:31:45.055058",
+ "creation": "2026-10-12 16:21:10.082900",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2571,7 +2603,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-09-30 22:31:45.055058",
+ "modified": "2026-10-12 16:21:10.082900",
  "modified_by": "Administrator",
  "name": "cafe-search",
  "owner": "Administrator",
@@ -2580,6 +2612,6 @@
  "page_title": "Search",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-09-30 22:31:45.055058",
+ "published_at": "2026-10-12 16:21:10.082900",
  "route": "search"
 }

@@ -587,6 +587,142 @@
 .cafe-w-tag-option:hover {
   background: rgba(15, 15, 15, 0.045);
 }
+
+.cafe-w-prose ul[data-type='taskList'] {
+  padding-left: 0;
+  list-style: none;
+}
+.cafe-w-prose ul[data-type='taskList'] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.cafe-w-prose ul[data-type='taskList'] li > label {
+  flex-shrink: 0;
+  margin-top: 0.3em;
+  user-select: none;
+}
+.cafe-w-prose ul[data-type='taskList'] li > div {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+.cafe-w-prose ul[data-type='taskList'] li[data-checked='true'] > div {
+  color: var(--w-ink-5);
+  text-decoration: line-through;
+}
+
+/* The live preview of a video embed - a real iframe, same as the published
+   page's embeds.js builds from the node's own provider+id. pointer-events:
+   none keeps a click selecting the node (ProseMirror's own atom-node
+   behaviour) rather than reaching into the iframe, same reason the image
+   node view's own drag handling takes over its img's clicks. */
+.cafe-w-embed {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 8px;
+  background: var(--w-surface);
+  overflow: hidden;
+}
+.cafe-w-embed.selected {
+  outline: 2px solid var(--w-ink-4);
+  outline-offset: 2px;
+}
+.cafe-w-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+.cafe-w-embed-error {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--w-ink-5);
+  font-size: 13px;
+}
+.cafe-w-embed-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--ink-base);
+  cursor: pointer;
+}
+.cafe-w-embed:hover .cafe-w-embed-remove,
+.cafe-w-embed.selected .cafe-w-embed-remove {
+  display: flex;
+}
+
+/* The "[[" search popup (write_editor.js's buildPostLinkSearch) - same
+   floating-panel look as the tag dropdown above, positioned at the typed
+   "[[" instead of anchored to a field. */
+.cafe-w-link-search {
+  position: fixed;
+  z-index: 30;
+  width: 280px;
+  max-height: 280px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--surface-base);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 20px 40px -10px rgba(0, 0, 0, 0.25);
+}
+.cafe-w-link-search input {
+  display: block;
+  width: 100%;
+  height: 32px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--w-surface);
+  color: var(--w-ink-8);
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+.cafe-w-link-results {
+  max-height: 220px;
+  overflow-y: auto;
+}
+.cafe-w-link-option {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--w-ink-8);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.cafe-w-link-option:hover {
+  background: rgba(15, 15, 15, 0.045);
+}
+.cafe-w-link-empty {
+  margin: 0;
+  padding: 6px 8px;
+  color: var(--w-ink-5);
+  font-size: 13px;
+}
+
 .cafe-w-error {
   margin: 12px 0 0;
   color: #b41d1d;
@@ -740,6 +876,28 @@
 .cafe-w-read {
   margin: 8px 0 0;
   color: var(--w-ink-5);
+  font-size: 13px;
+}
+.cafe-w-story .cafe-field {
+  margin: 12px 0 0;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--w-outline);
+}
+.cafe-w-story .cafe-field label {
+  color: var(--ink-gray-6);
+  font-size: 13px;
+}
+/* Tags used its own 32px top margin on the main editor page, where it was
+   the first thing below the story; here it's one divider among several, so
+   it takes the same 12px/8px/border-top rhythm as the publication picker
+   and title/excerpt fields right above it. */
+.cafe-w-story .cafe-w-tags {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--w-outline);
+}
+.cafe-w-story .cafe-w-tags label {
+  color: var(--ink-gray-6);
   font-size: 13px;
 }
 .cafe-w-story-title,

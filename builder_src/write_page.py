@@ -40,6 +40,8 @@ TIPTAP_MODULES = [
 	"https://esm.sh/@tiptap/starter-kit@3.31.3",
 	"https://esm.sh/@tiptap/extension-placeholder@3.31.3",
 	"https://esm.sh/@tiptap/extension-text-align@3.31.3",
+	"https://esm.sh/@tiptap/extension-task-list@3.31.3",
+	"https://esm.sh/@tiptap/extension-task-item@3.31.3",
 	"https://esm.sh/@tiptap/pm@3.31.3/state",
 ]
 

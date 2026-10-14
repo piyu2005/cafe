@@ -11,6 +11,8 @@ from blocks import (
 	INK_BLACK,
 	MUTED,
 	OUTLINE,
+	PUBLICATIONS_ENABLED,
+	SOLID_BG,
 	SURFACE_2,
 	attribute,
 	bind,
@@ -76,7 +78,7 @@ def build_avatar():
 			"pp.author_image",
 			"src",
 		),
-		"pp.author_image",
+		"pp.avatar_img_on",
 	)
 	initial = when(
 		show(
@@ -92,9 +94,9 @@ def build_avatar():
 			),
 			"pp.author_initial",
 		),
-		"pp.author_no_image",
+		"pp.avatar_initial_on",
 	)
-	return block(
+	avatar = block(
 		"div",
 		"Avatar",
 		children=[picture, initial],
@@ -109,6 +111,58 @@ def build_avatar():
 			"backgroundColor": SURFACE_2,
 		},
 	)
+	return when(avatar, "pp.is_person")
+
+
+def build_pub_tile():
+	"""A post under a publication shows its identity here instead - same
+	rounded-square mark as the Home feed's cafe-pub-tile, sized to match this
+	page's own 46px avatar rather than depending on that shared 32px class."""
+	picture = when(
+		attribute(
+			block(
+				"img",
+				"Publication tile image",
+				attrs={"src": "", "alt": ""},
+				styles={"gridArea": "1 / 1", "width": "100%", "height": "100%", "objectFit": "cover"},
+			),
+			"pp.author_image",
+			"src",
+		),
+		"pp.pub_img_on",
+	)
+	initial = when(
+		show(
+			block(
+				"span",
+				"Publication tile initial",
+				text="F",
+				styles={
+					**text_style(20, "600", "#ffffff", "0.005em", "1.15"),
+					"gridArea": "1 / 1",
+					"textTransform": "uppercase",
+				},
+			),
+			"pp.author_initial",
+		),
+		"pp.pub_initial_on",
+	)
+	tile = block(
+		"div",
+		"Publication tile",
+		children=[picture, initial],
+		styles={
+			"display": "grid",
+			"placeItems": "center",
+			"flexShrink": "0",
+			"width": "46px",
+			"height": "46px",
+			"overflow": "hidden",
+			"borderRadius": "12px",
+			"backgroundColor": SOLID_BG,
+		},
+	)
+	return when(tile, "pp.is_pub")
 
 
 def menu_item(tag, attrs, icon_name, label, custom=None, color=None):
@@ -147,7 +201,7 @@ def build_more_menu():
 	)
 	edit = when(
 		attribute(menu_item("a", {"href": "/write"}, "pencil", "Edit post"), "pp.edit_href", "href"),
-		"pp.is_author",
+		"pp.can_manage",
 	)
 	copy = menu_item("button", {"type": "button"}, "link", "Copy link", custom={"data-action": "copy-link"})
 	delete = when(
@@ -159,7 +213,7 @@ def build_more_menu():
 			custom={"data-action": "delete-post"},
 			color=ERROR_RED,
 		),
-		"pp.is_author",
+		"pp.can_manage",
 	)
 	menu = block(
 		"div",
@@ -214,6 +268,7 @@ def build_author_row():
 		styles={"marginTop": "24px", "display": "flex", "alignItems": "center", "gap": "12px"},
 		children=[
 			build_avatar(),
+			build_pub_tile(),
 			block("div", "Author", styles={"flexGrow": "1", "minWidth": "0"}, children=[name, meta]),
 			build_more_menu(),
 		],
@@ -606,7 +661,38 @@ else:
     if minutes < 1:
         minutes = 1
 
-    author_name = post.author_name or post.author
+    # A post under a publication shows the publication's own identity here too
+    # (same rounded-square tile as the Home feed), not its author's - purely
+    # cosmetic, separate from who may actually manage the post (can_manage
+    # below), which always checks the real post.author and publication role.
+    # Publications is hidden for now (@@PUBLICATIONS_ENABLED@@) - while it is,
+    # this always falls through to the author, same as before it existed,
+    # regardless of what a pre-existing post's own publication field holds.
+    pub = None
+    if @@PUBLICATIONS_ENABLED@@ and post.get("publication"):
+        pub = frappe.db.get_value("Publication", post.publication, ["title", "logo"], as_dict=True)
+    if pub:
+        identity_name = pub.get("title") or post.publication
+        identity_image = safe_url(pub.get("logo"))
+        identity_href = "/publications/" + path_segment(post.publication)
+    else:
+        identity_name = post.author_name or post.author
+        identity_image = safe_url(post.author_image)
+        identity_href = "/profile/" + path_segment(post.author_username or post.author)
+
+    # Edit/Delete: the author always has them for their own post; otherwise
+    # only an Editor or Admin of the post's publication does - a plain Member
+    # can write and edit their own drafts but isn't a gatekeeper for anyone
+    # else's.
+    pub_role = (
+        frappe.db.get_value(
+            "Publication Member", {"publication": post.publication, "user": frappe.session.user}, "role"
+        )
+        if @@PUBLICATIONS_ENABLED@@ and post.publication
+        else None
+    )
+    can_manage = post.author == frappe.session.user or pub_role in ("Editor", "Admin")
+
     images = []
     for item in post.images or []:
         url = safe_url(item.get("image"))
@@ -614,7 +700,6 @@ else:
             images.append({"src": url})
     tags = [{"name": clean(tag)} for tag in post.tags or []]
     me = frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image"], as_dict=True) or {}
-    author_image = safe_url(post.author_image)
 
     data.pp = {
         "found": True,
@@ -625,13 +710,18 @@ else:
         "me_image": safe_url(me.get("user_image")),
         "title": clean(post.title or "Untitled"),
         "crumb_title": clean(post.title or "Post"),
-        "author_name": clean(author_name),
-        "author_initial": clean(author_name[:1]),
-        "author_image": author_image,
-        "author_no_image": not author_image,
-        "author_href": clean("/profile/" + path_segment(post.author_username or post.author)),
+        "author_name": clean(identity_name),
+        "author_initial": clean(identity_name.strip()[:1]),
+        "author_image": identity_image,
+        "author_href": clean(identity_href),
+        "is_pub": bool(pub),
+        "is_person": not pub,
+        "avatar_img_on": not pub and bool(identity_image),
+        "avatar_initial_on": not pub and not identity_image,
+        "pub_img_on": bool(pub) and bool(identity_image),
+        "pub_initial_on": bool(pub) and not identity_image,
         "meta": day_month_year(post.creation) + " \\u00b7 " + str(minutes) + " min read",
-        "is_author": post.author == frappe.session.user,
+        "can_manage": can_manage,
         "edit_href": clean("/write/" + path_segment(post.name)),
         "content_html": content_html,
         "is_image_post": post.post_type == "Image" and len(images) > 0,
@@ -646,4 +736,4 @@ else:
     data.tags = tags
 """
 
-POST_DATA_SCRIPT = HELPERS + POST_MAIN
+POST_DATA_SCRIPT = HELPERS + POST_MAIN.replace("@@PUBLICATIONS_ENABLED@@", str(PUBLICATIONS_ENABLED))

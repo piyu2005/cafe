@@ -15,6 +15,15 @@ def block_id():
 	return "".join(_ids.choices("0123456789abcdefghijklmnopqrstuvwxyz", k=9))
 
 
+# Publications is built and tested but not launched yet - every page that
+# surfaces it (Explore, Settings, the write flow, Home/Post bylines) checks
+# this one flag, and generate.py unpublishes the three pages that exist only
+# for it (cafe-publication, cafe-publication-members, cafe-invite). Flip it
+# back to True, regenerate, and migrate when it's ready to ship - nothing
+# else needs to change, the feature itself was never removed.
+PUBLICATIONS_ENABLED = False
+
+
 # Real Espresso semantic tokens (see tokens.py), not raw hex: a value only
 # needs to change in one place (styles.css's :root, kept in sync with
 # tokens.py) instead of at every one of these call sites.
