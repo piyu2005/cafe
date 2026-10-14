@@ -51,29 +51,46 @@ body {
   overscroll-behavior: none;
 }
 
-/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
-   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
-   thumb) - a plain browser scrollbar is only thin on macOS by its own
-   default; on Windows, and in every browser's default chrome generally,
-   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
-   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+/* frappe-ui's <ScrollArea> component (ui.frappe.io/docs/components/
+   scrollarea), read straight off its rendered DOM/CSS, not guessed: a 10px
+   lane (w-2.5) with NO visible track - fully transparent - holding a 6px
+   thumb, solid bg-gray-400 (plain Tailwind gray, not an Espresso surface-*
+   token - oklch(0.83 0 0) = #c7c7c7, within a 1-unit rounding of this app's
+   own --ink-gray-3), fully rounded, no hover-darken.
+   Earlier passes here chased other parts of frappe-ui's ecosystem that
+   turned out lighter and less visible: Frappe Builder's own app chrome
+   (surface-gray-3, #ededed, filled surface-gray-1 track) and a `.scrollbar`
+   utility class ui.frappe.io uses only for secondary areas like code blocks
+   (also surface-gray-3). Both real, but both noticeably lighter than the
+   actual ScrollArea demo thumb the user kept pointing back at - this one.
+   A native scrollbar has no property for "pad the track, inset the thumb"
+   the way ScrollArea's own CSS does (it literally pads its, CSS not
+   native, track element) - approximated with a 2px transparent border +
+   background-clip: padding-box on the thumb, which produces the same
+   visual inset within a 10px lane using only standard scrollbar properties.
+   A plain browser scrollbar is only thin on macOS by its own default; on
+   Windows, and in every browser's default chrome generally, it's a much
+   wider bar unless this is set explicitly. ::-webkit-scrollbar covers
+   Chrome/Edge (both Chromium, on every OS, Windows included);
    scrollbar-width/-color is the equivalent standard property Firefox uses
-   instead, so both engines end up with the same thin look. */
+   instead, so both engines end up with the same look. */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: var(--surface-gray-1);
+  width: 10px;
+  height: 10px;
+  background: transparent;
 }
 *::-webkit-scrollbar-corner {
-  background: var(--surface-gray-1);
+  background: transparent;
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: var(--surface-gray-3);
+  background-color: var(--ink-gray-3);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--surface-gray-3) var(--surface-gray-1);
+  scrollbar-color: var(--ink-gray-3) transparent;
 }
 
 .cafe-app {
@@ -92,8 +109,8 @@ body {
   .cafe-app {
     height: 100dvh;
   }
-  /* Same fix for the phone sidebar drawer's own sticky, full-height column. */
-  .cafe-sidebar-content {
+  /* Same fix for the nav's own sticky, full-height column. */
+  .cafe-nav-content {
     height: 100dvh;
   }
 }
@@ -142,11 +159,65 @@ body {
   display: none !important;
 }
 
-/* ---- Rail ---- */
-.cafe-rail-item:hover {
-  background: rgba(0, 0, 0, 0.05);
+/* ---- The nav: one 50px icon rail that becomes a 224px labeled sidebar in
+   place (sidebar.py) - a single set of blocks animated by CSS alone, instead
+   of two separate panels (one rail, one sidebar) swapped or width-animated
+   side by side. Two separate elements, even width-animated in opposite
+   directions, still read as "one thing opening, another sitting behind it".
+   Icon size (icon(name, 16) in a constant 28px row - see ITEM_STYLES in
+   sidebar.py) never changes, and its on-screen position barely does (see
+   .cafe-nav-item/.cafe-nav-icon-well below) - nothing here is toggled
+   gradually, so nothing here can visibly snap mid-animation. Only two
+   things actually animate: the container's own width
+   (transition-[width] duration-300 ease-in-out, same as frappe-ui's real
+   Sidebar.vue) and each label's max-width/opacity (see .cafe-nav-label
+   below) - both numeric, properly interpolated transitions, not a toggled
+   `display` or a `width: auto` that can only jump. border-right fades via
+   color (not width) so the panel at 0 width never draws a stray hairline. */
+.cafe-nav {
+  transition:
+    width 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+  border-right: 1px solid var(--outline-gray-1);
 }
-.cafe-rail-item.active {
+html[data-cafe-sidebar='open'] .cafe-nav {
+  width: 224px !important;
+}
+html[data-cafe-sidebar='open'] .cafe-np {
+  left: 224px;
+}
+/* Collapsed (default): a fixed 28px square well (frappe-ui's own SidebarRail
+   cell size, `size-7`) around just the icon, with its own hover/active fill
+   - never the full (mostly-empty) row. The well's 3px margin-left, added to
+   the Items row wrapper's own 8px side padding (build_nav(), 8 + 3 = 11px
+   total), lines its 28px square up with frappe-ui's real 11px rail padding
+   (their `px-[11px]`), centering it in the 50px rail. Hover color
+   (surface-gray-3) matches frappe-ui's actual SidebarRail docs demo
+   (ui.frappe.io); active color (white + shadow, below) matches this app's
+   own production site instead, which is the one that turned out to
+   disagree with the generic docs demo's gray fill. */
+.cafe-nav-icon-well {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.cafe-nav-item:hover .cafe-nav-icon-well,
+.cafe-nav-logo:hover {
+  background: var(--surface-gray-3);
+}
+/* Active: white + the same soft 3-layer shadow this app's own production
+   site already uses for its active rail icon (and that this app itself
+   used for its active rail icon before the rail/sidebar merge) - not
+   frappe-ui's generic docs-demo gray-4 fill, which is a different, real but
+   NOT what this app's actual deployed design is. No left-edge indicator bar
+   either, for the same reason: the production reference doesn't have one. */
+.cafe-nav-item.active .cafe-nav-icon-well {
   background: var(--surface-base);
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
@@ -159,34 +230,108 @@ body {
 .cafe-badge.show {
   display: block !important;
 }
-
-/* ---- The wide sidebar (sidebar.py) instead of the rail ---- */
-html[data-cafe-sidebar='open'] .cafe-rail {
-  display: none !important;
+/* The icon's on-screen position barely moves between states (see
+   .cafe-nav-item/.cafe-nav-icon-well above and below) - nothing here is
+   toggled gradually, so nothing here can visibly snap mid-animation.
+   Only the label truly animates: max-width (not width - a width:auto
+   transition cannot interpolate at all, it JUMPS straight to the rendered
+   text width the instant the attribute flips, which is what read as a
+   flicker/pop here) and opacity ease together with the container's own
+   width, so the label reveals as a smooth wipe instead of popping in then
+   fading.
+   max-width/opacity/overflow here match sidebar.py's own inline baseline on
+   the label (not just redundant - that inline copy is what actually hides
+   it before this stylesheet has loaded; confirmed on a cold/incognito load,
+   the label briefly rendered at full width, overflowing the 50px rail,
+   before this rule ever applied). The "open" override below needs
+   !important for the same reason: it has to beat that same inline style. */
+.cafe-nav-label {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-width 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
-html[data-cafe-sidebar='open'] .cafe-sidebar {
-  display: block !important;
+.cafe-nav-item .cafe-badge {
+  position: absolute !important;
+  top: -8px !important;
+  right: auto !important;
+  left: 20px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  border: 1px solid #ffffff !important;
+  box-sizing: border-box !important;
 }
-html[data-cafe-sidebar='open'] .cafe-np {
-  left: 224px;
+.cafe-nav-toggle svg {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
 }
-.cafe-side-item:hover,
-.cafe-side-logo:hover {
-  background: var(--surface-gray-2) !important;
+/* Expanded: label and count revealed. padding-left and the well's
+   margin-left swap (8px<->0 and 0<->3px) so their SUM barely changes - the
+   icon ends up at x=17 collapsed, x=16 expanded, a 1px difference, nowhere
+   near a visible jump - while still giving each state its own correct inset
+   (11px before the well, centering it, collapsed; 16px before the icon,
+   frappe-ui's own `px-2` scroll padding + `pl-2` item padding, expanded).
+   The hover/active fill moves from the icon's own well to the full row -
+   frappe-ui's regular Sidebar/SidebarItem treatment (hover `surface-gray-2`,
+   active `surface-elevation-3` + shadow-sm - the colors this app already
+   had here before the rail/sidebar merge, left untouched since they were
+   never the problem). All of this is instant, same as the icon's own well
+   above - nothing about shape/color/padding is eased, only the label and
+   the container width are. */
+html[data-cafe-sidebar='open'] .cafe-nav-label {
+  max-width: 160px !important;
+  opacity: 1 !important;
 }
-.cafe-side-item.active {
-  background: var(--surface-base) !important;
-  color: var(--ink-gray-9);
+html[data-cafe-sidebar='open'] .cafe-nav-item {
+  padding-left: 8px;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-icon-well {
+  width: 16px;
+  height: 16px;
+  margin-left: 0;
+  border-radius: 0;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item:hover .cafe-nav-icon-well {
+  background: none;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item.active .cafe-nav-icon-well {
+  background: none;
+  box-shadow: none;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item:hover,
+html[data-cafe-sidebar='open'] .cafe-nav-logo:hover {
+  background: var(--surface-gray-2);
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item.active {
+  background: var(--surface-base);
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
     rgba(0, 0, 0, 0.2) 0 0 1px 0,
     rgba(0, 0, 0, 0.14) 0 1px 3px 0;
 }
+html[data-cafe-sidebar='open'] .cafe-nav-item .cafe-badge {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  height: 16px !important;
+  margin-left: auto !important;
+  margin-right: 4px !important;
+  border: 0 !important;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
+  transform: none;
+}
 /* With the notifications panel open, the bell is the active item. */
-.cafe-np-open .cafe-side-item.active:not([data-bell]) {
+.cafe-np-open .cafe-nav-item.active:not([data-bell]) {
   background: transparent !important;
   color: var(--ink-gray-6);
   box-shadow: none;
+}
+.cafe-np-open .cafe-nav-item.active:not([data-bell]) .cafe-nav-icon-well {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* ---- Logo menu ---- */
@@ -1419,12 +1564,11 @@ p.cafe-clamp-3:empty::before {
   line-height: 1.15;
 }
 
-/* ---- Mobile: rail becomes a bottom bar ---- */
+/* ---- Mobile: nav becomes a bottom bar ---- */
 @media (max-width: 767px) {
-  .cafe-rail,
+  .cafe-nav,
   .cafe-header,
-  .cafe-menu,
-  html[data-cafe-sidebar='open'] .cafe-sidebar {
+  .cafe-menu {
     display: none !important;
   }
   .cafe-mobile-header {
@@ -1776,7 +1920,7 @@ p.cafe-clamp-3:empty::before {
 }
 
 /* ---- Notifications: bells and the panel ---- */
-button.cafe-rail-item {
+button.cafe-nav-item {
   background: transparent;
 }
 .cafe-bell:hover {
@@ -1784,11 +1928,6 @@ button.cafe-rail-item {
 }
 .cafe-bell.active {
   background: var(--surface-gray-2) !important;
-}
-/* With the panel open, the bell is the active item and the page's own is not. */
-.cafe-np-open .cafe-rail-item.active:not([data-bell]) {
-  background: transparent;
-  box-shadow: none;
 }
 .cafe-np {
   position: fixed;
@@ -1813,7 +1952,10 @@ button.cafe-rail-item {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s, visibility 0.15s;
+  transition:
+    opacity 0.15s,
+    visibility 0.15s,
+    left 0.3s ease-in-out;
 }
 .cafe-np,
 .cafe-np *,
