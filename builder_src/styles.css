@@ -146,14 +146,16 @@ body {
    place (sidebar.py) - a single set of blocks animated by CSS alone, instead
    of two separate panels (one rail, one sidebar) swapped or width-animated
    side by side. Two separate elements, even width-animated in opposite
-   directions, still read as "one thing opening, another sitting behind it" -
-   matching frappe-ui's actual Sidebar.vue means exactly one element whose
-   container width eases (transition-[width] duration-300 ease-in-out) while
-   each item's icon snaps its alignment instantly (centered <-> left, same as
-   frappe-ui) and its label eases its own width/opacity - never two navs
-   overlapping. Icon size itself (icon(name, 16) in a constant 28px row)
-   never changes in either state. border-right fades via color (not width)
-   so the panel at 0 width never draws a stray hairline. */
+   directions, still read as "one thing opening, another sitting behind it".
+   Icon size and position (icon(name, 16) at a constant 8px, in a constant
+   28px row - see ITEM_STYLES in sidebar.py) never change in either state -
+   nothing about the icon itself is toggled at all, so it can't visibly snap.
+   Only two things actually animate: the container's own width
+   (transition-[width] duration-300 ease-in-out, same as frappe-ui's real
+   Sidebar.vue) and each label's max-width/opacity (see .cafe-nav-label
+   below) - both numeric, properly interpolated transitions, not a toggled
+   `display` or a `width: auto` that can only jump. border-right fades via
+   color (not width) so the panel at 0 width never draws a stray hairline. */
 .cafe-nav {
   transition:
     width 0.3s ease-in-out,
@@ -166,7 +168,8 @@ html[data-cafe-sidebar='open'] .cafe-nav {
 html[data-cafe-sidebar='open'] .cafe-np {
   left: 224px;
 }
-.cafe-nav-item:hover {
+.cafe-nav-item:hover,
+.cafe-nav-logo:hover {
   background: var(--surface-gray-2);
 }
 .cafe-nav-item.active {
@@ -182,23 +185,26 @@ html[data-cafe-sidebar='open'] .cafe-np {
 .cafe-badge.show {
   display: block !important;
 }
-/* Collapsed (default): icon centered in the full-width item, label and count
-   collapsed away. Instant, not eased - same as frappe-ui, which only animates
-   the label's own width/opacity and the container's width, not this. */
-.cafe-nav-item,
-.cafe-nav-logo {
-  justify-content: center;
-  padding-left: 0;
-}
+/* The icon's own horizontal position is one constant 8px, in every state -
+   not toggled at all. For a 16px icon inside this 34px-wide collapsed item
+   (nav's 50px minus the Items row's 8px side padding, times two), 8px is
+   already within a pixel of mathematically centered; once expanded it's the
+   same "pl-2" frappe-ui itself uses. A property that never changes can't
+   snap, so there's one fewer discrete jump competing with the eased ones
+   below for the eye's attention.
+   Only the label truly animates: max-width (not width - a width:auto
+   transition cannot interpolate at all, it JUMPS straight to the rendered
+   text width the instant the attribute flips, which is what read as a
+   flicker/pop here) and opacity ease together with the container's own
+   width, so the label reveals as a smooth wipe instead of popping in then
+   fading. */
 .cafe-nav-label {
-  width: 0;
-  margin-left: 0;
+  max-width: 0;
   opacity: 0;
   overflow: hidden;
   transition:
-    width 0.2s ease-in-out,
-    opacity 0.15s ease-in-out,
-    margin-left 0.2s ease-in-out;
+    max-width 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 .cafe-nav-item .cafe-badge {
   position: absolute !important;
@@ -214,17 +220,10 @@ html[data-cafe-sidebar='open'] .cafe-np {
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
 }
-/* Expanded: left-aligned, label and count revealed. */
-html[data-cafe-sidebar='open'] .cafe-nav-item,
-html[data-cafe-sidebar='open'] .cafe-nav-logo {
-  justify-content: flex-start;
-  padding-left: 8px;
-}
+/* Expanded: label and count revealed (the icon doesn't move - see above). */
 html[data-cafe-sidebar='open'] .cafe-nav-label {
-  width: auto;
-  margin-left: 8px;
+  max-width: 160px;
   opacity: 1;
-  overflow: visible;
 }
 html[data-cafe-sidebar='open'] .cafe-nav-item .cafe-badge {
   position: static !important;

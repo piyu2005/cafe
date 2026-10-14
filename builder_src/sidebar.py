@@ -14,6 +14,10 @@ from blocks import INK, SURFACE_1, block, cafe_logo, icon
 from shell_component_parts import BADGE_STYLES
 
 GRAY_6 = "var(--ink-gray-6)"
+# marginLeft is constant, not state-dependent: collapsed, the label has zero
+# max-width anyway (see styles.css), so the gap it would open up next to the
+# icon is invisible; expanded, it's the icon-to-label gap. One fewer property
+# for styles.css to toggle - and one fewer thing that can visibly snap.
 LABEL_STYLES = {
 	"fontSize": "13px",
 	"fontWeight": "420",
@@ -21,16 +25,20 @@ LABEL_STYLES = {
 	"lineHeight": "1.15",
 	"color": "inherit",
 	"whiteSpace": "nowrap",
+	"marginLeft": "8px",
 }
-# No gap/padding-left here - both are state-dependent (collapsed: centered,
-# icon only; expanded: left-aligned, with a label) and live entirely in
-# styles.css, so there is nothing inline for it to fight with `!important`.
+# paddingLeft is constant too, not state-dependent: for a 16px icon inside
+# this 34px-wide collapsed item (nav's 50px minus the Items row's own 8px
+# side padding, times two), 8px already centers it within a pixel; expanded,
+# it's the same "pl-2" frappe-ui itself uses. The icon's position never
+# changes between states - see styles.css for why that matters.
 ITEM_STYLES = {
 	"position": "relative",
 	"display": "flex",
 	"alignItems": "center",
 	"width": "100%",
 	"height": "28px",
+	"paddingLeft": "8px",
 	"border": "0",
 	"borderRadius": "8px",
 	"backgroundColor": "transparent",
@@ -108,6 +116,7 @@ def nav_logo_block():
 					"lineHeight": "1.15",
 					"color": INK,
 					"whiteSpace": "nowrap",
+					"marginLeft": "8px",
 				},
 			),
 		],
@@ -117,6 +126,12 @@ def nav_logo_block():
 			"alignItems": "center",
 			"width": "100%",
 			"height": "40px",
+			# A 32px mark, not 16px like every other icon - the padding that
+			# centers it in the collapsed rail is different math (34px
+			# available inside this row's own 8px padding, so (34-32)/2), not
+			# the 8px ITEM_STYLES uses for a 16px icon. Constant either way,
+			# same reasoning as ITEM_STYLES's paddingLeft.
+			"paddingLeft": "1px",
 			"border": "0",
 			"borderRadius": "8px",
 			"backgroundColor": "transparent",
