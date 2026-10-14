@@ -169,15 +169,16 @@ html[data-cafe-sidebar='open'] .cafe-nav {
 html[data-cafe-sidebar='open'] .cafe-np {
   left: 224px;
 }
-/* Collapsed (default): matches frappe-ui's actual SidebarRail exactly, not
-   a guess - read straight off ui.frappe.io's own rendered DOM/CSS. A
-   SidebarRailItem is a fixed 28px square (`size-7`) with its own hover/active
-   fill, never the full (mostly-empty) row - hover is `surface-gray-3`
-   (#ededed), active is `surface-gray-4` (#e2e2e2) plus a 3px indicator bar
-   at the rail's left edge in `surface-gray-8` (#525252, == this app's
-   --ink-gray-6). The well's 3px margin-left (on top of ITEM_STYLES' own 8px
-   padding-left) lines its 28px square up with frappe-ui's own 11px rail
-   padding (8 + 3 = 11, same as their `px-[11px]`). */
+/* Collapsed (default): a fixed 28px square well (frappe-ui's own SidebarRail
+   cell size, `size-7`) around just the icon, with its own hover/active fill
+   - never the full (mostly-empty) row. The well's 3px margin-left, added to
+   the Items row wrapper's own 8px side padding (build_nav(), 8 + 3 = 11px
+   total), lines its 28px square up with frappe-ui's real 11px rail padding
+   (their `px-[11px]`), centering it in the 50px rail. Hover color
+   (surface-gray-3) matches frappe-ui's actual SidebarRail docs demo
+   (ui.frappe.io); active color (white + shadow, below) matches this app's
+   own production site instead, which is the one that turned out to
+   disagree with the generic docs demo's gray fill. */
 .cafe-nav-icon-well {
   position: relative;
   display: flex;
@@ -193,19 +194,18 @@ html[data-cafe-sidebar='open'] .cafe-np {
 .cafe-nav-logo:hover {
   background: var(--surface-gray-3);
 }
+/* Active: white + the same soft 3-layer shadow this app's own production
+   site already uses for its active rail icon (and that this app itself
+   used for its active rail icon before the rail/sidebar merge) - not
+   frappe-ui's generic docs-demo gray-4 fill, which is a different, real but
+   NOT what this app's actual deployed design is. No left-edge indicator bar
+   either, for the same reason: the production reference doesn't have one. */
 .cafe-nav-item.active .cafe-nav-icon-well {
-  background: var(--surface-gray-4);
-}
-.cafe-nav-item.active .cafe-nav-icon-well::before {
-  content: '';
-  position: absolute;
-  left: -11px;
-  top: 50%;
-  width: 3px;
-  height: 28px;
-  transform: translateY(-50%);
-  border-radius: 0 4px 4px 0;
-  background: var(--ink-gray-6);
+  background: var(--surface-base);
+  box-shadow:
+    rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
+    rgba(0, 0, 0, 0.2) 0 0 1px 0,
+    rgba(0, 0, 0, 0.14) 0 1px 3px 0;
 }
 /* The shell's HTML carries inline styles (so the editor canvas shows it), and
    inline styles beat class rules. The states that JavaScript toggles, and the
@@ -213,13 +213,9 @@ html[data-cafe-sidebar='open'] .cafe-np {
 .cafe-badge.show {
   display: block !important;
 }
-/* The icon's own horizontal position is one constant 8px, in every state -
-   not toggled at all. For a 16px icon inside this 34px-wide collapsed item
-   (nav's 50px minus the Items row's 8px side padding, times two), 8px is
-   already within a pixel of mathematically centered; once expanded it's the
-   same "pl-2" frappe-ui itself uses. A property that never changes can't
-   snap, so there's one fewer discrete jump competing with the eased ones
-   below for the eye's attention.
+/* The icon's on-screen position barely moves between states (see
+   .cafe-nav-item/.cafe-nav-icon-well above and below) - nothing here is
+   toggled gradually, so nothing here can visibly snap mid-animation.
    Only the label truly animates: max-width (not width - a width:auto
    transition cannot interpolate at all, it JUMPS straight to the rendered
    text width the instant the attribute flips, which is what read as a
@@ -279,9 +275,7 @@ html[data-cafe-sidebar='open'] .cafe-nav-item:hover .cafe-nav-icon-well {
 }
 html[data-cafe-sidebar='open'] .cafe-nav-item.active .cafe-nav-icon-well {
   background: none;
-}
-html[data-cafe-sidebar='open'] .cafe-nav-item.active .cafe-nav-icon-well::before {
-  display: none;
+  box-shadow: none;
 }
 html[data-cafe-sidebar='open'] .cafe-nav-item:hover,
 html[data-cafe-sidebar='open'] .cafe-nav-logo:hover {
@@ -314,9 +308,7 @@ html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
 }
 .cafe-np-open .cafe-nav-item.active:not([data-bell]) .cafe-nav-icon-well {
   background: transparent !important;
-}
-.cafe-np-open .cafe-nav-item.active:not([data-bell]) .cafe-nav-icon-well::before {
-  display: none;
+  box-shadow: none !important;
 }
 
 /* ---- Logo menu ---- */
