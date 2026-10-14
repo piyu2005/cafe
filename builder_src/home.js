@@ -1,8 +1,11 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
-// search (filters by title as you type) and infinite scroll: a sentinel below
-// the list loads ten more when it is 400px from the screen, like the old page.
-// Rows are made from the page's <template>, which has the same markup the
-// server fills. Needs ui.js.
+// search (filters by title as you type), the category chips (multi-select,
+// OR'd together), and infinite scroll: a sentinel below the list loads ten
+// more when it is 400px from the screen, like the old page. Selecting or
+// clearing a chip re-queries from the start, same path search already uses -
+// there is no separate "filtered" rendering mode, just a different filters
+// object passed to the same fetch. Rows are made from the page's <template>,
+// which has the same markup the server fills. Needs ui.js.
 ;(function () {
 	'use strict'
 
@@ -30,6 +33,7 @@
 
 	var input, list, sentinel, template, container
 	var query = ''
+	var categories = []
 	var loaded = 0
 	var hasMore = false
 	var busy = false
@@ -124,6 +128,7 @@
 	function fetchPosts(start) {
 		var filters = { status: 'Published' }
 		if (query) filters.title = ['like', '%' + query + '%']
+		if (categories.length) filters.category = ['in', categories]
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),
@@ -256,28 +261,34 @@
 		observer.observe(sentinel)
 	}
 
-	// Multi-select: each chip toggles only itself, independent of the others
-	// - no filtering yet, Post has no category field to filter by. The close
-	// icon is already in every chip's markup (home_page.py), hidden by
-	// styles.css until its own chip has .active.
+	// Multi-select: each chip toggles only itself, independent of the others.
+	// A chip's aria-label is also its Category doctype name (autoname is
+	// field:title, so the two are the same string) - no separate lookup
+	// needed to turn "which chips are active" into a filters.category value.
+	// The close icon is already in every chip's markup (home_page.py), hidden
+	// by styles.css until its own chip has .active.
 	function setupTagChips() {
 		document.querySelectorAll('.cafe-tag-chip').forEach(function (chip) {
 			chip.addEventListener('click', function () {
 				var active = chip.classList.toggle('active')
 				chip.setAttribute('aria-pressed', active ? 'true' : 'false')
+				var name = chip.getAttribute('aria-label')
+				var at = categories.indexOf(name)
+				if (active && at === -1) categories.push(name)
+				else if (!active && at !== -1) categories.splice(at, 1)
+				load(true)
 			})
 		})
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		setupTagChips()
-
 		input = document.getElementById('cafe-feed-search')
 		list = document.getElementById('cafe-feed')
 		sentinel = document.getElementById('cafe-feed-end')
 		template = document.getElementById('cafe-feed-template')
 		if (!input || !list || !sentinel || !template) return
 		container = list.parentNode
+		setupTagChips()
 
 		loaded = list.children.length
 		hasMore = sentinel.getAttribute('data-more') === '1'

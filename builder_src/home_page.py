@@ -246,11 +246,14 @@ def build_feed_row():
 
 def tag_chip(label):
 	# The close icon sits in every chip, not just a selected one - home.js
-	# toggles the "active" class on click (one at a time, clicking the
-	# active chip again clears it), and styles.css shows this only on
-	# whichever chip currently has that class. Nothing here is
+	# toggles each chip's own "active" class independently on click
+	# (multi-select: picking one doesn't clear any other), filters the feed
+	# by whichever categories end up active, and styles.css shows the icon
+	# only on a chip that currently has that class. Nothing here is
 	# pre-selected; the reference design just happened to show its one
-	# example mid-selection.
+	# example mid-selection. The label is also this chip's Category doctype
+	# name (autoname is field:title) - home.js reads it straight off
+	# aria-label to build the filter, no separate id needed.
 	close = block("span", "Close", ["cafe-tag-chip-close"], children=[icon("x", 12, INK_7)])
 	return block(
 		"button",
