@@ -51,29 +51,46 @@ body {
   overscroll-behavior: none;
 }
 
-/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
-   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
-   thumb) - a plain browser scrollbar is only thin on macOS by its own
-   default; on Windows, and in every browser's default chrome generally,
-   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
-   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+/* frappe-ui's <ScrollArea> component (ui.frappe.io/docs/components/
+   scrollarea), read straight off its rendered DOM/CSS, not guessed: a 10px
+   lane (w-2.5) with NO visible track - fully transparent - holding a 6px
+   thumb, solid bg-gray-400 (plain Tailwind gray, not an Espresso surface-*
+   token - oklch(0.83 0 0) = #c7c7c7, within a 1-unit rounding of this app's
+   own --ink-gray-3), fully rounded, no hover-darken.
+   Earlier passes here chased other parts of frappe-ui's ecosystem that
+   turned out lighter and less visible: Frappe Builder's own app chrome
+   (surface-gray-3, #ededed, filled surface-gray-1 track) and a `.scrollbar`
+   utility class ui.frappe.io uses only for secondary areas like code blocks
+   (also surface-gray-3). Both real, but both noticeably lighter than the
+   actual ScrollArea demo thumb the user kept pointing back at - this one.
+   A native scrollbar has no property for "pad the track, inset the thumb"
+   the way ScrollArea's own CSS does (it literally pads its, CSS not
+   native, track element) - approximated with a 2px transparent border +
+   background-clip: padding-box on the thumb, which produces the same
+   visual inset within a 10px lane using only standard scrollbar properties.
+   A plain browser scrollbar is only thin on macOS by its own default; on
+   Windows, and in every browser's default chrome generally, it's a much
+   wider bar unless this is set explicitly. ::-webkit-scrollbar covers
+   Chrome/Edge (both Chromium, on every OS, Windows included);
    scrollbar-width/-color is the equivalent standard property Firefox uses
-   instead, so both engines end up with the same thin look. */
+   instead, so both engines end up with the same look. */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: var(--surface-gray-1);
+  width: 10px;
+  height: 10px;
+  background: transparent;
 }
 *::-webkit-scrollbar-corner {
-  background: var(--surface-gray-1);
+  background: transparent;
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: var(--surface-gray-3);
+  background-color: var(--ink-gray-3);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--surface-gray-3) var(--surface-gray-1);
+  scrollbar-color: var(--ink-gray-3) transparent;
 }
 
 .cafe-app {
