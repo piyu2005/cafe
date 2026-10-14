@@ -51,29 +51,39 @@ body {
   overscroll-behavior: none;
 }
 
-/* The same thin scrollbar frappe-ui itself uses (Frappe Builder's own
-   index.css: w-2/h-2 bg-surface-gray-1 track, rounded-full bg-surface-gray-3
-   thumb) - a plain browser scrollbar is only thin on macOS by its own
-   default; on Windows, and in every browser's default chrome generally,
-   it's a much wider bar unless this is set explicitly. ::-webkit-scrollbar
-   covers Chrome/Edge (both Chromium, on every OS, Windows included);
+/* frappe-ui's actual ScrollArea component (ui.frappe.io/docs/components/
+   scrollarea), read straight off its real rendered DOM/CSS rather than
+   guessed: a 10px lane (w-2.5) with NO visible track - fully transparent,
+   not a filled bg - holding a 6px thumb (10px lane minus 2px of padding on
+   each side), rounded-6, solid #c7c7c7 (this app's own --ink-gray-3, a
+   1-unit rounding difference from their oklch(0.83 0 0) - the same color).
+   A plain browser scrollbar is only thin on macOS by its own default; on
+   Windows, and in every browser's default chrome generally, it's a much
+   wider bar unless this is set explicitly. ::-webkit-scrollbar covers
+   Chrome/Edge (both Chromium, on every OS, Windows included);
    scrollbar-width/-color is the equivalent standard property Firefox uses
-   instead, so both engines end up with the same thin look. */
+   instead, so both engines end up with the same look. The 2px transparent
+   border + padding-box clip is how a *native* scrollbar fakes ScrollArea's
+   padding-inset thumb - the real component achieves it by literally
+   padding its (CSS, not native) track element, which a native scrollbar
+   has no equivalent property for. */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: var(--surface-gray-1);
+  width: 10px;
+  height: 10px;
+  background: transparent;
 }
 *::-webkit-scrollbar-corner {
-  background: var(--surface-gray-1);
+  background: transparent;
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: var(--surface-gray-3);
+  background-color: var(--ink-gray-3);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--surface-gray-3) var(--surface-gray-1);
+  scrollbar-color: var(--ink-gray-3) transparent;
 }
 
 .cafe-app {
