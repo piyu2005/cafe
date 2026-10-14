@@ -18,6 +18,15 @@ GRAY_6 = "var(--ink-gray-6)"
 # max-width anyway (see styles.css), so the gap it would open up next to the
 # icon is invisible; expanded, it's the icon-to-label gap. One fewer property
 # for styles.css to toggle - and one fewer thing that can visibly snap.
+# maxWidth/opacity/overflow ALSO go inline, collapsed, even though
+# styles.css sets the same baseline there - the external stylesheet is a
+# separate request/parse that can lose the race against first paint
+# (confirmed: on a slow or cold-cache load, this label rendered at full
+# width, overflowing the 50px rail, before styles.css applied). The old
+# rail never had this risk because its items had no label markup in the DOM
+# at all; now that the same items also serve the expanded view, hiding the
+# label can't depend entirely on a stylesheet that might not have arrived
+# yet. styles.css's "open" override uses !important to still beat this.
 LABEL_STYLES = {
 	"fontSize": "13px",
 	"fontWeight": "420",
@@ -26,6 +35,9 @@ LABEL_STYLES = {
 	"color": "inherit",
 	"whiteSpace": "nowrap",
 	"marginLeft": "8px",
+	"maxWidth": "0",
+	"opacity": "0",
+	"overflow": "hidden",
 }
 # No paddingLeft here - it's 0 by default (collapsed) and state-dependent
 # (styles.css adds 8px once expanded, frappe-ui's own "pl-2"). The Items row
@@ -127,6 +139,9 @@ def nav_logo_block():
 					"color": INK,
 					"whiteSpace": "nowrap",
 					"marginLeft": "8px",
+					"maxWidth": "0",
+					"opacity": "0",
+					"overflow": "hidden",
 				},
 			),
 		],

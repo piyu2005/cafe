@@ -221,7 +221,13 @@ html[data-cafe-sidebar='open'] .cafe-np {
    text width the instant the attribute flips, which is what read as a
    flicker/pop here) and opacity ease together with the container's own
    width, so the label reveals as a smooth wipe instead of popping in then
-   fading. */
+   fading.
+   max-width/opacity/overflow here match sidebar.py's own inline baseline on
+   the label (not just redundant - that inline copy is what actually hides
+   it before this stylesheet has loaded; confirmed on a cold/incognito load,
+   the label briefly rendered at full width, overflowing the 50px rail,
+   before this rule ever applied). The "open" override below needs
+   !important for the same reason: it has to beat that same inline style. */
 .cafe-nav-label {
   max-width: 0;
   opacity: 0;
@@ -258,8 +264,8 @@ html[data-cafe-sidebar='open'] .cafe-np {
    above - nothing about shape/color/padding is eased, only the label and
    the container width are. */
 html[data-cafe-sidebar='open'] .cafe-nav-label {
-  max-width: 160px;
-  opacity: 1;
+  max-width: 160px !important;
+  opacity: 1 !important;
 }
 html[data-cafe-sidebar='open'] .cafe-nav-item {
   padding-left: 8px;
