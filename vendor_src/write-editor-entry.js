@@ -454,11 +454,7 @@ function plainTextToHtml(text) {
 		.map(
 			(part) =>
 				'<p>' +
-				part
-					.replace(/&/g, '&amp;')
-					.replace(/</g, '&lt;')
-					.replace(/>/g, '&gt;')
-					.replace(/\r?\n/g, '<br>') +
+				part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, '<br>') +
 				'</p>'
 		)
 		.join('')
@@ -594,7 +590,11 @@ const VideoEmbed = Node.create({
 		return [
 			'div',
 			mergeAttributes(
-				{ 'data-type': 'video-embed', 'data-provider': HTMLAttributes.provider, 'data-video-id': HTMLAttributes.videoId },
+				{
+					'data-type': 'video-embed',
+					'data-provider': HTMLAttributes.provider,
+					'data-video-id': HTMLAttributes.videoId,
+				},
 				{}
 			),
 		]
@@ -606,7 +606,10 @@ const VideoEmbed = Node.create({
 			if (src) {
 				const frame = el('iframe')
 				frame.src = src
-				frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture')
+				frame.setAttribute(
+					'allow',
+					'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture'
+				)
 				frame.setAttribute('allowfullscreen', '')
 				frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups')
 				dom.appendChild(frame)

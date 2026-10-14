@@ -92,7 +92,10 @@
 		var inner = image
 			? fill(template.getAttribute('data-avatar-image'), { image: escapeHtml(image) })
 			: '<span class="initial">' + escapeHtml(label.trim().charAt(0)) + '</span>'
-		return { label: label, html: '<span class="' + (pub ? 'cafe-pub-tile' : 'cafe-avatar') + '">' + inner + '</span>' }
+		return {
+			label: label,
+			html: '<span class="' + (pub ? 'cafe-pub-tile' : 'cafe-avatar') + '">' + inner + '</span>',
+		}
 	}
 
 	function renderRow(post, pubs) {
@@ -149,11 +152,14 @@
 			if (post.publication && handles.indexOf(post.publication) === -1) handles.push(post.publication)
 		})
 		if (!handles.length) return Promise.resolve({})
-		return CAFE.api('cafe.api.get_publications', { handles: handles }).then(function (pubs) {
-			return pubs || {}
-		}, function () {
-			return {}
-		})
+		return CAFE.api('cafe.api.get_publications', { handles: handles }).then(
+			function (pubs) {
+				return pubs || {}
+			},
+			function () {
+				return {}
+			}
+		)
 	}
 
 	function showCounts(posts, rows) {

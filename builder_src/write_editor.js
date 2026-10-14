@@ -238,9 +238,9 @@
 	function buildPlusMenu() {
 		var button = tool('plus', 'Add', function (anchor) {
 			W.menu(anchor, [
-			{ label: 'Image', icon: 'image', onClick: pickImages },
-			{ label: 'Embed video', icon: 'video', onClick: embedDialog },
-		])
+				{ label: 'Image', icon: 'image', onClick: pickImages },
+				{ label: 'Embed video', icon: 'video', onClick: embedDialog },
+			])
 		})
 		button.classList.add('cafe-w-plus')
 		button.hidden = true
@@ -325,7 +325,11 @@
 					editor
 						.chain()
 						.focus()
-						.insertPostLink(pos, post.display_title || post.title || 'Untitled', '/posts/' + encodeURIComponent(post.name))
+						.insertPostLink(
+							pos,
+							post.display_title || post.title || 'Untitled',
+							'/posts/' + encodeURIComponent(post.name)
+						)
 						.run()
 				})
 				results.appendChild(item)

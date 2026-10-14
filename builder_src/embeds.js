@@ -20,10 +20,7 @@
 			var frame = document.createElement('iframe')
 			frame.src = src
 			frame.loading = 'lazy'
-			frame.setAttribute(
-				'allow',
-				'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture'
-			)
+			frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture')
 			frame.setAttribute('allowfullscreen', '')
 			frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups')
 			div.classList.add('cafe-embed')
