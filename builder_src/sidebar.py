@@ -27,18 +27,18 @@ LABEL_STYLES = {
 	"whiteSpace": "nowrap",
 	"marginLeft": "8px",
 }
-# paddingLeft is constant too, not state-dependent: for a 16px icon inside
-# this 34px-wide collapsed item (nav's 50px minus the Items row's own 8px
-# side padding, times two), 8px already centers it within a pixel; expanded,
-# it's the same "pl-2" frappe-ui itself uses. The icon's position never
-# changes between states - see styles.css for why that matters.
+# No paddingLeft here - it's 0 by default (collapsed) and state-dependent
+# (styles.css adds 8px once expanded, frappe-ui's own "pl-2"). The Items row
+# wrapper (build_nav()) already contributes its own 8px of side padding; this
+# item sits directly inside that, so adding another 8px here would double it
+# up - exactly the bug that shifted every icon 8px right of the logo above
+# it (the logo has no second padding layer, so it stayed correctly placed).
 ITEM_STYLES = {
 	"position": "relative",
 	"display": "flex",
 	"alignItems": "center",
 	"width": "100%",
 	"height": "28px",
-	"paddingLeft": "8px",
 	"border": "0",
 	"borderRadius": "8px",
 	"backgroundColor": "transparent",

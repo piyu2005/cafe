@@ -147,10 +147,11 @@ body {
    of two separate panels (one rail, one sidebar) swapped or width-animated
    side by side. Two separate elements, even width-animated in opposite
    directions, still read as "one thing opening, another sitting behind it".
-   Icon size and position (icon(name, 16) at a constant 8px, in a constant
-   28px row - see ITEM_STYLES in sidebar.py) never change in either state -
-   nothing about the icon itself is toggled at all, so it can't visibly snap.
-   Only two things actually animate: the container's own width
+   Icon size (icon(name, 16) in a constant 28px row - see ITEM_STYLES in
+   sidebar.py) never changes, and its on-screen position barely does (see
+   .cafe-nav-item/.cafe-nav-icon-well below) - nothing here is toggled
+   gradually, so nothing here can visibly snap mid-animation. Only two
+   things actually animate: the container's own width
    (transition-[width] duration-300 ease-in-out, same as frappe-ui's real
    Sidebar.vue) and each label's max-width/opacity (see .cafe-nav-label
    below) - both numeric, properly interpolated transitions, not a toggled
@@ -247,17 +248,25 @@ html[data-cafe-sidebar='open'] .cafe-np {
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
 }
-/* Expanded: label and count revealed (the icon doesn't move - see above).
+/* Expanded: label and count revealed. padding-left and the well's
+   margin-left swap (8px<->0 and 0<->3px) so their SUM barely changes - the
+   icon ends up at x=17 collapsed, x=16 expanded, a 1px difference, nowhere
+   near a visible jump - while still giving each state its own correct inset
+   (11px before the well, centering it, collapsed; 16px before the icon,
+   frappe-ui's own `px-2` scroll padding + `pl-2` item padding, expanded).
    The hover/active fill moves from the icon's own well to the full row -
    frappe-ui's regular Sidebar/SidebarItem treatment (hover `surface-gray-2`,
    active `surface-elevation-3` + shadow-sm - the colors this app already
    had here before the rail/sidebar merge, left untouched since they were
-   never the problem). Both swaps are instant, same as the icon's own
-   well above - nothing about shape/color is eased, only the label and the
-   container width are. */
+   never the problem). All of this is instant, same as the icon's own well
+   above - nothing about shape/color/padding is eased, only the label and
+   the container width are. */
 html[data-cafe-sidebar='open'] .cafe-nav-label {
   max-width: 160px;
   opacity: 1;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item {
+  padding-left: 8px;
 }
 html[data-cafe-sidebar='open'] .cafe-nav-icon-well {
   width: 16px;
