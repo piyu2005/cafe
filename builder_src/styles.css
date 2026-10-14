@@ -160,12 +160,33 @@ body {
   display: block !important;
 }
 
-/* ---- The wide sidebar (sidebar.py) instead of the rail ---- */
+/* ---- The wide sidebar (sidebar.py) instead of the rail ----
+   Both stay in the DOM at all times and swap by animating width (same as
+   frappe-ui's own Sidebar.vue: transition-[width] duration-300 ease-in-out),
+   instead of an instant display:none/block swap. Icons never change size in
+   either state (see sidebar.py/shell_component.py - both use icon(name, 16)
+   in a constant 28px row) - this was an instant width jump, not a size
+   change, but without a transition the two can look the same. border-right
+   fades via color (not width) so the panel being 0-width never draws a
+   stray hairline. */
+.cafe-rail,
+.cafe-sidebar {
+  transition:
+    width 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+  border-right: 1px solid var(--outline-gray-1);
+}
+.cafe-sidebar {
+  width: 0 !important;
+  border-right-color: transparent;
+}
 html[data-cafe-sidebar='open'] .cafe-rail {
-  display: none !important;
+  width: 0 !important;
+  border-right-color: transparent;
 }
 html[data-cafe-sidebar='open'] .cafe-sidebar {
-  display: block !important;
+  width: 224px !important;
+  border-right-color: var(--outline-gray-1);
 }
 html[data-cafe-sidebar='open'] .cafe-np {
   left: 224px;
@@ -1801,7 +1822,10 @@ button.cafe-rail-item {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s, visibility 0.15s;
+  transition:
+    opacity 0.15s,
+    visibility 0.15s,
+    left 0.3s ease-in-out;
 }
 .cafe-np,
 .cafe-np *,

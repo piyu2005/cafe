@@ -7,7 +7,7 @@ attribute on <html>, so a page loads with the right one and nothing jumps.
 Individual native blocks, same as build_rail() in shell_component.py: each
 item is its own block, editable on its own in Builder's canvas."""
 
-from blocks import INK, OUTLINE, SURFACE_1, block, cafe_logo, icon
+from blocks import INK, SURFACE_1, block, cafe_logo, icon
 from shell_component_parts import BADGE_STYLES
 
 GRAY_6 = "var(--ink-gray-6)"
@@ -181,11 +181,10 @@ def build_sidebar():
 		["cafe-sidebar"],
 		attrs={"aria-label": "Main"},
 		styles={
-			"display": "none",
 			"flexShrink": "0",
-			"width": "224px",
+			"width": "0",
+			"overflow": "hidden",
 			"backgroundColor": SURFACE_1,
-			"borderRight": f"1px solid {OUTLINE}",
 		},
 		children=[content],
 	)

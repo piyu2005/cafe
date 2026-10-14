@@ -8,7 +8,7 @@ block, and the shell renders on every page in the app), a cost accepted on
 purpose for editability - see build_shell() for the numbers.
 """
 
-from blocks import DIALOG_SHADOW, INK, MUTED, OUTLINE, SURFACE_1, block, cafe_logo, icon
+from blocks import DIALOG_SHADOW, INK, MUTED, SURFACE_1, block, cafe_logo, icon
 from shell_component_parts import BADGE_STYLES
 from sidebar import build_sidebar
 
@@ -71,8 +71,8 @@ LOGO_STYLES = {
 RAIL_STYLES = {
 	"flexShrink": "0",
 	"width": "50px",
+	"overflow": "hidden",
 	"backgroundColor": SURFACE_1,
-	"borderRight": f"1px solid {OUTLINE}",
 }
 RAIL_CONTENT_STYLES = {
 	"position": "sticky",
