@@ -168,16 +168,43 @@ html[data-cafe-sidebar='open'] .cafe-nav {
 html[data-cafe-sidebar='open'] .cafe-np {
   left: 224px;
 }
-.cafe-nav-item:hover,
-.cafe-nav-logo:hover {
-  background: var(--surface-gray-2);
+/* Collapsed (default): matches frappe-ui's actual SidebarRail exactly, not
+   a guess - read straight off ui.frappe.io's own rendered DOM/CSS. A
+   SidebarRailItem is a fixed 28px square (`size-7`) with its own hover/active
+   fill, never the full (mostly-empty) row - hover is `surface-gray-3`
+   (#ededed), active is `surface-gray-4` (#e2e2e2) plus a 3px indicator bar
+   at the rail's left edge in `surface-gray-8` (#525252, == this app's
+   --ink-gray-6). The well's 3px margin-left (on top of ITEM_STYLES' own 8px
+   padding-left) lines its 28px square up with frappe-ui's own 11px rail
+   padding (8 + 3 = 11, same as their `px-[11px]`). */
+.cafe-nav-icon-well {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
-.cafe-nav-item.active {
-  background: var(--surface-base);
-  box-shadow:
-    rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
-    rgba(0, 0, 0, 0.2) 0 0 1px 0,
-    rgba(0, 0, 0, 0.14) 0 1px 3px 0;
+.cafe-nav-item:hover .cafe-nav-icon-well,
+.cafe-nav-logo:hover {
+  background: var(--surface-gray-3);
+}
+.cafe-nav-item.active .cafe-nav-icon-well {
+  background: var(--surface-gray-4);
+}
+.cafe-nav-item.active .cafe-nav-icon-well::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 50%;
+  width: 3px;
+  height: 28px;
+  transform: translateY(-50%);
+  border-radius: 0 4px 4px 0;
+  background: var(--ink-gray-6);
 }
 /* The shell's HTML carries inline styles (so the editor canvas shows it), and
    inline styles beat class rules. The states that JavaScript toggles, and the
@@ -220,10 +247,43 @@ html[data-cafe-sidebar='open'] .cafe-np {
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
 }
-/* Expanded: label and count revealed (the icon doesn't move - see above). */
+/* Expanded: label and count revealed (the icon doesn't move - see above).
+   The hover/active fill moves from the icon's own well to the full row -
+   frappe-ui's regular Sidebar/SidebarItem treatment (hover `surface-gray-2`,
+   active `surface-elevation-3` + shadow-sm - the colors this app already
+   had here before the rail/sidebar merge, left untouched since they were
+   never the problem). Both swaps are instant, same as the icon's own
+   well above - nothing about shape/color is eased, only the label and the
+   container width are. */
 html[data-cafe-sidebar='open'] .cafe-nav-label {
   max-width: 160px;
   opacity: 1;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-icon-well {
+  width: 16px;
+  height: 16px;
+  margin-left: 0;
+  border-radius: 0;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item:hover .cafe-nav-icon-well {
+  background: none;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item.active .cafe-nav-icon-well {
+  background: none;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item.active .cafe-nav-icon-well::before {
+  display: none;
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item:hover,
+html[data-cafe-sidebar='open'] .cafe-nav-logo:hover {
+  background: var(--surface-gray-2);
+}
+html[data-cafe-sidebar='open'] .cafe-nav-item.active {
+  background: var(--surface-base);
+  box-shadow:
+    rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
+    rgba(0, 0, 0, 0.2) 0 0 1px 0,
+    rgba(0, 0, 0, 0.14) 0 1px 3px 0;
 }
 html[data-cafe-sidebar='open'] .cafe-nav-item .cafe-badge {
   position: static !important;
@@ -242,6 +302,12 @@ html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
   background: transparent !important;
   color: var(--ink-gray-6);
   box-shadow: none;
+}
+.cafe-np-open .cafe-nav-item.active:not([data-bell]) .cafe-nav-icon-well {
+  background: transparent !important;
+}
+.cafe-np-open .cafe-nav-item.active:not([data-bell]) .cafe-nav-icon-well::before {
+  display: none;
 }
 
 /* ---- Logo menu ---- */

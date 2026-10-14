@@ -65,7 +65,17 @@ ITEMS = [
 
 
 def item(key, label, href, icon_name):
-	children = [icon(icon_name, 16), block("span", "Label", ["cafe-nav-label"], text=label, styles=LABEL_STYLES)]
+	# The icon sits in its own well, a fixed 28px square - frappe-ui's actual
+	# SidebarRail cell size (`size-7`) - because the collapsed rail's hover/
+	# active fill is a tight square around just the icon there, not a
+	# stretched rectangle across the whole (mostly empty) row. Expanded, the
+	# well goes back to a plain 16px inline box and the FULL row takes the
+	# hover/active fill instead, same as frappe-ui's regular Sidebar/
+	# SidebarItem. Both swaps are instant, not eased (styles.css) - matching
+	# frappe-ui, which doesn't animate this either, only the label and the
+	# container width.
+	icon_well = block("span", "Icon", ["cafe-nav-icon-well"], children=[icon(icon_name, 16)])
+	children = [icon_well, block("span", "Label", ["cafe-nav-label"], text=label, styles=LABEL_STYLES)]
 	if key in ("messages", "notifications"):
 		children.append(
 			block("span", "Count", ["cafe-badge"], attrs={"data-badge": key}, styles=COUNT_STYLES)
@@ -162,7 +172,10 @@ def toggle_block():
 			"data-tooltip-side": "right",
 			"data-sidebar-toggle": "",
 		},
-		children=[icon("panel-right-open", 16), block("span", "Label", ["cafe-nav-label"], text="Collapse", styles=LABEL_STYLES)],
+		children=[
+			block("span", "Icon", ["cafe-nav-icon-well"], children=[icon("panel-right-open", 16)]),
+			block("span", "Label", ["cafe-nav-label"], text="Collapse", styles=LABEL_STYLES),
+		],
 		styles=ITEM_STYLES,
 	)
 
