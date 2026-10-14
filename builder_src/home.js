@@ -256,23 +256,15 @@
 		observer.observe(sentinel)
 	}
 
-	// One active chip at a time (clicking the active one clears it) - no
-	// filtering yet, Post has no category field to filter by. The close icon
-	// is already in every chip's markup (home_page.py), hidden by styles.css
-	// until its chip has .active.
+	// Multi-select: each chip toggles only itself, independent of the others
+	// - no filtering yet, Post has no category field to filter by. The close
+	// icon is already in every chip's markup (home_page.py), hidden by
+	// styles.css until its own chip has .active.
 	function setupTagChips() {
-		var chips = document.querySelectorAll('.cafe-tag-chip')
-		chips.forEach(function (chip) {
+		document.querySelectorAll('.cafe-tag-chip').forEach(function (chip) {
 			chip.addEventListener('click', function () {
-				var wasActive = chip.classList.contains('active')
-				chips.forEach(function (c) {
-					c.classList.remove('active')
-					c.setAttribute('aria-pressed', 'false')
-				})
-				if (!wasActive) {
-					chip.classList.add('active')
-					chip.setAttribute('aria-pressed', 'true')
-				}
+				var active = chip.classList.toggle('active')
+				chip.setAttribute('aria-pressed', active ? 'true' : 'false')
 			})
 		})
 	}
