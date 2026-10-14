@@ -22,37 +22,37 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "3adaexc6f",
+     "blockId": "tdckx3oui",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "rxk5pucra",
+       "blockId": "zupjxzame",
        "blockName": "Shell",
        "children": [
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "0aw2z7rjh",
+         "blockId": "4bjm2lob5",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "qusla8wvy",
+           "blockId": "zkdxvgw10",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "r8dze70oy",
+             "blockId": "3upl3cxd6",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "kgn3f97hc",
+               "blockId": "okfu7kuek",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -99,13 +99,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "cklj9eyjd",
+             "blockId": "0aw2z7rjh",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ezxrcn117",
+               "blockId": "qusla8wvy",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -152,13 +152,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "dqjwbq9i3",
+             "blockId": "0yuogougr",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "h0fcxul7y",
+               "blockId": "uzfecijza",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -205,13 +205,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "6jqtcxk43",
+             "blockId": "4c90l7etp",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "v4zsbbe5v",
+               "blockId": "g986jtcdq",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -237,7 +237,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "edwe254m8",
+               "blockId": "2gy322bym",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -284,13 +284,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "k5ln7wqmy",
+             "blockId": "1rqs4uohg",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "lh23tn7z5",
+               "blockId": "zmd9cxoan",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -316,7 +316,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "1lo64ad9o",
+               "blockId": "iw8x8jj0s",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -363,13 +363,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "n5easxqxu",
+             "blockId": "qkqq0ii9w",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "1elzibtmz",
+               "blockId": "w6l8df872",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -416,13 +416,13 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "3upl3cxd6",
+             "blockId": "3qbzd11k8",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "okfu7kuek",
+               "blockId": "fdwnep8qo",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -511,37 +511,37 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "29jk1oluq",
+         "blockId": "l68in7xt2",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "8g9qq8yzy",
+           "blockId": "f2hu9y924",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "4c90l7etp",
+             "blockId": "xe0w5xm0r",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "2gy322bym",
+               "blockId": "vvnmg7oqa",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "0yuogougr",
+                 "blockId": "euv6w0pmq",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "uzfecijza",
+                   "blockId": "ozjaywy7e",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -588,7 +588,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "g986jtcdq",
+                 "blockId": "wferwls4e",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -656,19 +656,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "gqt7j7ywh",
+             "blockId": "7njgeakiv",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "1rqs4uohg",
+               "blockId": "cp9htuwo3",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "zmd9cxoan",
+                 "blockId": "n8wj1xrf2",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -694,7 +694,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "iw8x8jj0s",
+                 "blockId": "e0tz2qtb8",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -741,13 +741,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "fdwnep8qo",
+               "blockId": "u0m7cuw57",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "w6l8df872",
+                 "blockId": "gqt7j7ywh",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -773,7 +773,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "qkqq0ii9w",
+                 "blockId": "b7qsglr4z",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -820,13 +820,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "ozjaywy7e",
+               "blockId": "29jk1oluq",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "3qbzd11k8",
+                 "blockId": "08y5woro3",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -852,7 +852,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "zkdxvgw10",
+                 "blockId": "auccirn4y",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -878,7 +878,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "4bjm2lob5",
+                 "blockId": "8g9qq8yzy",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -925,13 +925,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "xe0w5xm0r",
+               "blockId": "adkipcefp",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "euv6w0pmq",
+                 "blockId": "rcbbgzb9b",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -957,7 +957,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "wferwls4e",
+                 "blockId": "b52j32ztw",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -983,7 +983,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "vvnmg7oqa",
+                 "blockId": "klv4ktv1f",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1030,13 +1030,13 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "cp9htuwo3",
+               "blockId": "4n320uv3u",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "n8wj1xrf2",
+                 "blockId": "516zqtvuz",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1062,7 +1062,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "e0tz2qtb8",
+                 "blockId": "vzesiqk3y",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1130,19 +1130,19 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "auccirn4y",
+             "blockId": "g1h9b72pp",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "08y5woro3",
+               "blockId": "kvf3vylf3",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "b7qsglr4z",
+                 "blockId": "poy4rvaj0",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1168,7 +1168,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "u0m7cuw57",
+                 "blockId": "igqkkz8p8",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1278,19 +1278,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "g1h9b72pp",
+         "blockId": "2ot957m5r",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "b52j32ztw",
+           "blockId": "6fjnb8v3t",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "rcbbgzb9b",
+             "blockId": "qwjdrdqj9",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1337,13 +1337,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "adkipcefp",
+           "blockId": "huku3l42m",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "klv4ktv1f",
+             "blockId": "ezlryx7rb",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1390,13 +1390,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "4n320uv3u",
+           "blockId": "3adaexc6f",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "516zqtvuz",
+             "blockId": "mzfqhtwpx",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1422,7 +1422,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "vzesiqk3y",
+             "blockId": "rxk5pucra",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1469,13 +1469,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "poy4rvaj0",
+           "blockId": "ofxela89r",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "7njgeakiv",
+             "blockId": "rawnb6tqw",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1522,13 +1522,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "kvf3vylf3",
+           "blockId": "0h5xz9ywm",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "igqkkz8p8",
+             "blockId": "pz27ppnzi",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1596,19 +1596,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "mzfqhtwpx",
+         "blockId": "42o8bwtvm",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "qwjdrdqj9",
+           "blockId": "8v3d460t4",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "f2hu9y924",
+             "blockId": "llcg7xvpd",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1634,7 +1634,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "l68in7xt2",
+             "blockId": "vbq1fdeo1",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1681,13 +1681,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "huku3l42m",
+           "blockId": "0aavjx48t",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "6fjnb8v3t",
+             "blockId": "ft9fgw3yi",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1713,7 +1713,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "ezlryx7rb",
+             "blockId": "azkvpkmmq",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1808,7 +1808,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "o0qblrcmn",
+       "blockId": "n5easxqxu",
        "blockName": "Main",
        "children": [
         {
@@ -1823,7 +1823,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "m1dymd8mg",
+         "blockId": "dqjwbq9i3",
          "blockName": "Mobile header",
          "children": [
           {
@@ -1833,7 +1833,7 @@
             "alignItems": "center",
             "gap": "6px"
            },
-           "blockId": "uksj8qvjt",
+           "blockId": "cklj9eyjd",
            "blockName": "Brand",
            "children": [],
            "classes": [],
@@ -1863,7 +1863,7 @@
             "alignItems": "center",
             "gap": "4px"
            },
-           "blockId": "je3tx24h3",
+           "blockId": "h0fcxul7y",
            "blockName": "Bell and write",
            "children": [],
            "classes": [],
@@ -1925,7 +1925,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "chol4jirh",
+         "blockId": "k5ln7wqmy",
          "blockName": "Header",
          "children": [
           {
@@ -1940,7 +1940,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "u60z0sprn",
+           "blockId": "edwe254m8",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -1948,7 +1948,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "mhyg626ek",
+             "blockId": "ezxrcn117",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2013,7 +2013,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "dgqx62amw",
+           "blockId": "1lo64ad9o",
            "blockName": "New Post",
            "children": [
             {
@@ -2023,7 +2023,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "0yo84cter",
+             "blockId": "6jqtcxk43",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2049,7 +2049,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "dmxf5jbsq",
+             "blockId": "lh23tn7z5",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2127,7 +2127,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "7xzkdjucc",
+         "blockId": "1elzibtmz",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2138,7 +2138,7 @@
             "margin": "0 auto",
             "padding": "24px 20px"
            },
-           "blockId": "d9rdejmnu",
+           "blockId": "v4zsbbe5v",
            "blockName": "Container",
            "children": [
             {
@@ -2306,6 +2306,509 @@
              "visibilityCondition": null
             },
             {
+             "attributes": {},
+             "baseStyles": {
+              "display": "flex",
+              "flexWrap": "wrap",
+              "gap": "8px",
+              "marginTop": "16px"
+             },
+             "blockId": "i3jrkzsl9",
+             "blockName": "Tag chips",
+             "children": [
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Productivity"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "qoxzzblbq",
+               "blockName": "Productivity",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "51cnblxa7",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Productivity",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                },
+                {
+                 "attributes": {},
+                 "baseStyles": {
+                  "width": "12px",
+                  "height": "12px",
+                  "flexShrink": "0",
+                  "color": "var(--ink-gray-7)"
+                 },
+                 "blockId": "ap6w3e65r",
+                 "blockName": "icon/x",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "svg",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M18 6 6 18\" />\n  <path d=\"m6 6 12 12\" /></svg>",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": "__raw_html__",
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Photography"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "7wgdorule",
+               "blockName": "Photography",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "lbrak4kkr",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Photography",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Technology"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "xmjs9ty2i",
+               "blockName": "Technology",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "s9lyzysy2",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Technology",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Mindfulness"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "gwyit5ur5",
+               "blockName": "Mindfulness",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "08d6rlo7d",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Mindfulness",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Writing"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "nz9u8wchy",
+               "blockName": "Writing",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "06dgeus69",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Writing",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              },
+              {
+               "attributes": {
+                "type": "button",
+                "aria-label": "Design"
+               },
+               "baseStyles": {
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "4px",
+                "flexShrink": "0",
+                "border": "0",
+                "padding": "6px 8px",
+                "borderRadius": "8px",
+                "backgroundColor": "var(--surface-gray-2)",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "420",
+                "color": "var(--ink-gray-7)",
+                "letterSpacing": "0.02em",
+                "lineHeight": "1.15"
+               },
+               "blockId": "bj5r7f1fh",
+               "blockName": "Design",
+               "children": [
+                {
+                 "attributes": {},
+                 "baseStyles": {},
+                 "blockId": "ncczicuwz",
+                 "blockName": "Label",
+                 "children": [],
+                 "classes": [],
+                 "clientScript": {},
+                 "customAttributes": {},
+                 "dataKey": null,
+                 "draggable": false,
+                 "dynamicValues": [],
+                 "element": "span",
+                 "elementBeforeConversion": null,
+                 "extendedFromComponent": null,
+                 "innerHTML": "Design",
+                 "isChildOfComponent": null,
+                 "isRepeaterBlock": false,
+                 "mobileStyles": {},
+                 "originalElement": null,
+                 "props": {},
+                 "rawStyles": {},
+                 "referenceBlockId": null,
+                 "tabletStyles": {},
+                 "visibilityCondition": null
+                }
+               ],
+               "classes": [
+                "cafe-tag-chip"
+               ],
+               "clientScript": {},
+               "customAttributes": {},
+               "dataKey": null,
+               "draggable": false,
+               "dynamicValues": [],
+               "element": "button",
+               "elementBeforeConversion": null,
+               "extendedFromComponent": null,
+               "innerHTML": null,
+               "isChildOfComponent": null,
+               "isRepeaterBlock": false,
+               "mobileStyles": {},
+               "originalElement": null,
+               "props": {},
+               "rawStyles": {},
+               "referenceBlockId": null,
+               "tabletStyles": {},
+               "visibilityCondition": null
+              }
+             ],
+             "classes": [
+              "cafe-tag-chips"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "div",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": null,
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
              "attributes": {
               "id": "cafe-feed",
               "aria-live": "polite"
@@ -2315,7 +2818,7 @@
               "flexDirection": "column",
               "marginTop": "8px"
              },
-             "blockId": "y9b0a3is4",
+             "blockId": "7xzkdjucc",
              "blockName": "Posts",
              "children": [
               {
@@ -2330,7 +2833,7 @@
                 "color": "inherit",
                 "textDecoration": "none"
                },
-               "blockId": "eb0z87o51",
+               "blockId": "chol4jirh",
                "blockName": "Post",
                "children": [
                 {
@@ -2340,13 +2843,13 @@
                   "alignItems": "center",
                   "gap": "8px"
                  },
-                 "blockId": "08d6rlo7d",
+                 "blockId": "o7houf72v",
                  "blockName": "Author",
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "qoxzzblbq",
+                   "blockId": "0f82j9q3z",
                    "blockName": "Avatar",
                    "children": [
                     {
@@ -2359,7 +2862,7 @@
                       "height": "100%",
                       "objectFit": "cover"
                      },
-                     "blockId": "51cnblxa7",
+                     "blockId": "n9mu25eir",
                      "blockName": "Avatar image",
                      "children": [],
                      "classes": [],
@@ -2395,7 +2898,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "ap6w3e65r",
+                     "blockId": "sw70uw2x3",
                      "blockName": "Avatar initial",
                      "children": [],
                      "classes": [
@@ -2459,7 +2962,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "s9lyzysy2",
+                   "blockId": "eb0z87o51",
                    "blockName": "Publication tile",
                    "children": [
                     {
@@ -2472,7 +2975,7 @@
                       "height": "100%",
                       "objectFit": "cover"
                      },
-                     "blockId": "lbrak4kkr",
+                     "blockId": "x2b3rmglp",
                      "blockName": "Publication tile image",
                      "children": [],
                      "classes": [],
@@ -2508,7 +3011,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "7wgdorule",
+                     "blockId": "eovb3up39",
                      "blockName": "Publication tile initial",
                      "children": [],
                      "classes": [
@@ -2578,7 +3081,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "xmjs9ty2i",
+                   "blockId": "y9b0a3is4",
                    "blockName": "Name",
                    "children": [],
                    "classes": [],
@@ -2638,7 +3141,7 @@
                   "alignItems": "flex-start",
                   "gap": "16px"
                  },
-                 "blockId": "eovb3up39",
+                 "blockId": "dgqx62amw",
                  "blockName": "Body",
                  "children": [
                   {
@@ -2647,7 +3150,7 @@
                     "flex": "1 1 0%",
                     "minWidth": "0"
                    },
-                   "blockId": "0f82j9q3z",
+                   "blockId": "0yo84cter",
                    "blockName": "Text",
                    "children": [
                     {
@@ -2659,7 +3162,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "gwyit5ur5",
+                     "blockId": "4aj6ergym",
                      "blockName": "Title",
                      "children": [],
                      "classes": [],
@@ -2699,7 +3202,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.5"
                      },
-                     "blockId": "06dgeus69",
+                     "blockId": "q6vv4que3",
                      "blockName": "Excerpt",
                      "children": [],
                      "classes": [
@@ -2744,13 +3247,13 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "sw70uw2x3",
+                     "blockId": "u60z0sprn",
                      "blockName": "Meta",
                      "children": [
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "nz9u8wchy",
+                       "blockId": "mhyg626ek",
                        "blockName": "Date",
                        "children": [],
                        "classes": [],
@@ -2783,7 +3286,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "i3jrkzsl9",
+                       "blockId": "m1dymd8mg",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -2809,7 +3312,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "ncczicuwz",
+                       "blockId": "uksj8qvjt",
                        "blockName": "Minutes",
                        "children": [],
                        "classes": [],
@@ -2842,7 +3345,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "n9mu25eir",
+                       "blockId": "d9rdejmnu",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -2868,7 +3371,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "bj5r7f1fh",
+                       "blockId": "je3tx24h3",
                        "blockName": "Comments",
                        "children": [],
                        "classes": [
@@ -2957,7 +3460,7 @@
                     "backgroundColor": "var(--surface-gray-2)",
                     "objectFit": "cover"
                    },
-                   "blockId": "x2b3rmglp",
+                   "blockId": "dmxf5jbsq",
                    "blockName": "Thumbnail",
                    "children": [],
                    "classes": [
@@ -3077,7 +3580,7 @@
               "padding": "64px 0",
               "textAlign": "center"
              },
-             "blockId": "o7houf72v",
+             "blockId": "o0qblrcmn",
              "blockName": "Nothing found",
              "children": [],
              "classes": [
@@ -3112,7 +3615,7 @@
              "baseStyles": {
               "height": "4px"
              },
-             "blockId": "q6vv4que3",
+             "blockId": "r8dze70oy",
              "blockName": "Sentinel",
              "children": [],
              "classes": [],
@@ -3149,7 +3652,7 @@
              "baseStyles": {
               "display": "none"
              },
-             "blockId": "4aj6ergym",
+             "blockId": "kgn3f97hc",
              "blockName": "Row template",
              "children": [],
              "classes": [],
@@ -3307,7 +3810,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-10-12 16:21:10.082900",
+ "creation": "2026-10-14 16:32:26.713382",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3317,7 +3820,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-12 16:21:10.082900",
+ "modified": "2026-10-14 16:32:26.713382",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
@@ -3326,6 +3829,6 @@
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-12 16:21:10.082900",
+ "published_at": "2026-10-14 16:32:26.713382",
  "route": "cafe-home"
 }

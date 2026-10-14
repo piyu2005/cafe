@@ -18,6 +18,7 @@ from bell import mobile_bell
 from blocks import (
 	GRAY_6,
 	INK,
+	INK_7,
 	MUTED,
 	PUBLICATIONS_ENABLED,
 	SOLID_BG,
@@ -27,6 +28,7 @@ from blocks import (
 	block,
 	cafe_logo_svg,
 	html_el,
+	icon,
 	raw_block,
 	svg,
 	text_style,
@@ -68,6 +70,26 @@ THUMBNAIL_STYLES = {
 	"backgroundColor": SURFACE_2,
 	"objectFit": "cover",
 }
+
+# The category filter chips under the search box - frappe-ui's "tag" component
+# (size lg, style subtle, no prefix): surface-gray-2 fill, 8px radius, 6px/8px
+# padding, 4px gap to the suffix icon, ink-gray-7 14px/420/0.02em/1.15 text -
+# read straight off the design file's own inspector, not guessed. Only the
+# first ("Productivity") carries the close icon; that's the one shown
+# selected in the design, the rest are plain.
+TAG_CHIP_STYLES = {
+	"display": "inline-flex",
+	"alignItems": "center",
+	"gap": "4px",
+	"flexShrink": "0",
+	"border": "0",
+	"padding": "6px 8px",
+	"borderRadius": "8px",
+	"backgroundColor": SURFACE_2,
+	"cursor": "pointer",
+	**text_style(14, "420", INK_7),
+}
+TAG_LABELS = ["Productivity", "Photography", "Technology", "Mindfulness", "Writing", "Design"]
 
 # What goes between the row's <a> tags. [[name]] marks a value to escape and put
 # in; [[!name]] marks a piece of HTML that was built already. Only home.js's
@@ -222,6 +244,31 @@ def build_feed_row():
 	return row
 
 
+def tag_chip(label, closable=False):
+	children = [block("span", "Label", text=label)]
+	if closable:
+		children.append(icon("x", 12, INK_7))
+	return block(
+		"button",
+		label,
+		["cafe-tag-chip"],
+		attrs={"type": "button", "aria-label": label},
+		children=children,
+		styles=TAG_CHIP_STYLES,
+	)
+
+
+def build_tag_chips():
+	chips = [tag_chip(TAG_LABELS[0], closable=True)] + [tag_chip(label) for label in TAG_LABELS[1:]]
+	return block(
+		"div",
+		"Tag chips",
+		["cafe-tag-chips"],
+		styles={"display": "flex", "flexWrap": "wrap", "gap": "8px", "marginTop": "16px"},
+		children=chips,
+	)
+
+
 def build_mobile_bar():
 	"""The phone's top bar. Unlike the other pages' it is not sticky: it scrolls
 	away with the page, as on the old Home."""
@@ -345,6 +392,7 @@ def build_home(shell_id, shell_block):
 		["cafe-search"],
 		styles={"position": "relative", "display": "block", "marginTop": "16px"},
 	)
+	tag_chips = build_tag_chips()
 	feed = block(
 		"div",
 		"Posts",
@@ -390,7 +438,7 @@ def build_home(shell_id, shell_block):
 		shell_id,
 		shell_block,
 		crumbs,
-		[note, title, search_box, feed, empty, sentinel, template],
+		[note, title, search_box, tag_chips, feed, empty, sentinel, template],
 		"640px",
 		mobile_header=build_mobile_bar(),
 		container_class="cafe-container-home",

@@ -530,6 +530,9 @@ html[data-cafe-sidebar='open'] .cafe-np {
     rgba(0, 0, 0, 0.2) 0 0 1px 0,
     rgba(0, 0, 0, 0.14) 0 1px 3px 0;
 }
+.cafe-tag-chip:hover {
+  background: var(--surface-gray-3) !important;
+}
 
 /* Result rows. Created by search.js. */
 .cafe-person {
