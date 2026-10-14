@@ -8,15 +8,37 @@
 
 	var CAFE = (window.CAFE = window.CAFE || {})
 
-	// The rail is either the narrow icon rail or the wide sidebar. The choice is
-	// kept in this browser, and set on <html> as early as this script runs, so
-	// the page is drawn with the right one.
+	// The nav is either the narrow icon rail or the wide sidebar - the SAME
+	// element, widened by styles.css off an attribute on <html>. The choice is
+	// kept in this browser, and set as early as this script runs, so the page
+	// is drawn with the right one.
 	var SIDEBAR_KEY = 'cafe-sidebar'
 	try {
 		if (localStorage.getItem(SIDEBAR_KEY) === 'open')
 			document.documentElement.setAttribute('data-cafe-sidebar', 'open')
 	} catch (e) {
 		/* storage may be blocked */
+	}
+
+	// With the sidebar expanded, every item already shows its own label text
+	// next to the icon - a hover tooltip repeating it would be redundant
+	// (frappe-ui's own SidebarItem disables its tooltip the same way:
+	// :disabled="!isCollapsed"). CAFE.tooltip() re-reads data-tooltip fresh on
+	// every hover (see ui.js), so toggling the attribute here is enough; no
+	// need to re-wire anything. The toggle button is the one exception - what
+	// it DOES flips with the state, so its hint text flips too.
+	function syncNavTooltips(open) {
+		document.querySelectorAll('.cafe-nav-item[aria-label]').forEach(function (el) {
+			if (el.hasAttribute('data-sidebar-toggle')) return
+			if (open) el.removeAttribute('data-tooltip')
+			else el.setAttribute('data-tooltip', el.getAttribute('aria-label'))
+		})
+		var toggle = document.querySelector('[data-sidebar-toggle]')
+		if (!toggle) return
+		var label = open ? 'Collapse sidebar' : 'Expand sidebar'
+		toggle.setAttribute('aria-label', label)
+		if (open) toggle.removeAttribute('data-tooltip')
+		else toggle.setAttribute('data-tooltip', label)
 	}
 
 	function setSidebar(open) {
@@ -28,14 +50,16 @@
 		} catch (e) {
 			/* storage may be blocked */
 		}
+		syncNavTooltips(open)
 	}
 
 	function setupSidebarToggle() {
+		syncNavTooltips(document.documentElement.hasAttribute('data-cafe-sidebar'))
 		document.addEventListener('click', function (event) {
 			var button = event.target.closest('[data-sidebar-toggle]')
 			if (!button) return
-			setSidebar(button.getAttribute('data-sidebar-toggle') === 'open')
-			// The button that was pressed is gone; keep its tooltip and focus ring from lingering.
+			setSidebar(!document.documentElement.hasAttribute('data-cafe-sidebar'))
+			// Keep its tooltip and focus ring from lingering as the layout shifts under it.
 			button.blur()
 		})
 	}

@@ -1,11 +1,14 @@
-"""The expanded rail: a 14rem sidebar with labels, in place of the 50px rail.
+"""The nav: a single set of blocks that is a 50px icon rail by default and a
+224px labeled sidebar when expanded - one element, not two swapped or
+width-animated side by side. styles.css drives both the container's width and
+each label's width/opacity off one attribute on <html> (set in shell.js), the
+same mechanism frappe-ui's own Sidebar.vue uses (transition-[width]
+duration-300 ease-in-out on the container; the icon's own alignment snaps
+instantly between centered and left, same as frappe-ui - only the label and
+the container width ease).
 
-The rail's bottom button opens it and its own bottom item closes it. Which is
-showing is kept in the browser (shell.js), and styles.css swaps the two by an
-attribute on <html>, so a page loads with the right one and nothing jumps.
-
-Individual native blocks, same as build_rail() in shell_component.py: each
-item is its own block, editable on its own in Builder's canvas."""
+Individual native blocks, same as the rest of the shell: each item is its own
+block, editable on its own in Builder's canvas."""
 
 from blocks import INK, SURFACE_1, block, cafe_logo, icon
 from shell_component_parts import BADGE_STYLES
@@ -17,14 +20,17 @@ LABEL_STYLES = {
 	"letterSpacing": "0.02em",
 	"lineHeight": "1.15",
 	"color": "inherit",
+	"whiteSpace": "nowrap",
 }
+# No gap/padding-left here - both are state-dependent (collapsed: centered,
+# icon only; expanded: left-aligned, with a label) and live entirely in
+# styles.css, so there is nothing inline for it to fight with `!important`.
 ITEM_STYLES = {
+	"position": "relative",
 	"display": "flex",
 	"alignItems": "center",
-	"gap": "8px",
 	"width": "100%",
 	"height": "28px",
-	"padding": "0 0 0 8px",
 	"border": "0",
 	"borderRadius": "8px",
 	"backgroundColor": "transparent",
@@ -51,71 +57,66 @@ ITEMS = [
 
 
 def item(key, label, href, icon_name):
-	children = [icon(icon_name, 16), block("span", "Label", text=label, styles=LABEL_STYLES)]
+	children = [icon(icon_name, 16), block("span", "Label", ["cafe-nav-label"], text=label, styles=LABEL_STYLES)]
 	if key in ("messages", "notifications"):
 		children.append(
 			block("span", "Count", ["cafe-badge"], attrs={"data-badge": key}, styles=COUNT_STYLES)
 		)
+	# data-tooltip starts equal to aria-label (both the same text) so
+	# CAFE.autoTooltips() wires every item at page load; shell.js then removes
+	# data-tooltip (not aria-label) whenever the sidebar is expanded, since the
+	# label span next to the icon already shows the same text then - a
+	# tooltip repeating it would be redundant (frappe-ui's own SidebarItem
+	# disables its tooltip the same way: :disabled="!isCollapsed").
+	attrs = {"data-nav": key, "aria-label": label, "data-tooltip": label, "data-tooltip-side": "right"}
 	if href:
 		return block(
 			"a",
 			label,
-			["cafe-side-item"],
-			attrs={"href": href, "data-nav": key},
+			["cafe-nav-item"],
+			attrs={**attrs, "href": href},
 			children=children,
 			styles=ITEM_STYLES,
 		)
 	return block(
 		"button",
 		label,
-		["cafe-side-item"],
-		attrs={"type": "button", "data-nav": key, "data-bell": ""},
+		["cafe-nav-item"],
+		attrs={**attrs, "type": "button", "data-bell": ""},
 		children=children,
 		styles=ITEM_STYLES,
 	)
 
 
-def sidebar_logo_block():
+def nav_logo_block():
 	return block(
 		"button",
 		"Logo",
-		["cafe-side-logo"],
+		["cafe-nav-logo"],
 		attrs={"type": "button", "aria-label": "Cafe menu", "aria-haspopup": "menu", "data-logo": ""},
 		children=[
-			block(
-				"span",
-				"Mark",
-				children=[cafe_logo(32)],
-				styles={
-					"display": "grid",
-					"placeItems": "center",
-					"flexShrink": "0",
-					"width": "32px",
-					"height": "32px",
-				},
-			),
+			cafe_logo(32),
 			block(
 				"span",
 				"Name",
+				["cafe-nav-label"],
 				text="Cafe",
 				styles={
-					"flex": "1",
-					"textAlign": "left",
 					"fontSize": "14px",
 					"fontWeight": "500",
 					"letterSpacing": "0.015em",
 					"lineHeight": "1.15",
 					"color": INK,
+					"whiteSpace": "nowrap",
 				},
 			),
 		],
 		styles={
+			"position": "relative",
 			"display": "flex",
 			"alignItems": "center",
-			"gap": "8px",
 			"width": "100%",
 			"height": "40px",
-			"padding": "4px",
 			"border": "0",
 			"borderRadius": "8px",
 			"backgroundColor": "transparent",
@@ -125,22 +126,37 @@ def sidebar_logo_block():
 	)
 
 
-def collapse_block():
+def toggle_block():
+	"""The nav's own bottom button - one button that flips the current state
+	(shell.js), rather than a separate open button and close button. Its
+	label only ever shows expanded (the one time the button reads
+	"Collapse"), so it needs no text swap; the icon's 180deg rotation
+	(styles.css) says "expand" when collapsed, same as the old two-button
+	version's icon did. Its aria-label/tooltip start matching the default
+	collapsed look ("Expand sidebar") - unlike every other item, what this
+	one DOES flips with the state, so shell.js swaps its text too, not just
+	whether it's shown."""
 	return block(
 		"button",
-		"Collapse",
-		["cafe-side-item"],
-		attrs={"type": "button", "data-sidebar-toggle": "close"},
-		children=[icon("panel-right-open", 16), block("span", "Label", text="Collapse", styles=LABEL_STYLES)],
+		"Toggle",
+		["cafe-nav-item", "cafe-nav-toggle"],
+		attrs={
+			"type": "button",
+			"aria-label": "Expand sidebar",
+			"data-tooltip": "Expand sidebar",
+			"data-tooltip-side": "right",
+			"data-sidebar-toggle": "",
+		},
+		children=[icon("panel-right-open", 16), block("span", "Label", ["cafe-nav-label"], text="Collapse", styles=LABEL_STYLES)],
 		styles=ITEM_STYLES,
 	)
 
 
-def build_sidebar():
+def build_nav():
 	content = block(
 		"div",
-		"Sidebar content",
-		["cafe-sidebar-content"],
+		"Nav content",
+		["cafe-nav-content"],
 		styles={
 			"position": "sticky",
 			"top": "0",
@@ -153,7 +169,7 @@ def build_sidebar():
 				"div",
 				"Logo row",
 				styles={"flexShrink": "0", "padding": "8px"},
-				children=[sidebar_logo_block()],
+				children=[nav_logo_block()],
 			),
 			block(
 				"div",
@@ -169,20 +185,20 @@ def build_sidebar():
 			),
 			block(
 				"div",
-				"Collapse row",
+				"Toggle row",
 				styles={"marginTop": "auto", "padding": "0 8px 8px"},
-				children=[collapse_block()],
+				children=[toggle_block()],
 			),
 		],
 	)
 	return block(
 		"nav",
-		"Sidebar",
-		["cafe-sidebar"],
+		"Nav",
+		["cafe-nav"],
 		attrs={"aria-label": "Main"},
 		styles={
 			"flexShrink": "0",
-			"width": "0",
+			"width": "50px",
 			"overflow": "hidden",
 			"backgroundColor": SURFACE_1,
 		},

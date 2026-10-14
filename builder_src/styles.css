@@ -92,8 +92,8 @@ body {
   .cafe-app {
     height: 100dvh;
   }
-  /* Same fix for the phone sidebar drawer's own sticky, full-height column. */
-  .cafe-sidebar-content {
+  /* Same fix for the nav's own sticky, full-height column. */
+  .cafe-nav-content {
     height: 100dvh;
   }
 }
@@ -142,11 +142,34 @@ body {
   display: none !important;
 }
 
-/* ---- Rail ---- */
-.cafe-rail-item:hover {
-  background: rgba(0, 0, 0, 0.05);
+/* ---- The nav: one 50px icon rail that becomes a 224px labeled sidebar in
+   place (sidebar.py) - a single set of blocks animated by CSS alone, instead
+   of two separate panels (one rail, one sidebar) swapped or width-animated
+   side by side. Two separate elements, even width-animated in opposite
+   directions, still read as "one thing opening, another sitting behind it" -
+   matching frappe-ui's actual Sidebar.vue means exactly one element whose
+   container width eases (transition-[width] duration-300 ease-in-out) while
+   each item's icon snaps its alignment instantly (centered <-> left, same as
+   frappe-ui) and its label eases its own width/opacity - never two navs
+   overlapping. Icon size itself (icon(name, 16) in a constant 28px row)
+   never changes in either state. border-right fades via color (not width)
+   so the panel at 0 width never draws a stray hairline. */
+.cafe-nav {
+  transition:
+    width 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+  border-right: 1px solid var(--outline-gray-1);
 }
-.cafe-rail-item.active {
+html[data-cafe-sidebar='open'] .cafe-nav {
+  width: 224px !important;
+}
+html[data-cafe-sidebar='open'] .cafe-np {
+  left: 224px;
+}
+.cafe-nav-item:hover {
+  background: var(--surface-gray-2);
+}
+.cafe-nav-item.active {
   background: var(--surface-base);
   box-shadow:
     rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
@@ -159,52 +182,64 @@ body {
 .cafe-badge.show {
   display: block !important;
 }
-
-/* ---- The wide sidebar (sidebar.py) instead of the rail ----
-   Both stay in the DOM at all times and swap by animating width (same as
-   frappe-ui's own Sidebar.vue: transition-[width] duration-300 ease-in-out),
-   instead of an instant display:none/block swap. Icons never change size in
-   either state (see sidebar.py/shell_component.py - both use icon(name, 16)
-   in a constant 28px row) - this was an instant width jump, not a size
-   change, but without a transition the two can look the same. border-right
-   fades via color (not width) so the panel being 0-width never draws a
-   stray hairline. */
-.cafe-rail,
-.cafe-sidebar {
+/* Collapsed (default): icon centered in the full-width item, label and count
+   collapsed away. Instant, not eased - same as frappe-ui, which only animates
+   the label's own width/opacity and the container's width, not this. */
+.cafe-nav-item,
+.cafe-nav-logo {
+  justify-content: center;
+  padding-left: 0;
+}
+.cafe-nav-label {
+  width: 0;
+  margin-left: 0;
+  opacity: 0;
+  overflow: hidden;
   transition:
-    width 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
-  border-right: 1px solid var(--outline-gray-1);
+    width 0.2s ease-in-out,
+    opacity 0.15s ease-in-out,
+    margin-left 0.2s ease-in-out;
 }
-.cafe-sidebar {
-  width: 0 !important;
-  border-right-color: transparent;
+.cafe-nav-item .cafe-badge {
+  position: absolute !important;
+  top: -8px !important;
+  right: auto !important;
+  left: 20px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  border: 1px solid #ffffff !important;
+  box-sizing: border-box !important;
 }
-html[data-cafe-sidebar='open'] .cafe-rail {
-  width: 0 !important;
-  border-right-color: transparent;
+.cafe-nav-toggle svg {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
 }
-html[data-cafe-sidebar='open'] .cafe-sidebar {
-  width: 224px !important;
-  border-right-color: var(--outline-gray-1);
+/* Expanded: left-aligned, label and count revealed. */
+html[data-cafe-sidebar='open'] .cafe-nav-item,
+html[data-cafe-sidebar='open'] .cafe-nav-logo {
+  justify-content: flex-start;
+  padding-left: 8px;
 }
-html[data-cafe-sidebar='open'] .cafe-np {
-  left: 224px;
+html[data-cafe-sidebar='open'] .cafe-nav-label {
+  width: auto;
+  margin-left: 8px;
+  opacity: 1;
+  overflow: visible;
 }
-.cafe-side-item:hover,
-.cafe-side-logo:hover {
-  background: var(--surface-gray-2) !important;
+html[data-cafe-sidebar='open'] .cafe-nav-item .cafe-badge {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  height: 16px !important;
+  margin-left: auto !important;
+  margin-right: 4px !important;
+  border: 0 !important;
 }
-.cafe-side-item.active {
-  background: var(--surface-base) !important;
-  color: var(--ink-gray-9);
-  box-shadow:
-    rgba(255, 255, 255, 0.16) 0 0.25px 1.5px 0 inset,
-    rgba(0, 0, 0, 0.2) 0 0 1px 0,
-    rgba(0, 0, 0, 0.14) 0 1px 3px 0;
+html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
+  transform: none;
 }
 /* With the notifications panel open, the bell is the active item. */
-.cafe-np-open .cafe-side-item.active:not([data-bell]) {
+.cafe-np-open .cafe-nav-item.active:not([data-bell]) {
   background: transparent !important;
   color: var(--ink-gray-6);
   box-shadow: none;
@@ -1428,12 +1463,11 @@ p.cafe-clamp-3:empty::before {
   line-height: 1.15;
 }
 
-/* ---- Mobile: rail becomes a bottom bar ---- */
+/* ---- Mobile: nav becomes a bottom bar ---- */
 @media (max-width: 767px) {
-  .cafe-rail,
+  .cafe-nav,
   .cafe-header,
-  .cafe-menu,
-  html[data-cafe-sidebar='open'] .cafe-sidebar {
+  .cafe-menu {
     display: none !important;
   }
   .cafe-mobile-header {
@@ -1785,7 +1819,7 @@ p.cafe-clamp-3:empty::before {
 }
 
 /* ---- Notifications: bells and the panel ---- */
-button.cafe-rail-item {
+button.cafe-nav-item {
   background: transparent;
 }
 .cafe-bell:hover {
@@ -1793,11 +1827,6 @@ button.cafe-rail-item {
 }
 .cafe-bell.active {
   background: var(--surface-gray-2) !important;
-}
-/* With the panel open, the bell is the active item and the page's own is not. */
-.cafe-np-open .cafe-rail-item.active:not([data-bell]) {
-  background: transparent;
-  box-shadow: none;
 }
 .cafe-np {
   position: fixed;
