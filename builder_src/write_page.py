@@ -37,11 +37,22 @@ VENDOR = ["write-editor.js"]
 # matters most on a slow connection.
 TIPTAP_MODULES = [
 	"https://esm.sh/@tiptap/core@3.31.3",
-	"https://esm.sh/@tiptap/starter-kit@3.31.3",
+	"https://esm.sh/@tiptap/extension-bold@3.31.3",
+	"https://esm.sh/@tiptap/extension-blockquote@3.31.3",
+	"https://esm.sh/@tiptap/extension-list@3.31.3",
+	"https://esm.sh/@tiptap/extension-document@3.31.3",
+	"https://esm.sh/@tiptap/extensions@3.31.3",
+	"https://esm.sh/@tiptap/extension-hard-break@3.31.3",
+	"https://esm.sh/@tiptap/extension-heading@3.31.3",
+	"https://esm.sh/@tiptap/extension-horizontal-rule@3.31.3",
+	"https://esm.sh/@tiptap/extension-italic@3.31.3",
+	"https://esm.sh/@tiptap/extension-link@3.31.3",
+	"https://esm.sh/@tiptap/extension-paragraph@3.31.3",
+	"https://esm.sh/@tiptap/extension-strike@3.31.3",
+	"https://esm.sh/@tiptap/extension-text@3.31.3",
+	"https://esm.sh/@tiptap/extension-underline@3.31.3",
 	"https://esm.sh/@tiptap/extension-placeholder@3.31.3",
 	"https://esm.sh/@tiptap/extension-text-align@3.31.3",
-	"https://esm.sh/@tiptap/extension-task-list@3.31.3",
-	"https://esm.sh/@tiptap/extension-task-item@3.31.3",
 	"https://esm.sh/@tiptap/pm@3.31.3/state",
 ]
 

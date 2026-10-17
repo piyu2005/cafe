@@ -12,8 +12,28 @@
 // resolves the whole dependency graph together, so there's exactly one copy.
 // This file is copied as-is to public/builder_assets/vendor/write-editor.js
 // by `yarn build:write-editor` and served with `type="module"`, unbundled.
+// Individually imported, not @tiptap/starter-kit - StarterKit bundles Code
+// and CodeBlock unconditionally (its own `code: false`/`codeBlock: false`
+// options just skip pushing them into its extensions array at runtime; the
+// packages are still imported and shipped either way). Importing everything
+// else StarterKit would otherwise bundle, one extension at a time, in the
+// exact order StarterKit's own source pushes them in, means Code/CodeBlock
+// are never imported in the first place - genuinely absent, not toggled off.
 import { Editor, Extension, Node, mergeAttributes } from 'https://esm.sh/@tiptap/core@3.31.3'
-import StarterKit from 'https://esm.sh/@tiptap/starter-kit@3.31.3'
+import Bold from 'https://esm.sh/@tiptap/extension-bold@3.31.3'
+import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@3.31.3'
+import { BulletList, ListItem, ListKeymap, OrderedList } from 'https://esm.sh/@tiptap/extension-list@3.31.3'
+import DocNode from 'https://esm.sh/@tiptap/extension-document@3.31.3'
+import { Dropcursor, Gapcursor, TrailingNode, UndoRedo } from 'https://esm.sh/@tiptap/extensions@3.31.3'
+import HardBreak from 'https://esm.sh/@tiptap/extension-hard-break@3.31.3'
+import Heading from 'https://esm.sh/@tiptap/extension-heading@3.31.3'
+import HorizontalRule from 'https://esm.sh/@tiptap/extension-horizontal-rule@3.31.3'
+import Italic from 'https://esm.sh/@tiptap/extension-italic@3.31.3'
+import Link from 'https://esm.sh/@tiptap/extension-link@3.31.3'
+import Paragraph from 'https://esm.sh/@tiptap/extension-paragraph@3.31.3'
+import Strike from 'https://esm.sh/@tiptap/extension-strike@3.31.3'
+import TextNode from 'https://esm.sh/@tiptap/extension-text@3.31.3'
+import Underline from 'https://esm.sh/@tiptap/extension-underline@3.31.3'
 import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder@3.31.3'
 import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@3.31.3'
 import { Plugin, Selection } from 'https://esm.sh/@tiptap/pm@3.31.3/state'
@@ -486,7 +506,26 @@ const PostLinkTrigger = Extension.create({
 
 window.CafeWriteEditor = {
 	Editor,
-	StarterKit,
+	Bold,
+	Blockquote,
+	BulletList,
+	ListItem,
+	ListKeymap,
+	OrderedList,
+	DocNode,
+	Dropcursor,
+	Gapcursor,
+	TrailingNode,
+	UndoRedo,
+	HardBreak,
+	Heading,
+	HorizontalRule,
+	Italic,
+	Link,
+	Paragraph,
+	Strike,
+	TextNode,
+	Underline,
 	Placeholder,
 	TextAlign,
 	Image,
