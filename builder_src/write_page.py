@@ -51,7 +51,12 @@ ICON_STYLES = {**BUTTON_STYLES, "width": "28px", "padding": "0", "border": "0", 
 
 def native_head_html():
 	"""The editor bundle the page needs, with a version so a new build is fetched."""
-	tags = [f'<link rel="modulepreload" href="{url}" crossorigin="anonymous">' for url in TIPTAP_MODULES]
+	# Opens the connection to esm.sh (DNS + TCP + TLS) immediately, instead of
+	# only once the browser reaches the first modulepreload below - on a slow
+	# connection that handshake is one full round trip paid before any of
+	# TipTap's ~80 requests can even start.
+	tags = ['<link rel="preconnect" href="https://esm.sh" crossorigin>']
+	tags += [f'<link rel="modulepreload" href="{url}" crossorigin="anonymous">' for url in TIPTAP_MODULES]
 	for file in VENDOR:
 		path = ASSETS / "vendor" / file
 		version = hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else "0"
