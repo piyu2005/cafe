@@ -143,7 +143,25 @@ SOCKET_PRELOAD_HEAD = (
 	'<link rel="preload" href="/assets/cafe/builder_assets/vendor/socket.io.min.js" as="script">'
 )
 FONT_DIR = SRC / "assets" / "Newsreader"
-FONT_FILES = {FONT_DIR / "Newsreader-Regular.woff2", FONT_DIR / "Newsreader-Medium.woff2"}
+INTER_DIR = SRC / "assets" / "Inter"
+FONT_FILES = {
+	FONT_DIR / "Newsreader-Regular.woff2",
+	FONT_DIR / "Newsreader-Medium.woff2",
+	INTER_DIR / "inter-var-subset.woff2",
+}
+# Builder's own reset.css (which every Builder page loads) declares InterVar
+# as the default font over its full 100-900/opsz 14-32 range, covering every
+# script Inter ships - 264KB for a font Cafe only ever uses in the Latin
+# alphabet. styles.css re-declares the same family/weight/style range after
+# it, pointed at a subset with only Latin + punctuation glyphs (95KB; see
+# builder_src/assets/Inter/README for how it was built) - later rules win
+# when @font-face descriptors fully overlap, so every page gets this one
+# instead. Preloading it (like SOCKET_PRELOAD_HEAD) saves the round trip
+# the browser would otherwise spend discovering it only after parsing CSS.
+INTER_PRELOAD_HEAD = (
+	'<link rel="preload" href="/assets/cafe/builder_assets/fonts/inter-var-subset.woff2" '
+	'as="font" type="font/woff2" crossorigin>'
+)
 
 NOW = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
@@ -483,7 +501,7 @@ def main():
 	)
 	for name, title, route, builder, script_names, data_script, dynamic, *extra in pages:
 		blocks = builder(shell_id, shell_block)
-		head = SOCKET_PRELOAD_HEAD + (extra[0] if extra else "")
+		head = SOCKET_PRELOAD_HEAD + INTER_PRELOAD_HEAD + (extra[0] if extra else "")
 		doc = page(name, title, route, blocks, script_names, data_script, dynamic, head)
 		if name in unpublished:
 			doc["published"] = 0

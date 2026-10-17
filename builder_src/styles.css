@@ -13,6 +13,22 @@
 /* InterVar comes from Builder's own reset.css, which every Builder page loads.
    Newsreader is registered as a Builder User Font (see generate.py). */
 
+/* Builder's reset.css loads InterVar's full, every-script 264KB file. This
+   redeclares the exact same family/weight/style range with a Latin-only
+   subset (95KB; see builder_src/assets/Inter) - later @font-face rules win
+   over earlier ones when their descriptors fully overlap, so every page
+   loads this smaller file instead, with no visual change. */
+@font-face {
+  font-family: 'InterVar';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src:
+    url('/assets/cafe/builder_assets/fonts/inter-var-subset.woff2') format('woff2-variations'),
+    url('/assets/cafe/builder_assets/fonts/inter-var-subset.woff2') format('woff2');
+  src: url('/assets/cafe/builder_assets/fonts/inter-var-subset.woff2') format('woff2') tech('variations');
+}
+
 /* Espresso semantic color tokens (https://ui.frappe.io/docs/foundations/colors/semantic),
    named and scaled to match the real system - ink-gray-N/surface-gray-N/outline-gray-N
    are the same N across every file that uses them. Values are unchanged from before

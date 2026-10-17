@@ -2496,17 +2496,17 @@
    "builder_script": "Cafe Pub Detail"
   }
  ],
- "creation": "2026-10-12 16:21:10.082900",
+ "creation": "2026-10-17 18:31:51.973178",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 1,
- "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\">",
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\"><link rel=\"preload\" href=\"/assets/cafe/builder_assets/fonts/inter-var-subset.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-12 16:21:10.082900",
+ "modified": "2026-10-17 18:31:51.973178",
  "modified_by": "Administrator",
  "name": "cafe-publication",
  "owner": "Administrator",
@@ -2515,6 +2515,6 @@
  "page_title": "Publication",
  "project_folder": "cafe",
  "published": 0,
- "published_at": "2026-10-12 16:21:10.082900",
+ "published_at": "2026-10-17 18:31:51.973178",
  "route": "publications/:handle"
 }
