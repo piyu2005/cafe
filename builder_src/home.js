@@ -1,8 +1,9 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
-// search (filters by title as you type) and infinite scroll: a sentinel below
-// the list loads ten more when it is 400px from the screen, like the old page.
-// Rows are made from the page's <template>, which has the same markup the
-// server fills. Needs ui.js.
+// search (full-text over title/display_title/excerpt once there's a query -
+// see cafe.api.search_feed - plain creation-desc browsing otherwise) and
+// infinite scroll: a sentinel below the list loads ten more when it is 400px
+// from the screen, like the old page. Rows are made from the page's
+// <template>, which has the same markup the server fills. Needs ui.js.
 ;(function () {
 	'use strict'
 
@@ -121,9 +122,12 @@
 		return holder.firstElementChild
 	}
 
+	// Full-text search (cafe.api.search_feed, MATCH/AGAINST over title/
+	// display_title/excerpt) once there's a query; the plain creation-desc
+	// listing otherwise, where relevance ranking wouldn't mean anything.
 	function fetchPosts(start) {
+		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: start, limit: PAGE_SIZE })
 		var filters = { status: 'Published' }
-		if (query) filters.title = ['like', '%' + query + '%']
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),
