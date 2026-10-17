@@ -1,7 +1,8 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
 // search (full-text over title/display_title/excerpt once there's a query -
 // see cafe.api.search_feed - plain creation-desc browsing otherwise), the
-// category chips (multi-select, OR'd together), and infinite scroll: a
+// category chips (multi-select, OR'd together, matching a post's own
+// free-text tags field exactly - see fetchPosts()), and infinite scroll: a
 // sentinel below the list loads ten more when it is 400px from the screen,
 // like the old page. Selecting/clearing a chip or typing a search both
 // re-query from the start through the same fetchPosts() - there is no
@@ -127,13 +128,21 @@
 		return holder.firstElementChild
 	}
 
-	// Full-text search (cafe.api.search_feed, MATCH/AGAINST over title/
-	// display_title/excerpt) once there's a query; the plain creation-desc
-	// listing otherwise, where relevance ranking wouldn't mean anything.
+	// A chip filters by exact tag match, Medium-style (cafe.api.filter_by_tags
+	// - FIND_IN_SET against the same free-text tags field the write flow's
+	// Tags widget edits, not a separate category field or any inference from
+	// the post's own words); a still-active search query combines with it
+	// (plain LIKE, AND'd server side). With no chip selected but a query
+	// typed, that query instead gets real full-text search (cafe.api.
+	// search_feed, MATCH/AGAINST ranked by relevance) - the generic list API
+	// has no operator for either of these, so both need their own method
+	// rather than just adding to `filters` below. Plain creation-desc
+	// listing when neither is active.
 	function fetchPosts(start) {
+		if (categories.length)
+			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, start: start, limit: PAGE_SIZE })
 		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: start, limit: PAGE_SIZE })
 		var filters = { status: 'Published' }
-		if (categories.length) filters.category = ['in', categories]
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),
