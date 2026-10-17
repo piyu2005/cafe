@@ -1,8 +1,12 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
-// search (filters by title as you type) and infinite scroll: a sentinel below
-// the list loads ten more when it is 400px from the screen, like the old page.
-// Rows are made from the page's <template>, which has the same markup the
-// server fills. Needs ui.js.
+// search (filters by title as you type), the category chips (multi-select,
+// OR'd together, matching a post's own free-text tags field exactly - see
+// fetchPosts()), and infinite scroll: a sentinel below the list loads ten
+// more when it is 400px from the screen, like the old page. Selecting or
+// clearing a chip re-queries from the start, same path search already uses -
+// there is no separate "filtered" rendering mode, just a different request
+// to the same fetch. Rows are made from the page's <template>, which has the
+// same markup the server fills. Needs ui.js.
 ;(function () {
 	'use strict'
 
@@ -30,6 +34,7 @@
 
 	var input, list, sentinel, template, container
 	var query = ''
+	var categories = []
 	var loaded = 0
 	var hasMore = false
 	var busy = false
@@ -121,7 +126,17 @@
 		return holder.firstElementChild
 	}
 
+	// A chip filters by exact tag match, Medium-style (cafe.api.filter_by_tags
+	// - FIND_IN_SET against the same free-text tags field the write flow's
+	// Tags widget edits, not a separate category field or any inference from
+	// the post's own words). The generic list API has no operator for "one
+	// of these is an exact element of this comma-separated field", so this
+	// one case needs its own method instead of just adding to `filters`
+	// below; a still-active search query combines with it (AND'd server
+	// side), same as the plain listing's title search already behaves.
 	function fetchPosts(start) {
+		if (categories.length)
+			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, start: start, limit: PAGE_SIZE })
 		var filters = { status: 'Published' }
 		if (query) filters.title = ['like', '%' + query + '%']
 		var params = [
@@ -256,6 +271,26 @@
 		observer.observe(sentinel)
 	}
 
+	// Multi-select: each chip toggles only itself, independent of the others.
+	// A chip's aria-label is also its Category doctype name (autoname is
+	// field:title, so the two are the same string) - no separate lookup
+	// needed to turn "which chips are active" into a filters.category value.
+	// The close icon is already in every chip's markup (home_page.py), hidden
+	// by styles.css until its own chip has .active.
+	function setupTagChips() {
+		document.querySelectorAll('.cafe-tag-chip').forEach(function (chip) {
+			chip.addEventListener('click', function () {
+				var active = chip.classList.toggle('active')
+				chip.setAttribute('aria-pressed', active ? 'true' : 'false')
+				var name = chip.getAttribute('aria-label')
+				var at = categories.indexOf(name)
+				if (active && at === -1) categories.push(name)
+				else if (!active && at !== -1) categories.splice(at, 1)
+				load(true)
+			})
+		})
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		input = document.getElementById('cafe-feed-search')
 		list = document.getElementById('cafe-feed')
@@ -263,6 +298,7 @@
 		template = document.getElementById('cafe-feed-template')
 		if (!input || !list || !sentinel || !template) return
 		container = list.parentNode
+		setupTagChips()
 
 		loaded = list.children.length
 		hasMore = sentinel.getAttribute('data-more') === '1'

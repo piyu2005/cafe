@@ -9,6 +9,11 @@
 	var JPEG_QUALITY = 0.92
 	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py).
 	var PUBLICATIONS_ENABLED = false
+	// The home feed's filter chips (home_page.py's TAG_LABELS) match a post by
+	// exact tag, Medium-style - no separate category field, just this same
+	// free-text list. Photography and Mindfulness are suggested here even
+	// though they weren't before, so typing one of the 6 chip names is a
+	// one-click autocomplete pick, not a happen-to-type-it-exactly guess.
 	var TAG_SUGGESTIONS = [
 		'Design',
 		'UX/UI',
@@ -16,6 +21,8 @@
 		'Technology',
 		'Productivity',
 		'Writing',
+		'Photography',
+		'Mindfulness',
 		'Startups',
 		'Business',
 		'Lifestyle',

@@ -29,6 +29,7 @@ PUBLICATIONS_ENABLED = False
 # tokens.py) instead of at every one of these call sites.
 INK = "var(--ink-gray-8)"
 INK_BLACK = "var(--ink-gray-9)"
+INK_7 = "var(--ink-gray-7)"
 MUTED = "var(--ink-gray-5)"
 OUTLINE = "var(--outline-gray-1)"
 SURFACE_1 = "var(--surface-gray-1)"
