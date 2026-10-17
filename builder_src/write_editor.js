@@ -422,17 +422,32 @@
 		var host = W.el('div', 'cafe-w-editor')
 		editor = new M.Editor({
 			element: host,
+			// Individually listed, not M.StarterKit - no Code/CodeBlock among
+			// them at all (see vendor_src/write-editor-entry.js's own comment on
+			// why that file imports pieces individually instead of the kit:
+			// StarterKit bundles those two unconditionally, a `code: false`
+			// config only skips using them, it doesn't stop them shipping).
+			// Order matches StarterKit's own internal push order, minus those two.
 			extensions: [
-				// code/codeBlock disabled, not just left off the toolbar - without
-				// this, typing a markdown shortcut (``` or backtick-wrapped text)
-				// would still reach them even with no button to trigger either on
-				// purpose.
-				M.StarterKit.configure({
-					heading: { levels: [1, 2, 3, 4, 5, 6] },
-					link: { openOnClick: false, autolink: true },
-					code: false,
-					codeBlock: false,
-				}),
+				M.Bold,
+				M.Blockquote,
+				M.BulletList,
+				M.DocNode,
+				M.Dropcursor,
+				M.Gapcursor,
+				M.HardBreak,
+				M.Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
+				M.UndoRedo,
+				M.HorizontalRule,
+				M.Italic,
+				M.ListItem,
+				M.ListKeymap,
+				M.Link.configure({ openOnClick: false, autolink: true }),
+				M.OrderedList,
+				M.Paragraph,
+				M.Strike,
+				M.TextNode,
+				M.Underline,
 				M.Placeholder.configure({ placeholder: 'Tell your story…' }),
 				M.TextAlign.configure({ types: ['heading', 'paragraph'] }),
 				M.Image.configure({ upload: W.uploadStory }),
