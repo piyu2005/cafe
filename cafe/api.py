@@ -337,6 +337,41 @@ def get_publications(handles: str | list):
 
 
 @frappe.whitelist()
+def search_feed(query: str, start: int = 0, limit: int = 10):
+	"""Full-text search for the home feed's search box (home.js) - real
+	MATCH/AGAINST over title, display_title and excerpt (the FULLTEXT index
+	this needs: cafe/patches/v1_0/add_post_fulltext_index.py), not a plain
+	title LIKE. content is left out on purpose: it's stored as raw HTML, and
+	matching against it would surface markup, not the words someone actually
+	typed; excerpt already stands in for it - every published post has one,
+	auto-filled from its own content at publish time if the author didn't
+	write one (write_core.js's W.autoExcerpt strips the HTML first).
+	Natural language mode, so MariaDB's own relevance ranking orders the
+	results, not creation date - this only runs for an actual query; with
+	none, home.js stays on its plain creation-desc browse listing, where
+	"relevance" has no meaning. Returns one extra row past `limit`, same as
+	the plain listing, so the caller can tell whether there's more to load."""
+	query = (query or "").strip()
+	if not query:
+		return []
+	limit = min(int(limit), 50)
+	rows = frappe.db.sql(
+		"""
+		SELECT name, title, display_title, content, excerpt, post_type, attachment,
+			cover_image, author, author_name, author_image, publication, creation
+		FROM `tabPost`
+		WHERE status = 'Published'
+			AND MATCH(title, display_title, excerpt) AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+		ORDER BY MATCH(title, display_title, excerpt) AGAINST (%(query)s IN NATURAL LANGUAGE MODE) DESC
+		LIMIT %(limit)s OFFSET %(start)s
+		""",
+		{"query": query, "limit": limit + 1, "start": int(start)},
+		as_dict=True,
+	)
+	return rows
+
+
+@frappe.whitelist()
 def search_posts(query: str | None = None):
 	"""For the write editor's "[[" link-to-a-post search - Published only, same
 	as any other reader would see: a draft's title isn't something to leak

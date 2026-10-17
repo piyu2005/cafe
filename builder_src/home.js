@@ -1,11 +1,13 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
-// search (filters by title as you type), the category chips (multi-select,
-// OR'd together), and infinite scroll: a sentinel below the list loads ten
-// more when it is 400px from the screen, like the old page. Selecting or
-// clearing a chip re-queries from the start, same path search already uses -
-// there is no separate "filtered" rendering mode, just a different filters
-// object passed to the same fetch. Rows are made from the page's <template>,
-// which has the same markup the server fills. Needs ui.js.
+// search (full-text over title/display_title/excerpt once there's a query -
+// see cafe.api.search_feed - plain creation-desc browsing otherwise), the
+// category chips (multi-select, OR'd together), and infinite scroll: a
+// sentinel below the list loads ten more when it is 400px from the screen,
+// like the old page. Selecting/clearing a chip or typing a search both
+// re-query from the start through the same fetchPosts() - there is no
+// separate "filtered" rendering mode, just a different request each time.
+// Rows are made from the page's <template>, which has the same markup the
+// server fills. Needs ui.js.
 ;(function () {
 	'use strict'
 
@@ -125,9 +127,12 @@
 		return holder.firstElementChild
 	}
 
+	// Full-text search (cafe.api.search_feed, MATCH/AGAINST over title/
+	// display_title/excerpt) once there's a query; the plain creation-desc
+	// listing otherwise, where relevance ranking wouldn't mean anything.
 	function fetchPosts(start) {
+		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: start, limit: PAGE_SIZE })
 		var filters = { status: 'Published' }
-		if (query) filters.title = ['like', '%' + query + '%']
 		if (categories.length) filters.category = ['in', categories]
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
