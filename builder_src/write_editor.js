@@ -14,13 +14,10 @@
 		['italic', 'Italic', 'toggleItalic', 'italic'],
 		['underline', 'Underline', 'toggleUnderline', 'underline'],
 		['strikethrough', 'Strikethrough', 'toggleStrike', 'strike'],
-		['code', 'Code', 'toggleCode', 'code'],
 	]
 	var QUOTE = ['quote', 'Blockquote', 'toggleBlockquote', 'blockquote']
-	var CODE_BLOCK = ['square-code', 'Code block', 'toggleCodeBlock', 'codeBlock']
 	var BULLET_LIST = ['list', 'Bullet list', 'toggleBulletList', 'bulletList']
 	var ORDERED_LIST = ['list-ordered', 'Numbered list', 'toggleOrderedList', 'orderedList']
-	var TASK_LIST = ['list-todo', 'Task list', 'toggleTaskList', 'taskList']
 	var HEADINGS = [
 		[
 			'heading-2',
@@ -156,32 +153,11 @@
 		})
 	}
 
-	// Pasting a YouTube/Vimeo link inserts a video embed - validated with the
-	// exact same parseEmbedUrl the vendor node itself uses to build the real
-	// iframe, so what this dialog accepts and what actually renders can never
-	// disagree.
-	function embedDialog() {
-		CAFE.form({
-			title: 'Embed a video',
-			persistKey: 'editor-embed',
-			submitLabel: 'Embed',
-			values: { url: '' },
-			fields: [{ name: 'url', label: 'YouTube or Vimeo link', required: true }],
-			onSubmit: function (values) {
-				var parsed = window.CafeWriteEditor.parseEmbedUrl(values.url)
-				if (!parsed) return Promise.reject(new Error("That doesn't look like a YouTube or Vimeo link."))
-				editor.chain().focus().insertVideoEmbed(parsed).run()
-				return Promise.resolve()
-			},
-		})
-	}
-
 	// The selection toolbar: appears over a text selection, Medium-style -
 	// marks, then every block-type action that reads naturally off a
-	// selection (Heading, Quote, Code block, the two lists, Task list). No
-	// alignment (Cafe doesn't offer it anywhere now) and no Image/Embed
-	// (those aren't things you do to a selection - they live in the "+" menu
-	// below instead).
+	// selection (Heading, Quote, the two lists). No alignment (Cafe doesn't
+	// offer it anywhere now) and no Image (that isn't a thing you do to a
+	// selection - it lives in the "+" menu below instead).
 	function buildBubble() {
 		var bubble = W.el('div', 'cafe-w-bubble')
 		bubble.hidden = true
@@ -195,10 +171,8 @@
 			})
 		)
 		bubble.appendChild(toggleTool(QUOTE))
-		bubble.appendChild(toggleTool(CODE_BLOCK))
 		bubble.appendChild(toggleTool(BULLET_LIST))
 		bubble.appendChild(toggleTool(ORDERED_LIST))
-		bubble.appendChild(toggleTool(TASK_LIST))
 		bubble.appendChild(separator())
 		bubble.appendChild(tool('link', 'Link', linkDialog))
 		document.body.appendChild(bubble)
@@ -234,14 +208,10 @@
 	// (never a heading/list/quote line - same restriction Medium applies).
 	// Lists moved into the selection toolbar above, so Image is the only
 	// thing left here - genuinely a thing you do to an empty line, not a
-	// selection.
+	// selection - and with just the one option, the button triggers it
+	// directly rather than opening a menu with a single item in it.
 	function buildPlusMenu() {
-		var button = tool('plus', 'Add', function (anchor) {
-			W.menu(anchor, [
-				{ label: 'Image', icon: 'image', onClick: pickImages },
-				{ label: 'Embed video', icon: 'video', onClick: embedDialog },
-			])
-		})
+		var button = tool('plus', 'Add', pickImages)
 		button.classList.add('cafe-w-plus')
 		button.hidden = true
 		document.body.appendChild(button)
@@ -453,19 +423,21 @@
 		editor = new M.Editor({
 			element: host,
 			extensions: [
+				// code/codeBlock disabled, not just left off the toolbar - without
+				// this, typing a markdown shortcut (``` or backtick-wrapped text)
+				// would still reach them even with no button to trigger either on
+				// purpose.
 				M.StarterKit.configure({
 					heading: { levels: [1, 2, 3, 4, 5, 6] },
 					link: { openOnClick: false, autolink: true },
+					code: false,
+					codeBlock: false,
 				}),
 				M.Placeholder.configure({ placeholder: 'Tell your story…' }),
 				M.TextAlign.configure({ types: ['heading', 'paragraph'] }),
-				M.TaskList,
-				M.TaskItem.configure({ nested: true }),
 				M.Image.configure({ upload: W.uploadStory }),
 				M.ImageGroup,
-				M.PastePlainText,
 				M.PostLinkTrigger.configure({ onTrigger: W.openPostLinkSearch }),
-				M.VideoEmbed,
 			],
 			editorProps: { attributes: { class: 'cafe-w-prose', 'aria-label': 'Story' } },
 			onTransaction: function () {
