@@ -77,18 +77,21 @@ def header_bar(title, buttons):
 
 
 def write_body():
+	"""Must match .cafe-w-title/.cafe-w-prose in write.css exactly, or the
+	title and placeholder jump in size and position once the real editor
+	mounts and replaces this."""
 	title = html_el(
 		"div",
 		None,
 		None,
-		{**text_style(30, "600", GRAY_4, "0", "1.25")},
+		{"marginTop": "16px", **text_style(24, "600", GRAY_4, "0.005em", "33.6px")},
 		text="Give your story a title",
 	)
 	story = html_el(
 		"div",
 		None,
 		None,
-		{"marginTop": "16px", **text_style(16, "420", GRAY_4, "0.02em", "1.6")},
+		{"marginTop": "16px", **text_style(15, "420", GRAY_4, "0.02em", "25.5px")},
 		text="Tell your story\u2026",
 	)
 	return html_el(
