@@ -1,11 +1,12 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
 // search (filters by title as you type), the category chips (multi-select,
-// OR'd together), and infinite scroll: a sentinel below the list loads ten
+// OR'd together, matching a post's own free-text tags field exactly - see
+// fetchPosts()), and infinite scroll: a sentinel below the list loads ten
 // more when it is 400px from the screen, like the old page. Selecting or
 // clearing a chip re-queries from the start, same path search already uses -
-// there is no separate "filtered" rendering mode, just a different filters
-// object passed to the same fetch. Rows are made from the page's <template>,
-// which has the same markup the server fills. Needs ui.js.
+// there is no separate "filtered" rendering mode, just a different request
+// to the same fetch. Rows are made from the page's <template>, which has the
+// same markup the server fills. Needs ui.js.
 ;(function () {
 	'use strict'
 
@@ -125,10 +126,19 @@
 		return holder.firstElementChild
 	}
 
+	// A chip filters by exact tag match, Medium-style (cafe.api.filter_by_tags
+	// - FIND_IN_SET against the same free-text tags field the write flow's
+	// Tags widget edits, not a separate category field or any inference from
+	// the post's own words). The generic list API has no operator for "one
+	// of these is an exact element of this comma-separated field", so this
+	// one case needs its own method instead of just adding to `filters`
+	// below; a still-active search query combines with it (AND'd server
+	// side), same as the plain listing's title search already behaves.
 	function fetchPosts(start) {
+		if (categories.length)
+			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, start: start, limit: PAGE_SIZE })
 		var filters = { status: 'Published' }
 		if (query) filters.title = ['like', '%' + query + '%']
-		if (categories.length) filters.category = ['in', categories]
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),

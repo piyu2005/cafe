@@ -318,6 +318,51 @@ def get_comment_counts(posts: str | list):
 	return counts
 
 
+@frappe.whitelist()
+def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, limit: int = 10):
+	"""The home feed's category chips (home_page.py's TAG_LABELS) match a post
+	by exact tag, Medium-style: a post "belongs" to a chip only if that exact
+	string is one of its own comma-separated tags - the same free-text field
+	the write flow's Tags widget already edits (write_preview.js), not a
+	separate category field, and not any inference from the post's actual
+	words. Matches ANY of the given tags (a reader can select several chips
+	at once, OR'd together). FIND_IN_SET needs a clean comma list with no
+	spaces around each element; splitTags()/the tagList.join(', ') that saves
+	it always use ", " as the separator, so the REPLACE below is exact, not a
+	loose whitespace strip. `query`, if present, AND's in a plain title
+	search - same matching the plain listing's search box already does,
+	just also constrained to the selected tags."""
+	if isinstance(tags, str):
+		tags = frappe.parse_json(tags)
+	tags = [t for t in (tags or []) if t]
+	if not tags:
+		return []
+	conditions = ["status = 'Published'"]
+	params = []
+	tag_match = " OR ".join(["FIND_IN_SET(%s, REPLACE(tags, ', ', ','))"] * len(tags))
+	conditions.append(f"({tag_match})")
+	params.extend(tags)
+	query = (query or "").strip()
+	if query:
+		conditions.append("title LIKE %s")
+		params.append(f"%{query}%")
+	limit = min(int(limit), 50)
+	params.extend([limit + 1, int(start)])
+	# nosemgrep: frappe-sql-format-injection (only %s placeholders are formatted in; every value is a parameter)
+	return frappe.db.sql(
+		f"""
+		SELECT name, title, display_title, content, excerpt, post_type, attachment,
+			cover_image, author, author_name, author_image, publication, creation
+		FROM `tabPost`
+		WHERE {" AND ".join(conditions)}
+		ORDER BY creation DESC
+		LIMIT %s OFFSET %s
+		""",
+		params,
+		as_dict=True,
+	)
+
+
 # Title/logo for a list of publication handles, keyed by handle - what the
 # Home feed's client-rendered rows (home.js) need to show a publication's own
 # identity on its posts, same as the server-rendered first page already does

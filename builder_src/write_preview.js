@@ -9,6 +9,11 @@
 	var JPEG_QUALITY = 0.92
 	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py).
 	var PUBLICATIONS_ENABLED = false
+	// The home feed's filter chips (home_page.py's TAG_LABELS) match a post by
+	// exact tag, Medium-style - no separate category field, just this same
+	// free-text list. Photography and Mindfulness are suggested here even
+	// though they weren't before, so typing one of the 6 chip names is a
+	// one-click autocomplete pick, not a happen-to-type-it-exactly guess.
 	var TAG_SUGGESTIONS = [
 		'Design',
 		'UX/UI',
@@ -16,15 +21,13 @@
 		'Technology',
 		'Productivity',
 		'Writing',
+		'Photography',
+		'Mindfulness',
 		'Startups',
 		'Business',
 		'Lifestyle',
 		'Travel',
 	]
-	// The fixed Category doctype names the home feed's filter chips use
-	// (home_page.py's TAG_LABELS) - a controlled list, unlike the free-text
-	// tags above, so a plain <select> rather than an autocomplete chip input.
-	var CATEGORY_OPTIONS = ['Productivity', 'Photography', 'Technology', 'Mindfulness', 'Writing', 'Design']
 
 	function splitTags(value) {
 		return (value || '')
@@ -84,7 +87,6 @@
 			if ('coverRemoved' in draft.values) S.coverRemoved = draft.values.coverRemoved
 			if ('publication' in draft.values) form.publication = draft.values.publication
 			if ('tags' in draft.values) form.tags = draft.values.tags
-			if ('category' in draft.values) form.category = draft.values.category
 		}
 		function saveDraft() {
 			CAFE.saveDraft(DRAFT_KEY, null, {
@@ -94,7 +96,6 @@
 				coverRemoved: S.coverRemoved,
 				publication: form.publication,
 				tags: form.tags,
-				category: form.category,
 			})
 		}
 
@@ -248,32 +249,6 @@
 			return row
 		}
 
-		// The home feed's filter chips (home_page.py) only match posts whose
-		// category is one of the 6 fixed Category records (cafe/fixtures/
-		// category.json) - a plain select from that same fixed list, not an
-		// open Link picker, since there's nothing else a reader's chip click
-		// could ever match against.
-		function buildCategoryPicker() {
-			var row = W.el('div', 'cafe-field')
-			row.appendChild(W.el('label', '', 'Category'))
-			var select = W.el('select')
-			var none = W.el('option', '', 'No category')
-			none.value = ''
-			select.appendChild(none)
-			CATEGORY_OPTIONS.forEach(function (name) {
-				var option = W.el('option', '', name)
-				option.value = name
-				select.appendChild(option)
-			})
-			select.value = CATEGORY_OPTIONS.indexOf(form.category) !== -1 ? form.category : ''
-			select.addEventListener('change', function () {
-				form.category = select.value
-				saveDraft()
-			})
-			row.appendChild(select)
-			return row
-		}
-
 		var fileInput = W.el('input')
 		fileInput.type = 'file'
 		fileInput.accept = 'image/*'
@@ -337,7 +312,6 @@
 			// Publications itself is hidden (PUBLICATIONS_ENABLED above).
 			if (PUBLICATIONS_ENABLED && (S.myPublications.length || form.publication))
 				body.appendChild(buildPublicationPicker())
-			body.appendChild(buildCategoryPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'

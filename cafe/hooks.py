@@ -21,14 +21,6 @@ app_license = "mit"
 # 	}
 # ]
 
-# Fixtures
-# ------------------
-
-# The 6 fixed writing categories the home feed's filter chips (home_page.py)
-# use - shipped with the app so every install has them, the same way the app
-# itself defines its own fixed structure, not user-entered data.
-fixtures = ["Category"]
-
 # Includes in <head>
 # ------------------
 
