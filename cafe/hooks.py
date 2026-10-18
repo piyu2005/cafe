@@ -158,6 +158,12 @@ has_permission = {
 # 	}
 # }
 
+doc_events = {
+	# User is core Frappe, not an app doctype - this is the only hook point
+	# for the one-time "onboarded" cafe points award (see cafe/points.py).
+	"User": {"after_insert": "cafe.points.on_user_created"},
+}
+
 # Scheduled Tasks
 # ---------------
 

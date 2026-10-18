@@ -49,6 +49,9 @@ class Post(Document):
 
 		if self.status == "Published" and not self.published_at:
 			self.published_at = frappe.utils.now_datetime()
+			from cafe import points
+
+			points.award_once(self.author, 2, points.ARTICLE_PUBLISHED, "Post", self.name)
 		if self.post_type == "Image" and self.images and not self.cover_image:
 			self.cover_image = self.images[0].image
 		if self.cover_image and self.has_value_changed("cover_image"):

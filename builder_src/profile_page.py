@@ -243,12 +243,22 @@ def build_name_row():
 		),
 		"profile.full_name",
 	)
+	points_badge = show(
+		block(
+			"span",
+			"Cafe points",
+			["cafe-profile-points"],
+			styles={"flexShrink": "0", **text_style(14, "500", "#b41d1d", "0.01em", "1.3")},
+		),
+		"profile.points_label",
+	)
 	buttons = block(
 		"div",
 		"Buttons",
 		["cafe-profile-buttons"],
 		styles={"display": "flex", "alignItems": "center", "gap": "8px", "flexShrink": "0"},
 		children=[
+			points_badge,
 			when(outline_button("edit-header", "Edit"), "profile.is_own"),
 			outline_button("share", icon_name="share-2", aria="Copy profile link", name="Share"),
 		],
@@ -755,6 +765,7 @@ else:
         "no_image": not image,
         "has_job": bool(person.job_title),
         "job_line": clean(person.job_title) + (" at " + clean(person.company) if person.company else ""),
+        "points_label": str(person.points) + (" cafe point" if person.points == 1 else " cafe points"),
         "headline": clean(person.headline),
         "show_headline": is_own or bool(person.headline),
         "show_headline_hint": is_own and not person.headline,
