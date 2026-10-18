@@ -116,6 +116,22 @@
 		)
 	}
 
+	function toggleRepost() {
+		var button = root.querySelector('.cafe-repost')
+		var was = button.getAttribute('data-on') === '1'
+		setActive(button, !was)
+		CAFE.api('cafe.api.toggle_repost', { post: postId }).then(
+			function (result) {
+				setActive(button, result.reposted)
+				CAFE.toast(result.reposted ? 'Reposted' : 'Removed from your reposts')
+			},
+			function (err) {
+				setActive(button, was)
+				CAFE.toast(err.message, 'error')
+			}
+		)
+	}
+
 	function copyLink() {
 		closeMenu()
 		navigator.clipboard.writeText(location.href).then(
@@ -645,6 +661,7 @@
 	var ACTIONS = {
 		like: toggleLike,
 		save: toggleSave,
+		repost: toggleRepost,
 		share: openShare,
 		'copy-link': copyLink,
 		'delete-post': confirmDeletePost,

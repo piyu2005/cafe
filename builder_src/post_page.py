@@ -442,6 +442,36 @@ def build_action_bar():
 		"pp.saved_flag",
 		"data-on",
 	)
+	# Reposting only unlocks once the viewer's own cafe points cross 100 (see
+	# toggle_repost's gate) - same "unlock new action icons by level"
+	# approach as the comments' downvote icon.
+	repost = when(
+		attribute(
+			block(
+				"button",
+				"Repost",
+				["cafe-repost"],
+				attrs={"type": "button", "aria-label": "Repost", "data-tooltip": "Repost"},
+				custom={"data-action": "repost", "data-on": ""},
+				inner_html=svg("repeat-2", 16),
+				styles={
+					"display": "grid",
+					"placeItems": "center",
+					"width": "28px",
+					"height": "28px",
+					"padding": "0",
+					"border": f"1px solid {BUTTON_BORDER}",
+					"borderRadius": "8px",
+					"backgroundColor": "#ffffff",
+					"color": INK,
+					"cursor": "pointer",
+				},
+			),
+			"pp.reposted_flag",
+			"data-on",
+		),
+		"pp.can_repost",
+	)
 	return block(
 		"div",
 		"Action bar",
@@ -465,7 +495,7 @@ def build_action_bar():
 				"div",
 				"Buttons",
 				styles={"display": "flex", "alignItems": "center", "gap": "4px"},
-				children=[share, save],
+				children=[share, repost, save],
 			),
 		],
 	)
@@ -738,6 +768,8 @@ else:
         "like_flag": "1" if post.liked_by_me else "",
         "comment_count": post.comment_count,
         "saved_flag": "1" if post.saved_by_me else "",
+        "can_repost": post.my_points >= 100,
+        "reposted_flag": "1" if post.reposted_by_me else "",
         "responses_label": "Responses (" + str(post.comment_count) + ")",
     }
     data.images = images

@@ -12,6 +12,7 @@
 		Mention: { icon: 'at-sign', color: '#3bbde5' },
 		'Group Invite': { icon: 'users', color: '#df9310' },
 		'Publication Invite': { icon: 'newspaper', color: '#7757ee' },
+		Repost: { icon: 'repeat-2', color: '#1c9d6f' },
 	}
 	var OTHER_TYPE = { icon: 'bell', color: '#383838' }
 	var RESPOND = {

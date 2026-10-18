@@ -282,23 +282,58 @@ def get_profile(user: str | None = None):
 @frappe.whitelist()
 def list_profile_posts(user: str | None = None, limit: int = 3):
 	user = _resolve_user(user)
-	rows = frappe.db.get_all(
+	limit = int(limit)
+	post_fields = [
+		"name",
+		"title",
+		"display_title",
+		"content",
+		"excerpt",
+		"post_type",
+		"cover_image",
+		"attachment",
+		"creation",
+	]
+
+	own = frappe.db.get_all(
 		"Post",
 		filters={"author": user, "status": "Published"},
-		fields=[
-			"name",
-			"title",
-			"display_title",
-			"content",
-			"excerpt",
-			"post_type",
-			"cover_image",
-			"attachment",
-			"creation",
-		],
+		fields=post_fields,
 		order_by="creation desc",
-		limit_page_length=int(limit),
+		limit_page_length=limit,
 	)
+	for row in own:
+		row.is_repost = False
+		row.sort_date = row.creation
+
+	repost_rows = frappe.db.get_all(
+		"Repost", filters={"user": user}, fields=["post", "creation"], order_by="creation desc", limit_page_length=limit
+	)
+	reposted_posts = {}
+	if repost_rows:
+		reposted_posts = {
+			p.name: p
+			for p in frappe.db.get_all(
+				"Post",
+				filters={"name": ["in", [r.post for r in repost_rows]], "status": "Published"},
+				fields=[*post_fields, "author", "author_name"],
+			)
+		}
+	reposts = []
+	for r in repost_rows:
+		post = reposted_posts.get(r.post)
+		# Reposting your own article (an odd but allowed action) shouldn't
+		# make it show up twice on your own profile.
+		if not post or post.author == user:
+			continue
+		post.is_repost = True
+		post.sort_date = r.creation
+		reposts.append(post)
+
+	rows = sorted(own + reposts, key=lambda r: r.sort_date, reverse=True)
+	if limit:
+		rows = rows[:limit]
+
 	counts = {}
 	if rows:
 		for c in frappe.db.get_all(
@@ -744,6 +779,10 @@ def get_post(post_id: str):
 		frappe.session.user != "Guest"
 		and frappe.db.exists("Saved Post", {"post": post_id, "user": frappe.session.user})
 	)
+	post.reposted_by_me = bool(
+		frappe.session.user != "Guest"
+		and frappe.db.exists("Repost", {"post": post_id, "user": frappe.session.user})
+	)
 
 	return post
 
@@ -1123,6 +1162,41 @@ def toggle_save_post(post: str):
 	doc.insert()
 	points.award(owner, 2, points.POST_SAVED, "Post", post, actor=user)
 	return {"saved": True}
+
+
+@frappe.whitelist()
+def toggle_repost(post: str):
+	user = frappe.session.user
+	if user == "Guest":
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+	_check_post_visible(post)
+
+	from cafe import points
+
+	# Mirrors the 100-point unlock table: a cheap, low-stakes action compared
+	# to downvoting, but still gated so it isn't the very first thing a brand
+	# new account can do.
+	if points.total(user) < 100:
+		frappe.throw(_("You need 100 cafe points to repost"), frappe.PermissionError)
+
+	owner = frappe.db.get_value("Post", post, "author")
+
+	existing = frappe.db.exists("Repost", {"post": post, "user": user})
+	if existing:
+		frappe.delete_doc("Repost", existing, ignore_permissions=True)
+		points.award(owner, -5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+		return {"reposted": False}
+
+	doc = frappe.get_doc({"doctype": "Repost", "post": post})
+	doc.flags.ignore_permissions = True
+	doc.insert()
+	points.award(owner, 5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+
+	from cafe.follow import _notify
+
+	_notify(owner, user, "Repost", "reposted your post", "Post", post)
+
+	return {"reposted": True}
 
 
 @frappe.whitelist()

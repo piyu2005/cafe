@@ -955,6 +955,14 @@ p.cafe-clamp-3:empty::before {
 .cafe-save:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
 }
+.cafe-repost[data-on='1'] {
+  border-color: #1c9d6f !important;
+  background: #1c9d6f !important;
+  color: var(--ink-base) !important;
+}
+.cafe-repost:not([data-on='1']):hover {
+  background: var(--surface-gray-1) !important;
+}
 .cafe-textarea {
   display: block;
   width: 100%;

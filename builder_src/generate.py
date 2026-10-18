@@ -124,6 +124,7 @@ SCRIPT_ICONS = {
 		"at-sign",
 		"users",
 		"newspaper",
+		"repeat-2",
 		"bell",
 		"check-check",
 		"x",
