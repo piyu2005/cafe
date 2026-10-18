@@ -793,7 +793,9 @@ def get_post(post_id: str):
 	post.check_permission("read")
 	post = post.as_dict()
 
-	post.like_count = frappe.db.count("Like", {"reference_doctype": "Post", "reference_name": post_id})
+	post.like_count = frappe.db.count(
+		"Like", {"reference_doctype": "Post", "reference_name": post_id, "is_downvote": 0}
+	)
 	post.comment_count = frappe.db.count("Post Comment", {"post": post_id})
 	post.liked_by_me = bool(
 		frappe.session.user != "Guest"
@@ -802,6 +804,14 @@ def get_post(post_id: str):
 			{"reference_doctype": "Post", "reference_name": post_id, "user": frappe.session.user},
 		)
 	)
+
+	from cafe import points
+
+	# The viewer's own total, not the post's - rides along here because this
+	# is already the one call the comments UI makes per page load, and it's
+	# what decides whether the downvote icon unlocks on this page (see
+	# post.js).
+	post.my_points = points.total(frappe.session.user) if frappe.session.user != "Guest" else 0
 	post.tags = [t.strip() for t in (post.tags or "").split(",") if t.strip()]
 	# Older Image posts predate the Images table and only have the single
 	# legacy `attachment` field — surface it the same way so the frontend
@@ -827,7 +837,7 @@ def _check_post_visible(post_id):
 
 
 @frappe.whitelist()
-def toggle_like(reference_doctype: str, reference_name: str):
+def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool = False):
 	user = frappe.session.user
 	if user == "Guest":
 		frappe.throw(_("Not permitted"), frappe.PermissionError)
@@ -841,46 +851,68 @@ def toggle_like(reference_doctype: str, reference_name: str):
 
 	from cafe import points
 
+	if is_downvote:
+		# Mirrors the 500-point unlock table: downvoting is the most
+		# abuse-prone action, gated furthest out, and scoped to comments only
+		# so an article's author never feels personally downvoted.
+		if reference_doctype != "Post Comment":
+			frappe.throw(_("Only comments can be downvoted"))
+		if points.total(user) < 500:
+			frappe.throw(_("You need 500 cafe points to downvote"), frappe.PermissionError)
+
 	if reference_doctype == "Post":
 		owner = frappe.db.get_value("Post", reference_name, "author")
-		points_reason = points.ARTICLE_UPVOTE
+		upvote_reason = points.ARTICLE_UPVOTE
 	else:
 		owner = frappe.db.get_value("Post Comment", reference_name, "comment_by")
-		points_reason = points.COMMENT_UPVOTE
+		upvote_reason = points.COMMENT_UPVOTE
+	points_reason = points.COMMENT_DOWNVOTE if is_downvote else upvote_reason
 
-	existing = frappe.db.exists(
-		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name, "user": user}
+	# At most one vote per (reference, user) - upvote and downvote are
+	# mutually exclusive, like Reddit/HN. Clicking the same vote again clears
+	# it; clicking the other one switches it.
+	existing = frappe.db.get_value(
+		"Like",
+		{"reference_doctype": reference_doctype, "reference_name": reference_name, "user": user},
+		["name", "is_downvote"],
+		as_dict=True,
 	)
 	if existing:
-		frappe.delete_doc("Like", existing, ignore_permissions=True)
-		liked = False
-		points.award(owner, -1, points_reason, reference_doctype, reference_name, actor=user)
-	else:
+		# was_downvote can only be true for a Post Comment - Posts can never
+		# have a downvote Like row (the gate above rejects creating one).
+		was_downvote = bool(existing.is_downvote)
+		frappe.delete_doc("Like", existing.name, ignore_permissions=True)
+		old_reason = points.COMMENT_DOWNVOTE if was_downvote else upvote_reason
+		points.award(owner, 1 if was_downvote else -1, old_reason, reference_doctype, reference_name, actor=user)
+
+	active = not existing or bool(existing.is_downvote) != is_downvote
+	if active:
 		like = frappe.get_doc(
 			{
 				"doctype": "Like",
 				"reference_doctype": reference_doctype,
 				"reference_name": reference_name,
+				"is_downvote": 1 if is_downvote else 0,
 			}
 		)
 		like.flags.ignore_permissions = True
 		like.insert()
-		liked = True
-		points.award(owner, 1, points_reason, reference_doctype, reference_name, actor=user)
+		points.award(owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user)
 
-		if reference_doctype == "Post":
+		if not is_downvote:
 			from cafe.follow import _notify
 
-			_notify(owner, user, "Like", "liked your post", "Post", reference_name)
-		elif reference_doctype == "Post Comment":
-			from cafe.follow import _notify
+			if reference_doctype == "Post":
+				_notify(owner, user, "Like", "liked your post", "Post", reference_name)
+			else:
+				_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
 
-			_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
-
+	liked = active and not is_downvote
+	disliked = active and is_downvote
 	count = frappe.db.count(
-		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name}
+		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name, "is_downvote": 0}
 	)
-	return {"liked": liked, "count": count}
+	return {"liked": liked, "disliked": disliked, "count": count}
 
 
 @frappe.whitelist()
@@ -902,24 +934,28 @@ def list_comments(post: str):
 	)
 
 	liked_names = set()
+	disliked_names = set()
 	if rows and frappe.session.user != "Guest":
-		liked_names = set(
-			frappe.db.get_all(
-				"Like",
-				filters={
-					"reference_doctype": "Post Comment",
-					"reference_name": ["in", [r.name for r in rows]],
-					"user": frappe.session.user,
-				},
-				pluck="reference_name",
-			)
-		)
+		for vote in frappe.db.get_all(
+			"Like",
+			filters={
+				"reference_doctype": "Post Comment",
+				"reference_name": ["in", [r.name for r in rows]],
+				"user": frappe.session.user,
+			},
+			fields=["reference_name", "is_downvote"],
+		):
+			(disliked_names if vote.is_downvote else liked_names).add(vote.reference_name)
 
 	like_counts = {}
 	if rows:
 		for reference_name in frappe.db.get_all(
 			"Like",
-			filters={"reference_doctype": "Post Comment", "reference_name": ["in", [r.name for r in rows]]},
+			filters={
+				"reference_doctype": "Post Comment",
+				"reference_name": ["in", [r.name for r in rows]],
+				"is_downvote": 0,
+			},
 			pluck="reference_name",
 		):
 			like_counts[reference_name] = like_counts.get(reference_name, 0) + 1
@@ -927,6 +963,7 @@ def list_comments(post: str):
 	for row in rows:
 		row.like_count = like_counts.get(row.name, 0)
 		row.liked_by_me = row.name in liked_names
+		row.disliked_by_me = row.name in disliked_names
 	return rows
 
 
