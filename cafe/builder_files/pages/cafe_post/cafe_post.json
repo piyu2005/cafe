@@ -22,43 +22,43 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "fdmkkxzpz",
+     "blockId": "lykh42sg2",
      "blockName": "App",
      "children": [
       {
        "attributes": {},
        "baseStyles": {},
-       "blockId": "f5ygmmlb2",
+       "blockId": "0fyy4r2v5",
        "blockName": "Shell",
        "children": [
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "h8haj16v1",
+         "blockId": "cdz5u6kb8",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "hz4w214gk",
+           "blockId": "w6a1s6cyf",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "1q6julxl4",
+             "blockId": "2ayi4si3a",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "v5q6wod0f",
+               "blockId": "x782mcixd",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "dybqw0y81",
+                 "blockId": "jkpimgjr8",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -84,7 +84,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "cbjq1w1gi",
+                 "blockId": "t1e08fqe2",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -152,25 +152,25 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "ao4ytslv9",
+             "blockId": "h8haj16v1",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "jkpimgjr8",
+               "blockId": "jjzvlvq7y",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "v4r8ldjgd",
+                 "blockId": "8sr1550w1",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "4fgm4ck2o",
+                   "blockId": "sc4croswq",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -217,7 +217,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "1e7vibj2w",
+                 "blockId": "xyfnokbkk",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -264,19 +264,19 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "sc4croswq",
+               "blockId": "v7v49oq0h",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "x782mcixd",
+                 "blockId": "shrketbas",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "t1e08fqe2",
+                   "blockId": "rdlejkuur",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -323,7 +323,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "2ayi4si3a",
+                 "blockId": "ei6tx0706",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -370,19 +370,19 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "shrketbas",
+               "blockId": "bvoeclome",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "xyfnokbkk",
+                 "blockId": "ns89dendx",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "8sr1550w1",
+                   "blockId": "rtll23e9y",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -429,7 +429,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "jjzvlvq7y",
+                 "blockId": "0yo8nnqxo",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -455,7 +455,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "rdlejkuur",
+                 "blockId": "bhc49g6ku",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -502,19 +502,19 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "0yo8nnqxo",
+               "blockId": "brapqexyd",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "v7v49oq0h",
+                 "blockId": "6an10uuun",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "ei6tx0706",
+                   "blockId": "j1xghcjhv",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -561,7 +561,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "rtll23e9y",
+                 "blockId": "ao4ytslv9",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -587,7 +587,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "ns89dendx",
+                 "blockId": "2n82bucxo",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -634,19 +634,19 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "6an10uuun",
+               "blockId": "hz4w214gk",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "bvoeclome",
+                 "blockId": "466qgvi5k",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "bhc49g6ku",
+                   "blockId": "cwrjsh0um",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -693,7 +693,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "j1xghcjhv",
+                 "blockId": "r9br2mbay",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -761,25 +761,25 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "r9br2mbay",
+             "blockId": "l0gc2efn1",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "466qgvi5k",
+               "blockId": "2by0371pm",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "brapqexyd",
+                 "blockId": "4ezrl17v3",
                  "blockName": null,
                  "children": [
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "2n82bucxo",
+                   "blockId": "kg9vy32ql",
                    "blockName": null,
                    "children": [],
                    "classes": [],
@@ -826,7 +826,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "cwrjsh0um",
+                 "blockId": "wq1ogv9ol",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -936,19 +936,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "ili1jmx3n",
+         "blockId": "y8y6kffte",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "4ezrl17v3",
+           "blockId": "l3xlo2d9j",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "kg9vy32ql",
+             "blockId": "j9b9zyln7",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -995,13 +995,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "2by0371pm",
+           "blockId": "kwue9bi3t",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "wq1ogv9ol",
+             "blockId": "bbwgxjra7",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1048,13 +1048,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "cdz5u6kb8",
+           "blockId": "pq896bky0",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "l0gc2efn1",
+             "blockId": "ili1jmx3n",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1080,7 +1080,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "w6a1s6cyf",
+             "blockId": "qtt9wmtdq",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1127,13 +1127,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "l3xlo2d9j",
+           "blockId": "imhrcmpnt",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "j9b9zyln7",
+             "blockId": "i80c6qs8s",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1180,13 +1180,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "kwue9bi3t",
+           "blockId": "pvzufhwrb",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "bbwgxjra7",
+             "blockId": "4wmyg4d3d",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1254,19 +1254,19 @@
         {
          "attributes": {},
          "baseStyles": {},
-         "blockId": "y8y6kffte",
+         "blockId": "zg9fzsl1g",
          "blockName": null,
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "i80c6qs8s",
+           "blockId": "gjyup4l8u",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "qtt9wmtdq",
+             "blockId": "f5ygmmlb2",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1292,7 +1292,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "pq896bky0",
+             "blockId": "fdmkkxzpz",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1339,13 +1339,13 @@
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "pvzufhwrb",
+           "blockId": "1vrnmqgu7",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "imhrcmpnt",
+             "blockId": "9ym120zjk",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1371,7 +1371,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "4wmyg4d3d",
+             "blockId": "tgtfztc1g",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -1466,7 +1466,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "97lmmnjjw",
+       "blockId": "1e7vibj2w",
        "blockName": "Main",
        "children": [
         {
@@ -1485,7 +1485,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "iqpt6qudk",
+         "blockId": "qa4frbn0z",
          "blockName": "Mobile header",
          "children": [
           {
@@ -1502,7 +1502,7 @@
             "borderRadius": "8px",
             "color": "var(--ink-gray-8)"
            },
-           "blockId": "hoyyr4win",
+           "blockId": "5swlj9ytk",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -1543,7 +1543,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "ukukcvhp2",
+           "blockId": "qaysod4fh",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -1583,7 +1583,7 @@
             "justifyContent": "flex-end",
             "width": "32px"
            },
-           "blockId": "kv5ejfj88",
+           "blockId": "bjsw9vjog",
            "blockName": "Notifications",
            "children": [],
            "classes": [],
@@ -1644,7 +1644,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "bjsw9vjog",
+         "blockId": "4fgm4ck2o",
          "blockName": "Header",
          "children": [
           {
@@ -1659,7 +1659,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "nflxhlzl1",
+           "blockId": "dybqw0y81",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -1669,7 +1669,7 @@
               "alignItems": "center",
               "gap": "4px"
              },
-             "blockId": "oep9hxnb9",
+             "blockId": "iqpt6qudk",
              "blockName": "Crumbs",
              "children": [],
              "classes": [],
@@ -1700,7 +1700,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "6mn9wo3s3",
+             "blockId": "nflxhlzl1",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -1730,7 +1730,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "p3vleeieo",
+             "blockId": "tpygpsf5n",
              "blockName": "Title",
              "children": [],
              "classes": [
@@ -1802,7 +1802,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "qaysod4fh",
+           "blockId": "1q6julxl4",
            "blockName": "New Post",
            "children": [
             {
@@ -1812,7 +1812,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "fddg2whzt",
+             "blockId": "cbjq1w1gi",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -1838,7 +1838,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "5swlj9ytk",
+             "blockId": "v5q6wod0f",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -1916,7 +1916,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "qa4frbn0z",
+         "blockId": "v4r8ldjgd",
          "blockName": "Scroll area",
          "children": [
           {
@@ -1927,7 +1927,7 @@
             "margin": "0 auto",
             "padding": "48px 24px 32px"
            },
-           "blockId": "tpygpsf5n",
+           "blockId": "97lmmnjjw",
            "blockName": "Container",
            "children": [
             {
@@ -1935,7 +1935,7 @@
               "id": "cafe-post"
              },
              "baseStyles": {},
-             "blockId": "qnckzexd6",
+             "blockId": "kv5ejfj88",
              "blockName": "Post",
              "children": [
               {
@@ -1948,7 +1948,7 @@
                 "letterSpacing": "0.005em",
                 "lineHeight": "1.4"
                },
-               "blockId": "z11rrvqls",
+               "blockId": "1aha8ste4",
                "blockName": "Title",
                "children": [],
                "classes": [
@@ -1988,7 +1988,7 @@
                 "alignItems": "center",
                 "gap": "12px"
                },
-               "blockId": "0egeqwz01",
+               "blockId": "7lx8meanr",
                "blockName": "Author row",
                "children": [
                 {
@@ -2003,7 +2003,7 @@
                   "borderRadius": "9999px",
                   "backgroundColor": "var(--surface-gray-2)"
                  },
-                 "blockId": "n7tuz9pab",
+                 "blockId": "wl4842s6u",
                  "blockName": "Avatar",
                  "children": [
                   {
@@ -2017,7 +2017,7 @@
                     "height": "100%",
                     "objectFit": "cover"
                    },
-                   "blockId": "gfjbjo3s4",
+                   "blockId": "rhrx1d3xc",
                    "blockName": "Avatar image",
                    "children": [],
                    "classes": [],
@@ -2061,7 +2061,7 @@
                     "gridArea": "1 / 1",
                     "textTransform": "uppercase"
                    },
-                   "blockId": "rnki7pw2s",
+                   "blockId": "snmupe6tt",
                    "blockName": "Initial",
                    "children": [],
                    "classes": [],
@@ -2130,7 +2130,7 @@
                   "borderRadius": "12px",
                   "backgroundColor": "var(--surface-gray-10)"
                  },
-                 "blockId": "9uyhk851h",
+                 "blockId": "uvuuh4yry",
                  "blockName": "Publication tile",
                  "children": [
                   {
@@ -2144,7 +2144,7 @@
                     "height": "100%",
                     "objectFit": "cover"
                    },
-                   "blockId": "1aha8ste4",
+                   "blockId": "qb1ywuyhd",
                    "blockName": "Publication tile image",
                    "children": [],
                    "classes": [],
@@ -2188,7 +2188,7 @@
                     "gridArea": "1 / 1",
                     "textTransform": "uppercase"
                    },
-                   "blockId": "qggmoiwkc",
+                   "blockId": "ts8iw8vgc",
                    "blockName": "Publication tile initial",
                    "children": [],
                    "classes": [],
@@ -2251,7 +2251,7 @@
                   "flexGrow": "1",
                   "minWidth": "0"
                  },
-                 "blockId": "rhrx1d3xc",
+                 "blockId": "qoobz48lt",
                  "blockName": "Author",
                  "children": [
                   {
@@ -2266,7 +2266,7 @@
                     "lineHeight": "24px",
                     "display": "block"
                    },
-                   "blockId": "3gwir2m33",
+                   "blockId": "qggmoiwkc",
                    "blockName": "Author name",
                    "children": [],
                    "classes": [
@@ -2315,7 +2315,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "7swgljfbi",
+                   "blockId": "9uyhk851h",
                    "blockName": "Date and read time",
                    "children": [],
                    "classes": [],
@@ -2372,7 +2372,7 @@
                   "position": "relative",
                   "flexShrink": "0"
                  },
-                 "blockId": "qoobz48lt",
+                 "blockId": "gpd7y9s1x",
                  "blockName": "More",
                  "children": [
                   {
@@ -2393,7 +2393,7 @@
                     "color": "var(--ink-gray-8)",
                     "cursor": "pointer"
                    },
-                   "blockId": "snmupe6tt",
+                   "blockId": "0egeqwz01",
                    "blockName": "More",
                    "children": [],
                    "classes": [
@@ -2436,7 +2436,7 @@
                     "backgroundColor": "#ffffff",
                     "boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)"
                    },
-                   "blockId": "uvuuh4yry",
+                   "blockId": "e1thnc57n",
                    "blockName": "Menu",
                    "children": [
                     {
@@ -2459,7 +2459,7 @@
                       "textAlign": "left",
                       "cursor": "pointer"
                      },
-                     "blockId": "wl4842s6u",
+                     "blockId": "6khanfbs5",
                      "blockName": "Edit post",
                      "children": [],
                      "classes": [
@@ -2514,7 +2514,7 @@
                       "textAlign": "left",
                       "cursor": "pointer"
                      },
-                     "blockId": "qb1ywuyhd",
+                     "blockId": "40n6k8vzq",
                      "blockName": "Copy link",
                      "children": [],
                      "classes": [
@@ -2561,7 +2561,7 @@
                       "textAlign": "left",
                       "cursor": "pointer"
                      },
-                     "blockId": "ts8iw8vgc",
+                     "blockId": "reg9axsi6",
                      "blockName": "Delete",
                      "children": [],
                      "classes": [
@@ -2662,7 +2662,7 @@
                 "marginTop": "24px",
                 "borderTop": "1px solid var(--outline-gray-1)"
                },
-               "blockId": "6khanfbs5",
+               "blockId": "zf9ar3rx6",
                "blockName": "Divider",
                "children": [],
                "classes": [],
@@ -2696,7 +2696,7 @@
                 "borderRadius": "10px",
                 "backgroundColor": "#000000"
                },
-               "blockId": "e1thnc57n",
+               "blockId": "p1ciarri2",
                "blockName": "Carousel",
                "children": [
                 {
@@ -2705,7 +2705,7 @@
                   "width": "100%",
                   "height": "100%"
                  },
-                 "blockId": "reg9axsi6",
+                 "blockId": "6lmcck4bv",
                  "blockName": "Pictures",
                  "children": [
                   {
@@ -2718,7 +2718,7 @@
                     "height": "100%",
                     "objectFit": "contain"
                    },
-                   "blockId": "40n6k8vzq",
+                   "blockId": "lnh0v1ohx",
                    "blockName": "Picture",
                    "children": [],
                    "classes": [
@@ -2817,7 +2817,7 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.7"
                },
-               "blockId": "gpd7y9s1x",
+               "blockId": "739m0q4b9",
                "blockName": "Content",
                "children": [],
                "classes": [
@@ -2857,7 +2857,7 @@
                 "flexWrap": "wrap",
                 "gap": "8px"
                },
-               "blockId": "zf9ar3rx6",
+               "blockId": "19v60b6qz",
                "blockName": "Tags",
                "children": [
                 {
@@ -2875,7 +2875,7 @@
                   "letterSpacing": "0.02em",
                   "lineHeight": "1.5"
                  },
-                 "blockId": "7lx8meanr",
+                 "blockId": "55k5178iw",
                  "blockName": "Tag",
                  "children": [],
                  "classes": [
@@ -2947,7 +2947,7 @@
                 "borderTop": "1px solid var(--outline-gray-1)",
                 "borderBottom": "1px solid var(--outline-gray-1)"
                },
-               "blockId": "2ncrdccyd",
+               "blockId": "p3vleeieo",
                "blockName": "Action bar",
                "children": [
                 {
@@ -2957,7 +2957,7 @@
                   "alignItems": "center",
                   "gap": "24px"
                  },
-                 "blockId": "uhhk90p0y",
+                 "blockId": "qnckzexd6",
                  "blockName": "Counts",
                  "children": [
                   {
@@ -2976,7 +2976,7 @@
                     "fontSize": "14px",
                     "cursor": "pointer"
                    },
-                   "blockId": "p1ciarri2",
+                   "blockId": "uhhk90p0y",
                    "blockName": "Like",
                    "children": [
                     {
@@ -2985,7 +2985,7 @@
                       "display": "flex",
                       "flexShrink": "0"
                      },
-                     "blockId": "6lmcck4bv",
+                     "blockId": "biave1pfg",
                      "blockName": "Icon",
                      "children": [],
                      "classes": [],
@@ -3013,7 +3013,7 @@
                       "id": "cafe-like-count"
                      },
                      "baseStyles": {},
-                     "blockId": "lnh0v1ohx",
+                     "blockId": "m4jowp2lv",
                      "blockName": "Count",
                      "children": [],
                      "classes": [],
@@ -3092,7 +3092,7 @@
                     "fontSize": "14px",
                     "cursor": "pointer"
                    },
-                   "blockId": "19v60b6qz",
+                   "blockId": "3t1wxlcb5",
                    "blockName": "Comment",
                    "children": [
                     {
@@ -3101,7 +3101,7 @@
                       "display": "flex",
                       "flexShrink": "0"
                      },
-                     "blockId": "55k5178iw",
+                     "blockId": "2ncrdccyd",
                      "blockName": "Icon",
                      "children": [],
                      "classes": [],
@@ -3129,7 +3129,7 @@
                       "id": "cafe-comment-count"
                      },
                      "baseStyles": {},
-                     "blockId": "739m0q4b9",
+                     "blockId": "icqub4xe5",
                      "blockName": "Count",
                      "children": [],
                      "classes": [],
@@ -3213,7 +3213,7 @@
                   "alignItems": "center",
                   "gap": "4px"
                  },
-                 "blockId": "icqub4xe5",
+                 "blockId": "oep9hxnb9",
                  "blockName": "Buttons",
                  "children": [
                   {
@@ -3221,7 +3221,7 @@
                    "baseStyles": {
                     "display": "flex"
                    },
-                   "blockId": "m4jowp2lv",
+                   "blockId": "nm5uby9v6",
                    "blockName": "Share",
                    "children": [],
                    "classes": [],
@@ -3247,6 +3247,62 @@
                   {
                    "attributes": {
                     "type": "button",
+                    "aria-label": "Repost",
+                    "data-tooltip": "Repost"
+                   },
+                   "baseStyles": {
+                    "display": "grid",
+                    "placeItems": "center",
+                    "width": "28px",
+                    "height": "28px",
+                    "padding": "0",
+                    "border": "1px solid var(--outline-gray-2)",
+                    "borderRadius": "8px",
+                    "backgroundColor": "#ffffff",
+                    "color": "var(--ink-gray-8)",
+                    "cursor": "pointer"
+                   },
+                   "blockId": "9j8xglfjk",
+                   "blockName": "Repost",
+                   "children": [],
+                   "classes": [
+                    "cafe-repost"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {
+                    "data-action": "repost",
+                    "data-on": ""
+                   },
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "pp.reposted_flag",
+                     "property": "data-on",
+                     "type": "attribute"
+                    }
+                   ],
+                   "element": "button",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:16px;height:16px\"><path d=\"m2 9 3-3 3 3\" />\n  <path d=\"M13 18H7a2 2 0 0 1-2-2V6\" />\n  <path d=\"m22 15-3 3-3-3\" />\n  <path d=\"M11 6h6a2 2 0 0 1 2 2v10\" /></svg>",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": {
+                    "key": "pp.can_repost",
+                    "comesFrom": "dataScript"
+                   }
+                  },
+                  {
+                   "attributes": {
+                    "type": "button",
                     "aria-label": "Save",
                     "data-tooltip": "Save"
                    },
@@ -3262,7 +3318,7 @@
                     "color": "var(--ink-gray-8)",
                     "cursor": "pointer"
                    },
-                   "blockId": "biave1pfg",
+                   "blockId": "yvhzmc669",
                    "blockName": "Save",
                    "children": [],
                    "classes": [
@@ -3351,7 +3407,7 @@
                 "letterSpacing": "0.015em",
                 "lineHeight": "1.15"
                },
-               "blockId": "3t1wxlcb5",
+               "blockId": "6mn9wo3s3",
                "blockName": "Responses",
                "children": [],
                "classes": [],
@@ -3386,7 +3442,7 @@
                "baseStyles": {
                 "marginTop": "24px"
                },
-               "blockId": "nm5uby9v6",
+               "blockId": "lyivgwknw",
                "blockName": "Comment box",
                "children": [],
                "classes": [],
@@ -3416,7 +3472,7 @@
                "baseStyles": {
                 "marginTop": "24px"
                },
-               "blockId": "yvhzmc669",
+               "blockId": "hoyyr4win",
                "blockName": "Comments",
                "children": [],
                "classes": [
@@ -3444,7 +3500,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "9j8xglfjk",
+               "blockId": "ukukcvhp2",
                "blockName": "More comments",
                "children": [],
                "classes": [],
@@ -3538,7 +3594,7 @@
               "padding": "96px 0",
               "textAlign": "center"
              },
-             "blockId": "lyivgwknw",
+             "blockId": "fddg2whzt",
              "blockName": "Unavailable",
              "children": [],
              "classes": [],
@@ -3705,7 +3761,7 @@
    "builder_script": "Cafe Embeds"
   }
  ],
- "creation": "2026-10-18 10:21:05.067784",
+ "creation": "2026-10-18 10:30:09.192706",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3715,15 +3771,15 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-18 10:21:05.067784",
+ "modified": "2026-10-18 10:30:09.192706",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
- "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\npost_id = frappe.form_dict.post_id or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/posts/\" + path_segment(post_id))\n\nif not post_id:\n    # Builder's editor canvas has no post in the address: show the newest published one there.\n    newest = frappe.get_all(\"Post\", filters={\"status\": \"Published\"}, order_by=\"creation desc\", limit_page_length=1, pluck=\"name\")\n    post_id = newest[0] if newest else \"\"\n\npost = None\nif post_id:\n    try:\n        post = frappe.call(\"cafe.api.get_post\", post_id=post_id)\n    except Exception:\n        post = None\n\nif not post:\n    data.pp = {\"found\": False, \"unavailable\": True, \"crumb_title\": \"Post\", \"title\": \"Post\"}\n    data.images = []\n    data.tags = []\nelse:\n    raw = post.content or \"\"\n    if \"<\" in raw and \">\" in raw:\n        content_html = frappe.sanitize_html(raw)\n    else:\n        content_html = \"\".join([\"<p>\" + clean(part.strip()).replace(\"\\n\", \"<br>\") + \"</p>\" for part in raw.split(\"\\n\\n\") if part.strip()])\n\n    minutes = int(len(plain_text(raw).split()) / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n\n    # A post under a publication shows the publication's own identity here too\n    # (same rounded-square tile as the Home feed), not its author's - purely\n    # cosmetic, separate from who may actually manage the post (can_manage\n    # below), which always checks the real post.author and publication role.\n    # Publications is hidden for now (False) - while it is,\n    # this always falls through to the author, same as before it existed,\n    # regardless of what a pre-existing post's own publication field holds.\n    pub = None\n    if False and post.get(\"publication\"):\n        pub = frappe.db.get_value(\"Publication\", post.publication, [\"title\", \"logo\"], as_dict=True)\n    if pub:\n        identity_name = pub.get(\"title\") or post.publication\n        identity_image = safe_url(pub.get(\"logo\"))\n        identity_href = \"/publications/\" + path_segment(post.publication)\n    else:\n        identity_name = post.author_name or post.author\n        identity_image = safe_url(post.author_image)\n        identity_href = \"/profile/\" + path_segment(post.author_username or post.author)\n\n    # Edit/Delete: the author always has them for their own post; otherwise\n    # only an Editor or Admin of the post's publication does - a plain Member\n    # can write and edit their own drafts but isn't a gatekeeper for anyone\n    # else's.\n    pub_role = (\n        frappe.db.get_value(\n            \"Publication Member\", {\"publication\": post.publication, \"user\": frappe.session.user}, \"role\"\n        )\n        if False and post.publication\n        else None\n    )\n    can_manage = post.author == frappe.session.user or pub_role in (\"Editor\", \"Admin\")\n\n    images = []\n    for item in post.images or []:\n        url = safe_url(item.get(\"image\"))\n        if url:\n            images.append({\"src\": url})\n    tags = [{\"name\": clean(tag)} for tag in post.tags or []]\n    me = frappe.db.get_value(\"User\", frappe.session.user, [\"full_name\", \"user_image\"], as_dict=True) or {}\n\n    data.pp = {\n        \"found\": True,\n        \"unavailable\": False,\n        \"post_id\": clean(post.name),\n        \"user_id\": clean(frappe.session.user),\n        \"me_name\": clean(me.get(\"full_name\") or frappe.session.user),\n        \"me_image\": safe_url(me.get(\"user_image\")),\n        \"me_points\": str(post.my_points),\n        \"title\": clean(post.title or \"Untitled\"),\n        \"crumb_title\": clean(post.title or \"Post\"),\n        \"author_name\": clean(identity_name),\n        \"author_initial\": clean(identity_name.strip()[:1]),\n        \"author_image\": identity_image,\n        \"author_href\": clean(identity_href),\n        \"is_pub\": bool(pub),\n        \"is_person\": not pub,\n        \"avatar_img_on\": not pub and bool(identity_image),\n        \"avatar_initial_on\": not pub and not identity_image,\n        \"pub_img_on\": bool(pub) and bool(identity_image),\n        \"pub_initial_on\": bool(pub) and not identity_image,\n        \"meta\": day_month_year(post.creation) + \" \\u00b7 \" + str(minutes) + \" min read\",\n        \"can_manage\": can_manage,\n        \"edit_href\": clean(\"/write/\" + path_segment(post.name)),\n        \"content_html\": content_html,\n        \"is_image_post\": post.post_type == \"Image\" and len(images) > 0,\n        \"has_tags\": len(tags) > 0,\n        \"like_count\": post.like_count,\n        \"like_flag\": \"1\" if post.liked_by_me else \"\",\n        \"comment_count\": post.comment_count,\n        \"saved_flag\": \"1\" if post.saved_by_me else \"\",\n        \"responses_label\": \"Responses (\" + str(post.comment_count) + \")\",\n    }\n    data.images = images\n    data.tags = tags\n",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\npost_id = frappe.form_dict.post_id or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/posts/\" + path_segment(post_id))\n\nif not post_id:\n    # Builder's editor canvas has no post in the address: show the newest published one there.\n    newest = frappe.get_all(\"Post\", filters={\"status\": \"Published\"}, order_by=\"creation desc\", limit_page_length=1, pluck=\"name\")\n    post_id = newest[0] if newest else \"\"\n\npost = None\nif post_id:\n    try:\n        post = frappe.call(\"cafe.api.get_post\", post_id=post_id)\n    except Exception:\n        post = None\n\nif not post:\n    data.pp = {\"found\": False, \"unavailable\": True, \"crumb_title\": \"Post\", \"title\": \"Post\"}\n    data.images = []\n    data.tags = []\nelse:\n    raw = post.content or \"\"\n    if \"<\" in raw and \">\" in raw:\n        content_html = frappe.sanitize_html(raw)\n    else:\n        content_html = \"\".join([\"<p>\" + clean(part.strip()).replace(\"\\n\", \"<br>\") + \"</p>\" for part in raw.split(\"\\n\\n\") if part.strip()])\n\n    minutes = int(len(plain_text(raw).split()) / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n\n    # A post under a publication shows the publication's own identity here too\n    # (same rounded-square tile as the Home feed), not its author's - purely\n    # cosmetic, separate from who may actually manage the post (can_manage\n    # below), which always checks the real post.author and publication role.\n    # Publications is hidden for now (False) - while it is,\n    # this always falls through to the author, same as before it existed,\n    # regardless of what a pre-existing post's own publication field holds.\n    pub = None\n    if False and post.get(\"publication\"):\n        pub = frappe.db.get_value(\"Publication\", post.publication, [\"title\", \"logo\"], as_dict=True)\n    if pub:\n        identity_name = pub.get(\"title\") or post.publication\n        identity_image = safe_url(pub.get(\"logo\"))\n        identity_href = \"/publications/\" + path_segment(post.publication)\n    else:\n        identity_name = post.author_name or post.author\n        identity_image = safe_url(post.author_image)\n        identity_href = \"/profile/\" + path_segment(post.author_username or post.author)\n\n    # Edit/Delete: the author always has them for their own post; otherwise\n    # only an Editor or Admin of the post's publication does - a plain Member\n    # can write and edit their own drafts but isn't a gatekeeper for anyone\n    # else's.\n    pub_role = (\n        frappe.db.get_value(\n            \"Publication Member\", {\"publication\": post.publication, \"user\": frappe.session.user}, \"role\"\n        )\n        if False and post.publication\n        else None\n    )\n    can_manage = post.author == frappe.session.user or pub_role in (\"Editor\", \"Admin\")\n\n    images = []\n    for item in post.images or []:\n        url = safe_url(item.get(\"image\"))\n        if url:\n            images.append({\"src\": url})\n    tags = [{\"name\": clean(tag)} for tag in post.tags or []]\n    me = frappe.db.get_value(\"User\", frappe.session.user, [\"full_name\", \"user_image\"], as_dict=True) or {}\n\n    data.pp = {\n        \"found\": True,\n        \"unavailable\": False,\n        \"post_id\": clean(post.name),\n        \"user_id\": clean(frappe.session.user),\n        \"me_name\": clean(me.get(\"full_name\") or frappe.session.user),\n        \"me_image\": safe_url(me.get(\"user_image\")),\n        \"me_points\": str(post.my_points),\n        \"title\": clean(post.title or \"Untitled\"),\n        \"crumb_title\": clean(post.title or \"Post\"),\n        \"author_name\": clean(identity_name),\n        \"author_initial\": clean(identity_name.strip()[:1]),\n        \"author_image\": identity_image,\n        \"author_href\": clean(identity_href),\n        \"is_pub\": bool(pub),\n        \"is_person\": not pub,\n        \"avatar_img_on\": not pub and bool(identity_image),\n        \"avatar_initial_on\": not pub and not identity_image,\n        \"pub_img_on\": bool(pub) and bool(identity_image),\n        \"pub_initial_on\": bool(pub) and not identity_image,\n        \"meta\": day_month_year(post.creation) + \" \\u00b7 \" + str(minutes) + \" min read\",\n        \"can_manage\": can_manage,\n        \"edit_href\": clean(\"/write/\" + path_segment(post.name)),\n        \"content_html\": content_html,\n        \"is_image_post\": post.post_type == \"Image\" and len(images) > 0,\n        \"has_tags\": len(tags) > 0,\n        \"like_count\": post.like_count,\n        \"like_flag\": \"1\" if post.liked_by_me else \"\",\n        \"comment_count\": post.comment_count,\n        \"saved_flag\": \"1\" if post.saved_by_me else \"\",\n        \"can_repost\": post.my_points >= 100,\n        \"reposted_flag\": \"1\" if post.reposted_by_me else \"\",\n        \"responses_label\": \"Responses (\" + str(post.comment_count) + \")\",\n    }\n    data.images = images\n    data.tags = tags\n",
  "page_name": "cafe-post",
  "page_title": "Post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-18 10:21:05.067784",
+ "published_at": "2026-10-18 10:30:09.192706",
  "route": "posts/:post_id"
 }

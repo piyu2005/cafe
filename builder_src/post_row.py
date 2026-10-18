@@ -5,7 +5,7 @@ The published rows are blocks that Builder repeats on the server. The rows of
 the Drafts and Archived tabs are made in the browser from a <template>. Both
 come from the style dicts below, so they look the same."""
 
-from blocks import GRAY_6, INK, MUTED, attribute, block, html_el, show, text_style, when
+from blocks import GRAY_6, INK, MUTED, attribute, block, html_el, show, svg, text_style, when
 
 ROW_STYLES = {
 	"display": "flex",
@@ -52,11 +52,29 @@ def build_post_row():
 		),
 		"thumbnail",
 	)
+	reposted_badge = when(
+		block(
+			"div",
+			"Reposted badge",
+			styles={
+				"display": "flex",
+				"alignItems": "center",
+				"gap": "4px",
+				"marginBottom": "6px",
+				**text_style(12, "500", MUTED, "0.01em"),
+			},
+			children=[
+				block("span", "Icon", inner_html=svg("repeat-2", 12), styles={"display": "flex"}),
+				show(block("span", "Label", text="Reposted"), "reposted_label"),
+			],
+		),
+		"reposted",
+	)
 	text = block(
 		"div",
 		"Text",
 		styles=TEXT_STYLES,
-		children=[block("div", "Title and excerpt", children=[title, excerpt]), meta],
+		children=[reposted_badge, block("div", "Title and excerpt", children=[title, excerpt]), meta],
 	)
 	return attribute(
 		block(
