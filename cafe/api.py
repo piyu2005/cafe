@@ -260,6 +260,10 @@ def get_profile(user: str | None = None):
 	profile.username = profile.username or profile.name.split("@")[0]
 	profile.post_count = frappe.db.count("Post", {"author": user, "status": "Published"})
 
+	from cafe import points
+
+	profile.points = points.total(user)
+
 	profile.education = frappe.db.get_all(
 		"Education Entry",
 		filters={"user": user},
@@ -835,12 +839,22 @@ def toggle_like(reference_doctype: str, reference_name: str):
 			frappe.throw(_("Not found"), frappe.DoesNotExistError)
 		_check_post_visible(parent_post)
 
+	from cafe import points
+
+	if reference_doctype == "Post":
+		owner = frappe.db.get_value("Post", reference_name, "author")
+		points_reason = points.ARTICLE_UPVOTE
+	else:
+		owner = frappe.db.get_value("Post Comment", reference_name, "comment_by")
+		points_reason = points.COMMENT_UPVOTE
+
 	existing = frappe.db.exists(
 		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name, "user": user}
 	)
 	if existing:
 		frappe.delete_doc("Like", existing, ignore_permissions=True)
 		liked = False
+		points.award(owner, -1, points_reason, reference_doctype, reference_name, actor=user)
 	else:
 		like = frappe.get_doc(
 			{
@@ -852,17 +866,16 @@ def toggle_like(reference_doctype: str, reference_name: str):
 		like.flags.ignore_permissions = True
 		like.insert()
 		liked = True
+		points.award(owner, 1, points_reason, reference_doctype, reference_name, actor=user)
 
 		if reference_doctype == "Post":
 			from cafe.follow import _notify
 
-			post_author = frappe.db.get_value("Post", reference_name, "author")
-			_notify(post_author, user, "Like", "liked your post", "Post", reference_name)
+			_notify(owner, user, "Like", "liked your post", "Post", reference_name)
 		elif reference_doctype == "Post Comment":
 			from cafe.follow import _notify
 
-			comment_author = frappe.db.get_value("Post Comment", reference_name, "comment_by")
-			_notify(comment_author, user, "Like", "liked your comment", "Post Comment", reference_name)
+			_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
 
 	count = frappe.db.count(
 		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name}
@@ -1018,6 +1031,12 @@ def update_profile(
 
 	doc.flags.ignore_permissions = True
 	doc.save()
+
+	from cafe import points
+
+	if points.has_completed_profile(doc):
+		points.award_once(user, 10, points.PROFILE_COMPLETED)
+
 	return "success"
 
 
@@ -1132,14 +1151,20 @@ def toggle_save_post(post: str):
 		frappe.throw(_("Not permitted"), frappe.PermissionError)
 	_check_post_visible(post)
 
+	from cafe import points
+
+	owner = frappe.db.get_value("Post", post, "author")
+
 	existing = frappe.db.exists("Saved Post", {"post": post, "user": user})
 	if existing:
 		frappe.delete_doc("Saved Post", existing, ignore_permissions=True)
+		points.award(owner, -2, points.POST_SAVED, "Post", post, actor=user)
 		return {"saved": False}
 
 	doc = frappe.get_doc({"doctype": "Saved Post", "post": post})
 	doc.flags.ignore_permissions = True
 	doc.insert()
+	points.award(owner, 2, points.POST_SAVED, "Post", post, actor=user)
 	return {"saved": True}
 
 
