@@ -329,7 +329,7 @@ def build_content():
 			attrs={"id": "cafe-content"},
 			text="The text of the post.",
 			styles={
-				"marginTop": "32px",
+				"marginTop": "24px",  # matches the action bar's own marginTop below the content
 				"minHeight": "300px",
 				**text_style(15, "420", "#383838", "0.02em", "1.7"),
 			},
