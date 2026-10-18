@@ -1360,6 +1360,14 @@ p.cafe-clamp-3:empty::before {
 .cafe-c-like.on {
   color: #e03636;
 }
+.cafe-c-votes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cafe-c-dislike.on {
+  color: var(--ink-gray-8);
+}
 .cafe-ico svg {
   display: block;
   width: 16px;

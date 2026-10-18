@@ -593,7 +593,13 @@ def build_post_page(shell_id, shell_block):
 			"div",
 			"Post",
 			attrs={"id": "cafe-post"},
-			custom={"data-post": "", "data-user": "", "data-me-name": "", "data-me-image": ""},
+			custom={
+				"data-post": "",
+				"data-user": "",
+				"data-me-name": "",
+				"data-me-image": "",
+				"data-me-points": "",
+			},
 			children=[
 				build_title(),
 				build_author_row(),
@@ -612,6 +618,7 @@ def build_post_page(shell_id, shell_block):
 		("pp.user_id", "data-user"),
 		("pp.me_name", "data-me-name"),
 		("pp.me_image", "data-me-image"),
+		("pp.me_points", "data-me-points"),
 	):
 		post = attribute(post, key, prop)
 	return page_layout(
@@ -708,6 +715,7 @@ else:
         "user_id": clean(frappe.session.user),
         "me_name": clean(me.get("full_name") or frappe.session.user),
         "me_image": safe_url(me.get("user_image")),
+        "me_points": str(post.my_points),
         "title": clean(post.title or "Untitled"),
         "crumb_title": clean(post.title or "Post"),
         "author_name": clean(identity_name),

@@ -8,7 +8,8 @@
  "field_order": [
   "reference_doctype",
   "reference_name",
-  "user"
+  "user",
+  "is_downvote"
  ],
  "fields": [
   {
@@ -37,6 +38,13 @@
    "options": "User",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_downvote",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": "Is Downvote"
   }
  ],
  "links": [],

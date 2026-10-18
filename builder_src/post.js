@@ -8,6 +8,7 @@
 	var MORE_COMMENTS = 10
 
 	var root, postId, user, me
+	var myPoints = 0
 	var comments = [] // every comment and reply, newest first, as the server sent them
 	var visibleCount = FIRST_COMMENTS
 	var expanded = {} // top-level comment name -> its replies are open
@@ -43,6 +44,8 @@
 	function icon(name, extra) {
 		var paths = {
 			heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+			'thumbs-down':
+				'<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>',
 		}
 		var span = el('span', 'cafe-ico ' + (extra || ''))
 		span.innerHTML =
@@ -316,38 +319,71 @@
 		document.getElementById('cafe-responses').textContent = 'Responses (' + n + ')'
 	}
 
-	function heartButton(comment) {
-		var button = el('button', 'cafe-c-like')
+	function voteButton(comment, isDownvote, iconName, extraClass, paintFns) {
+		var button = el('button', 'cafe-c-like' + (extraClass ? ' ' + extraClass : ''))
 		button.type = 'button'
-		button.appendChild(icon('heart'))
-		var count = el('span', 'cafe-c-like-count', String(comment.like_count || 0))
-		button.appendChild(count)
-		function paint() {
-			button.classList.toggle('on', !!comment.liked_by_me)
-			count.textContent = String(comment.like_count || 0)
+		button.appendChild(icon(iconName))
+		var count
+		if (!isDownvote) {
+			count = el('span', 'cafe-c-like-count', String(comment.like_count || 0))
+			button.appendChild(count)
 		}
+		function paint() {
+			button.classList.toggle('on', !!(isDownvote ? comment.disliked_by_me : comment.liked_by_me))
+			if (count) count.textContent = String(comment.like_count || 0)
+		}
+		paintFns.push(paint)
 		paint()
 		button.addEventListener('click', function () {
-			var was = !!comment.liked_by_me
-			var before = comment.like_count || 0
-			comment.liked_by_me = !was
-			comment.like_count = was ? before - 1 : before + 1
-			paint()
-			CAFE.api('cafe.api.toggle_like', { reference_doctype: 'Post Comment', reference_name: comment.name }).then(
+			var wasLiked = !!comment.liked_by_me
+			var wasDisliked = !!comment.disliked_by_me
+			var beforeCount = comment.like_count || 0
+			var turningOn = isDownvote ? !wasDisliked : !wasLiked
+			comment.liked_by_me = isDownvote ? (turningOn ? false : wasLiked) : turningOn
+			comment.disliked_by_me = isDownvote ? turningOn : turningOn ? false : wasDisliked
+			if (!isDownvote) comment.like_count = turningOn ? beforeCount + 1 : beforeCount - 1
+			else if (wasLiked) comment.like_count = beforeCount - 1 // switching from an upvote to a downvote
+			paintFns.forEach(function (p) {
+				p()
+			})
+			CAFE.api('cafe.api.toggle_like', {
+				reference_doctype: 'Post Comment',
+				reference_name: comment.name,
+				is_downvote: isDownvote,
+			}).then(
 				function (result) {
 					comment.liked_by_me = result.liked
+					comment.disliked_by_me = result.disliked
 					comment.like_count = result.count
-					paint()
+					paintFns.forEach(function (p) {
+						p()
+					})
 				},
 				function (err) {
-					comment.liked_by_me = was
-					comment.like_count = before
-					paint()
+					comment.liked_by_me = wasLiked
+					comment.disliked_by_me = wasDisliked
+					comment.like_count = beforeCount
+					paintFns.forEach(function (p) {
+						p()
+					})
 					CAFE.toast(err.message, 'error')
 				}
 			)
 		})
 		return button
+	}
+
+	function voteButtons(comment) {
+		var wrap = el('span', 'cafe-c-votes')
+		var paintFns = []
+		wrap.appendChild(voteButton(comment, false, 'heart', null, paintFns))
+		// Downvoting only unlocks once the viewer's own cafe points cross the
+		// 500 threshold (see toggle_like's gate) - showing the icon earlier
+		// would just be a button that always errors.
+		if (myPoints >= 500) {
+			wrap.appendChild(voteButton(comment, true, 'thumbs-down', 'cafe-c-dislike', paintFns))
+		}
+		return wrap
 	}
 
 	function replyBox(comment, node) {
@@ -447,7 +483,7 @@
 		node.appendChild(el('p', 'cafe-c-body', comment.content))
 
 		var actions = el('div', 'cafe-c-actions')
-		actions.appendChild(heartButton(comment))
+		actions.appendChild(voteButtons(comment))
 		var reply = el('button', 'cafe-c-action', 'Reply')
 		reply.type = 'button'
 		reply.addEventListener('click', function () {
@@ -627,6 +663,7 @@
 		postId = root.getAttribute('data-post')
 		user = root.getAttribute('data-user')
 		me = { name: root.getAttribute('data-me-name'), image: root.getAttribute('data-me-image') }
+		myPoints = parseInt(root.getAttribute('data-me-points'), 10) || 0
 		listEl = document.getElementById('cafe-comments')
 		moreButton = root.querySelector('.cafe-more-comments')
 
