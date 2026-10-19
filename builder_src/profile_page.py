@@ -243,13 +243,14 @@ def build_name_row():
 		),
 		"profile.full_name",
 	)
-	# frappe-ui's own Badge (ui.frappe.io/docs/components/badge), theme="red"
-	# variant="subtle" size="md" - exact values read from its source
+	# frappe-ui's own Badge (ui.frappe.io/docs/components/badge), theme="amber"
+	# variant="subtle" - colors read from its actual source
 	# (node_modules/frappe-ui/src/components/Badge/Badge.vue and
-	# tailwind/generated/colors.json), not approximated: rounded-full,
-	# h-5 (20px), px-1.5 (6px), text-xs (12px/16px), bg-surface-red-2
-	# (#ffe7e7), text-ink-red-8 (#b41d1d). Badge sets no font-weight of its
-	# own (only its "lg" size does) - inherits the app's own body weight.
+	# tailwind/generated/colors.json): bg-surface-amber-2 (#fff4d3),
+	# text-ink-amber-8 (#bb6f0c). Height is 28px (not one of Badge's own
+	# sm/md/lg presets) to line up with the Edit button beside it - padding/
+	# font-size/tracking carried over from its "lg" preset (px-2, text-[13px],
+	# tracking-[0.02em]) since 28px is past "lg"'s own 24px.
 	points_badge = show(
 		block(
 			"span",
@@ -259,12 +260,12 @@ def build_name_row():
 				"display": "inline-flex",
 				"alignItems": "center",
 				"flexShrink": "0",
-				"height": "20px",
-				"padding": "0 6px",
+				"height": "28px",
+				"padding": "0 8px",
 				"borderRadius": "9999px",
-				"backgroundColor": "#ffe7e7",
+				"backgroundColor": "#fff4d3",
 				"whiteSpace": "nowrap",
-				**text_style(12, "420", "#b41d1d", "0", "16px"),
+				**text_style(13, "420", "#bb6f0c", "0.02em", "17px"),
 			},
 		),
 		"profile.points_label",
