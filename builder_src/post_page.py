@@ -31,6 +31,7 @@ from shell_component import MENU_ITEM_STYLES
 BUTTON_BORDER = "var(--outline-gray-2)"
 ICON_SPAN = {"display": "flex", "flexShrink": "0"}
 ERROR_RED = "#b41d1d"
+FLAG_AMBER = "#df9310"
 
 
 def crumb_html(*parts):
@@ -215,6 +216,20 @@ def build_more_menu():
 		),
 		"pp.can_manage",
 	)
+	# Only unlocks once the viewer's own cafe points cross 250 ("enough
+	# history to trust your judgement") and never on your own post - same
+	# "unlock new action icons by level" approach as downvote/repost.
+	flag = when(
+		menu_item(
+			"button",
+			{"type": "button"},
+			"flag",
+			"Flag post",
+			custom={"data-action": "flag-post"},
+			color=FLAG_AMBER,
+		),
+		"pp.can_flag",
+	)
 	menu = block(
 		"div",
 		"Menu",
@@ -232,7 +247,7 @@ def build_more_menu():
 			"backgroundColor": "#ffffff",
 			"boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)",
 		},
-		children=[edit, copy, delete],
+		children=[edit, copy, flag, delete],
 	)
 	return block("div", "More", styles={"position": "relative", "flexShrink": "0"}, children=[button, menu])
 
@@ -770,6 +785,7 @@ else:
         "saved_flag": "1" if post.saved_by_me else "",
         "can_repost": post.my_points >= 100,
         "reposted_flag": "1" if post.reposted_by_me else "",
+        "can_flag": post.can_flag,
         "responses_label": "Responses (" + str(post.comment_count) + ")",
     }
     data.images = images
