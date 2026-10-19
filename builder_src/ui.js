@@ -411,6 +411,14 @@
 		}
 	}
 
+	// The bubble is `position: fixed`, placed once from the anchor's
+	// getBoundingClientRect() at hover time - scrolling (wheel/trackpad, not
+	// a mouse move) doesn't fire mouseleave, so without this it stays
+	// stranded on screen while the anchor it pointed at scrolls away
+	// underneath. `true` (capture) catches scroll on any scrollable
+	// ancestor, not just window, since scroll doesn't bubble.
+	document.addEventListener('scroll', hideTooltip, true)
+
 	function showTooltip(anchor, text, side) {
 		// Closes whatever tooltip is already open first, same as popupMenu's
 		// closePopup()-first pattern - so switching anchors (or a stray second
