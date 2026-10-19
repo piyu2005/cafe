@@ -170,6 +170,7 @@ def slug(name):
 from auth_page import LOGIN_DATA_SCRIPT, SIGNUP_DATA_SCRIPT, build_login, build_signup
 from blocks import PUBLICATIONS_ENABLED, svg
 from chat_page import CHAT_DATA_SCRIPT, CHAT_PARTS, build_native_chat, native_head_html
+from faq_page import FAQ_DATA_SCRIPT, build_faq
 from home_page import HOME_DATA_SCRIPT, build_home
 from post_page import POST_DATA_SCRIPT, build_post_page
 from posts_page import POSTS_DATA_SCRIPT, build_posts_page
@@ -405,6 +406,7 @@ def main():
 		),
 		("cafe-home", "Home", "cafe-home", build_home, [*shared, "Cafe Home"], HOME_DATA_SCRIPT, False),
 		("cafe-settings", "Settings", "settings", build_settings, shared, SETTINGS_DATA_SCRIPT, False),
+		("cafe-faq", "FAQ", "faq", build_faq, shared, FAQ_DATA_SCRIPT, False),
 		("cafe-login", "Login", "login", build_login, [*alone, "Cafe Auth"], LOGIN_DATA_SCRIPT, False),
 		("cafe-signup", "Signup", "signup", build_signup, [*alone, "Cafe Auth"], SIGNUP_DATA_SCRIPT, False),
 		(

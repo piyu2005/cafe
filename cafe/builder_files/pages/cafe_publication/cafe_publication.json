@@ -22,7 +22,7 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "466qgvi5k",
+     "blockId": "i80c6qs8s",
      "blockName": "App",
      "children": [
       {
@@ -30,7 +30,7 @@
        "baseStyles": {
         "display": "contents"
        },
-       "blockId": "63ymw6x7a",
+       "blockId": "q33bf1yzr",
        "blockName": "Shell",
        "children": [
         {
@@ -1704,7 +1704,7 @@
           "backgroundColor": "#ffffff",
           "boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)"
          },
-         "blockId": "2ajgip4o2",
+         "blockId": "zswo1qj4p",
          "blockName": "Logo menu",
          "children": [
           {
@@ -1812,6 +1812,109 @@
           },
           {
            "attributes": {
+            "href": "/faq",
+            "role": "menuitem"
+           },
+           "baseStyles": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "8px",
+            "width": "100%",
+            "height": "28px",
+            "padding": "0 8px",
+            "border": "0",
+            "borderRadius": "6px",
+            "backgroundColor": "transparent",
+            "color": "var(--ink-gray-8)",
+            "fontSize": "14px",
+            "textAlign": "left",
+            "cursor": "pointer"
+           },
+           "blockId": "omqoow6dl",
+           "blockName": "FAQ",
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {
+              "width": "16px",
+              "height": "16px",
+              "flexShrink": "0",
+              "color": "var(--ink-gray-5)"
+             },
+             "blockId": "6n75mpewa",
+             "blockName": "icon/circle-help",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "svg",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" />\n  <path d=\"M12 17h.01\" /></svg>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "reiavuqu4",
+             "blockName": "Label",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "FAQ",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "cafe-menu-item"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "a",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          },
+          {
+           "attributes": {
             "id": "cafe-logout",
             "type": "button",
             "role": "menuitem"
@@ -1831,7 +1934,7 @@
             "textAlign": "left",
             "cursor": "pointer"
            },
-           "blockId": "omqoow6dl",
+           "blockId": "ijwnf4xoi",
            "blockName": "Logout",
            "children": [
             {
@@ -1842,7 +1945,7 @@
               "flexShrink": "0",
               "color": "var(--ink-gray-5)"
              },
-             "blockId": "6n75mpewa",
+             "blockId": "2ajgip4o2",
              "blockName": "icon/log-out",
              "children": [],
              "classes": [],
@@ -1868,7 +1971,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "reiavuqu4",
+             "blockId": "63ymw6x7a",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -1969,7 +2072,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "cwrjsh0um",
+       "blockId": "pq896bky0",
        "blockName": "Main",
        "children": [
         {
@@ -1988,7 +2091,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "0yo8nnqxo",
+         "blockId": "w6a1s6cyf",
          "blockName": "Mobile header",
          "children": [
           {
@@ -2011,7 +2114,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "rtll23e9y",
+           "blockId": "2by0371pm",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -2047,7 +2150,7 @@
             "gap": "4px",
             "marginLeft": "auto"
            },
-           "blockId": "ns89dendx",
+           "blockId": "l0gc2efn1",
            "blockName": "Notifications",
            "children": [],
            "classes": [],
@@ -2108,7 +2211,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "2n82bucxo",
+         "blockId": "ili1jmx3n",
          "blockName": "Header",
          "children": [
           {
@@ -2123,7 +2226,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "bvoeclome",
+           "blockId": "j9b9zyln7",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2131,7 +2234,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "sc4croswq",
+             "blockId": "cwrjsh0um",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2162,7 +2265,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "8sr1550w1",
+             "blockId": "466qgvi5k",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2192,7 +2295,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "xyfnokbkk",
+             "blockId": "r9br2mbay",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2223,7 +2326,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "jjzvlvq7y",
+             "blockId": "hz4w214gk",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2255,7 +2358,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "rdlejkuur",
+             "blockId": "h8haj16v1",
              "blockName": "Current",
              "children": [],
              "classes": [
@@ -2320,7 +2423,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "ao4ytslv9",
+           "blockId": "kwue9bi3t",
            "blockName": "New Post",
            "children": [
             {
@@ -2330,7 +2433,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "j1xghcjhv",
+             "blockId": "l3xlo2d9j",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2356,7 +2459,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "6an10uuun",
+             "blockId": "bbwgxjra7",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2434,7 +2537,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "brapqexyd",
+         "blockId": "qtt9wmtdq",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2445,7 +2548,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "bhc49g6ku",
+           "blockId": "cdz5u6kb8",
            "blockName": "Container",
            "children": [
             {
@@ -2453,13 +2556,13 @@
               "id": "cafe-pub"
              },
              "baseStyles": {},
-             "blockId": "ei6tx0706",
+             "blockId": "4ezrl17v3",
              "blockName": "Publication",
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "shrketbas",
+               "blockId": "kg9vy32ql",
                "blockName": "Preview",
                "children": [],
                "classes": [
@@ -2657,7 +2760,7 @@
    "builder_script": "Cafe Pub Detail"
   }
  ],
- "creation": "2026-10-19 13:19:37.797175",
+ "creation": "2026-10-19 16:00:17.967218",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2667,7 +2770,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 13:19:37.797175",
+ "modified": "2026-10-19 16:00:17.967218",
  "modified_by": "Administrator",
  "name": "cafe-publication",
  "owner": "Administrator",
@@ -2676,6 +2779,6 @@
  "page_title": "Publication",
  "project_folder": "cafe",
  "published": 0,
- "published_at": "2026-10-19 13:19:37.797175",
+ "published_at": "2026-10-19 16:00:17.967218",
  "route": "publications/:handle"
 }

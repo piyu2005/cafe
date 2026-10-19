@@ -22,7 +22,7 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "pdlmm8ztv",
+     "blockId": "x7pjn588r",
      "blockName": "App",
      "children": [
       {
@@ -30,7 +30,7 @@
        "baseStyles": {
         "display": "contents"
        },
-       "blockId": "63ymw6x7a",
+       "blockId": "q33bf1yzr",
        "blockName": "Shell",
        "children": [
         {
@@ -1704,7 +1704,7 @@
           "backgroundColor": "#ffffff",
           "boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)"
          },
-         "blockId": "2ajgip4o2",
+         "blockId": "zswo1qj4p",
          "blockName": "Logo menu",
          "children": [
           {
@@ -1812,6 +1812,109 @@
           },
           {
            "attributes": {
+            "href": "/faq",
+            "role": "menuitem"
+           },
+           "baseStyles": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "8px",
+            "width": "100%",
+            "height": "28px",
+            "padding": "0 8px",
+            "border": "0",
+            "borderRadius": "6px",
+            "backgroundColor": "transparent",
+            "color": "var(--ink-gray-8)",
+            "fontSize": "14px",
+            "textAlign": "left",
+            "cursor": "pointer"
+           },
+           "blockId": "omqoow6dl",
+           "blockName": "FAQ",
+           "children": [
+            {
+             "attributes": {},
+             "baseStyles": {
+              "width": "16px",
+              "height": "16px",
+              "flexShrink": "0",
+              "color": "var(--ink-gray-5)"
+             },
+             "blockId": "6n75mpewa",
+             "blockName": "icon/circle-help",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "svg",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" />\n  <path d=\"M12 17h.01\" /></svg>",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": "__raw_html__",
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {},
+             "blockId": "reiavuqu4",
+             "blockName": "Label",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "FAQ",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            }
+           ],
+           "classes": [
+            "cafe-menu-item"
+           ],
+           "clientScript": {},
+           "customAttributes": {},
+           "dataKey": null,
+           "draggable": false,
+           "dynamicValues": [],
+           "element": "a",
+           "elementBeforeConversion": null,
+           "extendedFromComponent": null,
+           "innerHTML": null,
+           "isChildOfComponent": null,
+           "isRepeaterBlock": false,
+           "mobileStyles": {},
+           "originalElement": null,
+           "props": {},
+           "rawStyles": {},
+           "referenceBlockId": null,
+           "tabletStyles": {},
+           "visibilityCondition": null
+          },
+          {
+           "attributes": {
             "id": "cafe-logout",
             "type": "button",
             "role": "menuitem"
@@ -1831,7 +1934,7 @@
             "textAlign": "left",
             "cursor": "pointer"
            },
-           "blockId": "omqoow6dl",
+           "blockId": "ijwnf4xoi",
            "blockName": "Logout",
            "children": [
             {
@@ -1842,7 +1945,7 @@
               "flexShrink": "0",
               "color": "var(--ink-gray-5)"
              },
-             "blockId": "6n75mpewa",
+             "blockId": "2ajgip4o2",
              "blockName": "icon/log-out",
              "children": [],
              "classes": [],
@@ -1868,7 +1971,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "reiavuqu4",
+             "blockId": "63ymw6x7a",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -1969,7 +2072,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "j7uqhi9qz",
+       "blockId": "m3ow1znmt",
        "blockName": "Main",
        "children": [
         {
@@ -1987,7 +2090,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "e5el9tpp9",
+         "blockId": "pdlmm8ztv",
          "blockName": "Header",
          "children": [
           {
@@ -2002,7 +2105,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "sovkzakyb",
+           "blockId": "3swo4vy7h",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2010,7 +2113,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "cq3fr5096",
+             "blockId": "qj3r2020s",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2041,7 +2144,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "nahexxe72",
+             "blockId": "bkokn6xcd",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2071,7 +2174,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "262opfy6q",
+             "blockId": "19vv7xbr1",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2106,7 +2209,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-5)"
              },
-             "blockId": "qj3r2020s",
+             "blockId": "xd16bwuxs",
              "blockName": "Explore",
              "children": [],
              "classes": [],
@@ -2140,7 +2243,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "bkokn6xcd",
+             "blockId": "w1ef9y2wj",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2173,7 +2276,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "19vv7xbr1",
+             "blockId": "sovkzakyb",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2248,7 +2351,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "3swo4vy7h",
+           "blockId": "j7uqhi9qz",
            "blockName": "New Post",
            "children": [
             {
@@ -2258,7 +2361,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "v8v1aieei",
+             "blockId": "e5el9tpp9",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2284,7 +2387,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "tdp1cnm3w",
+             "blockId": "ikqidwemd",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2362,7 +2465,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "ikqidwemd",
+         "blockId": "3e4h2pmf6",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2373,7 +2476,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "w1ef9y2wj",
+           "blockId": "tdp1cnm3w",
            "blockName": "Container",
            "children": [
             {
@@ -2381,7 +2484,7 @@
               "id": "cafe-profile"
              },
              "baseStyles": {},
-             "blockId": "c1gxwy1kw",
+             "blockId": "262opfy6q",
              "blockName": "Profile",
              "children": [
               {
@@ -2391,7 +2494,7 @@
                 "alignItems": "flex-start",
                 "gap": "32px"
                },
-               "blockId": "8y7rcmgex",
+               "blockId": "nahexxe72",
                "blockName": "Profile header",
                "children": [
                 {
@@ -2413,7 +2516,7 @@
                   "font": "inherit",
                   "cursor": "pointer"
                  },
-                 "blockId": "9k5x8ra5i",
+                 "blockId": "vfdb5s2fu",
                  "blockName": "Avatar",
                  "children": [
                   {
@@ -2427,7 +2530,7 @@
                     "height": "100%",
                     "objectFit": "cover"
                    },
-                   "blockId": "pjf6ecj8j",
+                   "blockId": "eik73ajt5",
                    "blockName": "Avatar image",
                    "children": [],
                    "classes": [],
@@ -2471,7 +2574,7 @@
                     "gridArea": "1 / 1",
                     "textTransform": "uppercase"
                    },
-                   "blockId": "s4wd17fbn",
+                   "blockId": "9k5x8ra5i",
                    "blockName": "Initial",
                    "children": [],
                    "classes": [
@@ -2509,7 +2612,7 @@
                   {
                    "attributes": {},
                    "baseStyles": {},
-                   "blockId": "eik73ajt5",
+                   "blockId": "oiqcvkg98",
                    "blockName": "Edit hint",
                    "children": [
                     {
@@ -2520,7 +2623,7 @@
                       "flexShrink": "0",
                       "color": "#ffffff"
                      },
-                     "blockId": "lcm0fog4w",
+                     "blockId": "mnrmnsdch",
                      "blockName": "icon/camera",
                      "children": [],
                      "classes": [],
@@ -2615,7 +2718,7 @@
                   "borderRadius": "9999px",
                   "backgroundColor": "var(--surface-gray-2)"
                  },
-                 "blockId": "vfdb5s2fu",
+                 "blockId": "gpz6e5og2",
                  "blockName": "Avatar",
                  "children": [
                   {
@@ -2629,7 +2732,7 @@
                     "height": "100%",
                     "objectFit": "cover"
                    },
-                   "blockId": "mnrmnsdch",
+                   "blockId": "jwrvby4ul",
                    "blockName": "Avatar image",
                    "children": [],
                    "classes": [],
@@ -2673,7 +2776,7 @@
                     "gridArea": "1 / 1",
                     "textTransform": "uppercase"
                    },
-                   "blockId": "oiqcvkg98",
+                   "blockId": "ybjn3i6hh",
                    "blockName": "Initial",
                    "children": [],
                    "classes": [
@@ -2740,7 +2843,7 @@
                   "flexGrow": "1",
                   "minWidth": "0"
                  },
-                 "blockId": "3v4w9i309",
+                 "blockId": "cq3fr5096",
                  "blockName": "Details",
                  "children": [
                   {
@@ -2751,7 +2854,7 @@
                     "justifyContent": "space-between",
                     "gap": "16px"
                    },
-                   "blockId": "o89mzynqf",
+                   "blockId": "8c7airbtr",
                    "blockName": "Name row",
                    "children": [
                     {
@@ -2767,7 +2870,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.5"
                      },
-                     "blockId": "jwrvby4ul",
+                     "blockId": "3lirbx99j",
                      "blockName": "Name",
                      "children": [],
                      "classes": [
@@ -2807,7 +2910,7 @@
                       "gap": "8px",
                       "flexShrink": "0"
                      },
-                     "blockId": "19y2zgaqj",
+                     "blockId": "gcujycx3s",
                      "blockName": "Buttons",
                      "children": [
                       {
@@ -2827,7 +2930,7 @@
                         "letterSpacing": "0.02em",
                         "lineHeight": "17px"
                        },
-                       "blockId": "ybjn3i6hh",
+                       "blockId": "19y2zgaqj",
                        "blockName": "Cafe points",
                        "children": [],
                        "classes": [
@@ -2864,7 +2967,7 @@
                        "baseStyles": {
                         "display": "flex"
                        },
-                       "blockId": "gpz6e5og2",
+                       "blockId": "o89mzynqf",
                        "blockName": "Edit",
                        "children": [],
                        "classes": [],
@@ -2895,7 +2998,7 @@
                        "baseStyles": {
                         "display": "flex"
                        },
-                       "blockId": "3lirbx99j",
+                       "blockId": "84xpx5w1t",
                        "blockName": "Share",
                        "children": [],
                        "classes": [],
@@ -2978,7 +3081,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.15"
                    },
-                   "blockId": "hpo9s1jyo",
+                   "blockId": "lxf43f7ps",
                    "blockName": "Job line",
                    "children": [
                     {
@@ -2988,7 +3091,7 @@
                       "alignItems": "center",
                       "gap": "4px"
                      },
-                     "blockId": "8c7airbtr",
+                     "blockId": "hpo9s1jyo",
                      "blockName": "Job",
                      "children": [
                       {
@@ -2998,7 +3101,7 @@
                         "height": "16px",
                         "flexShrink": "0"
                        },
-                       "blockId": "84xpx5w1t",
+                       "blockId": "56zsepomq",
                        "blockName": "icon/briefcase",
                        "children": [],
                        "classes": [],
@@ -3024,7 +3127,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "gcujycx3s",
+                       "blockId": "55l8f7xj9",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -3081,7 +3184,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "56zsepomq",
+                     "blockId": "nthc7rgv4",
                      "blockName": "Dot",
                      "children": [],
                      "classes": [],
@@ -3110,7 +3213,7 @@
                     {
                      "attributes": {},
                      "baseStyles": {},
-                     "blockId": "55l8f7xj9",
+                     "blockId": "50wlogjch",
                      "blockName": "Username",
                      "children": [],
                      "classes": [],
@@ -3166,7 +3269,7 @@
                    "baseStyles": {
                     "marginTop": "4px"
                    },
-                   "blockId": "lxf43f7ps",
+                   "blockId": "c1gxwy1kw",
                    "blockName": "Headline",
                    "children": [
                     {
@@ -3179,7 +3282,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.4"
                      },
-                     "blockId": "nthc7rgv4",
+                     "blockId": "3v4w9i309",
                      "blockName": "Headline text",
                      "children": [],
                      "classes": [],
@@ -3222,7 +3325,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.4"
                      },
-                     "blockId": "50wlogjch",
+                     "blockId": "8y7rcmgex",
                      "blockName": "Headline hint",
                      "children": [],
                      "classes": [],
@@ -3324,7 +3427,7 @@
                 "flexDirection": "column",
                 "gap": "32px"
                },
-               "blockId": "1ej4m8fmg",
+               "blockId": "lcm0fog4w",
                "blockName": "Sections",
                "children": [
                 {
@@ -3334,7 +3437,7 @@
                   "borderRadius": "10px",
                   "padding": "20px"
                  },
-                 "blockId": "rlpu7rxy0",
+                 "blockId": "l8pg6rz3q",
                  "blockName": "Introduction",
                  "children": [
                   {
@@ -3345,7 +3448,7 @@
                     "justifyContent": "space-between",
                     "paddingBottom": "16px"
                    },
-                   "blockId": "hb4qhor0x",
+                   "blockId": "8fmqbyu6f",
                    "blockName": "Card header",
                    "children": [
                     {
@@ -3360,7 +3463,7 @@
                       "letterSpacing": "0.015em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "fjh32tsj9",
+                     "blockId": "j76x9osw6",
                      "blockName": "Card title",
                      "children": [],
                      "classes": [],
@@ -3388,7 +3491,7 @@
                      "baseStyles": {
                       "display": "flex"
                      },
-                     "blockId": "6r6x4db4j",
+                     "blockId": "rlpu7rxy0",
                      "blockName": "Edit introduction",
                      "children": [],
                      "classes": [],
@@ -3447,7 +3550,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.5"
                    },
-                   "blockId": "9wbswxmtz",
+                   "blockId": "6r6x4db4j",
                    "blockName": "Bio",
                    "children": [],
                    "classes": [
@@ -3501,7 +3604,7 @@
                     "width": "100%",
                     "justifyContent": "flex-end"
                    },
-                   "blockId": "b9k0gac9p",
+                   "blockId": "fjh32tsj9",
                    "blockName": "See more",
                    "children": [],
                    "classes": [
@@ -3541,7 +3644,7 @@
                     "letterSpacing": "0.02em",
                     "lineHeight": "1.5"
                    },
-                   "blockId": "fslbsn8z9",
+                   "blockId": "hb4qhor0x",
                    "blockName": "Bio hint",
                    "children": [],
                    "classes": [],
@@ -3593,7 +3696,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "st2xfp5eh",
+                 "blockId": "hpf3ubk6m",
                  "blockName": "Posts section",
                  "children": [
                   {
@@ -3603,7 +3706,7 @@
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
-                   "blockId": "7q85f2vdq",
+                   "blockId": "6xwiw03gg",
                    "blockName": "Posts",
                    "children": [
                     {
@@ -3614,7 +3717,7 @@
                       "justifyContent": "space-between",
                       "paddingBottom": "16px"
                      },
-                     "blockId": "8byf8t183",
+                     "blockId": "pf3pr3uk4",
                      "blockName": "Card header",
                      "children": [
                       {
@@ -3629,7 +3732,7 @@
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
-                       "blockId": "zwr9821o1",
+                       "blockId": "77oh9hqdp",
                        "blockName": "Card title",
                        "children": [],
                        "classes": [],
@@ -3679,7 +3782,7 @@
                       "display": "flex",
                       "flexDirection": "column"
                      },
-                     "blockId": "wa3gqz8q0",
+                     "blockId": "g45u7w1q7",
                      "blockName": "Posts list",
                      "children": [
                       {
@@ -3693,7 +3796,7 @@
                         "gap": "16px",
                         "padding": "20px 0"
                        },
-                       "blockId": "x7j7npprk",
+                       "blockId": "mlv7gok4q",
                        "blockName": "Post",
                        "children": [
                         {
@@ -3705,7 +3808,7 @@
                           "flexGrow": "1",
                           "minWidth": "0"
                          },
-                         "blockId": "tncj3wvdw",
+                         "blockId": "w4kha1zll",
                          "blockName": "Text",
                          "children": [
                           {
@@ -3721,7 +3824,7 @@
                             "letterSpacing": "0.01em",
                             "lineHeight": "1.15"
                            },
-                           "blockId": "l8rdgiqni",
+                           "blockId": "x7j7npprk",
                            "blockName": "Reposted badge",
                            "children": [
                             {
@@ -3729,7 +3832,7 @@
                              "baseStyles": {
                               "display": "flex"
                              },
-                             "blockId": "ljkqfkr0o",
+                             "blockId": "4cno3h9pm",
                              "blockName": "Icon",
                              "children": [],
                              "classes": [],
@@ -3755,7 +3858,7 @@
                             {
                              "attributes": {},
                              "baseStyles": {},
-                             "blockId": "hly24ergi",
+                             "blockId": "tncj3wvdw",
                              "blockName": "Label",
                              "children": [],
                              "classes": [],
@@ -3812,7 +3915,7 @@
                           {
                            "attributes": {},
                            "baseStyles": {},
-                           "blockId": "4cno3h9pm",
+                           "blockId": "wa3gqz8q0",
                            "blockName": "Title and excerpt",
                            "children": [
                             {
@@ -3824,7 +3927,7 @@
                               "letterSpacing": "0.015em",
                               "lineHeight": "1.15"
                              },
-                             "blockId": "j76x9osw6",
+                             "blockId": "fjd19z3j7",
                              "blockName": "Title",
                              "children": [],
                              "classes": [],
@@ -3864,7 +3967,7 @@
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.5"
                              },
-                             "blockId": "8fmqbyu6f",
+                             "blockId": "ljkqfkr0o",
                              "blockName": "Excerpt",
                              "children": [],
                              "classes": [
@@ -3927,7 +4030,7 @@
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.15"
                            },
-                           "blockId": "l8pg6rz3q",
+                           "blockId": "hly24ergi",
                            "blockName": "Meta",
                            "children": [],
                            "classes": [],
@@ -3990,7 +4093,7 @@
                           "borderRadius": "10px",
                           "objectFit": "cover"
                          },
-                         "blockId": "fjd19z3j7",
+                         "blockId": "l8rdgiqni",
                          "blockName": "Thumbnail",
                          "children": [],
                          "classes": [],
@@ -4091,13 +4194,13 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "g45u7w1q7",
+                     "blockId": "8byf8t183",
                      "blockName": "Nothing yet",
                      "children": [
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "w4kha1zll",
+                       "blockId": "xtggzmhai",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -4128,7 +4231,7 @@
                         "fontWeight": "500",
                         "color": "var(--ink-gray-8)"
                        },
-                       "blockId": "mlv7gok4q",
+                       "blockId": "zwr9821o1",
                        "blockName": "Write link",
                        "children": [],
                        "classes": [],
@@ -4185,7 +4288,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "xtggzmhai",
+                     "blockId": "7q85f2vdq",
                      "blockName": "No posts",
                      "children": [],
                      "classes": [],
@@ -4241,7 +4344,7 @@
                     "display": "flex",
                     "justifyContent": "center"
                    },
-                   "blockId": "6xwiw03gg",
+                   "blockId": "0sbvhou4g",
                    "blockName": "More",
                    "children": [
                     {
@@ -4260,7 +4363,7 @@
                       "fontSize": "14px",
                       "cursor": "pointer"
                      },
-                     "blockId": "77oh9hqdp",
+                     "blockId": "st2xfp5eh",
                      "blockName": "Manage all posts",
                      "children": [],
                      "classes": [
@@ -4311,7 +4414,7 @@
                       "fontSize": "14px",
                       "cursor": "pointer"
                      },
-                     "blockId": "pf3pr3uk4",
+                     "blockId": "b4gkzg0t8",
                      "blockName": "View all posts",
                      "children": [],
                      "classes": [
@@ -4394,7 +4497,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "g00niqo8h",
+                 "blockId": "uqgdqeew7",
                  "blockName": "Work section",
                  "children": [
                   {
@@ -4404,7 +4507,7 @@
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
-                   "blockId": "184f4oy2f",
+                   "blockId": "5bowrb5z9",
                    "blockName": "Work History",
                    "children": [
                     {
@@ -4415,7 +4518,7 @@
                       "justifyContent": "space-between",
                       "paddingBottom": "16px"
                      },
-                     "blockId": "g5awqxh3o",
+                     "blockId": "g00niqo8h",
                      "blockName": "Card header",
                      "children": [
                       {
@@ -4430,7 +4533,7 @@
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
-                       "blockId": "teyoh62zq",
+                       "blockId": "wy1yzpty6",
                        "blockName": "Card title",
                        "children": [],
                        "classes": [],
@@ -4458,7 +4561,7 @@
                        "baseStyles": {
                         "display": "flex"
                        },
-                       "blockId": "dd45b4ndh",
+                       "blockId": "184f4oy2f",
                        "blockName": "Add work experience",
                        "children": [],
                        "classes": [],
@@ -4513,7 +4616,7 @@
                       "display": "flex",
                       "flexDirection": "column"
                      },
-                     "blockId": "xhvul8l03",
+                     "blockId": "dd45b4ndh",
                      "blockName": "Work list",
                      "children": [
                       {
@@ -4525,13 +4628,13 @@
                         "gap": "12px",
                         "padding": "20px 0"
                        },
-                       "blockId": "juo34o5ui",
+                       "blockId": "sb13na60t",
                        "blockName": "Entry",
                        "children": [
                         {
                          "attributes": {},
                          "baseStyles": {},
-                         "blockId": "6zg6x7x51",
+                         "blockId": "2h0zjtkq4",
                          "blockName": "Text",
                          "children": [
                           {
@@ -4543,7 +4646,7 @@
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
-                           "blockId": "0sbvhou4g",
+                           "blockId": "kyslck819",
                            "blockName": "Primary",
                            "children": [],
                            "classes": [],
@@ -4583,13 +4686,13 @@
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.5"
                            },
-                           "blockId": "0x3uv107r",
+                           "blockId": "6zg6x7x51",
                            "blockName": "Line",
                            "children": [
                             {
                              "attributes": {},
                              "baseStyles": {},
-                             "blockId": "hpf3ubk6m",
+                             "blockId": "0x3uv107r",
                              "blockName": "Secondary",
                              "children": [],
                              "classes": [],
@@ -4627,7 +4730,7 @@
                              "baseStyles": {
                               "color": "var(--ink-gray-4)"
                              },
-                             "blockId": "t3cjhxvj9",
+                             "blockId": "b2tnmjr2s",
                              "blockName": "Dot",
                              "children": [],
                              "classes": [],
@@ -4662,7 +4765,7 @@
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.15"
                              },
-                             "blockId": "kyslck819",
+                             "blockId": "qnq8wyi38",
                              "blockName": "Dates",
                              "children": [],
                              "classes": [],
@@ -4726,7 +4829,7 @@
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
-                           "blockId": "b4gkzg0t8",
+                           "blockId": "t3cjhxvj9",
                            "blockName": "Description",
                            "children": [],
                            "classes": [],
@@ -4799,7 +4902,7 @@
                           "color": "var(--ink-gray-8)",
                           "cursor": "pointer"
                          },
-                         "blockId": "qnq8wyi38",
+                         "blockId": "xhvul8l03",
                          "blockName": "Edit work experience",
                          "children": [
                           {
@@ -4809,7 +4912,7 @@
                             "height": "14px",
                             "flexShrink": "0"
                            },
-                           "blockId": "b2tnmjr2s",
+                           "blockId": "juo34o5ui",
                            "blockName": "icon/pencil",
                            "children": [],
                            "classes": [],
@@ -4929,7 +5032,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "2h0zjtkq4",
+                     "blockId": "teyoh62zq",
                      "blockName": "No work (yours)",
                      "children": [],
                      "classes": [],
@@ -4965,7 +5068,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "sb13na60t",
+                     "blockId": "g5awqxh3o",
                      "blockName": "No work",
                      "children": [],
                      "classes": [],
@@ -5021,7 +5124,7 @@
                     "display": "flex",
                     "justifyContent": "center"
                    },
-                   "blockId": "wy1yzpty6",
+                   "blockId": "hlo6neyps",
                    "blockName": "More",
                    "children": [],
                    "classes": [],
@@ -5071,7 +5174,7 @@
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "q4v6nelon",
+                 "blockId": "s4wd17fbn",
                  "blockName": "Education section",
                  "children": [
                   {
@@ -5081,7 +5184,7 @@
                     "borderRadius": "10px",
                     "padding": "20px"
                    },
-                   "blockId": "1en6biviz",
+                   "blockId": "1ej4m8fmg",
                    "blockName": "Education",
                    "children": [
                     {
@@ -5092,7 +5195,7 @@
                       "justifyContent": "space-between",
                       "paddingBottom": "16px"
                      },
-                     "blockId": "559j6xth8",
+                     "blockId": "q4v6nelon",
                      "blockName": "Card header",
                      "children": [
                       {
@@ -5107,7 +5210,7 @@
                         "letterSpacing": "0.015em",
                         "lineHeight": "1.15"
                        },
-                       "blockId": "sjrsg5lra",
+                       "blockId": "4x9nmd41j",
                        "blockName": "Card title",
                        "children": [],
                        "classes": [],
@@ -5135,7 +5238,7 @@
                        "baseStyles": {
                         "display": "flex"
                        },
-                       "blockId": "koaoyqti0",
+                       "blockId": "1en6biviz",
                        "blockName": "Add education",
                        "children": [],
                        "classes": [],
@@ -5190,7 +5293,7 @@
                       "display": "flex",
                       "flexDirection": "column"
                      },
-                     "blockId": "cxz5sg4dn",
+                     "blockId": "koaoyqti0",
                      "blockName": "Education list",
                      "children": [
                       {
@@ -5202,13 +5305,13 @@
                         "gap": "12px",
                         "padding": "20px 0"
                        },
-                       "blockId": "cptc272kn",
+                       "blockId": "fyxrerr9o",
                        "blockName": "Entry",
                        "children": [
                         {
                          "attributes": {},
                          "baseStyles": {},
-                         "blockId": "9y0k6fbw5",
+                         "blockId": "8kf6q6gxd",
                          "blockName": "Text",
                          "children": [
                           {
@@ -5220,7 +5323,7 @@
                             "letterSpacing": "0.015em",
                             "lineHeight": "1.5"
                            },
-                           "blockId": "5bowrb5z9",
+                           "blockId": "oti1qtcx0",
                            "blockName": "Primary",
                            "children": [],
                            "classes": [],
@@ -5260,13 +5363,13 @@
                             "letterSpacing": "0.02em",
                             "lineHeight": "1.5"
                            },
-                           "blockId": "nltb83rkl",
+                           "blockId": "9y0k6fbw5",
                            "blockName": "Line",
                            "children": [
                             {
                              "attributes": {},
                              "baseStyles": {},
-                             "blockId": "hlo6neyps",
+                             "blockId": "nltb83rkl",
                              "blockName": "Secondary",
                              "children": [],
                              "classes": [],
@@ -5304,7 +5407,7 @@
                              "baseStyles": {
                               "color": "var(--ink-gray-4)"
                              },
-                             "blockId": "uqgdqeew7",
+                             "blockId": "e84shr4g2",
                              "blockName": "Dot",
                              "children": [],
                              "classes": [],
@@ -5339,7 +5442,7 @@
                               "letterSpacing": "0.02em",
                               "lineHeight": "1.15"
                              },
-                             "blockId": "oti1qtcx0",
+                             "blockId": "1igon44mp",
                              "blockName": "Dates",
                              "children": [],
                              "classes": [],
@@ -5433,7 +5536,7 @@
                           "color": "var(--ink-gray-8)",
                           "cursor": "pointer"
                          },
-                         "blockId": "1igon44mp",
+                         "blockId": "cxz5sg4dn",
                          "blockName": "Edit education",
                          "children": [
                           {
@@ -5443,7 +5546,7 @@
                             "height": "14px",
                             "flexShrink": "0"
                            },
-                           "blockId": "e84shr4g2",
+                           "blockId": "cptc272kn",
                            "blockName": "icon/pencil",
                            "children": [],
                            "classes": [],
@@ -5563,7 +5666,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "8kf6q6gxd",
+                     "blockId": "sjrsg5lra",
                      "blockName": "No education (yours)",
                      "children": [],
                      "classes": [],
@@ -5599,7 +5702,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "fyxrerr9o",
+                     "blockId": "559j6xth8",
                      "blockName": "No education",
                      "children": [],
                      "classes": [],
@@ -5655,7 +5758,7 @@
                     "display": "flex",
                     "justifyContent": "center"
                    },
-                   "blockId": "4x9nmd41j",
+                   "blockId": "pjf6ecj8j",
                    "blockName": "More",
                    "children": [],
                    "classes": [],
@@ -5766,7 +5869,7 @@
               "padding": "96px 0",
               "textAlign": "center"
              },
-             "blockId": "xd16bwuxs",
+             "blockId": "v8v1aieei",
              "blockName": "Not found",
              "children": [],
              "classes": [],
@@ -5926,7 +6029,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-10-19 13:19:37.797175",
+ "creation": "2026-10-19 16:00:17.967218",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -5936,7 +6039,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 13:19:37.797175",
+ "modified": "2026-10-19 16:00:17.967218",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -5945,6 +6048,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-19 13:19:37.797175",
+ "published_at": "2026-10-19 16:00:17.967218",
  "route": "profile/:username"
 }

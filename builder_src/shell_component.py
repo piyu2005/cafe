@@ -98,6 +98,7 @@ def build_logo_menu():
 		attrs={"id": "cafe-menu", "role": "menu"},
 		children=[
 			menu_item_block("a", {"href": "/settings"}, "settings", "Settings"),
+			menu_item_block("a", {"href": "/faq"}, "circle-help", "FAQ"),
 			menu_item_block("button", {"id": "cafe-logout", "type": "button"}, "log-out", "Logout"),
 		],
 		styles=MENU_STYLES,
