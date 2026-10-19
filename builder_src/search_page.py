@@ -92,12 +92,14 @@ def build_person_row():
 		},
 	)
 	name["dynamicValues"] = [bind("full_name", "innerHTML", "key")]
+	points = block("span", "Points", ["cafe-points-badge"], text="0")
+	points["dynamicValues"] = [bind("points_label", "innerHTML", "key")]
 	row = block(
 		"a",
 		"Person",
 		["cafe-person"],
 		attrs={"href": "/profile"},
-		children=[avatar, name],
+		children=[avatar, name, points],
 		styles={
 			"display": "flex",
 			"alignItems": "center",
@@ -307,6 +309,7 @@ for person in people:
     image = person.get("user_image") or ""
     person["user_image"] = frappe.utils.escape_html(image) if image.startswith(("/", "https://", "http://")) else ""
     person["no_image"] = not person["user_image"]
+    person["points_label"] = str(person.get("points") or 0)
 data.people = people
 """
 if PUBLICATIONS_ENABLED:

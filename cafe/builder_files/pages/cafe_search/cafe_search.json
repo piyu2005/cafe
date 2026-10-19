@@ -22,7 +22,7 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "vhthnune0",
+     "blockId": "ur8vi0zil",
      "blockName": "App",
      "children": [
       {
@@ -1969,7 +1969,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "96u5dnn8m",
+       "blockId": "vhthnune0",
        "blockName": "Main",
        "children": [
         {
@@ -1987,7 +1987,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "oo4o8qy7l",
+         "blockId": "y6ieub36y",
          "blockName": "Header",
          "children": [
           {
@@ -2002,7 +2002,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "893h1mp34",
+           "blockId": "813d8bg1l",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2136,7 +2136,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "6cmnxyef5",
+           "blockId": "oo4o8qy7l",
            "blockName": "New Post",
            "children": [
             {
@@ -2146,7 +2146,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "813d8bg1l",
+             "blockId": "xhyvktsm9",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2172,7 +2172,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "xhyvktsm9",
+             "blockId": "6cmnxyef5",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2250,7 +2250,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "y6ieub36y",
+         "blockId": "96u5dnn8m",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2261,7 +2261,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "l4iy1zis5",
+           "blockId": "893h1mp34",
            "blockName": "Container",
            "children": [
             {
@@ -2340,7 +2340,7 @@
               "role": "tabpanel"
              },
              "baseStyles": {},
-             "blockId": "1815znsgy",
+             "blockId": "l4iy1zis5",
              "blockName": "Writers panel",
              "children": [
               {
@@ -2354,7 +2354,7 @@
                 "gap": "4px",
                 "marginTop": "16px"
                },
-               "blockId": "ukzqp0fgq",
+               "blockId": "1815znsgy",
                "blockName": "People",
                "children": [
                 {
@@ -2369,7 +2369,7 @@
                   "padding": "6px 8px",
                   "borderRadius": "8px"
                  },
-                 "blockId": "unrqvepf5",
+                 "blockId": "ukzqp0fgq",
                  "blockName": "Person",
                  "children": [
                   {
@@ -2531,6 +2531,41 @@
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
                    "innerHTML": "Priyanshi Hodage",
+                   "isChildOfComponent": null,
+                   "isRepeaterBlock": false,
+                   "mobileStyles": {},
+                   "originalElement": null,
+                   "props": {},
+                   "rawStyles": {},
+                   "referenceBlockId": null,
+                   "tabletStyles": {},
+                   "visibilityCondition": null
+                  },
+                  {
+                   "attributes": {},
+                   "baseStyles": {},
+                   "blockId": "unrqvepf5",
+                   "blockName": "Points",
+                   "children": [],
+                   "classes": [
+                    "cafe-points-badge"
+                   ],
+                   "clientScript": {},
+                   "customAttributes": {},
+                   "dataKey": null,
+                   "draggable": false,
+                   "dynamicValues": [
+                    {
+                     "comesFrom": "dataScript",
+                     "key": "points_label",
+                     "property": "innerHTML",
+                     "type": "key"
+                    }
+                   ],
+                   "element": "span",
+                   "elementBeforeConversion": null,
+                   "extendedFromComponent": null,
+                   "innerHTML": "0",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -2754,7 +2789,7 @@
    "builder_script": "Cafe Search"
   }
  ],
- "creation": "2026-10-19 11:38:24.297017",
+ "creation": "2026-10-19 13:19:37.797175",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2764,15 +2799,15 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 11:38:24.297017",
+ "modified": "2026-10-19 13:19:37.797175",
  "modified_by": "Administrator",
  "name": "cafe-search",
  "owner": "Administrator",
- "page_data_script": "if frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/search\")\n\npeople = frappe.call(\"cafe.api.list_people\")\nfor person in people:\n    identifier = person.get(\"username\") or person.get(\"name\")\n    label = person.get(\"full_name\") or identifier\n    segment = identifier\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        segment = segment.replace(char, code)\n    person[\"href\"] = frappe.utils.escape_html(\"/profile/\" + segment)\n    person[\"full_name\"] = frappe.utils.escape_html(label)\n    person[\"initial\"] = frappe.utils.escape_html(label.strip()[:1])\n    image = person.get(\"user_image\") or \"\"\n    person[\"user_image\"] = frappe.utils.escape_html(image) if image.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n    person[\"no_image\"] = not person[\"user_image\"]\ndata.people = people\n",
+ "page_data_script": "if frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/search\")\n\npeople = frappe.call(\"cafe.api.list_people\")\nfor person in people:\n    identifier = person.get(\"username\") or person.get(\"name\")\n    label = person.get(\"full_name\") or identifier\n    segment = identifier\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        segment = segment.replace(char, code)\n    person[\"href\"] = frappe.utils.escape_html(\"/profile/\" + segment)\n    person[\"full_name\"] = frappe.utils.escape_html(label)\n    person[\"initial\"] = frappe.utils.escape_html(label.strip()[:1])\n    image = person.get(\"user_image\") or \"\"\n    person[\"user_image\"] = frappe.utils.escape_html(image) if image.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n    person[\"no_image\"] = not person[\"user_image\"]\n    person[\"points_label\"] = str(person.get(\"points\") or 0)\ndata.people = people\n",
  "page_name": "cafe-search",
  "page_title": "Search",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-19 11:38:24.297017",
+ "published_at": "2026-10-19 13:19:37.797175",
  "route": "search"
 }

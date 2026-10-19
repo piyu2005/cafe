@@ -757,6 +757,27 @@ html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* Cafe points on a writer's row - the Explore page doubles as a leaderboard
+   (list_people() itself sorts by points desc), this is just what surfaces
+   that ranking. Same amber Badge chrome as the profile page's own points
+   badge (frappe-ui's subtle/amber theme - bg-surface-amber-2/text-ink-amber-8),
+   at its "md" preset size (h-5, px-1.5, text-xs) instead of profile's
+   button-matched 28px - a compact list row has no button to line up with. */
+.cafe-points-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  background: #fff4d3;
+  color: #bb6f0c;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
 /* A publication's mark: rounded square, not the circle a person's avatar
    gets - same distinction the app's own logo already draws between a
    brand and a person. */

@@ -496,17 +496,36 @@ def delete_account():
 
 @frappe.whitelist()
 def list_people(query: str | None = None):
+	"""Every caller (the mention search, the Share dialog, and the Explore/
+	search page) sees the same ranking: highest cafe points first - the
+	Explore page doubles as a leaderboard, so there's one ordering, not a
+	special-cased sort just for that page. Fetches every match with no page
+	cap first (limit_page_length=0 - points aren't indexed, so the top 50 by
+	points can't be known without ranking everyone), then slices after
+	sorting."""
 	filters = {"enabled": 1, "user_type": "Website User", "name": ["!=", "Guest"]}
 	if query:
 		filters["full_name"] = ["like", f"%{query}%"]
 
-	return frappe.db.get_all(
-		"User",
-		filters=filters,
-		fields=["name", "full_name", "user_image", "username"],
-		order_by="full_name asc",
-		limit_page_length=50,
+	people = frappe.db.get_all(
+		"User", filters=filters, fields=["name", "full_name", "user_image", "username"], limit_page_length=0
 	)
+	if not people:
+		return people
+
+	totals = {
+		row.user: int(row.total)
+		for row in frappe.db.sql(
+			"""select user, coalesce(sum(points), 0) as total from `tabCafe Points Log`
+			where user in %(users)s group by user""",
+			{"users": [p.name for p in people]},
+			as_dict=True,
+		)
+	}
+	for p in people:
+		p.points = totals.get(p.name, 0)
+	people.sort(key=lambda p: (-p.points, (p.full_name or "").lower()))
+	return people[:50]
 
 
 def _publication_role(publication, user=None):

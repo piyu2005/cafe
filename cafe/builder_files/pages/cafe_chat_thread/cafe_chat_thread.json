@@ -21,7 +21,7 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "1lo64ad9o",
+     "blockId": "k5ln7wqmy",
      "blockName": "App",
      "children": [
       {
@@ -1969,7 +1969,7 @@
         "height": "100vh",
         "overflow": "hidden"
        },
-       "blockId": "lh23tn7z5",
+       "blockId": "1lo64ad9o",
        "blockName": "Main",
        "children": [
         {
@@ -1986,7 +1986,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "dgqx62amw",
+         "blockId": "chol4jirh",
          "blockName": "Mobile header",
          "children": [
           {
@@ -2004,7 +2004,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "uksj8qvjt",
+           "blockId": "je3tx24h3",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -2039,7 +2039,7 @@
             "flexShrink": "0",
             "marginLeft": "auto"
            },
-           "blockId": "dmxf5jbsq",
+           "blockId": "dgqx62amw",
            "blockName": "Actions",
            "children": [
             {
@@ -2061,7 +2061,7 @@
               "color": "var(--ink-gray-8)",
               "cursor": "pointer"
              },
-             "blockId": "d9rdejmnu",
+             "blockId": "u60z0sprn",
              "blockName": null,
              "children": [
               {
@@ -2071,7 +2071,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "m1dymd8mg",
+               "blockId": "d9rdejmnu",
                "blockName": "icon/bell",
                "children": [],
                "classes": [],
@@ -2115,7 +2115,7 @@
                 "letterSpacing": "0.02em",
                 "textAlign": "center"
                },
-               "blockId": "je3tx24h3",
+               "blockId": "m1dymd8mg",
                "blockName": null,
                "children": [],
                "classes": [
@@ -2185,7 +2185,7 @@
               "cursor": "pointer",
               "width": "28px"
              },
-             "blockId": "0yo84cter",
+             "blockId": "dmxf5jbsq",
              "blockName": null,
              "children": [
               {
@@ -2195,7 +2195,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "u60z0sprn",
+               "blockId": "0yo84cter",
                "blockName": "icon/users",
                "children": [],
                "classes": [],
@@ -2303,7 +2303,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "h0fcxul7y",
+         "blockId": "dqjwbq9i3",
          "blockName": "Header",
          "children": [
           {
@@ -2318,7 +2318,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "kgn3f97hc",
+           "blockId": "r8dze70oy",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2326,7 +2326,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "chol4jirh",
+             "blockId": "7xzkdjucc",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2357,7 +2357,7 @@
               "fontWeight": "420",
               "letterSpacing": "0.02em"
              },
-             "blockId": "7xzkdjucc",
+             "blockId": "o0qblrcmn",
              "blockName": "Separator",
              "children": [],
              "classes": [
@@ -2387,7 +2387,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "o0qblrcmn",
+             "blockId": "kgn3f97hc",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2440,7 +2440,7 @@
            "baseStyles": {
             "display": "flex"
            },
-           "blockId": "6jqtcxk43",
+           "blockId": "lh23tn7z5",
            "blockName": "New group",
            "children": [
             {
@@ -2464,7 +2464,7 @@
               "whiteSpace": "nowrap",
               "cursor": "pointer"
              },
-             "blockId": "edwe254m8",
+             "blockId": "6jqtcxk43",
              "blockName": null,
              "children": [
               {
@@ -2474,7 +2474,7 @@
                 "height": "16px",
                 "flexShrink": "0"
                },
-               "blockId": "dqjwbq9i3",
+               "blockId": "v4zsbbe5v",
                "blockName": "icon/users",
                "children": [],
                "classes": [],
@@ -2500,7 +2500,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "v4zsbbe5v",
+               "blockId": "edwe254m8",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -2603,7 +2603,7 @@
           "width": "100%",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "mhyg626ek",
+         "blockId": "uksj8qvjt",
          "blockName": "Chat",
          "children": [
           {
@@ -2614,7 +2614,7 @@
             "minHeight": "0",
             "width": "100%"
            },
-           "blockId": "q6vv4que3",
+           "blockId": "mhyg626ek",
            "blockName": "Preview",
            "children": [],
            "classes": [
@@ -2793,7 +2793,7 @@
    "builder_script": "Cafe Chat Live"
   }
  ],
- "creation": "2026-10-19 13:01:30.888553",
+ "creation": "2026-10-19 13:19:37.797175",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2803,7 +2803,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 13:01:30.888553",
+ "modified": "2026-10-19 13:19:37.797175",
  "modified_by": "Administrator",
  "name": "cafe-chat-thread",
  "owner": "Administrator",
@@ -2812,6 +2812,6 @@
  "page_title": "Conversation",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-19 13:01:30.888553",
+ "published_at": "2026-10-19 13:19:37.797175",
  "route": "messages/:conversation_id"
 }
