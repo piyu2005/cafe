@@ -17,7 +17,12 @@ def execute():
 	)
 	for user in users:
 		points.award_once(user.name, 10, points.ONBOARDED)
-		if points.has_completed_profile(user):
+		# Inlines what has_completed_profile() checked at the time this patch
+		# was written (headline/bio/photo only) rather than calling it directly -
+		# that function has since grown stricter (job_title/company/work/
+		# education entries), and this backfill should keep replaying the
+		# original historical rule, not today's.
+		if user.headline and user.bio and user.user_image:
 			points.award_once(user.name, 10, points.PROFILE_COMPLETED)
 
 	for post in frappe.get_all("Post", filters={"status": "Published"}, fields=["name", "author"]):

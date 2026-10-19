@@ -71,7 +71,24 @@ def total(user):
 
 
 def has_completed_profile(user_doc):
-	return bool(user_doc.headline and user_doc.bio and user_doc.user_image)
+	# Everything in the Edit Profile modal (headline - labelled "Bio" there -
+	# job_title, company), the separate Introduction card (the `bio` field
+	# itself), a photo, and at least one Work Entry/Education Entry each -
+	# a real profile, not just a name. Publishing a post is deliberately not
+	# part of this - profile completion and having written something are
+	# separate milestones.
+	if not (
+		user_doc.headline
+		and user_doc.bio
+		and user_doc.user_image
+		and user_doc.job_title
+		and user_doc.company
+	):
+		return False
+	return bool(
+		frappe.db.exists("Work Entry", {"user": user_doc.name})
+		and frappe.db.exists("Education Entry", {"user": user_doc.name})
+	)
 
 
 def on_user_created(doc, method=None):

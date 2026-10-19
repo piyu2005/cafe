@@ -1186,6 +1186,12 @@ def add_education(
 		}
 	)
 	entry.insert()
+
+	from cafe import points
+
+	if points.has_completed_profile(frappe.get_doc("User", frappe.session.user)):
+		points.award_once(frappe.session.user, 10, points.PROFILE_COMPLETED)
+
 	return entry.as_dict()
 
 
@@ -1238,6 +1244,12 @@ def add_work(
 		}
 	)
 	entry.insert()
+
+	from cafe import points
+
+	if points.has_completed_profile(frappe.get_doc("User", frappe.session.user)):
+		points.award_once(frappe.session.user, 10, points.PROFILE_COMPLETED)
+
 	return entry.as_dict()
 
 
