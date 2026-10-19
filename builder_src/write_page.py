@@ -5,6 +5,7 @@ same /api/v2/document/Post the old page uses.
 Builder's editor and the folder thumbnail do not run scripts, so #cafe-write
 starts with a still picture of the page; the script replaces it."""
 
+import copy
 import hashlib
 
 from bell import mobile_bell_block
@@ -16,7 +17,6 @@ from blocks import (
 	attribute,
 	block,
 	icon,
-	instance_of,
 	raw_block,
 	svg,
 	text_style,
@@ -240,7 +240,9 @@ def build_native_write(shell_id, shell_block):
 			"backgroundColor": "#ffffff",
 			**text_style(14, "420", INK_BLACK, "0.02em", "1.15"),
 		},
-		children=[instance_of(shell_id, shell_block, "Shell"), main],
+		# See layout.py's page_layout() for why this is a literal copy, not
+		# instance_of() resolved at render time from a separate component doc.
+		children=[copy.deepcopy(shell_block), main],
 	)
 	top = block("div", None, children=[app])
 	top["blockId"] = "root"

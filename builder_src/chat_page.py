@@ -5,10 +5,11 @@ whitelisted methods (cafe.chat.*) as the old page.
 Builder's editor and the folder thumbnail do not run scripts, so #cafe-chat
 starts with a still picture of the chat; the script replaces it."""
 
+import copy
 import hashlib
 
 from bell import mobile_bell_block
-from blocks import INK, INK_BLACK, MUTED, attribute, block, icon, instance_of, raw_block, text_style
+from blocks import INK, INK_BLACK, MUTED, attribute, block, icon, raw_block, text_style
 from data_scripts import HELPERS
 from layout import crumb_current, crumb_link, crumb_separator, page_header
 from stand_ins import ASSETS, ASSETS_URL, chat_panes
@@ -191,7 +192,9 @@ def build_native_chat(shell_id, shell_block):
 			"backgroundColor": "#ffffff",
 			**text_style(14, "420", INK_BLACK, "0.02em", "1.15"),
 		},
-		children=[instance_of(shell_id, shell_block, "Shell"), main],
+		# See layout.py's page_layout() for why this is a literal copy, not
+		# instance_of() resolved at render time from a separate component doc.
+		children=[copy.deepcopy(shell_block), main],
 	)
 	top = block("div", None, children=[app])
 	top["blockId"] = "root"

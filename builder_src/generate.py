@@ -211,24 +211,6 @@ def client_script(name, script_type, source, idx):
 	}
 
 
-def component(component_id, name, root_block):
-	return {
-		"block": json.dumps(root_block),
-		"component_data_script": None,
-		"component_id": component_id,
-		"component_name": name,
-		"creation": NOW,
-		"docstatus": 0,
-		"doctype": "Builder Component",
-		"for_web_page": None,
-		"idx": 0,
-		"modified": NOW,
-		"modified_by": "Administrator",
-		"name": component_id,
-		"owner": "Administrator",
-	}
-
-
 def page(name, title, route, blocks, script_names, data_script, dynamic=False, head=None):
 	return {
 		"app": "cafe",
@@ -329,9 +311,13 @@ def main():
 			)
 		write_json("client_scripts", name, client_script(name, kind, source, index))
 
+	# Not a "Builder Component" document any more (see layout.py's
+	# page_layout() for why) - just a plain block tree, deep-copied straight
+	# into every page below. shell_id is still computed and threaded through
+	# every page builder's signature, unused, so this is the only line that
+	# needed to change here.
 	shell_id = hashlib.sha1(b"cafe:Cafe Shell").hexdigest()[:16]
 	shell_block = build_shell()
-	write_json("components", "Cafe Shell", component(shell_id, "Cafe Shell", shell_block))
 
 	# Registers the heading font with Builder, so its editor canvas and the
 	# published page both load it (a CSS @font-face would reach only the page).
