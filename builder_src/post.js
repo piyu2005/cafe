@@ -206,6 +206,36 @@
 		)
 	}
 
+	function openFlag() {
+		closeMenu()
+		CAFE.form({
+			title: 'Flag this post',
+			persistKey: 'flag-post',
+			submitLabel: 'Submit',
+			values: {},
+			fields: [
+				{
+					name: 'reason',
+					label: 'Reason',
+					type: 'select',
+					required: true,
+					placeholder: 'Select a reason',
+					options: ['Spam', 'Harassment', 'Misinformation', 'Inappropriate content', 'Other'].map(function (r) {
+						return { label: r, value: r }
+					}),
+				},
+				{ name: 'note', label: 'Additional details (optional)', type: 'textarea' },
+			],
+			onSubmit: function (values) {
+				return CAFE.api('cafe.api.flag_post', { post: postId, reason: values.reason, note: values.note }).then(
+					function () {
+						CAFE.toast('Post flagged for review')
+					}
+				)
+			},
+		})
+	}
+
 	function menuEl() {
 		return root.querySelector('.cafe-pop')
 	}
@@ -666,6 +696,7 @@
 		share: openShare,
 		'copy-link': copyLink,
 		'delete-post': confirmDeletePost,
+		'flag-post': openFlag,
 		'toggle-menu': toggleMenu,
 		comment: focusCommentBox,
 		'comment-send': submitComment,

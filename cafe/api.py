@@ -783,6 +783,9 @@ def get_post(post_id: str):
 		frappe.session.user != "Guest"
 		and frappe.db.exists("Repost", {"post": post_id, "user": frappe.session.user})
 	)
+	post.can_flag = bool(
+		frappe.session.user != "Guest" and frappe.session.user != post.author and post.my_points >= 250
+	)
 
 	return post
 
@@ -1197,6 +1200,39 @@ def toggle_repost(post: str):
 	_notify(owner, user, "Repost", "reposted your post", "Post", post)
 
 	return {"reposted": True}
+
+
+FLAG_REASONS = ("Spam", "Harassment", "Misinformation", "Inappropriate content", "Other")
+
+
+@frappe.whitelist()
+def flag_post(post: str, reason: str, note: str | None = None):
+	user = frappe.session.user
+	if user == "Guest":
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+	_check_post_visible(post)
+
+	if reason not in FLAG_REASONS:
+		frappe.throw(_("Invalid reason"))
+
+	from cafe import points
+
+	# Mirrors the 250-point unlock table: "enough history to trust your
+	# judgement" - the highest-trust action before downvoting itself.
+	if points.total(user) < 250:
+		frappe.throw(_("You need 250 cafe points to flag a post"), frappe.PermissionError)
+
+	owner = frappe.db.get_value("Post", post, "author")
+	if owner == user:
+		frappe.throw(_("You can't flag your own post"))
+
+	if frappe.db.exists("Post Flag", {"post": post, "user": user}):
+		frappe.throw(_("You've already flagged this post"))
+
+	doc = frappe.get_doc({"doctype": "Post Flag", "post": post, "reason": reason, "note": note})
+	doc.flags.ignore_permissions = True
+	doc.insert()
+	return "success"
 
 
 @frappe.whitelist()
