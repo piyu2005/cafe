@@ -643,6 +643,7 @@ def build_post_page(shell_id, shell_block):
 				"data-user": "",
 				"data-me-name": "",
 				"data-me-image": "",
+				"data-me-username": "",
 				"data-me-points": "",
 			},
 			children=[
@@ -663,6 +664,7 @@ def build_post_page(shell_id, shell_block):
 		("pp.user_id", "data-user"),
 		("pp.me_name", "data-me-name"),
 		("pp.me_image", "data-me-image"),
+		("pp.me_username", "data-me-username"),
 		("pp.me_points", "data-me-points"),
 	):
 		post = attribute(post, key, prop)
@@ -751,7 +753,10 @@ else:
         if url:
             images.append({"src": url})
     tags = [{"name": clean(tag)} for tag in post.tags or []]
-    me = frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image"], as_dict=True) or {}
+    me = (
+        frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image", "username"], as_dict=True)
+        or {}
+    )
 
     data.pp = {
         "found": True,
@@ -760,6 +765,7 @@ else:
         "user_id": clean(frappe.session.user),
         "me_name": clean(me.get("full_name") or frappe.session.user),
         "me_image": safe_url(me.get("user_image")),
+        "me_username": clean(me.get("username") or frappe.session.user.split("@")[0]),
         "me_points": str(post.my_points),
         "title": clean(post.title or "Untitled"),
         "crumb_title": clean(post.title or "Post"),

@@ -975,6 +975,19 @@ def list_comments(post: str):
 		order_by="creation desc",
 	)
 
+	usernames = {}
+	if rows:
+		usernames = dict(
+			frappe.db.get_all(
+				"User",
+				filters={"name": ["in", list({r.comment_by for r in rows})]},
+				fields=["name", "username"],
+				as_list=True,
+			)
+		)
+	for row in rows:
+		row.comment_by_username = usernames.get(row.comment_by) or row.comment_by.split("@")[0]
+
 	liked_names = set()
 	disliked_names = set()
 	if rows and frappe.session.user != "Guest":
@@ -1070,7 +1083,11 @@ def add_comment(post: str, content: str, parent_comment: str | None = None):
 			comment.name,
 		)
 
-	return comment.as_dict()
+	result = comment.as_dict()
+	result["comment_by_username"] = frappe.db.get_value(
+		"User", frappe.session.user, "username"
+	) or frappe.session.user.split("@")[0]
+	return result
 
 
 @frappe.whitelist()

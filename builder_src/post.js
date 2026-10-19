@@ -524,7 +524,9 @@
 
 		var head = el('div', 'cafe-c-head')
 		head.appendChild(avatar(comment.comment_by_image, comment.comment_by_name, 'sm'))
-		head.appendChild(el('span', 'cafe-c-name', comment.comment_by_name))
+		var nameLink = el('a', 'cafe-c-name', comment.comment_by_name)
+		nameLink.href = '/profile/' + encodeURIComponent(comment.comment_by_username || comment.comment_by)
+		head.appendChild(nameLink)
 		head.appendChild(el('span', 'cafe-c-time', timeAgo(comment.creation)))
 		node.appendChild(head)
 		node.appendChild(el('p', 'cafe-c-body', comment.content))
@@ -601,6 +603,7 @@
 			comment_by: user,
 			comment_by_name: me.name,
 			comment_by_image: me.image,
+			comment_by_username: me.username,
 			content: content,
 			creation: new Date().toISOString(),
 			like_count: 0,
@@ -711,7 +714,11 @@
 		if (!root) return
 		postId = root.getAttribute('data-post')
 		user = root.getAttribute('data-user')
-		me = { name: root.getAttribute('data-me-name'), image: root.getAttribute('data-me-image') }
+		me = {
+			name: root.getAttribute('data-me-name'),
+			image: root.getAttribute('data-me-image'),
+			username: root.getAttribute('data-me-username'),
+		}
 		myPoints = parseInt(root.getAttribute('data-me-points'), 10) || 0
 		listEl = document.getElementById('cafe-comments')
 		moreButton = root.querySelector('.cafe-more-comments')
