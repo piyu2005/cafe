@@ -680,15 +680,12 @@
   color: var(--w-ink-5);
   font-size: 13px;
 }
-/* The mention itself, once inserted - same light-blue pill as the chat
-   composer's own rendered mentions (.cafe-c-html .mention /
-   .cafe-c-prose .mention in chat.css), shown here while writing. */
+/* The mention itself, once inserted - plain bold text (Gameplan's own
+   mention style), same as the chat composer's rendered mentions
+   (.cafe-c-html .mention / .cafe-c-prose .mention in chat.css), shown
+   here while writing. */
 .cafe-w-prose .mention {
-  padding: 0 4px;
-  border-radius: 4px;
-  background: #e2f0fd;
-  color: #0b62c4;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .cafe-w-error {

@@ -1224,13 +1224,9 @@ p.cafe-clamp-3:empty::before {
 /* Same highlight as the write editor's own live view (write.css's
    .cafe-w-prose .mention) and the chat composer's rendered mentions
    (chat.css's .cafe-c-html/.cafe-c-prose .mention) - one look for a
-   mention everywhere it can appear. */
+   mention everywhere it can appear. Plain bold text, Gameplan-style. */
 .cafe-prose .mention {
-  padding: 0 4px;
-  border-radius: 4px;
-  background: #e2f0fd;
-  color: #0b62c4;
-  font-weight: 500;
+  font-weight: 600;
 }
 .cafe-prose h1,
 .cafe-prose h2,
