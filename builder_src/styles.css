@@ -736,6 +736,19 @@ html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
   height: 100%;
   object-fit: cover;
 }
+/* The old app's own feed (cafe_old_repo/frontend/src/pages/Home.vue) used
+   frappe-ui's real Avatar at size="sm" (w-5/h-5 = 20px, its label at
+   text-sm/font-medium = 13px/500) - smaller than the 32px every other
+   avatar in this app uses (search, profile, comments). Scoped to the feed
+   row specifically, not a change to the shared .cafe-avatar size itself
+   (see home_page.py's own comment on why that's one class, not a per-page
+   override: avoids the native-row/templated-row mismatch bug this exact
+   pattern caused before). */
+.cafe-feed-row .cafe-avatar {
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+}
 .cafe-person-name {
   overflow: hidden;
   font-size: 16px;
