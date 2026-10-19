@@ -2652,12 +2652,19 @@
                       {
                        "attributes": {},
                        "baseStyles": {
+                        "display": "inline-flex",
+                        "alignItems": "center",
                         "flexShrink": "0",
-                        "fontSize": "14px",
-                        "fontWeight": "500",
+                        "height": "20px",
+                        "padding": "0 6px",
+                        "borderRadius": "9999px",
+                        "backgroundColor": "#ffe7e7",
+                        "whiteSpace": "nowrap",
+                        "fontSize": "12px",
+                        "fontWeight": "420",
                         "color": "#b41d1d",
-                        "letterSpacing": "0.01em",
-                        "lineHeight": "1.3"
+                        "letterSpacing": "0",
+                        "lineHeight": "16px"
                        },
                        "blockId": "g50ez5qyq",
                        "blockName": "Cafe points",
@@ -5758,7 +5765,7 @@
    "builder_script": "Cafe Profile"
   }
  ],
- "creation": "2026-10-18 10:27:39.639870",
+ "creation": "2026-10-19 11:21:30.283846",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -5768,7 +5775,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-18 10:27:39.639870",
+ "modified": "2026-10-19 11:21:30.283846",
  "modified_by": "Administrator",
  "name": "cafe-profile",
  "owner": "Administrator",
@@ -5777,6 +5784,6 @@
  "page_title": "Profile",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-18 10:27:39.639870",
+ "published_at": "2026-10-19 11:21:30.283846",
  "route": "profile/:username"
 }

@@ -243,12 +243,29 @@ def build_name_row():
 		),
 		"profile.full_name",
 	)
+	# frappe-ui's own Badge (ui.frappe.io/docs/components/badge), theme="red"
+	# variant="subtle" size="md" - exact values read from its source
+	# (node_modules/frappe-ui/src/components/Badge/Badge.vue and
+	# tailwind/generated/colors.json), not approximated: rounded-full,
+	# h-5 (20px), px-1.5 (6px), text-xs (12px/16px), bg-surface-red-2
+	# (#ffe7e7), text-ink-red-8 (#b41d1d). Badge sets no font-weight of its
+	# own (only its "lg" size does) - inherits the app's own body weight.
 	points_badge = show(
 		block(
 			"span",
 			"Cafe points",
 			["cafe-profile-points"],
-			styles={"flexShrink": "0", **text_style(14, "500", "#b41d1d", "0.01em", "1.3")},
+			styles={
+				"display": "inline-flex",
+				"alignItems": "center",
+				"flexShrink": "0",
+				"height": "20px",
+				"padding": "0 6px",
+				"borderRadius": "9999px",
+				"backgroundColor": "#ffe7e7",
+				"whiteSpace": "nowrap",
+				**text_style(12, "420", "#b41d1d", "0", "16px"),
+			},
 		),
 		"profile.points_label",
 	)
