@@ -22,7 +22,7 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "tegv1js81",
+     "blockId": "gdyio7jz1",
      "blockName": "App",
      "children": [
       {
@@ -1969,7 +1969,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "jo0nkj8h5",
+       "blockId": "23fmaibgq",
        "blockName": "Main",
        "children": [
         {
@@ -1984,7 +1984,7 @@
           "borderBottom": "1px solid #ededed",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "wi9i80s2y",
+         "blockId": "l5vse7qmp",
          "blockName": "Mobile header",
          "children": [
           {
@@ -1994,7 +1994,7 @@
             "alignItems": "center",
             "gap": "6px"
            },
-           "blockId": "ive428g3u",
+           "blockId": "wi9i80s2y",
            "blockName": "Brand",
            "children": [],
            "classes": [],
@@ -2024,7 +2024,7 @@
             "alignItems": "center",
             "gap": "4px"
            },
-           "blockId": "20sw4uran",
+           "blockId": "d8rciibnt",
            "blockName": "Bell and write",
            "children": [],
            "classes": [],
@@ -2086,7 +2086,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "80zbboqav",
+         "blockId": "jo0nkj8h5",
          "blockName": "Header",
          "children": [
           {
@@ -2101,7 +2101,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "l5vse7qmp",
+           "blockId": "e4q5xzwsu",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2109,7 +2109,7 @@
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "g2zr09g4q",
+             "blockId": "20sw4uran",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2174,7 +2174,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "lew5v96d9",
+           "blockId": "72vmvkk08",
            "blockName": "New Post",
            "children": [
             {
@@ -2184,7 +2184,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "yh74bjqlz",
+             "blockId": "lew5v96d9",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2210,7 +2210,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "e4q5xzwsu",
+             "blockId": "80zbboqav",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2288,7 +2288,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "72vmvkk08",
+         "blockId": "tegv1js81",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2299,7 +2299,7 @@
             "margin": "0 auto",
             "padding": "24px 20px"
            },
-           "blockId": "d8rciibnt",
+           "blockId": "yh74bjqlz",
            "blockName": "Container",
            "children": [
             {
@@ -3314,7 +3314,7 @@
               "flexDirection": "column",
               "marginTop": "8px"
              },
-             "blockId": "p3xnuwrsx",
+             "blockId": "sfkagc1q4",
              "blockName": "Posts",
              "children": [
               {
@@ -3329,7 +3329,7 @@
                 "color": "inherit",
                 "textDecoration": "none"
                },
-               "blockId": "qqbfd8je3",
+               "blockId": "gqj1868uq",
                "blockName": "Post",
                "children": [
                 {
@@ -3637,7 +3637,7 @@
                   "alignItems": "flex-start",
                   "gap": "16px"
                  },
-                 "blockId": "p6mmn9736",
+                 "blockId": "p3xnuwrsx",
                  "blockName": "Body",
                  "children": [
                   {
@@ -3646,7 +3646,7 @@
                     "flex": "1 1 0%",
                     "minWidth": "0"
                    },
-                   "blockId": "b398ns0kn",
+                   "blockId": "p6mmn9736",
                    "blockName": "Text",
                    "children": [
                     {
@@ -3743,7 +3743,7 @@
                       "letterSpacing": "0.02em",
                       "lineHeight": "1.15"
                      },
-                     "blockId": "9y5af8e4j",
+                     "blockId": "jpuv119iy",
                      "blockName": "Meta",
                      "children": [
                       {
@@ -3782,7 +3782,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "c0mmmkd17",
+                       "blockId": "t6pgtsay6",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -3841,7 +3841,7 @@
                       {
                        "attributes": {},
                        "baseStyles": {},
-                       "blockId": "t6pgtsay6",
+                       "blockId": "9y5af8e4j",
                        "blockName": null,
                        "children": [],
                        "classes": [],
@@ -3889,6 +3889,67 @@
                        "elementBeforeConversion": null,
                        "extendedFromComponent": null,
                        "innerHTML": "0 comments",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "b398ns0kn",
+                       "blockName": null,
+                       "children": [],
+                       "classes": [],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "·",
+                       "isChildOfComponent": null,
+                       "isRepeaterBlock": false,
+                       "mobileStyles": {},
+                       "originalElement": null,
+                       "props": {},
+                       "rawStyles": {},
+                       "referenceBlockId": null,
+                       "tabletStyles": {},
+                       "visibilityCondition": null
+                      },
+                      {
+                       "attributes": {},
+                       "baseStyles": {},
+                       "blockId": "c0mmmkd17",
+                       "blockName": "Reposts",
+                       "children": [],
+                       "classes": [
+                        "cafe-feed-reposts"
+                       ],
+                       "clientScript": {},
+                       "customAttributes": {},
+                       "dataKey": null,
+                       "draggable": false,
+                       "dynamicValues": [
+                        {
+                         "comesFrom": "dataScript",
+                         "key": "reposts_label",
+                         "property": "innerHTML",
+                         "type": "key"
+                        }
+                       ],
+                       "element": "span",
+                       "elementBeforeConversion": null,
+                       "extendedFromComponent": null,
+                       "innerHTML": "0 reposts",
                        "isChildOfComponent": null,
                        "isRepeaterBlock": false,
                        "mobileStyles": {},
@@ -3956,7 +4017,7 @@
                     "backgroundColor": "var(--surface-gray-2)",
                     "objectFit": "cover"
                    },
-                   "blockId": "jpuv119iy",
+                   "blockId": "qqbfd8je3",
                    "blockName": "Thumbnail",
                    "children": [],
                    "classes": [
@@ -4076,7 +4137,7 @@
               "padding": "64px 0",
               "textAlign": "center"
              },
-             "blockId": "gqj1868uq",
+             "blockId": "iiezjsmb9",
              "blockName": "Nothing found",
              "children": [],
              "classes": [
@@ -4111,7 +4172,7 @@
              "baseStyles": {
               "height": "4px"
              },
-             "blockId": "iiezjsmb9",
+             "blockId": "ive428g3u",
              "blockName": "Sentinel",
              "children": [],
              "classes": [],
@@ -4148,7 +4209,7 @@
              "baseStyles": {
               "display": "none"
              },
-             "blockId": "sfkagc1q4",
+             "blockId": "g2zr09g4q",
              "blockName": "Row template",
              "children": [],
              "classes": [],
@@ -4160,7 +4221,7 @@
              "element": "div",
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
-             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:var(--surface-gray-2);object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\">[[!avatar]]<span style=\"font-size:13px;font-weight:420;color:var(--ink-gray-8);letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:var(--ink-gray-6);letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span></div></div>[[!thumbnail]]</div></a></template>",
+             "innerHTML": "<template id=\"cafe-feed-template\" data-avatar-image=\"&lt;img src=&quot;[[image]]&quot; alt=&quot;&quot; style=&quot;width:100%;height:100%;object-fit:cover&quot;&gt;\" data-thumbnail=\"&lt;img class=&quot;cafe-feed-thumb&quot; src=&quot;[[cover]]&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:128px;height:96px;flex-shrink:0;margin-top:4px;border-radius:10px;background-color:var(--surface-gray-2);object-fit:cover&quot;&gt;\"><a class=\"cafe-feed-row\" href=\"[[href]]\" style=\"display:flex;flex-direction:column;gap:12px;padding:36px 0;color:inherit;text-decoration:none\"><div class=\"cafe-feed-author\" style=\"display:flex;align-items:center;gap:8px\">[[!avatar]]<span style=\"font-size:13px;font-weight:420;color:var(--ink-gray-8);letter-spacing:0.02em;line-height:1.15\">[[name]]</span></div><div style=\"display:flex;align-items:flex-start;gap:16px\"><div style=\"flex:1 1 0%;min-width:0\"><div style=\"font-size:16px;font-weight:600;color:var(--ink-gray-8);letter-spacing:0.015em;line-height:1.15\">[[title]]</div><p class=\"cafe-clamp-2\" style=\"margin:4px 0 0;font-size:14px;font-weight:420;color:var(--ink-gray-6);letter-spacing:0.02em;line-height:1.5\">[[excerpt]]</p><div style=\"display:flex;align-items:center;gap:12px;margin-top:16px;font-size:12px;font-weight:420;color:var(--ink-gray-5);letter-spacing:0.02em;line-height:1.15\"><span >[[date]]</span><span >·</span><span >[[minutes]] min read</span><span >·</span><span class=\"cafe-feed-comments\">[[comments]] comments</span><span >·</span><span class=\"cafe-feed-reposts\">[[reposts]] reposts</span></div></div>[[!thumbnail]]</div></a></template>",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -4306,7 +4367,7 @@
    "builder_script": "Cafe Home"
   }
  ],
- "creation": "2026-10-19 11:38:24.297017",
+ "creation": "2026-10-19 13:01:30.888553",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -4316,15 +4377,15 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 11:38:24.297017",
+ "modified": "2026-10-19 13:01:30.888553",
  "modified_by": "Administrator",
  "name": "cafe-home",
  "owner": "Administrator",
- "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login\")\n\nrows = frappe.get_all(\n    \"Post\",\n    filters={\"status\": \"Published\"},\n    fields=[\"name\", \"title\", \"display_title\", \"content\", \"excerpt\", \"post_type\", \"attachment\", \"cover_image\", \"author\", \"author_name\", \"author_image\", \"publication\", \"creation\"],\n    order_by=\"creation desc\",\n    limit_page_length=10 + 1,\n)\nmore = len(rows) > 10\nrows = rows[:10]\n\ncounts = {}\nif rows:\n    for comment in frappe.get_all(\"Post Comment\", filters={\"post\": [\"in\", [row.name for row in rows]]}, fields=[\"post\"]):\n        counts[comment.post] = counts.get(comment.post, 0) + 1\n\n# A post under a publication shows the publication's own identity in the feed,\n# not its author's - same reasoning as the mentor's \"2 separate profiles\"\n# comment on the publication page: a reader scanning the feed should see\n# which publication a post came from, the way Medium's own feed cards do.\n# Publications is hidden for now (False) - while it is,\n# every row falls through to its author, same as before it existed.\npub_ids = list({row.publication for row in rows if row.get(\"publication\")}) if False else []\npubs = (\n    {p.name: p for p in frappe.get_all(\"Publication\", filters={\"name\": [\"in\", pub_ids]}, fields=[\"name\", \"title\", \"logo\"])}\n    if pub_ids\n    else {}\n)\n\nposts = []\nfor row in rows:\n    text = plain_text(row.get(\"content\"))\n    words = len(text.split())\n    minutes = int(words / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n    pub = pubs.get(row.get(\"publication\"))\n    if pub:\n        label = pub.get(\"title\") or row.get(\"publication\")\n        identity_image = safe_url(pub.get(\"logo\"))\n    else:\n        label = row.get(\"author_name\") or row.get(\"author\") or \"\"\n        identity_image = safe_url(row.get(\"author_image\"))\n    cover = (\n        row.get(\"cover_image\")\n        or (row.get(\"attachment\") if row.get(\"post_type\") != \"Video\" else \"\")\n        or first_image(row.get(\"content\"))\n    )\n    cover = safe_url(cover)\n    href = \"/posts/\" + path_segment(row.name)\n    comments = counts.get(row.name, 0)\n    posts.append({\n        \"href\": clean(href),\n        \"image\": identity_image,\n        \"is_pub\": bool(pub),\n        \"is_person\": not pub,\n        \"avatar_img_on\": not pub and bool(identity_image),\n        \"avatar_initial_on\": not pub and not identity_image,\n        \"pub_img_on\": bool(pub) and bool(identity_image),\n        \"pub_initial_on\": bool(pub) and not identity_image,\n        \"initial\": clean(label.strip()[:1]),\n        \"name\": clean(label),\n        \"title\": clean(row.get(\"display_title\") or row.get(\"title\") or (text[:60] + \"\\u2026\" if len(text) > 60 else text)),\n        \"excerpt\": clean(row.get(\"excerpt\") or (text[:160] + \"\\u2026\" if len(text) > 160 else text)),\n        \"date\": day_month_year(row.creation),\n        \"minutes_label\": str(minutes) + \" min read\",\n        \"comments_label\": str(comments) + (\" comment\" if comments == 1 else \" comments\"),\n        \"cover\": cover,\n    })\ndata.posts = posts\ndata.hp = {\n    \"no_posts\": frappe.db.count(\"Post\", {\"author\": frappe.session.user}) == 0,\n    \"empty\": not posts,\n    \"more\": \"1\" if more else \"\",\n}\n",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login\")\n\nrows = frappe.get_all(\n    \"Post\",\n    filters={\"status\": \"Published\"},\n    fields=[\"name\", \"title\", \"display_title\", \"content\", \"excerpt\", \"post_type\", \"attachment\", \"cover_image\", \"author\", \"author_name\", \"author_image\", \"publication\", \"creation\"],\n    order_by=\"creation desc\",\n    limit_page_length=10 + 1,\n)\nmore = len(rows) > 10\nrows = rows[:10]\n\ncounts = {}\nrepost_counts = {}\nif rows:\n    for comment in frappe.get_all(\"Post Comment\", filters={\"post\": [\"in\", [row.name for row in rows]]}, fields=[\"post\"]):\n        counts[comment.post] = counts.get(comment.post, 0) + 1\n    for repost in frappe.get_all(\"Repost\", filters={\"post\": [\"in\", [row.name for row in rows]]}, fields=[\"post\"]):\n        repost_counts[repost.post] = repost_counts.get(repost.post, 0) + 1\n\n# A post under a publication shows the publication's own identity in the feed,\n# not its author's - same reasoning as the mentor's \"2 separate profiles\"\n# comment on the publication page: a reader scanning the feed should see\n# which publication a post came from, the way Medium's own feed cards do.\n# Publications is hidden for now (False) - while it is,\n# every row falls through to its author, same as before it existed.\npub_ids = list({row.publication for row in rows if row.get(\"publication\")}) if False else []\npubs = (\n    {p.name: p for p in frappe.get_all(\"Publication\", filters={\"name\": [\"in\", pub_ids]}, fields=[\"name\", \"title\", \"logo\"])}\n    if pub_ids\n    else {}\n)\n\nposts = []\nfor row in rows:\n    text = plain_text(row.get(\"content\"))\n    words = len(text.split())\n    minutes = int(words / 200 + 0.5)\n    if minutes < 1:\n        minutes = 1\n    pub = pubs.get(row.get(\"publication\"))\n    if pub:\n        label = pub.get(\"title\") or row.get(\"publication\")\n        identity_image = safe_url(pub.get(\"logo\"))\n    else:\n        label = row.get(\"author_name\") or row.get(\"author\") or \"\"\n        identity_image = safe_url(row.get(\"author_image\"))\n    cover = (\n        row.get(\"cover_image\")\n        or (row.get(\"attachment\") if row.get(\"post_type\") != \"Video\" else \"\")\n        or first_image(row.get(\"content\"))\n    )\n    cover = safe_url(cover)\n    href = \"/posts/\" + path_segment(row.name)\n    comments = counts.get(row.name, 0)\n    reposts = repost_counts.get(row.name, 0)\n    posts.append({\n        \"href\": clean(href),\n        \"image\": identity_image,\n        \"is_pub\": bool(pub),\n        \"is_person\": not pub,\n        \"avatar_img_on\": not pub and bool(identity_image),\n        \"avatar_initial_on\": not pub and not identity_image,\n        \"pub_img_on\": bool(pub) and bool(identity_image),\n        \"pub_initial_on\": bool(pub) and not identity_image,\n        \"initial\": clean(label.strip()[:1]),\n        \"name\": clean(label),\n        \"title\": clean(row.get(\"display_title\") or row.get(\"title\") or (text[:60] + \"\\u2026\" if len(text) > 60 else text)),\n        \"excerpt\": clean(row.get(\"excerpt\") or (text[:160] + \"\\u2026\" if len(text) > 160 else text)),\n        \"date\": day_month_year(row.creation),\n        \"minutes_label\": str(minutes) + \" min read\",\n        \"comments_label\": str(comments) + (\" comment\" if comments == 1 else \" comments\"),\n        \"reposts_label\": str(reposts) + (\" repost\" if reposts == 1 else \" reposts\"),\n        \"cover\": cover,\n    })\ndata.posts = posts\ndata.hp = {\n    \"no_posts\": frappe.db.count(\"Post\", {\"author\": frappe.session.user}) == 0,\n    \"empty\": not posts,\n    \"more\": \"1\" if more else \"\",\n}\n",
  "page_name": "cafe-home",
  "page_title": "Home",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-19 11:38:24.297017",
+ "published_at": "2026-10-19 13:01:30.888553",
  "route": "cafe-home"
 }

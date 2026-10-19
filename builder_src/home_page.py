@@ -133,6 +133,10 @@ ROW_INNER = "".join(
 								html_el(
 									"span", ["cafe-feed-comments"], None, None, text="[[comments]] comments"
 								),
+								html_el("span", text="·"),
+								html_el(
+									"span", ["cafe-feed-reposts"], None, None, text="[[reposts]] reposts"
+								),
 							],
 						),
 					],
@@ -213,10 +217,20 @@ def build_feed_row():
 	minutes["dynamicValues"] = [bind("minutes_label", "innerHTML", "key")]
 	comments = block("span", "Comments", ["cafe-feed-comments"], text="0 comments")
 	comments["dynamicValues"] = [bind("comments_label", "innerHTML", "key")]
+	reposts = block("span", "Reposts", ["cafe-feed-reposts"], text="0 reposts")
+	reposts["dynamicValues"] = [bind("reposts_label", "innerHTML", "key")]
 	meta = block(
 		"div",
 		"Meta",
-		children=[date, block("span", text="·"), minutes, block("span", text="·"), comments],
+		children=[
+			date,
+			block("span", text="·"),
+			minutes,
+			block("span", text="·"),
+			comments,
+			block("span", text="·"),
+			reposts,
+		],
 		styles=META_STYLES,
 	)
 	text_col = block("div", "Text", children=[title, excerpt, meta], styles=TEXT_STYLES)
@@ -472,9 +486,12 @@ more = len(rows) > @@PAGE_SIZE@@
 rows = rows[:@@PAGE_SIZE@@]
 
 counts = {}
+repost_counts = {}
 if rows:
     for comment in frappe.get_all("Post Comment", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
         counts[comment.post] = counts.get(comment.post, 0) + 1
+    for repost in frappe.get_all("Repost", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
+        repost_counts[repost.post] = repost_counts.get(repost.post, 0) + 1
 
 # A post under a publication shows the publication's own identity in the feed,
 # not its author's - same reasoning as the mentor's "2 separate profiles"
@@ -511,6 +528,7 @@ for row in rows:
     cover = safe_url(cover)
     href = "/posts/" + path_segment(row.name)
     comments = counts.get(row.name, 0)
+    reposts = repost_counts.get(row.name, 0)
     posts.append({
         "href": clean(href),
         "image": identity_image,
@@ -527,6 +545,7 @@ for row in rows:
         "date": day_month_year(row.creation),
         "minutes_label": str(minutes) + " min read",
         "comments_label": str(comments) + (" comment" if comments == 1 else " comments"),
+        "reposts_label": str(reposts) + (" repost" if reposts == 1 else " reposts"),
         "cover": cover,
     })
 data.posts = posts

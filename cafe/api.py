@@ -358,6 +358,18 @@ def get_comment_counts(posts: str | list):
 
 
 @frappe.whitelist()
+def get_repost_counts(posts: str | list):
+	if isinstance(posts, str):
+		posts = frappe.parse_json(posts)
+	if not posts:
+		return {}
+	counts = {}
+	for r in frappe.db.get_all("Repost", filters={"post": ["in", posts]}, fields=["post"]):
+		counts[r.post] = counts.get(r.post, 0) + 1
+	return counts
+
+
+@frappe.whitelist()
 def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, limit: int = 10):
 	"""The home feed's category chips (home_page.py's TAG_LABELS) match a post
 	by exact tag, Medium-style: a post "belongs" to a chip only if that exact

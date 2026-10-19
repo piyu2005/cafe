@@ -22,7 +22,7 @@
       "lineHeight": "1.15",
       "letterSpacing": "0.02em"
      },
-     "blockId": "pvv828mtr",
+     "blockId": "38sp7ma1o",
      "blockName": "App",
      "children": [
       {
@@ -1969,7 +1969,7 @@
         "minWidth": "0",
         "minHeight": "0"
        },
-       "blockId": "d7rymvjx5",
+       "blockId": "faxu6gd1m",
        "blockName": "Main",
        "children": [
         {
@@ -1988,7 +1988,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "lykh42sg2",
+         "blockId": "qumcik89t",
          "blockName": "Mobile header",
          "children": [
           {
@@ -2005,7 +2005,7 @@
             "borderRadius": "8px",
             "color": "var(--ink-gray-8)"
            },
-           "blockId": "1vrnmqgu7",
+           "blockId": "0fyy4r2v5",
            "blockName": "Back",
            "children": [],
            "classes": [
@@ -2046,7 +2046,7 @@
             "letterSpacing": "0.015em",
             "lineHeight": "1.25"
            },
-           "blockId": "zg9fzsl1g",
+           "blockId": "lykh42sg2",
            "blockName": "Title",
            "children": [],
            "classes": [
@@ -2082,7 +2082,7 @@
             "gap": "4px",
             "marginLeft": "auto"
            },
-           "blockId": "0fyy4r2v5",
+           "blockId": "m6bnmrl61",
            "blockName": "Notifications",
            "children": [],
            "classes": [],
@@ -2143,7 +2143,7 @@
           "borderBottom": "1px solid var(--outline-gray-1)",
           "backgroundColor": "#ffffff"
          },
-         "blockId": "v6lue0f8s",
+         "blockId": "d7rymvjx5",
          "blockName": "Header",
          "children": [
           {
@@ -2158,7 +2158,7 @@
             "letterSpacing": "0.015em",
             "color": "var(--ink-gray-5)"
            },
-           "blockId": "qumcik89t",
+           "blockId": "nnzsl08hk",
            "blockName": "Breadcrumbs",
            "children": [
             {
@@ -2166,7 +2166,7 @@
               "href": "/"
              },
              "baseStyles": {},
-             "blockId": "4wmyg4d3d",
+             "blockId": "y8y6kffte",
              "blockName": null,
              "children": [],
              "classes": [],
@@ -2179,68 +2179,6 @@
              "elementBeforeConversion": null,
              "extendedFromComponent": null,
              "innerHTML": "Cafe",
-             "isChildOfComponent": null,
-             "isRepeaterBlock": false,
-             "mobileStyles": {},
-             "originalElement": null,
-             "props": {},
-             "rawStyles": {},
-             "referenceBlockId": null,
-             "tabletStyles": {},
-             "visibilityCondition": null
-            },
-            {
-             "attributes": {},
-             "baseStyles": {
-              "color": "#999999",
-              "fontSize": "14px",
-              "fontWeight": "420",
-              "letterSpacing": "0.02em"
-             },
-             "blockId": "pvzufhwrb",
-             "blockName": "Separator",
-             "children": [],
-             "classes": [
-              "sep"
-             ],
-             "clientScript": {},
-             "customAttributes": {},
-             "dataKey": null,
-             "draggable": false,
-             "dynamicValues": [],
-             "element": "span",
-             "elementBeforeConversion": null,
-             "extendedFromComponent": null,
-             "innerHTML": "/",
-             "isChildOfComponent": null,
-             "isRepeaterBlock": false,
-             "mobileStyles": {},
-             "originalElement": null,
-             "props": {},
-             "rawStyles": {},
-             "referenceBlockId": null,
-             "tabletStyles": {},
-             "visibilityCondition": null
-            },
-            {
-             "attributes": {
-              "href": "/",
-              "id": "cafe-p-crumb-pub"
-             },
-             "baseStyles": {},
-             "blockId": "y8y6kffte",
-             "blockName": "Crumb",
-             "children": [],
-             "classes": [],
-             "clientScript": {},
-             "customAttributes": {},
-             "dataKey": null,
-             "draggable": false,
-             "dynamicValues": [],
-             "element": "a",
-             "elementBeforeConversion": null,
-             "extendedFromComponent": null,
-             "innerHTML": "Publication",
              "isChildOfComponent": null,
              "isRepeaterBlock": false,
              "mobileStyles": {},
@@ -2285,11 +2223,73 @@
              "visibilityCondition": null
             },
             {
+             "attributes": {
+              "href": "/",
+              "id": "cafe-p-crumb-pub"
+             },
+             "baseStyles": {},
+             "blockId": "fdmkkxzpz",
+             "blockName": "Crumb",
+             "children": [],
+             "classes": [],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "a",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "Publication",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
+             "attributes": {},
+             "baseStyles": {
+              "color": "#999999",
+              "fontSize": "14px",
+              "fontWeight": "420",
+              "letterSpacing": "0.02em"
+             },
+             "blockId": "gjyup4l8u",
+             "blockName": "Separator",
+             "children": [],
+             "classes": [
+              "sep"
+             ],
+             "clientScript": {},
+             "customAttributes": {},
+             "dataKey": null,
+             "draggable": false,
+             "dynamicValues": [],
+             "element": "span",
+             "elementBeforeConversion": null,
+             "extendedFromComponent": null,
+             "innerHTML": "/",
+             "isChildOfComponent": null,
+             "isRepeaterBlock": false,
+             "mobileStyles": {},
+             "originalElement": null,
+             "props": {},
+             "rawStyles": {},
+             "referenceBlockId": null,
+             "tabletStyles": {},
+             "visibilityCondition": null
+            },
+            {
              "attributes": {},
              "baseStyles": {
               "color": "var(--ink-gray-9)"
              },
-             "blockId": "fdmkkxzpz",
+             "blockId": "9ym120zjk",
              "blockName": null,
              "children": [],
              "classes": [
@@ -2354,7 +2354,7 @@
             "fontSize": "14px",
             "whiteSpace": "nowrap"
            },
-           "blockId": "ih5dsozmw",
+           "blockId": "1dpymn95p",
            "blockName": "New Post",
            "children": [
             {
@@ -2364,7 +2364,7 @@
               "height": "16px",
               "flexShrink": "0"
              },
-             "blockId": "rsveem5xo",
+             "blockId": "ih5dsozmw",
              "blockName": "icon/plus",
              "children": [],
              "classes": [],
@@ -2390,7 +2390,7 @@
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "nnzsl08hk",
+             "blockId": "v6lue0f8s",
              "blockName": "Label",
              "children": [],
              "classes": [],
@@ -2468,7 +2468,7 @@
           "overflowY": "auto",
           "overscrollBehavior": "contain"
          },
-         "blockId": "1dpymn95p",
+         "blockId": "pvv828mtr",
          "blockName": "Scroll area",
          "children": [
           {
@@ -2479,7 +2479,7 @@
             "margin": "0 auto",
             "padding": "32px 20px"
            },
-           "blockId": "m6bnmrl61",
+           "blockId": "rsveem5xo",
            "blockName": "Container",
            "children": [
             {
@@ -2495,7 +2495,7 @@
               "letterSpacing": "0.015em",
               "color": "#000000"
              },
-             "blockId": "gjyup4l8u",
+             "blockId": "tgtfztc1g",
              "blockName": "Title",
              "children": [],
              "classes": [
@@ -2525,13 +2525,13 @@
               "id": "cafe-invite"
              },
              "baseStyles": {},
-             "blockId": "tgtfztc1g",
+             "blockId": "zg9fzsl1g",
              "blockName": "Invite",
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "9ym120zjk",
+               "blockId": "1vrnmqgu7",
                "blockName": "Preview",
                "children": [],
                "classes": [
@@ -2729,7 +2729,7 @@
    "builder_script": "Cafe Pub Invite"
   }
  ],
- "creation": "2026-10-19 11:38:24.297017",
+ "creation": "2026-10-19 13:01:30.888553",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -2739,7 +2739,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 11:38:24.297017",
+ "modified": "2026-10-19 13:01:30.888553",
  "modified_by": "Administrator",
  "name": "cafe-invite",
  "owner": "Administrator",
@@ -2748,6 +2748,6 @@
  "page_title": "Invite people",
  "project_folder": "cafe",
  "published": 0,
- "published_at": "2026-10-19 11:38:24.297017",
+ "published_at": "2026-10-19 13:01:30.888553",
  "route": "invite"
 }

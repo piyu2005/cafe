@@ -121,6 +121,7 @@
 			date: escapeHtml(formatDate(post.creation)),
 			minutes: String(minutes),
 			comments: '0',
+			reposts: '0',
 			'!thumbnail': cover ? fill(template.getAttribute('data-thumbnail'), { cover: escapeHtml(cover) }) : '',
 		}
 		var holder = document.createElement('div')
@@ -183,16 +184,25 @@
 
 	function showCounts(posts, rows) {
 		if (!posts.length) return
-		CAFE.api('cafe.api.get_comment_counts', {
-			posts: posts.map(function (post) {
-				return post.name
-			}),
-		}).then(
+		var names = posts.map(function (post) {
+			return post.name
+		})
+		CAFE.api('cafe.api.get_comment_counts', { posts: names }).then(
 			function (counts) {
 				posts.forEach(function (post, index) {
 					var node = rows[index].querySelector('.cafe-feed-comments')
 					var count = (counts || {})[post.name] || 0
 					if (node) node.textContent = count + (count === 1 ? ' comment' : ' comments')
+				})
+			},
+			function () {}
+		)
+		CAFE.api('cafe.api.get_repost_counts', { posts: names }).then(
+			function (counts) {
+				posts.forEach(function (post, index) {
+					var node = rows[index].querySelector('.cafe-feed-reposts')
+					var count = (counts || {})[post.name] || 0
+					if (node) node.textContent = count + (count === 1 ? ' repost' : ' reposts')
 				})
 			},
 			function () {}
