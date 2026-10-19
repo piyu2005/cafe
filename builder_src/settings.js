@@ -1,7 +1,8 @@
 // Settings. On a desktop it is a dialog that opens over the current page (from
-// the logo menu's "Settings", or ?settings=account|saved in the address). On a
-// phone it is the /settings page, which this script also runs: its tabs and
-// the Saved list. Every page loads this script. Needs ui.js and shell.js.
+// the logo menu's "Settings", or ?settings=account|publications in the
+// address). On a phone it is the /settings page, which this script also runs:
+// its tabs. Every page loads this script. Needs ui.js and shell.js. Saved
+// posts live on the Manage all posts page (posts.js), not here.
 ;(function () {
 	'use strict'
 
@@ -12,8 +13,8 @@
 	// mobile page already skips its Publications blocks there; this is the
 	// matching switch for the desktop dialog, which is built entirely here.
 	var PUBLICATIONS_ENABLED = false
-	var TABS = PUBLICATIONS_ENABLED ? ['account', 'saved', 'publications'] : ['account', 'saved']
-	var TITLES = { account: 'Account', saved: 'Saved posts', publications: 'Publications' }
+	var TABS = PUBLICATIONS_ENABLED ? ['account', 'publications'] : ['account']
+	var TITLES = { account: 'Account', publications: 'Publications' }
 
 	var el = function (tag, className, text) {
 		return CAFE.el(tag, className, text)
@@ -31,113 +32,6 @@
 		var match = document.cookie.match(/(?:^|;\s*)user_id=([^;]*)/)
 		var user = match ? decodeURIComponent(match[1]) : ''
 		return user && user !== 'Guest' ? user : ''
-	}
-
-	// ---- Saved posts ----
-
-	// Plain text of some HTML. DOMParser gives an inert document, so nothing in
-	// the post (an image with an onerror) loads or runs.
-	function plainText(html) {
-		return (new DOMParser().parseFromString(html || '', 'text/html').body.textContent || '').trim()
-	}
-	function excerpt(html) {
-		var text = plainText(html)
-		return text.length > 140 ? text.slice(0, 140) + '…' : text
-	}
-	function coverOf(post) {
-		var url = post.cover_image || (post.post_type !== 'Video' ? post.attachment : '')
-		return /^(\/|https?:\/\/)/.test(url || '') ? url : ''
-	}
-
-	function savedRow(post, first, onOpen, onRemove) {
-		var row = el('div', 'cafe-saved-row' + (first ? ' first' : ''))
-		var link = el('a', 'cafe-saved-link')
-		link.href = '/posts/' + encodeURIComponent(post.name)
-		link.addEventListener('click', onOpen)
-		var text = el('div', 'cafe-saved-text')
-		text.appendChild(el('div', 'cafe-saved-title', post.display_title || post.title || 'Untitled'))
-		text.appendChild(el('p', 'cafe-saved-excerpt', excerpt(post.content)))
-		text.appendChild(el('div', 'cafe-saved-by', 'By ' + (post.author_name || '')))
-		link.appendChild(text)
-		var cover = coverOf(post)
-		if (cover) {
-			var image = el('img', 'cafe-saved-cover')
-			image.src = cover
-			image.alt = ''
-			image.loading = 'lazy'
-			link.appendChild(image)
-		}
-		var remove = el('button', 'cafe-saved-remove')
-		remove.type = 'button'
-		remove.setAttribute('aria-label', 'Remove from saved posts')
-		remove.appendChild(icon('bookmark-minus'))
-		remove.addEventListener('click', function () {
-			onRemove(post)
-		})
-		row.appendChild(link)
-		row.appendChild(remove)
-		return row
-	}
-
-	// Fills `panel` (the Saved tab's container) with the saved posts. `panel`
-	// holds .cafe-loading, .cafe-saved-empty, .cafe-saved-error and .cafe-saved-list.
-	var savedRequest = 0
-	function loadSaved(panel, onOpen) {
-		var loading = panel.querySelector('.cafe-loading')
-		var empty = panel.querySelector('.cafe-saved-empty')
-		var failed = panel.querySelector('.cafe-saved-error')
-		var list = panel.querySelector('.cafe-saved-list')
-		var posts = []
-		var request = ++savedRequest
-
-		function render() {
-			list.replaceChildren()
-			posts.forEach(function (post, index) {
-				list.appendChild(savedRow(post, index === 0, onOpen, remove))
-			})
-			empty.hidden = posts.length > 0
-		}
-
-		// The post leaves the list at once; the server confirms afterwards.
-		function remove(post) {
-			var before = posts
-			posts = posts.filter(function (item) {
-				return item.name !== post.name
-			})
-			render()
-			CAFE.api('cafe.api.toggle_save_post', { post: post.name }).then(
-				function (result) {
-					// `saved` true means it is still saved (a double click, say): put it back.
-					if (!result || result.saved) {
-						posts = before
-						render()
-					}
-				},
-				function () {
-					posts = before
-					render()
-					CAFE.toast("Couldn't remove that post. Please try again.", 'error')
-				}
-			)
-		}
-
-		list.replaceChildren()
-		empty.hidden = true
-		failed.hidden = true
-		loading.hidden = false
-		CAFE.get('cafe.api.list_saved_posts').then(
-			function (data) {
-				if (request !== savedRequest) return
-				loading.hidden = true
-				posts = data || []
-				render()
-			},
-			function () {
-				if (request !== savedRequest) return
-				loading.hidden = true
-				failed.hidden = false
-			}
-		)
 	}
 
 	// ---- Publications (which the account is a member of, not subscribed to) ----
@@ -235,7 +129,6 @@
 	function setupPage(root) {
 		var buttons = root.querySelectorAll('.cafe-tab-btn')
 		var account = document.getElementById('cafe-settings-account')
-		var saved = document.getElementById('cafe-settings-saved')
 		// Only in the DOM at all when PUBLICATIONS_ENABLED was true at generate
 		// time (settings_page.py) - null here otherwise.
 		var publications = document.getElementById('cafe-settings-publications')
@@ -245,12 +138,9 @@
 				button.setAttribute('aria-selected', button.getAttribute('data-tab') === tab ? 'true' : 'false')
 			})
 			account.hidden = tab !== 'account'
-			saved.hidden = tab !== 'saved'
 			if (publications) publications.hidden = tab !== 'publications'
-			if (tab === 'saved') loadSaved(saved, function () {})
 			if (tab === 'publications' && publications) loadPublications(publications)
 			if (updateAddress) {
-				// The tab is in the address, so Back from a saved post returns to it.
 				var url = new URL(location.href)
 				if (tab === 'account') url.searchParams.delete('tab')
 				else url.searchParams.set('tab', tab)
@@ -310,21 +200,6 @@
 		return box
 	}
 
-	function buildSavedPanel() {
-		var panel = el('div', 'cafe-saved-panel')
-		var loading = el('div', 'cafe-loading')
-		loading.hidden = true
-		for (var i = 0; i < 4; i++) loading.appendChild(el('div', 'cafe-skeleton'))
-		var empty = el('p', 'cafe-saved-empty', 'No saved posts yet.')
-		var failed = el('p', 'cafe-saved-error', "Couldn't load your saved posts. Please try again.")
-		empty.hidden = failed.hidden = true
-		panel.appendChild(loading)
-		panel.appendChild(empty)
-		panel.appendChild(failed)
-		panel.appendChild(el('div', 'cafe-saved-list'))
-		return panel
-	}
-
 	function buildPublicationsPanel() {
 		var panel = el('div', 'cafe-saved-panel')
 		var loading = el('div', 'cafe-loading')
@@ -371,7 +246,7 @@
 				var avatar = el('span', 'cafe-set-avatar', (user.charAt(0) || '?').toUpperCase())
 				button.appendChild(avatar)
 			} else {
-				button.appendChild(icon(key === 'publications' ? 'newspaper' : 'bookmark'))
+				button.appendChild(icon('newspaper'))
 			}
 			button.appendChild(el('span', 'cafe-set-nav-label', TITLES[key]))
 			button.addEventListener('click', function () {
@@ -386,10 +261,8 @@
 		var title = el('h2', 'cafe-set-title')
 		var body = el('div', 'cafe-set-body')
 		var accountPanel = buildAccount(close)
-		var savedPanel = buildSavedPanel()
 		var publicationsPanel = PUBLICATIONS_ENABLED ? buildPublicationsPanel() : null
 		body.appendChild(accountPanel)
-		body.appendChild(savedPanel)
 		if (publicationsPanel) body.appendChild(publicationsPanel)
 		content.appendChild(title)
 		content.appendChild(body)
@@ -406,11 +279,9 @@
 			})
 			title.textContent = TITLES[key]
 			accountPanel.hidden = key !== 'account'
-			savedPanel.hidden = key !== 'saved'
 			if (publicationsPanel) publicationsPanel.hidden = key !== 'publications'
 			body.scrollTop = 0
 			dialog.tab = key
-			if (key === 'saved') loadSaved(savedPanel, close)
 			if (key === 'publications' && publicationsPanel) loadPublications(publicationsPanel)
 		}
 
@@ -434,8 +305,8 @@
 		// Below 768px Settings is a page, so a window that shrinks takes you there.
 		function onResize(event) {
 			if (event.matches) return
-			var tab = close()
-			location.assign('/settings' + (tab === 'saved' ? '?tab=saved' : ''))
+			close()
+			location.assign('/settings')
 		}
 
 		dialog = { tab: tab, bodyOverflow: document.body.style.overflow }
@@ -449,8 +320,8 @@
 		select(tab)
 		modal.focus()
 	}
-	CAFE.openSettings = function (tab) {
-		openDialog(tab === 'saved' ? 'saved' : 'account')
+	CAFE.openSettings = function () {
+		openDialog('account')
 	}
 
 	function setupDialogTriggers() {

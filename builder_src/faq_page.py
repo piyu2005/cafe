@@ -110,6 +110,13 @@ FAQ_ITEMS = [
 			"mentioned people again and doesn't award points again.",
 		],
 	),
+	(
+		"Where can I find my published, draft, archived, and saved posts?",
+		[
+			"All four are on the Manage all posts page, reached from your profile - "
+			"each has its own tab there.",
+		],
+	),
 ]
 
 

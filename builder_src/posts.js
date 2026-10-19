@@ -1,9 +1,14 @@
-// Profile posts page. The list of published posts is rendered by the server.
-// On your own profile this script adds the tabs: Drafts and Archived are
-// fetched when their tab opens, like the old page does. Needs ui.js.
+// Profile posts page ("Manage all posts"). The list of published posts is
+// rendered by the server. On your own profile this script adds the tabs:
+// Drafts and Archived are fetched when their tab opens, like the old page
+// does. Saved is its own thing - posts anyone wrote that you bookmarked, not
+// filtered from your own Post rows, so it gets its own fetch/row shape below
+// rather than fitting the TABS map. Needs ui.js.
 ;(function () {
 	'use strict'
 
+	var CAFE = (window.CAFE = window.CAFE || {})
+	var ICONS = '@@ICONS@@'
 	var FIELDS = [
 		'name',
 		'title',
@@ -22,8 +27,15 @@
 		archived: { status: 'Archived', empty: "You don't have any archived posts." },
 	}
 
-	var root, published, other, loading, emptyText, list, template
+	var root, published, other, loading, emptyText, list, template, saved
 	var latestRequest = 0
+
+	function icon(name) {
+		var holder = document.createElement('span')
+		holder.className = 'cafe-set-icon'
+		holder.innerHTML = ICONS[name] || ''
+		return holder
+	}
 
 	// Plain text of some HTML. DOMParser gives an inert document, so nothing in
 	// the post (an image with an onerror, a script) loads or runs.
@@ -118,13 +130,114 @@
 		)
 	}
 
+	// ---- Saved posts ----
+
+	function coverOf(post) {
+		var url = post.cover_image || (post.post_type !== 'Video' ? post.attachment : '')
+		return /^(\/|https?:\/\/)/.test(url || '') ? url : ''
+	}
+
+	function savedRow(post, first, onRemove) {
+		var row = CAFE.el('div', 'cafe-saved-row' + (first ? ' first' : ''))
+		var link = CAFE.el('a', 'cafe-saved-link')
+		link.href = '/posts/' + encodeURIComponent(post.name)
+		var text = CAFE.el('div', 'cafe-saved-text')
+		text.appendChild(CAFE.el('div', 'cafe-saved-title', post.display_title || post.title || 'Untitled'))
+		text.appendChild(CAFE.el('p', 'cafe-saved-excerpt', preview(post)))
+		text.appendChild(CAFE.el('div', 'cafe-saved-by', 'By ' + (post.author_name || '')))
+		link.appendChild(text)
+		var cover = coverOf(post)
+		if (cover) {
+			var image = CAFE.el('img', 'cafe-saved-cover')
+			image.src = cover
+			image.alt = ''
+			image.loading = 'lazy'
+			link.appendChild(image)
+		}
+		var remove = CAFE.el('button', 'cafe-saved-remove')
+		remove.type = 'button'
+		remove.setAttribute('aria-label', 'Remove from saved posts')
+		remove.appendChild(icon('bookmark-minus'))
+		remove.addEventListener('click', function () {
+			onRemove(post)
+		})
+		row.appendChild(link)
+		row.appendChild(remove)
+		return row
+	}
+
+	var savedLoaded = false
+	var savedPosts = []
+	var savedRequest = 0
+	function loadSaved() {
+		var panelLoading = saved.querySelector('.cafe-loading')
+		var empty = saved.querySelector('.cafe-saved-empty')
+		var failed = saved.querySelector('.cafe-saved-error')
+		var list = saved.querySelector('.cafe-saved-list')
+		var request = ++savedRequest
+
+		function render() {
+			list.replaceChildren()
+			savedPosts.forEach(function (post, index) {
+				list.appendChild(savedRow(post, index === 0, remove))
+			})
+			empty.hidden = savedPosts.length > 0
+		}
+
+		// The post leaves the list at once; the server confirms afterwards.
+		function remove(post) {
+			var before = savedPosts
+			savedPosts = savedPosts.filter(function (item) {
+				return item.name !== post.name
+			})
+			render()
+			CAFE.api('cafe.api.toggle_save_post', { post: post.name }).then(
+				function (result) {
+					// `saved` true means it is still saved (a double click, say): put it back.
+					if (!result || result.saved) {
+						savedPosts = before
+						render()
+					}
+				},
+				function () {
+					savedPosts = before
+					render()
+					CAFE.toast("Couldn't remove that post. Please try again.", 'error')
+				}
+			)
+		}
+
+		savedLoaded = true
+		list.replaceChildren()
+		empty.hidden = true
+		failed.hidden = true
+		panelLoading.hidden = false
+		CAFE.get('cafe.api.list_saved_posts').then(
+			function (data) {
+				if (request !== savedRequest) return
+				panelLoading.hidden = true
+				savedPosts = data || []
+				render()
+			},
+			function () {
+				if (request !== savedRequest) return
+				panelLoading.hidden = true
+				failed.hidden = false
+			}
+		)
+	}
+
 	function showTab(tab, updateAddress) {
 		document.querySelectorAll('.cafe-tab-btn').forEach(function (button) {
 			button.setAttribute('aria-selected', button.getAttribute('data-tab') === tab ? 'true' : 'false')
 		})
 		published.hidden = tab !== 'published'
-		other.hidden = tab === 'published'
-		if (tab !== 'published') loadOther(tab)
+		other.hidden = tab !== 'drafts' && tab !== 'archived'
+		saved.hidden = tab !== 'saved'
+		if (TABS[tab]) loadOther(tab)
+		// Loaded once per page visit - the remove button already keeps the list
+		// in sync with every change made from this same tab.
+		if (tab === 'saved' && !savedLoaded) loadSaved()
 		if (updateAddress) {
 			// Same as the old page: the tab is in the address, without a new history entry.
 			var url = new URL(location.href)
@@ -144,13 +257,14 @@
 		emptyText = other.querySelector('.cafe-other-empty')
 		list = other.querySelector('.cafe-other-list')
 		template = document.getElementById('cafe-post-template')
+		saved = document.getElementById('cafe-panel-saved')
 
 		root.addEventListener('click', function (event) {
 			var button = event.target.closest('.cafe-tab-btn')
 			if (button) showTab(button.getAttribute('data-tab'), true)
 		})
 		var initial = root.getAttribute('data-tab')
-		if (TABS[initial]) showTab(initial, false)
+		if (TABS[initial] || initial === 'saved') showTab(initial, false)
 		else showTab('published', false)
 	})
 })()

@@ -1,14 +1,16 @@
 """The Settings page: /settings, for phones.
 
 On a desktop, Settings is a dialog that opens over whatever page you are on
-(see settings.js, which every page loads). This page is what a phone gets: two
-tabs, Account and Saved. Someone who opens /settings on a desktop is sent to
-the Home feed with the dialog open, like the old app does.
+(see settings.js, which every page loads). This page is what a phone gets:
+Account (and Publications, while that's enabled). Someone who opens /settings
+on a desktop is sent to the Home feed with the dialog open, like the old app
+does. Saved posts live on the Manage all posts page now (posts_page.py), not
+here.
 
 The Account rows are blocks with the username and email from the data script.
-The Saved list is filled by settings.js when its tab opens. Everything here is
-built as individual Builder blocks (buttons, tabs, list placeholders), not one
-embedded HTML blob, so each piece is editable on its own in Builder's canvas."""
+Everything here is built as individual Builder blocks (buttons, tabs, list
+placeholders), not one embedded HTML blob, so each piece is editable on its
+own in Builder's canvas."""
 
 from blocks import (
 	GRAY_6,
@@ -28,7 +30,7 @@ from blocks import (
 from layout import crumb_current, crumb_link, crumb_separator, page_layout
 from posts_page import TAB_STYLES
 
-SETTINGS_TABS = [("account", "Account"), ("saved", "Saved")]
+SETTINGS_TABS = [("account", "Account")]
 if PUBLICATIONS_ENABLED:
 	SETTINGS_TABS.append(("publications", "Publications"))
 
@@ -120,52 +122,6 @@ def build_account_panel():
 	)
 
 
-def build_saved_panel():
-	# The 4 skeleton rows are a repeated decorative loading state, not
-	# interactive content - one raw-html block for the group is far cheaper
-	# to render than 5 native ones for something nobody ever edits piece by
-	# piece (see blocks.py's note on raw_block for exactly this shape).
-	skeleton = "".join(
-		html_el(
-			"div",
-			["cafe-skeleton"],
-			None,
-			{"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
-		)
-		for _ in range(4)
-	)
-	loading = block(
-		"div",
-		"Loading",
-		classes=["cafe-loading"],
-		attrs={"hidden": "hidden"},
-		html=skeleton,
-		styles={"flexDirection": "column", "gap": "20px"},
-	)
-	empty = block(
-		"p",
-		classes=["cafe-saved-empty"],
-		attrs={"hidden": "hidden"},
-		styles={"margin": "0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")},
-		text="No saved posts yet.",
-	)
-	error = block(
-		"p",
-		classes=["cafe-saved-error"],
-		attrs={"hidden": "hidden"},
-		styles={"margin": "0", **text_style(14, "420", MUTED, "0.02em", "1.5")},
-		text="Couldn't load your saved posts. Please try again.",
-	)
-	saved_list = block("div", classes=["cafe-saved-list"])
-	return block(
-		"div",
-		"Saved panel",
-		attrs={"id": "cafe-settings-saved", "role": "tabpanel", "hidden": "hidden"},
-		styles={"paddingTop": "16px"},
-		children=[loading, empty, error, saved_list],
-	)
-
-
 def build_publications_panel():
 	# Same loading/empty/error shape as the Saved panel above, with its own
 	# class names: settings.js keeps each panel's list/empty/error lookups
@@ -245,7 +201,7 @@ def build_tabs():
 
 
 def build_settings(shell_id, shell_block):
-	children = [build_tabs(), build_account_panel(), build_saved_panel()]
+	children = [build_tabs(), build_account_panel()]
 	if PUBLICATIONS_ENABLED:
 		children.append(build_publications_panel())
 	root = block(
