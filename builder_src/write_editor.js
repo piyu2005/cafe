@@ -348,6 +348,138 @@
 		}
 	}
 
+	// "@" mentions: unlike "[[" above, the query is typed live into the
+	// document itself (same approach as the chat composer's own mentions,
+	// chat_mentions.js) and searched on cafe.api.list_people - the same
+	// endpoint the post page's own "Share" dialog already uses to find
+	// people, server-side-filtered as you type rather than a client-side
+	// filter over a prefetched list.
+	function buildMentionSearch() {
+		var box = W.el('div', 'cafe-w-mentions')
+		box.hidden = true
+		document.body.appendChild(box)
+
+		var range = null
+		var matches = []
+		var chosen = 0
+		var timer = null
+		var request = 0
+
+		function close() {
+			box.hidden = true
+			range = null
+			matches = []
+			clearTimeout(timer)
+		}
+
+		function draw() {
+			box.replaceChildren()
+			if (!matches.length) {
+				box.appendChild(W.el('p', 'cafe-w-mention-empty', 'No people found.'))
+				return
+			}
+			matches.forEach(function (item, i) {
+				var option = W.el('button', 'cafe-w-mention-option' + (i === chosen ? ' on' : ''))
+				option.type = 'button'
+				option.appendChild(W.el('span', 'cafe-w-mention-label', '@' + (item.username || item.name)))
+				if (item.full_name) option.appendChild(W.el('span', 'cafe-w-mention-name', item.full_name))
+				option.addEventListener('mousedown', function (event) {
+					event.preventDefault()
+					insert(item)
+				})
+				box.appendChild(option)
+			})
+		}
+
+		function place(pos) {
+			var coords = editor.view.coordsAtPos(pos)
+			box.hidden = false
+			var width = box.offsetWidth || 280
+			box.style.left = Math.max(8, Math.min(coords.left, window.innerWidth - width - 8)) + 'px'
+			box.style.top = coords.bottom + 4 + 'px'
+		}
+
+		function insert(item) {
+			var at = range
+			close()
+			editor
+				.chain()
+				.focus()
+				.insertContentAt(at, [
+					{ type: 'mention', attrs: { id: item.name, label: item.username || item.name } },
+					{ type: 'text', text: ' ' },
+				])
+				.run()
+		}
+
+		function search(query) {
+			var id = ++request
+			CAFE.get('cafe.api.list_people', { query: query }).then(
+				function (people) {
+					if (id !== request) return
+					matches = people || []
+					chosen = 0
+					draw()
+				},
+				function () {
+					if (id === request) {
+						matches = []
+						draw()
+					}
+				}
+			)
+		}
+
+		function checkMention() {
+			var selection = editor.state.selection
+			if (!selection.empty) {
+				close()
+				return
+			}
+			var end = selection.from
+			var before = editor.state.doc.textBetween(Math.max(0, end - 40), end, '\n', '￼')
+			var found = /(^|\s)@([\w.\-]*)$/.exec(before)
+			if (!found) {
+				close()
+				return
+			}
+			range = { from: end - found[2].length - 1, to: end }
+			place(range.from)
+			clearTimeout(timer)
+			timer = setTimeout(function () {
+				search(found[2])
+			}, 200)
+		}
+
+		document.addEventListener('mousedown', function (event) {
+			if (!box.hidden && !box.contains(event.target)) close()
+		})
+
+		W.checkMention = checkMention
+		W.mentionKey = function (event) {
+			if (box.hidden) return false
+			if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+				event.preventDefault()
+				if (matches.length)
+					chosen = (chosen + (event.key === 'ArrowDown' ? 1 : matches.length - 1)) % matches.length
+				draw()
+				return true
+			}
+			if (event.key === 'Enter' || event.key === 'Tab') {
+				if (matches.length) {
+					event.preventDefault()
+					insert(matches[chosen])
+				}
+				return true
+			}
+			if (event.key === 'Escape') {
+				close()
+				return true
+			}
+			return false
+		}
+	}
+
 	// ---- The page ----
 
 	W.setStatusLine = function () {
@@ -411,6 +543,7 @@
 		// built before the editor so that reference is already there by the
 		// time the extensions array is evaluated.
 		buildPostLinkSearch()
+		buildMentionSearch()
 		dom.scroll = W.el('div', 'cafe-w-scroll')
 		var page = W.el('div', 'cafe-w-page')
 		dom.loading = W.el('div', 'cafe-w-loading')
@@ -452,6 +585,7 @@
 				M.TextAlign.configure({ types: ['heading', 'paragraph'] }),
 				M.Image.configure({ upload: W.uploadStory }),
 				M.ImageGroup,
+				M.Mention,
 				M.PostLinkTrigger.configure({ onTrigger: W.openPostLinkSearch }),
 			],
 			editorProps: { attributes: { class: 'cafe-w-prose', 'aria-label': 'Story' } },
@@ -461,6 +595,17 @@
 				})
 			},
 		})
+		editor.on('selectionUpdate', W.checkMention)
+		editor.on('update', W.checkMention)
+		// Capture, so the mention popup's own arrows/Enter/Escape reach it
+		// before the editor's own key handling (same as chat_mentions.js).
+		host.addEventListener(
+			'keydown',
+			function (event) {
+				if (W.mentionKey(event)) event.stopPropagation()
+			},
+			true
+		)
 		dom.title = W.el('input', 'cafe-w-title')
 		dom.title.type = 'text'
 		dom.title.placeholder = 'Give your story a title'

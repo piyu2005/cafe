@@ -52,6 +52,27 @@ class Post(Document):
 			from cafe import points
 
 			points.award_once(self.author, 2, points.ARTICLE_PUBLISHED, "Post", self.name)
+
+			# Same "first-send only" rule as chat's own mentions (cafe/chat.py)
+			# - editing a published post later doesn't re-notify or notify a
+			# newly-added @mention, only the post actually going live once does.
+			from cafe.chat import _extract_mentions
+			from cafe.follow import _notify
+
+			mentioned_ids = set(_extract_mentions(self.content))
+			if mentioned_ids:
+				valid_mentions = frappe.db.get_all(
+					"User", filters={"name": ["in", list(mentioned_ids)], "enabled": 1}, pluck="name"
+				)
+				for user in valid_mentions:
+					_notify(
+						recipient=user,
+						actor=self.author,
+						notif_type="Mention",
+						message="mentioned you in a post",
+						reference_doctype="Post",
+						reference_name=self.name,
+					)
 		if self.post_type == "Image" and self.images and not self.cover_image:
 			self.cover_image = self.images[0].image
 		if self.cover_image and self.has_value_changed("cover_image"):

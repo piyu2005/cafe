@@ -629,6 +629,68 @@
   font-size: 13px;
 }
 
+/* The "@" mention popup (write_editor.js's buildMentionSearch) - same
+   floating-panel look/size as the "[[" post-link popup above (280px,
+   10px radius, same shadow), just without its own input: the query is
+   typed live into the document, same as the chat composer's own mentions
+   (.cafe-c-mention in chat.css, which this mirrors). */
+.cafe-w-mentions {
+  position: fixed;
+  z-index: 30;
+  width: 280px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--surface-base);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 20px 40px -10px rgba(0, 0, 0, 0.25);
+}
+.cafe-w-mention-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--w-ink-8);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.cafe-w-mention-option.on,
+.cafe-w-mention-option:hover {
+  background: rgba(15, 15, 15, 0.045);
+}
+.cafe-w-mention-name {
+  overflow: hidden;
+  color: var(--w-ink-5);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cafe-w-mention-empty {
+  margin: 0;
+  padding: 6px 8px;
+  color: var(--w-ink-5);
+  font-size: 13px;
+}
+/* The mention itself, once inserted - same light-blue pill as the chat
+   composer's own rendered mentions (.cafe-c-html .mention /
+   .cafe-c-prose .mention in chat.css), shown here while writing. */
+.cafe-w-prose .mention {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #e2f0fd;
+  color: #0b62c4;
+  font-weight: 500;
+}
+
 .cafe-w-error {
   margin: 12px 0 0;
   color: #b41d1d;

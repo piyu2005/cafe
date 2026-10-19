@@ -1221,6 +1221,17 @@ p.cafe-clamp-3:empty::before {
 .cafe-prose a:hover {
   border-bottom-color: var(--outline-gray-6);
 }
+/* Same highlight as the write editor's own live view (write.css's
+   .cafe-w-prose .mention) and the chat composer's rendered mentions
+   (chat.css's .cafe-c-html/.cafe-c-prose .mention) - one look for a
+   mention everywhere it can appear. */
+.cafe-prose .mention {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #e2f0fd;
+  color: #0b62c4;
+  font-weight: 500;
+}
 .cafe-prose h1,
 .cafe-prose h2,
 .cafe-prose h3,

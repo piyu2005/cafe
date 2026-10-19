@@ -459,6 +459,50 @@ const ImageGroup = Node.create({
 	},
 })
 
+// Same node as the chat composer's Mention (vendor_src/chat-editor-entry.js) -
+// identical markup, so the server finds mentions in a published post's HTML
+// the exact same way it already does in a chat message
+// (cafe/chat.py's _extract_mentions / MENTION_SPAN_RE):
+// `<span class="mention" data-type="mention" data-id="...">`. Typing "@" is
+// handled in write_editor.js itself (live-typed-range + debounced server
+// search, same as chat_mentions.js), not a ProseMirror plugin here - unlike
+// "[[" below, which deliberately swallows the trigger and hands off to a
+// separate popup input instead of tracking a live range.
+const Mention = Node.create({
+	name: 'mention',
+	group: 'inline',
+	inline: true,
+	selectable: true,
+	atom: true,
+	addAttributes() {
+		return {
+			id: {
+				default: null,
+				parseHTML: (e) => e.getAttribute('data-id'),
+				renderHTML: (a) => (a.id ? { 'data-id': a.id } : {}),
+			},
+			label: {
+				default: null,
+				parseHTML: (e) => e.getAttribute('data-label'),
+				renderHTML: (a) => (a.label ? { 'data-label': a.label } : {}),
+			},
+		}
+	},
+	parseHTML() {
+		return [{ tag: 'span[data-type="mention"]' }]
+	},
+	renderHTML({ node, HTMLAttributes }) {
+		return [
+			'span',
+			mergeAttributes({ class: 'mention', 'data-type': 'mention' }, HTMLAttributes),
+			`@${node.attrs.label || node.attrs.id}`,
+		]
+	},
+	renderText({ node }) {
+		return `@${node.attrs.label || node.attrs.id}`
+	},
+})
+
 // Typing "[[" hands off to the app's own search popup (write_editor.js) rather
 // than typing the query inline in the document - simpler and more robust than
 // tracking a live incremental range, and avoids this vendor file (kept free
@@ -530,5 +574,6 @@ window.CafeWriteEditor = {
 	TextAlign,
 	Image,
 	ImageGroup,
+	Mention,
 	PostLinkTrigger,
 }
