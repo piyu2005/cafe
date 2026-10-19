@@ -14,6 +14,17 @@ PROFILE_COMPLETED = "Profile Completed"
 ARTICLE_PUBLISHED = "Article Published"
 ARTICLE_REPOSTED = "Article Reposted"
 
+# What a viewer's own point total unlocks. builder_src/post_page.py keeps its
+# own literal copy of REPOST_THRESHOLD for its can_repost data-script value -
+# that value ends up inside a Builder page's data script, which runs in
+# Builder's own sandboxed exec at request time, not as a real import of this
+# module, so it can't just read this constant. Keep the two in sync by hand
+# if this ever changes. builder_src/faq_page.py's own write-up of these
+# numbers should be kept in sync the same way.
+REPOST_THRESHOLD = 100
+FLAG_THRESHOLD = 250
+DOWNVOTE_THRESHOLD = 500
+
 
 def award(user, points, reason, reference_doctype=None, reference_name=None, actor=None):
 	"""Logs a points change for `user`. No-op if `actor` (whoever triggered

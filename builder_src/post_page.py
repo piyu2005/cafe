@@ -216,9 +216,10 @@ def build_more_menu():
 		),
 		"pp.can_manage",
 	)
-	# Only unlocks once the viewer's own cafe points cross 250 ("enough
-	# history to trust your judgement") and never on your own post - same
-	# "unlock new action icons by level" approach as downvote/repost.
+	# Only unlocks once the viewer's own cafe points cross points.FLAG_THRESHOLD
+	# ("enough history to trust your judgement") and never on your own post -
+	# same "unlock new action icons by level" approach as downvote/repost.
+	# (post.can_flag itself, computed in cafe/api.py, is the actual gate.)
 	flag = when(
 		menu_item(
 			"button",
@@ -458,8 +459,10 @@ def build_action_bar():
 		"data-on",
 	)
 	# Reposting only unlocks once the viewer's own cafe points cross 100 (see
-	# toggle_repost's gate) - same "unlock new action icons by level"
-	# approach as the comments' downvote icon.
+	# toggle_repost's gate, and points.REPOST_THRESHOLD, the single source of
+	# truth for this number - this copy can't import it, see that module's
+	# own comment on why) - same "unlock new action icons by level" approach
+	# as the comments' downvote icon.
 	repost = when(
 		attribute(
 			block(

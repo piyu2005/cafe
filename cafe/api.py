@@ -895,7 +895,9 @@ def get_post(post_id: str):
 		and frappe.db.exists("Repost", {"post": post_id, "user": frappe.session.user})
 	)
 	post.can_flag = bool(
-		frappe.session.user != "Guest" and frappe.session.user != post.author and post.my_points >= 250
+		frappe.session.user != "Guest"
+		and frappe.session.user != post.author
+		and post.my_points >= points.FLAG_THRESHOLD
 	)
 
 	return post
@@ -925,13 +927,16 @@ def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool =
 	from cafe import points
 
 	if is_downvote:
-		# Mirrors the 500-point unlock table: downvoting is the most
-		# abuse-prone action, gated furthest out, and scoped to comments only
-		# so an article's author never feels personally downvoted.
+		# Downvoting is the most abuse-prone action, gated furthest out, and
+		# scoped to comments only so an article's author never feels
+		# personally downvoted.
 		if reference_doctype != "Post Comment":
 			frappe.throw(_("Only comments can be downvoted"))
-		if points.total(user) < 500:
-			frappe.throw(_("You need 500 cafe points to downvote"), frappe.PermissionError)
+		if points.total(user) < points.DOWNVOTE_THRESHOLD:
+			frappe.throw(
+				_("You need {0} cafe points to downvote").format(points.DOWNVOTE_THRESHOLD),
+				frappe.PermissionError,
+			)
 
 	if reference_doctype == "Post":
 		owner = frappe.db.get_value("Post", reference_name, "author")
@@ -1316,11 +1321,12 @@ def toggle_repost(post: str):
 
 	from cafe import points
 
-	# Mirrors the 100-point unlock table: a cheap, low-stakes action compared
-	# to downvoting, but still gated so it isn't the very first thing a brand
-	# new account can do.
-	if points.total(user) < 100:
-		frappe.throw(_("You need 100 cafe points to repost"), frappe.PermissionError)
+	# A cheap, low-stakes action compared to downvoting, but still gated so
+	# it isn't the very first thing a brand new account can do.
+	if points.total(user) < points.REPOST_THRESHOLD:
+		frappe.throw(
+			_("You need {0} cafe points to repost").format(points.REPOST_THRESHOLD), frappe.PermissionError
+		)
 
 	owner = frappe.db.get_value("Post", post, "author")
 
@@ -1357,10 +1363,12 @@ def flag_post(post: str, reason: str, note: str | None = None):
 
 	from cafe import points
 
-	# Mirrors the 250-point unlock table: "enough history to trust your
-	# judgement" - the highest-trust action before downvoting itself.
-	if points.total(user) < 250:
-		frappe.throw(_("You need 250 cafe points to flag a post"), frappe.PermissionError)
+	# "Enough history to trust your judgement" - the highest-trust action
+	# before downvoting itself.
+	if points.total(user) < points.FLAG_THRESHOLD:
+		frappe.throw(
+			_("You need {0} cafe points to flag a post").format(points.FLAG_THRESHOLD), frappe.PermissionError
+		)
 
 	owner = frappe.db.get_value("Post", post, "author")
 	if owner == user:

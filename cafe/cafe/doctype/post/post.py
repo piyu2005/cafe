@@ -83,6 +83,7 @@ class Post(Document):
 	def on_trash(self):
 		_delete_comment_thread(self.name)
 		frappe.db.delete("Saved Post", {"post": self.name})
+		frappe.db.delete("Repost", {"post": self.name})
 		frappe.db.delete("Like", {"reference_doctype": "Post", "reference_name": self.name})
 		frappe.db.set_value("Message", {"shared_post": self.name}, "shared_post", None)
 
