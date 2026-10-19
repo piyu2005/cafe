@@ -1120,10 +1120,13 @@ p.cafe-clamp-3:empty::before {
 .cafe-like[data-on='1'] {
   color: #e03636 !important;
 }
+/* frappe-ui's own Badge, theme="gray" variant="subtle": bg-surface-gray-2,
+   text-ink-gray-6 - same lighter-shade-of-black approach as the repost
+   button's amber (and the points badge it both match). */
 .cafe-save[data-on='1'] {
-  border-color: var(--surface-gray-10) !important;
-  background: var(--surface-gray-10) !important;
-  color: var(--ink-base) !important;
+  border-color: var(--surface-gray-2) !important;
+  background: var(--surface-gray-2) !important;
+  color: var(--ink-gray-6) !important;
 }
 .cafe-save:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
