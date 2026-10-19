@@ -1128,9 +1128,12 @@ p.cafe-clamp-3:empty::before {
 .cafe-save:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
 }
+/* frappe-ui's own amber (ui.frappe.io/docs/components/badge's theme="amber",
+   "solid" variant: bg-surface-amber-7/#ca7e0c, text white) - same source-read
+   approach as the profile points badge. */
 .cafe-repost[data-on='1'] {
-  border-color: #1c9d6f !important;
-  background: #1c9d6f !important;
+  border-color: #ca7e0c !important;
+  background: #ca7e0c !important;
   color: var(--ink-base) !important;
 }
 .cafe-repost:not([data-on='1']):hover {
