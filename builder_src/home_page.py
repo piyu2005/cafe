@@ -50,7 +50,11 @@ ROW_STYLES = {
 AUTHOR_LINE_STYLES = {"display": "flex", "alignItems": "center", "gap": "8px"}
 AVATAR_IMAGE_STYLES = {"width": "100%", "height": "100%", "objectFit": "cover"}
 NAME_STYLES = text_style(13, "420", INK)
-BODY_STYLES = {"display": "flex", "alignItems": "flex-start", "gap": "16px"}
+# alignItems "stretch" (not "flex-start") so the thumbnail's cross-size
+# always matches the text column's own natural height - otherwise a post
+# with a cover image renders taller than one without, since the thumbnail's
+# own fixed height would set the row's height instead of just filling it.
+BODY_STYLES = {"display": "flex", "alignItems": "stretch", "gap": "16px"}
 TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0"}
 TITLE_STYLES = text_style(16, "600", INK, "0.015em")
 EXCERPT_STYLES = {"margin": "4px 0 0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")}
@@ -61,11 +65,13 @@ META_STYLES = {
 	"marginTop": "16px",
 	**text_style(12, "420", MUTED),
 }
+# No explicit height - BODY_STYLES stretches this to the text column's own
+# height, with a floor so a very short title+excerpt doesn't crush it down
+# to a sliver.
 THUMBNAIL_STYLES = {
 	"width": "128px",
-	"height": "96px",
+	"minHeight": "72px",
 	"flexShrink": "0",
-	"marginTop": "4px",
 	"borderRadius": "10px",
 	"backgroundColor": SURFACE_2,
 	"objectFit": "cover",
