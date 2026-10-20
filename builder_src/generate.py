@@ -83,6 +83,8 @@ SCRIPT_ICONS = {
 		"archive",
 		"bold",
 		"chevron-down",
+		"chevron-left",
+		"chevron-right",
 		"heading",
 		"heading-2",
 		"heading-3",

@@ -579,11 +579,268 @@
 		}
 
 		// ---- Schedule for later (mirrors Gameplan's ScheduleDialog.vue/
-		// GPDraft.schedule - same copy, same date+time picker, same "stays in
-		// Drafts" behavior) ----
+		// GPDraft.schedule - same copy, same "stays in Drafts" behavior, and
+		// the same date/time picker shape: a trigger button + a dropdown
+		// panel (calendar grid / hourly list), not native <input type=date>
+		// /<input type=time>, which draw the browser's own OS picker instead
+		// of frappe-ui's. Vanilla-JS rebuilds of frappe-ui's DatePicker/
+		// TimePicker, scoped to what this dialog actually needs (Gameplan's
+		// own ScheduleDialog.vue passes `:clearable="false"` and
+		// `:typeable="false"` - no typing, no clearing, single month view,
+		// no month/year list view) - see those components' own source
+		// (node_modules/frappe-ui/src/components/{DatePicker,TimePicker})
+		// for the parts intentionally left out here.
 		function pad2(n) {
 			return (n < 10 ? '0' : '') + n
 		}
+		var MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		var WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+		var WEEKDAY_LABELS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+
+		function startOfDay(d) {
+			var n = new Date(d)
+			n.setHours(0, 0, 0, 0)
+			return n
+		}
+		function sameDay(a, b) {
+			return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+		}
+		function formatPickerDate(d) {
+			return WEEKDAY_SHORT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear()
+		}
+		function formatPickerTime(totalMinutes) {
+			var h = Math.floor(totalMinutes / 60)
+			var m = totalMinutes % 60
+			var h12 = h % 12
+			if (h12 === 0) h12 = 12
+			return h12 + ':' + pad2(m) + ' ' + (h >= 12 ? 'PM' : 'AM')
+		}
+
+		// Only one picker panel open at a time, and closes on an outside click -
+		// same convention as the mention/post-link search popups.
+		function closePickerPanels() {
+			document.querySelectorAll('.cafe-w-picker-panel').forEach(function (panel) {
+				panel.remove()
+			})
+		}
+		document.addEventListener('mousedown', function (event) {
+			if (!event.target.closest('.cafe-w-picker-panel') && !event.target.closest('.cafe-w-picker-trigger'))
+				closePickerPanels()
+		})
+
+		function pickerTrigger(extraClass) {
+			var trigger = W.el('button', 'cafe-w-picker-trigger ' + extraClass)
+			trigger.type = 'button'
+			var valueEl = W.el('span', 'cafe-w-picker-value')
+			trigger.appendChild(valueEl)
+			trigger.appendChild(W.icon('chevron-down', 'cafe-w-small'))
+			return { trigger: trigger, valueEl: valueEl }
+		}
+
+		function buildDatePicker(opts) {
+			var selected = startOfDay(opts.initial)
+			var min = opts.min ? startOfDay(opts.min) : null
+			var viewYear = selected.getFullYear()
+			var viewMonth = selected.getMonth()
+			var t = pickerTrigger('cafe-w-schedule-date')
+			var panel = null
+
+			function refresh() {
+				t.valueEl.textContent = formatPickerDate(selected)
+			}
+			refresh()
+
+			function closePanel() {
+				if (panel) {
+					panel.remove()
+					panel = null
+				}
+			}
+			function selectDate(date) {
+				if (min && date < min) return
+				selected = startOfDay(date)
+				refresh()
+				closePanel()
+				if (opts.onChange) opts.onChange(selected)
+			}
+			function drawCalendar() {
+				panel.replaceChildren()
+				var header = W.el('div', 'cafe-w-cal-header')
+				header.appendChild(W.el('span', 'cafe-w-cal-month', MONTH_SHORT[viewMonth] + ' ' + viewYear))
+				var navGroup = W.el('div', 'cafe-w-cal-nav-group')
+				var prevBtn = W.el('button', 'cafe-w-cal-nav')
+				prevBtn.type = 'button'
+				prevBtn.setAttribute('aria-label', 'Previous month')
+				prevBtn.appendChild(W.icon('chevron-left', 'cafe-w-small'))
+				prevBtn.addEventListener('click', function () {
+					viewMonth--
+					if (viewMonth < 0) {
+						viewMonth = 11
+						viewYear--
+					}
+					drawCalendar()
+				})
+				var todayBtn = W.el('button', 'cafe-w-cal-today', 'Today')
+				todayBtn.type = 'button'
+				todayBtn.addEventListener('click', function () {
+					var today = startOfDay(new Date())
+					viewYear = today.getFullYear()
+					viewMonth = today.getMonth()
+					selectDate(today)
+				})
+				var nextBtn = W.el('button', 'cafe-w-cal-nav')
+				nextBtn.type = 'button'
+				nextBtn.setAttribute('aria-label', 'Next month')
+				nextBtn.appendChild(W.icon('chevron-right', 'cafe-w-small'))
+				nextBtn.addEventListener('click', function () {
+					viewMonth++
+					if (viewMonth > 11) {
+						viewMonth = 0
+						viewYear++
+					}
+					drawCalendar()
+				})
+				navGroup.appendChild(prevBtn)
+				navGroup.appendChild(todayBtn)
+				navGroup.appendChild(nextBtn)
+				header.appendChild(navGroup)
+				panel.appendChild(header)
+
+				var weekdayRow = W.el('div', 'cafe-w-cal-weekdays')
+				WEEKDAY_LABELS.forEach(function (label) {
+					weekdayRow.appendChild(W.el('span', '', label))
+				})
+				panel.appendChild(weekdayRow)
+
+				var grid = W.el('div', 'cafe-w-cal-grid')
+				var startOffset = new Date(viewYear, viewMonth, 1).getDay()
+				var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
+				var daysInPrevMonth = new Date(viewYear, viewMonth, 0).getDate()
+				var totalCells = Math.ceil((startOffset + daysInMonth) / 7) * 7
+				var today = startOfDay(new Date())
+				for (var i = 0; i < totalCells; i++) {
+					var dayNum, cellMonth, cellYear, inMonth
+					if (i < startOffset) {
+						dayNum = daysInPrevMonth - startOffset + 1 + i
+						cellMonth = viewMonth - 1
+						cellYear = viewYear
+						inMonth = false
+					} else if (i < startOffset + daysInMonth) {
+						dayNum = i - startOffset + 1
+						cellMonth = viewMonth
+						cellYear = viewYear
+						inMonth = true
+					} else {
+						dayNum = i - startOffset - daysInMonth + 1
+						cellMonth = viewMonth + 1
+						cellYear = viewYear
+						inMonth = false
+					}
+					if (cellMonth < 0) {
+						cellMonth = 11
+						cellYear--
+					}
+					if (cellMonth > 11) {
+						cellMonth = 0
+						cellYear++
+					}
+					var cellDate = new Date(cellYear, cellMonth, dayNum)
+					var btn = W.el('button', 'cafe-w-cal-day', String(dayNum))
+					btn.type = 'button'
+					if (!inMonth) btn.classList.add('outside')
+					if (sameDay(cellDate, today)) btn.classList.add('today')
+					if (sameDay(cellDate, selected)) btn.classList.add('selected')
+					if (min && cellDate < min) {
+						btn.disabled = true
+						btn.classList.add('disabled')
+					} else {
+						btn.addEventListener(
+							'click',
+							(function (date) {
+								return function () {
+									selectDate(date)
+								}
+							})(cellDate)
+						)
+					}
+					grid.appendChild(btn)
+				}
+				panel.appendChild(grid)
+			}
+			function openPanel() {
+				if (panel) return
+				closePickerPanels()
+				panel = W.el('div', 'cafe-w-picker-panel cafe-w-cal-panel')
+				drawCalendar()
+				document.body.appendChild(panel)
+				var rect = t.trigger.getBoundingClientRect()
+				panel.style.left = rect.left + 'px'
+				panel.style.top = rect.bottom + 4 + 'px'
+			}
+			t.trigger.addEventListener('click', function () {
+				if (panel) closePanel()
+				else openPanel()
+			})
+			return { el: t.trigger, getValue: function () { return selected } }
+		}
+
+		function buildTimePicker(opts) {
+			var intervalMinutes = opts.intervalMinutes || 60
+			var selectedMinutes = opts.initialMinutes
+			var t = pickerTrigger('cafe-w-schedule-time')
+			var panel = null
+
+			function refresh() {
+				t.valueEl.textContent = formatPickerTime(selectedMinutes)
+			}
+			refresh()
+
+			function closePanel() {
+				if (panel) {
+					panel.remove()
+					panel = null
+				}
+			}
+			function openPanel() {
+				if (panel) return
+				closePickerPanels()
+				panel = W.el('div', 'cafe-w-picker-panel cafe-w-time-panel')
+				var totalOptions = (24 * 60) / intervalMinutes
+				var selectedOption = null
+				for (var i = 0; i < totalOptions; i++) {
+					var minutes = i * intervalMinutes
+					var option = W.el('button', 'cafe-w-time-option', formatPickerTime(minutes))
+					option.type = 'button'
+					if (minutes === selectedMinutes) {
+						option.classList.add('selected')
+						selectedOption = option
+					}
+					option.addEventListener(
+						'click',
+						(function (m) {
+							return function () {
+								selectedMinutes = m
+								refresh()
+								closePanel()
+								if (opts.onChange) opts.onChange(m)
+							}
+						})(minutes)
+					)
+					panel.appendChild(option)
+				}
+				document.body.appendChild(panel)
+				var rect = t.trigger.getBoundingClientRect()
+				panel.style.left = rect.left + 'px'
+				panel.style.top = rect.bottom + 4 + 'px'
+				if (selectedOption) selectedOption.scrollIntoView({ block: 'center' })
+			}
+			t.trigger.addEventListener('click', function () {
+				if (panel) closePanel()
+				else openPanel()
+			})
+			return { el: t.trigger, getValue: function () { return selectedMinutes } }
+		}
+
 		function openSchedule() {
 			var container = W.el('div', 'cafe-w-schedule')
 			var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -597,30 +854,27 @@
 				)
 			)
 			var row = W.el('div', 'cafe-w-schedule-row')
-			var dateInput = W.el('input', 'cafe-w-schedule-date')
-			dateInput.type = 'date'
-			var timeInput = W.el('input', 'cafe-w-schedule-time')
-			timeInput.type = 'time'
-			timeInput.step = 3600 // hour steps - the closest native equivalent to Gameplan's 60-min interval picker
 			var now = new Date()
 			var start = S.scheduledAt ? new Date(S.scheduledAt) : new Date(now.getTime() + 60 * 60 * 1000)
 			start.setSeconds(0, 0)
 			if (!S.scheduledAt) start.setMinutes(0)
-			dateInput.min = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate())
-			dateInput.value = start.getFullYear() + '-' + pad2(start.getMonth() + 1) + '-' + pad2(start.getDate())
-			timeInput.value = pad2(start.getHours()) + ':' + pad2(start.getMinutes())
-			row.appendChild(dateInput)
-			row.appendChild(timeInput)
+
+			var datePicker = buildDatePicker({ initial: start, min: now })
+			var timePicker = buildTimePicker({ initialMinutes: start.getHours() * 60 + start.getMinutes() })
+			row.appendChild(datePicker.el)
+			row.appendChild(timePicker.el)
 			container.appendChild(row)
 
 			CAFE.dialog({
 				title: 'Schedule for later',
 				body: container,
+				onClose: closePickerPanels,
 				actions: [
 					{
 						label: 'Cancel',
 						kind: 'outline',
 						onClick: function (d) {
+							closePickerPanels()
 							d.close()
 						},
 					},
@@ -628,20 +882,30 @@
 						label: 'Schedule',
 						kind: 'solid',
 						onClick: function (d) {
-							if (!dateInput.value || !timeInput.value) {
-								d.setError('Pick a date and time')
-								return
-							}
-							var picked = new Date(dateInput.value + 'T' + timeInput.value + ':00')
+							var date = datePicker.getValue()
+							var minutes = timePicker.getValue()
+							var picked = new Date(date)
+							picked.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0)
 							if (!(picked.getTime() > Date.now())) {
 								d.setError('Pick a time in the future')
 								return
 							}
-							var local = dateInput.value + ' ' + timeInput.value + ':00'
+							var local =
+								picked.getFullYear() +
+								'-' +
+								pad2(picked.getMonth() + 1) +
+								'-' +
+								pad2(picked.getDate()) +
+								' ' +
+								pad2(picked.getHours()) +
+								':' +
+								pad2(picked.getMinutes()) +
+								':00'
 							d.setBusy(true)
 							options.onSchedule(local).then(
 								function () {
 									d.setBusy(false)
+									closePickerPanels()
 									d.close()
 									dialog.close()
 								},
