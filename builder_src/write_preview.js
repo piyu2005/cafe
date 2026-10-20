@@ -335,6 +335,7 @@
 		// ---- The preview ----
 		function drawView() {
 			adjust = null
+			if (dialog) dialog.root.classList.remove('cafe-w-adjusting')
 			body.replaceChildren()
 			main.replaceChildren()
 			var url = W.previewImage()
@@ -419,6 +420,7 @@
 
 		// ---- Adjusting the crop ----
 		function startAdjust(url) {
+			dialog.root.classList.add('cafe-w-adjusting')
 			body.replaceChildren(W.el('p', 'cafe-w-adjust-hint', 'Loading…'))
 			showActions(true)
 			var img = new Image()

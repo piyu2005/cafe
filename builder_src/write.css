@@ -790,6 +790,12 @@
      breathing room at the bottom to balance. */
   padding-bottom: 36px;
 }
+/* The crop-adjust view (startAdjust/drawAdjust) is just one image frame,
+   no second column - the wide layout above is for the title/excerpt/tags
+   + live preview view only. */
+.cafe-dialog.cafe-w-story-dialog.cafe-w-adjusting {
+  max-width: 576px;
+}
 /* Two columns: the editable fields (cover/title/excerpt/tags) on the left,
    a live read-only mock of the feed row this becomes on the right - same
    grid for the whole dialog body, so the crop-adjust view (which replaces
