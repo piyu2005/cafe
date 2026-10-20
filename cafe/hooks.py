@@ -167,23 +167,10 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"cafe.tasks.all"
-# 	],
-# 	"daily": [
-# 		"cafe.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"cafe.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"cafe.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"cafe.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	# Publishes scheduled drafts once their time comes (see Post.publish_due_posts).
+	"all": ["cafe.cafe.doctype.post.post.publish_due_posts"],
+}
 
 # Testing
 # -------

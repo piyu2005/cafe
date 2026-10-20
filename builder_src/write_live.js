@@ -156,6 +156,25 @@
 					}
 				})
 			},
+			// Saves the same way "Save Draft" does (so the schedule applies to
+			// real, current content), then stamps the resulting draft with the
+			// chosen time - cafe.api.schedule_post, publish_due_posts (the
+			// scheduler job) publishes it once that time comes.
+			onSchedule: function (localDateTime) {
+				var form = S.form
+				if (!form.cover_image && W.previewImage()) form.cover_image = W.previewImage()
+				if (!form.excerpt && W.autoExcerpt(W.content())) form.excerpt = W.autoExcerpt(W.content())
+				return save('Draft')
+					.then(function (ok) {
+						if (!ok) throw new Error(document.querySelector('.cafe-w-error').textContent)
+						return CAFE.api('cafe.api.schedule_post', { post: S.postId, scheduled_at: localDateTime })
+					})
+					.then(function () {
+						S.scheduledAt = localDateTime
+						CAFE.clearDraft('story-preview')
+						CAFE.toast('Post scheduled')
+					})
+			},
 		})
 	}
 

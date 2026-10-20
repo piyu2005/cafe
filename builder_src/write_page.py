@@ -203,7 +203,7 @@ def build_native_write(shell_id, shell_block):
 		"Write",
 		["cafe-w-root"],
 		attrs={"id": "cafe-write"},
-		custom={"data-post": ""},
+		custom={"data-post": "", "data-me-name": "", "data-me-initial": "", "data-me-image": ""},
 		styles={
 			"display": "flex",
 			"flex": "1",
@@ -215,6 +215,9 @@ def build_native_write(shell_id, shell_block):
 		children=[raw_block("Preview", write_body(), ["cafe-w-preview"], styles={"width": "100%"})],
 	)
 	page = attribute(page, "w.id", "data-post")
+	page = attribute(page, "w.me_name", "data-me-name")
+	page = attribute(page, "w.me_initial", "data-me-initial")
+	page = attribute(page, "w.me_image", "data-me-image")
 	main = block(
 		"div",
 		"Main",
@@ -251,7 +254,10 @@ def build_native_write(shell_id, shell_block):
 
 
 def build_data_script():
-	"""Sends a guest to sign in first; the scripts load everything else."""
+	"""Sends a guest to sign in first; the scripts load everything else. The
+	author identity rides along here (not fetched client-side) for the Story
+	Preview's live card preview - it's always the signed-in user, since you
+	can only ever write as yourself."""
 	return (
 		HELPERS
 		+ """\
@@ -260,7 +266,14 @@ item = frappe.form_dict.post_id or ""
 if frappe.session.user == "Guest":
     redirect("/login?redirect=/write" + ("/" + path_segment(item) if item else ""))
 
-data.w = {"id": clean(item)}
+me = frappe.db.get_value("User", frappe.session.user, ["full_name", "username", "user_image"], as_dict=True) or {}
+me_name = me.get("full_name") or frappe.session.user
+data.w = {
+    "id": clean(item),
+    "me_name": clean(me_name),
+    "me_initial": clean(me_name.strip()[:1]),
+    "me_image": safe_url(me.get("user_image")),
+}
 """
 	)
 

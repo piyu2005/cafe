@@ -20,6 +20,7 @@
 		'post_type',
 		'cover_image',
 		'attachment',
+		'scheduled_at',
 	]
 	var PAGE_SIZE = 100
 	var TABS = {
@@ -51,6 +52,15 @@
 		if (!value) return ''
 		return new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
 	}
+	function formatScheduled(value) {
+		var date = new Date((value || '').replace(' ', 'T'))
+		return (
+			'Scheduled for ' +
+			date.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) +
+			', ' +
+			date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+		)
+	}
 	// The first <img src> in the post's own content, same extraction as
 	// write_core.js's W.firstImage - kept as its own small copy rather than a
 	// cross-script dependency, since this page doesn't otherwise load the
@@ -74,6 +84,12 @@
 		row.querySelector('.cafe-row-title').textContent = post.display_title || post.title || 'Untitled'
 		row.querySelector('.cafe-row-excerpt').textContent = preview(post)
 		row.querySelector('.cafe-row-meta').textContent = formatDate(post.modified)
+		var scheduled = row.querySelector('.cafe-row-scheduled')
+		if (post.scheduled_at) {
+			scheduled.hidden = false
+			scheduled.setAttribute('data-tooltip', formatScheduled(post.scheduled_at))
+			CAFE.tooltip(scheduled)
+		}
 		var image = row.querySelector('.cafe-row-thumb')
 		var url = thumbnailOf(post)
 		if (url) {

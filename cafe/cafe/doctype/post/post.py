@@ -49,6 +49,9 @@ class Post(Document):
 
 		if self.status == "Published" and not self.published_at:
 			self.published_at = frappe.utils.now_datetime()
+			# A published post has nothing left to schedule - stale otherwise if
+			# this was scheduled and then manually published early.
+			self.scheduled_at = None
 			from cafe import points
 
 			points.award_once(self.author, 2, points.ARTICLE_PUBLISHED, "Post", self.name)
@@ -169,3 +172,39 @@ def get_permission_query_conditions(user=None):
 	if user == "Administrator":
 		return ""
 	return f"(`tabPost`.status = 'Published' OR `tabPost`.author = {frappe.db.escape(user)})"
+
+
+def publish_due_posts():
+	"""Scheduler entry (scheduler_events["all"] in hooks.py, so about every few
+	minutes): publish every draft whose scheduled time has come, as its own
+	author, so the usual publish-time checks (publication role, etc.) run as
+	them, not as whoever's running the scheduler. A draft that can't publish -
+	lost publication access, anything else - keeps its content, loses its
+	scheduled time, and shows back up as a plain draft, with the reason in the
+	Error Log. Mirrors Gameplan's own publish_due_drafts (gp_draft.py)."""
+	due = frappe.get_all(
+		"Post",
+		filters=[
+			["status", "=", "Draft"],
+			["scheduled_at", "is", "set"],
+			["scheduled_at", "<=", frappe.utils.now_datetime()],
+		],
+		fields=["name", "author"],
+		order_by="scheduled_at asc",
+	)
+	for row in due:
+		frappe.set_user(row.author)
+		frappe.db.savepoint("scheduled_post")
+		try:
+			scheduled_at = frappe.db.get_value("Post", row.name, "scheduled_at", for_update=True)
+			if not scheduled_at or frappe.utils.get_datetime(scheduled_at) > frappe.utils.now_datetime():
+				continue
+			doc = frappe.get_doc("Post", row.name)
+			doc.status = "Published"
+			doc.save()
+		except Exception:
+			frappe.db.rollback(save_point="scheduled_post")
+			frappe.log_error(title=f"Scheduled post {row.name} could not be published")
+			frappe.db.set_value("Post", row.name, "scheduled_at", None, update_modified=False)
+		finally:
+			frappe.set_user("Administrator")

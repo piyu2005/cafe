@@ -65,12 +65,77 @@
 
 	var DRAFT_KEY = 'story-preview'
 
-	// Opens the dialog. onPublish() is called on Publish; the returned api has setBusy(bool).
+	// The author identity for the live card preview - always the signed-in
+	// user (you can only ever write as yourself), read once from the root
+	// element's own data attributes (write_page.py's data script fills them).
+	function me() {
+		var root = document.getElementById('cafe-write')
+		return {
+			name: (root && root.getAttribute('data-me-name')) || '',
+			initial: (root && root.getAttribute('data-me-initial')) || '?',
+			image: (root && root.getAttribute('data-me-image')) || '',
+		}
+	}
+
+	// The side panel's live mock of the home feed's own row (home_page.py's
+	// build_feed_row) - same pieces, same roles, scaled down: avatar+name,
+	// title, excerpt, and the cover thumbnail if there is one. Rebuilt fresh
+	// each drawView() (a cover-image change already redraws the whole dialog);
+	// refresh() just updates the text pieces that can change on every
+	// keystroke without losing focus.
+	function buildPreviewCard() {
+		var who = me()
+		var card = W.el('div', 'cafe-w-story-card')
+		var author = W.el('div', 'cafe-w-story-card-author')
+		var avatar = W.el('span', 'cafe-avatar cafe-w-story-card-avatar')
+		if (who.image) {
+			var img = W.el('img')
+			img.src = who.image
+			img.alt = ''
+			avatar.appendChild(img)
+		} else {
+			avatar.textContent = who.initial
+		}
+		author.appendChild(avatar)
+		author.appendChild(W.el('span', '', who.name))
+		var rowBody = W.el('div', 'cafe-w-story-card-body')
+		var text = W.el('div', 'cafe-w-story-card-text')
+		var titleEl = W.el('div', 'cafe-w-story-card-title')
+		var excerptEl = W.el('p', 'cafe-w-story-card-excerpt cafe-clamp-2')
+		text.appendChild(titleEl)
+		text.appendChild(excerptEl)
+		rowBody.appendChild(text)
+		var thumb = W.el('img', 'cafe-w-story-card-thumb')
+		thumb.alt = ''
+		rowBody.appendChild(thumb)
+		var meta = W.el('p', 'cafe-w-story-card-meta')
+		card.appendChild(author)
+		card.appendChild(rowBody)
+		card.appendChild(meta)
+
+		function refresh() {
+			var S = W.state
+			var form = S.form
+			titleEl.textContent = form.display_title || form.title || 'Untitled'
+			excerptEl.textContent = form.excerpt || W.autoExcerpt(W.ensureHtml(W.content())) || 'A short preview…'
+			var url = W.previewImage()
+			thumb.hidden = !url
+			if (url) thumb.src = url
+			meta.textContent = W.readTime(W.ensureHtml(W.content())) + ' min read'
+		}
+		refresh()
+		return { el: card, refresh: refresh }
+	}
+
+	// Opens the dialog. onPublish() is called on Publish; onSchedule(localDateTime)
+	// on Schedule/Reschedule, and must return a Promise. The returned api has setBusy(bool).
 	W.openPreview = function (options) {
 		var S = W.state
 		var form = S.form
 		var html = W.ensureHtml(W.content())
 		var adjust = null // { url, natural, frame, offset }
+		var main = W.el('div', 'cafe-w-story-main')
+		var previewCard = null
 		var body = W.el('div', 'cafe-w-story')
 		var dialog
 
@@ -271,6 +336,7 @@
 		function drawView() {
 			adjust = null
 			body.replaceChildren()
+			main.replaceChildren()
 			var url = W.previewImage()
 			var cover = W.el('div', 'cafe-w-cover')
 			if (url) {
@@ -305,13 +371,13 @@
 				)
 			}
 			cover.appendChild(over)
-			body.appendChild(cover)
-			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
+			main.appendChild(cover)
+			main.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
 			// Only worth asking when there's an actual choice to make - most
 			// accounts belong to no publication at all. Hidden entirely while
 			// Publications itself is hidden (PUBLICATIONS_ENABLED above).
 			if (PUBLICATIONS_ENABLED && (S.myPublications.length || form.publication))
-				body.appendChild(buildPublicationPicker())
+				main.appendChild(buildPublicationPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'
@@ -319,6 +385,7 @@
 			title.addEventListener('input', function () {
 				form.display_title = title.value
 				saveDraft()
+				if (previewCard) previewCard.refresh()
 			})
 			var excerpt = W.el('textarea', 'cafe-w-story-excerpt')
 			excerpt.rows = 2
@@ -327,17 +394,26 @@
 			excerpt.addEventListener('input', function () {
 				form.excerpt = excerpt.value
 				saveDraft()
+				if (previewCard) previewCard.refresh()
 			})
-			body.appendChild(title)
-			body.appendChild(excerpt)
-			body.appendChild(buildTagsField())
-			body.appendChild(
+			main.appendChild(title)
+			main.appendChild(excerpt)
+			main.appendChild(buildTagsField())
+			main.appendChild(
 				W.el(
 					'p',
 					'cafe-w-story-note',
 					'Note: changes here affect how your story appears in previews and feeds, not the story itself.'
 				)
 			)
+
+			var side = W.el('div', 'cafe-w-story-side')
+			side.appendChild(W.el('p', 'cafe-w-story-side-label', 'How this looks in the feed'))
+			previewCard = buildPreviewCard()
+			side.appendChild(previewCard.el)
+
+			body.appendChild(main)
+			body.appendChild(side)
 			showActions(false)
 		}
 
@@ -490,14 +566,140 @@
 			)
 		}
 
-		// The first two buttons belong to the preview, the last two to adjusting.
+		// viewActions come first (however many there are - a brand new post has
+		// no schedule controls yet, an already-Published one can't be scheduled
+		// at all), then the two adjust-mode ones.
 		function showActions(adjusting) {
 			var buttons = dialog ? dialog.root.querySelectorAll('.cafe-dialog-actions button') : []
 			Array.prototype.forEach.call(buttons, function (b, i) {
-				b.hidden = adjusting ? i < 2 : i >= 2
+				b.hidden = adjusting ? i < viewActions.length : i >= viewActions.length
 			})
 			if (dialog) dialog.setError('')
 		}
+
+		// ---- Schedule for later (mirrors Gameplan's ScheduleDialog.vue/
+		// GPDraft.schedule - same copy, same date+time picker, same "stays in
+		// Drafts" behavior) ----
+		function pad2(n) {
+			return (n < 10 ? '0' : '') + n
+		}
+		function openSchedule() {
+			var container = W.el('div', 'cafe-w-schedule')
+			var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+			container.appendChild(
+				W.el(
+					'p',
+					'cafe-w-schedule-hint',
+					'The post goes out at this time, in your timezone (' +
+						timezone +
+						'). Until then it stays in Drafts and you can keep editing it.'
+				)
+			)
+			var row = W.el('div', 'cafe-w-schedule-row')
+			var dateInput = W.el('input', 'cafe-w-schedule-date')
+			dateInput.type = 'date'
+			var timeInput = W.el('input', 'cafe-w-schedule-time')
+			timeInput.type = 'time'
+			timeInput.step = 3600 // hour steps - the closest native equivalent to Gameplan's 60-min interval picker
+			var now = new Date()
+			var start = S.scheduledAt ? new Date(S.scheduledAt) : new Date(now.getTime() + 60 * 60 * 1000)
+			start.setSeconds(0, 0)
+			if (!S.scheduledAt) start.setMinutes(0)
+			dateInput.min = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate())
+			dateInput.value = start.getFullYear() + '-' + pad2(start.getMonth() + 1) + '-' + pad2(start.getDate())
+			timeInput.value = pad2(start.getHours()) + ':' + pad2(start.getMinutes())
+			row.appendChild(dateInput)
+			row.appendChild(timeInput)
+			container.appendChild(row)
+
+			CAFE.dialog({
+				title: 'Schedule for later',
+				body: container,
+				actions: [
+					{
+						label: 'Cancel',
+						kind: 'outline',
+						onClick: function (d) {
+							d.close()
+						},
+					},
+					{
+						label: 'Schedule',
+						kind: 'solid',
+						onClick: function (d) {
+							if (!dateInput.value || !timeInput.value) {
+								d.setError('Pick a date and time')
+								return
+							}
+							var picked = new Date(dateInput.value + 'T' + timeInput.value + ':00')
+							if (!(picked.getTime() > Date.now())) {
+								d.setError('Pick a time in the future')
+								return
+							}
+							var local = dateInput.value + ' ' + timeInput.value + ':00'
+							d.setBusy(true)
+							options.onSchedule(local).then(
+								function () {
+									d.setBusy(false)
+									d.close()
+									dialog.close()
+								},
+								function (error) {
+									d.setBusy(false)
+									d.setError(error.message)
+								}
+							)
+						},
+					},
+				],
+			})
+		}
+
+		function doUnschedule() {
+			dialog.setBusy(true)
+			CAFE.api('cafe.api.unschedule_post', { post: S.postId }).then(
+				function () {
+					S.scheduledAt = null
+					dialog.setBusy(false)
+					CAFE.toast('Schedule cancelled')
+					dialog.close()
+				},
+				function (error) {
+					dialog.setBusy(false)
+					dialog.setError(error.message)
+				}
+			)
+		}
+
+		var viewActions = [
+			{
+				label: 'Cancel',
+				kind: 'outline',
+				left: true,
+				onClick: function (d) {
+					CAFE.clearDraft(DRAFT_KEY)
+					d.close()
+				},
+			},
+		]
+		// Only a not-yet-published draft can be scheduled - an already-live post
+		// has nothing left to schedule, same restriction as Gameplan's own
+		// GPDraft.schedule (discussion drafts only, never an edit-in-progress).
+		if (S.status !== 'Published') {
+			viewActions.push({
+				label: S.scheduledAt ? 'Reschedule' : 'Schedule for later',
+				kind: 'outline',
+				onClick: openSchedule,
+			})
+			if (S.scheduledAt) viewActions.push({ label: 'Cancel schedule', kind: 'outline', onClick: doUnschedule })
+		}
+		viewActions.push({
+			label: S.status === 'Published' ? 'Update' : 'Publish',
+			kind: 'solid',
+			onClick: function () {
+				options.onPublish()
+			},
+		})
 
 		dialog = CAFE.dialog({
 			title: 'Story Preview',
@@ -506,22 +708,7 @@
 			onClose: function () {
 				fileInput.remove()
 			},
-			actions: [
-				{
-					label: 'Cancel',
-					kind: 'outline',
-					onClick: function (d) {
-						CAFE.clearDraft(DRAFT_KEY)
-						d.close()
-					},
-				},
-				{
-					label: S.status === 'Published' ? 'Update' : 'Publish',
-					kind: 'solid',
-					onClick: function () {
-						options.onPublish()
-					},
-				},
+			actions: viewActions.concat([
 				{
 					label: 'Cancel',
 					kind: 'outline',
@@ -530,7 +717,7 @@
 					},
 				},
 				{ label: 'Done', kind: 'solid', onClick: confirmAdjust },
-			],
+			]),
 		})
 		dialog.root.classList.add('cafe-w-story-dialog')
 		drawView()

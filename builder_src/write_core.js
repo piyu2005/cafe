@@ -21,6 +21,7 @@
 		status: 'Draft',
 		savedAt: null,
 		saving: null, // the status being saved
+		scheduledAt: null, // set while a Draft is scheduled to auto-publish later
 		coverRemoved: false,
 		// The publications this account can post under - Story Preview's
 		// "Publish to" picker. Fetched once at startup (see write_live.js),

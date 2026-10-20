@@ -1384,6 +1384,38 @@ def flag_post(post: str, reason: str, note: str | None = None):
 
 
 @frappe.whitelist()
+def schedule_post(post: str, scheduled_at: str):
+	"""Stamp a draft with a future time; publish_due_posts (cafe/cafe/doctype/
+	post/post.py, the scheduler job) publishes it then, as this author. The
+	post stays a Draft (same as the Story Preview dialog's own "Save Draft")
+	until that happens. Mirrors Gameplan's GPDraft.schedule()."""
+	doc = frappe.get_doc("Post", post)
+	if doc.author != frappe.session.user:
+		frappe.throw(_("You're not allowed to schedule this post"), frappe.PermissionError)
+	if doc.status != "Draft":
+		frappe.throw(_("Only a draft can be scheduled"))
+	if not doc.title or not doc.content:
+		frappe.throw(_("Add a title and some content before scheduling"))
+
+	scheduled_at = frappe.utils.get_datetime(scheduled_at)
+	if scheduled_at <= frappe.utils.now_datetime():
+		frappe.throw(_("Pick a time in the future"))
+
+	doc.scheduled_at = scheduled_at
+	doc.save()
+	return doc.scheduled_at
+
+
+@frappe.whitelist()
+def unschedule_post(post: str):
+	doc = frappe.get_doc("Post", post)
+	if doc.author != frappe.session.user:
+		frappe.throw(_("You're not allowed to unschedule this post"), frappe.PermissionError)
+	doc.scheduled_at = None
+	doc.save()
+
+
+@frappe.whitelist()
 def list_saved_posts():
 	rows = frappe.db.get_all(
 		"Saved Post",

@@ -775,11 +775,129 @@
 
 /* ---- Story preview ---- */
 .cafe-dialog.cafe-w-story-dialog {
-  max-width: 576px;
+  max-width: 680px;
   /* A bit more room under the actions than the default dialog's 28px —
      this one opens with a big cover image up top, so it wants more
      breathing room at the bottom to balance. */
   padding-bottom: 36px;
+}
+/* Two columns: the editable fields (cover/title/excerpt/tags) on the left,
+   a live read-only mock of the feed row this becomes on the right - same
+   grid for the whole dialog body, so the crop-adjust view (which replaces
+   body's children directly, bypassing .cafe-w-story-main/-side) can just
+   span both columns below instead of being forced into a 2-up layout meant
+   for the main view. */
+.cafe-w-story {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 20px;
+  align-items: start;
+}
+.cafe-w-story > .cafe-w-adjust-hint,
+.cafe-w-story > .cafe-w-frame {
+  grid-column: 1 / -1;
+}
+.cafe-w-story-main {
+  min-width: 0;
+}
+.cafe-w-story-side {
+  min-width: 0;
+  /* Lines up with .cafe-w-cover's own 16px top margin, so both columns'
+     first real content starts at the same height. */
+  margin-top: 16px;
+}
+.cafe-w-story-side-label {
+  margin: 0 0 8px;
+  color: var(--ink-gray-5);
+  font-size: 12px;
+}
+/* A small, read-only mock of the home feed's own row (home_page.py's
+   build_feed_row) - same pieces playing the same roles, scaled down to fit
+   the side panel: avatar+name, title, excerpt, cover thumbnail. Pixel values
+   below mirror that file's NAME_STYLES/TITLE_STYLES/EXCERPT_STYLES/
+   META_STYLES - kept in sync by hand, there's no shared source between a
+   Builder data script and this vendor JS. */
+.cafe-w-story-card {
+  padding: 12px;
+  border: 1px solid var(--w-outline);
+  border-radius: 10px;
+}
+.cafe-w-story-card-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 420;
+  color: var(--ink-gray-8);
+}
+.cafe-w-story-card-avatar {
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+}
+.cafe-w-story-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+.cafe-w-story-card-text {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+.cafe-w-story-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-gray-8);
+  letter-spacing: 0.015em;
+  overflow-wrap: break-word;
+}
+.cafe-w-story-card-excerpt {
+  margin: 4px 0 0;
+  color: var(--ink-gray-6);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.cafe-w-story-card-thumb {
+  width: 56px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: var(--surface-gray-2);
+  object-fit: cover;
+}
+.cafe-w-story-card-meta {
+  margin: 10px 0 0;
+  color: var(--ink-gray-5);
+  font-size: 12px;
+}
+/* The nested "Schedule for later" dialog (same copy/shape as Gameplan's own
+   ScheduleDialog.vue) - a date input + an hour-stepped time input, native
+   HTML's own closest equivalent to frappe-ui's DatePicker/TimePicker pair. */
+.cafe-w-schedule-hint {
+  margin: 0 0 12px;
+  color: var(--ink-gray-6);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cafe-w-schedule-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+.cafe-w-schedule-row input {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--w-outline);
+  border-radius: 8px;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: var(--ink-gray-8);
+}
+.cafe-w-schedule-time {
+  width: auto;
 }
 .cafe-w-cover {
   position: relative;

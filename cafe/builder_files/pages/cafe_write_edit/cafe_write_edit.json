@@ -2988,7 +2988,10 @@
          ],
          "clientScript": {},
          "customAttributes": {
-          "data-post": ""
+          "data-post": "",
+          "data-me-name": "",
+          "data-me-initial": "",
+          "data-me-image": ""
          },
          "dataKey": null,
          "draggable": false,
@@ -2997,6 +3000,24 @@
            "comesFrom": "dataScript",
            "key": "w.id",
            "property": "data-post",
+           "type": "attribute"
+          },
+          {
+           "comesFrom": "dataScript",
+           "key": "w.me_name",
+           "property": "data-me-name",
+           "type": "attribute"
+          },
+          {
+           "comesFrom": "dataScript",
+           "key": "w.me_initial",
+           "property": "data-me-initial",
+           "type": "attribute"
+          },
+          {
+           "comesFrom": "dataScript",
+           "key": "w.me_image",
+           "property": "data-me-image",
            "type": "attribute"
           }
          ],
@@ -3115,7 +3136,7 @@
    "builder_script": "Cafe Write Live"
   }
  ],
- "creation": "2026-10-19 16:13:15.317744",
+ "creation": "2026-10-20 20:52:26.396944",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -3125,15 +3146,15 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-19 16:13:15.317744",
+ "modified": "2026-10-20 20:52:26.396944",
  "modified_by": "Administrator",
  "name": "cafe-write-edit",
  "owner": "Administrator",
- "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\nitem = frappe.form_dict.post_id or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/write\" + (\"/\" + path_segment(item) if item else \"\"))\n\ndata.w = {\"id\": clean(item)}\n",
+ "page_data_script": "def clean(value):\n    return frappe.utils.escape_html(value or \"\")\n\n\ndef day_month_year(value):\n    text = str(value)\n    months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"]\n    return months[int(text[5:7]) - 1] + \" \" + str(int(text[8:10])) + \", \" + text[:4]\n\n\ndef plain_text(html):\n    text = frappe.utils.strip_html(html or \"\")\n    for entity, char in ((\"&nbsp;\", \" \"), (\"&lt;\", \"<\"), (\"&gt;\", \">\"), (\"&quot;\", '\"'), (\"&#39;\", \"'\"), (\"&amp;\", \"&\")):\n        text = text.replace(entity, char)\n    return text.strip()\n\n\ndef safe_url(value):\n    value = value or \"\"\n    return frappe.utils.escape_html(value) if value.startswith((\"/\", \"https://\", \"http://\")) else \"\"\n\n\ndef path_segment(value):\n    for char, code in ((\"%\", \"%25\"), (\"/\", \"%2F\"), (\"?\", \"%3F\"), (\"#\", \"%23\"), (\"\\\\\", \"%5C\"), (\" \", \"%20\")):\n        value = value.replace(char, code)\n    return value\n\n\ndef first_image(html):\n    html = html or \"\"\n    start = html.find(\"<img\")\n    if start == -1:\n        return \"\"\n    src_start = html.find('src=\"', start)\n    if src_start == -1:\n        return \"\"\n    src_start += 5\n    src_end = html.find('\"', src_start)\n    if src_end == -1:\n        return \"\"\n    return html[src_start:src_end].replace(\"&amp;\", \"&\")\n\n\nitem = frappe.form_dict.post_id or \"\"\n\nif frappe.session.user == \"Guest\":\n    redirect(\"/login?redirect=/write\" + (\"/\" + path_segment(item) if item else \"\"))\n\nme = frappe.db.get_value(\"User\", frappe.session.user, [\"full_name\", \"username\", \"user_image\"], as_dict=True) or {}\nme_name = me.get(\"full_name\") or frappe.session.user\ndata.w = {\n    \"id\": clean(item),\n    \"me_name\": clean(me_name),\n    \"me_initial\": clean(me_name.strip()[:1]),\n    \"me_image\": safe_url(me.get(\"user_image\")),\n}\n",
  "page_name": "cafe-write-edit",
  "page_title": "Edit post",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-19 16:13:15.317744",
+ "published_at": "2026-10-20 20:52:26.396944",
  "route": "write/:post_id"
 }
