@@ -797,15 +797,15 @@
   max-width: 576px;
 }
 /* Two columns: the editable fields (cover/title/excerpt/tags) on the left,
-   a live read-only mock of the feed row this becomes on the right - same
-   grid for the whole dialog body, so the crop-adjust view (which replaces
-   body's children directly, bypassing .cafe-w-story-main/-side) can just
-   span both columns below instead of being forced into a 2-up layout meant
-   for the main view. The right column is wide enough that the card inside
-   it can use the feed row's own real type sizes, not a shrunk-down mock. */
+   a live read-only mock of the feed row this becomes on the right - an even
+   split, not the fields column crowding out the preview. Same grid for the
+   whole dialog body, so the crop-adjust view (which replaces body's
+   children directly, bypassing .cafe-w-story-main/-side) can just span
+   both columns below instead of being forced into a 2-up layout meant for
+   the main view. */
 .cafe-w-story {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
   align-items: start;
 }
