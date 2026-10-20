@@ -409,7 +409,6 @@
 			)
 
 			var side = W.el('div', 'cafe-w-story-side')
-			side.appendChild(W.el('p', 'cafe-w-story-side-label', 'How this looks in the feed'))
 			previewCard = buildPreviewCard()
 			side.appendChild(previewCard.el)
 
@@ -722,6 +721,15 @@
 			]),
 		})
 		dialog.root.classList.add('cafe-w-story-dialog')
+		// "How this looks in the feed" sits on the same line as the dialog's own
+		// "Story Preview" title, not above the preview card - wraps the h2
+		// CAFE.dialog built in place, rather than changing that shared API just
+		// for this one dialog.
+		var h2 = dialog.root.querySelector('h2')
+		var titleRow = W.el('div', 'cafe-w-story-title-row')
+		h2.parentNode.insertBefore(titleRow, h2)
+		titleRow.appendChild(h2)
+		titleRow.appendChild(W.el('span', 'cafe-w-story-side-label', 'How this looks in the feed'))
 		drawView()
 		return dialog
 	}

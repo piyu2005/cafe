@@ -822,10 +822,27 @@
      first real content starts at the same height. */
   margin-top: 16px;
 }
+/* Sits next to the dialog's own "Story Preview" <h2> (see W.openPreview's
+   title-row wrapping) - same type as that heading, not a small caption
+   above the card anymore. */
+.cafe-w-story-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  /* .cafe-dialog h2's own padding-right (clearing the close button) moves
+     here once the h2 shares this row instead of spanning it alone. */
+  padding-right: 40px;
+}
+.cafe-w-story-title-row h2 {
+  padding-right: 0;
+}
 .cafe-w-story-side-label {
-  margin: 0 0 8px;
-  color: var(--ink-gray-5);
-  font-size: 12px;
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--ink-gray-9);
 }
 /* A small, read-only mock of the home feed's own row (home_page.py's
    build_feed_row) - same pieces playing the same roles, scaled down to fit
