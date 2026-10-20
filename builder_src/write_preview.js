@@ -942,7 +942,6 @@
 				kind: 'outline',
 				left: true,
 				onClick: function (d) {
-					CAFE.clearDraft(DRAFT_KEY)
 					d.close()
 				},
 			},
@@ -970,8 +969,17 @@
 			title: 'Story Preview',
 			body: body,
 			wide: true,
+			// Every way out of this dialog clears the draft, not just the
+			// explicit Cancel button - the X button, Escape, and an
+			// outside click all land here too (CAFE.dialog's own close()
+			// always calls onClose). Otherwise a session's leftover
+			// sessionStorage draft (title/excerpt/cover/tags from whatever
+			// post was last open here) bleeds into the next, unrelated
+			// post's Story Preview - the draft is only meant to survive
+			// an actual page refresh, not outlive the dialog itself.
 			onClose: function () {
 				fileInput.remove()
+				CAFE.clearDraft(DRAFT_KEY)
 			},
 			actions: viewActions.concat([
 				{
