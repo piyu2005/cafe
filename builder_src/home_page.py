@@ -50,12 +50,13 @@ ROW_STYLES = {
 AUTHOR_LINE_STYLES = {"display": "flex", "alignItems": "center", "gap": "8px"}
 AVATAR_IMAGE_STYLES = {"width": "100%", "height": "100%", "objectFit": "cover"}
 NAME_STYLES = text_style(13, "420", INK)
-# alignItems "stretch" (not "flex-start") so the thumbnail's cross-size
-# always matches the text column's own natural height - otherwise a post
-# with a cover image renders taller than one without, since the thumbnail's
-# own fixed height would set the row's height instead of just filling it.
-BODY_STYLES = {"display": "flex", "alignItems": "stretch", "gap": "16px"}
-TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0"}
+BODY_STYLES = {"display": "flex", "alignItems": "flex-start", "gap": "16px"}
+# minHeight matches THUMBNAIL_STYLES's own fixed height below, so a short
+# title+excerpt (nothing to do with whether there's a cover image) still
+# reserves the same vertical space a thumbnail would - that's what keeps a
+# post with an image the same row height as one without, instead of the
+# image (or its absence) driving the row's height either way.
+TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0", "minHeight": "96px"}
 TITLE_STYLES = text_style(16, "600", INK, "0.015em")
 EXCERPT_STYLES = {"margin": "4px 0 0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")}
 META_STYLES = {
@@ -65,12 +66,13 @@ META_STYLES = {
 	"marginTop": "16px",
 	**text_style(12, "420", MUTED),
 }
-# No explicit height - BODY_STYLES stretches this to the text column's own
-# height, with a floor so a very short title+excerpt doesn't crush it down
-# to a sliver.
+# A fixed height (not just a floor) so every thumbnail crops to the exact
+# same box no matter the source image's own aspect ratio - a square or
+# portrait photo used to render taller than a landscape one here, since
+# nothing but the image's own intrinsic size constrained its height.
 THUMBNAIL_STYLES = {
 	"width": "128px",
-	"minHeight": "72px",
+	"height": "96px",
 	"flexShrink": "0",
 	"borderRadius": "10px",
 	"backgroundColor": SURFACE_2,
