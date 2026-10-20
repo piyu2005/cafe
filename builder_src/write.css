@@ -824,21 +824,25 @@
 }
 /* Sits next to the dialog's own "Story Preview" <h2> (see W.openPreview's
    title-row wrapping) - same type as that heading, not a small caption
-   above the card anymore. */
+   above the card anymore. Same grid (columns + gap, and no padding of its
+   own - padding would shrink this grid's own available width relative to
+   .cafe-w-story's below it, throwing the two columns out of alignment)
+   as .cafe-w-story itself, so the label lines up exactly over the card's
+   own left edge. */
 .cafe-w-story-title-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  /* .cafe-dialog h2's own padding-right (clearing the close button) moves
-     here once the h2 shares this row instead of spanning it alone. */
-  padding-right: 40px;
+  gap: 24px;
 }
 .cafe-w-story-title-row h2 {
   padding-right: 0;
 }
 .cafe-w-story-side-label {
-  flex-shrink: 0;
+  /* The close button sits over this column, not the h2's - its own
+     padding here clears it without affecting the grid's own track sizing
+     the way padding on the grid container itself would. */
+  padding-right: 40px;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
