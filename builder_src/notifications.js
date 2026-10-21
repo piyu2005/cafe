@@ -6,6 +6,10 @@
 
 	var CAFE = (window.CAFE = window.CAFE || {})
 	var ICONS = '@@ICONS@@'
+	// Matches list_notifications' own server-side cap (cafe/follow.py) - the
+	// panel's own first load behaves exactly as it always did; this only
+	// adds the ability to scroll for anything past it.
+	var PAGE_SIZE = 50
 	var TYPES = {
 		Like: { icon: 'heart', color: '#e03434' },
 		Comment: { icon: 'message-circle', color: '#0c8ef8' },
@@ -104,6 +108,15 @@
 		this.node = null
 		this.isOpen = false
 		this.request = 0
+		// Paging state for "load more as you scroll the panel" - cursor is
+		// the last-seen row's own `creation` (see list_notifications'
+		// docstring for why not a row count), not reset until the panel
+		// actually reloads from scratch (open/markAll/realtime refresh).
+		this.cursor = null
+		this.hasMore = false
+		this.loadingMore = false
+		this.sentinel = null
+		this.observer = null
 	}
 
 	Panel.prototype.build = function () {
@@ -137,6 +150,19 @@
 		node.appendChild(this.list)
 		document.body.appendChild(node)
 		this.node = node
+
+		this.sentinel = el('div', 'cafe-np-sentinel')
+		if ('IntersectionObserver' in window) {
+			this.observer = new IntersectionObserver(
+				function (entries) {
+					if (entries[0].isIntersecting && self.hasMore && !self.loadingMore) self.loadMore()
+				},
+				// root scoped to the panel's own scroll area (.cafe-np-list),
+				// not the page viewport - this sentinel never reaches the
+				// latter, the panel is a fixed-size dropdown.
+				{ root: this.list, rootMargin: '200px' }
+			)
+		}
 	}
 
 	Panel.prototype.open = function () {
@@ -171,6 +197,8 @@
 	Panel.prototype.load = function (markRead) {
 		var self = this
 		var request = ++this.request
+		this.cursor = null
+		this.hasMore = false
 		if (!this.list.children.length) this.showSkeleton()
 		var start = markRead
 			? CAFE.api('cafe.follow.mark_notification_read', {}).catch(function () {})
@@ -182,7 +210,11 @@
 			.then(
 				function (rows) {
 					if (request !== self.request) return
-					self.render(rows || [])
+					rows = rows || []
+					self.hasMore = rows.length > PAGE_SIZE
+					rows = rows.slice(0, PAGE_SIZE)
+					if (rows.length) self.cursor = rows[rows.length - 1].creation
+					self.render(rows)
 					if (CAFE.refreshBadges) CAFE.refreshBadges()
 				},
 				function () {
@@ -190,6 +222,32 @@
 					self.showMessage("Couldn't load your notifications. Please try again.")
 				}
 			)
+	}
+
+	// Appends the next page as the panel is scrolled - same cursor the
+	// initial load leaves behind, never a row count (see the constructor's
+	// own comment on why).
+	Panel.prototype.loadMore = function () {
+		var self = this
+		var request = this.request
+		this.loadingMore = true
+		CAFE.get('cafe.follow.list_notifications', { before: this.cursor })
+			.then(
+				function (rows) {
+					if (request !== self.request) return
+					rows = rows || []
+					self.hasMore = rows.length > PAGE_SIZE
+					rows = rows.slice(0, PAGE_SIZE)
+					if (rows.length) {
+						self.cursor = rows[rows.length - 1].creation
+						self.appendRows(rows)
+					}
+				},
+				function () {}
+			)
+			.then(function () {
+				self.loadingMore = false
+			})
 	}
 
 	Panel.prototype.markAll = function (announce) {
@@ -225,6 +283,7 @@
 	}
 
 	Panel.prototype.render = function (rows) {
+		if (this.observer) this.observer.unobserve(this.sentinel)
 		this.list.replaceChildren()
 		if (!rows.length) {
 			var empty = el('div', 'cafe-np-empty')
@@ -233,10 +292,24 @@
 			this.list.appendChild(empty)
 			return
 		}
+		this.appendRows(rows)
+	}
+
+	// Adds rows without disturbing what's already there - render() (a fresh
+	// load) calls this too, right after clearing the list, so the sentinel
+	// only ever needs placing in this one spot.
+	Panel.prototype.appendRows = function (rows) {
 		var self = this
+		if (this.observer) this.observer.unobserve(this.sentinel)
+		// The sentinel must stay last - pull it out first (a no-op if it
+		// isn't in the list yet) so appending more rows after it doesn't
+		// leave it stranded in the middle.
+		if (this.sentinel.parentNode) this.sentinel.remove()
 		rows.forEach(function (n) {
 			self.list.appendChild(self.row(n))
 		})
+		this.list.appendChild(this.sentinel)
+		if (this.observer && this.hasMore) this.observer.observe(this.sentinel)
 	}
 
 	Panel.prototype.row = function (n) {

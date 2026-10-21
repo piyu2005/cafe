@@ -41,10 +41,23 @@ def _notify(recipient, actor, notif_type, message, reference_doctype=None, refer
 
 
 @frappe.whitelist()
-def list_notifications():
+def list_notifications(before: str | None = None, limit: int = 50):
+	"""`before` (the last-seen row's own `creation`, not a page number) is
+	what lets scrolling for more stay correct while new notifications keep
+	arriving - an OFFSET counts rows fresh on every request, so a new
+	notification landing between two loads would shift everything after it
+	down by one, repeating or skipping a row exactly like the home feed's
+	own pagination used to (see cafe.api.filter_by_tags's docstring).
+	Returns one extra row past `limit` so the caller can tell whether
+	there's more to load, same convention as the feed's own paginated
+	endpoints."""
+	limit = min(int(limit), 50)
+	filters = [["recipient", "=", frappe.session.user]]
+	if before:
+		filters.append(["creation", "<", before])
 	rows = frappe.db.get_all(
 		"App Notification",
-		filters={"recipient": frappe.session.user},
+		filters=filters,
 		fields=[
 			"name",
 			"actor",
@@ -58,7 +71,7 @@ def list_notifications():
 			"creation",
 		],
 		order_by="creation desc",
-		limit_page_length=50,
+		limit_page_length=limit + 1,
 	)
 	actors = {r.actor for r in rows if r.actor}
 	usernames = (

@@ -2130,6 +2130,11 @@ button.cafe-nav-item {
   overflow-y: auto;
   overscroll-behavior: contain;
 }
+/* Invisible - IntersectionObserver's own target for "load more as the
+   panel scrolls" (notifications.js), not something to look at. */
+.cafe-np-sentinel {
+  height: 1px;
+}
 .cafe-np-row {
   position: relative;
   display: flex;
