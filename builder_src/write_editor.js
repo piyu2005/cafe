@@ -511,6 +511,7 @@
 			form.publication = doc.publication || ''
 			S.status = doc.status || 'Draft'
 			S.savedAt = doc.modified ? new Date(doc.modified.replace(' ', 'T')) : null
+			S.modified = doc.modified || null
 			S.scheduledAt = doc.scheduled_at ? doc.scheduled_at.replace(' ', 'T') : null
 		}
 		dom.title.value = form.title

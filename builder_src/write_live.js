@@ -86,23 +86,32 @@
 		S.saving = status
 		W.setBusy('')
 		refreshHeader()
-		var payload = Object.assign({}, form, { content: W.content(), status: status })
+		// modified: harmless on a create/fork (check_if_latest only compares
+		// it against an existing document being updated - for a fresh
+		// insert there's nothing to compare against, so it's just ignored)
+		// and the one thing that lets Frappe's own optimistic-concurrency
+		// check (document.py's check_if_latest) tell this save apart from
+		// one that raced a concurrent edit elsewhere - another tab, or the
+		// scheduler's own publish_due_posts - instead of silently
+		// clobbering it.
+		var payload = Object.assign({}, form, { content: W.content(), status: status, modified: S.modified })
 		// A live post saved as a draft is never changed: the edit becomes a new,
 		// separate draft, so readers do not see the post vanish while you tweak it.
 		var fork = editing() && status === 'Draft' && previous === 'Published'
 		var request =
 			editing() && !fork
-				? W.update(S.postId, payload).then(function () {
-						return { name: S.postId, isNew: false }
+				? W.update(S.postId, payload).then(function (doc) {
+						return { name: S.postId, isNew: false, modified: doc.modified }
 				  })
 				: W.create(payload).then(function (doc) {
-						return { name: doc.name, isNew: true }
+						return { name: doc.name, isNew: true, modified: doc.modified }
 				  })
 		return request.then(
 			function (result) {
 				S.saving = null
 				S.status = status
 				S.savedAt = new Date()
+				S.modified = result.modified
 				if (status === 'Published') {
 					CAFE.toast('Post published')
 					location.assign('/posts/' + encodeURIComponent(result.name))
