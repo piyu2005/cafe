@@ -262,7 +262,13 @@ def build_feed_row():
 		children=[author_line, body],
 		styles=ROW_STYLES,
 	)
-	row["dynamicValues"] = [bind("href", "href", "attribute")]
+	row["dynamicValues"] = [
+		bind("href", "href", "attribute"),
+		# Lets home.js continue infinite-scroll from "older than the last
+		# post actually on screen" instead of a row-count offset - see
+		# fetchPosts()'s own comment for why that matters.
+		bind("creation", "data-creation", "attribute"),
+	]
 	return row
 
 
@@ -555,6 +561,7 @@ for row in rows:
         "comments_label": str(comments) + (" comment" if comments == 1 else " comments"),
         "reposts_label": str(reposts) + (" repost" if reposts == 1 else " reposts"),
         "cover": cover,
+        "creation": str(row.creation),
     })
 data.posts = posts
 data.hp = {

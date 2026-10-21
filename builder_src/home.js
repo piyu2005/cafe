@@ -37,7 +37,16 @@
 	var input, list, sentinel, template, container
 	var query = ''
 	var categories = []
-	var loaded = 0
+	// The plain/tag-filtered browse order is by `creation`, so paging by
+	// "older than the last post actually on screen" has no position to
+	// drift when a new post is published mid-scroll, unlike an offset
+	// (which counts rows from the top fresh on every request, so
+	// everything after a newly-published post shifts down by one and the
+	// next page repeats or skips a row). search_feed is ranked by
+	// relevance, not creation, so there's no such cursor for it - it keeps
+	// a plain offset, same as before.
+	var cursor = null
+	var searchOffset = 0
 	var hasMore = false
 	var busy = false
 	var latestRequest = 0
@@ -126,7 +135,11 @@
 		}
 		var holder = document.createElement('div')
 		holder.innerHTML = fill(template.innerHTML, values)
-		return holder.firstElementChild
+		var row = holder.firstElementChild
+		// Read back by load() to keep the cursor moving - see the comment
+		// by `cursor`'s declaration.
+		row.setAttribute('data-creation', post.creation)
+		return row
 	}
 
 	// A chip filters by exact tag match, Medium-style (cafe.api.filter_by_tags
@@ -139,16 +152,16 @@
 	// has no operator for either of these, so both need their own method
 	// rather than just adding to `filters` below. Plain creation-desc
 	// listing when neither is active.
-	function fetchPosts(start) {
+	function fetchPosts() {
 		if (categories.length)
-			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, start: start, limit: PAGE_SIZE })
-		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: start, limit: PAGE_SIZE })
-		var filters = { status: 'Published' }
+			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, before: cursor, limit: PAGE_SIZE })
+		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: searchOffset, limit: PAGE_SIZE })
+		var filters = [['status', '=', 'Published']]
+		if (cursor) filters.push(['creation', '<', cursor])
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),
 			'order_by=' + encodeURIComponent('creation desc'),
-			'start=' + start,
 			'limit=' + (PAGE_SIZE + 1),
 		].join('&')
 		return fetch(location.origin + '/api/v2/document/Post?' + params, { credentials: 'same-origin' })
@@ -242,19 +255,19 @@
 		if (busy && !fresh) return
 		var request = ++latestRequest
 		busy = true
-		var start = fresh ? 0 : loaded
+		if (fresh) {
+			cursor = null
+			searchOffset = 0
+		}
 		if (!fresh) setLoadingText(true)
-		fetchPosts(start).then(
+		fetchPosts().then(
 			function (rows) {
 				if (request !== latestRequest) return
 				busy = false
 				setLoadingText(false)
 				hasMore = rows.length > PAGE_SIZE
 				rows = rows.slice(0, PAGE_SIZE)
-				if (fresh) {
-					list.replaceChildren()
-					loaded = 0
-				}
+				if (fresh) list.replaceChildren()
 				fetchPublications(rows).then(function (pubs) {
 					if (request !== latestRequest) return
 					var made = rows.map(function (post) {
@@ -262,7 +275,10 @@
 						list.appendChild(row)
 						return row
 					})
-					loaded += rows.length
+					if (rows.length) {
+						if (query && !categories.length) searchOffset += rows.length
+						else cursor = rows[rows.length - 1].creation
+					}
 					setEmpty(fresh && !rows.length)
 					showCounts(rows, made)
 					// A short first page can leave the sentinel on screen: keep going.
@@ -314,7 +330,14 @@
 		container = list.parentNode
 		setupTagChips()
 
-		loaded = list.children.length
+		// Seeds the cursor from the server-rendered first page (home_page.py),
+		// which home.js never actually fetched, so it has no `.creation` in
+		// memory for those rows - only what's in their own data-creation
+		// attribute.
+		var existingRows = list.children
+		cursor = existingRows.length
+			? existingRows[existingRows.length - 1].getAttribute('data-creation')
+			: null
 		hasMore = sentinel.getAttribute('data-more') === '1'
 
 		input.addEventListener('input', function () {

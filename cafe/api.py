@@ -377,7 +377,7 @@ def get_repost_counts(posts: str | list):
 
 
 @frappe.whitelist()
-def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, limit: int = 10):
+def filter_by_tags(tags: str | list, query: str | None = None, before: str | None = None, limit: int = 10):
 	"""The home feed's category chips (home_page.py's TAG_LABELS) match a post
 	by exact tag, Medium-style: a post "belongs" to a chip only if that exact
 	string is one of its own comma-separated tags - the same free-text field
@@ -389,7 +389,15 @@ def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, l
 	it always use ", " as the separator, so the REPLACE below is exact, not a
 	loose whitespace strip. `query`, if present, AND's in a plain title
 	search - same matching the plain listing's search box already does,
-	just also constrained to the selected tags."""
+	just also constrained to the selected tags.
+
+	`before` (the last-seen row's own `creation`, not a page number) is what
+	keeps this stable while new posts are being published: an OFFSET counts
+	rows from the top fresh on every request, so a post published between
+	two page loads shifts everything after it down by one, and the next
+	page either repeats the last row or skips one. Paging by "older than
+	the last thing you actually saw" has no such position to drift - it
+	stays correct regardless of what's been published above it since."""
 	if isinstance(tags, str):
 		tags = frappe.parse_json(tags)
 	tags = [t for t in (tags or []) if t]
@@ -404,8 +412,11 @@ def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, l
 	if query:
 		conditions.append("title LIKE %s")
 		params.append(f"%{query}%")
+	if before:
+		conditions.append("creation < %s")
+		params.append(before)
 	limit = min(int(limit), 50)
-	params.extend([limit + 1, int(start)])
+	params.append(limit + 1)
 	# nosemgrep: frappe-sql-format-injection (only %s placeholders are formatted in; every value is a parameter)
 	return frappe.db.sql(
 		f"""
@@ -414,7 +425,7 @@ def filter_by_tags(tags: str | list, query: str | None = None, start: int = 0, l
 		FROM `tabPost`
 		WHERE {" AND ".join(conditions)}
 		ORDER BY creation DESC
-		LIMIT %s OFFSET %s
+		LIMIT %s
 		""",
 		params,
 		as_dict=True,
