@@ -84,10 +84,17 @@ class Post(Document):
 				self.cover_image = thumbnail_url
 
 	def on_trash(self):
+		# Collected before _delete_comment_thread runs - afterwards there's
+		# nothing left with this post, name to find them by.
+		comment_names = frappe.get_all("Post Comment", filters={"post": self.name}, pluck="name")
 		_delete_comment_thread(self.name)
 		frappe.db.delete("Saved Post", {"post": self.name})
 		frappe.db.delete("Repost", {"post": self.name})
 		frappe.db.delete("Like", {"reference_doctype": "Post", "reference_name": self.name})
+		if comment_names:
+			frappe.db.delete(
+				"Like", {"reference_doctype": "Post Comment", "reference_name": ["in", comment_names]}
+			)
 		frappe.db.set_value("Message", {"shared_post": self.name}, "shared_post", None)
 
 

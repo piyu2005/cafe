@@ -477,6 +477,7 @@ def search_feed(query: str, start: int = 0, limit: int = 10):
 	if not query:
 		return []
 	limit = min(int(limit), 50)
+	start = max(int(start), 0)
 	rows = frappe.db.sql(
 		"""
 		SELECT name, title, display_title, content, excerpt, post_type, attachment,
@@ -487,7 +488,7 @@ def search_feed(query: str, start: int = 0, limit: int = 10):
 		ORDER BY MATCH(title, display_title, excerpt) AGAINST (%(query)s IN NATURAL LANGUAGE MODE) DESC
 		LIMIT %(limit)s OFFSET %(start)s
 		""",
-		{"query": query, "limit": limit + 1, "start": int(start)},
+		{"query": query, "limit": limit + 1, "start": start},
 		as_dict=True,
 	)
 	return rows
@@ -1099,9 +1100,19 @@ def delete_comment(name: str):
 
 	# Threading is one level deep (see add_comment) — deleting a top-level
 	# comment takes its replies with it rather than leaving them orphaned.
+	deleted_names = [name]
 	if not comment.parent_comment:
+		deleted_names += frappe.get_all(
+			"Post Comment", filters={"parent_comment": name}, pluck="name"
+		)
 		frappe.db.delete("Post Comment", {"parent_comment": name})
 	frappe.delete_doc("Post Comment", name, ignore_permissions=True)
+	# Post.on_trash does this same cleanup for a deleted post's own Likes -
+	# a comment's reference_name is a plain Data field, not a Link, so
+	# Frappe's dynamic-link cleanup never catches this relationship either.
+	frappe.db.delete(
+		"Like", {"reference_doctype": "Post Comment", "reference_name": ["in", deleted_names]}
+	)
 	return "success"
 
 

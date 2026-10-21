@@ -330,7 +330,17 @@
 		fileInput.addEventListener('change', function () {
 			var file = fileInput.files && fileInput.files[0]
 			fileInput.value = ''
-			if (file) startAdjust(URL.createObjectURL(file))
+			if (!file) return
+			// `accept` is only a picker hint, not an enforced filter - nothing
+			// stops someone choosing "All Files" and picking a non-image
+			// anyway, which used to reach startAdjust() and fail silently
+			// deep inside its own decode step (a blank/broken crop frame,
+			// no error shown).
+			if (file.type.indexOf('image/') !== 0) {
+				CAFE.toast('Please choose an image file', 'warning')
+				return
+			}
+			startAdjust(URL.createObjectURL(file))
 		})
 		document.body.appendChild(fileInput)
 
