@@ -604,6 +604,11 @@ def list_publications(query: str | None = None):
 
 @frappe.whitelist()
 def leave_publication(handle: str):
+	role = frappe.db.get_value("Publication Member", {"publication": handle, "user": frappe.session.user}, "role")
+	if role == "Admin":
+		admin_count = frappe.db.count("Publication Member", {"publication": handle, "role": "Admin"})
+		if admin_count <= 1:
+			frappe.throw(_("A publication needs at least one admin - make someone else admin first"))
 	frappe.db.delete("Publication Member", {"publication": handle, "user": frappe.session.user})
 	frappe.db.commit()  # nosemgrep: frappe-manual-commit (saved at once; the page reloads the membership right after)
 	return "success"
