@@ -959,7 +959,12 @@
 		// Only a not-yet-published draft can be scheduled - an already-live post
 		// has nothing left to schedule, same restriction as Gameplan's own
 		// GPDraft.schedule (discussion drafts only, never an edit-in-progress).
-		if (S.status !== 'Published') {
+		// Archived is excluded too, not just Published: onSchedule() below
+		// always saves as status 'Draft' outright (unlike the ordinary Save
+		// button, which keeps Archived as Archived via secondaryStatus()), so
+		// offering it here would silently un-archive a post the moment
+		// someone scheduled it, with no warning that archiving was undone.
+		if (S.status === 'Draft') {
 			viewActions.push({
 				label: S.scheduledAt ? 'Reschedule' : 'Schedule for later',
 				kind: 'outline',
