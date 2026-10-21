@@ -154,7 +154,15 @@ def verify_signup_code(email: str, code: str):
 @rate_limit(limit=10, seconds=60 * 60)
 def send_login_code(email: str):
 	email = email.strip().lower()
-	if not frappe.db.exists("User", email):
+	# Scoped to Website User, not just "the account exists" - without this,
+	# a System User account sharing this email (an admin/ERPNext account on
+	# this same site) could log in through this passwordless flow instead
+	# of their real password, bypassing role_home_page's redirect logic
+	# entirely (hooks.py only applies it to Website User). Same message for
+	# "doesn't exist" and "exists but isn't a Website User" on purpose - see
+	# the comment below on why this throws plainly rather than staying
+	# non-committal, which would otherwise leak which case this is.
+	if frappe.db.get_value("User", email, "user_type") != "Website User":
 		# Deliberately explicit (unlike a typical "if this email exists, we
 		# sent a code" non-committal response) - this is a low-stakes social
 		# app, not a banking login, and the UX cost of a genuine visitor
