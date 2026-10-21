@@ -12,3 +12,4 @@ cafe.patches.v1_0.fix_private_post_images
 cafe.patches.v1_0.set_cafe_favicon
 cafe.patches.v1_0.add_post_fulltext_index
 cafe.patches.v1_0.backfill_cafe_points
+cafe.patches.v1_0.prevent_duplicate_reactions

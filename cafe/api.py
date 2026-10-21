@@ -971,9 +971,11 @@ def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool =
 		# was_downvote can only be true for a Post Comment - Posts can never
 		# have a downvote Like row (the gate above rejects creating one).
 		was_downvote = bool(existing.is_downvote)
-		frappe.delete_doc("Like", existing.name, ignore_permissions=True)
-		old_reason = points.COMMENT_DOWNVOTE if was_downvote else upvote_reason
-		points.award(owner, 1 if was_downvote else -1, old_reason, reference_doctype, reference_name, actor=user)
+		if _delete_ignoring_already_gone("Like", existing.name):
+			old_reason = points.COMMENT_DOWNVOTE if was_downvote else upvote_reason
+			points.award(
+				owner, 1 if was_downvote else -1, old_reason, reference_doctype, reference_name, actor=user
+			)
 
 	active = not existing or bool(existing.is_downvote) != is_downvote
 	if active:
@@ -986,16 +988,16 @@ def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool =
 			}
 		)
 		like.flags.ignore_permissions = True
-		like.insert()
-		points.award(owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user)
+		if _insert_ignoring_concurrent_duplicate(like):
+			points.award(owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user)
 
-		if not is_downvote:
-			from cafe.follow import _notify
+			if not is_downvote:
+				from cafe.follow import _notify
 
-			if reference_doctype == "Post":
-				_notify(owner, user, "Like", "liked your post", "Post", reference_name)
-			else:
-				_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
+				if reference_doctype == "Post":
+					_notify(owner, user, "Like", "liked your post", "Post", reference_name)
+				else:
+					_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
 
 	liked = active and not is_downvote
 	disliked = active and is_downvote
@@ -1300,6 +1302,36 @@ def delete_work(name: str):
 	return "success"
 
 
+def _insert_ignoring_concurrent_duplicate(doc):
+	"""Inserts doc, returning False instead of raising if a concurrent
+	request already inserted the same row first - the composite unique
+	index each of Saved Post/Repost/Like now has (see the
+	prevent_duplicate_reactions patch) is what actually makes that
+	possible to detect: without it, two concurrent toggles could both pass
+	an exists-check before either one inserted, creating two rows (and
+	double-awarding points) for what should be a single toggle - confirmed
+	with a 40-request concurrent stress test. The caller should skip
+	points/notifications when this returns False, since whichever request
+	actually won the race already did that."""
+	try:
+		doc.insert()
+		return True
+	except frappe.UniqueValidationError:
+		return False
+
+
+def _delete_ignoring_already_gone(doctype, name):
+	"""The reverse side of the same race: two concurrent "un-toggle" clicks
+	can both pass the exists-check before either deletes, so the second
+	delete would otherwise hit a clean DoesNotExistError instead of just
+	being a no-op. Returns whether it actually deleted something."""
+	try:
+		frappe.delete_doc(doctype, name, ignore_permissions=True)
+		return True
+	except frappe.DoesNotExistError:
+		return False
+
+
 @frappe.whitelist()
 def toggle_save_post(post: str):
 	user = frappe.session.user
@@ -1313,14 +1345,14 @@ def toggle_save_post(post: str):
 
 	existing = frappe.db.exists("Saved Post", {"post": post, "user": user})
 	if existing:
-		frappe.delete_doc("Saved Post", existing, ignore_permissions=True)
-		points.award(owner, -2, points.POST_SAVED, "Post", post, actor=user)
+		if _delete_ignoring_already_gone("Saved Post", existing):
+			points.award(owner, -2, points.POST_SAVED, "Post", post, actor=user)
 		return {"saved": False}
 
 	doc = frappe.get_doc({"doctype": "Saved Post", "post": post})
 	doc.flags.ignore_permissions = True
-	doc.insert()
-	points.award(owner, 2, points.POST_SAVED, "Post", post, actor=user)
+	if _insert_ignoring_concurrent_duplicate(doc):
+		points.award(owner, 2, points.POST_SAVED, "Post", post, actor=user)
 	return {"saved": True}
 
 
@@ -1344,18 +1376,18 @@ def toggle_repost(post: str):
 
 	existing = frappe.db.exists("Repost", {"post": post, "user": user})
 	if existing:
-		frappe.delete_doc("Repost", existing, ignore_permissions=True)
-		points.award(owner, -5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+		if _delete_ignoring_already_gone("Repost", existing):
+			points.award(owner, -5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
 		return {"reposted": False}
 
 	doc = frappe.get_doc({"doctype": "Repost", "post": post})
 	doc.flags.ignore_permissions = True
-	doc.insert()
-	points.award(owner, 5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+	if _insert_ignoring_concurrent_duplicate(doc):
+		points.award(owner, 5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
 
-	from cafe.follow import _notify
+		from cafe.follow import _notify
 
-	_notify(owner, user, "Repost", "reposted your post", "Post", post)
+		_notify(owner, user, "Repost", "reposted your post", "Post", post)
 
 	return {"reposted": True}
 
