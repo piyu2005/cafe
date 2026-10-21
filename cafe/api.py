@@ -1,3 +1,4 @@
+import re
 import secrets
 import string
 
@@ -11,6 +12,10 @@ LOGIN_CODE_CACHE_PREFIX = "login_code:"
 CODE_EXPIRY_SEC = 10 * 60
 CODE_MAX_ATTEMPTS = 5
 DEV_SHORTCUT_CODE = "000000"
+# A username becomes a URL path segment (/profile/<username>) - letters,
+# digits, underscore and hyphen can't break that; anything else (/, ?, #,
+# spaces, ...) could produce a broken or hijacked-looking profile link.
+USERNAME_RE = re.compile(r"^[A-Za-z0-9_-]{3,30}$")
 
 
 def _generate_code():
@@ -64,6 +69,8 @@ def send_signup_code(email: str, username: str):
 		frappe.throw(_("An account with this email already exists. Please log in instead."))
 
 	username = username.strip()
+	if not USERNAME_RE.match(username):
+		frappe.throw(_("Username must be 3-30 characters: letters, numbers, underscore or hyphen only."))
 	if frappe.db.exists("User", {"username": username}):
 		frappe.throw(_("This username is already taken. Please choose another."))
 
