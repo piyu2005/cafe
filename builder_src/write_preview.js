@@ -64,6 +64,11 @@
 	}
 
 	var DRAFT_KEY = 'story-preview'
+	// Post.tags stores the whole list as one comma-joined "Data" column (DB
+	// column limit 140 chars) - a per-tag cap wouldn't stop a handful of
+	// ordinary-length tags from overflowing it together, so this checks the
+	// joined total instead, the same way sync() below builds it.
+	var TAGS_MAX_LENGTH = 140
 
 	// The author identity for the live card preview - always the signed-in
 	// user (you can only ever write as yourself), read once from the root
@@ -233,8 +238,12 @@
 			function addTag(label) {
 				label = (label || '').trim()
 				if (label && !hasTag(tagList, label)) {
-					tagList.push(label)
-					sync()
+					if (tagList.concat([label]).join(', ').length > TAGS_MAX_LENGTH) {
+						CAFE.toast("That's too many tags to fit - remove one first", 'warning')
+					} else {
+						tagList.push(label)
+						sync()
+					}
 				}
 				drawChips()
 				tagInput.value = ''
@@ -382,6 +391,7 @@
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'
+			title.maxLength = 140 // matches Post.display_title's own DB column limit
 			title.value = form.display_title || form.title
 			title.addEventListener('input', function () {
 				form.display_title = title.value

@@ -545,6 +545,11 @@
 			input = el('input')
 			input.type = 'text'
 		}
+		// Matches the field's own DB column limit (a plain "Data" field
+		// defaults to 140 chars) - without this, nothing stops someone typing
+		// past it and only finding out via a raw "value too big" error at
+		// save time.
+		if (field.maxLength) input.maxLength = field.maxLength
 		input.id = id
 		input.name = field.name
 		input.value = values[field.name] == null ? '' : values[field.name]

@@ -78,8 +78,8 @@
 			submitLabel: 'Create',
 			values: {},
 			fields: [
-				{ name: 'title', label: 'Name', required: true },
-				{ name: 'handle', label: 'Handle', required: true },
+				{ name: 'title', label: 'Name', required: true, maxLength: 140 },
+				{ name: 'handle', label: 'Handle', required: true, maxLength: 140 },
 			],
 			onSubmit: function (values) {
 				return CAFE.api('cafe.api.create_publication', values).then(function () {

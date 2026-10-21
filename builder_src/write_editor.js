@@ -610,6 +610,7 @@
 		dom.title = W.el('input', 'cafe-w-title')
 		dom.title.type = 'text'
 		dom.title.placeholder = 'Give your story a title'
+		dom.title.maxLength = 140 // matches Post.title's own DB column limit
 		dom.title.setAttribute('aria-label', 'Title')
 		dom.title.addEventListener('input', function () {
 			W.state.form.title = dom.title.value
