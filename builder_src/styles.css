@@ -571,10 +571,15 @@ html[data-cafe-sidebar='open'] .cafe-nav-toggle svg {
   align-items: flex-end;
   gap: 8px;
 }
+/* Height matches the input it sits beside (not the label above it), and
+   centers its text in that same box - so "at" lines up with the input's
+   own text instead of floating above it by whatever the label's height
+   happens to be. */
 .cafe-field-text {
-  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  height: 28px;
   font-size: 16px;
-  line-height: 24px;
   color: var(--ink-gray-5);
 }
 .cafe-required {
