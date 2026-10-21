@@ -233,7 +233,18 @@
 	// one was open doesn't lose it. Needs the real post content loaded first
 	// (W.fill already ran), since Story Preview reads from it for the default
 	// excerpt/cover.
+	//
+	// Only ever does this for an actual reload of the SAME page, never for
+	// navigating here some other way (a link, the address bar, back/forward)
+	// - this page has no id of its own to tell "the same post, reloaded"
+	// apart from "an unrelated post (or a brand-new one), freshly opened"
+	// for a draft left behind by leaving the dialog open and navigating away
+	// instead of closing it, so without this check a stale draft from
+	// whatever was last open here could reopen pre-filled over an unrelated
+	// post.
 	function restoreDialogDrafts() {
+		var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
+		if (!nav || nav.type !== 'reload') return
 		if (CAFE.hasDraft('editor-link')) W.linkDialog()
 		if (CAFE.hasDraft('story-preview')) openPreview()
 	}
