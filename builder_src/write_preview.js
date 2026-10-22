@@ -626,7 +626,9 @@
 			return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 		}
 		function formatPickerDate(d) {
-			return WEEKDAY_SHORT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear()
+			return (
+				WEEKDAY_SHORT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear()
+			)
 		}
 		function formatPickerTime(totalMinutes) {
 			var h = Math.floor(totalMinutes / 60)
@@ -801,7 +803,12 @@
 				if (panel) closePanel()
 				else openPanel()
 			})
-			return { el: t.trigger, getValue: function () { return selected } }
+			return {
+				el: t.trigger,
+				getValue: function () {
+					return selected
+				},
+			}
 		}
 
 		function buildTimePicker(opts) {
@@ -858,7 +865,12 @@
 				if (panel) closePanel()
 				else openPanel()
 			})
-			return { el: t.trigger, getValue: function () { return selectedMinutes } }
+			return {
+				el: t.trigger,
+				getValue: function () {
+					return selectedMinutes
+				},
+			}
 		}
 
 		function openSchedule() {

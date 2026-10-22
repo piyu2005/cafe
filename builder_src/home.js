@@ -154,7 +154,12 @@
 	// listing when neither is active.
 	function fetchPosts() {
 		if (categories.length)
-			return CAFE.api('cafe.api.filter_by_tags', { tags: categories, query: query, before: cursor, limit: PAGE_SIZE })
+			return CAFE.api('cafe.api.filter_by_tags', {
+				tags: categories,
+				query: query,
+				before: cursor,
+				limit: PAGE_SIZE,
+			})
 		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: searchOffset, limit: PAGE_SIZE })
 		var filters = [['status', '=', 'Published']]
 		if (cursor) filters.push(['creation', '<', cursor])
@@ -335,9 +340,7 @@
 		// memory for those rows - only what's in their own data-creation
 		// attribute.
 		var existingRows = list.children
-		cursor = existingRows.length
-			? existingRows[existingRows.length - 1].getAttribute('data-creation')
-			: null
+		cursor = existingRows.length ? existingRows[existingRows.length - 1].getAttribute('data-creation') : null
 		hasMore = sentinel.getAttribute('data-more') === '1'
 
 		input.addEventListener('input', function () {

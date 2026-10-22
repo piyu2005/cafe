@@ -220,7 +220,9 @@
 					type: 'select',
 					required: true,
 					placeholder: 'Select a reason',
-					options: ['Spam', 'Harassment', 'Misinformation', 'Inappropriate content', 'Other'].map(function (r) {
+					options: ['Spam', 'Harassment', 'Misinformation', 'Inappropriate content', 'Other'].map(function (
+						r
+					) {
 						return { label: r, value: r }
 					}),
 				},
