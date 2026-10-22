@@ -1159,8 +1159,7 @@ p.cafe-clamp-3:empty::before {
 /* Like/Comment/Save/Repost: plain icon buttons, no box - no border, no
    background, at rest or active. Active (data-on='1') colors the icon in
    the action's own color (danger-red for Like, the repost accent amber
-   for Repost, a blue close to Comment's own notification-type color for
-   Save, which has no established color of its own). Like and Save go
+   for Repost, solid black for Save). Like and Save go
    further and fill the glyph itself solid (Twitter-heart style), not
    just tint its stroke - heart.svg/bookmark.svg are each one closed
    path, so `fill` on top of the existing stroke reads as a proper solid
@@ -1174,7 +1173,7 @@ p.cafe-clamp-3:empty::before {
   fill: currentColor !important;
 }
 .cafe-save[data-on='1'] {
-  color: #0c8ef8 !important;
+  color: #000000 !important;
 }
 .cafe-save[data-on='1'] svg {
   fill: currentColor !important;
