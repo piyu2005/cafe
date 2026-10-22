@@ -294,7 +294,10 @@ def build_saved_panel():
 				text="Couldn't load your saved posts. Please try again.",
 			),
 			html_el(
-				"div", ["cafe-saved-list"], None, {"display": "flex", "flexDirection": "column", "marginTop": "16px"}
+				"div",
+				["cafe-saved-list"],
+				None,
+				{"display": "flex", "flexDirection": "column", "marginTop": "16px"},
 			),
 		],
 	)

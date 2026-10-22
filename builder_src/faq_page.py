@@ -43,9 +43,9 @@ FAQ_ITEMS = [
 					"entry, and at least one education entry.",
 					"+2 when you publish a post (first publish only, not edits).",
 					"+1 each time your post or comment is upvoted.",
-					"−1 each time your comment is downvoted. Posts can't be downvoted.",
-					"+2 when someone saves your post, and −2 if they unsave it.",
-					"+5 when someone reposts your article, and −5 if they undo the repost.",
+					"−1 each time your comment is downvoted. Posts can't be downvoted.",  # noqa: RUF001
+					"+2 when someone saves your post, and −2 if they unsave it.",  # noqa: RUF001
+					"+5 when someone reposts your article, and −5 if they undo the repost.",  # noqa: RUF001
 				],
 			),
 			"You can't earn or lose points by interacting with your own content.",
