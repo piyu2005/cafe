@@ -393,13 +393,19 @@ def action_button(action, icon_name, count_key, count_id, attrs=None):
 		attrs={"type": "button", "aria-label": action.title(), **(attrs or {})},
 		custom={"data-action": action, "data-on": ""},
 		children=[block("span", "Icon", inner_html=svg(icon_name, 16), styles=ICON_SPAN), count],
+		# Same bordered-box shape as Save/Repost below, not the old borderless
+		# text-link look - a "solid" active fill (styles.css's own
+		# [data-on='1'] rules) only reads as a real button once it has a box
+		# to fill in the first place.
 		styles={
 			"display": "flex",
 			"alignItems": "center",
 			"gap": "8px",
-			"padding": "0",
-			"border": "0",
-			"backgroundColor": "transparent",
+			"height": "28px",
+			"padding": "0 10px",
+			"border": f"1px solid {BUTTON_BORDER}",
+			"borderRadius": "8px",
+			"backgroundColor": "#ffffff",
 			"color": GRAY_6,
 			"fontSize": "14px",
 			"cursor": "pointer",

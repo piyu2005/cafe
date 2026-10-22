@@ -1156,26 +1156,35 @@ p.cafe-clamp-3:empty::before {
 .cafe-pop.open {
   display: block !important;
 }
-.cafe-like[data-on='1'] {
-  color: #e03636 !important;
+/* Like/Comment/Save/Repost: a plain outline button at rest, filled solid
+   once the action is active (data-on='1') - the fill itself is the "you
+   did this" signal, not just a text-color change (that's all Like used to
+   get; Save/Repost only got a pale tint). Each keeps the color already
+   established for it elsewhere in the app (danger-red for Like, the
+   default solid dark for Save, the repost accent amber for Repost) rather
+   than inventing new ones. Comment has no active state - it only gets the
+   shared hover below. */
+.cafe-like:not([data-on='1']):hover,
+.cafe-comment:hover {
+  background: var(--surface-gray-1) !important;
 }
-/* frappe-ui's own Badge, theme="gray" variant="subtle": bg-surface-gray-2,
-   text-ink-gray-6 - same lighter-shade-of-black approach as the repost
-   button's amber (and the points badge it both match). */
+.cafe-like[data-on='1'] {
+  border-color: #e03636 !important;
+  background: #e03636 !important;
+  color: var(--ink-base) !important;
+}
 .cafe-save[data-on='1'] {
-  border-color: var(--surface-gray-2) !important;
-  background: var(--surface-gray-2) !important;
-  color: var(--ink-gray-6) !important;
+  border-color: var(--surface-gray-10) !important;
+  background: var(--surface-gray-10) !important;
+  color: var(--ink-base) !important;
 }
 .cafe-save:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
 }
-/* Same "subtle" amber as the profile points badge (bg-surface-amber-2/
-   #fff4d3, text-ink-amber-8/#bb6f0c), not Badge's darker "solid" variant. */
 .cafe-repost[data-on='1'] {
-  border-color: #fff4d3 !important;
-  background: #fff4d3 !important;
-  color: #bb6f0c !important;
+  border-color: #bb6f0c !important;
+  background: #bb6f0c !important;
+  color: var(--ink-base) !important;
 }
 .cafe-repost:not([data-on='1']):hover {
   background: var(--surface-gray-1) !important;
