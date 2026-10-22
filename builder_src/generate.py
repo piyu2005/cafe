@@ -317,7 +317,9 @@ def main():
 		if filename in SCRIPT_ICONS:
 			source = source.replace(
 				"'@@ICONS@@'",
-				json.dumps({name: svg(name, SCRIPT_ICON_SIZES.get(name, 16)) for name in SCRIPT_ICONS[filename]}),
+				json.dumps(
+					{name: svg(name, SCRIPT_ICON_SIZES.get(name, 16)) for name in SCRIPT_ICONS[filename]}
+				),
 			)
 		write_json("client_scripts", name, client_script(name, kind, source, index))
 
