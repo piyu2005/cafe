@@ -38,7 +38,9 @@ FAQ_ITEMS = [
 				"ul",
 				[
 					"+10 for signing up (one time only).",
-					"+10 for completing your profile (one time only). A complete profile has a "
+					# One long string split across lines for readability, not a missing
+					# comma - ends in a single trailing comma (same below).
+					"+10 for completing your profile (one time only). A complete profile has a "  # nosemgrep: string-concat-in-list
 					"bio, introduction, photo, job title, company, at least one work history "
 					"entry, and at least one education entry.",
 					"+2 when you publish a post (first publish only, not edits).",
@@ -83,7 +85,7 @@ FAQ_ITEMS = [
 	(
 		"How do @mentions work?",
 		[
-			"Type @ followed by a username, then choose the person from the dropdown. "
+			"Type @ followed by a username, then choose the person from the dropdown. "  # nosemgrep: string-concat-in-list
 			"They're notified when the post is published. Editing the post later won't "
 			"notify them again.",
 		],
@@ -91,7 +93,7 @@ FAQ_ITEMS = [
 	(
 		"What's the difference between Save and Repost?",
 		[
-			"Save is a private bookmark that only you can see. Repost shares the article "
+			"Save is a private bookmark that only you can see. Repost shares the article "  # nosemgrep: string-concat-in-list
 			"with your followers and shows it on your profile. The author gets +2 points "
 			"for a save and +5 for a repost, and loses them if it's undone.",
 		],
@@ -99,21 +101,21 @@ FAQ_ITEMS = [
 	(
 		"How is the Explore page ranked?",
 		[
-			"Users are ranked by total cafe points, highest first. Explore is also the "
+			"Users are ranked by total cafe points, highest first. Explore is also the "  # nosemgrep: string-concat-in-list
 			"search page, so it works as a leaderboard.",
 		],
 	),
 	(
 		"Can I edit a post after publishing?",
 		[
-			"Yes. Your changes update the post as normal. Editing doesn't notify "
+			"Yes. Your changes update the post as normal. Editing doesn't notify "  # nosemgrep: string-concat-in-list
 			"mentioned people again and doesn't award points again.",
 		],
 	),
 	(
 		"Where can I find my published, draft, archived, and saved posts?",
 		[
-			"All four are on the Manage all posts page, reached from your profile - "
+			"All four are on the Manage all posts page, reached from your profile - "  # nosemgrep: string-concat-in-list
 			"each has its own tab there.",
 		],
 	),

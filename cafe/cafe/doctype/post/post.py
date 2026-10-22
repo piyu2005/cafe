@@ -200,7 +200,10 @@ def publish_due_posts():
 		order_by="scheduled_at asc",
 	)
 	for row in due:
-		frappe.set_user(row.author)
+		# so the publish-time checks (publication role, etc.) run as the
+		# post's own author, not whoever's running the scheduler; always
+		# reset to Administrator below, in `finally`
+		frappe.set_user(row.author)  # nosemgrep: frappe-setuser
 		frappe.db.savepoint("scheduled_post")
 		try:
 			scheduled_at = frappe.db.get_value("Post", row.name, "scheduled_at", for_update=True)
@@ -214,4 +217,4 @@ def publish_due_posts():
 			frappe.log_error(title=f"Scheduled post {row.name} could not be published")
 			frappe.db.set_value("Post", row.name, "scheduled_at", None, update_modified=False)
 		finally:
-			frappe.set_user("Administrator")
+			frappe.set_user("Administrator")  # nosemgrep: frappe-setuser (reverting the switch above)
