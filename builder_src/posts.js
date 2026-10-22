@@ -173,7 +173,7 @@
 		var remove = CAFE.el('button', 'cafe-saved-remove')
 		remove.type = 'button'
 		remove.setAttribute('aria-label', 'Remove from saved posts')
-		remove.appendChild(icon('bookmark-minus'))
+		remove.appendChild(icon('bookmark'))
 		remove.addEventListener('click', function () {
 			onRemove(post)
 		})
