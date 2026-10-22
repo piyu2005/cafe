@@ -1993,6 +1993,9 @@ p.cafe-clamp-3:empty::before {
   color: var(--ink-gray-9);
   cursor: pointer;
 }
+.cafe-saved-remove svg {
+  fill: currentColor;
+}
 .cafe-saved-remove:hover {
   background: rgba(0, 0, 0, 0.06);
 }
