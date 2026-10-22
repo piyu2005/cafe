@@ -9,6 +9,11 @@
 	var JPEG_QUALITY = 0.92
 	// Keep this in sync with blocks.PUBLICATIONS_ENABLED (generate.py).
 	var PUBLICATIONS_ENABLED = false
+	// The home feed's filter chips (home_page.py's TAG_LABELS) match a post by
+	// exact tag, Medium-style - no separate category field, just this same
+	// free-text list. Photography and Mindfulness are suggested here even
+	// though they weren't before, so typing one of the 6 chip names is a
+	// one-click autocomplete pick, not a happen-to-type-it-exactly guess.
 	var TAG_SUGGESTIONS = [
 		'Design',
 		'UX/UI',
@@ -16,6 +21,8 @@
 		'Technology',
 		'Productivity',
 		'Writing',
+		'Photography',
+		'Mindfulness',
 		'Startups',
 		'Business',
 		'Lifestyle',
@@ -57,13 +64,83 @@
 	}
 
 	var DRAFT_KEY = 'story-preview'
+	// Post.tags stores the whole list as one comma-joined "Data" column (DB
+	// column limit 140 chars) - a per-tag cap wouldn't stop a handful of
+	// ordinary-length tags from overflowing it together, so this checks the
+	// joined total instead, the same way sync() below builds it.
+	var TAGS_MAX_LENGTH = 140
 
-	// Opens the dialog. onPublish() is called on Publish; the returned api has setBusy(bool).
+	// The author identity for the live card preview - always the signed-in
+	// user (you can only ever write as yourself), read once from the root
+	// element's own data attributes (write_page.py's data script fills them).
+	function me() {
+		var root = document.getElementById('cafe-write')
+		return {
+			name: (root && root.getAttribute('data-me-name')) || '',
+			initial: (root && root.getAttribute('data-me-initial')) || '?',
+			image: (root && root.getAttribute('data-me-image')) || '',
+		}
+	}
+
+	// The side panel's live mock of the home feed's own row (home_page.py's
+	// build_feed_row) - same pieces, same roles, scaled down: avatar+name,
+	// title, excerpt, and the cover thumbnail if there is one. Rebuilt fresh
+	// each drawView() (a cover-image change already redraws the whole dialog);
+	// refresh() just updates the text pieces that can change on every
+	// keystroke without losing focus.
+	function buildPreviewCard() {
+		var who = me()
+		var card = W.el('div', 'cafe-w-story-card')
+		var author = W.el('div', 'cafe-w-story-card-author')
+		var avatar = W.el('span', 'cafe-avatar cafe-w-story-card-avatar')
+		if (who.image) {
+			var img = W.el('img')
+			img.src = who.image
+			img.alt = ''
+			avatar.appendChild(img)
+		} else {
+			avatar.textContent = who.initial
+		}
+		author.appendChild(avatar)
+		author.appendChild(W.el('span', '', who.name))
+		var rowBody = W.el('div', 'cafe-w-story-card-body')
+		var text = W.el('div', 'cafe-w-story-card-text')
+		var titleEl = W.el('div', 'cafe-w-story-card-title')
+		var excerptEl = W.el('p', 'cafe-w-story-card-excerpt cafe-clamp-2')
+		text.appendChild(titleEl)
+		text.appendChild(excerptEl)
+		rowBody.appendChild(text)
+		var thumb = W.el('img', 'cafe-w-story-card-thumb')
+		thumb.alt = ''
+		rowBody.appendChild(thumb)
+		var meta = W.el('p', 'cafe-w-story-card-meta')
+		card.appendChild(author)
+		card.appendChild(rowBody)
+		card.appendChild(meta)
+
+		function refresh() {
+			var S = W.state
+			var form = S.form
+			titleEl.textContent = form.display_title || form.title || 'Untitled'
+			excerptEl.textContent = form.excerpt || W.autoExcerpt(W.ensureHtml(W.content())) || 'A short preview…'
+			var url = W.previewImage()
+			thumb.hidden = !url
+			if (url) thumb.src = url
+			meta.textContent = W.readTime(W.ensureHtml(W.content())) + ' min read'
+		}
+		refresh()
+		return { el: card, refresh: refresh }
+	}
+
+	// Opens the dialog. onPublish() is called on Publish; onSchedule(localDateTime)
+	// on Schedule/Reschedule, and must return a Promise. The returned api has setBusy(bool).
 	W.openPreview = function (options) {
 		var S = W.state
 		var form = S.form
 		var html = W.ensureHtml(W.content())
 		var adjust = null // { url, natural, frame, offset }
+		var main = W.el('div', 'cafe-w-story-main')
+		var previewCard = null
 		var body = W.el('div', 'cafe-w-story')
 		var dialog
 
@@ -161,8 +238,12 @@
 			function addTag(label) {
 				label = (label || '').trim()
 				if (label && !hasTag(tagList, label)) {
-					tagList.push(label)
-					sync()
+					if (tagList.concat([label]).join(', ').length > TAGS_MAX_LENGTH) {
+						CAFE.toast("That's too many tags to fit - remove one first", 'warning')
+					} else {
+						tagList.push(label)
+						sync()
+					}
 				}
 				drawChips()
 				tagInput.value = ''
@@ -249,7 +330,17 @@
 		fileInput.addEventListener('change', function () {
 			var file = fileInput.files && fileInput.files[0]
 			fileInput.value = ''
-			if (file) startAdjust(URL.createObjectURL(file))
+			if (!file) return
+			// `accept` is only a picker hint, not an enforced filter - nothing
+			// stops someone choosing "All Files" and picking a non-image
+			// anyway, which used to reach startAdjust() and fail silently
+			// deep inside its own decode step (a blank/broken crop frame,
+			// no error shown).
+			if (file.type.indexOf('image/') !== 0) {
+				CAFE.toast('Please choose an image file', 'warning')
+				return
+			}
+			startAdjust(URL.createObjectURL(file))
 		})
 		document.body.appendChild(fileInput)
 
@@ -263,7 +354,9 @@
 		// ---- The preview ----
 		function drawView() {
 			adjust = null
+			if (dialog) dialog.root.classList.remove('cafe-w-adjusting')
 			body.replaceChildren()
+			main.replaceChildren()
 			var url = W.previewImage()
 			var cover = W.el('div', 'cafe-w-cover')
 			if (url) {
@@ -298,20 +391,22 @@
 				)
 			}
 			cover.appendChild(over)
-			body.appendChild(cover)
-			body.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
+			main.appendChild(cover)
+			main.appendChild(W.el('p', 'cafe-w-read', W.readTime(html) + ' min read'))
 			// Only worth asking when there's an actual choice to make - most
 			// accounts belong to no publication at all. Hidden entirely while
 			// Publications itself is hidden (PUBLICATIONS_ENABLED above).
 			if (PUBLICATIONS_ENABLED && (S.myPublications.length || form.publication))
-				body.appendChild(buildPublicationPicker())
+				main.appendChild(buildPublicationPicker())
 			var title = W.el('input', 'cafe-w-story-title')
 			title.type = 'text'
 			title.placeholder = 'Untitled'
+			title.maxLength = 140 // matches Post.display_title's own DB column limit
 			title.value = form.display_title || form.title
 			title.addEventListener('input', function () {
 				form.display_title = title.value
 				saveDraft()
+				if (previewCard) previewCard.refresh()
 			})
 			var excerpt = W.el('textarea', 'cafe-w-story-excerpt')
 			excerpt.rows = 2
@@ -320,22 +415,31 @@
 			excerpt.addEventListener('input', function () {
 				form.excerpt = excerpt.value
 				saveDraft()
+				if (previewCard) previewCard.refresh()
 			})
-			body.appendChild(title)
-			body.appendChild(excerpt)
-			body.appendChild(buildTagsField())
-			body.appendChild(
+			main.appendChild(title)
+			main.appendChild(excerpt)
+			main.appendChild(buildTagsField())
+			main.appendChild(
 				W.el(
 					'p',
 					'cafe-w-story-note',
 					'Note: changes here affect how your story appears in previews and feeds, not the story itself.'
 				)
 			)
+
+			var side = W.el('div', 'cafe-w-story-side')
+			previewCard = buildPreviewCard()
+			side.appendChild(previewCard.el)
+
+			body.appendChild(main)
+			body.appendChild(side)
 			showActions(false)
 		}
 
 		// ---- Adjusting the crop ----
 		function startAdjust(url) {
+			dialog.root.classList.add('cafe-w-adjusting')
 			body.replaceChildren(W.el('p', 'cafe-w-adjust-hint', 'Loading…'))
 			showActions(true)
 			var img = new Image()
@@ -483,38 +587,438 @@
 			)
 		}
 
-		// The first two buttons belong to the preview, the last two to adjusting.
+		// viewActions come first (however many there are - a brand new post has
+		// no schedule controls yet, an already-Published one can't be scheduled
+		// at all), then the two adjust-mode ones.
 		function showActions(adjusting) {
 			var buttons = dialog ? dialog.root.querySelectorAll('.cafe-dialog-actions button') : []
 			Array.prototype.forEach.call(buttons, function (b, i) {
-				b.hidden = adjusting ? i < 2 : i >= 2
+				b.hidden = adjusting ? i < viewActions.length : i >= viewActions.length
 			})
 			if (dialog) dialog.setError('')
 		}
+
+		// ---- Schedule for later (mirrors Gameplan's ScheduleDialog.vue/
+		// GPDraft.schedule - same copy, same "stays in Drafts" behavior, and
+		// the same date/time picker shape: a trigger button + a dropdown
+		// panel (calendar grid / hourly list), not native <input type=date>
+		// /<input type=time>, which draw the browser's own OS picker instead
+		// of frappe-ui's. Vanilla-JS rebuilds of frappe-ui's DatePicker/
+		// TimePicker, scoped to what this dialog actually needs (Gameplan's
+		// own ScheduleDialog.vue passes `:clearable="false"` and
+		// `:typeable="false"` - no typing, no clearing, single month view,
+		// no month/year list view) - see those components' own source
+		// (node_modules/frappe-ui/src/components/{DatePicker,TimePicker})
+		// for the parts intentionally left out here.
+		function pad2(n) {
+			return (n < 10 ? '0' : '') + n
+		}
+		var MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		var WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+		var WEEKDAY_LABELS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+
+		function startOfDay(d) {
+			var n = new Date(d)
+			n.setHours(0, 0, 0, 0)
+			return n
+		}
+		function sameDay(a, b) {
+			return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+		}
+		function formatPickerDate(d) {
+			return (
+				WEEKDAY_SHORT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTH_SHORT[d.getMonth()] + ' ' + d.getFullYear()
+			)
+		}
+		function formatPickerTime(totalMinutes) {
+			var h = Math.floor(totalMinutes / 60)
+			var m = totalMinutes % 60
+			var h12 = h % 12
+			if (h12 === 0) h12 = 12
+			return h12 + ':' + pad2(m) + ' ' + (h >= 12 ? 'PM' : 'AM')
+		}
+
+		// Only one picker panel open at a time, and closes on an outside click -
+		// same convention as the mention/post-link search popups.
+		function closePickerPanels() {
+			document.querySelectorAll('.cafe-w-picker-panel').forEach(function (panel) {
+				panel.remove()
+			})
+		}
+		document.addEventListener('mousedown', function (event) {
+			if (!event.target.closest('.cafe-w-picker-panel') && !event.target.closest('.cafe-w-picker-trigger'))
+				closePickerPanels()
+		})
+
+		function pickerTrigger(extraClass) {
+			var trigger = W.el('button', 'cafe-w-picker-trigger ' + extraClass)
+			trigger.type = 'button'
+			var valueEl = W.el('span', 'cafe-w-picker-value')
+			trigger.appendChild(valueEl)
+			trigger.appendChild(W.icon('chevron-down', 'cafe-w-small'))
+			return { trigger: trigger, valueEl: valueEl }
+		}
+
+		function buildDatePicker(opts) {
+			var selected = startOfDay(opts.initial)
+			var min = opts.min ? startOfDay(opts.min) : null
+			var viewYear = selected.getFullYear()
+			var viewMonth = selected.getMonth()
+			var t = pickerTrigger('cafe-w-schedule-date')
+			var panel = null
+
+			function refresh() {
+				t.valueEl.textContent = formatPickerDate(selected)
+			}
+			refresh()
+
+			function closePanel() {
+				if (panel) {
+					panel.remove()
+					panel = null
+				}
+			}
+			function selectDate(date) {
+				if (min && date < min) return
+				selected = startOfDay(date)
+				refresh()
+				closePanel()
+				if (opts.onChange) opts.onChange(selected)
+			}
+			function drawCalendar() {
+				panel.replaceChildren()
+				var header = W.el('div', 'cafe-w-cal-header')
+				header.appendChild(W.el('span', 'cafe-w-cal-month', MONTH_SHORT[viewMonth] + ' ' + viewYear))
+				var navGroup = W.el('div', 'cafe-w-cal-nav-group')
+				var prevBtn = W.el('button', 'cafe-w-cal-nav')
+				prevBtn.type = 'button'
+				prevBtn.setAttribute('aria-label', 'Previous month')
+				prevBtn.appendChild(W.icon('chevron-left', 'cafe-w-small'))
+				prevBtn.addEventListener('click', function () {
+					viewMonth--
+					if (viewMonth < 0) {
+						viewMonth = 11
+						viewYear--
+					}
+					drawCalendar()
+				})
+				var todayBtn = W.el('button', 'cafe-w-cal-today', 'Today')
+				todayBtn.type = 'button'
+				todayBtn.addEventListener('click', function () {
+					var today = startOfDay(new Date())
+					viewYear = today.getFullYear()
+					viewMonth = today.getMonth()
+					selectDate(today)
+				})
+				var nextBtn = W.el('button', 'cafe-w-cal-nav')
+				nextBtn.type = 'button'
+				nextBtn.setAttribute('aria-label', 'Next month')
+				nextBtn.appendChild(W.icon('chevron-right', 'cafe-w-small'))
+				nextBtn.addEventListener('click', function () {
+					viewMonth++
+					if (viewMonth > 11) {
+						viewMonth = 0
+						viewYear++
+					}
+					drawCalendar()
+				})
+				navGroup.appendChild(prevBtn)
+				navGroup.appendChild(todayBtn)
+				navGroup.appendChild(nextBtn)
+				header.appendChild(navGroup)
+				panel.appendChild(header)
+
+				var weekdayRow = W.el('div', 'cafe-w-cal-weekdays')
+				WEEKDAY_LABELS.forEach(function (label) {
+					weekdayRow.appendChild(W.el('span', '', label))
+				})
+				panel.appendChild(weekdayRow)
+
+				var grid = W.el('div', 'cafe-w-cal-grid')
+				var startOffset = new Date(viewYear, viewMonth, 1).getDay()
+				var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
+				var daysInPrevMonth = new Date(viewYear, viewMonth, 0).getDate()
+				var totalCells = Math.ceil((startOffset + daysInMonth) / 7) * 7
+				var today = startOfDay(new Date())
+				for (var i = 0; i < totalCells; i++) {
+					var dayNum, cellMonth, cellYear, inMonth
+					if (i < startOffset) {
+						dayNum = daysInPrevMonth - startOffset + 1 + i
+						cellMonth = viewMonth - 1
+						cellYear = viewYear
+						inMonth = false
+					} else if (i < startOffset + daysInMonth) {
+						dayNum = i - startOffset + 1
+						cellMonth = viewMonth
+						cellYear = viewYear
+						inMonth = true
+					} else {
+						dayNum = i - startOffset - daysInMonth + 1
+						cellMonth = viewMonth + 1
+						cellYear = viewYear
+						inMonth = false
+					}
+					if (cellMonth < 0) {
+						cellMonth = 11
+						cellYear--
+					}
+					if (cellMonth > 11) {
+						cellMonth = 0
+						cellYear++
+					}
+					var cellDate = new Date(cellYear, cellMonth, dayNum)
+					var btn = W.el('button', 'cafe-w-cal-day', String(dayNum))
+					btn.type = 'button'
+					if (!inMonth) btn.classList.add('outside')
+					if (sameDay(cellDate, today)) btn.classList.add('today')
+					if (sameDay(cellDate, selected)) btn.classList.add('selected')
+					if (min && cellDate < min) {
+						btn.disabled = true
+						btn.classList.add('disabled')
+					} else {
+						btn.addEventListener(
+							'click',
+							(function (date) {
+								return function () {
+									selectDate(date)
+								}
+							})(cellDate)
+						)
+					}
+					grid.appendChild(btn)
+				}
+				panel.appendChild(grid)
+			}
+			function openPanel() {
+				if (panel) return
+				closePickerPanels()
+				panel = W.el('div', 'cafe-w-picker-panel cafe-w-cal-panel')
+				drawCalendar()
+				document.body.appendChild(panel)
+				var rect = t.trigger.getBoundingClientRect()
+				panel.style.left = rect.left + 'px'
+				panel.style.top = rect.bottom + 4 + 'px'
+			}
+			t.trigger.addEventListener('click', function () {
+				if (panel) closePanel()
+				else openPanel()
+			})
+			return {
+				el: t.trigger,
+				getValue: function () {
+					return selected
+				},
+			}
+		}
+
+		function buildTimePicker(opts) {
+			var intervalMinutes = opts.intervalMinutes || 60
+			var selectedMinutes = opts.initialMinutes
+			var t = pickerTrigger('cafe-w-schedule-time')
+			var panel = null
+
+			function refresh() {
+				t.valueEl.textContent = formatPickerTime(selectedMinutes)
+			}
+			refresh()
+
+			function closePanel() {
+				if (panel) {
+					panel.remove()
+					panel = null
+				}
+			}
+			function openPanel() {
+				if (panel) return
+				closePickerPanels()
+				panel = W.el('div', 'cafe-w-picker-panel cafe-w-time-panel')
+				var totalOptions = (24 * 60) / intervalMinutes
+				var selectedOption = null
+				for (var i = 0; i < totalOptions; i++) {
+					var minutes = i * intervalMinutes
+					var option = W.el('button', 'cafe-w-time-option', formatPickerTime(minutes))
+					option.type = 'button'
+					if (minutes === selectedMinutes) {
+						option.classList.add('selected')
+						selectedOption = option
+					}
+					option.addEventListener(
+						'click',
+						(function (m) {
+							return function () {
+								selectedMinutes = m
+								refresh()
+								closePanel()
+								if (opts.onChange) opts.onChange(m)
+							}
+						})(minutes)
+					)
+					panel.appendChild(option)
+				}
+				document.body.appendChild(panel)
+				var rect = t.trigger.getBoundingClientRect()
+				panel.style.left = rect.left + 'px'
+				panel.style.top = rect.bottom + 4 + 'px'
+				if (selectedOption) selectedOption.scrollIntoView({ block: 'center' })
+			}
+			t.trigger.addEventListener('click', function () {
+				if (panel) closePanel()
+				else openPanel()
+			})
+			return {
+				el: t.trigger,
+				getValue: function () {
+					return selectedMinutes
+				},
+			}
+		}
+
+		function openSchedule() {
+			var container = W.el('div', 'cafe-w-schedule')
+			var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+			container.appendChild(
+				W.el(
+					'p',
+					'cafe-w-schedule-hint',
+					'The post goes out at this time, in your timezone (' +
+						timezone +
+						'). Until then it stays in Drafts and you can keep editing it.'
+				)
+			)
+			var row = W.el('div', 'cafe-w-schedule-row')
+			var now = new Date()
+			var start = S.scheduledAt ? new Date(S.scheduledAt) : new Date(now.getTime() + 60 * 60 * 1000)
+			start.setSeconds(0, 0)
+			if (!S.scheduledAt) start.setMinutes(0)
+
+			var datePicker = buildDatePicker({ initial: start, min: now })
+			var timePicker = buildTimePicker({ initialMinutes: start.getHours() * 60 + start.getMinutes() })
+			row.appendChild(datePicker.el)
+			row.appendChild(timePicker.el)
+			container.appendChild(row)
+
+			CAFE.dialog({
+				title: 'Schedule for later',
+				body: container,
+				onClose: closePickerPanels,
+				actions: [
+					{
+						label: 'Cancel',
+						kind: 'outline',
+						onClick: function (d) {
+							closePickerPanels()
+							d.close()
+						},
+					},
+					{
+						label: 'Schedule',
+						kind: 'solid',
+						onClick: function (d) {
+							var date = datePicker.getValue()
+							var minutes = timePicker.getValue()
+							var picked = new Date(date)
+							picked.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0)
+							if (!(picked.getTime() > Date.now())) {
+								d.setError('Pick a time in the future')
+								return
+							}
+							var local =
+								picked.getFullYear() +
+								'-' +
+								pad2(picked.getMonth() + 1) +
+								'-' +
+								pad2(picked.getDate()) +
+								' ' +
+								pad2(picked.getHours()) +
+								':' +
+								pad2(picked.getMinutes()) +
+								':00'
+							d.setBusy(true)
+							options.onSchedule(local).then(
+								function () {
+									d.setBusy(false)
+									closePickerPanels()
+									d.close()
+									dialog.close()
+								},
+								function (error) {
+									d.setBusy(false)
+									d.setError(error.message)
+								}
+							)
+						},
+					},
+				],
+			})
+		}
+
+		function doUnschedule() {
+			dialog.setBusy(true)
+			CAFE.api('cafe.api.unschedule_post', { post: S.postId }).then(
+				function () {
+					S.scheduledAt = null
+					dialog.setBusy(false)
+					CAFE.toast('Schedule cancelled')
+					dialog.close()
+				},
+				function (error) {
+					dialog.setBusy(false)
+					dialog.setError(error.message)
+				}
+			)
+		}
+
+		var viewActions = [
+			{
+				label: 'Cancel',
+				kind: 'outline',
+				left: true,
+				onClick: function (d) {
+					d.close()
+				},
+			},
+		]
+		// Only a not-yet-published draft can be scheduled - an already-live post
+		// has nothing left to schedule, same restriction as Gameplan's own
+		// GPDraft.schedule (discussion drafts only, never an edit-in-progress).
+		// Archived is excluded too, not just Published: onSchedule() below
+		// always saves as status 'Draft' outright (unlike the ordinary Save
+		// button, which keeps Archived as Archived via secondaryStatus()), so
+		// offering it here would silently un-archive a post the moment
+		// someone scheduled it, with no warning that archiving was undone.
+		if (S.status === 'Draft') {
+			viewActions.push({
+				label: S.scheduledAt ? 'Reschedule' : 'Schedule for later',
+				kind: 'outline',
+				onClick: openSchedule,
+			})
+			if (S.scheduledAt) viewActions.push({ label: 'Cancel schedule', kind: 'outline', onClick: doUnschedule })
+		}
+		viewActions.push({
+			label: S.status === 'Published' ? 'Update' : 'Publish',
+			kind: 'solid',
+			onClick: function () {
+				options.onPublish()
+			},
+		})
 
 		dialog = CAFE.dialog({
 			title: 'Story Preview',
 			body: body,
 			wide: true,
+			// Every way out of this dialog clears the draft, not just the
+			// explicit Cancel button - the X button, Escape, and an
+			// outside click all land here too (CAFE.dialog's own close()
+			// always calls onClose). Otherwise a session's leftover
+			// sessionStorage draft (title/excerpt/cover/tags from whatever
+			// post was last open here) bleeds into the next, unrelated
+			// post's Story Preview - the draft is only meant to survive
+			// an actual page refresh, not outlive the dialog itself.
 			onClose: function () {
 				fileInput.remove()
+				CAFE.clearDraft(DRAFT_KEY)
 			},
-			actions: [
-				{
-					label: 'Cancel',
-					kind: 'outline',
-					onClick: function (d) {
-						CAFE.clearDraft(DRAFT_KEY)
-						d.close()
-					},
-				},
-				{
-					label: S.status === 'Published' ? 'Update' : 'Publish',
-					kind: 'solid',
-					onClick: function () {
-						options.onPublish()
-					},
-				},
+			actions: viewActions.concat([
 				{
 					label: 'Cancel',
 					kind: 'outline',
@@ -523,9 +1027,18 @@
 					},
 				},
 				{ label: 'Done', kind: 'solid', onClick: confirmAdjust },
-			],
+			]),
 		})
 		dialog.root.classList.add('cafe-w-story-dialog')
+		// "How this looks in the feed" sits on the same line as the dialog's own
+		// "Story Preview" title, not above the preview card - wraps the h2
+		// CAFE.dialog built in place, rather than changing that shared API just
+		// for this one dialog.
+		var h2 = dialog.root.querySelector('h2')
+		var titleRow = W.el('div', 'cafe-w-story-title-row')
+		h2.parentNode.insertBefore(titleRow, h2)
+		titleRow.appendChild(h2)
+		titleRow.appendChild(W.el('span', 'cafe-w-story-side-label', 'How this looks in the feed'))
 		drawView()
 		return dialog
 	}

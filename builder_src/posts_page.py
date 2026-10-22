@@ -1,9 +1,11 @@
-"""The Profile posts page: /profile/<username>/posts.
+"""The Profile posts page: /profile/<username>/posts - "Manage all posts".
 
-Visitors see one list of the person's published posts. On your own profile there
-are three tabs. Published is rendered by the server like the visitor's list.
-Drafts and Archived are fetched by posts.js when you open the tab, because
-they are private and often empty."""
+Visitors see one list of the person's published posts. On your own profile
+there are four tabs. Published is rendered by the server like the visitor's
+list. Drafts, Archived and Saved are fetched by posts.js when you open the
+tab, because they are private and often empty - Saved used to live on the
+Settings page, but it's "your posts" in spirit (even if you didn't write
+them), not account management."""
 
 from blocks import (
 	INK,
@@ -24,7 +26,7 @@ from data_scripts import HELPERS, POST_ROWS, SAMPLE_POST, indent
 from layout import build_mobile_header, crumb_link, page_layout
 from post_row import build_post_row, draft_row_template
 
-TABS = [("published", "Published"), ("drafts", "Drafts"), ("archived", "Archived")]
+TABS = [("published", "Published"), ("drafts", "Drafts"), ("archived", "Archived"), ("saved", "Saved")]
 TAB_STYLES = {
 	"position": "relative",
 	"display": "flex",
@@ -249,6 +251,59 @@ def build_other_panel():
 	return raw_block("Drafts and archived panel", panel)
 
 
+def build_saved_panel():
+	"""Posts you've saved from anywhere, not just your own - posts.js fills it
+	when the tab opens (list_saved_posts, not a status filter on your own
+	Post rows like Drafts/Archived, so it gets its own panel/row shape:
+	author name, a remove button, no edit link). Moved here from Settings -
+	it belongs with the rest of "your posts", not account management."""
+	skeleton = "".join(
+		html_el(
+			"div",
+			["cafe-skeleton"],
+			None,
+			{"height": "80px", "borderRadius": "10px", "backgroundColor": SURFACE_2},
+		)
+		for _ in range(3)
+	)
+	panel = html_el(
+		"div",
+		None,
+		{"id": "cafe-panel-saved", "hidden": "hidden"},
+		None,
+		[
+			html_el(
+				"div",
+				["cafe-loading"],
+				{"hidden": "hidden"},
+				{"marginTop": "16px", "flexDirection": "column", "gap": "20px"},
+				[skeleton],
+			),
+			html_el(
+				"p",
+				["cafe-saved-empty"],
+				{"hidden": "hidden"},
+				{"margin": "24px 0 0", **text_style(14, "420", MUTED)},
+				text="No saved posts yet.",
+			),
+			html_el(
+				"p",
+				["cafe-saved-error"],
+				{"hidden": "hidden"},
+				{"margin": "24px 0 0", **text_style(14, "420", MUTED)},
+				text="Couldn't load your saved posts. Please try again.",
+			),
+			html_el(
+				"div",
+				["cafe-saved-list"],
+				None,
+				{"display": "flex", "flexDirection": "column", "marginTop": "16px"},
+			),
+		],
+	)
+	return raw_block("Saved panel", panel)
+
+
 def build_not_found():
 	return when(
 		raw_block(
@@ -281,7 +336,13 @@ def build_posts_page(shell_id, shell_block):
 			"Posts page",
 			attrs={"id": "cafe-posts-page"},
 			custom={"data-tab": "", "data-own": "", "data-user": ""},
-			children=[build_title_row(), build_tabs(), build_published_panel(), build_other_panel()],
+			children=[
+				build_title_row(),
+				build_tabs(),
+				build_published_panel(),
+				build_other_panel(),
+				build_saved_panel(),
+			],
 		),
 		"pp.found",
 	)
@@ -323,7 +384,7 @@ else:
     info = frappe.db.get_value("User", user_id, ["name", "full_name", "username"], as_dict=True)
     username = info.username or info.name.split("@")[0]
     is_own = user_id == frappe.session.user
-    tab = tab_param if (is_own and tab_param in ("drafts", "archived")) else "published"
+    tab = tab_param if (is_own and tab_param in ("drafts", "archived", "saved")) else "published"
     if identifier and username != identifier:
         redirect("/profile/" + path_segment(username) + "/posts" + ("?tab=" + tab if tab != "published" else ""))
 

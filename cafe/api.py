@@ -1,3 +1,4 @@
+import re
 import secrets
 import string
 
@@ -11,6 +12,10 @@ LOGIN_CODE_CACHE_PREFIX = "login_code:"
 CODE_EXPIRY_SEC = 10 * 60
 CODE_MAX_ATTEMPTS = 5
 DEV_SHORTCUT_CODE = "000000"
+# A username becomes a URL path segment (/profile/<username>) - letters,
+# digits, underscore and hyphen can't break that; anything else (/, ?, #,
+# spaces, ...) could produce a broken or hijacked-looking profile link.
+USERNAME_RE = re.compile(r"^[A-Za-z0-9_-]{3,30}$")
 
 
 def _generate_code():
@@ -64,6 +69,8 @@ def send_signup_code(email: str, username: str):
 		frappe.throw(_("An account with this email already exists. Please log in instead."))
 
 	username = username.strip()
+	if not USERNAME_RE.match(username):
+		frappe.throw(_("Username must be 3-30 characters: letters, numbers, underscore or hyphen only."))
 	if frappe.db.exists("User", {"username": username}):
 		frappe.throw(_("This username is already taken. Please choose another."))
 
@@ -147,7 +154,15 @@ def verify_signup_code(email: str, code: str):
 @rate_limit(limit=10, seconds=60 * 60)
 def send_login_code(email: str):
 	email = email.strip().lower()
-	if not frappe.db.exists("User", email):
+	# Scoped to Website User, not just "the account exists" - without this,
+	# a System User account sharing this email (an admin/ERPNext account on
+	# this same site) could log in through this passwordless flow instead
+	# of their real password, bypassing role_home_page's redirect logic
+	# entirely (hooks.py only applies it to Website User). Same message for
+	# "doesn't exist" and "exists but isn't a Website User" on purpose - see
+	# the comment below on why this throws plainly rather than staying
+	# non-committal, which would otherwise leak which case this is.
+	if frappe.db.get_value("User", email, "user_type") != "Website User":
 		# Deliberately explicit (unlike a typical "if this email exists, we
 		# sent a code" non-committal response) - this is a low-stakes social
 		# app, not a banking login, and the UX cost of a genuine visitor
@@ -260,6 +275,10 @@ def get_profile(user: str | None = None):
 	profile.username = profile.username or profile.name.split("@")[0]
 	profile.post_count = frappe.db.count("Post", {"author": user, "status": "Published"})
 
+	from cafe import points
+
+	profile.points = points.total(user)
+
 	profile.education = frappe.db.get_all(
 		"Education Entry",
 		filters={"user": user},
@@ -278,23 +297,62 @@ def get_profile(user: str | None = None):
 @frappe.whitelist()
 def list_profile_posts(user: str | None = None, limit: int = 3):
 	user = _resolve_user(user)
-	rows = frappe.db.get_all(
+	limit = int(limit)
+	post_fields = [
+		"name",
+		"title",
+		"display_title",
+		"content",
+		"excerpt",
+		"post_type",
+		"cover_image",
+		"attachment",
+		"creation",
+	]
+
+	own = frappe.db.get_all(
 		"Post",
 		filters={"author": user, "status": "Published"},
-		fields=[
-			"name",
-			"title",
-			"display_title",
-			"content",
-			"excerpt",
-			"post_type",
-			"cover_image",
-			"attachment",
-			"creation",
-		],
+		fields=post_fields,
 		order_by="creation desc",
-		limit_page_length=int(limit),
+		limit_page_length=limit,
 	)
+	for row in own:
+		row.is_repost = False
+		row.sort_date = row.creation
+
+	repost_rows = frappe.db.get_all(
+		"Repost",
+		filters={"user": user},
+		fields=["post", "creation"],
+		order_by="creation desc",
+		limit_page_length=limit,
+	)
+	reposted_posts = {}
+	if repost_rows:
+		reposted_posts = {
+			p.name: p
+			for p in frappe.db.get_all(
+				"Post",
+				filters={"name": ["in", [r.post for r in repost_rows]], "status": "Published"},
+				fields=[*post_fields, "author", "author_name"],
+			)
+		}
+	reposts = []
+	for r in repost_rows:
+		post = reposted_posts.get(r.post)
+		# Reposting your own article (an odd but allowed action) shouldn't
+		# make it show up twice on your own profile.
+		if not post or post.author == user:
+			continue
+		post.is_repost = True
+		post.sort_date = r.creation
+		reposts.append(post)
+
+	rows = sorted(own + reposts, key=lambda r: r.sort_date, reverse=True)
+	if limit:
+		rows = rows[:limit]
+
 	counts = {}
 	if rows:
 		for c in frappe.db.get_all(
@@ -318,6 +376,74 @@ def get_comment_counts(posts: str | list):
 	return counts
 
 
+@frappe.whitelist()
+def get_repost_counts(posts: str | list):
+	if isinstance(posts, str):
+		posts = frappe.parse_json(posts)
+	if not posts:
+		return {}
+	counts = {}
+	for r in frappe.db.get_all("Repost", filters={"post": ["in", posts]}, fields=["post"]):
+		counts[r.post] = counts.get(r.post, 0) + 1
+	return counts
+
+
+@frappe.whitelist()
+def filter_by_tags(tags: str | list, query: str | None = None, before: str | None = None, limit: int = 10):
+	"""The home feed's category chips (home_page.py's TAG_LABELS) match a post
+	by exact tag, Medium-style: a post "belongs" to a chip only if that exact
+	string is one of its own comma-separated tags - the same free-text field
+	the write flow's Tags widget already edits (write_preview.js), not a
+	separate category field, and not any inference from the post's actual
+	words. Matches ANY of the given tags (a reader can select several chips
+	at once, OR'd together). FIND_IN_SET needs a clean comma list with no
+	spaces around each element; splitTags()/the tagList.join(', ') that saves
+	it always use ", " as the separator, so the REPLACE below is exact, not a
+	loose whitespace strip. `query`, if present, AND's in a plain title
+	search - same matching the plain listing's search box already does,
+	just also constrained to the selected tags.
+
+	`before` (the last-seen row's own `creation`, not a page number) is what
+	keeps this stable while new posts are being published: an OFFSET counts
+	rows from the top fresh on every request, so a post published between
+	two page loads shifts everything after it down by one, and the next
+	page either repeats the last row or skips one. Paging by "older than
+	the last thing you actually saw" has no such position to drift - it
+	stays correct regardless of what's been published above it since."""
+	if isinstance(tags, str):
+		tags = frappe.parse_json(tags)
+	tags = [t for t in (tags or []) if t]
+	if not tags:
+		return []
+	conditions = ["status = 'Published'"]
+	params = []
+	tag_match = " OR ".join(["FIND_IN_SET(%s, REPLACE(tags, ', ', ','))"] * len(tags))
+	conditions.append(f"({tag_match})")
+	params.extend(tags)
+	query = (query or "").strip()
+	if query:
+		conditions.append("title LIKE %s")
+		params.append(f"%{query}%")
+	if before:
+		conditions.append("creation < %s")
+		params.append(before)
+	limit = min(int(limit), 50)
+	params.append(limit + 1)
+	# nosemgrep: frappe-sql-format-injection (only %s placeholders are formatted in; every value is a parameter)
+	return frappe.db.sql(
+		f"""
+		SELECT name, title, display_title, content, excerpt, post_type, attachment,
+			cover_image, author, author_name, author_image, publication, creation
+		FROM `tabPost`
+		WHERE {" AND ".join(conditions)}
+		ORDER BY creation DESC
+		LIMIT %s
+		""",
+		params,
+		as_dict=True,
+	)
+
+
 # Title/logo for a list of publication handles, keyed by handle - what the
 # Home feed's client-rendered rows (home.js) need to show a publication's own
 # identity on its posts, same as the server-rendered first page already does
@@ -334,6 +460,42 @@ def get_publications(handles: str | list):
 		"Publication", filters={"name": ["in", handles]}, fields=["name", "title", "logo"]
 	)
 	return {row.name: row for row in rows}
+
+
+@frappe.whitelist()
+def search_feed(query: str, start: int = 0, limit: int = 10):
+	"""Full-text search for the home feed's search box (home.js) - real
+	MATCH/AGAINST over title, display_title and excerpt (the FULLTEXT index
+	this needs: cafe/patches/v1_0/add_post_fulltext_index.py), not a plain
+	title LIKE. content is left out on purpose: it's stored as raw HTML, and
+	matching against it would surface markup, not the words someone actually
+	typed; excerpt already stands in for it - every published post has one,
+	auto-filled from its own content at publish time if the author didn't
+	write one (write_core.js's W.autoExcerpt strips the HTML first).
+	Natural language mode, so MariaDB's own relevance ranking orders the
+	results, not creation date - this only runs for an actual query; with
+	none, home.js stays on its plain creation-desc browse listing, where
+	"relevance" has no meaning. Returns one extra row past `limit`, same as
+	the plain listing, so the caller can tell whether there's more to load."""
+	query = (query or "").strip()
+	if not query:
+		return []
+	limit = min(int(limit), 50)
+	start = max(int(start), 0)
+	rows = frappe.db.sql(
+		"""
+		SELECT name, title, display_title, content, excerpt, post_type, attachment,
+			cover_image, author, author_name, author_image, publication, creation
+		FROM `tabPost`
+		WHERE status = 'Published'
+			AND MATCH(title, display_title, excerpt) AGAINST (%(query)s IN NATURAL LANGUAGE MODE)
+		ORDER BY MATCH(title, display_title, excerpt) AGAINST (%(query)s IN NATURAL LANGUAGE MODE) DESC
+		LIMIT %(limit)s OFFSET %(start)s
+		""",
+		{"query": query, "limit": limit + 1, "start": start},
+		as_dict=True,
+	)
+	return rows
 
 
 @frappe.whitelist()
@@ -365,17 +527,36 @@ def delete_account():
 
 @frappe.whitelist()
 def list_people(query: str | None = None):
+	"""Every caller (the mention search, the Share dialog, and the Explore/
+	search page) sees the same ranking: highest cafe points first - the
+	Explore page doubles as a leaderboard, so there's one ordering, not a
+	special-cased sort just for that page. Fetches every match with no page
+	cap first (limit_page_length=0 - points aren't indexed, so the top 50 by
+	points can't be known without ranking everyone), then slices after
+	sorting."""
 	filters = {"enabled": 1, "user_type": "Website User", "name": ["!=", "Guest"]}
 	if query:
 		filters["full_name"] = ["like", f"%{query}%"]
 
-	return frappe.db.get_all(
-		"User",
-		filters=filters,
-		fields=["name", "full_name", "user_image", "username"],
-		order_by="full_name asc",
-		limit_page_length=50,
+	people = frappe.db.get_all(
+		"User", filters=filters, fields=["name", "full_name", "user_image", "username"], limit_page_length=0
 	)
+	if not people:
+		return people
+
+	totals = {
+		row.user: int(row.total)
+		for row in frappe.db.sql(
+			"""select user, coalesce(sum(points), 0) as total from `tabCafe Points Log`
+			where user in %(users)s group by user""",
+			{"users": [p.name for p in people]},
+			as_dict=True,
+		)
+	}
+	for p in people:
+		p.points = totals.get(p.name, 0)
+	people.sort(key=lambda p: (-p.points, (p.full_name or "").lower()))
+	return people[:50]
 
 
 def _publication_role(publication, user=None):
@@ -454,6 +635,13 @@ def list_publications(query: str | None = None):
 
 @frappe.whitelist()
 def leave_publication(handle: str):
+	role = frappe.db.get_value(
+		"Publication Member", {"publication": handle, "user": frappe.session.user}, "role"
+	)
+	if role == "Admin":
+		admin_count = frappe.db.count("Publication Member", {"publication": handle, "role": "Admin"})
+		if admin_count <= 1:
+			frappe.throw(_("A publication needs at least one admin - make someone else admin first"))
 	frappe.db.delete("Publication Member", {"publication": handle, "user": frappe.session.user})
 	frappe.db.commit()  # nosemgrep: frappe-manual-commit (saved at once; the page reloads the membership right after)
 	return "success"
@@ -709,7 +897,9 @@ def get_post(post_id: str):
 	post.check_permission("read")
 	post = post.as_dict()
 
-	post.like_count = frappe.db.count("Like", {"reference_doctype": "Post", "reference_name": post_id})
+	post.like_count = frappe.db.count(
+		"Like", {"reference_doctype": "Post", "reference_name": post_id, "is_downvote": 0}
+	)
 	post.comment_count = frappe.db.count("Post Comment", {"post": post_id})
 	post.liked_by_me = bool(
 		frappe.session.user != "Guest"
@@ -718,6 +908,14 @@ def get_post(post_id: str):
 			{"reference_doctype": "Post", "reference_name": post_id, "user": frappe.session.user},
 		)
 	)
+
+	from cafe import points
+
+	# The viewer's own total, not the post's - rides along here because this
+	# is already the one call the comments UI makes per page load, and it's
+	# what decides whether the downvote icon unlocks on this page (see
+	# post.js).
+	post.my_points = points.total(frappe.session.user) if frappe.session.user != "Guest" else 0
 	post.tags = [t.strip() for t in (post.tags or "").split(",") if t.strip()]
 	# Older Image posts predate the Images table and only have the single
 	# legacy `attachment` field — surface it the same way so the frontend
@@ -729,6 +927,15 @@ def get_post(post_id: str):
 	post.saved_by_me = bool(
 		frappe.session.user != "Guest"
 		and frappe.db.exists("Saved Post", {"post": post_id, "user": frappe.session.user})
+	)
+	post.reposted_by_me = bool(
+		frappe.session.user != "Guest"
+		and frappe.db.exists("Repost", {"post": post_id, "user": frappe.session.user})
+	)
+	post.can_flag = bool(
+		frappe.session.user != "Guest"
+		and frappe.session.user != post.author
+		and post.my_points >= points.FLAG_THRESHOLD
 	)
 
 	return post
@@ -743,7 +950,7 @@ def _check_post_visible(post_id):
 
 
 @frappe.whitelist()
-def toggle_like(reference_doctype: str, reference_name: str):
+def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool = False):
 	user = frappe.session.user
 	if user == "Guest":
 		frappe.throw(_("Not permitted"), frappe.PermissionError)
@@ -755,39 +962,77 @@ def toggle_like(reference_doctype: str, reference_name: str):
 			frappe.throw(_("Not found"), frappe.DoesNotExistError)
 		_check_post_visible(parent_post)
 
-	existing = frappe.db.exists(
-		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name, "user": user}
+	from cafe import points
+
+	if is_downvote:
+		# Downvoting is the most abuse-prone action, gated furthest out, and
+		# scoped to comments only so an article's author never feels
+		# personally downvoted.
+		if reference_doctype != "Post Comment":
+			frappe.throw(_("Only comments can be downvoted"))
+		if points.total(user) < points.DOWNVOTE_THRESHOLD:
+			frappe.throw(
+				_("You need {0} cafe points to downvote").format(points.DOWNVOTE_THRESHOLD),
+				frappe.PermissionError,
+			)
+
+	if reference_doctype == "Post":
+		owner = frappe.db.get_value("Post", reference_name, "author")
+		upvote_reason = points.ARTICLE_UPVOTE
+	else:
+		owner = frappe.db.get_value("Post Comment", reference_name, "comment_by")
+		upvote_reason = points.COMMENT_UPVOTE
+	points_reason = points.COMMENT_DOWNVOTE if is_downvote else upvote_reason
+
+	# At most one vote per (reference, user) - upvote and downvote are
+	# mutually exclusive, like Reddit/HN. Clicking the same vote again clears
+	# it; clicking the other one switches it.
+	existing = frappe.db.get_value(
+		"Like",
+		{"reference_doctype": reference_doctype, "reference_name": reference_name, "user": user},
+		["name", "is_downvote"],
+		as_dict=True,
 	)
 	if existing:
-		frappe.delete_doc("Like", existing, ignore_permissions=True)
-		liked = False
-	else:
+		# was_downvote can only be true for a Post Comment - Posts can never
+		# have a downvote Like row (the gate above rejects creating one).
+		was_downvote = bool(existing.is_downvote)
+		if _delete_ignoring_already_gone("Like", existing.name):
+			old_reason = points.COMMENT_DOWNVOTE if was_downvote else upvote_reason
+			points.award(
+				owner, 1 if was_downvote else -1, old_reason, reference_doctype, reference_name, actor=user
+			)
+
+	active = not existing or bool(existing.is_downvote) != is_downvote
+	if active:
 		like = frappe.get_doc(
 			{
 				"doctype": "Like",
 				"reference_doctype": reference_doctype,
 				"reference_name": reference_name,
+				"is_downvote": 1 if is_downvote else 0,
 			}
 		)
 		like.flags.ignore_permissions = True
-		like.insert()
-		liked = True
+		if _insert_ignoring_concurrent_duplicate(like):
+			points.award(
+				owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user
+			)
 
-		if reference_doctype == "Post":
-			from cafe.follow import _notify
+			if not is_downvote:
+				from cafe.follow import _notify
 
-			post_author = frappe.db.get_value("Post", reference_name, "author")
-			_notify(post_author, user, "Like", "liked your post", "Post", reference_name)
-		elif reference_doctype == "Post Comment":
-			from cafe.follow import _notify
+				if reference_doctype == "Post":
+					_notify(owner, user, "Like", "liked your post", "Post", reference_name)
+				else:
+					_notify(owner, user, "Like", "liked your comment", "Post Comment", reference_name)
 
-			comment_author = frappe.db.get_value("Post Comment", reference_name, "comment_by")
-			_notify(comment_author, user, "Like", "liked your comment", "Post Comment", reference_name)
-
+	liked = active and not is_downvote
+	disliked = active and is_downvote
 	count = frappe.db.count(
-		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name}
+		"Like", {"reference_doctype": reference_doctype, "reference_name": reference_name, "is_downvote": 0}
 	)
-	return {"liked": liked, "count": count}
+	return {"liked": liked, "disliked": disliked, "count": count}
 
 
 @frappe.whitelist()
@@ -808,25 +1053,42 @@ def list_comments(post: str):
 		order_by="creation desc",
 	)
 
-	liked_names = set()
-	if rows and frappe.session.user != "Guest":
-		liked_names = set(
+	usernames = {}
+	if rows:
+		usernames = dict(
 			frappe.db.get_all(
-				"Like",
-				filters={
-					"reference_doctype": "Post Comment",
-					"reference_name": ["in", [r.name for r in rows]],
-					"user": frappe.session.user,
-				},
-				pluck="reference_name",
+				"User",
+				filters={"name": ["in", list({r.comment_by for r in rows})]},
+				fields=["name", "username"],
+				as_list=True,
 			)
 		)
+	for row in rows:
+		row.comment_by_username = usernames.get(row.comment_by) or row.comment_by.split("@")[0]
+
+	liked_names = set()
+	disliked_names = set()
+	if rows and frappe.session.user != "Guest":
+		for vote in frappe.db.get_all(
+			"Like",
+			filters={
+				"reference_doctype": "Post Comment",
+				"reference_name": ["in", [r.name for r in rows]],
+				"user": frappe.session.user,
+			},
+			fields=["reference_name", "is_downvote"],
+		):
+			(disliked_names if vote.is_downvote else liked_names).add(vote.reference_name)
 
 	like_counts = {}
 	if rows:
 		for reference_name in frappe.db.get_all(
 			"Like",
-			filters={"reference_doctype": "Post Comment", "reference_name": ["in", [r.name for r in rows]]},
+			filters={
+				"reference_doctype": "Post Comment",
+				"reference_name": ["in", [r.name for r in rows]],
+				"is_downvote": 0,
+			},
 			pluck="reference_name",
 		):
 			like_counts[reference_name] = like_counts.get(reference_name, 0) + 1
@@ -834,6 +1096,7 @@ def list_comments(post: str):
 	for row in rows:
 		row.like_count = like_counts.get(row.name, 0)
 		row.liked_by_me = row.name in liked_names
+		row.disliked_by_me = row.name in disliked_names
 	return rows
 
 
@@ -845,9 +1108,15 @@ def delete_comment(name: str):
 
 	# Threading is one level deep (see add_comment) — deleting a top-level
 	# comment takes its replies with it rather than leaving them orphaned.
+	deleted_names = [name]
 	if not comment.parent_comment:
+		deleted_names += frappe.get_all("Post Comment", filters={"parent_comment": name}, pluck="name")
 		frappe.db.delete("Post Comment", {"parent_comment": name})
 	frappe.delete_doc("Post Comment", name, ignore_permissions=True)
+	# Post.on_trash does this same cleanup for a deleted post's own Likes -
+	# a comment's reference_name is a plain Data field, not a Link, so
+	# Frappe's dynamic-link cleanup never catches this relationship either.
+	frappe.db.delete("Like", {"reference_doctype": "Post Comment", "reference_name": ["in", deleted_names]})
 	return "success"
 
 
@@ -898,7 +1167,11 @@ def add_comment(post: str, content: str, parent_comment: str | None = None):
 			comment.name,
 		)
 
-	return comment.as_dict()
+	result = comment.as_dict()
+	result["comment_by_username"] = (
+		frappe.db.get_value("User", frappe.session.user, "username") or frappe.session.user.split("@")[0]
+	)
+	return result
 
 
 @frappe.whitelist()
@@ -938,6 +1211,12 @@ def update_profile(
 
 	doc.flags.ignore_permissions = True
 	doc.save()
+
+	from cafe import points
+
+	if points.has_completed_profile(doc):
+		points.award_once(user, 10, points.PROFILE_COMPLETED)
+
 	return "success"
 
 
@@ -960,6 +1239,12 @@ def add_education(
 		}
 	)
 	entry.insert()
+
+	from cafe import points
+
+	if points.has_completed_profile(frappe.get_doc("User", frappe.session.user)):
+		points.award_once(frappe.session.user, 10, points.PROFILE_COMPLETED)
+
 	return entry.as_dict()
 
 
@@ -1012,6 +1297,12 @@ def add_work(
 		}
 	)
 	entry.insert()
+
+	from cafe import points
+
+	if points.has_completed_profile(frappe.get_doc("User", frappe.session.user)):
+		points.award_once(frappe.session.user, 10, points.PROFILE_COMPLETED)
+
 	return entry.as_dict()
 
 
@@ -1045,6 +1336,36 @@ def delete_work(name: str):
 	return "success"
 
 
+def _insert_ignoring_concurrent_duplicate(doc):
+	"""Inserts doc, returning False instead of raising if a concurrent
+	request already inserted the same row first - the composite unique
+	index each of Saved Post/Repost/Like now has (see the
+	prevent_duplicate_reactions patch) is what actually makes that
+	possible to detect: without it, two concurrent toggles could both pass
+	an exists-check before either one inserted, creating two rows (and
+	double-awarding points) for what should be a single toggle - confirmed
+	with a 40-request concurrent stress test. The caller should skip
+	points/notifications when this returns False, since whichever request
+	actually won the race already did that."""
+	try:
+		doc.insert()
+		return True
+	except frappe.UniqueValidationError:
+		return False
+
+
+def _delete_ignoring_already_gone(doctype, name):
+	"""The reverse side of the same race: two concurrent "un-toggle" clicks
+	can both pass the exists-check before either deletes, so the second
+	delete would otherwise hit a clean DoesNotExistError instead of just
+	being a no-op. Returns whether it actually deleted something."""
+	try:
+		frappe.delete_doc(doctype, name, ignore_permissions=True)
+		return True
+	except frappe.DoesNotExistError:
+		return False
+
+
 @frappe.whitelist()
 def toggle_save_post(post: str):
 	user = frappe.session.user
@@ -1052,15 +1373,124 @@ def toggle_save_post(post: str):
 		frappe.throw(_("Not permitted"), frappe.PermissionError)
 	_check_post_visible(post)
 
+	from cafe import points
+
+	owner = frappe.db.get_value("Post", post, "author")
+
 	existing = frappe.db.exists("Saved Post", {"post": post, "user": user})
 	if existing:
-		frappe.delete_doc("Saved Post", existing, ignore_permissions=True)
+		if _delete_ignoring_already_gone("Saved Post", existing):
+			points.award(owner, -2, points.POST_SAVED, "Post", post, actor=user)
 		return {"saved": False}
 
 	doc = frappe.get_doc({"doctype": "Saved Post", "post": post})
 	doc.flags.ignore_permissions = True
-	doc.insert()
+	if _insert_ignoring_concurrent_duplicate(doc):
+		points.award(owner, 2, points.POST_SAVED, "Post", post, actor=user)
 	return {"saved": True}
+
+
+@frappe.whitelist()
+def toggle_repost(post: str):
+	user = frappe.session.user
+	if user == "Guest":
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+	_check_post_visible(post)
+
+	from cafe import points
+
+	# A cheap, low-stakes action compared to downvoting, but still gated so
+	# it isn't the very first thing a brand new account can do.
+	if points.total(user) < points.REPOST_THRESHOLD:
+		frappe.throw(
+			_("You need {0} cafe points to repost").format(points.REPOST_THRESHOLD), frappe.PermissionError
+		)
+
+	owner = frappe.db.get_value("Post", post, "author")
+
+	existing = frappe.db.exists("Repost", {"post": post, "user": user})
+	if existing:
+		if _delete_ignoring_already_gone("Repost", existing):
+			points.award(owner, -5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+		return {"reposted": False}
+
+	doc = frappe.get_doc({"doctype": "Repost", "post": post})
+	doc.flags.ignore_permissions = True
+	if _insert_ignoring_concurrent_duplicate(doc):
+		points.award(owner, 5, points.ARTICLE_REPOSTED, "Post", post, actor=user)
+
+		from cafe.follow import _notify
+
+		_notify(owner, user, "Repost", "reposted your post", "Post", post)
+
+	return {"reposted": True}
+
+
+FLAG_REASONS = ("Spam", "Harassment", "Misinformation", "Inappropriate content", "Other")
+
+
+@frappe.whitelist()
+def flag_post(post: str, reason: str, note: str | None = None):
+	user = frappe.session.user
+	if user == "Guest":
+		frappe.throw(_("Not permitted"), frappe.PermissionError)
+	_check_post_visible(post)
+
+	if reason not in FLAG_REASONS:
+		frappe.throw(_("Invalid reason"))
+
+	from cafe import points
+
+	# "Enough history to trust your judgement" - the highest-trust action
+	# before downvoting itself.
+	if points.total(user) < points.FLAG_THRESHOLD:
+		frappe.throw(
+			_("You need {0} cafe points to flag a post").format(points.FLAG_THRESHOLD), frappe.PermissionError
+		)
+
+	owner = frappe.db.get_value("Post", post, "author")
+	if owner == user:
+		frappe.throw(_("You can't flag your own post"))
+
+	if frappe.db.exists("Post Flag", {"post": post, "user": user}):
+		frappe.throw(_("You've already flagged this post"))
+
+	doc = frappe.get_doc({"doctype": "Post Flag", "post": post, "reason": reason, "note": note})
+	doc.flags.ignore_permissions = True
+	doc.insert()
+	return "success"
+
+
+@frappe.whitelist()
+def schedule_post(post: str, scheduled_at: str):
+	"""Stamp a draft with a future time; publish_due_posts (cafe/cafe/doctype/
+	post/post.py, the scheduler job) publishes it then, as this author. The
+	post stays a Draft (same as the Story Preview dialog's own "Save Draft")
+	until that happens. Mirrors Gameplan's GPDraft.schedule()."""
+	doc = frappe.get_doc("Post", post)
+	if doc.author != frappe.session.user:
+		frappe.throw(_("You're not allowed to schedule this post"), frappe.PermissionError)
+	if doc.status != "Draft":
+		frappe.throw(_("Only a draft can be scheduled"))
+	if not doc.title or not doc.content:
+		frappe.throw(_("Add a title and some content before scheduling"))
+
+	scheduled_at = frappe.utils.get_datetime(scheduled_at)
+	if scheduled_at <= frappe.utils.now_datetime():
+		frappe.throw(_("Pick a time in the future"))
+
+	doc.scheduled_at = scheduled_at
+	doc.save()
+	return doc.scheduled_at
+
+
+@frappe.whitelist()
+def unschedule_post(post: str):
+	doc = frappe.get_doc("Post", post)
+	if doc.author != frappe.session.user:
+		frappe.throw(_("You're not allowed to unschedule this post"), frappe.PermissionError)
+	doc.scheduled_at = None
+	doc.save()
 
 
 @frappe.whitelist()

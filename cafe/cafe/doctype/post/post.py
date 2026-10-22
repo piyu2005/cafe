@@ -49,6 +49,33 @@ class Post(Document):
 
 		if self.status == "Published" and not self.published_at:
 			self.published_at = frappe.utils.now_datetime()
+			# A published post has nothing left to schedule - stale otherwise if
+			# this was scheduled and then manually published early.
+			self.scheduled_at = None
+			from cafe import points
+
+			points.award_once(self.author, 2, points.ARTICLE_PUBLISHED, "Post", self.name)
+
+			# Same "first-send only" rule as chat's own mentions (cafe/chat.py)
+			# - editing a published post later doesn't re-notify or notify a
+			# newly-added @mention, only the post actually going live once does.
+			from cafe.chat import _extract_mentions
+			from cafe.follow import _notify
+
+			mentioned_ids = set(_extract_mentions(self.content))
+			if mentioned_ids:
+				valid_mentions = frappe.db.get_all(
+					"User", filters={"name": ["in", list(mentioned_ids)], "enabled": 1}, pluck="name"
+				)
+				for user in valid_mentions:
+					_notify(
+						recipient=user,
+						actor=self.author,
+						notif_type="Mention",
+						message="mentioned you in a post",
+						reference_doctype="Post",
+						reference_name=self.name,
+					)
 		if self.post_type == "Image" and self.images and not self.cover_image:
 			self.cover_image = self.images[0].image
 		if self.cover_image and self.has_value_changed("cover_image"):
@@ -57,9 +84,17 @@ class Post(Document):
 				self.cover_image = thumbnail_url
 
 	def on_trash(self):
+		# Collected before _delete_comment_thread runs - afterwards there's
+		# nothing left with this post, name to find them by.
+		comment_names = frappe.get_all("Post Comment", filters={"post": self.name}, pluck="name")
 		_delete_comment_thread(self.name)
 		frappe.db.delete("Saved Post", {"post": self.name})
+		frappe.db.delete("Repost", {"post": self.name})
 		frappe.db.delete("Like", {"reference_doctype": "Post", "reference_name": self.name})
+		if comment_names:
+			frappe.db.delete(
+				"Like", {"reference_doctype": "Post Comment", "reference_name": ["in", comment_names]}
+			)
 		frappe.db.set_value("Message", {"shared_post": self.name}, "shared_post", None)
 
 
@@ -144,3 +179,42 @@ def get_permission_query_conditions(user=None):
 	if user == "Administrator":
 		return ""
 	return f"(`tabPost`.status = 'Published' OR `tabPost`.author = {frappe.db.escape(user)})"
+
+
+def publish_due_posts():
+	"""Scheduler entry (scheduler_events["all"] in hooks.py, so about every few
+	minutes): publish every draft whose scheduled time has come, as its own
+	author, so the usual publish-time checks (publication role, etc.) run as
+	them, not as whoever's running the scheduler. A draft that can't publish -
+	lost publication access, anything else - keeps its content, loses its
+	scheduled time, and shows back up as a plain draft, with the reason in the
+	Error Log. Mirrors Gameplan's own publish_due_drafts (gp_draft.py)."""
+	due = frappe.get_all(
+		"Post",
+		filters=[
+			["status", "=", "Draft"],
+			["scheduled_at", "is", "set"],
+			["scheduled_at", "<=", frappe.utils.now_datetime()],
+		],
+		fields=["name", "author"],
+		order_by="scheduled_at asc",
+	)
+	for row in due:
+		# so the publish-time checks (publication role, etc.) run as the
+		# post's own author, not whoever's running the scheduler; always
+		# reset to Administrator below, in `finally`
+		frappe.set_user(row.author)  # nosemgrep: frappe-setuser
+		frappe.db.savepoint("scheduled_post")
+		try:
+			scheduled_at = frappe.db.get_value("Post", row.name, "scheduled_at", for_update=True)
+			if not scheduled_at or frappe.utils.get_datetime(scheduled_at) > frappe.utils.now_datetime():
+				continue
+			doc = frappe.get_doc("Post", row.name)
+			doc.status = "Published"
+			doc.save()
+		except Exception:
+			frappe.db.rollback(save_point="scheduled_post")
+			frappe.log_error(title=f"Scheduled post {row.name} could not be published")
+			frappe.db.set_value("Post", row.name, "scheduled_at", None, update_modified=False)
+		finally:
+			frappe.set_user("Administrator")  # nosemgrep: frappe-setuser (reverting the switch above)

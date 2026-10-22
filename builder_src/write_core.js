@@ -20,7 +20,17 @@
 		loaded: false,
 		status: 'Draft',
 		savedAt: null,
+		// The post's own `modified` timestamp as of the last load/save -
+		// threaded into every update so Frappe's own optimistic-concurrency
+		// check (document.py's check_if_latest) can tell a save here apart
+		// from one that raced a concurrent edit (another tab, or the
+		// scheduler's own publish_due_posts) instead of silently
+		// overwriting it. null until the first load/save gives us one -
+		// never sent for a brand-new post, which has no prior version to
+		// conflict with.
+		modified: null,
 		saving: null, // the status being saved
+		scheduledAt: null, // set while a Draft is scheduled to auto-publish later
 		coverRemoved: false,
 		// The publications this account can post under - Story Preview's
 		// "Publish to" picker. Fetched once at startup (see write_live.js),

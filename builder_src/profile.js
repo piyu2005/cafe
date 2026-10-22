@@ -88,13 +88,13 @@
 				persistKey: 'edit-profile',
 				values: profile,
 				fields: [
-					{ name: 'full_name', label: 'Full name', required: true },
-					{ name: 'headline', label: 'Bio', type: 'textarea' },
+					{ name: 'full_name', label: 'Full name', required: true, maxLength: 140 },
+					{ name: 'headline', label: 'Bio', type: 'textarea', maxLength: 140 },
 					{
 						row: [
-							{ name: 'job_title', label: 'Job title' },
+							{ name: 'job_title', label: 'Job title', maxLength: 140 },
 							{ text: 'at' },
-							{ name: 'company', label: 'Company' },
+							{ name: 'company', label: 'Company', maxLength: 140 },
 						],
 					},
 				],
@@ -500,9 +500,9 @@
 			fields: [
 				{
 					row: [
-						{ name: 'title', label: 'Title' },
+						{ name: 'title', label: 'Title', maxLength: 140 },
 						{ text: 'at' },
-						{ name: 'company', label: 'Company', required: true },
+						{ name: 'company', label: 'Company', required: true, maxLength: 140 },
 					],
 				},
 				monthYearFields('start', 'Start'),
@@ -546,9 +546,9 @@
 			draftMeta: { entryId: editing ? entry.name : null },
 			values: values,
 			fields: [
-				{ name: 'school', label: 'School', required: true },
-				{ name: 'degree', label: 'Degree' },
-				{ name: 'field_of_study', label: 'Field of study' },
+				{ name: 'school', label: 'School', required: true, maxLength: 140 },
+				{ name: 'degree', label: 'Degree', maxLength: 140 },
+				{ name: 'field_of_study', label: 'Field of study', maxLength: 140 },
 				monthYearFields('start', 'Start'),
 				monthYearFields('end', 'End'),
 			],

@@ -23,6 +23,7 @@
 				row.href = '/profile/' + encodeURIComponent(person.username || person.name)
 				row.appendChild(avatar(person.user_image, person.full_name || person.name))
 				row.appendChild(el('span', 'cafe-person-name', person.full_name || person.name))
+				row.appendChild(el('span', 'cafe-points-badge', String(person.points || 0)))
 				return row
 			},
 		},

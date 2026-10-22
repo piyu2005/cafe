@@ -18,6 +18,7 @@ from bell import mobile_bell
 from blocks import (
 	GRAY_6,
 	INK,
+	INK_7,
 	MUTED,
 	PUBLICATIONS_ENABLED,
 	SOLID_BG,
@@ -27,6 +28,7 @@ from blocks import (
 	block,
 	cafe_logo_svg,
 	html_el,
+	icon,
 	raw_block,
 	svg,
 	text_style,
@@ -49,7 +51,12 @@ AUTHOR_LINE_STYLES = {"display": "flex", "alignItems": "center", "gap": "8px"}
 AVATAR_IMAGE_STYLES = {"width": "100%", "height": "100%", "objectFit": "cover"}
 NAME_STYLES = text_style(13, "420", INK)
 BODY_STYLES = {"display": "flex", "alignItems": "flex-start", "gap": "16px"}
-TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0"}
+# minHeight matches THUMBNAIL_STYLES's own fixed height below, so a short
+# title+excerpt (nothing to do with whether there's a cover image) still
+# reserves the same vertical space a thumbnail would - that's what keeps a
+# post with an image the same row height as one without, instead of the
+# image (or its absence) driving the row's height either way.
+TEXT_STYLES = {"flex": "1 1 0%", "minWidth": "0", "minHeight": "96px"}
 TITLE_STYLES = text_style(16, "600", INK, "0.015em")
 EXCERPT_STYLES = {"margin": "4px 0 0", **text_style(14, "420", GRAY_6, "0.02em", "1.5")}
 META_STYLES = {
@@ -59,15 +66,38 @@ META_STYLES = {
 	"marginTop": "16px",
 	**text_style(12, "420", MUTED),
 }
+# A fixed height (not just a floor) so every thumbnail crops to the exact
+# same box no matter the source image's own aspect ratio - a square or
+# portrait photo used to render taller than a landscape one here, since
+# nothing but the image's own intrinsic size constrained its height.
 THUMBNAIL_STYLES = {
 	"width": "128px",
 	"height": "96px",
 	"flexShrink": "0",
-	"marginTop": "4px",
 	"borderRadius": "10px",
 	"backgroundColor": SURFACE_2,
 	"objectFit": "cover",
 }
+
+# The category filter chips under the search box - frappe-ui's "tag" component
+# (size lg, style subtle, no prefix): surface-gray-2 fill, 8px radius, 6px/8px
+# padding, 4px gap to the suffix icon, ink-gray-7 14px/420/0.02em/1.15 text -
+# read straight off the design file's own inspector, not guessed. Only the
+# first ("Productivity") carries the close icon; that's the one shown
+# selected in the design, the rest are plain.
+TAG_CHIP_STYLES = {
+	"display": "inline-flex",
+	"alignItems": "center",
+	"gap": "4px",
+	"flexShrink": "0",
+	"border": "0",
+	"padding": "6px 8px",
+	"borderRadius": "8px",
+	"backgroundColor": SURFACE_2,
+	"cursor": "pointer",
+	**text_style(14, "420", INK_7),
+}
+TAG_LABELS = ["Productivity", "Photography", "Technology", "Mindfulness", "Writing", "Design"]
 
 # What goes between the row's <a> tags. [[name]] marks a value to escape and put
 # in; [[!name]] marks a piece of HTML that was built already. Only home.js's
@@ -110,6 +140,10 @@ ROW_INNER = "".join(
 								html_el("span", text="·"),
 								html_el(
 									"span", ["cafe-feed-comments"], None, None, text="[[comments]] comments"
+								),
+								html_el("span", text="·"),
+								html_el(
+									"span", ["cafe-feed-reposts"], None, None, text="[[reposts]] reposts"
 								),
 							],
 						),
@@ -191,10 +225,20 @@ def build_feed_row():
 	minutes["dynamicValues"] = [bind("minutes_label", "innerHTML", "key")]
 	comments = block("span", "Comments", ["cafe-feed-comments"], text="0 comments")
 	comments["dynamicValues"] = [bind("comments_label", "innerHTML", "key")]
+	reposts = block("span", "Reposts", ["cafe-feed-reposts"], text="0 reposts")
+	reposts["dynamicValues"] = [bind("reposts_label", "innerHTML", "key")]
 	meta = block(
 		"div",
 		"Meta",
-		children=[date, block("span", text="·"), minutes, block("span", text="·"), comments],
+		children=[
+			date,
+			block("span", text="·"),
+			minutes,
+			block("span", text="·"),
+			comments,
+			block("span", text="·"),
+			reposts,
+		],
 		styles=META_STYLES,
 	)
 	text_col = block("div", "Text", children=[title, excerpt, meta], styles=TEXT_STYLES)
@@ -218,8 +262,45 @@ def build_feed_row():
 		children=[author_line, body],
 		styles=ROW_STYLES,
 	)
-	row["dynamicValues"] = [bind("href", "href", "attribute")]
+	row["dynamicValues"] = [
+		bind("href", "href", "attribute"),
+		# Lets home.js continue infinite-scroll from "older than the last
+		# post actually on screen" instead of a row-count offset - see
+		# fetchPosts()'s own comment for why that matters.
+		bind("creation", "data-creation", "attribute"),
+	]
 	return row
+
+
+def tag_chip(label):
+	# The close icon sits in every chip, not just a selected one - home.js
+	# toggles each chip's own "active" class independently on click
+	# (multi-select: picking one doesn't clear any other), filters the feed
+	# by whichever categories end up active, and styles.css shows the icon
+	# only on a chip that currently has that class. Nothing here is
+	# pre-selected; the reference design just happened to show its one
+	# example mid-selection. The label is also this chip's Category doctype
+	# name (autoname is field:title) - home.js reads it straight off
+	# aria-label to build the filter, no separate id needed.
+	close = block("span", "Close", ["cafe-tag-chip-close"], children=[icon("x", 12, INK_7)])
+	return block(
+		"button",
+		label,
+		["cafe-tag-chip"],
+		attrs={"type": "button", "aria-label": label, "aria-pressed": "false"},
+		children=[block("span", "Label", text=label), close],
+		styles=TAG_CHIP_STYLES,
+	)
+
+
+def build_tag_chips():
+	return block(
+		"div",
+		"Tag chips",
+		["cafe-tag-chips"],
+		styles={"display": "flex", "flexWrap": "wrap", "gap": "8px", "marginTop": "16px"},
+		children=[tag_chip(label) for label in TAG_LABELS],
+	)
 
 
 def build_mobile_bar():
@@ -345,6 +426,7 @@ def build_home(shell_id, shell_block):
 		["cafe-search"],
 		styles={"position": "relative", "display": "block", "marginTop": "16px"},
 	)
+	tag_chips = build_tag_chips()
 	feed = block(
 		"div",
 		"Posts",
@@ -390,7 +472,7 @@ def build_home(shell_id, shell_block):
 		shell_id,
 		shell_block,
 		crumbs,
-		[note, title, search_box, feed, empty, sentinel, template],
+		[note, title, search_box, tag_chips, feed, empty, sentinel, template],
 		"640px",
 		mobile_header=build_mobile_bar(),
 		container_class="cafe-container-home",
@@ -418,9 +500,12 @@ more = len(rows) > @@PAGE_SIZE@@
 rows = rows[:@@PAGE_SIZE@@]
 
 counts = {}
+repost_counts = {}
 if rows:
     for comment in frappe.get_all("Post Comment", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
         counts[comment.post] = counts.get(comment.post, 0) + 1
+    for repost in frappe.get_all("Repost", filters={"post": ["in", [row.name for row in rows]]}, fields=["post"]):
+        repost_counts[repost.post] = repost_counts.get(repost.post, 0) + 1
 
 # A post under a publication shows the publication's own identity in the feed,
 # not its author's - same reasoning as the mentor's "2 separate profiles"
@@ -457,6 +542,7 @@ for row in rows:
     cover = safe_url(cover)
     href = "/posts/" + path_segment(row.name)
     comments = counts.get(row.name, 0)
+    reposts = repost_counts.get(row.name, 0)
     posts.append({
         "href": clean(href),
         "image": identity_image,
@@ -473,7 +559,9 @@ for row in rows:
         "date": day_month_year(row.creation),
         "minutes_label": str(minutes) + " min read",
         "comments_label": str(comments) + (" comment" if comments == 1 else " comments"),
+        "reposts_label": str(reposts) + (" repost" if reposts == 1 else " reposts"),
         "cover": cover,
+        "creation": str(row.creation),
     })
 data.posts = posts
 data.hp = {

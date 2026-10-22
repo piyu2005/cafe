@@ -1,6 +1,8 @@
 """The frame every page shares: shell, header with breadcrumbs, scroll area and
 a centered container."""
 
+import copy
+
 from bell import mobile_bell
 from blocks import (
 	INK,
@@ -11,7 +13,6 @@ from blocks import (
 	attribute,
 	block,
 	icon,
-	instance_of,
 	raw_block,
 	show,
 	svg,
@@ -97,7 +98,7 @@ def page_header(crumbs):
 
 
 def page_layout(
-	shell_id,
+	shell_id,  # unused now (the shell is inlined, not resolved by id below) - kept so every call site doesn't need updating
 	shell_block,
 	crumbs,
 	content,
@@ -174,7 +175,22 @@ def page_layout(
 			"lineHeight": "1.15",
 			"letterSpacing": "0.02em",
 		},
-		children=[instance_of(shell_id, shell_block, "Shell"), main],
+		# A literal copy of the shell's own blocks, not a Builder component
+		# instance (instance_of()) resolved at render time from a separate
+		# "Cafe Shell" Builder Component document - that document is deleted
+		# and reinserted by Builder's own fixture-import mechanism every time
+		# it's resynced (frappe/modules/import_file.py's import_doc()), and
+		# any page rendered in the gap between the delete and the insert gets
+		# no match for it, silently rendering without a shell at all (no
+		# error - extend_block_with_component() in Builder's own
+		# builder_page.py just falls back to the bare, content-less instance
+		# block). Inlining the real content removes that render-time lookup
+		# entirely, so there's nothing left to race. deepcopy because
+		# `shell_block` is the same object on every page this function builds
+		# - without it they'd all share, and any later mutation of one page's
+		# copy (attribute()/when() etc. do mutate in place) would leak into
+		# every other page too.
+		children=[copy.deepcopy(shell_block), main],
 	)
 	root = block("div", None, children=[app])
 	root["blockId"] = "root"

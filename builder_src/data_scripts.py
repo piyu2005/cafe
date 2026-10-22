@@ -71,12 +71,15 @@ for row in rows:
         or (row.get("attachment") if row.get("post_type") == "Image" else "")
         or first_image(row.get("content"))
     )
+    is_repost = bool(row.get("is_repost"))
     posts.append({
         "href": "/posts/" + path_segment(row.name),
         "title": clean(row.get("display_title") or row.get("title") or "Untitled"),
         "excerpt": clean(preview),
         "meta": day_month_year(row.creation) + " \\u00b7 " + str(minutes) + " min read \\u00b7 " + str(comments) + (" comment" if comments == 1 else " comments"),
         "thumbnail": safe_url(thumbnail),
+        "reposted": is_repost,
+        "reposted_label": ("Reposted from " + clean(row.get("author_name") or row.get("author") or "")) if is_repost else "",
     })
 """
 
@@ -92,7 +95,7 @@ def indent(text, spaces):
 # an empty list there. A real visit always has a username, so it never gets them.
 SAMPLE_POST = """\
 if not identifier and not posts:
-    posts = [{"href": "/posts", "title": "Post title", "excerpt": "A short preview of the post.", "meta": "Sep 18, 2026 \\u00b7 1 min read \\u00b7 0 comments", "thumbnail": ""}]
+    posts = [{"href": "/posts", "title": "Post title", "excerpt": "A short preview of the post.", "meta": "Sep 18, 2026 \\u00b7 1 min read \\u00b7 0 comments", "thumbnail": "", "reposted": False, "reposted_label": ""}]
 """
 
 SAMPLE_WORK_AND_EDUCATION = """\

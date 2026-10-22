@@ -1,6 +1,12 @@
 // Home feed. The first ten posts are rendered by the server. This script adds
-// search (filters by title as you type) and infinite scroll: a sentinel below
-// the list loads ten more when it is 400px from the screen, like the old page.
+// search (full-text over title/display_title/excerpt once there's a query -
+// see cafe.api.search_feed - plain creation-desc browsing otherwise), the
+// category chips (multi-select, OR'd together, matching a post's own
+// free-text tags field exactly - see fetchPosts()), and infinite scroll: a
+// sentinel below the list loads ten more when it is 400px from the screen,
+// like the old page. Selecting/clearing a chip or typing a search both
+// re-query from the start through the same fetchPosts() - there is no
+// separate "filtered" rendering mode, just a different request each time.
 // Rows are made from the page's <template>, which has the same markup the
 // server fills. Needs ui.js.
 ;(function () {
@@ -30,7 +36,17 @@
 
 	var input, list, sentinel, template, container
 	var query = ''
-	var loaded = 0
+	var categories = []
+	// The plain/tag-filtered browse order is by `creation`, so paging by
+	// "older than the last post actually on screen" has no position to
+	// drift when a new post is published mid-scroll, unlike an offset
+	// (which counts rows from the top fresh on every request, so
+	// everything after a newly-published post shifts down by one and the
+	// next page repeats or skips a row). search_feed is ranked by
+	// relevance, not creation, so there's no such cursor for it - it keeps
+	// a plain offset, same as before.
+	var cursor = null
+	var searchOffset = 0
 	var hasMore = false
 	var busy = false
 	var latestRequest = 0
@@ -114,21 +130,43 @@
 			date: escapeHtml(formatDate(post.creation)),
 			minutes: String(minutes),
 			comments: '0',
+			reposts: '0',
 			'!thumbnail': cover ? fill(template.getAttribute('data-thumbnail'), { cover: escapeHtml(cover) }) : '',
 		}
 		var holder = document.createElement('div')
 		holder.innerHTML = fill(template.innerHTML, values)
-		return holder.firstElementChild
+		var row = holder.firstElementChild
+		// Read back by load() to keep the cursor moving - see the comment
+		// by `cursor`'s declaration.
+		row.setAttribute('data-creation', post.creation)
+		return row
 	}
 
-	function fetchPosts(start) {
-		var filters = { status: 'Published' }
-		if (query) filters.title = ['like', '%' + query + '%']
+	// A chip filters by exact tag match, Medium-style (cafe.api.filter_by_tags
+	// - FIND_IN_SET against the same free-text tags field the write flow's
+	// Tags widget edits, not a separate category field or any inference from
+	// the post's own words); a still-active search query combines with it
+	// (plain LIKE, AND'd server side). With no chip selected but a query
+	// typed, that query instead gets real full-text search (cafe.api.
+	// search_feed, MATCH/AGAINST ranked by relevance) - the generic list API
+	// has no operator for either of these, so both need their own method
+	// rather than just adding to `filters` below. Plain creation-desc
+	// listing when neither is active.
+	function fetchPosts() {
+		if (categories.length)
+			return CAFE.api('cafe.api.filter_by_tags', {
+				tags: categories,
+				query: query,
+				before: cursor,
+				limit: PAGE_SIZE,
+			})
+		if (query) return CAFE.api('cafe.api.search_feed', { query: query, start: searchOffset, limit: PAGE_SIZE })
+		var filters = [['status', '=', 'Published']]
+		if (cursor) filters.push(['creation', '<', cursor])
 		var params = [
 			'fields=' + encodeURIComponent(JSON.stringify(FIELDS)),
 			'filters=' + encodeURIComponent(JSON.stringify(filters)),
 			'order_by=' + encodeURIComponent('creation desc'),
-			'start=' + start,
 			'limit=' + (PAGE_SIZE + 1),
 		].join('&')
 		return fetch(location.origin + '/api/v2/document/Post?' + params, { credentials: 'same-origin' })
@@ -164,16 +202,25 @@
 
 	function showCounts(posts, rows) {
 		if (!posts.length) return
-		CAFE.api('cafe.api.get_comment_counts', {
-			posts: posts.map(function (post) {
-				return post.name
-			}),
-		}).then(
+		var names = posts.map(function (post) {
+			return post.name
+		})
+		CAFE.api('cafe.api.get_comment_counts', { posts: names }).then(
 			function (counts) {
 				posts.forEach(function (post, index) {
 					var node = rows[index].querySelector('.cafe-feed-comments')
 					var count = (counts || {})[post.name] || 0
 					if (node) node.textContent = count + (count === 1 ? ' comment' : ' comments')
+				})
+			},
+			function () {}
+		)
+		CAFE.api('cafe.api.get_repost_counts', { posts: names }).then(
+			function (counts) {
+				posts.forEach(function (post, index) {
+					var node = rows[index].querySelector('.cafe-feed-reposts')
+					var count = (counts || {})[post.name] || 0
+					if (node) node.textContent = count + (count === 1 ? ' repost' : ' reposts')
 				})
 			},
 			function () {}
@@ -213,19 +260,19 @@
 		if (busy && !fresh) return
 		var request = ++latestRequest
 		busy = true
-		var start = fresh ? 0 : loaded
+		if (fresh) {
+			cursor = null
+			searchOffset = 0
+		}
 		if (!fresh) setLoadingText(true)
-		fetchPosts(start).then(
+		fetchPosts().then(
 			function (rows) {
 				if (request !== latestRequest) return
 				busy = false
 				setLoadingText(false)
 				hasMore = rows.length > PAGE_SIZE
 				rows = rows.slice(0, PAGE_SIZE)
-				if (fresh) {
-					list.replaceChildren()
-					loaded = 0
-				}
+				if (fresh) list.replaceChildren()
 				fetchPublications(rows).then(function (pubs) {
 					if (request !== latestRequest) return
 					var made = rows.map(function (post) {
@@ -233,7 +280,10 @@
 						list.appendChild(row)
 						return row
 					})
-					loaded += rows.length
+					if (rows.length) {
+						if (query && !categories.length) searchOffset += rows.length
+						else cursor = rows[rows.length - 1].creation
+					}
 					setEmpty(fresh && !rows.length)
 					showCounts(rows, made)
 					// A short first page can leave the sentinel on screen: keep going.
@@ -256,6 +306,26 @@
 		observer.observe(sentinel)
 	}
 
+	// Multi-select: each chip toggles only itself, independent of the others.
+	// A chip's aria-label is also its Category doctype name (autoname is
+	// field:title, so the two are the same string) - no separate lookup
+	// needed to turn "which chips are active" into a filters.category value.
+	// The close icon is already in every chip's markup (home_page.py), hidden
+	// by styles.css until its own chip has .active.
+	function setupTagChips() {
+		document.querySelectorAll('.cafe-tag-chip').forEach(function (chip) {
+			chip.addEventListener('click', function () {
+				var active = chip.classList.toggle('active')
+				chip.setAttribute('aria-pressed', active ? 'true' : 'false')
+				var name = chip.getAttribute('aria-label')
+				var at = categories.indexOf(name)
+				if (active && at === -1) categories.push(name)
+				else if (!active && at !== -1) categories.splice(at, 1)
+				load(true)
+			})
+		})
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		input = document.getElementById('cafe-feed-search')
 		list = document.getElementById('cafe-feed')
@@ -263,8 +333,14 @@
 		template = document.getElementById('cafe-feed-template')
 		if (!input || !list || !sentinel || !template) return
 		container = list.parentNode
+		setupTagChips()
 
-		loaded = list.children.length
+		// Seeds the cursor from the server-rendered first page (home_page.py),
+		// which home.js never actually fetched, so it has no `.creation` in
+		// memory for those rows - only what's in their own data-creation
+		// attribute.
+		var existingRows = list.children
+		cursor = existingRows.length ? existingRows[existingRows.length - 1].getAttribute('data-creation') : null
 		hasMore = sentinel.getAttribute('data-more') === '1'
 
 		input.addEventListener('input', function () {

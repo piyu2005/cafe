@@ -31,6 +31,7 @@ from shell_component import MENU_ITEM_STYLES
 BUTTON_BORDER = "var(--outline-gray-2)"
 ICON_SPAN = {"display": "flex", "flexShrink": "0"}
 ERROR_RED = "#b41d1d"
+FLAG_AMBER = "#df9310"
 
 
 def crumb_html(*parts):
@@ -215,6 +216,21 @@ def build_more_menu():
 		),
 		"pp.can_manage",
 	)
+	# Only unlocks once the viewer's own cafe points cross points.FLAG_THRESHOLD
+	# ("enough history to trust your judgement") and never on your own post -
+	# same "unlock new action icons by level" approach as downvote/repost.
+	# (post.can_flag itself, computed in cafe/api.py, is the actual gate.)
+	flag = when(
+		menu_item(
+			"button",
+			{"type": "button"},
+			"flag",
+			"Flag post",
+			custom={"data-action": "flag-post"},
+			color=FLAG_AMBER,
+		),
+		"pp.can_flag",
+	)
 	menu = block(
 		"div",
 		"Menu",
@@ -232,7 +248,7 @@ def build_more_menu():
 			"backgroundColor": "#ffffff",
 			"boxShadow": "0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12)",
 		},
-		children=[edit, copy, delete],
+		children=[edit, copy, flag, delete],
 	)
 	return block("div", "More", styles={"position": "relative", "flexShrink": "0"}, children=[button, menu])
 
@@ -329,7 +345,7 @@ def build_content():
 			attrs={"id": "cafe-content"},
 			text="The text of the post.",
 			styles={
-				"marginTop": "32px",
+				"marginTop": "24px",  # matches the action bar's own marginTop below the content
 				"minHeight": "300px",
 				**text_style(15, "420", "#383838", "0.02em", "1.7"),
 			},
@@ -442,6 +458,38 @@ def build_action_bar():
 		"pp.saved_flag",
 		"data-on",
 	)
+	# Reposting only unlocks once the viewer's own cafe points cross 100 (see
+	# toggle_repost's gate, and points.REPOST_THRESHOLD, the single source of
+	# truth for this number - this copy can't import it, see that module's
+	# own comment on why) - same "unlock new action icons by level" approach
+	# as the comments' downvote icon.
+	repost = when(
+		attribute(
+			block(
+				"button",
+				"Repost",
+				["cafe-repost"],
+				attrs={"type": "button", "aria-label": "Repost", "data-tooltip": "Repost"},
+				custom={"data-action": "repost", "data-on": ""},
+				inner_html=svg("repeat-2", 16),
+				styles={
+					"display": "grid",
+					"placeItems": "center",
+					"width": "28px",
+					"height": "28px",
+					"padding": "0",
+					"border": f"1px solid {BUTTON_BORDER}",
+					"borderRadius": "8px",
+					"backgroundColor": "#ffffff",
+					"color": INK,
+					"cursor": "pointer",
+				},
+			),
+			"pp.reposted_flag",
+			"data-on",
+		),
+		"pp.can_repost",
+	)
 	return block(
 		"div",
 		"Action bar",
@@ -465,7 +513,7 @@ def build_action_bar():
 				"div",
 				"Buttons",
 				styles={"display": "flex", "alignItems": "center", "gap": "4px"},
-				children=[share, save],
+				children=[share, repost, save],
 			),
 		],
 	)
@@ -593,7 +641,14 @@ def build_post_page(shell_id, shell_block):
 			"div",
 			"Post",
 			attrs={"id": "cafe-post"},
-			custom={"data-post": "", "data-user": "", "data-me-name": "", "data-me-image": ""},
+			custom={
+				"data-post": "",
+				"data-user": "",
+				"data-me-name": "",
+				"data-me-image": "",
+				"data-me-username": "",
+				"data-me-points": "",
+			},
 			children=[
 				build_title(),
 				build_author_row(),
@@ -612,6 +667,8 @@ def build_post_page(shell_id, shell_block):
 		("pp.user_id", "data-user"),
 		("pp.me_name", "data-me-name"),
 		("pp.me_image", "data-me-image"),
+		("pp.me_username", "data-me-username"),
+		("pp.me_points", "data-me-points"),
 	):
 		post = attribute(post, key, prop)
 	return page_layout(
@@ -699,7 +756,10 @@ else:
         if url:
             images.append({"src": url})
     tags = [{"name": clean(tag)} for tag in post.tags or []]
-    me = frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image"], as_dict=True) or {}
+    me = (
+        frappe.db.get_value("User", frappe.session.user, ["full_name", "user_image", "username"], as_dict=True)
+        or {}
+    )
 
     data.pp = {
         "found": True,
@@ -708,6 +768,8 @@ else:
         "user_id": clean(frappe.session.user),
         "me_name": clean(me.get("full_name") or frappe.session.user),
         "me_image": safe_url(me.get("user_image")),
+        "me_username": clean(me.get("username") or frappe.session.user.split("@")[0]),
+        "me_points": str(post.my_points),
         "title": clean(post.title or "Untitled"),
         "crumb_title": clean(post.title or "Post"),
         "author_name": clean(identity_name),
@@ -730,6 +792,9 @@ else:
         "like_flag": "1" if post.liked_by_me else "",
         "comment_count": post.comment_count,
         "saved_flag": "1" if post.saved_by_me else "",
+        "can_repost": post.my_points >= 100,
+        "reposted_flag": "1" if post.reposted_by_me else "",
+        "can_flag": post.can_flag,
         "responses_label": "Responses (" + str(post.comment_count) + ")",
     }
     data.images = images

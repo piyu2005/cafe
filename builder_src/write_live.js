@@ -86,23 +86,32 @@
 		S.saving = status
 		W.setBusy('')
 		refreshHeader()
-		var payload = Object.assign({}, form, { content: W.content(), status: status })
+		// modified: harmless on a create/fork (check_if_latest only compares
+		// it against an existing document being updated - for a fresh
+		// insert there's nothing to compare against, so it's just ignored)
+		// and the one thing that lets Frappe's own optimistic-concurrency
+		// check (document.py's check_if_latest) tell this save apart from
+		// one that raced a concurrent edit elsewhere - another tab, or the
+		// scheduler's own publish_due_posts - instead of silently
+		// clobbering it.
+		var payload = Object.assign({}, form, { content: W.content(), status: status, modified: S.modified })
 		// A live post saved as a draft is never changed: the edit becomes a new,
 		// separate draft, so readers do not see the post vanish while you tweak it.
 		var fork = editing() && status === 'Draft' && previous === 'Published'
 		var request =
 			editing() && !fork
-				? W.update(S.postId, payload).then(function () {
-						return { name: S.postId, isNew: false }
+				? W.update(S.postId, payload).then(function (doc) {
+						return { name: S.postId, isNew: false, modified: doc.modified }
 				  })
 				: W.create(payload).then(function (doc) {
-						return { name: doc.name, isNew: true }
+						return { name: doc.name, isNew: true, modified: doc.modified }
 				  })
 		return request.then(
 			function (result) {
 				S.saving = null
 				S.status = status
 				S.savedAt = new Date()
+				S.modified = result.modified
 				if (status === 'Published') {
 					CAFE.toast('Post published')
 					location.assign('/posts/' + encodeURIComponent(result.name))
@@ -155,6 +164,25 @@
 						CAFE.clearDraft('story-preview')
 					}
 				})
+			},
+			// Saves the same way "Save Draft" does (so the schedule applies to
+			// real, current content), then stamps the resulting draft with the
+			// chosen time - cafe.api.schedule_post, publish_due_posts (the
+			// scheduler job) publishes it once that time comes.
+			onSchedule: function (localDateTime) {
+				var form = S.form
+				if (!form.cover_image && W.previewImage()) form.cover_image = W.previewImage()
+				if (!form.excerpt && W.autoExcerpt(W.content())) form.excerpt = W.autoExcerpt(W.content())
+				return save('Draft')
+					.then(function (ok) {
+						if (!ok) throw new Error(document.querySelector('.cafe-w-error').textContent)
+						return CAFE.api('cafe.api.schedule_post', { post: S.postId, scheduled_at: localDateTime })
+					})
+					.then(function () {
+						S.scheduledAt = localDateTime
+						CAFE.clearDraft('story-preview')
+						CAFE.toast('Post scheduled')
+					})
 			},
 		})
 	}
@@ -214,7 +242,18 @@
 	// one was open doesn't lose it. Needs the real post content loaded first
 	// (W.fill already ran), since Story Preview reads from it for the default
 	// excerpt/cover.
+	//
+	// Only ever does this for an actual reload of the SAME page, never for
+	// navigating here some other way (a link, the address bar, back/forward)
+	// - this page has no id of its own to tell "the same post, reloaded"
+	// apart from "an unrelated post (or a brand-new one), freshly opened"
+	// for a draft left behind by leaving the dialog open and navigating away
+	// instead of closing it, so without this check a stale draft from
+	// whatever was last open here could reopen pre-filled over an unrelated
+	// post.
 	function restoreDialogDrafts() {
+		var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
+		if (!nav || nav.type !== 'reload') return
 		if (CAFE.hasDraft('editor-link')) W.linkDialog()
 		if (CAFE.hasDraft('story-preview')) openPreview()
 	}

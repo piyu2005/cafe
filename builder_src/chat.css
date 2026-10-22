@@ -527,11 +527,7 @@
 }
 .cafe-c-html .mention,
 .cafe-c-prose .mention {
-  padding: 0 4px;
-  border-radius: 4px;
-  background: #e2f0fd;
-  color: #0b62c4;
-  font-weight: 500;
+  font-weight: 600;
 }
 .cafe-c-reply-preview {
   display: block;

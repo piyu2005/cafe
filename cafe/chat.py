@@ -7,6 +7,7 @@ from urllib.parse import quote, urlparse
 
 import frappe
 from frappe import _
+from frappe.rate_limiter import rate_limit
 from frappe.utils import now_datetime
 
 from cafe.api import _check_post_visible
@@ -1088,6 +1089,10 @@ def get_messages(conversation: str, start: int = 0, limit: int = 50):
 
 
 @frappe.whitelist()
+# No limit existed on this at all, unlike the auth endpoints - a user could
+# otherwise spam a conversation with no server-side throttle. 60/minute is
+# generous for genuine chat use, not for a bot loop.
+@rate_limit(limit=60, seconds=60)
 def send_message(
 	conversation: str,
 	content: str | None = None,

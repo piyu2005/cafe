@@ -5,6 +5,7 @@ same /api/v2/document/Post the old page uses.
 Builder's editor and the folder thumbnail do not run scripts, so #cafe-write
 starts with a still picture of the page; the script replaces it."""
 
+import copy
 import hashlib
 
 from bell import mobile_bell_block
@@ -16,7 +17,6 @@ from blocks import (
 	attribute,
 	block,
 	icon,
-	instance_of,
 	raw_block,
 	svg,
 	text_style,
@@ -37,11 +37,22 @@ VENDOR = ["write-editor.js"]
 # matters most on a slow connection.
 TIPTAP_MODULES = [
 	"https://esm.sh/@tiptap/core@3.31.3",
-	"https://esm.sh/@tiptap/starter-kit@3.31.3",
+	"https://esm.sh/@tiptap/extension-bold@3.31.3",
+	"https://esm.sh/@tiptap/extension-blockquote@3.31.3",
+	"https://esm.sh/@tiptap/extension-list@3.31.3",
+	"https://esm.sh/@tiptap/extension-document@3.31.3",
+	"https://esm.sh/@tiptap/extensions@3.31.3",
+	"https://esm.sh/@tiptap/extension-hard-break@3.31.3",
+	"https://esm.sh/@tiptap/extension-heading@3.31.3",
+	"https://esm.sh/@tiptap/extension-horizontal-rule@3.31.3",
+	"https://esm.sh/@tiptap/extension-italic@3.31.3",
+	"https://esm.sh/@tiptap/extension-link@3.31.3",
+	"https://esm.sh/@tiptap/extension-paragraph@3.31.3",
+	"https://esm.sh/@tiptap/extension-strike@3.31.3",
+	"https://esm.sh/@tiptap/extension-text@3.31.3",
+	"https://esm.sh/@tiptap/extension-underline@3.31.3",
 	"https://esm.sh/@tiptap/extension-placeholder@3.31.3",
 	"https://esm.sh/@tiptap/extension-text-align@3.31.3",
-	"https://esm.sh/@tiptap/extension-task-list@3.31.3",
-	"https://esm.sh/@tiptap/extension-task-item@3.31.3",
 	"https://esm.sh/@tiptap/pm@3.31.3/state",
 ]
 
@@ -51,7 +62,12 @@ ICON_STYLES = {**BUTTON_STYLES, "width": "28px", "padding": "0", "border": "0", 
 
 def native_head_html():
 	"""The editor bundle the page needs, with a version so a new build is fetched."""
-	tags = [f'<link rel="modulepreload" href="{url}" crossorigin="anonymous">' for url in TIPTAP_MODULES]
+	# Opens the connection to esm.sh (DNS + TCP + TLS) immediately, instead of
+	# only once the browser reaches the first modulepreload below - on a slow
+	# connection that handshake is one full round trip paid before any of
+	# TipTap's ~80 requests can even start.
+	tags = ['<link rel="preconnect" href="https://esm.sh" crossorigin>']
+	tags += [f'<link rel="modulepreload" href="{url}" crossorigin="anonymous">' for url in TIPTAP_MODULES]
 	for file in VENDOR:
 		path = ASSETS / "vendor" / file
 		version = hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else "0"
@@ -187,7 +203,7 @@ def build_native_write(shell_id, shell_block):
 		"Write",
 		["cafe-w-root"],
 		attrs={"id": "cafe-write"},
-		custom={"data-post": ""},
+		custom={"data-post": "", "data-me-name": "", "data-me-initial": "", "data-me-image": ""},
 		styles={
 			"display": "flex",
 			"flex": "1",
@@ -199,6 +215,9 @@ def build_native_write(shell_id, shell_block):
 		children=[raw_block("Preview", write_body(), ["cafe-w-preview"], styles={"width": "100%"})],
 	)
 	page = attribute(page, "w.id", "data-post")
+	page = attribute(page, "w.me_name", "data-me-name")
+	page = attribute(page, "w.me_initial", "data-me-initial")
+	page = attribute(page, "w.me_image", "data-me-image")
 	main = block(
 		"div",
 		"Main",
@@ -224,7 +243,9 @@ def build_native_write(shell_id, shell_block):
 			"backgroundColor": "#ffffff",
 			**text_style(14, "420", INK_BLACK, "0.02em", "1.15"),
 		},
-		children=[instance_of(shell_id, shell_block, "Shell"), main],
+		# See layout.py's page_layout() for why this is a literal copy, not
+		# instance_of() resolved at render time from a separate component doc.
+		children=[copy.deepcopy(shell_block), main],
 	)
 	top = block("div", None, children=[app])
 	top["blockId"] = "root"
@@ -233,7 +254,10 @@ def build_native_write(shell_id, shell_block):
 
 
 def build_data_script():
-	"""Sends a guest to sign in first; the scripts load everything else."""
+	"""Sends a guest to sign in first; the scripts load everything else. The
+	author identity rides along here (not fetched client-side) for the Story
+	Preview's live card preview - it's always the signed-in user, since you
+	can only ever write as yourself."""
 	return (
 		HELPERS
 		+ """\
@@ -242,7 +266,14 @@ item = frappe.form_dict.post_id or ""
 if frappe.session.user == "Guest":
     redirect("/login?redirect=/write" + ("/" + path_segment(item) if item else ""))
 
-data.w = {"id": clean(item)}
+me = frappe.db.get_value("User", frappe.session.user, ["full_name", "username", "user_image"], as_dict=True) or {}
+me_name = me.get("full_name") or frappe.session.user
+data.w = {
+    "id": clean(item),
+    "me_name": clean(me_name),
+    "me_initial": clean(me_name.strip()[:1]),
+    "me_image": safe_url(me.get("user_image")),
+}
 """
 	)
 

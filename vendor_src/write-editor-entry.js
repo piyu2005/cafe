@@ -12,12 +12,30 @@
 // resolves the whole dependency graph together, so there's exactly one copy.
 // This file is copied as-is to public/builder_assets/vendor/write-editor.js
 // by `yarn build:write-editor` and served with `type="module"`, unbundled.
+// Individually imported, not @tiptap/starter-kit - StarterKit bundles Code
+// and CodeBlock unconditionally (its own `code: false`/`codeBlock: false`
+// options just skip pushing them into its extensions array at runtime; the
+// packages are still imported and shipped either way). Importing everything
+// else StarterKit would otherwise bundle, one extension at a time, in the
+// exact order StarterKit's own source pushes them in, means Code/CodeBlock
+// are never imported in the first place - genuinely absent, not toggled off.
 import { Editor, Extension, Node, mergeAttributes } from 'https://esm.sh/@tiptap/core@3.31.3'
-import StarterKit from 'https://esm.sh/@tiptap/starter-kit@3.31.3'
+import Bold from 'https://esm.sh/@tiptap/extension-bold@3.31.3'
+import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@3.31.3'
+import { BulletList, ListItem, ListKeymap, OrderedList } from 'https://esm.sh/@tiptap/extension-list@3.31.3'
+import DocNode from 'https://esm.sh/@tiptap/extension-document@3.31.3'
+import { Dropcursor, Gapcursor, TrailingNode, UndoRedo } from 'https://esm.sh/@tiptap/extensions@3.31.3'
+import HardBreak from 'https://esm.sh/@tiptap/extension-hard-break@3.31.3'
+import Heading from 'https://esm.sh/@tiptap/extension-heading@3.31.3'
+import HorizontalRule from 'https://esm.sh/@tiptap/extension-horizontal-rule@3.31.3'
+import Italic from 'https://esm.sh/@tiptap/extension-italic@3.31.3'
+import Link from 'https://esm.sh/@tiptap/extension-link@3.31.3'
+import Paragraph from 'https://esm.sh/@tiptap/extension-paragraph@3.31.3'
+import Strike from 'https://esm.sh/@tiptap/extension-strike@3.31.3'
+import TextNode from 'https://esm.sh/@tiptap/extension-text@3.31.3'
+import Underline from 'https://esm.sh/@tiptap/extension-underline@3.31.3'
 import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder@3.31.3'
 import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@3.31.3'
-import TaskList from 'https://esm.sh/@tiptap/extension-task-list@3.31.3'
-import TaskItem from 'https://esm.sh/@tiptap/extension-task-item@3.31.3'
 import { Plugin, Selection } from 'https://esm.sh/@tiptap/pm@3.31.3/state'
 
 const IMAGE_DRAG_PX = 3
@@ -441,43 +459,47 @@ const ImageGroup = Node.create({
 	},
 })
 
-// Cmd/Ctrl+Shift+V - inserts the clipboard's plain text instead of whatever
-// rich formatting it carries (pasting from Word/Google Docs otherwise brings
-// its fonts/colours along, which `cleanStyles`-style tools elsewhere strip
-// after the fact; here nothing rich reaches the doc in the first place).
-// Same plain-text-to-paragraphs shape as write_core.js's own W.ensureHtml -
-// kept as its own copy rather than a cross-file dependency, since this file
-// ships as a standalone vendor asset (see the module docstring above).
-function plainTextToHtml(text) {
-	return text
-		.split(/\r?\n{2,}/)
-		.map(
-			(part) =>
-				'<p>' +
-				part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, '<br>') +
-				'</p>'
-		)
-		.join('')
-}
-
-const PastePlainText = Extension.create({
-	name: 'pastePlainText',
-	addProseMirrorPlugins() {
-		const editor = this.editor
+// Same node as the chat composer's Mention (vendor_src/chat-editor-entry.js) -
+// identical markup, so the server finds mentions in a published post's HTML
+// the exact same way it already does in a chat message
+// (cafe/chat.py's _extract_mentions / MENTION_SPAN_RE):
+// `<span class="mention" data-type="mention" data-id="...">`. Typing "@" is
+// handled in write_editor.js itself (live-typed-range + debounced server
+// search, same as chat_mentions.js), not a ProseMirror plugin here - unlike
+// "[[" below, which deliberately swallows the trigger and hands off to a
+// separate popup input instead of tracking a live range.
+const Mention = Node.create({
+	name: 'mention',
+	group: 'inline',
+	inline: true,
+	selectable: true,
+	atom: true,
+	addAttributes() {
+		return {
+			id: {
+				default: null,
+				parseHTML: (e) => e.getAttribute('data-id'),
+				renderHTML: (a) => (a.id ? { 'data-id': a.id } : {}),
+			},
+			label: {
+				default: null,
+				parseHTML: (e) => e.getAttribute('data-label'),
+				renderHTML: (a) => (a.label ? { 'data-label': a.label } : {}),
+			},
+		}
+	},
+	parseHTML() {
+		return [{ tag: 'span[data-type="mention"]' }]
+	},
+	renderHTML({ node, HTMLAttributes }) {
 		return [
-			new Plugin({
-				props: {
-					handlePaste(view, event) {
-						if (!event.shiftKey) return false
-						const text = event.clipboardData && event.clipboardData.getData('text/plain')
-						if (!text) return false
-						event.preventDefault()
-						editor.chain().focus().insertContent(plainTextToHtml(text)).run()
-						return true
-					},
-				},
-			}),
+			'span',
+			mergeAttributes({ class: 'mention', 'data-type': 'mention' }, HTMLAttributes),
+			`@${node.attrs.label || node.attrs.id}`,
 		]
+	},
+	renderText({ node }) {
+		return `@${node.attrs.label || node.attrs.id}`
 	},
 })
 
@@ -526,135 +548,32 @@ const PostLinkTrigger = Extension.create({
 	},
 })
 
-// Only a known-safe provider's own embed domain ever becomes an <iframe> src -
-// never the pasted URL itself. What's actually stored/published is a plain
-// placeholder div (see VideoEmbed.renderHTML below): frappe.sanitize_html
-// doesn't allow a raw <iframe> through at all, so the published page rebuilds
-// the real embed client-side (embeds.js) from this same provider+id, the
-// same principle this node view already follows for its own live preview.
-function parseEmbedUrl(raw) {
-	let url
-	try {
-		url = new URL(String(raw || '').trim())
-	} catch (e) {
-		return null
-	}
-	const host = url.hostname.replace(/^www\./, '').replace(/^m\./, '')
-	if (host === 'youtube.com') {
-		const id =
-			url.pathname === '/watch'
-				? url.searchParams.get('v')
-				: (url.pathname.match(/^\/(?:embed|shorts)\/([\w-]+)/) || [])[1]
-		return id ? { provider: 'youtube', videoId: id } : null
-	}
-	if (host === 'youtu.be') {
-		const id = url.pathname.slice(1)
-		return id ? { provider: 'youtube', videoId: id } : null
-	}
-	if (host === 'vimeo.com' || host === 'player.vimeo.com') {
-		const id = (url.pathname.match(/(\d+)/) || [])[1]
-		return id ? { provider: 'vimeo', videoId: id } : null
-	}
-	return null
-}
-function embedSrc(provider, videoId) {
-	if (provider === 'youtube') return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}`
-	if (provider === 'vimeo') return `https://player.vimeo.com/video/${encodeURIComponent(videoId)}`
-	return null
-}
-
-const VideoEmbed = Node.create({
-	name: 'videoEmbed',
-	group: 'block',
-	atom: true,
-	selectable: true,
-	draggable: true,
-	addAttributes() {
-		return {
-			provider: { default: null },
-			videoId: { default: null, parseHTML: (e) => e.getAttribute('data-video-id') },
-		}
-	},
-	parseHTML() {
-		return [
-			{
-				tag: 'div[data-type="video-embed"]',
-				getAttrs: (e) => ({
-					provider: e.getAttribute('data-provider'),
-					videoId: e.getAttribute('data-video-id'),
-				}),
-			},
-		]
-	},
-	renderHTML({ HTMLAttributes }) {
-		return [
-			'div',
-			mergeAttributes(
-				{
-					'data-type': 'video-embed',
-					'data-provider': HTMLAttributes.provider,
-					'data-video-id': HTMLAttributes.videoId,
-				},
-				{}
-			),
-		]
-	},
-	addNodeView() {
-		return ({ node, editor, getPos }) => {
-			const dom = el('div', 'cafe-w-embed')
-			const src = embedSrc(node.attrs.provider, node.attrs.videoId)
-			if (src) {
-				const frame = el('iframe')
-				frame.src = src
-				frame.setAttribute(
-					'allow',
-					'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture'
-				)
-				frame.setAttribute('allowfullscreen', '')
-				frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups')
-				dom.appendChild(frame)
-			} else {
-				dom.appendChild(el('span', 'cafe-w-embed-error', "Couldn't load this embed."))
-			}
-			const remove = el('button', 'cafe-w-embed-remove')
-			remove.type = 'button'
-			remove.setAttribute('aria-label', 'Remove embed')
-			remove.appendChild(icon('x'))
-			remove.addEventListener('mousedown', (event) => event.preventDefault())
-			remove.addEventListener('click', () => {
-				const pos = getPos()
-				if (typeof pos !== 'number') return
-				editor.view.dispatch(editor.state.tr.delete(pos, pos + node.nodeSize))
-			})
-			dom.appendChild(remove)
-			return {
-				dom,
-				selectNode: () => dom.classList.add('selected'),
-				deselectNode: () => dom.classList.remove('selected'),
-			}
-		}
-	},
-	addCommands() {
-		return {
-			insertVideoEmbed:
-				(attrs) =>
-				({ commands }) =>
-					commands.insertContent({ type: this.name, attrs }),
-		}
-	},
-})
-
 window.CafeWriteEditor = {
 	Editor,
-	StarterKit,
+	Bold,
+	Blockquote,
+	BulletList,
+	ListItem,
+	ListKeymap,
+	OrderedList,
+	DocNode,
+	Dropcursor,
+	Gapcursor,
+	TrailingNode,
+	UndoRedo,
+	HardBreak,
+	Heading,
+	HorizontalRule,
+	Italic,
+	Link,
+	Paragraph,
+	Strike,
+	TextNode,
+	Underline,
 	Placeholder,
 	TextAlign,
-	TaskList,
-	TaskItem,
 	Image,
 	ImageGroup,
-	PastePlainText,
+	Mention,
 	PostLinkTrigger,
-	VideoEmbed,
-	parseEmbedUrl,
 }

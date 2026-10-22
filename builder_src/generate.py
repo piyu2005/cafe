@@ -30,7 +30,8 @@ APP = REPO / "cafe"
 OUT = APP / "builder_files"
 FONTS_OUT = APP / "public" / "builder_assets" / "fonts"
 SCRIPT_ICONS = {
-	"settings.js": ("bookmark", "bookmark-minus", "newspaper", "plus"),
+	"settings.js": ("newspaper", "plus"),
+	"posts.js": ("bookmark-minus",),
 	"code.js": ("copy", "check"),
 	"chat_core.js": (
 		"arrow-left",
@@ -82,7 +83,8 @@ SCRIPT_ICONS = {
 		"archive",
 		"bold",
 		"chevron-down",
-		"code",
+		"chevron-left",
+		"chevron-right",
 		"heading",
 		"heading-2",
 		"heading-3",
@@ -92,16 +94,13 @@ SCRIPT_ICONS = {
 		"link",
 		"list",
 		"list-ordered",
-		"list-todo",
 		"pilcrow",
 		"plus",
 		"quote",
 		"save",
-		"square-code",
 		"strikethrough",
 		"trash-2",
 		"underline",
-		"video",
 		"x",
 	),
 	"pub_core.js": (
@@ -124,6 +123,7 @@ SCRIPT_ICONS = {
 		"at-sign",
 		"users",
 		"newspaper",
+		"repeat-2",
 		"bell",
 		"check-check",
 		"x",
@@ -143,7 +143,25 @@ SOCKET_PRELOAD_HEAD = (
 	'<link rel="preload" href="/assets/cafe/builder_assets/vendor/socket.io.min.js" as="script">'
 )
 FONT_DIR = SRC / "assets" / "Newsreader"
-FONT_FILES = {FONT_DIR / "Newsreader-Regular.woff2", FONT_DIR / "Newsreader-Medium.woff2"}
+INTER_DIR = SRC / "assets" / "Inter"
+FONT_FILES = {
+	FONT_DIR / "Newsreader-Regular.woff2",
+	FONT_DIR / "Newsreader-Medium.woff2",
+	INTER_DIR / "inter-var-subset.woff2",
+}
+# Builder's own reset.css (which every Builder page loads) declares InterVar
+# as the default font over its full 100-900/opsz 14-32 range, covering every
+# script Inter ships - 264KB for a font Cafe only ever uses in the Latin
+# alphabet. styles.css re-declares the same family/weight/style range after
+# it, pointed at a subset with only Latin + punctuation glyphs (95KB; see
+# builder_src/assets/Inter/README for how it was built) - later rules win
+# when @font-face descriptors fully overlap, so every page gets this one
+# instead. Preloading it (like SOCKET_PRELOAD_HEAD) saves the round trip
+# the browser would otherwise spend discovering it only after parsing CSS.
+INTER_PRELOAD_HEAD = (
+	'<link rel="preload" href="/assets/cafe/builder_assets/fonts/inter-var-subset.woff2" '
+	'as="font" type="font/woff2" crossorigin>'
+)
 
 NOW = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
@@ -155,6 +173,7 @@ def slug(name):
 from auth_page import LOGIN_DATA_SCRIPT, SIGNUP_DATA_SCRIPT, build_login, build_signup
 from blocks import PUBLICATIONS_ENABLED, svg
 from chat_page import CHAT_DATA_SCRIPT, CHAT_PARTS, build_native_chat, native_head_html
+from faq_page import FAQ_DATA_SCRIPT, build_faq
 from home_page import HOME_DATA_SCRIPT, build_home
 from post_page import POST_DATA_SCRIPT, build_post_page
 from posts_page import POSTS_DATA_SCRIPT, build_posts_page
@@ -193,24 +212,6 @@ def client_script(name, script_type, source, idx):
 		"owner": "Administrator",
 		"script": source,
 		"script_type": script_type,
-	}
-
-
-def component(component_id, name, root_block):
-	return {
-		"block": json.dumps(root_block),
-		"component_data_script": None,
-		"component_id": component_id,
-		"component_name": name,
-		"creation": NOW,
-		"docstatus": 0,
-		"doctype": "Builder Component",
-		"for_web_page": None,
-		"idx": 0,
-		"modified": NOW,
-		"modified_by": "Administrator",
-		"name": component_id,
-		"owner": "Administrator",
 	}
 
 
@@ -314,9 +315,13 @@ def main():
 			)
 		write_json("client_scripts", name, client_script(name, kind, source, index))
 
+	# Not a "Builder Component" document any more (see layout.py's
+	# page_layout() for why) - just a plain block tree, deep-copied straight
+	# into every page below. shell_id is still computed and threaded through
+	# every page builder's signature, unused, so this is the only line that
+	# needed to change here.
 	shell_id = hashlib.sha1(b"cafe:Cafe Shell").hexdigest()[:16]
 	shell_block = build_shell()
-	write_json("components", "Cafe Shell", component(shell_id, "Cafe Shell", shell_block))
 
 	# Registers the heading font with Builder, so its editor canvas and the
 	# published page both load it (a CSS @font-face would reach only the page).
@@ -404,6 +409,7 @@ def main():
 		),
 		("cafe-home", "Home", "cafe-home", build_home, [*shared, "Cafe Home"], HOME_DATA_SCRIPT, False),
 		("cafe-settings", "Settings", "settings", build_settings, shared, SETTINGS_DATA_SCRIPT, False),
+		("cafe-faq", "FAQ", "faq", build_faq, shared, FAQ_DATA_SCRIPT, False),
 		("cafe-login", "Login", "login", build_login, [*alone, "Cafe Auth"], LOGIN_DATA_SCRIPT, False),
 		("cafe-signup", "Signup", "signup", build_signup, [*alone, "Cafe Auth"], SIGNUP_DATA_SCRIPT, False),
 		(
@@ -483,7 +489,7 @@ def main():
 	)
 	for name, title, route, builder, script_names, data_script, dynamic, *extra in pages:
 		blocks = builder(shell_id, shell_block)
-		head = SOCKET_PRELOAD_HEAD + (extra[0] if extra else "")
+		head = SOCKET_PRELOAD_HEAD + INTER_PRELOAD_HEAD + (extra[0] if extra else "")
 		doc = page(name, title, route, blocks, script_names, data_script, dynamic, head)
 		if name in unpublished:
 			doc["published"] = 0

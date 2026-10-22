@@ -243,12 +243,40 @@ def build_name_row():
 		),
 		"profile.full_name",
 	)
+	# frappe-ui's own Badge (ui.frappe.io/docs/components/badge), theme="amber"
+	# variant="subtle" - colors read from its actual source
+	# (node_modules/frappe-ui/src/components/Badge/Badge.vue and
+	# tailwind/generated/colors.json): bg-surface-amber-2 (#fff4d3),
+	# text-ink-amber-8 (#bb6f0c). Height is 28px (not one of Badge's own
+	# sm/md/lg presets) to line up with the Edit button beside it - padding/
+	# font-size/tracking carried over from its "lg" preset (px-2, text-[13px],
+	# tracking-[0.02em]) since 28px is past "lg"'s own 24px.
+	points_badge = show(
+		block(
+			"span",
+			"Cafe points",
+			["cafe-profile-points"],
+			styles={
+				"display": "inline-flex",
+				"alignItems": "center",
+				"flexShrink": "0",
+				"height": "28px",
+				"padding": "0 8px",
+				"borderRadius": "9999px",
+				"backgroundColor": "#fff4d3",
+				"whiteSpace": "nowrap",
+				**text_style(13, "420", "#bb6f0c", "0.02em", "17px"),
+			},
+		),
+		"profile.points_label",
+	)
 	buttons = block(
 		"div",
 		"Buttons",
 		["cafe-profile-buttons"],
 		styles={"display": "flex", "alignItems": "center", "gap": "8px", "flexShrink": "0"},
 		children=[
+			points_badge,
 			when(outline_button("edit-header", "Edit"), "profile.is_own"),
 			outline_button("share", icon_name="share-2", aria="Copy profile link", name="Share"),
 		],
@@ -755,6 +783,7 @@ else:
         "no_image": not image,
         "has_job": bool(person.job_title),
         "job_line": clean(person.job_title) + (" at " + clean(person.company) if person.company else ""),
+        "points_label": str(person.points) + (" cafe point" if person.points == 1 else " cafe points"),
         "headline": clean(person.headline),
         "show_headline": is_own or bool(person.headline),
         "show_headline_hint": is_own and not person.headline,

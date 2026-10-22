@@ -158,26 +158,19 @@ has_permission = {
 # 	}
 # }
 
+doc_events = {
+	# User is core Frappe, not an app doctype - this is the only hook point
+	# for the one-time "onboarded" cafe points award (see cafe/points.py).
+	"User": {"after_insert": "cafe.points.on_user_created"},
+}
+
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"cafe.tasks.all"
-# 	],
-# 	"daily": [
-# 		"cafe.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"cafe.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"cafe.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"cafe.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	# Publishes scheduled drafts once their time comes (see Post.publish_due_posts).
+	"all": ["cafe.cafe.doctype.post.post.publish_due_posts"],
+}
 
 # Testing
 # -------
@@ -271,4 +264,18 @@ has_permission = {
 after_migrate = [
 	"cafe.setup.after_migrate",
 	"cafe.builder_previews.generate_missing_previews",
+]
+
+# Fixtures
+# --------
+# These three Custom Fields (headline/job_title/company on core User) back
+# cafe.api.update_profile's own fields - without being tracked here, they
+# only exist as manual DB rows on whichever site they were first added to,
+# and a fresh install/site would silently lose the ability to save them
+# (Frappe drops attributes unknown to the DocType meta, no error raised).
+fixtures = [
+	{
+		"doctype": "Custom Field",
+		"filters": [["name", "in", ["User-headline", "User-job_title", "User-company"]]],
+	},
 ]

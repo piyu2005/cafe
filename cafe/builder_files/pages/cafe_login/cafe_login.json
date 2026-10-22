@@ -26,7 +26,7 @@
       "letterSpacing": "0.02em",
       "lineHeight": "1.15"
      },
-     "blockId": "r9wuato6g",
+     "blockId": "nm5uby9v6",
      "blockName": "Auth",
      "children": [
       {
@@ -40,7 +40,7 @@
         "backgroundColor": "#ffffff",
         "boxShadow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
        },
-       "blockId": "yzn5dcga9",
+       "blockId": "ts8iw8vgc",
        "blockName": "Card",
        "children": [
         {
@@ -50,7 +50,7 @@
           "height": "36px",
           "marginBottom": "12px"
          },
-         "blockId": "8k8agmd71",
+         "blockId": "rhrx1d3xc",
          "blockName": "Logo",
          "children": [],
          "classes": [],
@@ -83,7 +83,7 @@
           "letterSpacing": "0.02em",
           "lineHeight": "1.15"
          },
-         "blockId": "8yceg00od",
+         "blockId": "snmupe6tt",
          "blockName": "Title",
          "children": [],
          "classes": [],
@@ -116,7 +116,7 @@
           "letterSpacing": "0.15px",
           "lineHeight": "19.5px"
          },
-         "blockId": "7k6pnq5ru",
+         "blockId": "wl4842s6u",
          "blockName": "Subtitle",
          "children": [],
          "classes": [],
@@ -144,7 +144,7 @@
          "baseStyles": {
           "marginTop": "24px"
          },
-         "blockId": "hkrw0pi8x",
+         "blockId": "qb1ywuyhd",
          "blockName": "Form",
          "children": [
           {
@@ -153,13 +153,13 @@
             "novalidate": "novalidate"
            },
            "baseStyles": {},
-           "blockId": "cvx1m5it0",
+           "blockId": "0ni2f6ohf",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "vtzjltht1",
+             "blockId": "eoyur2o9l",
              "blockName": null,
              "children": [
               {
@@ -175,13 +175,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "tp62gby9m",
+               "blockId": "tl6b7lj87",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "9iqg1gop1",
+                 "blockId": "sjh91ob6b",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -209,7 +209,7 @@
                  "baseStyles": {
                   "color": "#e03434"
                  },
-                 "blockId": "pwirc53j1",
+                 "blockId": "z9s6m2goo",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -276,7 +276,7 @@
                 "fontSize": "14px",
                 "letterSpacing": "0.02em"
                },
-               "blockId": "8nkpwfdzv",
+               "blockId": "zdlqi2gsu",
                "blockName": null,
                "children": [],
                "classes": [
@@ -336,7 +336,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.15"
              },
-             "blockId": "9njnap64o",
+             "blockId": "o9sm5atlv",
              "blockName": null,
              "children": [],
              "classes": [
@@ -373,7 +373,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.15"
              },
-             "blockId": "aqb4phv0f",
+             "blockId": "e0uogu6l0",
              "blockName": null,
              "children": [
               {
@@ -385,7 +385,7 @@
                 "color": "var(--ink-gray-9)",
                 "textDecoration": "none"
                },
-               "blockId": "i2jajzmtn",
+               "blockId": "3bulez99j",
                "blockName": null,
                "children": [],
                "classes": [
@@ -455,13 +455,13 @@
               "backgroundColor": "var(--surface-gray-10)",
               "color": "#ffffff"
              },
-             "blockId": "x2oggirz6",
+             "blockId": "kf5huioiq",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "nfuuttdo4",
+               "blockId": "cdtai9m5w",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -529,13 +529,13 @@
               "backgroundColor": "#ffffff",
               "color": "var(--ink-gray-8)"
              },
-             "blockId": "e99wloxk6",
+             "blockId": "wzmbhvzs8",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "azxeike5i",
+               "blockId": "n4di3073l",
                "blockName": "Icon",
                "children": [],
                "classes": [],
@@ -561,7 +561,7 @@
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "69hz7kikl",
+               "blockId": "yelnwigas",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -635,7 +635,7 @@
             "novalidate": "novalidate"
            },
            "baseStyles": {},
-           "blockId": "uojvw7zde",
+           "blockId": "n7tuz9pab",
            "blockName": null,
            "children": [
             {
@@ -648,13 +648,13 @@
               "letterSpacing": "0.015em",
               "lineHeight": "19.5px"
              },
-             "blockId": "z9z5gadmk",
+             "blockId": "ymal0ockd",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "wusmnruzg",
+               "blockId": "vgudcjpdi",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -682,7 +682,7 @@
                 "id": "cafe-sent-to"
                },
                "baseStyles": {},
-               "blockId": "yrfuka5fz",
+               "blockId": "vf1xl4ov0",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -733,7 +733,7 @@
               "gap": "8px",
               "marginTop": "16px"
              },
-             "blockId": "fcm5qqhlj",
+             "blockId": "3gwir2m33",
              "blockName": null,
              "children": [
               {
@@ -757,7 +757,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "mqfvuuql9",
+               "blockId": "oxs90icbq",
                "blockName": null,
                "children": [],
                "classes": [
@@ -803,7 +803,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "ugflx3f3a",
+               "blockId": "642fh10zf",
                "blockName": null,
                "children": [],
                "classes": [
@@ -849,7 +849,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "0kppcqtgt",
+               "blockId": "bmny3ckx5",
                "blockName": null,
                "children": [],
                "classes": [
@@ -895,7 +895,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "tia8it9nr",
+               "blockId": "tco8kk65b",
                "blockName": null,
                "children": [],
                "classes": [
@@ -941,7 +941,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "w7defj0aw",
+               "blockId": "waz2qgtcq",
                "blockName": null,
                "children": [],
                "classes": [
@@ -987,7 +987,7 @@
                 "fontWeight": "500",
                 "letterSpacing": "0.015em"
                },
-               "blockId": "09qla33ez",
+               "blockId": "2h3yv8yvs",
                "blockName": null,
                "children": [],
                "classes": [
@@ -1049,7 +1049,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.15"
              },
-             "blockId": "ypwlzkm62",
+             "blockId": "7swgljfbi",
              "blockName": null,
              "children": [],
              "classes": [
@@ -1096,13 +1096,13 @@
               "backgroundColor": "var(--surface-gray-10)",
               "color": "#ffffff"
              },
-             "blockId": "ht4k1ut64",
+             "blockId": "rnki7pw2s",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "7cb1lcm1f",
+               "blockId": "gfjbjo3s4",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -1159,7 +1159,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.15"
              },
-             "blockId": "rpsf3i9dt",
+             "blockId": "z11rrvqls",
              "blockName": null,
              "children": [],
              "classes": [
@@ -1237,13 +1237,13 @@
           "letterSpacing": "0.02em",
           "lineHeight": "1.15"
          },
-         "blockId": "p7po5tn8k",
+         "blockId": "9uyhk851h",
          "blockName": "Footer",
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "pxcv8rf9m",
+           "blockId": "qggmoiwkc",
            "blockName": null,
            "children": [],
            "classes": [],
@@ -1275,7 +1275,7 @@
             "color": "var(--ink-gray-9)",
             "textDecoration": "none"
            },
-           "blockId": "dkg2ruopo",
+           "blockId": "1aha8ste4",
            "blockName": null,
            "children": [],
            "classes": [
@@ -1358,7 +1358,7 @@
         "backgroundColor": "#ffffff",
         "boxShadow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
        },
-       "blockId": "08yc8bwjs",
+       "blockId": "3t1wxlcb5",
        "blockName": "Card",
        "children": [
         {
@@ -1368,7 +1368,7 @@
           "height": "36px",
           "marginBottom": "12px"
          },
-         "blockId": "7v055tkob",
+         "blockId": "biave1pfg",
          "blockName": "Logo",
          "children": [],
          "classes": [],
@@ -1401,7 +1401,7 @@
           "letterSpacing": "0.02em",
           "lineHeight": "1.15"
          },
-         "blockId": "ibvy8c4jw",
+         "blockId": "uhhk90p0y",
          "blockName": "Title",
          "children": [],
          "classes": [],
@@ -1434,7 +1434,7 @@
           "letterSpacing": "0.15px",
           "lineHeight": "19.5px"
          },
-         "blockId": "3xaiojy55",
+         "blockId": "icqub4xe5",
          "blockName": "Subtitle",
          "children": [],
          "classes": [],
@@ -1462,7 +1462,7 @@
          "baseStyles": {
           "marginTop": "24px"
          },
-         "blockId": "569zyzpvp",
+         "blockId": "2ncrdccyd",
          "blockName": "Form",
          "children": [
           {
@@ -1471,13 +1471,13 @@
             "novalidate": "novalidate"
            },
            "baseStyles": {},
-           "blockId": "ti6qb3aom",
+           "blockId": "739m0q4b9",
            "blockName": null,
            "children": [
             {
              "attributes": {},
              "baseStyles": {},
-             "blockId": "uuhhrcxek",
+             "blockId": "40n6k8vzq",
              "blockName": null,
              "children": [
               {
@@ -1493,13 +1493,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "gm4qnkmeq",
+               "blockId": "0egeqwz01",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "aitkb24s0",
+                 "blockId": "qoobz48lt",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1527,7 +1527,7 @@
                  "baseStyles": {
                   "color": "#e03434"
                  },
-                 "blockId": "4gddsimtm",
+                 "blockId": "uvuuh4yry",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1594,7 +1594,7 @@
                 "fontSize": "14px",
                 "letterSpacing": "0.02em"
                },
-               "blockId": "kdxnr00gn",
+               "blockId": "6khanfbs5",
                "blockName": null,
                "children": [],
                "classes": [
@@ -1645,7 +1645,7 @@
              "baseStyles": {
               "marginTop": "16px"
              },
-             "blockId": "p68pbqvdb",
+             "blockId": "zf9ar3rx6",
              "blockName": null,
              "children": [
               {
@@ -1661,13 +1661,13 @@
                 "letterSpacing": "0.02em",
                 "lineHeight": "1.15"
                },
-               "blockId": "ysc8xh85n",
+               "blockId": "gpd7y9s1x",
                "blockName": null,
                "children": [
                 {
                  "attributes": {},
                  "baseStyles": {},
-                 "blockId": "t7zcw8zgk",
+                 "blockId": "e1thnc57n",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1695,7 +1695,7 @@
                  "baseStyles": {
                   "color": "#e03434"
                  },
-                 "blockId": "7ipbqgipq",
+                 "blockId": "reg9axsi6",
                  "blockName": null,
                  "children": [],
                  "classes": [],
@@ -1761,7 +1761,7 @@
                 "fontSize": "14px",
                 "letterSpacing": "0.02em"
                },
-               "blockId": "m8ruxd51m",
+               "blockId": "7lx8meanr",
                "blockName": null,
                "children": [],
                "classes": [
@@ -1821,7 +1821,7 @@
               "letterSpacing": "0.02em",
               "lineHeight": "1.15"
              },
-             "blockId": "eqet7s57j",
+             "blockId": "lnh0v1ohx",
              "blockName": null,
              "children": [],
              "classes": [
@@ -1868,13 +1868,13 @@
               "backgroundColor": "var(--surface-gray-10)",
               "color": "#ffffff"
              },
-             "blockId": "wnz2tp5st",
+             "blockId": "p1ciarri2",
              "blockName": null,
              "children": [
               {
                "attributes": {},
                "baseStyles": {},
-               "blockId": "kddgk01mk",
+               "blockId": "6lmcck4bv",
                "blockName": null,
                "children": [],
                "classes": [],
@@ -1973,13 +1973,13 @@
           "letterSpacing": "0.02em",
           "lineHeight": "1.15"
          },
-         "blockId": "l7pdn77hg",
+         "blockId": "m4jowp2lv",
          "blockName": "Footer",
          "children": [
           {
            "attributes": {},
            "baseStyles": {},
-           "blockId": "nejzu6ehj",
+           "blockId": "19v60b6qz",
            "blockName": null,
            "children": [],
            "classes": [],
@@ -2011,7 +2011,7 @@
             "color": "var(--ink-gray-9)",
             "textDecoration": "none"
            },
-           "blockId": "lirxkjly4",
+           "blockId": "55k5178iw",
            "blockName": null,
            "children": [],
            "classes": [
@@ -2139,17 +2139,17 @@
    "builder_script": "Cafe Auth"
   }
  ],
- "creation": "2026-10-12 16:21:10.082900",
+ "creation": "2026-10-19 16:13:15.317744",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
  "draft_blocks": null,
  "dynamic_route": 0,
- "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\">",
+ "head_html": "<link rel=\"preload\" href=\"/assets/cafe/builder_assets/vendor/socket.io.min.js\" as=\"script\"><link rel=\"preload\" href=\"/assets/cafe/builder_assets/fonts/inter-var-subset.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>",
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-12 16:21:10.082900",
+ "modified": "2026-10-19 16:13:15.317744",
  "modified_by": "Administrator",
  "name": "cafe-login",
  "owner": "Administrator",
@@ -2158,6 +2158,6 @@
  "page_title": "Login",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-12 16:21:10.082900",
+ "published_at": "2026-10-19 16:13:15.317744",
  "route": "login"
 }
