@@ -1996,9 +1996,6 @@ p.cafe-clamp-3:empty::before {
 .cafe-saved-remove svg {
   fill: currentColor;
 }
-.cafe-saved-remove:hover {
-  background: rgba(0, 0, 0, 0.06);
-}
 .cafe-saved-empty,
 .cafe-saved-error {
   margin: 0;
