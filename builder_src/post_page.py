@@ -392,7 +392,7 @@ def action_button(action, icon_name, count_key, count_id, attrs=None):
 		[f"cafe-{action}"],
 		attrs={"type": "button", "aria-label": action.title(), **(attrs or {})},
 		custom={"data-action": action, "data-on": ""},
-		children=[block("span", "Icon", inner_html=svg(icon_name, 16), styles=ICON_SPAN), count],
+		children=[block("span", "Icon", inner_html=svg(icon_name, 20), styles=ICON_SPAN), count],
 		styles={
 			"display": "flex",
 			"alignItems": "center",
@@ -441,7 +441,7 @@ def build_action_bar():
 			["cafe-save"],
 			attrs={"type": "button", "aria-label": "Save", "data-tooltip": "Save"},
 			custom={"data-action": "save", "data-on": ""},
-			inner_html=svg("bookmark", 16),
+			inner_html=svg("bookmark", 20),
 			styles={
 				"display": "grid",
 				"placeItems": "center",
@@ -470,7 +470,7 @@ def build_action_bar():
 				["cafe-repost"],
 				attrs={"type": "button", "aria-label": "Repost", "data-tooltip": "Repost"},
 				custom={"data-action": "repost", "data-on": ""},
-				inner_html=svg("repeat-2", 16),
+				inner_html=svg("repeat-2", 20),
 				styles={
 					"display": "grid",
 					"placeItems": "center",
