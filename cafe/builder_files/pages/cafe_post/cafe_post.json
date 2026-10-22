@@ -3941,7 +3941,7 @@
                    "element": "button",
                    "elementBeforeConversion": null,
                    "extendedFromComponent": null,
-                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:20px;height:20px\"><path d=\"m2 9 3-3 3 3\" />\n  <path d=\"M13 18H7a2 2 0 0 1-2-2V6\" />\n  <path d=\"m22 15-3 3-3-3\" />\n  <path d=\"M11 6h6a2 2 0 0 1 2 2v10\" /></svg>",
+                   "innerHTML": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block;flex-shrink:0;width:24px;height:24px\"><path d=\"m2 9 3-3 3 3\" />\n  <path d=\"M13 18H7a2 2 0 0 1-2-2V6\" />\n  <path d=\"m22 15-3 3-3-3\" />\n  <path d=\"M11 6h6a2 2 0 0 1 2 2v10\" /></svg>",
                    "isChildOfComponent": null,
                    "isRepeaterBlock": false,
                    "mobileStyles": {},
@@ -4422,7 +4422,7 @@
    "builder_script": "Cafe Embeds"
   }
  ],
- "creation": "2026-10-22 14:36:18.355242",
+ "creation": "2026-10-22 14:42:38.241794",
  "disable_indexing": 1,
  "docstatus": 0,
  "doctype": "Builder Page",
@@ -4432,7 +4432,7 @@
  "idx": 0,
  "is_standard": 1,
  "is_template": 0,
- "modified": "2026-10-22 14:36:18.391266",
+ "modified": "2026-10-22 14:42:38.279427",
  "modified_by": "Administrator",
  "name": "cafe-post",
  "owner": "Administrator",
@@ -4442,7 +4442,7 @@
  "preview": "/assets/builder/images/fallback.png",
  "project_folder": "cafe",
  "published": 1,
- "published_at": "2026-10-22 14:35:52.297607",
+ "published_at": "2026-10-22 14:42:07.999519",
  "route": "posts/:post_id",
  "staging": 0
 }

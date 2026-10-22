@@ -470,7 +470,7 @@ def build_action_bar():
 				["cafe-repost"],
 				attrs={"type": "button", "aria-label": "Repost", "data-tooltip": "Repost"},
 				custom={"data-action": "repost", "data-on": ""},
-				inner_html=svg("repeat-2", 20),
+				inner_html=svg("repeat-2", 24),
 				styles={
 					"display": "grid",
 					"placeItems": "center",
