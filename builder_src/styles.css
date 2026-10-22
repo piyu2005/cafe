@@ -1156,29 +1156,30 @@ p.cafe-clamp-3:empty::before {
 .cafe-pop.open {
   display: block !important;
 }
+/* Like/Comment/Save/Repost: plain icon buttons, no box - no border, no
+   background, at rest or active. Active (data-on='1') colors the icon in
+   the action's own color (danger-red for Like, the repost accent amber
+   for Repost, solid black for Save). Like and Save go
+   further and fill the glyph itself solid (Twitter-heart style), not
+   just tint its stroke - heart.svg/bookmark.svg are each one closed
+   path, so `fill` on top of the existing stroke reads as a proper solid
+   icon. repeat-2.svg (Repost) is four open arrow strokes, not a closed
+   shape - filling it would just look broken, so it stays stroke-only
+   colored. Comment has no active state at all. */
 .cafe-like[data-on='1'] {
   color: #e03636 !important;
 }
-/* frappe-ui's own Badge, theme="gray" variant="subtle": bg-surface-gray-2,
-   text-ink-gray-6 - same lighter-shade-of-black approach as the repost
-   button's amber (and the points badge it both match). */
+.cafe-like[data-on='1'] svg {
+  fill: currentColor !important;
+}
 .cafe-save[data-on='1'] {
-  border-color: var(--surface-gray-2) !important;
-  background: var(--surface-gray-2) !important;
-  color: var(--ink-gray-6) !important;
+  color: #000000 !important;
 }
-.cafe-save:not([data-on='1']):hover {
-  background: var(--surface-gray-1) !important;
+.cafe-save[data-on='1'] svg {
+  fill: currentColor !important;
 }
-/* Same "subtle" amber as the profile points badge (bg-surface-amber-2/
-   #fff4d3, text-ink-amber-8/#bb6f0c), not Badge's darker "solid" variant. */
 .cafe-repost[data-on='1'] {
-  border-color: #fff4d3 !important;
-  background: #fff4d3 !important;
   color: #bb6f0c !important;
-}
-.cafe-repost:not([data-on='1']):hover {
-  background: var(--surface-gray-1) !important;
 }
 .cafe-textarea {
   display: block;
@@ -1992,8 +1993,8 @@ p.cafe-clamp-3:empty::before {
   color: var(--ink-gray-9);
   cursor: pointer;
 }
-.cafe-saved-remove:hover {
-  background: rgba(0, 0, 0, 0.06);
+.cafe-saved-remove svg {
+  fill: currentColor;
 }
 .cafe-saved-empty,
 .cafe-saved-error {

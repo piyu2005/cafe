@@ -173,7 +173,7 @@
 		var remove = CAFE.el('button', 'cafe-saved-remove')
 		remove.type = 'button'
 		remove.setAttribute('aria-label', 'Remove from saved posts')
-		remove.appendChild(icon('bookmark-minus'))
+		remove.appendChild(icon('bookmark'))
 		remove.addEventListener('click', function () {
 			onRemove(post)
 		})
@@ -200,27 +200,35 @@
 			empty.hidden = savedPosts.length > 0
 		}
 
-		// The post leaves the list at once; the server confirms afterwards.
+		// The post leaves the list at once (after confirming); the server
+		// confirms afterwards.
 		function remove(post) {
-			var before = savedPosts
-			savedPosts = savedPosts.filter(function (item) {
-				return item.name !== post.name
-			})
-			render()
-			CAFE.api('cafe.api.toggle_save_post', { post: post.name }).then(
-				function (result) {
-					// `saved` true means it is still saved (a double click, say): put it back.
-					if (!result || result.saved) {
+			CAFE.confirm({
+				title: 'Unsave this post?',
+				message: 'You can save it again later from the post itself.',
+				confirmLabel: 'Unsave',
+			}).then(function (ok) {
+				if (!ok) return
+				var before = savedPosts
+				savedPosts = savedPosts.filter(function (item) {
+					return item.name !== post.name
+				})
+				render()
+				CAFE.api('cafe.api.toggle_save_post', { post: post.name }).then(
+					function (result) {
+						// `saved` true means it is still saved (a double click, say): put it back.
+						if (!result || result.saved) {
+							savedPosts = before
+							render()
+						}
+					},
+					function () {
 						savedPosts = before
 						render()
+						CAFE.toast("Couldn't remove that post. Please try again.", 'error')
 					}
-				},
-				function () {
-					savedPosts = before
-					render()
-					CAFE.toast("Couldn't remove that post. Please try again.", 'error')
-				}
-			)
+				)
+			})
 		}
 
 		savedLoaded = true

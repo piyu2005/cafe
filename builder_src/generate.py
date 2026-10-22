@@ -29,9 +29,14 @@ REPO = SRC.parent
 APP = REPO / "cafe"
 OUT = APP / "builder_files"
 FONTS_OUT = APP / "public" / "builder_assets" / "fonts"
+# Per-icon size overrides, keyed by icon name - defaults to 16px. "bookmark"
+# in posts.js is sized to match the post detail page's own save icon
+# (post_page.py's build_action_bar), since it's the same filled-glyph treatment.
+SCRIPT_ICON_SIZES = {"bookmark": 20}
+
 SCRIPT_ICONS = {
 	"settings.js": ("newspaper", "plus"),
-	"posts.js": ("bookmark-minus",),
+	"posts.js": ("bookmark",),
 	"code.js": ("copy", "check"),
 	"chat_core.js": (
 		"arrow-left",
@@ -311,7 +316,10 @@ def main():
 		# These scripts draw their icons from the same lucide files as the blocks.
 		if filename in SCRIPT_ICONS:
 			source = source.replace(
-				"'@@ICONS@@'", json.dumps({name: svg(name, 16) for name in SCRIPT_ICONS[filename]})
+				"'@@ICONS@@'",
+				json.dumps(
+					{name: svg(name, SCRIPT_ICON_SIZES.get(name, 16)) for name in SCRIPT_ICONS[filename]}
+				),
 			)
 		write_json("client_scripts", name, client_script(name, kind, source, index))
 
