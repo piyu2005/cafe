@@ -1,12 +1,13 @@
 {
- "creation": "2026-10-22 14:28:11.330443",
+ "creation": "2026-10-19 11:38:50.443144",
  "docstatus": 0,
  "doctype": "Builder Client Script",
  "idx": 13,
- "modified": "2026-10-22 14:28:11.330443",
+ "modified": "2026-10-14 07:04:47.604019",
  "modified_by": "Administrator",
  "name": "Cafe Embeds",
  "owner": "Administrator",
+ "public_url": "/files/page_scripts/Cafe Embeds-8e22491df2.js?v=072aff1773",
  "script": "// Published posts: the \"video-embed\" placeholder div (write_editor.js /\n// vendor_src/write-editor-entry.js) carries only a provider name and a video\n// id - frappe.sanitize_html strips a raw <iframe> outright, so the real embed\n// is always built here, client-side, from that same provider+id, the same\n// principle the editor's own live preview already follows. Loaded only on\n// pages that render a post's full content (currently just the Post page).\n;(function () {\n\t'use strict'\n\n\tfunction embedSrc(provider, videoId) {\n\t\tif (provider === 'youtube') return 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId)\n\t\tif (provider === 'vimeo') return 'https://player.vimeo.com/video/' + encodeURIComponent(videoId)\n\t\treturn null\n\t}\n\n\tdocument.addEventListener('DOMContentLoaded', function () {\n\t\tdocument.querySelectorAll('[data-type=\"video-embed\"]').forEach(function (div) {\n\t\t\tvar src = embedSrc(div.getAttribute('data-provider'), div.getAttribute('data-video-id'))\n\t\t\tif (!src) return\n\t\t\tvar frame = document.createElement('iframe')\n\t\t\tframe.src = src\n\t\t\tframe.loading = 'lazy'\n\t\t\tframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture')\n\t\t\tframe.setAttribute('allowfullscreen', '')\n\t\t\tframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups')\n\t\t\tdiv.classList.add('cafe-embed')\n\t\t\tdiv.appendChild(frame)\n\t\t})\n\t})\n})()\n",
  "script_type": "JavaScript"
 }
