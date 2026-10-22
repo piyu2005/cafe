@@ -30,9 +30,7 @@ def execute():
 
 	post_authors = dict(frappe.get_all("Post", fields=["name", "author"], as_list=True))
 	comment_authors = dict(frappe.get_all("Post Comment", fields=["name", "comment_by"], as_list=True))
-	for like in frappe.get_all(
-		"Like", fields=["reference_doctype", "reference_name", "user"]
-	):
+	for like in frappe.get_all("Like", fields=["reference_doctype", "reference_name", "user"]):
 		if like.reference_doctype == "Post":
 			owner = post_authors.get(like.reference_name)
 			reason = points.ARTICLE_UPVOTE

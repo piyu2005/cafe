@@ -322,7 +322,11 @@ def list_profile_posts(user: str | None = None, limit: int = 3):
 		row.sort_date = row.creation
 
 	repost_rows = frappe.db.get_all(
-		"Repost", filters={"user": user}, fields=["post", "creation"], order_by="creation desc", limit_page_length=limit
+		"Repost",
+		filters={"user": user},
+		fields=["post", "creation"],
+		order_by="creation desc",
+		limit_page_length=limit,
 	)
 	reposted_posts = {}
 	if repost_rows:
@@ -631,7 +635,9 @@ def list_publications(query: str | None = None):
 
 @frappe.whitelist()
 def leave_publication(handle: str):
-	role = frappe.db.get_value("Publication Member", {"publication": handle, "user": frappe.session.user}, "role")
+	role = frappe.db.get_value(
+		"Publication Member", {"publication": handle, "user": frappe.session.user}, "role"
+	)
 	if role == "Admin":
 		admin_count = frappe.db.count("Publication Member", {"publication": handle, "role": "Admin"})
 		if admin_count <= 1:
@@ -1009,7 +1015,9 @@ def toggle_like(reference_doctype: str, reference_name: str, is_downvote: bool =
 		)
 		like.flags.ignore_permissions = True
 		if _insert_ignoring_concurrent_duplicate(like):
-			points.award(owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user)
+			points.award(
+				owner, -1 if is_downvote else 1, points_reason, reference_doctype, reference_name, actor=user
+			)
 
 			if not is_downvote:
 				from cafe.follow import _notify
@@ -1102,17 +1110,13 @@ def delete_comment(name: str):
 	# comment takes its replies with it rather than leaving them orphaned.
 	deleted_names = [name]
 	if not comment.parent_comment:
-		deleted_names += frappe.get_all(
-			"Post Comment", filters={"parent_comment": name}, pluck="name"
-		)
+		deleted_names += frappe.get_all("Post Comment", filters={"parent_comment": name}, pluck="name")
 		frappe.db.delete("Post Comment", {"parent_comment": name})
 	frappe.delete_doc("Post Comment", name, ignore_permissions=True)
 	# Post.on_trash does this same cleanup for a deleted post's own Likes -
 	# a comment's reference_name is a plain Data field, not a Link, so
 	# Frappe's dynamic-link cleanup never catches this relationship either.
-	frappe.db.delete(
-		"Like", {"reference_doctype": "Post Comment", "reference_name": ["in", deleted_names]}
-	)
+	frappe.db.delete("Like", {"reference_doctype": "Post Comment", "reference_name": ["in", deleted_names]})
 	return "success"
 
 
@@ -1164,9 +1168,9 @@ def add_comment(post: str, content: str, parent_comment: str | None = None):
 		)
 
 	result = comment.as_dict()
-	result["comment_by_username"] = frappe.db.get_value(
-		"User", frappe.session.user, "username"
-	) or frappe.session.user.split("@")[0]
+	result["comment_by_username"] = (
+		frappe.db.get_value("User", frappe.session.user, "username") or frappe.session.user.split("@")[0]
+	)
 	return result
 
 

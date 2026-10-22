@@ -75,9 +75,7 @@ def award_once(user, points, reason, reference_doctype=None, reference_name=None
 def total(user):
 	# SUM() comes back as a Decimal even though `points` is an Int column.
 	return int(
-		frappe.db.sql("select coalesce(sum(points), 0) from `tabCafe Points Log` where user=%s", user)[0][
-			0
-		]
+		frappe.db.sql("select coalesce(sum(points), 0) from `tabCafe Points Log` where user=%s", user)[0][0]
 	)
 
 
@@ -89,11 +87,7 @@ def has_completed_profile(user_doc):
 	# part of this - profile completion and having written something are
 	# separate milestones.
 	if not (
-		user_doc.headline
-		and user_doc.bio
-		and user_doc.user_image
-		and user_doc.job_title
-		and user_doc.company
+		user_doc.headline and user_doc.bio and user_doc.user_image and user_doc.job_title and user_doc.company
 	):
 		return False
 	return bool(
